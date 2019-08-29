@@ -1,3 +1,5 @@
+import ProfileGraph from "./ProfileGraph";
+
 /*****************************************************
  * GITADORA Info Server
  * Developed by Tae Jun Kang a.k.a Prunus Nira
@@ -254,3 +256,5 @@ function getRecordGraph(wsize, div, date, skill, width, height) {
 		}
 	);*/
 }
+
+export default ProfileGraph;

@@ -26,7 +26,7 @@ class Recent extends Component {
                             <CardHeader>
                                 <h3>{txtIndex.self.title[lang]}</h3>
                             </CardHeader>
-                            <CardBody className='text-center' id="selfBody" v-html="selfInfo">
+                            <CardBody className='text-center' id="selfBody">
                                 <RecentSelfInfo />
                             </CardBody>
                         </Card>

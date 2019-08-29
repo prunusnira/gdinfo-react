@@ -8,7 +8,7 @@
  * 2. Also, products and libraries used to implement
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
-var txtAbout2 = {
+const txtAbout2 = {
     update_au: {
         "jp":"自動更新",
         "ko":"자동 갱신",
@@ -91,20 +91,28 @@ var txtAbout2 = {
             "en":"2. Compare with rival"
         },
         s1: {
-            "jp":"方法１・ライバルリストページから「スキル比較」ボタンを押す<br/>" +
-                    "この場合は以前のスキル比較ページでスキルを比較します",
-            "ko":"방법 1. 라이벌 페이지에서 스킬비교 버튼을 누릅니다<br/>" +
-                    "이 경우 기존의 스킬 비교 페이지로 이동합니다",
-            "en":"Method 1. Click Comparison button from Rival list page<br/>" +
-                    "which makes you go to comparison page"
+            "jp":"方法１・ライバルリストページから「スキル比較」ボタンを押す",
+            "ko":"방법 1. 라이벌 페이지에서 스킬비교 버튼을 누릅니다",
+            "en":"Method 1. Click Comparison button from Rival list page"
+                    
         },
         s2: {
-            "jp":"方法２・自分のスキルページからライバルを選んでください<br/>" +
-                    "この場合、スキルページから自分のデータと比較します",
-            "ko":"방법2. 내 스킬 페이지에서 비교를 원하는 라이벌을 선택합니다<br/>" +
-                    "이 경우 스킬 페이지에서 상대방과 바로 비교가 가능합니다",
-            "en":"Method 2. From skill page, select your rival from the list<br/>" +
-                    "You can compare direcly from skill page"
+            "jp":"この場合は以前のスキル比較ページでスキルを比較します",
+            "ko":"이 경우 기존의 스킬 비교 페이지로 이동합니다",
+            "en":"which makes you go to comparison page"
+                    
+        },
+        s3: {
+            "jp":"方法２・自分のスキルページからライバルを選んでください",
+            "ko":"방법2. 내 스킬 페이지에서 비교를 원하는 라이벌을 선택합니다",
+            "en":"Method 2. From skill page, select your rival from the list"
+        },
+        s4: {
+            "jp":"この場合、スキルページから自分のデータと比較します",
+            "ko":"이 경우 스킬 페이지에서 상대방과 바로 비교가 가능합니다",
+            "en":"You can compare direcly from skill page"
         }
     }
 };
+
+export default txtAbout2;

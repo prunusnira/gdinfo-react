@@ -8,7 +8,7 @@
  * 2. Also, products and libraries used to implement
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
-var txtAbout1 = {
+const txtAbout1 = {
     update_au: {
         "jp":"自動更新",
         "ko":"자동 갱신",
@@ -60,3 +60,5 @@ var txtAbout1 = {
         "en":"Message is shown when successfully registered"
     }
 };
+
+export default txtAbout1;

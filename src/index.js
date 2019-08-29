@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
-import './component/gdinfo/css-global/overall-b.css';
+import './component/gdinfo/css/overall-b.css';
 import GDRoot from './component/gdinfo/GDRoot';
 import * as serviceWorker from './serviceWorker';
 

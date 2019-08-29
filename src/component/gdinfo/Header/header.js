@@ -124,7 +124,7 @@ export default class GDHeader extends Component {
                                 </DropdownToggle>
                                 {/* howto-dropdown */}
                                 <DropdownMenu left>
-                                    <DropdownItem tag={Link} to="/about0">
+                                    <DropdownItem tag={Link} to="/about0p">
                                         {txtHeader.howtouse.update_au[lang]}
                                     </DropdownItem>
                                     <DropdownItem tag={Link} to="/about1">

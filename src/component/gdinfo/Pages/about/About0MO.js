@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import AboutHead from './AboutHead';
 import txtAbout0 from './txtabout0';
 import LData from '../../js/language';
 import './about.css';
@@ -11,12 +13,13 @@ import {
     CardHeader,
     CardText,
     CardTitle,
-    CardBody
+    CardBody,
+    Button
 } from 'reactstrap';
 
 const lang = LData.lang;
 
-class About0 extends Component {
+class About0MO extends Component {
     copyToClipboard(element) {
         let temp = document.createElement("input");
         temp.textContent = element;
@@ -31,27 +34,7 @@ class About0 extends Component {
             <Container>
                 <Row>
                     <Col xs="12">
-                        <Card>
-                            <CardHeader>
-                                <h3>How to update</h3>
-                            </CardHeader>
-                            <CardBody className="text-center">
-                                <span>
-                                    {txtAbout0.desc[lang]}
-                                </span><br/>
-                                <span className="btn-group">
-                                    <a className="btn btn-primary" href="/about0">
-                                        {txtAbout0.update_au[lang]}
-                                    </a>
-                                    <a className="btn btn-primary" href="/about1">
-                                        {txtAbout0.update_man[lang]}
-                                    </a>
-                                    <a className="btn btn-primary" href="/about2">
-                                        {txtAbout0.filter_rival[lang]}
-                                    </a>
-                                </span>
-                            </CardBody>
-                        </Card>
+                        <AboutHead />
                     </Col>
                 </Row>
                 <Row>
@@ -61,114 +44,16 @@ class About0 extends Component {
                                 <h3>Device Type</h3>
                             </CardHeader>
                             <CardBody className="btn-group">
-                                <a className="btn btn-primary" style={{width:100+'%'}} href="#no_div" onclick="divSwapPC()">
+                                <Button style={{width:100+'%'}} tag={Link} to="/about0p">
                                     {txtAbout0.device.pc[lang]}
-                                </a>
-                                <a className="btn btn-primary" style={{width:100+'%'}} href="#no_div" onclick="divSwapMO()">
+                                </Button>
+                                <Button style={{width:100+'%'}} tag={Link} to="/about0m">
                                     {txtAbout0.device.mo[lang]}
-                                </a>
+                                </Button>
                             </CardBody>
                         </Card>
                     </Col>
                 </Row>
-                <Row id="howtopc">
-                    <Col xs="12">
-                        <Card>
-                            <CardHeader>
-                                <h3>{txtAbout0.pc.title[lang]}</h3>
-                            </CardHeader>
-                            <CardBody>
-                                <Col xs="12" className="about-part">
-                                    <h5>
-                                        {txtAbout0.pc.step1.title[lang]}
-                                    </h5>
-                                    <span>
-                                        {txtAbout0.pc.step1.desc[lang]}
-                                    </span>
-                                </Col>
-                                <Col xs="12" className="about-part">
-                                    <h5>
-                                        {txtAbout0.pc.step2.title[lang]}
-                                    </h5>
-                                    <span>
-                                        {txtAbout0.pc.step2.desc[lang]}
-                                    </span>
-                                </Col>
-                                <Col xs="12" className="about-part">
-                                    <Card style={{border:'solid 1px white'}}>
-                                        <CardHeader>
-                                            {txtAbout0.pc.step2.addr1desc[lang]}
-                                        </CardHeader>
-                                        <CardBody>
-                                            <CardTitle>
-                                                {txtAbout0.pc.step2.cardt1[lang]}
-                                            </CardTitle>
-                                            <CardText>
-                                                {txtAbout0.pc.step2.addr1}<br/>
-                                                {txtAbout0.pc.step2.copy1[lang]}<br/>
-                                                <a className="btn btn-primary" href="#no_div" onClick={this.copyToClipboard('avascript:$.getScript(\'https://gitadora.info/$/update\');')}>COPY</a>
-                                            </CardText>
-                                            <div className="about-part"></div>
-                                            <CardTitle>
-                                                {txtAbout0.pc.step2.cardt2[lang]}
-                                            </CardTitle>
-                                            <CardText>
-                                                {txtAbout0.pc.step2.addr2}<br/>
-                                                {txtAbout0.pc.step2.copy2[lang]}<br/>
-                                                <a className="btn btn-primary" href="#no_div" onClick={this.copyToClipboard('avascript:$.getScript(\'https://gitadora.info/$/updateOld\');')}>COPY</a>
-                                            </CardText>
-                                        </CardBody>
-                                    </Card>
-                                </Col>
-                                <Col xs="12" className="about-part">
-                                    <h5>
-                                        {txtAbout0.pc.step3.title[lang]}
-                                    </h5>
-                                </Col>
-                            
-                                <Col xs="12" className="about-part">
-                                    <span dangerouslySetInnerHTML={{__html: txtAbout0.pc.step3.s1[lang]}}></span><br/>
-                                    <img className="about-img" src={require("./img/s1.png")} />
-                                </Col>
-                    
-                                <Col xs="12" className="about-part">
-                                    <span dangerouslySetInnerHTML={{__html:txtAbout0.pc.step3.s2[lang]}}></span><br/>
-                                    <img className="about-img" src={require("./img/s2.png")} />
-                                </Col>
-                    
-                                <Col xs="12" className="about-part">
-                                    <span>{txtAbout0.pc.step3.s3[lang]}</span><br/>
-                                    <img className="about-img" src={require("./img/s3.png")} />
-                                </Col>
-                    
-                                <Col xs="12" className="about-part">
-                                    <span>{txtAbout0.pc.step3.s4[lang]}</span><br/>
-                                    <img className="about-img" src={require("./img/s4.png")} />
-                                </Col>
-                    
-                                <Col xs="12" className="about-part">
-                                    <span dangerouslySetInnerHTML={{__html: txtAbout0.pc.step3.s5[lang]}}></span><br/>
-                                    <img className="about-img" src={require("./img/s5.png")} />
-                                </Col>
-                                
-                                <Col xs="12" className="about-part">
-                                    <span>{txtAbout0.pc.step3.s6[lang]}</span>
-                                </Col>
-                                
-                                <Col xs="12" className="about-part">
-                                    <span>{txtAbout0.pc.step3.s7[lang]}</span><br/>
-                                    <img className="about-img" src={require("./img/s8.png")} />
-                                </Col>
-                                
-                                <Col xs="12" className="about-part">
-                                    <span>{txtAbout0.pc.step3.s8[lang]}</span><br/>
-                                    <img className="about-img" src={require("./img/s9.png")} />
-                                </Col>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
-                
                 <Row id="howtomobile">
                     <Col xs="12">
                         <Card>
@@ -315,4 +200,4 @@ class About0 extends Component {
     }
 }
 
-export default About0;
+export default About0MO;

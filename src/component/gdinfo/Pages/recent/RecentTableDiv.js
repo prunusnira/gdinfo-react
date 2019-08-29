@@ -36,6 +36,9 @@ class RecentTableDiv extends Component {
     };
 
     render() {
+        // before ajax finish
+
+        // after ajax finish
         return (
             this.state.recentUserList.map(
                 user => {

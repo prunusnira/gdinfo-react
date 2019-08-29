@@ -19,6 +19,7 @@ Thymeleaf (템플릿엔진) + Vue.js + jQuery + 기타 JS 라이브러리
 3) bootstrap / reactstrap으로 UI 구성 (기존의 UI를 그대로 계승)
 4) axios로 AJAX 사용
 5) jQuery는 사용하지 않음
+6) raphael.js로 표시하던 그래프를 Recharts로 변경
 * 개발 상황에 따라 추가 예정
 
 ## 현황
