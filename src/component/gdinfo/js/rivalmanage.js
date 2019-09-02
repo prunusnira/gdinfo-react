@@ -21,7 +21,6 @@ function addAsRival(gtype, id) {
 			}
 		}
 	});
-	
 }
 
 function setRival(id) {

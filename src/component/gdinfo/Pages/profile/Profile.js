@@ -1,9 +1,13 @@
 import React, {Component, Fragment} from 'react';
+import {Link} from 'react-router-dom';
 import ProfileButton from './ProfileButton';
 import axios from 'axios';
 import txtProfile from './txtprofile';
 import LData from '../../js/language';
-import ProfileGraph from './ProfileGraph';
+import ProfileRecent from './ProfileRecent';
+import SingleSkillColorChanger from '../../js/skillcolor';
+import './profile.css';
+import '../../css/overall-b.css';
 
 import {
     Container,
@@ -15,7 +19,7 @@ import {
     Button
 } from 'reactstrap';
 
-const URL = "https://gitadora.info/d/";
+const URL = "http://test.gitadora.info:8080/d/";
 const lang = LData.lang;
 
 class Profile extends Component {
@@ -75,6 +79,21 @@ class Profile extends Component {
 	submitComment(id) {
 		//var comment = $("input[name='newcomment']").val();
 		//location.href = "/d/setcomment?val="+comment+"&id="+id;
+    }
+    
+    countUpdate() {
+		axios.post('/d/profile/countupdate/'+this.props.id)
+        .then((data) => {
+            window.location.reload();
+        });
+    }
+    
+    reset() {
+        axios.post('/reset', {
+            params: {
+                id: this.props.id
+            }
+        });
 	}
 
     componentDidMount() {
@@ -116,6 +135,7 @@ class Profile extends Component {
         }
         else {
             const userinfo = this.state.userinfo;
+            const self = this.state.self;
 
             // upper table
             const title = (userinfo.mydata.title === "") ? "No Title" : userinfo.mydata.title;
@@ -205,7 +225,7 @@ class Profile extends Component {
                             <Col xs="12">
                                 <Card>
                                     <CardHeader>
-                                        <h3>Profile</h3>
+                                        <h3>{txtProfile.profile[lang]}</h3>
                                     </CardHeader>
                                     <CardBody className="text-center">
                                         <span>
@@ -243,7 +263,20 @@ class Profile extends Component {
                                             </Col>
                                             <Col xs="6">
                                                 <Row className="text-center">
-                                                    <Col xs="12">{commentTitle}</Col>
+                                                    <Col xs="12">
+                                                        {commentTitle}
+                                                        {
+                                                            (function() {
+                                                                if(self) {
+                                                                    return (
+                                                                        <Button onClick={this.setComment}>
+                                                                            {txtProfile.button.changecomment[lang]}
+                                                                        </Button>
+                                                                    )
+                                                                }
+                                                            })()
+                                                        }
+                                                    </Col>
                                                     <Col xs="12" id="comment" class="col-12">{comment}</Col>
                                                 </Row>
                                             </Col>
@@ -255,43 +288,89 @@ class Profile extends Component {
                                         </Row>
                                         <Row>
                                             <Col xs="6" className="text-center">
-                                                <div className="text-center" style={{maxWidth: "500px", height: "250px"}} id="gskillgraph">
-                                                    <ProfileGraph skill={gskill} />
-                                                </div>
+                                                <Row>
+                                                    <Col xs="3" className="text-right">EX</Col>
+                                                    <Col xs="9" className="text-left">
+                                                        <a href="#no_div"
+                                                            tag={Link} to={"/skill/2/"+this.props.id+"/gf/1/skilldesc"}>
+                                                            <SingleSkillColorChanger skill={gskill} />
+                                                        </a>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs="3" className="text-right">MX</Col>
+                                                    <Col xs="9" className="text-left">
+                                                        <a href="#no_div"
+                                                            tag={Link} to={"/skill/8/"+this.props.id+"/gf/1/1"}>
+                                                            <SingleSkillColorChanger skill={gskillmx} />
+                                                        </a>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs="3" className="text-right">RE</Col>
+                                                    <Col xs="9" className="text-left">
+                                                        <a href="#no_div"
+                                                            tag={Link} to={"/skill/5/"+this.props.id+"/gf/1/1"}>
+                                                            <SingleSkillColorChanger skill={gskilltbre} />
+                                                        </a>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs="3" className="text-right">TB</Col>
+                                                    <Col xs="9" className="text-left">
+                                                        <a href="#no_div"
+                                                            tag={Link} to={"/skill/6/"+this.props.id+"/gf/1/1"}>
+                                                            <SingleSkillColorChanger skill={gskilltb} />
+                                                        </a>
+                                                    </Col>
+                                                </Row>
                                             </Col>
                                             <Col xs="6" className="text-center">
-                                                <div className="text-center" style={{maxWidth: "500px", height: "250px"}} id="dskillgraph">
-                                                    <ProfileGraph skill={dskill} />
-                                                </div>
+                                                <Row>
+                                                    <Col xs="3" className="text-right">EX</Col>
+                                                    <Col xs="9" className="text-left">
+                                                        <a href="#no_div"
+                                                            tag={Link} to={"/skill/2/"+this.props.id+"/dm/1/skilldesc"}>
+                                                            <SingleSkillColorChanger skill={dskill} />
+                                                        </a>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs="3" className="text-right">MX</Col>
+                                                    <Col xs="9" className="text-left">
+                                                        <a href="#no_div"
+                                                            tag={Link} to={"/skill/8/"+this.props.id+"/dm/1/1"}>
+                                                            <SingleSkillColorChanger skill={dskillmx} />
+                                                        </a>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs="3" className="text-right">RE</Col>
+                                                    <Col xs="9" className="text-left">
+                                                        <a href="#no_div"
+                                                            tag={Link} to={"/skill/5/"+this.props.id+"/dm/1/1"}>
+                                                            <SingleSkillColorChanger skill={dskilltbre} />
+                                                        </a>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs="3" className="text-right">TB</Col>
+                                                    <Col xs="9" className="text-left">
+                                                        <a href="#no_div"
+                                                            tag={Link} to={"/skill/6/"+this.props.id+"/dm/1/1"}>
+                                                            <SingleSkillColorChanger skill={dskilltb} />
+                                                        </a>
+                                                    </Col>
+                                                </Row>
                                             </Col>
                                         </Row>
                                         <Row>
                                             <Col xs="6" className="text-center">
-                                                <div id="grecentgraph">
-                                                </div>
+                                                <ProfileRecent type="gf" id={id} />
                                             </Col>
                                             <Col xs="6" className="text-center">
-                                                <div id="drecentgraph">
-                                                </div>
+                                                <ProfileRecent type="dm" id={id} />
                                             </Col>
-                                        </Row>
-                                        <Row class="blackandwhite prof-oldver">
-                                            <Col xs="3" className="text-center">MX</Col>
-                                            <Col xs="3" className="text-center dskill" id="gskillmx">{gskillmx}</Col>
-                                            <Col xs="3" className="text-center">MX</Col>
-                                            <Col xs="3" className="text-center dskill" id="dskillmx">{dskillmx}</Col>
-                                        </Row>
-                                        <Row class="blackandwhite prof-oldver">
-                                            <Col xs="3" className="text-center">TBRE</Col>
-                                            <Col xs="3" className="text-center dskill" id="gskilltbre">{gskilltbre}</Col>
-                                            <Col xs="3" className="text-center">TBRE</Col>
-                                            <Col xs="3" className="text-center dskill" id="dskilltbre">{dskilltbre}</Col>
-                                        </Row>
-                                        <Row class="blackandwhite prof-oldver">
-                                            <Col xs="3" className="text-center">TB</Col>
-                                            <Col xs="3" className="text-center dskill" id="gskilltb">{gskilltb}</Col>
-                                            <Col xs="3" className="text-center">TB</Col>
-                                            <Col xs="3" className="text-center dskill" id="dskilltb">{dskilltb}</Col>
                                         </Row>
                                     </CardBody>
                                 </Card>
@@ -299,7 +378,7 @@ class Profile extends Component {
                         </Row>
 
                         <Row className="text-center" id="btnGroups">
-                            <ProfileButton self={this.state.self} />
+                            <ProfileButton self={this.state.self} id={this.props.match.params.id} />
                         </Row>
                         
                         <Row id="targetTable">
@@ -343,9 +422,38 @@ class Profile extends Component {
                                                         <td id="tableDcnt">{tdDcnt}</td>
                                                     </tr>
                                                 </table>
-                                                <Row id="countupdate" v-html="countupdate"></Row>
-                                                <span className="prof-table" v-html='countdesc'></span><br/>
-                                                <Row id="reset" v-html="reset"></Row>
+                                                <Row id="countupdate">
+                                                    {
+                                                        (function() {
+                                                            if(self) {
+                                                                return (
+                                                                    <Button onClick={this.countUpdate}>
+                                                                        {txtProfile.button.countupdate[lang]}
+                                                                    </Button>
+                                                                )
+                                                            }
+                                                        })()
+                                                    }
+                                                </Row>
+                                                <span className="prof-table" dangerouslySetInnerHTML={{
+                                                    __html:txtProfile.detailed.countdesc[lang]
+                                                }}>
+                                                </span><br/>
+                                                <Row id="reset">
+                                                    {
+                                                        (function() {
+                                                            if(self) {
+                                                                return (
+                                                                    <form onSubmit={this.reset}>
+                                                                        <input type="submit">
+                                                                            {txtProfile.button.reset[lang]}
+                                                                        </input>
+                                                                    </form>
+                                                                )
+                                                            }
+                                                        })()
+                                                    }
+                                                </Row>
                                             </Col>
                                             <Col sm="4">
                                                 <img style={{width:100+'%'}}

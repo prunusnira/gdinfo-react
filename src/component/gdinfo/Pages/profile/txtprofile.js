@@ -9,6 +9,11 @@
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
 const txtProfile = {
+    profile: {
+        "jp":"プロフィール",
+        "ko":"프로필",
+        "en":"Profile"
+    },
     title: {
         "jp":"ユーザー情報",
         "ko":"유저 정보",

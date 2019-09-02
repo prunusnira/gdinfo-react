@@ -1,43 +1,44 @@
 import React, {Component} from 'react'
+import {connect} from 'react-redux';
 import axios from 'axios';
 import LData from '../../js/language';
 import { CardText } from 'reactstrap'
 
-const URL = "https://gitadora.info/d/";
+const URL = "http://test.gitadora.info:8080/d/";//"https://gitadora.info/d/";
 
 const lang = LData.lang;
 const txtIndex = require('./txtindex').default;
 
 class RecentSelfInfo extends Component {
-    state = {
-        userinfo: [],
-        isToken: false
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            login: this.props.login,
+            userinfo: this.props.userinfo,
+            data: []
+        }
+    }
 
-    componentDidMount() {
-        axios.post(URL+"gettoken/")
-        .then((res) => {
-            const token = res.data;
-            if(token != null) {
-                axios.post(URL+"getuser/"+token)
-                .then((res) => {
-                    this.setState({
-                        userinfo: res.data,
-                        isToken: true
-                    });
-                });
-            }
-            else {
+    async componentDidMount() {
+        const token = this.state.userinfo.token;
+        if(token != "") {
+            await axios.post(URL+"getuser/"+token)
+            .then((res) => {
                 this.setState({
-                    isToken: false
+                    data: res.data
                 });
-            }
-        });
+            });
+        }
+        else {
+            this.setState({
+                isToken: false
+            });
+        }
     }
 
     render() {
-        if(this.state.isToken) {
-            const data = this.state.userinfo;
+        if(this.state.login) {
+            const data = this.state.data;
             const imgurl = process.env.PUBLIC_URL+"/general-img/title/"+data.titletower+".png";
             return (
                 <CardText>
@@ -73,4 +74,11 @@ class RecentSelfInfo extends Component {
     };
 }
 
-export default RecentSelfInfo;
+const mapStateToProps = (state) => {
+    return {
+        userinfo: state.tokenReducer.userinfo,
+        login: state.tokenReducer.login
+    }
+};
+
+export default connect(mapStateToProps)(RecentSelfInfo);

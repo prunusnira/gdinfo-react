@@ -38,6 +38,9 @@ function changeColorForTotal(div) {
 	colorTotal(div, skill);
 }*/
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
+import '../css/skillcolor.css';
+import '../css/skillcolor-rainbow.css';
 
 class SingleSkillColorChanger extends Component {
 	constructor(props) {
@@ -46,10 +49,10 @@ class SingleSkillColorChanger extends Component {
 
 	render() {
 		return (
-			<a className={this.color(this.props.skill)}
-				href={this.props.link}>
-				<span>{this.props.skill}</span>
-			</a>
+			<Link className={this.color(this.props.skill)}
+				to={this.props.link}>
+				<span>{this.props.skill}</span><span></span>
+			</Link>
 		)
 	}
 

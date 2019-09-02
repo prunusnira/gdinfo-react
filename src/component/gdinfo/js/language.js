@@ -152,7 +152,7 @@ class Language extends Component {
 				title: {
 					"jp":"ログイン",
 					"ko":"로그인",
-					"en":"Sign up"
+					"en":"Sign in"
 				},
 				google: {
 					"jp":"GITADORA InfoはGoogleのアカウントを使ったログインができます",

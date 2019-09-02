@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import LData from '../../js/language';
 import SingleSkillColorChanger from '../../js/skillcolor';
@@ -70,7 +71,7 @@ class RecentTableDiv extends Component {
                                                     })()
                                                 }
                                             </span>
-                                            <a className="innerhref title" href={link}>{username}</a>
+                                            <Link className="innerhref title" to={link}>{username}</Link>
                                         </Col>
                                     </Row>
                                     <Row>
