@@ -15,7 +15,8 @@ class RecentSelfInfo extends Component {
         this.state = {
             login: this.props.login,
             userinfo: this.props.userinfo,
-            data: []
+            data: [],
+            loading: false
         }
     }
 
@@ -25,46 +26,54 @@ class RecentSelfInfo extends Component {
             await axios.post(URL+"getuser/"+token)
             .then((res) => {
                 this.setState({
-                    data: res.data
+                    data: res.data,
+                    loading: true
                 });
             });
         }
         else {
             this.setState({
-                isToken: false
+                login: false
             });
         }
     }
 
     render() {
         if(this.state.login) {
-            const data = this.state.data;
-            const imgurl = process.env.PUBLIC_URL+"/general-img/title/"+data.titletower+".png";
-            return (
-                <CardText>
-                    <span id='selftitle'>
-                        ({data.title})
-                    </span><br/>
-                    <span id='towertitleself'>
-                        {
-                            (function() {
-                                if(data.titletower != "") {
-                                    return (<img class='towertitle35' src={imgurl} />)
-                                }
-                            })()
-                        }
-                    </span>
-                    <span style='font-size:125%' id='selfname'>
-                        data.name
-                    </span><br/>
-                    <span><b>GF</b>
-                        data.gskill
-                    </span>&nbsp;&nbsp;&nbsp;
-                    <span><b>DM</b>
-                        data.dskill
-                    </span>
-                </CardText>
-            )
+            if(this.state.loading) {
+                const data = this.state.data.mydata;
+                const imgurl = process.env.PUBLIC_URL+"/general-img/title/"+data.titletower+".png";
+                return (
+                    <CardText>
+                        <span id='selftitle'>
+                            ({data.title})
+                        </span><br/>
+                        <span id='towertitleself'>
+                            {
+                                (function() {
+                                    if(data.titletower != "") {
+                                        return (<img className='towertitle35' src={imgurl} />)
+                                    }
+                                })()
+                            }
+                        </span>
+                        <span style={{fontSize:'125%'}} id='selfname'>
+                            {data.name}
+                        </span><br/>
+                        <span><b>GF</b>
+                            {data.gskill}
+                        </span>&nbsp;&nbsp;&nbsp;
+                        <span><b>DM</b>
+                            {data.dskill}
+                        </span>
+                    </CardText>
+                )
+            }
+            else {
+                return (
+                    <span dangerouslySetInnerHTML={ {__html: txtIndex.self.loginFirst[lang]} } />
+                )
+            }
         }
         else {
             return (
