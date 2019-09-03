@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
 import './header.css';
 import LData from '../js/language';
-import axios from 'axios';
+import * as action from '../Redux/actions/index';
 
 import {
     Navbar,
@@ -18,19 +19,10 @@ import {
     UncontrolledDropdown
 } from 'reactstrap'
 
-let token = null;
 const lang = LData.lang;
 const txtHeader = require('./txtheader.js').default;
 
-function signOut() {
-
-}
-
-function GetAJAXToken() {
-
-}
-
-export default class GDHeader extends Component {
+class GDHeader extends Component {
     constructor(props) {
         super(props);
 
@@ -44,24 +36,14 @@ export default class GDHeader extends Component {
             isToken: false
         };
         this.searchBtn = "Player";
-        
-        this.token = GetAJAXToken();
     }
 
-    componentDidMount() {
-        // get data by using ajax
-        axios.post("https://gitadora.info/d/gettoken")
-        .then((res) => {
-            if(res.data != null) {
-                this.setState({
-                    isToken: true
-                });
-            }
-        });
+    signOut = () => {
+        this.props.setUserinfo();
     }
 
-    LoginButton(token) {
-        if(!this.state.isToken) {
+    LoginButton() {
+        if(!this.props.login) {
             return (
                 <NavLink tag={Link} to="/login">
                     <img className="navicon" src={require("./img/login.png")}/>
@@ -73,7 +55,7 @@ export default class GDHeader extends Component {
         }
         else {
             return (
-                <NavLink className="nav-link" tag={Link} to="#no_div" onClick={signOut}>
+                <NavLink className="nav-link" tag={Link} to="#no_div" onClick={this.signOut}>
                     <img className="navicon" src={require("./img/logout.png")}/>
                     <span className="navlefttxt">
                         {txtHeader.logout[lang]}
@@ -111,7 +93,7 @@ export default class GDHeader extends Component {
                         <Nav className="mr-auto" navbar>
                             {/* login or logout button */}
                             <NavItem>
-                                {this.LoginButton(token)}
+                                {this.LoginButton()}
                             </NavItem>
 
                             {/* howto */}
@@ -275,3 +257,22 @@ export default class GDHeader extends Component {
         this.toggleSearch();
     }
 }
+
+const mapStateToProps = (state) => {
+    return {
+        userinfo: state.tokenReducer.userinfo,
+        login: state.tokenReducer.login
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setUserinfo: () => {
+            dispatch(action.setLogout())
+        }
+    }
+}
+
+GDHeader = connect(mapStateToProps, mapDispatchToProps)(GDHeader);
+
+export default GDHeader;

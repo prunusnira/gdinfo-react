@@ -9,7 +9,11 @@ import About0PC from './Pages/about/About0PC';
 import About0MO from './Pages/about/About0MO';
 import About1 from './Pages/about/About1';
 import About2 from './Pages/about/About2';
-import Profile from './Pages/profile/Profile';
+import Profile from './Pages/Profiles/profile/Profile';
+import RivalList from './Pages/Profiles/rival/list';
+import PlayCount from './Pages/Profiles/playcount/playcount';
+import Error404 from './Pages/error/404';
+import Error500 from './Pages/error/500';
 
 function GDInfoApp() {
     return (
@@ -26,6 +30,10 @@ function GDInfoApp() {
                 <Route exact path="/profile/:id" component={Profile} />
                 <Route exact path="/profile" component={Profile} />
             </Switch>
+            <Route exact path="/mybest/:id" component={PlayCount} />
+            <Route exact path="/rivallist" component={RivalList} />
+            <Route exact path="/error/404" component={Error404} />
+            <Route exact path="/error/500" component={Error500} />
             <GDFooter />
         </div>
     );

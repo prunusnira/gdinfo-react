@@ -1,8 +1,9 @@
-import React, {Component} from 'react'
+import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import LData from '../../js/language';
-import { CardText } from 'reactstrap'
+import { CardText } from 'reactstrap';
 
 const URL = "http://test.gitadora.info:8080/d/";//"https://gitadora.info/d/";
 
@@ -71,13 +72,17 @@ class RecentSelfInfo extends Component {
             }
             else {
                 return (
-                    <span dangerouslySetInnerHTML={ {__html: txtIndex.self.loginFirst[lang]} } />
+                    <span>
+                        <Link to="/login">{txtIndex.self.login[lang]}</Link>{txtIndex.self.loginFirst[lang]}
+                    </span>
                 )
             }
         }
         else {
             return (
-                <span dangerouslySetInnerHTML={ {__html: txtIndex.self.loginFirst[lang]} } />
+                <span>
+                    <Link to="/login">{txtIndex.self.login[lang]}</Link>{txtIndex.self.loginFirst[lang]}
+                </span>
             )
         }
     };

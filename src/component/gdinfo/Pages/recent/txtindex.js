@@ -30,10 +30,15 @@ const txtIndex = {
             "ko":"로그인 유저",
             "en":"User Logined"
         },
+        login: {
+            "jp":"ログイン",
+            "ko":"로그인",
+            "en":"Sign in"
+        },
         loginFirst: {
-            "jp":"<a href='/login'>ログイン</a>してください",
-            "ko":"<a href='/login'>로그인</a> 해주세요",
-            "en":"Please <a href='/login'>sign in</a> first"
+            "jp":"してください",
+            "ko":" 해주세요",
+            "en":" first please"
         }
     },
     click: {

@@ -8,11 +8,21 @@
  * 2. Also, products and libraries used to implement
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
-var txtMyb = {
-    desc: {
-        "jp":"マイベストを正確に表示するためには<font color='red'>全譜面</font>のデータが必要となります",
-        "ko":"마이베스트 리스트를 정확히 표시하려면 <font color='red'>모든 패턴</font>의 데이터가 필요합니다",
-        "en":"You need to update <font color='red'>all pattern data</font> to show exact my best list"
+const txtPlayCount = {
+    desc_1: {
+        "jp":"マイベストを正確に表示するためには",
+        "ko":"마이베스트 리스트를 정확히 표시하려면 ",
+        "en":"You need to update "
+    },
+    desc_2: {
+        "jp":"全譜面",
+        "ko":"모든 패턴",
+        "en":"all pattern data"
+    },
+    desc_3: {
+        "jp":"のデータが必要となります",
+        "ko":"의 데이터가 필요합니다",
+        "en":" to show exact my best list"
     },
     button: {
         music: {
@@ -49,3 +59,5 @@ var txtMyb = {
         }
     }
 };
+
+export default txtPlayCount;

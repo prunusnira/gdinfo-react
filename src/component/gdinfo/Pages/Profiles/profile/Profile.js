@@ -1,13 +1,15 @@
 import React, {Component, Fragment} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
+import {connect} from 'react-redux';
+import * as action from '../../../Redux/actions/index';
 import ProfileButton from './ProfileButton';
 import axios from 'axios';
 import txtProfile from './txtprofile';
-import LData from '../../js/language';
+import LData from '../../../js/language';
 import ProfileRecent from './ProfileRecent';
-import SingleSkillColorChanger from '../../js/skillcolor';
+import SingleSkillColorChanger from '../../../js/skillcolor';
 import './profile.css';
-import '../../css/overall-b.css';
+import '../../../css/overall-b.css';
 
 import {
     Container,
@@ -28,12 +30,13 @@ class Profile extends Component {
     }
 
     state = {
-        userinfo: null,
+        profileData: null,
         self: false,
         isCommentOpen: false,
         isCountOpen: false,
         CommentCommit: false,
-        CountCommit: false
+        CountCommit: false,
+        error: false
     };
 
     copyToClipboard(element) {
@@ -98,43 +101,57 @@ class Profile extends Component {
 
     componentDidMount() {
         const id = this.props.match.params.id;
-        const token = axios.post(URL+"gettoken")
-        .then((res) => {
-            return res.data
-        });
-        if(id == null) {
-            // 현재 토큰 상태를 확인한 후 토큰이 있으면 내 프로필로
-            // 토큰이 없으면 에러페이지로
-            axios.post(URL+"gettoken")
-            .then((res) => {
-            });
+        if(id == 'undefined' || id == null) {
+            if(this.props.login) {
+                this.setState({
+                    self: true
+                });
+
+                axios.post(URL+"getuserid/"+this.props.userinfo.id)
+                .then((res) => {
+                    this.setState({
+                        profileData: res.data
+                    });
+                });
+            }
+            else {
+                // error page
+                this.setState({
+                    error: true
+                });
+            }
         }
         else {
+            if(this.props.userinfo.id == id) {
+                this.setState({
+                    self: true
+                });
+            }
+
             axios.post(URL+"getuserid/"+id)
             .then((res) => {
                 this.setState({
-                    userinfo: res.data
+                    profileData: res.data
                 });
-                if(token == this.state.userinfo.token) {
-                    this.setState({
-                        self: true
-                    });
-                }
             });
         }
     }
 
     render() {
-        const id = this.props.match.params.id;
+        const id = (this.props.match.params.id == null) ?
+                    this.props.userinfo.id : this.props.match.params.id;
 
-        if(this.state.userinfo == null) {
+        if(this.state.error) {
+            return <Redirect to="/error/404" />
+        }
+        else if(this.state.profileData == null) {
             // show loading
             return (
                 <h1>LOADING</h1>
             )
         }
         else {
-            const userinfo = this.state.userinfo;
+            const userinfo = this.state.profileData;
             const self = this.state.self;
 
             // upper table
@@ -269,7 +286,7 @@ class Profile extends Component {
                                                             (function() {
                                                                 if(self) {
                                                                     return (
-                                                                        <Button onClick={this.setComment}>
+                                                                        <Button onClick={() => this.setComment()}>
                                                                             {txtProfile.button.changecomment[lang]}
                                                                         </Button>
                                                                     )
@@ -427,9 +444,14 @@ class Profile extends Component {
                                                         (function() {
                                                             if(self) {
                                                                 return (
-                                                                    <Button onClick={this.countUpdate}>
-                                                                        {txtProfile.button.countupdate[lang]}
-                                                                    </Button>
+                                                                    <Fragment>
+                                                                        <Button onClick={() => this.countUpdate()}>
+                                                                            {txtProfile.button.countupdate[lang]}
+                                                                        </Button>
+                                                                        <Button onClick={() => this.setOpenCount()}>
+                                                                            {txtProfile.button.setopencount[lang]}
+                                                                        </Button>
+                                                                    </Fragment>
                                                                 )
                                                             }
                                                         })()
@@ -444,10 +466,10 @@ class Profile extends Component {
                                                         (function() {
                                                             if(self) {
                                                                 return (
-                                                                    <form onSubmit={this.reset}>
-                                                                        <input type="submit">
+                                                                    <form onSubmit={() => this.reset()}>
+                                                                        <Button type="submit">
                                                                             {txtProfile.button.reset[lang]}
-                                                                        </input>
+                                                                        </Button>
                                                                     </form>
                                                                 )
                                                             }
@@ -472,4 +494,19 @@ class Profile extends Component {
     }
 }
 
-export default Profile;
+const mapStateToProps = (state) => {
+    return {
+        userinfo: state.tokenReducer.userinfo,
+        login: state.tokenReducer.login
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        setUserinfo: () => {
+            dispatch(action.setLogout())
+        }
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);

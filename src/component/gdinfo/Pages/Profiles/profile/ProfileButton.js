@@ -2,7 +2,7 @@ import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 import {Link, Redirect} from 'react-router-dom';
 import txtProfile from './txtprofile';
-import LData from '../../js/language';
+import LData from '../../../js/language';
 import {
     Row,
     Col,

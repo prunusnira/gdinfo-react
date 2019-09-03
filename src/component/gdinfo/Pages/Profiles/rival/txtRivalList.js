@@ -8,7 +8,7 @@
  * 2. Also, products and libraries used to implement
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
-var txtRivalList = {
+const txtRivalList = {
     empty: {
         "jp":"表示する項目がありません",
         "ko":"표시할 항목이 없습니다",
@@ -30,3 +30,5 @@ var txtRivalList = {
         "en":"Already registered as rival"
     }
 };
+
+export default txtRivalList;
