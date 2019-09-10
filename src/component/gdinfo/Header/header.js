@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import {connect} from 'react-redux';
 import './header.css';
-import LData from '../js/language';
+import LData from '../Pages/Common/language';
 import * as action from '../Redux/actions/index';
 
 import {
@@ -46,7 +46,7 @@ class GDHeader extends Component {
         if(!this.props.login) {
             return (
                 <NavLink tag={Link} to="/login">
-                    <img className="navicon" src={require("./img/login.png")}/>
+                    <img alt="icon" className="navicon" src={require("./img/login.png")}/>
                     <span className="navlefttxt">
                         {txtHeader.login[lang]}
                     </span>
@@ -56,7 +56,7 @@ class GDHeader extends Component {
         else {
             return (
                 <NavLink className="nav-link" tag={Link} to="#no_div" onClick={this.signOut}>
-                    <img className="navicon" src={require("./img/logout.png")}/>
+                    <img alt="icon" className="navicon" src={require("./img/logout.png")}/>
                     <span className="navlefttxt">
                         {txtHeader.logout[lang]}
                     </span>
@@ -82,10 +82,10 @@ class GDHeader extends Component {
             <header id="header">
                 <Navbar color='dark' className='bg-dark fixed-top'>
                     <NavbarBrand tag={Link} to="/index">
-                        <img style={{maxHeight: 32+'px'}} src={require("./img/logoidx.png")}/>
+                        <img alt="icon" style={{maxHeight: 32+'px'}} src={require("./img/logoidx.png")}/>
                     </NavbarBrand>
                     <NavbarToggler onClick={this.toggleMenu}>
-                        <img src={require("./img/btnmenu.jpg")}/>
+                        <img alt="icon" src={require("./img/btnmenu.jpg")}/>
                         {/*<span className="navbar-toggler-icon"></span>*/}
                     </NavbarToggler>
 
@@ -99,13 +99,13 @@ class GDHeader extends Component {
                             {/* howto */}
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>
-                                    <img className="navicon" src={require("./img/howto.png")}/>
+                                    <img alt="icon" className="navicon" src={require("./img/howto.png")}/>
                                     <span className="navlefttxt">
                                         {txtHeader.howtouse.title[lang]}
                                     </span>
                                 </DropdownToggle>
                                 {/* howto-dropdown */}
-                                <DropdownMenu left>
+                                <DropdownMenu left="true">
                                     <DropdownItem tag={Link} to="/about0p">
                                         {txtHeader.howtouse.update_au[lang]}
                                     </DropdownItem>
@@ -121,13 +121,13 @@ class GDHeader extends Component {
                             {/* mydata */}
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>
-                                    <img className="navicon" src={require("./img/mydata.png")}/>
+                                    <img alt="icon" className="navicon" src={require("./img/mydata.png")}/>
                                     <span className="navlefttxt">
                                         {txtHeader.mymenu.title[lang]}
                                     </span>
                                 </DropdownToggle>
                                 {/* mydata-dropdown */}
-                                <DropdownMenu left>
+                                <DropdownMenu left="true">
                                     <DropdownItem tag={Link} to="/profile">
                                         {txtHeader.mymenu.profile[lang]}
                                     </DropdownItem>
@@ -152,12 +152,12 @@ class GDHeader extends Component {
                             {/* skill */}
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>
-                                    <img className="navicon" src={require("./img/skill.png")}/>
+                                    <img alt="icon" className="navicon" src={require("./img/skill.png")}/>
                                     <span className="navlefttxt">
                                         {txtHeader.skill.title[lang]}
                                     </span>
                                 </DropdownToggle>
-                                <DropdownMenu left>
+                                <DropdownMenu left="true">
                                     <DropdownItem tag={Link} to="/rank/gf/1">
                                         {txtHeader.skill.rank[lang]}
                                     </DropdownItem>
@@ -174,15 +174,15 @@ class GDHeader extends Component {
                             </UncontrolledDropdown>
                         
                             {/* pattern */}
-                            <UncontrolledDropdown className="nav-item dropdown">
-                                <DropdownToggle nav inNavbar>
-                                    <img className="navicon" src={require("./img/pattern.png")}/>
+                            <UncontrolledDropdown nav inNavbar>
+                                <DropdownToggle nav caret>
+                                    <img alt="icon" className="navicon" src={require("./img/pattern.png")}/>
                                     <span className="navlefttxt">
                                         {txtHeader.pattern.title[lang]}
                                     </span>
                                 </DropdownToggle>
-                                <DropdownMenu nav caret>
-                                    <DropdownItem tag={Link} to="/ptrank/00/titleasc/1?hot=h">
+                                <DropdownMenu left="true">
+                                    <DropdownItem tag={Link} to="/pattern/00/titleasc/1?hot=h">
                                         {txtHeader.pattern.ptlist[lang]}
                                     </DropdownItem>
                                     <DropdownItem tag={Link} to="/notplayed">
@@ -197,7 +197,7 @@ class GDHeader extends Component {
                             {/* tower */}
                             <NavItem>
                                 <NavLink tag={Link} to="/tower/index">
-                                    <img className="navicon" src={require("./img/tower.png")}/>
+                                    <img alt="icon" className="navicon" src={require("./img/tower.png")}/>
                                     <span className="navlefttxt">
                                         {txtHeader.tower.title[lang]}
                                     </span>
@@ -207,7 +207,7 @@ class GDHeader extends Component {
                             {/* piu */}
                             <NavItem>
                                 <NavLink tag={Link} to="/piu" className="nav-link">
-                                    <img className="navicon" src={require("./img/piu.png")}/>
+                                    <img alt="icon" className="navicon" src={require("./img/piu.png")}/>
                                     <span className="navlefttxt">
                                         {txtHeader.piu.title[lang]}
                                     </span>
@@ -251,6 +251,8 @@ class GDHeader extends Component {
             break;
         case "music":
             this.searchBtn = "Music";
+            break;
+        default:
             break;
         }
         console.log(type);

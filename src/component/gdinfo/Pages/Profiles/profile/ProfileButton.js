@@ -2,9 +2,8 @@ import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 import {Link, Redirect} from 'react-router-dom';
 import txtProfile from './txtprofile';
-import LData from '../../../js/language';
+import LData from '../../Common/language';
 import {
-    Row,
     Col,
     Button
 } from 'reactstrap';
@@ -12,14 +11,10 @@ import {
 const lang = LData.lang;
 
 class ProfileButton extends Component {
-    constructor(props) {
-        super(props);
-    }
-    
     addAsRival(gtype) {
         axios.get("/d/rivaladd/"+this.props.id+"/gf"+gtype)
         .then((res) => {
-            if(res.data == true) {
+            if(res.data === true) {
                 alert("Rival is added successfully");
             }
             else {

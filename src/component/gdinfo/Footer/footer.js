@@ -1,6 +1,6 @@
 import React from 'react';
 import './footer.css';
-import LData from '../js/language';
+import LData from '../Pages/Common/language';
 import txtHeader from '../Header/txtheader';
 import txtFooter from './txtfooter';
 
@@ -19,15 +19,15 @@ function GDFooter() {
                 <Row className='footerrow'>
                     <Col xs="6">
                         <b>{txtHeader.theme[lang]}</b><br/>
-                        <a href="#no_div" onClick="themeChange(0)">White</a><br/>
-                        <a href="#no_div" onClick="themeChange(1)">Black</a><br/>
-                        <a href="#no_div" onClick="themeChange(2)">Orange</a>
+                        <a href="#no_div" onClick={() => this.themeChange(0)}>White</a><br/>
+                        <a href="#no_div" onClick={() => this.themeChange(1)}>Black</a><br/>
+                        <a href="#no_div" onClick={() => this.themeChange(2)}>Orange</a>
                     </Col>
                     <Col xs="6">
                         <b>{txtHeader.langsel[lang]}</b><br/>
-                        <a href="#no_div" onClick="langChange('ko')">한국어</a><br/>
-                        <a href="#no_div" onClick="langChange('jp')">日本語</a><br/>
-                        <a href="#no_div" onClick="langChange('en')">English</a>
+                        <a href="#no_div" onClick={() => this.langChange('ko')}>한국어</a><br/>
+                        <a href="#no_div" onClick={() => this.langChange('jp')}>日本語</a><br/>
+                        <a href="#no_div" onClick={() => this.langChange('en')}>English</a>
                     </Col>
                 </Row>
                 <Row className='footerrow'>

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import AboutHead from './AboutHead';
 import txtAbout0 from './txtabout0';
-import LData from '../../js/language';
+import LData from '../Common/language';
 import './about.css';
 
 import {
@@ -74,11 +74,11 @@ class About0MO extends Component {
                                         <Col xs="6">
                                             {
                                                 function() {
-                                                    if(lang == 'jp') {
-                                                        return (<img style={{width:100+'%'}} src={require("./img/m0j.jpg")} />)
+                                                    if(lang === 'jp') {
+                                                        return (<img alt="aboutimg" style={{width:100+'%'}} src={require("./img/m0j.jpg")} />)
                                                     }
                                                     else {
-                                                        return (<img style={{width:100+'%'}} src={require("./img/m0k.jpg")} />)
+                                                        return (<img alt="aboutimg" style={{width:100+'%'}} src={require("./img/m0k.jpg")} />)
                                                     }
                                                 }()
                                             }
@@ -86,11 +86,11 @@ class About0MO extends Component {
                                         <Col xs="6">
                                             {
                                                 function() {
-                                                    if(lang == 'jp') {
-                                                        return (<img style={{width:100+'%'}} src={require("./img/m0_1j.jpg")} />)
+                                                    if(lang === 'jp') {
+                                                        return (<img alt="aboutimg" style={{width:100+'%'}} src={require("./img/m0_1j.jpg")} />)
                                                     }
                                                     else {
-                                                        return (<img style={{width:100+'%'}} src={require("./img/m0_1k.jpg")} />)
+                                                        return (<img alt="aboutimg" style={{width:100+'%'}} src={require("./img/m0_1k.jpg")} />)
                                                     }
                                                 }()
                                             }
@@ -140,54 +140,54 @@ class About0MO extends Component {
                             
                                 <Col xs="12" id="complex" className="about-part">
                                     <span>{txtAbout0.mobile.step3.s1[lang]}</span><br/>
-                                    <img className="about-img" src={require("./img/m1.png")} />
+                                    <img alt="aboutimg" className="about-img" src={require("./img/m1.png")} />
                                 </Col>
                 
                                 <Col xs="12" className="about-part">
                                     <span>{txtAbout0.mobile.step3.s2[lang]}</span><br/>
-                                    <img className="about-img" src={require("./img/m2.png")} />
+                                    <img alt="aboutimg" className="about-img" src={require("./img/m2.png")} />
                                 </Col>
                                 
                                 <Col xs="12" className="about-part">
                                     <span>{txtAbout0.mobile.step3.s3[lang]}</span><br/>
                                     <Row>
                                         <Col xs="6">
-                                            <img style={{width:100+'%'}} src={require("./img/m3.png")} />
+                                            <img alt="aboutimg" style={{width:100+'%'}} src={require("./img/m3.png")} />
                                         </Col>
                                         <Col xs="6">
-                                            <img style={{width:100+'%'}} src={require("./img/m4.png")} />
+                                            <img alt="aboutimg" style={{width:100+'%'}} src={require("./img/m4.png")} />
                                         </Col>
                                     </Row>
                                 </Col>
                 
                                 <Col xs="12" className="about-part">
                                     <span>{txtAbout0.mobile.step3.s4[lang]}</span><br/>
-                                    <img style={{width:50+'%'}} src={require("./img/m5.png")} />
+                                    <img alt="aboutimg" style={{width:50+'%'}} src={require("./img/m5.png")} />
                                 </Col>
                                 
                                 <Col xs="12" className="about-part">
                                     <span>{txtAbout0.mobile.step3.s5[lang]}</span><br/>
-                                    <img style={{width:50+'%'}} src={require("./img/m6.png")} />
+                                    <img alt="aboutimg" style={{width:50+'%'}} src={require("./img/m6.png")} />
                                 </Col>
                                 
                                 <Col xs="12" className="about-part">
                                     <span dangerouslySetInnerHTML= {{__html: txtAbout0.mobile.step3.s6[lang] }}></span><br/>
-                                    <img style={{width:50+'%'}} src={require("./img/m7.png")} />
+                                    <img alt="aboutimg" style={{width:50+'%'}} src={require("./img/m7.png")} />
                                 </Col>
                                 
                                 <Col xs="12" className="about-part">
                                     <span>{txtAbout0.mobile.step3.s7[lang]}</span><br/>
-                                    <img style={{width:50+'%'}} src={require("./img/m9.png")} />
+                                    <img alt="aboutimg" style={{width:50+'%'}} src={require("./img/m9.png")} />
                                 </Col>
                                 
                                 <Col xs="12" className="about-part">
                                     <span>{txtAbout0.mobile.step3.s8[lang]}</span><br/>
                                     <Row>
                                         <Col xs="6">
-                                            <img style={{width:100+'%'}} src={require("./img/m10.png")} />
+                                            <img alt="aboutimg" style={{width:100+'%'}} src={require("./img/m10.png")} />
                                         </Col>
                                         <Col xs="6">
-                                            <img style={{width:100+'%'}} src={require("./img/m11.png")} />
+                                            <img alt="aboutimg" style={{width:100+'%'}} src={require("./img/m11.png")} />
                                         </Col>
                                     </Row>
                                 </Col>

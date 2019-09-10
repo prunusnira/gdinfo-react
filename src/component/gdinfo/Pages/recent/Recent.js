@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import RecentTableDiv from './RecentTableDiv';
 import RecentSelfInfo from './RecentSelfInfo';  
-import LData from '../../js/language';
+import LData from '../Common/language';
+import txtIndex from './txtindex';
 
 import {
     Row,
@@ -14,7 +15,6 @@ import {
 } from 'reactstrap';
 
 const lang = LData.lang;
-const txtIndex = require('./txtindex').default;
 
 class Recent extends Component {
     render() {

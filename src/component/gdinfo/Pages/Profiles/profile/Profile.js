@@ -1,13 +1,13 @@
 import React, {Component, Fragment} from 'react';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import * as action from '../../../Redux/actions/index';
 import ProfileButton from './ProfileButton';
 import axios from 'axios';
 import txtProfile from './txtprofile';
-import LData from '../../../js/language';
+import LData from '../../Common/language';
 import ProfileRecent from './ProfileRecent';
-import SingleSkillColorChanger from '../../../js/skillcolor';
+import SingleSkillColorChanger from '../../Common/skillcolor';
 import './profile.css';
 import '../../../css/overall-b.css';
 
@@ -20,23 +20,18 @@ import {
     CardBody,
     Button
 } from 'reactstrap';
+import commonData from '../../Common/commonData';
 
-const URL = "http://test.gitadora.info:8080/d/";
 const lang = LData.lang;
 
 class Profile extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     state = {
         profileData: null,
         self: false,
         isCommentOpen: false,
         isCountOpen: false,
         CommentCommit: false,
-        CountCommit: false,
-        error: false
+        CountCommit: false
     };
 
     copyToClipboard(element) {
@@ -101,50 +96,24 @@ class Profile extends Component {
 
     componentDidMount() {
         const id = this.props.match.params.id;
-        if(id == 'undefined' || id == null) {
-            if(this.props.login) {
-                this.setState({
-                    self: true
-                });
-
-                axios.post(URL+"getuserid/"+this.props.userinfo.id)
-                .then((res) => {
-                    this.setState({
-                        profileData: res.data
-                    });
-                });
-            }
-            else {
-                // error page
-                this.setState({
-                    error: true
-                });
-            }
-        }
-        else {
-            if(this.props.userinfo.id == id) {
-                this.setState({
-                    self: true
-                });
-            }
-
-            axios.post(URL+"getuserid/"+id)
-            .then((res) => {
-                this.setState({
-                    profileData: res.data
-                });
+        if(this.props.userinfo.id === id) {
+            this.setState({
+                self: true
             });
         }
+
+        axios.post(commonData.commonDataURL+"getuserid/"+id)
+        .then((res) => {
+            this.setState({
+                profileData: res.data
+            });
+        });
     }
 
     render() {
-        const id = (this.props.match.params.id == null) ?
-                    this.props.userinfo.id : this.props.match.params.id;
+        const id = this.props.match.params.id;
 
-        if(this.state.error) {
-            return <Redirect to="/error/404" />
-        }
-        else if(this.state.profileData == null) {
+        if(this.state.profileData == null) {
             // show loading
             return (
                 <h1>LOADING</h1>
@@ -268,8 +237,8 @@ class Profile extends Component {
                                                         <span id="usertowertitle">
                                                             {
                                                                 (function() {
-                                                                    if(towertitle != "") {
-                                                                        return (<img className="towertitle50" src={process.env.PUBLIC_URL+"/general-img/title/"+towertitle+".png"} />)
+                                                                    if(towertitle !== "") {
+                                                                        return (<img alt="titletower" className="towertitle50" src={process.env.PUBLIC_URL+"/general-img/title/"+towertitle+".png"} />)
                                                                     }
                                                                 })()
                                                             }
@@ -478,9 +447,11 @@ class Profile extends Component {
                                                 </Row>
                                             </Col>
                                             <Col sm="4">
-                                                <img style={{width:100+'%'}}
+                                                <img alt="board" style={{width:100+'%'}}
                                                         src={"https://gitadora.info/board/"+id+".png"}
-                                                        onError="this.src='/img/music/empty.jpg'" />
+                                                        onError={(e) => {
+                                                            e.target.src=commonData.commonImageURL+'music/empty.jpg';
+                                                         }} />
                                             </Col>
                                         </Row>
                                     </CardBody>

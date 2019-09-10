@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import AboutHead from './AboutHead';
 import txtAbout1 from './txtabout1';
-import LData from '../../js/language';
+import LData from '../Common/language';
 import './about.css';
 
 import {
@@ -10,8 +10,6 @@ import {
     Col,
     Card,
     CardHeader,
-    CardText,
-    CardTitle,
     CardBody
 } from 'reactstrap';
 
@@ -54,13 +52,13 @@ class About1 extends Component {
                                     <span>4.&nbsp;
                                         {txtAbout1.s4[lang]}
                                     </span><br/>
-                                    <img style={{maxWidth:100+'%'}} src={require("./img/about0/4.png")} />
+                                    <img alt="aboutimg" style={{maxWidth:100+'%'}} src={require("./img/about0/4.png")} />
                                 </Col>
                                 <Col xs="12" className="about-part">
                                     <span>5.&nbsp;
                                         {txtAbout1.s5[lang]}
                                     </span><br/>
-                                    <img style={{maxWidth:100+'%'}} src={require("./img/about0/3.png")} />
+                                    <img alt="aboutimg" style={{maxWidth:100+'%'}} src={require("./img/about0/3.png")} />
                                 </Col>
                             </CardBody>
                         </Card>

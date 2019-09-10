@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import AboutHead from './AboutHead';
 import txtAbout0 from './txtabout0';
-import LData from '../../js/language';
+import LData from '../Common/language';
 import './about.css';
 
 import {
@@ -111,27 +111,27 @@ class About0PC extends Component {
                             
                                 <Col xs="12" className="about-part">
                                     <span dangerouslySetInnerHTML={{__html: txtAbout0.pc.step3.s1[lang]}}></span><br/>
-                                    <img className="about-img" src={require("./img/s1.png")} />
+                                    <img alt="aboutimg" className="about-img" src={require("./img/s1.png")} />
                                 </Col>
                     
                                 <Col xs="12" className="about-part">
                                     <span dangerouslySetInnerHTML={{__html:txtAbout0.pc.step3.s2[lang]}}></span><br/>
-                                    <img className="about-img" src={require("./img/s2.png")} />
+                                    <img alt="aboutimg" className="about-img" src={require("./img/s2.png")} />
                                 </Col>
                     
                                 <Col xs="12" className="about-part">
                                     <span>{txtAbout0.pc.step3.s3[lang]}</span><br/>
-                                    <img className="about-img" src={require("./img/s3.png")} />
+                                    <img alt="aboutimg" className="about-img" src={require("./img/s3.png")} />
                                 </Col>
                     
                                 <Col xs="12" className="about-part">
                                     <span>{txtAbout0.pc.step3.s4[lang]}</span><br/>
-                                    <img className="about-img" src={require("./img/s4.png")} />
+                                    <img alt="aboutimg" className="about-img" src={require("./img/s4.png")} />
                                 </Col>
                     
                                 <Col xs="12" className="about-part">
                                     <span dangerouslySetInnerHTML={{__html: txtAbout0.pc.step3.s5[lang]}}></span><br/>
-                                    <img className="about-img" src={require("./img/s5.png")} />
+                                    <img alt="aboutimg" className="about-img" src={require("./img/s5.png")} />
                                 </Col>
                                 
                                 <Col xs="12" className="about-part">
@@ -140,12 +140,12 @@ class About0PC extends Component {
                                 
                                 <Col xs="12" className="about-part">
                                     <span>{txtAbout0.pc.step3.s7[lang]}</span><br/>
-                                    <img className="about-img" src={require("./img/s8.png")} />
+                                    <img alt="aboutimg" className="about-img" src={require("./img/s8.png")} />
                                 </Col>
                                 
                                 <Col xs="12" className="about-part">
                                     <span>{txtAbout0.pc.step3.s8[lang]}</span><br/>
-                                    <img className="about-img" src={require("./img/s9.png")} />
+                                    <img alt="aboutimg" className="about-img" src={require("./img/s9.png")} />
                                 </Col>
                             </CardBody>
                         </Card>

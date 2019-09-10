@@ -9,11 +9,6 @@
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
 const txtIndex = {
-    notice: {
-        "jp":"バージョンアップによる機能の一時的な停止のご案内",
-        "ko":"버전업에 따른 기능 일시 정지 안내",
-        "en":"Notice for temporary stop"
-    },
     recent: {
         "jp":"最近更新ユーザー",
         "ko":"최근 갱신유저",

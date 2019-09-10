@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import LData from '../../js/language';
+import React from 'react';
+import LData from '../Common/language';
 
 import {
     Container,
@@ -27,7 +27,9 @@ const Error500 = () => {
                         {text.error.e500.e500_4[lang]}<br/>
                         {text.error.e500.e500_5[lang]}<br/><br/>
                         {text.error.e500.e500_6[lang]}
-                        <a target="_blank" href="https://twitter.com/gitadorainfo">
+                        <a target="_blank"
+                            rel="noopener noreferrer"
+                            href="https://twitter.com/gitadorainfo">
                             @gitadorainfo
                         </a>
                     </CardText>

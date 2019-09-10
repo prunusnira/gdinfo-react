@@ -1,30 +1,25 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import LData from '../../js/language';
-import SingleSkillColorChanger from '../../js/skillcolor';
-import '../../css/skillcolor.css';
-import '../../css/skillcolor-rainbow.css';
+import LData from '../Common/language';
+import SingleSkillColorChanger from '../Common/skillcolor';
 
 import {
     Row,
     Col
 } from 'reactstrap';
+import commonData from '../Common/commonData';
 
 const lang = LData.lang;
 const text = LData.text;
 
 class RecentTableDiv extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     state = {
         recentUserList: []
     };
 
     componentDidMount() {
-        axios.post("https://gitadora.info/d/recent")
+        axios.post(commonData.commonDataURL+"recent")
         .then((resp) => {
             // response
             const data = resp.data;
@@ -65,8 +60,8 @@ class RecentTableDiv extends Component {
                                             <span id="towertitle">
                                                 {
                                                     (function() {
-                                                        if(user.titletower != "") {
-                                                            return (<img class="towertitle35" src={imgUrl} />)
+                                                        if(user.titletower !== "") {
+                                                            return (<img alt="titletower" class="towertitle35" src={imgUrl} />)
                                                         }
                                                     })()
                                                 }

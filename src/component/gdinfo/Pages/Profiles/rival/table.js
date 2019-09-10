@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
 
 import {
@@ -6,6 +6,7 @@ import {
     Col,
     Button
 } from 'reactstrap';
+import SingleSkillColorChanger from '../../Common/skillcolor';
 
 class RivalTable extends Component {
     render() {
@@ -13,22 +14,30 @@ class RivalTable extends Component {
             return <span></span>
         }
         else {
-            this.props.rival.map((c, i) => {
-                return (
-                    <Row>
-                        <Col xs="12">
-                            <a class='innerhref' href={c.proflink}>
-                                {c.name} ⓟ
-                            </a>
-                        </Col>
-                        <Col xs="6" className='blackandwhite dskill'>{c.skill}</Col>
-                        <Col xs="6">
-                            <Button tag={Link} to={c.compbtn}>{c.comptxt}</Button>
-                            <Button tag={Link} to={c.remove}>{c.removetxt}</Button>
-                        </Col>
-                    </Row>
-                )
-            });
+            return (
+                <Fragment>
+                {
+                    this.props.rival.map((c, i) => {
+                        return (
+                            <Row>
+                                <Col xs="12">
+                                    <a class='innerhref' href={c.proflink}>
+                                        {c.name} ⓟ
+                                    </a>
+                                </Col>
+                                <Col xs="6">
+                                    <SingleSkillColorChanger skill={c.skill} />
+                                </Col>
+                                <Col xs="6">
+                                    <Button tag={Link} to={c.compbtn}>{c.comptxt}</Button>
+                                    <Button tag={Link} to={c.remove}>{c.removetxt}</Button>
+                                </Col>
+                            </Row>
+                        )
+                    })
+                }
+                </Fragment>
+            )
         }
     }
 }

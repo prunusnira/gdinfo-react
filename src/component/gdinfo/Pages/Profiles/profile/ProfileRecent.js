@@ -1,12 +1,8 @@
 import React, {Component, Fragment} from 'react';
-import {LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Line} from 'recharts';
+import {LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line} from 'recharts';
 import axios from 'axios';
 
 class ProfileRecent extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     state = {
         record: [],
         winsize: 0,
@@ -35,7 +31,7 @@ class ProfileRecent extends Component {
     render () {
         const data = [];
         for(let i = 0; i < this.state.length; i++) {
-            if(this.props.type == "gf") {
+            if(this.props.type === "gf") {
                 data.push({name:this.state.record[i].date,
                     uv:this.state.record[i].gskill});
             }

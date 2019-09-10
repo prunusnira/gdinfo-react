@@ -2,10 +2,9 @@ import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
-import LData from '../../js/language';
+import LData from '../Common/language';
 import { CardText } from 'reactstrap';
-
-const URL = "http://test.gitadora.info:8080/d/";//"https://gitadora.info/d/";
+import commonData from '../Common/commonData';
 
 const lang = LData.lang;
 const txtIndex = require('./txtindex').default;
@@ -23,8 +22,8 @@ class RecentSelfInfo extends Component {
 
     async componentDidMount() {
         const token = this.state.userinfo.token;
-        if(token != "") {
-            await axios.post(URL+"getuser/"+token)
+        if(token !== "") {
+            await axios.post(commonData.commonDataURL+"getuser/"+token)
             .then((res) => {
                 this.setState({
                     data: res.data,
@@ -52,8 +51,8 @@ class RecentSelfInfo extends Component {
                         <span id='towertitleself'>
                             {
                                 (function() {
-                                    if(data.titletower != "") {
-                                        return (<img className='towertitle35' src={imgurl} />)
+                                    if(data.titletower !== "") {
+                                        return (<img alt="titletower" className='towertitle35' src={imgurl} />)
                                     }
                                 })()
                             }

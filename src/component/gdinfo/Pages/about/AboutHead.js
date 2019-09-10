@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import txtAboutHead from './txtabouthead';
-import LData from '../../js/language';
+import LData from '../Common/language';
 
 import {
     Card,
@@ -12,7 +12,7 @@ import {
 
 const lang = LData.lang;
 
-function AboutHead() {
+const AboutHead = () => {
     return (
         <Card>
             <CardHeader>

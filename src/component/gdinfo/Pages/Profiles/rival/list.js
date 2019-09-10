@@ -3,7 +3,7 @@ import {Redirect} from 'react-router-dom';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import txtRivalList from './txtRivalList';
-import LData from '../../../js/language';
+import LData from '../../Common/language';
 import RivalTable from './table';
 
 import {
@@ -38,11 +38,11 @@ class RivalList extends Component {
             let gempty = true;
             let dempty = true;
 
-            for(var i = 0; i < json.gf.length; i++) {
+            for(let i = 0; i < json.gf.length; i++) {
                 glist.push(this.updateRival(json.gf[i], 'gf'));
             }
 
-            for(var i = 0; i < json.dm.length; i++) {
+            for(let i = 0; i < json.dm.length; i++) {
                 dlist.push(this.updateRival(json.dm[i], 'dm'));
             }
 
@@ -67,9 +67,9 @@ class RivalList extends Component {
         const obj = {};
 		obj.proflink = '/profile/'+data.id;
 		obj.name = data.name;
-		if(type == 'gf')
+		if(type === 'gf')
 			obj.skill = data.gskill;
-		else if(type == 'dm')
+		else if(type === 'dm')
 			obj.skill = data.dskill;
 		obj.compbtn = '/comparison/'+data.id+'/'+type+'/1';
 		obj.comptxt = txtRivalList.compare[lang];

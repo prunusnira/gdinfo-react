@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import LData from '../../../js/language';
+import LData from '../../Common/language';
 import txtPlayCount from './txtplaycount';
 import CountTable from './countTable';
 import axios from 'axios';
@@ -15,9 +15,9 @@ import {
     CardText,
     Button
 } from 'reactstrap';
+import commonData from '../../Common/commonData';
 
 const lang = LData.lang;
-const URL = "http://test.gitadora.info:8080/d/";
 
 class PlayCount extends Component {
     constructor(props) {
@@ -69,14 +69,14 @@ class PlayCount extends Component {
     }
 
     componentDidMount() {
-        axios.post(URL+"getuserid/"+this.props.match.params.id)
+        axios.post(commonData.commonDataURL+"getuserid/"+this.props.match.params.id)
         .then((res) => {
             this.setState({
                 username: res.data.mydata.name,
                 towertitle: res.data.mydata.titletower
             });
         });
-        axios.post(URL+"mybest/"+this.props.match.params.id)
+        axios.post(commonData.commonDataURL+"mybest/"+this.props.match.params.id)
         .then((res) => {
             const json = res.data;
 
@@ -85,11 +85,11 @@ class PlayCount extends Component {
             const dlist = [];
             const mlist = [];
 
-            for(var i = 0; i < json.mybestp.length; i++) {
-                var mypdata = {
+            for(let i = 0; i < json.mybestp.length; i++) {
+                const mypdata = {
                     key: 'p'+i,
                     number: i+1,
-                    jacket: 'https://gitadora.info/img/music/'+json.mybestp[i].id+'.jpg',
+                    jacket: commonData.commonImageURL+"music/"+json.mybestp[i].id+'.jpg',
                     name: json.mybestp[i].name,
                     pattern: "",
                     count: json.mybestp[i].playtime,
@@ -99,11 +99,11 @@ class PlayCount extends Component {
                 plist.push(mypdata);
             }
 
-            for(var i = 0; i < json.mybestpg.length; i++) {
-                var mygdata = {
+            for(let i = 0; i < json.mybestpg.length; i++) {
+                const mygdata = {
                     key: 'g'+i,
                     number: i+1,
-                    jacket: 'https://gitadora.info/img/music/'+json.mybestpg[i].id+'.jpg',
+                    jacket: commonData.commonImageURL+"music/"+json.mybestpg[i].id+'.jpg',
                     name: json.mybestpg[i].name,
                     pattern: "",
                     count: json.mybestpg[i].playtime,
@@ -113,11 +113,11 @@ class PlayCount extends Component {
                 glist.push(mygdata);
             }
             
-            for(var i = 0; i < json.mybestpd.length; i++) {
-                var myddata = {
+            for(let i = 0; i < json.mybestpd.length; i++) {
+                const myddata = {
                     key: 'd'+i,
                     number: i+1,
-                    jacket: 'https://gitadora.info/img/music/'+json.mybestpd[i].id+'.jpg',
+                    jacket: commonData.commonImageURL+"music/"+json.mybestpd[i].id+'.jpg',
                     name: json.mybestpd[i].name,
                     pattern: "",
                     count: json.mybestpd[i].playtime,
@@ -127,11 +127,11 @@ class PlayCount extends Component {
                 dlist.push(myddata);
             }
             
-            for(var i = 0; i < json.mybestm.length; i++) {
-                var mymdata = {
+            for(let i = 0; i < json.mybestm.length; i++) {
+                const mymdata = {
                     key: 'm'+i,
                     number: i+1,
-                    jacket: 'https://gitadora.info/img/music/'+json.mybestm[i].id+'.jpg',
+                    jacket: commonData.commonImageURL+"music/"+json.mybestm[i].id+'.jpg',
                     name: json.mybestm[i].name,
                     pattern: "",
                     count: json.mybestm[i].playtime,
@@ -192,6 +192,8 @@ class PlayCount extends Component {
                     display3: "block"
                 });
                 break;
+            default:
+                break;
         }
     }
 
@@ -206,7 +208,7 @@ class PlayCount extends Component {
                             </CardHeader>
                             <CardBody className="text-center">
                                 <Col xs="12">
-                                    <Button style={{width:"100%"}} onClick={() => this.scrShot('#scrshot', '${id}_mybest.jpg')}>
+                                    <Button style={{width:"100%"}} onClick={() => this.scrShot("#scrshot", this.props.match.params.id+"_mybest.jpg")}>
                                         {txtPlayCount.button.scrshot[lang]}
                                     </Button>
                                 </Col>
@@ -224,7 +226,7 @@ class PlayCount extends Component {
                         <Card>
                             <CardHeader className="text-center" id="userinfo">
                                 <h4>Most Played List</h4>
-                                <span>Player: <img style={{width:"30px"}} src={process.env.PUBLIC_URL+"/general-img/title/"+this.state.towertitle+".png"} />{this.state.username}</span>
+                                <span>Player: <img alt="titletower" style={{width:"30px"}} src={process.env.PUBLIC_URL+"/general-img/title/"+this.state.towertitle+".png"} />{this.state.username}</span>
                             </CardHeader>
                             <CardBody>
                                 <CardTitle>
