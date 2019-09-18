@@ -1,13 +1,14 @@
 import React, {Component, Fragment} from 'react';
 import './skill.css';
 import '../../Common/table.css';
+import commonData from '../../Common/commonData';
 
 import {
     Row,
     Col
 } from 'reactstrap';
 
-class SkillTable extends Component {
+class SkillTableNR extends Component {
     render() {
         const list = this.props.list;
         return (
@@ -29,7 +30,7 @@ class SkillTable extends Component {
                                 <img alt="jacket-img" style={{width:"85px"}} src={v.jacketurl}
                                     onError={(e) => {
                                         e.target.onerror = null;
-                                        e.src="https://gitadora.info/img/music/empty.jpg";
+                                        e.target.src=commonData.commonImageURL+"music/empty.jpg";
                                     }} /><br/>
                                 <img alt="pattern-img" style={{width:"85px"}} src={v.pattern} /><br/>
                                 <span>{v.level}</span><br/>
@@ -65,20 +66,6 @@ class SkillTable extends Component {
                                         {v.rate}% / {v.skill}
                                     </Col>
                                 </Row>
-                                {/* 라이벌 기록정보 */}
-                                <Row style={v.rivaldiv}>
-                                    <Col xs="12" className='text-left'>
-                                        <span>vs {v.rivalname}</span><br/>
-                                        <span>
-                                            <img alt="rivalrank" className='skillrank-img' src={v.rivalrank} />
-                                            <span dangerouslySetInnerHTML={{__html: v.rivalfc}}></span>
-                                            / {v.rivalrate}%
-                                            <span dangerouslySetInnerHTML={{__html: v.rivaldiffrate}}></span>
-                                            / {v.rivalskill}
-                                            <span dangerouslySetInnerHTML={{__html: v.rivaldiffskill}}></span>
-                                        </span>
-                                    </Col>
-                                </Row>
                             </div>
                         </div>
                     )
@@ -90,4 +77,4 @@ class SkillTable extends Component {
     }
 }
 
-export default SkillTable;
+export default SkillTableNR;

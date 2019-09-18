@@ -16,6 +16,11 @@ const txtFooter = {
         "jp":"このサイトはGoogle ChromeなどのWebKit類のブラウザに最適化されています",
         "ko":"이 사이트는 Google Chrome등의 WebKit 기반 브라우저에 최적화 되어있습니다.",
         "en":"This site is optimized for WebKit based browsers such as Google Chrome"
+    },
+    langsel: {
+        "jp":"言語選択",
+        "ko":"언어선택",
+        "en":"Language select"
     }
 };
 

@@ -8,7 +8,7 @@
  * 2. Also, products and libraries used to implement
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
-var txtSearch = {
+const txtSearch = {
     title: {
         "jp":"検索結果",
         "ko":"검색 결과",
@@ -47,3 +47,5 @@ var txtSearch = {
         "en":"Rival add"
     }
 };
+
+export default txtSearch;

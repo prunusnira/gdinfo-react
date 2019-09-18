@@ -9,10 +9,13 @@
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
 import axios from 'axios';
-import {titletxt, titlesp} from './titletxt';
+//import {titletxt, titlesp} from './titletxt';
 import txtTower from './txttower';
 import LData from '../Common/language';
 import commonData from '../Common/commonData';
+
+const titletxt = require("./titletxt").titletxt;
+const titlesp = require("./titletxt").titlesp;
 
 const lang = LData.lang;
 
@@ -93,7 +96,7 @@ export const getFloorTitle = (tower, floor, rate, allfloors) => {
 	return titlelist;
 }
 
-export const floorTitlePopup = (tower, floor, rate, allfloors, div) => {
+export const floorTitlePopup = (tower, floor, rate, allfloors) => {
 	const titlelist = getFloorTitle(tower, floor, rate, allfloors);
 	
 	// 팝업 셀렉트
@@ -110,7 +113,8 @@ export const floorTitlePopup = (tower, floor, rate, allfloors, div) => {
 		titleselect.appendChild(option[i]);
 	}
 	
-	div.show();
+	const targetDiv = document.getElementById("titlepopup");
+	targetDiv.style.display = "block";
 }
 
 export const getMusicTitle = (mid, ptcode) => {

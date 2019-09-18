@@ -25,25 +25,61 @@ class TowerFloorItem extends Component {
                                             {fl.pattern} / {fl.lv}
                                         </Col>
                                         <Col xs="4">
-                                            <span class='tower-div-span'>
-                                                Score <span v-html="fl.score"></span> / {fl.condScore}<br/>
-                                                Rate <span v-html="fl.rate"></span>% / {fl.condRate}%<br/>
-                                                Combo <span v-html="fl.combo"></span> / {fl.condCombo}
+                                            <span className='tower-div-span'>
+                                                Score <span>{
+                                                    (function() {
+                                                        if(fl.score > fl.condScore) {
+                                                            return <font color="red">{fl.score}</font>
+                                                        }
+                                                        else if(fl.score < fl.condScore) {
+                                                            return <font color="blue">{fl.score}</font>
+                                                        }
+                                                        else {
+                                                            return <font>{fl.score}</font>
+                                                        }
+                                                    })()
+                                                }</span> / {fl.condScore}<br/>
+                                                Rate <span>{
+                                                    (function() {
+                                                        if(fl.rate > fl.condRate) {
+                                                            return <font color="red">{fl.rate}</font>
+                                                        }
+                                                        else if(fl.rate < fl.condRate) {
+                                                            return <font color="blue">{fl.rate}</font>
+                                                        }
+                                                        else {
+                                                            return <font>{fl.rate}</font>
+                                                        }
+                                                    })()
+                                                }</span>% / {fl.condRate}%<br/>
+                                                Combo <span>{
+                                                    (function() {
+                                                        if(fl.combo > fl.condCombo) {
+                                                            return <font color="red">{fl.combo}</font>
+                                                        }
+                                                        else if(fl.combo < fl.condCombo) {
+                                                            return <font color="blue">{fl.combo}</font>
+                                                        }
+                                                        else {
+                                                            return <font>{fl.combo}</font>
+                                                        }
+                                                    })()
+                                                }</span> / {fl.condCombo}
                                             </span>
                                         </Col>
                                     </Row>
                                     <Row style={{paddingBottom:"10px"}} id='description'>
                                         <Col xs="4" className="text-right">
-                                            <img src='/img/tower/rightbottom.png' />
+                                            <img src={process.env.PUBLIC_URL+"/general-img/tower/rightbottom.png"} />
                                         </Col>
                                         <Col xs="8" className="text-left">
-                                            <span v-html="fl.description"></span>
+                                            <span dangerouslySetInnerHTML={{__html: fl.description}}></span>
                                         </Col>
                                     </Row>
                                 </Col>
                                 <Col xs="2">
-                                    <img style={{width:"50px"}} src={fl.clear} />
-                                    <span v-html="fl.titlechange"></span>
+                                    <img style={{width:"50px"}} src={fl.clear} /><br/>
+                                    <span dangerouslySetInnerHTML={{__html: fl.titlechange}}></span>
                                 </Col>
                             </Row>
                         )

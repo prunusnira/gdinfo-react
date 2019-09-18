@@ -11,33 +11,26 @@ class Pager extends Component {
         outer.style.width = "100%";
         
         // 페이지가 7개 이하인 경우 모두 표시
-        if(end < 8) {
+        if(end == (0 || 1)) {
+            return (
+                <Button>1</Button>
+            )
+        }
+        else if(end < 8) {
+            const list = [];
+            for(let i = 0; i < parseInt(end); i++) {
+                list.push(i);
+            }
             return (
                 <Fragment>
                     {
-                        (function() {
-                            const list = [];
-                            for(let i = 0; i < parseInt(end); i++) {
-                                list.push(i);
-                            }
-
-                            list.map((v, i) => {
-                                if(v !== current-1) {
-                                    return (
-                                        <Button tag={Link} to={urla+(v+1)+urlb}>
-                                            {v+1}
-                                        </Button>
-                                    )
-                                }
-                                else {
-                                    return (
-                                        <Button className="btn-warning">
-                                            {v+1}
-                                        </Button>
-                                    )
-                                }
-                            });
-                        })()
+                        list.map((v, i) => {
+                            return (
+                                <Button tag={Link} to={urla+(v+1)+urlb}>
+                                    {v+1}
+                                </Button>
+                            )
+                        })
                     }
                 </Fragment>
             )
@@ -45,28 +38,17 @@ class Pager extends Component {
         else {
             // 페이지가 3 이하면 1~5까지 표시
             if(current < 4) {
+                const list = [0, 1, 2, 3, 4];
                 return (
                     <Fragment>
                         {
-                            (function() {
-                                const list = [0, 1, 2, 3, 4];
-                                list.map((v, i) => {
-                                    if(v !== current-1) {
-                                        return (
-                                            <Button tag={Link} to={urla+(v+1)+urlb}>
-                                                {v+1}
-                                            </Button>
-                                        )
-                                    }
-                                    else {
-                                        return (
-                                            <Button className="btn-warning">
-                                                {v+1}
-                                            </Button>
-                                        )
-                                    }
-                                });
-                            })()
+                            list.map((v, i) => {
+                                return (
+                                    <Button tag={Link} to={urla+(v+1)+urlb}>
+                                        {v+1}
+                                    </Button>
+                                )
+                            })
                         }
     
                         <span>......</span>
@@ -79,6 +61,10 @@ class Pager extends Component {
     
             // 페이지가 end-3 이내이면 end-5에서 end까지 표시
             else if(end-current < 4) {
+                const list = [];
+                for(let i = parseInt(end)-5; i < end; i++) {
+                    list.push(i);
+                }
                 return (
                     <Fragment>
                         <Button tag={Link} to={urla+1+urlb}>
@@ -86,28 +72,13 @@ class Pager extends Component {
                         </Button>
                         <span>......</span>
                         {
-                            (function() {
-                                const list = [];
-                                for(let i = parseInt(end)-5; i < end; i++) {
-                                    list.push(i);
-                                }
-                                list.map((v, i) => {
-                                    if(v !== current-1) {
-                                        return (
-                                            <Button tag={Link} to={urla+(v+1)+urlb}>
-                                                {v+1}
-                                            </Button>
-                                        )
-                                    }
-                                    else {
-                                        return (
-                                            <Button className="btn-warning">
-                                                {v+1}
-                                            </Button>
-                                        )
-                                    }
-                                });
-                            })()
+                            list.map((v, i) => {
+                                return (
+                                    <Button tag={Link} to={urla+(v+1)+urlb}>
+                                        {v+1}
+                                    </Button>
+                                )
+                            })
                         }
                     </Fragment>
                 )
@@ -115,35 +86,24 @@ class Pager extends Component {
     
             // 그 외에는 1과 end를 표시하고 current-2, current+2까지 표시
             else {
+                const list = [];
+                for(let i = parseInt(current)-3; i < parseInt(current)+2; i++) {
+                    list.push(i);
+                }
                 return (
                     <Fragment>
                         <Button tag={Link} to={urla+1+urlb}>
                             1
                         </Button>
                         <span>...</span>
-                        {
-                            (function() {
-                                const list = [];
-                                for(let i = parseInt(current)-3; i < parseInt(current)+2; i++) {
-                                    list.push(i);
-                                }
-                                list.map((v, i) => {
-                                    if(v !== parseInt(current)-1) {
-                                        return (
-                                            <Button tag={Link} to={urla+(v+1)+urlb}>
-                                                {v+1}
-                                            </Button>
-                                        )
-                                    }
-                                    else {
-                                        return (
-                                            <Button className="btn-warning">
-                                                {v+1}
-                                            </Button>
-                                        )
-                                    }
-                                });
-                            })()
+                        {       
+                            list.map((v, i) => {
+                                return (
+                                    <Button tag={Link} to={urla+(v+1)+urlb}>
+                                        {v+1}
+                                    </Button>
+                                )
+                            })
                         }
                         <span>...</span>
                         <Button tag={Link} to={urla+end+urlb}>

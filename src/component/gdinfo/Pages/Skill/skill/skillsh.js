@@ -1,18 +1,15 @@
-import React, {Component, Fragment} from 'react';
+import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
 import axios from 'axios';
-import {connect} from 'react-redux';
 import Pager from '../../Common/pager';
-import SkillTableNR from './skillTableNR';
-import SkillMenu from './skillMenu';
+import SkillTableSH from './skillTableSH';
 import txtSkill from './txtskill';
 import LData from '../../Common/language';
 import commonData from '../../Common/commonData';
-import './skill.css';
-import '../../Common/table.css';
-import * as action from '../../../Redux/actions';
 import * as time from '../../Common/time';
 import * as skillMethod from './skillMethod';
+import './skill.css';
+import '../../Common/table.css';
 import scrShot from '../../Common/scrshot';
 
 import {
@@ -21,14 +18,13 @@ import {
     Col,
     Card,
     CardHeader,
-    CardTitle,
     CardBody,
     Button
 } from 'reactstrap';
 
 const lang = LData.lang;
 
-class SkillNR extends Component {
+class SkillSH extends Component {
     // 기본 props 정리
     /**
      * this.props.match.params
@@ -68,8 +64,7 @@ class SkillNR extends Component {
             visibleRight: "none",
             allpage: 0,
             pageType: "",
-            menuVisible: "none",
-            self: false
+            menuVisible: "none"
         }
     }
 
@@ -141,11 +136,6 @@ class SkillNR extends Component {
         const urlprop = props.match.params;
         const state = this.state;
 
-        let self = false;
-        if(parseInt(urlprop.userid) === props.userinfo.id) {
-            self = true;
-        }
-
         axios.post(commonData.commonDataURL+"getuserid/"+props.match.params.userid)
         .then((res) => {
             const json = res.data.mydata;
@@ -158,20 +148,14 @@ class SkillNR extends Component {
             let statMid = "";
             let statRight = "";
 
-            const user = {};
             // LEFT
-            if(parseInt(urlprop.ptype) !== 1000) {
-                if(urlprop.gtype === "gf") {
-                    statLeftTitle = "GF Skill";
-                    statLeft = json.gskill;
-                }
-                else if(urlprop.gtype === "dm") {
-                    statLeftTitle = "DM Skill";
-                    statLeft = json.dskill;
-                }
-
-                user.name = json.name;
-                user.title = json.titletower;
+            if(urlprop.gtype === "gf") {
+                statLeftTitle = "GF Skill";
+                statLeft = json.gskill;
+            }
+            else if(urlprop.gtype === "dm") {
+                statLeftTitle = "DM Skill";
+                statLeft = json.dskill;
             }
 
             // MIDDLE & RIGHT
@@ -238,16 +222,14 @@ class SkillNR extends Component {
                     statMid = this.state.sum1.toFixed(2);
                     break;
                 case 1000:
-                    statLeftTitle = "Total Skill";
-                    statMidTitle = "Hot Skill";
-                    statRightTitle = "Other Skill";
-                    statMid = this.state.sum1.toFixed(2);
-                    statRight = this.state.sum2.toFixed(2);
-                    statLeft = (this.state.sum1 + this.state.sum2).toFixed(2);
                     break;
                 default:
                     break;
             }
+
+            const user = {};
+            user.name = json.name;
+            user.title = json.titletower;
 
             this.setState({
                 statLeftTitle: statLeftTitle,
@@ -256,8 +238,7 @@ class SkillNR extends Component {
                 statMid: statMid,
                 statRightTitle: statRightTitle,
                 statRight: statRight,
-                user: user,
-                self: self
+                user: user
             });
         });
     }
@@ -280,13 +261,6 @@ class SkillNR extends Component {
 
                     sum1 += obj.skill1;
 
-                    if(json.rivaluser != null) {
-                        obj = this.generateTableRival(obj, json.rivaluser, json.rivaldata[i]);
-                    }
-                    else {
-                        obj.rivaldiv = {display:"none"};
-                    }
-
                     skillList1.push(obj);
                 }
             }
@@ -296,13 +270,6 @@ class SkillNR extends Component {
                     let obj = skillMethod.generateTable(props, cur, i, json.page, urlprops.ptype, 1);
 
                     sum1 += obj.skill1;
-
-                    if(json.rivaluser != null) {
-                        obj = this.generateTableRival(obj, json.rivaluser, json.hrival[i]);
-                    }
-                    else {
-                        obj.rivaldiv = {display:"none"};
-                    }
 
                     skillList1.push(obj);
                 }
@@ -314,13 +281,6 @@ class SkillNR extends Component {
 
                     sum2 += obj.skill2;
 
-                    if(json.rivaluser != null) {
-                        obj = this.generateTableRival(obj, json.rivaluser, json.orival[i]);
-                    }
-                    else {
-                        obj.rivaldiv = {display:"none"};
-                    }
-
                     skillList2.push(obj);
                 }
             }
@@ -328,10 +288,6 @@ class SkillNR extends Component {
             const updtime = new Date(json.user.updatetime);
             const time = updtime.getFullYear() + "/" + (updtime.getMonth()+1) + "/" +
                 updtime.getDate() + " " + updtime.getHours() + ":" + updtime.getMinutes();
-            
-            if(json.skill.length === 0 && json.hskill.length === 0 && json.oskill.length === 0) {
-        //        isEmpty = true;
-            }
             
             this.setState({
                 skillTable1: skillList1,
@@ -344,32 +300,11 @@ class SkillNR extends Component {
             this.userInfoImport(props);
         });
     }
-
-    showMenu() {
-        let visible = this.state.menuVisible;
-        if(visible === "none") visible = "block";
-        else visible = "none";
-
-        this.setState({
-            menuVisible: visible
-        });
-    }
-
-    createSnapshot(userid, gtype) {
-        axios.post(commonData.commonDataURL+"skill/snapshot/create/"+userid+"/"+gtype)
-        .then((res) => {
-            alert(txtSkill.snapshot.created[lang]);
-        });
-    }
-
-    render() {
+    
+    render () {
         const self = this;
         const urlprop = this.props.match.params;
         const search = this.props.location.search;
-
-        let gtype = "";
-        if(urlprop.gtype === "gf") gtype = "GuitarFreaks";
-        else gtype = "DrumMania"
         
         let desc = "";
         if(urlprop.ptype === 1000) desc = "ALL EXCELLENT Skill";
@@ -379,93 +314,59 @@ class SkillNR extends Component {
         if(urlprop.ptype !== 1000) user = self.state.user.name; // (대충 사용자 이름 들어간다는 코멘트)
         // 유저 이름과 image 추가되어야 함
         
+        let gtype = "";
+        let gtypeShort = "";
+        if(urlprop.gtype === "gf") {
+            gtype = "GuitarFreaks";
+            gtypeShort = "GF";
+        }
+        else {
+            gtype = "DrumMania";
+            gtypeShort = "DM";
+        }
         return (
             <Container>
                 <Row>
                     <Col xs="12">
                         <Card>
                             <CardHeader>
-                                <h3>Skill Table</h3>
+                                <h3>Skill {txtSkill.scrtitle[lang]}</h3>
                             </CardHeader>
-                            <CardBody id="scrshotdiv">
-                                <Col xs="12" className="text-center">
-                                    <h4>Screenshot</h4>
-                                </Col>
-                                <Col xs="12" className="btn-group">
-                                    <Button style={{width:"100%"}} tag={Link}
-                                        to={"/skillscr/"+urlprop.ptype+"/"+urlprop.userid+"/"+
-                                            urlprop.gtype+"/"+urlprop.page+"/"+urlprop.order+search}>
-                                        {txtSkill.scrshotp[lang]}
-                                    </Button>
-                                    <Button style={{width:"100%"}} onClick={() => scrShot("scrTable", urlprop.userid+'_'+urlprop.gtype+'_all_'+urlprop.page+'_'+time.getTimeScr()+'.jpg')}>
-                                        {txtSkill.scrshot[lang]}
-                                    </Button>
-                                </Col>
-                                {
-                                    // 본인 계정인 경우 snapshot 생성
-                                    (function() {
-                                        if(self.state.self) {
-                                            return (
-                                                <Col xs="12">
-                                                    <Button style={{width:"100%"}} onClick={() => self.createSnapshot(urlprop.userid, urlprop.gtype)}>
-                                                        {txtSkill.snapshot.button[lang]}
-                                                    </Button>
-                                                </Col>
-                                            )
-                                        }
-                                    })()
-                                }
-                            </CardBody>
                             <CardBody>
                                 <Row>
-                                    <Col xs="12" className="text-center">
-                                        <a className="innerhref" href="#no_div" onClick={() => self.showMenu()}>
-                                            Click to toggle Skill Menu
-                                        </a>
+                                    <Col xs="12">
+                                        {txtSkill.scrdesc[lang]}
                                     </Col>
-                                    <Col xs="12" style={{display: self.state.menuVisible}}>
-                                        <SkillMenu ptype={urlprop.ptype} id={urlprop.userid} />
+                                    <Col xs="12" className="btn-group" id="prevlink">
+                                        <Button tag={Link} to={"/skill/"+urlprop.ptype+"/"+urlprop.userid+"/"+
+                                            urlprop.gtype+"/"+urlprop.page+"/"+urlprop.order+search} style={{width:"100%"}}>
+                                            {txtSkill.scrback[lang]}
+                                        </Button>
+                                        <Button style={{width:"100%"}} href="#no_div" onClick={() => scrShot("scrTable", urlprop.userid+'_'+urlprop.gtype+'_all_'+urlprop.page+'_'+time.getTimeScr()+'.jpg')}>
+                                            {txtSkill.scrshot[lang]}
+                                        </Button>
                                     </Col>
                                 </Row>
                             </CardBody>
                         </Card>
                     </Col>
                 </Row>
-                <Card id='scrTable'>
-                    <CardHeader>
-                        <Row id="targetInfo">
-                            <Col xs="12" className="text-center">
-                                <h4><b>GITADORA&nbsp;
-                                    <span>{self.state.pageType}</span><br/>
-                                    <span>{gtype} {desc} {user}</span>
-                                </b></h4>
-                            </Col>
-                            <Col xs="6" style={{textAlign:"center"}}>
-                                <b>Made by GITADORA.info</b>
-                            </Col>
-                            <Col xs="6" style={{textAlign:"center"}}>
-                                Update Time: <span id="timeTop"></span>
-                            </Col>
-                        </Row>
-                    </CardHeader>
-                    <CardBody>
-                        <CardTitle>
-                            <Col xs="12" className="skillupper">
-                                <Row className="blackandwhite text-center" id="statusBar">
-                                        {
-                                            (function() {
-                                                if(self.state.ptype === (3 || 4 || 7)) {
-                                                    return (
-                                                        <Col xs="12">
-                                                            <span style={{textAlign:"center"}}>
-                                                                * {txtSkill.oldver[lang]}
-                                                            </span>
-                                                        </Col>
-                                                    )
-                                                }
-                                            })()
-                                        }
-
+                <Row>
+                    <Col xs="12">
+                        <Card id='scrTable'>
+                            <CardHeader>
+                                <Row id="targetInfo">
+                                    <Col xs="12" className="text-center">
+                                        <h4><b>GITADORA&nbsp;
+                                            <span>{self.state.pageType}</span><br/>
+                                            <span>{gtype} {desc} {user}</span>
+                                        </b></h4>
+                                        <b>Made by GITADORA.info</b>
+                                    </Col>
+                                </Row>
+                            </CardHeader>
+                            <CardBody>
+                                <Row className="blackandwhite text-center skillupper" id="statusBar">
                                     <Col xs="4">
                                         {self.state.statLeftTitle}<br/>{self.state.statLeft}
                                     </Col>
@@ -476,77 +377,50 @@ class SkillNR extends Component {
                                         {self.state.statRightTitle}<br/>{self.state.statRight}
                                     </Col>
                                 </Row>
-                            </Col>
-                        </CardTitle>
-                    </CardBody>
-                    <CardBody>
-                        <Row id="targetTable">
-                            <Col xs="12" className='div-table' id="fullTable" style={{display:self.state.visibleLarge}}>
-                                <Fragment>
-                                    <SkillTableNR list={self.state.skillTable1} />
-                                </Fragment>
-                            </Col>
-                            <Col sm="6" id="halfTableLeft">
-                                <Row>
-                                    <Col xs="12" className="text-center">
-                                        <h2><b>HOT</b></h2>
+                                <Row id="targetTable">
+                                    <Col xs="12" id="fullTable" style={{display:self.state.visibleLarge}}>
+                                        <Row>
+                                            <SkillTableSH list={self.state.skillTable1} />
+                                        </Row>
+                                    </Col>
+                                    <Col xs="12" className="scrhalf" id='halfTableLeft'
+                                            style={{display:self.state.visibleLeft}}>
+                                        <Row>
+                                            <Col xs="12" className="text-center">
+                                                <h4><b><span>{gtypeShort} </span>HOT SKILLS by <span id="nameTop1"></span></b></h4>
+                                                Made by GITADORA.Info
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <SkillTableSH list={self.state.skillTable1} />
+                                        </Row>
+                                    </Col>
+                                    <Col xs="12" className="scrhalf" id='halfTableRight'
+                                            style={{display:self.state.visibleRight}}>
+                                        <Row>
+                                            <Col xs="12" className="text-center">
+                                                <h4><b><span>{gtypeShort} </span>OTHER SKILLS by <span id="nameTop2"></span></b></h4>
+                                                Made by GITADORA.Info
+                                            </Col>
+                                        </Row>
+                                        <Row>
+                                            <SkillTableSH list={self.state.skillTable2} />
+                                        </Row>
                                     </Col>
                                 </Row>
-                                <Row>
-                                    <Col xs="12" className='div-table' style={{paddingBottom:"100px", display:self.state.visibleLeft}}>
-                                        <Fragment>
-                                            <SkillTableNR list={self.state.skillTable1} />
-                                        </Fragment>
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col sm="6" id="halfTableRight">
-                                <Row>
-                                    <Col xs="12" className="text-center">
-                                        <h2><b>OTHER</b></h2>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col xs="12" className='div-table' style={{display:self.state.visibleRight}}>
-                                        <Fragment>
-                                            <SkillTableNR list={self.state.skillTable2} />
-                                        </Fragment>
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                        <div id="skillEmpty" style={{width:"100%", textAlign:"center"}}></div>
-                        <Row className="text-center">
-                            <Col xs="12">
-                                <Pager
-                                    cpage={urlprop.page}
-                                    allpage={self.state.allpage}
-                                    baseUrl={"/skill/"+urlprop.ptype+"/"+
-                                        urlprop.userid+"/"+
-                                        urlprop.gtype+"/"}
-                                    afterUrl={"/"+urlprop.order+search} />
-                            </Col>
-                        </Row>
-                    </CardBody>
-                </Card>
+                            </CardBody>
+                        </Card>
+                    </Col>
+                </Row>
+                <Row>
+                    <div id="skillEmpty" class="col-12 text-center"></div>
+                </Row> 
+                <Row className="text-center">
+                    <Pager />
+                </Row>
             </Container>
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        userinfo: state.tokenReducer.userinfo,
-        login: state.tokenReducer.login
-    }
-};
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        setUserinfo: () => {
-            dispatch(action.setLogout())
-        }
-    }
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SkillNR);
+export default SkillSH;

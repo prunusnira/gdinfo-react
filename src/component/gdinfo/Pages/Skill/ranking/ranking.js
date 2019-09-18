@@ -16,6 +16,7 @@ import {
     CardText,
     Button
 } from 'reactstrap';
+import commonData from '../../Common/commonData';
 
 const lang = LData.lang;
 const text = LData.text;
@@ -41,7 +42,7 @@ class SkillRanking extends Component {
     updateRankList(props) {
         console.log("TEST");
         const urlparam = props.match.params;
-        axios.post("https://gitadora.info/d/rank/"+urlparam.gtype+"/"+urlparam.page)
+        axios.post(commonData.commonDataURL+"rank/"+urlparam.gtype+"/"+urlparam.page)
         .then((res) => {
             const json = res.data;
             const list = [];

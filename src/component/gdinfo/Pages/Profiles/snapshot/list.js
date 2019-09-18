@@ -12,6 +12,7 @@ import {
     CardHeader,
     CardBody
 } from 'reactstrap';
+import commonData from '../../Common/commonData';
 
 const lang = LData.lang;
 
@@ -27,7 +28,7 @@ class SnapshotList extends Component {
     }
 
     componentDidMount() {
-        axios.post("https://gitadora.info/d/skill/snapshot/list/"+this.props.match.params.id)
+        axios.post(commonData.commonDataURL+"skill/snapshot/list/"+this.props.match.params.id)
         .then((res) => {
             const json = res.data;
             const list = json.list;

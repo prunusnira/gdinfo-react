@@ -90,14 +90,9 @@ const txtHeader = {
             "en":"Skill ranking"
         },
         exc: {
-            "jp":"エクセレントSKILL",
-            "ko":"엑셀런트SKILL",
-            "en":"Excellent Skill"
-        },
-        register: {
-            "jp":"スキル手動登録",
-            "ko":"스킬 수동 등록",
-            "en":"Skill manual update"
+            "jp":"スキル理論値",
+            "ko":"스킬 이론치",
+            "en":"Theoretical Skill"
         }
     },
     pattern: {
@@ -147,31 +142,6 @@ const txtHeader = {
         "jp":"ログアウト",
         "ko":"로그아웃",
         "en":"Sign out"
-    },
-    theme: {
-        "jp":"デザイン選択",
-        "ko":"스킨선택",
-        "en":"Design select"
-    },
-    ngafterlogin: {
-        "jp":"ログイン直後では使えません。他のページで移行してから変更してください。",
-        "ko":"로그인 직후에는 수행할 수 없습니다. 다른 페이지로 이동 한 후 시도해주세요.",
-        "en":"You can not use it right after login. Please move to another page first."
-    },
-    langsel: {
-        "jp":"言語選択",
-        "ko":"언어선택",
-        "en":"Language select"
-    },
-    menubtn: {
-        "jp":"メニュー",
-        "ko":"메뉴",
-        "en":"menu"
-    },
-    cookie: {
-        "jp":"* ギタドラインフォで唯一にクッキーを使うところがありますが、それがまさにデザインを覚えることです",
-        "ko":"* 기타도라인포에서 유일하게 쿠키를 사용하는 부분이 있는데 바로 스킨입니다",
-        "en":"* There is only one thing that uses cookie in GITADORA Info, which is design selection"
     }
 };
 

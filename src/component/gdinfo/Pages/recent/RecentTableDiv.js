@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import axios from 'axios';
 import LData from '../Common/language';
 import SingleSkillColorChanger from '../Common/skillcolor';
 
@@ -8,35 +7,18 @@ import {
     Row,
     Col
 } from 'reactstrap';
-import commonData from '../Common/commonData';
 
 const lang = LData.lang;
 const text = LData.text;
 
 class RecentTableDiv extends Component {
-    state = {
-        recentUserList: []
-    };
-
-    componentDidMount() {
-        axios.post(commonData.commonDataURL+"recent")
-        .then((resp) => {
-            // response
-            const data = resp.data;
-            const array = data.recent;
-
-            this.setState({
-                recentUserList: array
-            });
-        });
-    };
 
     render() {
         // before ajax finish
 
         // after ajax finish
         return (
-            this.state.recentUserList.map(
+            this.props.list.map(
                 user => {
                     const date = new Date().getTime() - user.uptimelong;
                     const hour = date/60000/60;

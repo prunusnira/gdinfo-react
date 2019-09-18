@@ -14,23 +14,6 @@ const txtProfile = {
         "ko":"프로필",
         "en":"Profile"
     },
-    title: {
-        "jp":"ユーザー情報",
-        "ko":"유저 정보",
-        "en":"User Info"
-    },
-    addr: {
-        "jp":"プロフィールURL (クリックしてコピー): ",
-        "ko":"프로필 주소 (클릭 시 복사): ",
-        "en":"Profile address (Click to copy): "
-    },
-    userinfo: {
-        title: {
-            "jp":"ユーザー情報",
-            "ko":"유저 정보",
-            "en":"User Info"
-        }
-    },
     table1: {
         title: {
             "jp":"称号",
@@ -88,6 +71,16 @@ const txtProfile = {
             "jp":"スキルデータをリセット",
             "ko":"스킬데이터 리셋",
             "en":"Skill data reset"
+        },
+        resetdanger: {
+            "jp":"この作業は保存されているスキルデータをリセットします。復旧できないので気をつけてください。続きますか？",
+            "ko":"이 작업은 저장된 스킬데이터를 모두 리셋하며 복구할 수 없습니다. 계속 하시겠습니까?",
+            "en":"This button will reset all the skill data and CANNOT be restored. Will you continue?"
+        },
+        resetdone: {
+            "jp":"スキルデータをリセットしました。",
+            "ko":"스킬데이터 리셋이 완료되었습니다.",
+            "en":"Skill data reset complete"
         },
         countupdate: {
             "jp":"プレイカウント更新",
@@ -184,6 +177,11 @@ const txtProfile = {
             "jp":"コメントを入力してください（最大25字）",
             "ko":"변경할 코멘트를 입력하세요 (최대 25자)",
             "en":"Input your commend (Maximun 25)"
+        },
+        desc2: {
+            "jp":"コメントはノートパッドなど他の入力からコピペーしてください",
+            "ko":"코멘트는 메모장 등 다른 프로그램에서 입력한 후 복사-붙여넣기를 해주세요",
+            "en":"Please copy and paste your comment from another program like notepad"
         }
     },
     towerupdate: {

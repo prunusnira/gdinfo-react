@@ -8,7 +8,7 @@
  * 2. Also, products and libraries used to implement
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
-var txtReset = {
+const txtReset = {
     title: {
         "jp":"データリセットについて",
         "ko":"데이터 리셋에 대하여",
@@ -36,17 +36,20 @@ var txtReset = {
                 "rate, score, skill meter, old rate)"
     },
     desc3: {
-        "jp":"アカウントは削除できませんが、Google連結の解除はGoogleホームページの個人情報管理からできます<br/>" +
-                "Google - アカウント情報 - アカウント設定  - 接続済みのアプリとサイト - アプロを管理 - GITADORA Info選択 - 削除",
-        "ko":"계정은 삭제되지 않지만 Google 계정연결 해제는 Google 홈페이지의 개인정보 관리에서 할 수 있습니다.<br/>" +
-                "Google - 내 계정 - 계정 환경설정 - 연결된 앱 및 사이트 - 앱 관리 - GITADORA Info 선택 - 선택 취소",
-        "en":"Your account does not removed but you can disconnect GITADORA Info from Google account management<br/>" +
-                "Google - My account - Account setting - App and web pages - App management - GITADORA Info<br/>" +
-                "(It will be different from actual name)"
+        "jp":"アカウントは削除できませんが、Google連結の解除はGoogleホームページの個人情報管理からできます",
+        "ko":"계정은 삭제되지 않지만 Google 계정연결 해제는 Google 홈페이지의 개인정보 관리에서 할 수 있습니다.",
+        "en":"Your account does not removed but you can disconnect GITADORA Info from Google account management"
     },
     desc4: {
+        "jp":"Google - アカウント情報 - アカウント設定  - 接続済みのアプリとサイト - アプロを管理 - GITADORA Info選択 - 削除",
+        "ko":"Google - 내 계정 - 계정 환경설정 - 연결된 앱 및 사이트 - 앱 관리 - GITADORA Info 선택 - 선택 취소",
+        "en":"Google - My account - Account setting - App and web pages - App management - GITADORA Info"
+    },
+    desc5: {
         "jp":"データを削除しますか？",
         "ko":"데이터를 삭제하겠습니까?",
         "en":"Are you sure to delete all data?"
     }
 };
+
+export default txtReset;

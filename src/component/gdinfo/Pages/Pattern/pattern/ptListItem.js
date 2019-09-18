@@ -6,6 +6,7 @@ import {
     Row,
     Col
 } from 'reactstrap';
+import commonData from '../../Common/commonData';
 
 class PTListItem extends Component {
     render() {
@@ -20,7 +21,8 @@ class PTListItem extends Component {
                                     <img alt="jacket-img"
                                         style={{width:"85px", height:"85px"}}
                                         src={p.jacket}
-                                        onError={(e) => {e.src="/img/music/empty.jpg"}} /><br/>
+                                        onError={(e) => {
+                                            e.target.src=commonData.commonImageURL+"music/empty.jpg"}} /><br/>
                                     <span>
                                         <Link className='innerhref' to={p.link}>
                                             {p.name}

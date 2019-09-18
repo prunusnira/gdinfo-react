@@ -16,6 +16,18 @@
     font-size: 80%;
 }
 
+.skillrank-img {
+	width: 25px;
+}
+
+.fc-img {
+	height: 25px;
+}
+
+.skillrank-sm-img {
+	width: 15px;
+}
+
 .skill-float-menu {
 	position: fixed;
 	top: 80px;

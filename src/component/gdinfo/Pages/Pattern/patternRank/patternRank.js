@@ -78,7 +78,7 @@ class PatternRank extends Component {
     loadMusicData(prop) {
         const mid = prop.match.params.mid;
 
-        axios.post("https://gitadora.info/d/getmusic/"+mid)
+        axios.post(commonData.commonDataURL+"getmusic/"+mid)
         .then((res) => {
             const json = res.data;
             const ptcode = prop.match.params.ptcode;
@@ -146,7 +146,7 @@ class PatternRank extends Component {
         const page = urlprop.page;
         let version = this.state.version;
         if(version === 0) version = commonData.currentVersion;
-        axios.post("https://gitadora.info/d/ptdetail/"+
+        axios.post(commonData.commonDataURL+"ptdetail/"+
                 mid+"/"+ptcode+"/"+page+"/"+version)
         .then((res) => {
             const json = res.data;
@@ -306,8 +306,9 @@ class PatternRank extends Component {
                             <CardBody>
                                 <Row id="upper">
                                     <Col sm="4" className="text-center"> 
-                                        <img alt="jacket-img" src={"https://gitadora.info/img/music/"+mid+".jpg"}
-                                            onError="this.src='/img/music/empty.jpg'"
+                                        <img alt="jacket-img" src={commonData.commonImageURL+"music/"+mid+".jpg"}
+                                            onError={(e) => {
+                                                e.target.src=commonData.commonImageURL+"music/empty.jpg"}}
                                             style={{width:"75%", maxWidth: "100px"}} /><br/>
                                         <img alt="pattern" src={pattern}
                                             style={{width:"75%", maxWidth: "100px"}} /><br/>

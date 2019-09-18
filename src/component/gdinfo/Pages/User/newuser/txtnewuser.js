@@ -8,7 +8,7 @@
  * 2. Also, products and libraries used to implement
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
-var txtNewuser = {
+const txtNewuser = {
     title: {
         "jp":"GITADORA Infoへようこそ！",
         "ko":"GITADORA Info에 오신 것을 환영합니다!",
@@ -30,3 +30,5 @@ var txtNewuser = {
         "en":"Disagree"
     }
 };
+
+export default txtNewuser;

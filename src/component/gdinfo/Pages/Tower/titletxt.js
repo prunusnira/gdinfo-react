@@ -114,7 +114,13 @@ export const titletxt = {
 		"infodev" :           { "jp" : "GITADORA Info デベロッパー", "ko" : "기타도라인포 개발자",    "en" : "Dev of GITADORA Info" },
 		"notitle" :           { "jp" : "NOTITLE", "ko" : "없음", "en" : "NOTITLE" },
 		"testlv1" : {"jp":"TEST", "ko":"TEST", "en":"TEST"},
-		"testlv1g" : {"jp":"TEST", "ko":"TEST", "en":"TEST"}
+		"testlv1g" : {"jp":"TEST", "ko":"TEST", "en":"TEST"},
+		"testlv2" : {"jp":"TEST", "ko":"TEST", "en":"TEST"},
+		"testlv2g" : {"jp":"TEST", "ko":"TEST", "en":"TEST"},
+		"testlv3" : {"jp":"TEST", "ko":"TEST", "en":"TEST"},
+		"testlv3g" : {"jp":"TEST", "ko":"TEST", "en":"TEST"},
+		"testlvm" : {"jp":"TEST", "ko":"TEST", "en":"TEST"},
+		"testlvmg" : {"jp":"TEST", "ko":"TEST", "en":"TEST"}
     };
 
 export const titlesp = {

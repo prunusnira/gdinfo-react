@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import RecentTableDiv from './RecentTableDiv';
-import RecentSelfInfo from './RecentSelfInfo';  
+import axios from 'axios';
+import RecentTableDiv from './recentTableDiv';
+import RecentSelfInfo from './recentSelfInfo';  
 import LData from '../Common/language';
 import txtIndex from './txtindex';
 
@@ -13,11 +14,30 @@ import {
     CardBody,
     CardText
 } from 'reactstrap';
+import commonData from '../Common/commonData';
 
 const lang = LData.lang;
 
 class Recent extends Component {
+    state = {
+        recentUserList: []
+    };
+
+    componentDidMount() {
+        axios.post(commonData.commonDataURL+"recent")
+        .then((resp) => {
+            // response
+            const data = resp.data;
+            const array = data.recent;
+
+            this.setState({
+                recentUserList: array
+            });
+        });
+    };
+
     render() {
+        const self = this;
         return (
             <Container>
                 <Row>
@@ -45,7 +65,7 @@ class Recent extends Component {
                                             {txtIndex.click[lang]}
                                         </Col>
                                         <Col xs="12" id="rec">
-                                            <RecentTableDiv />
+                                            <RecentTableDiv list={self.state.recentUserList} />
                                         </Col>
                                     </Row>
                                 </CardText>

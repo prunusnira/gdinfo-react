@@ -3,24 +3,32 @@ import GDHeader from './Header/header';
 import GDFooter from './Footer/footer';
 import {Route, Switch} from 'react-router-dom';
 
-import Recent from './Pages/recent/Recent';
+import Recent from './Pages/recent/recent';
 import Login from './Pages/login/Login';
+import SearchResult from './Pages/search/search';
+import Terms from './Pages/terms/terms';
+import NewUser from './Pages/User/newuser/newuser';
 
-import About0PC from './Pages/about/About0PC';
-import About0MO from './Pages/about/About0MO';
-import About1 from './Pages/about/About1';
-import About2 from './Pages/about/About2';
+import AboutPC from './Pages/about/AboutPC';
+import AboutMO from './Pages/about/AboutMO';
 
-import Profile from './Pages/Profiles/profile/Profile';
+import Profile from './Pages/Profiles/profile/profile';
 import ProfileLoginCheck from './Pages/Profiles/profile/checkLogin';
 import RivalList from './Pages/Profiles/rival/list';
 import PlayCount from './Pages/Profiles/playcount/playcount';
+import PlayCountLoginCheck from './Pages/Profiles/playcount/checkLogin';
 import SnapshotList from './Pages/Profiles/snapshot/list';
 import SnapshotLoginCheck from './Pages/Profiles/snapshot/checkLogin';
+import ProfileReset from './Pages/Profiles/reset/reset';
 
+import MySkill from './Pages/Skill/myskill/myskill';
 import SkillNR from './Pages/Skill/skill/skillnr';
+import SkillSH from './Pages/Skill/skill/skillsh';
 import SkillRanking from './Pages/Skill/ranking/ranking';
 import PlaycountRanking from './Pages/Skill/countrank/cntrank';
+import SkillSnapshotNR from './Pages/Skill/skill/skillSnapshotNR';
+import SkillSnapshotSH from './Pages/Skill/skill/skillSnapshotSH';
+import EXC from './Pages/Skill/skill/exc';
 
 import PatternList from './Pages/Pattern/pattern/pattern';
 import PatternRank from './Pages/Pattern/patternRank/patternRank';
@@ -43,25 +51,34 @@ function GDInfoApp() {
             <Route exact path="/" component={Recent} />
             <Route path="/login" component={Login} />
             <Route path="/index" component={Recent} />
+            <Route path="/search/:type/:value/:page" component={SearchResult} />
+            <Route path="/terms" component={Terms} />
+            <Route path="/newuser" component={NewUser} />
             {/* About */}
-            <Route path="/about0p" component={About0PC} />
-            <Route path="/about0m" component={About0MO} />
-            <Route path="/about1" component={About1} />
-            <Route path="/about2" component={About2} />
+            <Route path="/aboutpc" component={AboutPC} />
+            <Route path="/aboutmo" component={AboutMO} />
             {/* Profile */}
             <Switch>
                 <Route path="/profile/:id" component={Profile} />
                 <Route path="/profile" component={ProfileLoginCheck} />
             </Switch>
-            <Route path="/mybest/:id" component={PlayCount} />
+            <Switch>
+                <Route path="/mybest/:id" component={PlayCount} />
+                <Route path="/mybest" component={PlayCountLoginCheck} />
+            </Switch>
             <Route path="/rivallist" component={RivalList} />
             <Route path="/snapshot" component={SnapshotLoginCheck} />
             <Route path="/skill/snapshot/list/:id" component={SnapshotList} />
+            <Route path="/reset" component={ProfileReset} />
             {/* Skill */}
+            <Route path="/myskill/:gtype" component={MySkill} />
             <Route path="/skill/:ptype/:userid/:gtype/:page/:order" component={SkillNR} />
+            <Route path="/skill/snapshot/view/nr/:id/:date/:gtype" component={SkillSnapshotNR} />
+            <Route path="/skill/snapshot/view/sh/:id/:date/:gtype" component={SkillSnapshotSH} />
+            <Route path="/skillscr/:ptype/:userid/:gtype/:page/:order" component={SkillSH} />
             <Route path="/rank/:gtype/:page" component={SkillRanking} />
             <Route path="/cntrank/:page" component={PlaycountRanking} />
-            <Route path="/exc/gf" component={SkillNR} />
+            <Route path="/exc/:gtype" component={EXC} />
             {/* Pattern */}
             <Route path="/pattern/:ver/:order/:page" component={PatternList} />
             <Route path="/ptrank/:mid/:ptcode/:page" component={PatternRank} />

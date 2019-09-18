@@ -28,7 +28,8 @@ class NotPlayed extends Component {
         this.state = {
             list: [],
             empty: false,
-            gtype: ""
+            gtype: "",
+            allpage: 0
         }
     }
     
@@ -109,7 +110,8 @@ class NotPlayed extends Component {
             this.setState({
                 list: nplist,
                 empty: isEmpty,
-                gtype: type
+                gtype: type,
+                allpage: json.pages
             });
         });
     }
@@ -192,7 +194,13 @@ class NotPlayed extends Component {
                                     <h3 id="empty"></h3>
                                 </div>
                                 <Row className="text-center">
-                                    <Pager />
+                                    <Pager cpage={urlprop.page}
+                                            allpage={self.state.allpage}
+                                            baseUrl={"/notplayed/"+
+                                                urlprop.gtype+"/"+
+                                                urlprop.userid+"/"+
+                                                urlprop.vertype+"/"}
+                                            afterUrl={""+self.props.location.search} />
                                 </Row>
                             </CardBody>
                         </Card>

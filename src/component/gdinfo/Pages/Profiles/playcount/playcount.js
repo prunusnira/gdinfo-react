@@ -3,6 +3,8 @@ import LData from '../../Common/language';
 import txtPlayCount from './txtplaycount';
 import CountTable from './countTable';
 import axios from 'axios';
+import {getPatternImg600} from '../../Common/pattern';
+import scrShot from '../../Common/scrshot';
 
 import {
     Container,
@@ -37,37 +39,6 @@ class PlayCount extends Component {
         }
     }
 
-    getPatternImg600(ptcode) {
-        switch(ptcode) {
-            case 1:
-                return process.env.PUBLIC_URL+"/general-img/diff/basg_600.png";
-            case 2:
-                return process.env.PUBLIC_URL+"/general-img/diff/advg_600.png";
-            case 3:
-                return process.env.PUBLIC_URL+"/general-img/diff/extg_600.png";
-            case 4:
-                return process.env.PUBLIC_URL+"/general-img/diff/masg_600.png";
-            case 5:
-                return process.env.PUBLIC_URL+"/general-img/diff/basb_600.png";
-            case 6:
-                return process.env.PUBLIC_URL+"/general-img/diff/advb_600.png";
-            case 7:
-                return process.env.PUBLIC_URL+"/general-img/diff/extb_600.png";
-            case 8:
-                return process.env.PUBLIC_URL+"/general-img/diff/masb_600.png";
-            case 9:
-                return process.env.PUBLIC_URL+"/general-img/diff/basd_600.png";
-            case 10:
-                return process.env.PUBLIC_URL+"/general-img/diff/advd_600.png";
-            case 11:
-                return process.env.PUBLIC_URL+"/general-img/diff/extd_600.png";
-            case 12:
-                return process.env.PUBLIC_URL+"/general-img/diff/masd_600.png";
-            default:
-                return "";
-        }
-    }
-
     componentDidMount() {
         axios.post(commonData.commonDataURL+"getuserid/"+this.props.match.params.id)
         .then((res) => {
@@ -95,7 +66,7 @@ class PlayCount extends Component {
                     count: json.mybestp[i].playtime,
                     countstr: txtPlayCount.table.time[lang]
                 };
-                mypdata.pattern = this.getPatternImg600(json.mybestp[i].patterncode);
+                mypdata.pattern = getPatternImg600(json.mybestp[i].patterncode);
                 plist.push(mypdata);
             }
 
@@ -109,7 +80,7 @@ class PlayCount extends Component {
                     count: json.mybestpg[i].playtime,
                     countstr: txtPlayCount.table.time[lang]
                 };
-                mygdata.pattern = this.getPatternImg600(json.mybestpg[i].patterncode);
+                mygdata.pattern = getPatternImg600(json.mybestpg[i].patterncode);
                 glist.push(mygdata);
             }
             
@@ -123,7 +94,7 @@ class PlayCount extends Component {
                     count: json.mybestpd[i].playtime,
                     countstr: txtPlayCount.table.time[lang]
                 };
-                myddata.pattern = this.getPatternImg600(json.mybestpd[i].patterncode);
+                myddata.pattern = getPatternImg600(json.mybestpd[i].patterncode);
                 dlist.push(myddata);
             }
             
@@ -208,7 +179,7 @@ class PlayCount extends Component {
                             </CardHeader>
                             <CardBody className="text-center">
                                 <Col xs="12">
-                                    <Button style={{width:"100%"}} onClick={() => this.scrShot("#scrshot", this.props.match.params.id+"_mybest.jpg")}>
+                                    <Button style={{width:"100%"}} onClick={() => scrShot("scrshot", this.props.match.params.id+"_mybest.jpg")}>
                                         {txtPlayCount.button.scrshot[lang]}
                                     </Button>
                                 </Col>

@@ -8,7 +8,7 @@
  * 2. Also, products and libraries used to implement
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
-const txtAbout0 = {
+const txtAbout = {
     update_au: {
         "jp":"自動更新",
         "ko":"자동 갱신",
@@ -31,13 +31,13 @@ const txtAbout0 = {
     },
     copy: {
         "jp":"下のボタンをを押すと「j」以外の" +
-            "avascript:$.getScript('https://gitadora.info/$/update');" +
+            "avascript:$.getScript('https://data.gitadora.info/$/update');" +
             "をコピーします。jだけ入力して他のはペーストしてください",
         "ko":"아래 버튼를 누르면 j를 제외한" +
-                "avascript:$.getScript('https://gitadora.info/$/update');" +
+                "avascript:$.getScript('https://data.gitadora.info/$/update');" +
                 "를 복사합니다. j만 입력 후 나머지는 붙여넣기 하시면 됩니다.",
         "en":"Touch the button below to copy script. It copies script except j, which means "+
-                "「avascript:$.getScript('https://gitadora.info/$/update');」"+
+                "「avascript:$.getScript('https://data.gitadora.info/$/update');」"+
                 "is copied. Just input 'j' and paste on the address bar."
     },
     device: {
@@ -96,29 +96,16 @@ const txtAbout0 = {
                 "ko":"2) 구버전 (MATIXX, Tri-Boost Re:Evolve)",
                 "en":"2) Old version (MATIXX, Tri-Boost Re:Evolve)"
             },
-            addr1:"<b>javascript:$.getScript('https://gitadora.info/$/update');</b>",
-            addr2:"<b>javascript:$.getScript('https://gitadora.info/$/updateOld');</b>",
-            copy1: {
-                "jp":"下のボタンをを押すと「j」以外の" +
-                    "avascript:$.getScript('https://gitadora.info/$/update');" +
-                    "をコピーします。jだけ入力して他のはペーストしてください",
-                "ko":"아래 버튼를 누르면 j를 제외한" +
-                        "avascript:$.getScript('https://gitadora.info/$/update');" +
-                        "를 복사합니다. j만 입력 후 나머지는 붙여넣기 하시면 됩니다.",
-                "en":"Touch the button below to copy script. It copies script except j, which means "+
-                        "「avascript:$.getScript('https://gitadora.info/$/update');」"+
-                        "is copied. Just input 'j' and paste on the address bar."
-            },
-            copy2: {
-                "jp":"下のボタンをを押すと「j」以外の" +
-                    "avascript:$.getScript('https://gitadora.info/$/updateOld');" +
-                    "をコピーします。jだけ入力して他のはペーストしてください",
-                "ko":"아래 버튼를 누르면 j를 제외한" +
-                        "avascript:$.getScript('https://gitadora.info/$/updateOld');" +
-                        "를 복사합니다. j만 입력 후 나머지는 붙여넣기 하시면 됩니다.",
-                "en":"Touch the button below to copy script. It copies script except j, which means "+
-                        "「avascript:$.getScript('https://gitadora.info/$/updateOld');」"+
-                        "is copied. Just input 'j' and paste on the address bar."
+            addr1:"javascript:$.getScript('https://data.gitadora.info/$/update');",
+            addr2:"javascript:$.getScript('https://data.gitadora.info/$/updateOld');",
+            copy: {
+                "jp":"上のテキスト中「ｊ」以外のテキストをコピーしてください。" +
+                        "その後、3-7)のように「ｊ」を先に入力したあとコピーしたテキストをペーストしてください。",
+                "ko":"위의 텍스트 중 j를 제외한 나머지 부분을 복사하여 " +
+                        "아래의 순서를 따라한 후 3-7)에 적혀있는 것과 같이 'j'를 입력한 후 "+
+                        "붙여넣어 주시면 됩니다.",
+                "en":"Please copy the text except 'j' "+
+                        "and follow the instruction and paste like 3-7)"
             }
         },
         step3: {
@@ -127,18 +114,30 @@ const txtAbout0 = {
                 "ko":"3. 업데이트 방법",
                 "en":"3. Update process"
             },
-            s1: {
-                "jp":"1) ブラウザーを起動します。<a href='https://chrome.google.com/'>Google Chrome</a>をおすすめします。<br/>"+
-                    "<b style='color:red;'>Internet Explorerは使えません</b>",
-                "ko":"1) 브라우저를 엽니다. <a href='https://chrome.google.com/'>Google Chrome</a>을 권장합니다.<br/>"+
-                    "<b style='color:red;'>Internet Explorer는 지원하지 않습니다</b>",
-                "en":"1) Open browser. We recommend you to use <a href='https://chrome.google.com/'>Google Chrome</a><br/>"+
-                    "<b style='color:red;'>We does not support Internet Explorer</b>"
+            s1_1: {
+                "jp":"1) ブラウザーを起動します。",
+                "ko":"1) 브라우저를 엽니다.",
+                "en":"1) Open browser. We recommend you to use"
             },
-            s2: {
-                "jp":"2) <a class='innerhref' href='https://p.eagate.573.jp/'>eAmusement</a>から「ログイン」してください",
-                "ko":"2) <a class='innerhref' href='https://p.eagate.573.jp/'>eAmusement</a>에 로그인 해주세요.",
-                "en":"2) Please sign in at <a class='innerhref' href='https://p.eagate.573.jp/'>eAmusement</a>"
+            s1_2: {
+                "jp":"をおすすめします。",
+                "ko":"을 권장합니다.",
+                "en":""
+            },
+            s1_3: {
+                "jp":"Internet Explorerは使えません",
+                "ko":"Internet Explorer는 지원하지 않습니다",
+                "en":"We does not support Internet Explorer"
+            },
+            s2_1: {
+                "jp":"2) ",
+                "ko":"2) ",
+                "en":"2) Please sign in at "
+            },
+            s2_2: {
+                "jp":"に「ログイン」してください",
+                "ko":"에 로그인 해주세요.",
+                "en":""
             },
             s3: {
                 "jp":"3) もし複数のカードを使用している方は上の「e-AMUSEMENT」メニューで...",
@@ -155,10 +154,20 @@ const txtAbout0 = {
                 "ko":"5) 데이터를 가지고 오고자 하는 카드를 선택합니다.",
                 "en":"5) and select the card which you want to use"
             },
-            s6: {
-                "jp":"6) <a class='innerhref' href='https://p.eagate.573.jp/game/gfdm/gitadora_exchain/p/index.html'>GITADORAの公式サイト</a>に移動します。",
-                "ko":"6) <a class='innerhref' href='https://p.eagate.573.jp/game/gfdm/gitadora_exchain/p/index.html'>GITADORA 홈페이지</a>로 이동합니다.",
-                "en":"6) Go to <a class='innerhref' href='https://p.eagate.573.jp/game/gfdm/gitadora_exchain/p/index.html'>GITADORA web site</a>"
+            s6_1: {
+                "jp":"6) ",
+                "ko":"6) ",
+                "en":"6) Go to "
+            },
+            s6_2: {
+                "jp":"GITADORAの公式サイト",
+                "ko":"GITADORA 홈페이지",
+                "en":"GITADORA web site"
+            },
+            s6_3: {
+                "jp":"に移動します。",
+                "ko":"로 이동합니다.",
+                "en":""
             },
             s7: {
                 "jp":"7) 上でコピーしてたスクリプトをアドレス空間にペーストして実行します",
@@ -240,4 +249,4 @@ const txtAbout0 = {
     }  
 };
 
-export default txtAbout0;
+export default txtAbout;

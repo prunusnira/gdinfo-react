@@ -25,7 +25,8 @@ class PatternList extends Component {
         super(props);
 
         this.state = {
-            list: []
+            list: [],
+            allpage: 0
         }
     }
 
@@ -103,7 +104,7 @@ class PatternList extends Component {
                         }
                         else {
                             d.glink = '#no_div';
-                            d.glv = ''
+                            d.glv = '';
                         }
                         if(music.bbsc !== 0) {
                             d.blink = '/ptrank/'+music.id+'/5/1';
@@ -111,7 +112,7 @@ class PatternList extends Component {
                         }
                         else {
                             d.blink = '#no_div';
-                            d.blv = ''
+                            d.blv = '';
                         }
                         if(music.dbsc !== 0) {
                             d.dlink = '/ptrank/'+music.id+'/9/1';
@@ -119,7 +120,7 @@ class PatternList extends Component {
                         }
                         else {
                             d.dlink = '#no_div';
-                            d.dlv = ''
+                            d.dlv = '';
                         }
                     }
                     else if(j === 1) {
@@ -130,7 +131,7 @@ class PatternList extends Component {
                         }
                         else {
                             d.glink = '#no_div';
-                            d.glv = ''
+                            d.glv = '';
                         }
                         if(music.badv !== 0) {
                             d.blink = '/ptrank/'+music.id+'/6/1';
@@ -138,7 +139,7 @@ class PatternList extends Component {
                         }
                         else {
                             d.blink = '#no_div';
-                            d.blv = ''
+                            d.blv = '';
                         }
                         if(music.dadv !== 0) {
                             d.dlink = '/ptrank/'+music.id+'/10/1';
@@ -146,7 +147,7 @@ class PatternList extends Component {
                         }
                         else {
                             d.dlink = '#no_div';
-                            d.dlv = ''
+                            d.dlv = '';
                         }
                     }
                     else if(j === 2) {
@@ -157,7 +158,7 @@ class PatternList extends Component {
                         }
                         else {
                             d.glink = '#no_div';
-                            d.glv = ''
+                            d.glv = '';
                         }
                         if(music.bext !== 0) {
                             d.blink = '/ptrank/'+music.id+'/7/1';
@@ -165,7 +166,7 @@ class PatternList extends Component {
                         }
                         else {
                             d.blink = '#no_div';
-                            d.blv = ''
+                            d.blv = '';
                         }
                         if(music.dext !== 0) {
                             d.dlink = '/ptrank/'+music.id+'/11/1';
@@ -173,7 +174,7 @@ class PatternList extends Component {
                         }
                         else {
                             d.dlink = '#no_div';
-                            d.dlv = ''
+                            d.dlv = '';
                         }
                     }
                     else if(j === 3) {
@@ -184,7 +185,7 @@ class PatternList extends Component {
                         }
                         else {
                             d.glink = '#no_div';
-                            d.glv = ''
+                            d.glv = '';
                         }
                         if(music.bmas !== 0) {
                             d.blink = '/ptrank/'+music.id+'/8/1';
@@ -192,7 +193,7 @@ class PatternList extends Component {
                         }
                         else {
                             d.blink = '#no_div';
-                            d.blv = ''
+                            d.blv = '';
                         }
                         if(music.dmas !== 0) {
                             d.dlink = '/ptrank/'+music.id+'/12/1';
@@ -200,7 +201,7 @@ class PatternList extends Component {
                         }
                         else {
                             d.dlink = '#no_div';
-                            d.dlv = ''
+                            d.dlv = '';
                         }
                     }
                     obj.difflist.push(d);
@@ -209,13 +210,15 @@ class PatternList extends Component {
             }
 
             this.setState({
-                list:ptlist
+                list:ptlist,
+                allpage: json.pages
             });
         });
     }
 
     render() {
         const self = this;
+        const urlprop = this.props.match.params;
 
         return (
             <Container>
@@ -252,7 +255,11 @@ class PatternList extends Component {
                             <CardBody>
                                 <PatternListItem list={self.state.list}/>
                                 <Row>
-                                    <Pager />
+                                    <Pager cpage={urlprop.page}
+                                            allpage={self.state.allpage}
+                                            baseUrl={"/pattern/"+urlprop.ver+
+                                                "/"+urlprop.order+"/"}
+                                            afterUrl={self.props.location.search} />
                                 </Row>
                             </CardBody>
                         </Card>

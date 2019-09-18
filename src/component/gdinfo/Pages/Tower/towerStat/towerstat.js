@@ -24,12 +24,16 @@ class TowerStat extends Component {
     state = {
         list: [],
         ispassed: ""
-    }
+	}
+	
+	componentDidMount() {
+		this.loadTowerStatData(this.props);
+	}
 
     loadTowerStatData(prop) {
         const urlprop = prop.match.params;
         const towerRecord = [];
-        const towerlist = [];
+        let towerlist = [];
         const towercomp = [];
         const clear = [];
 
@@ -65,6 +69,7 @@ class TowerStat extends Component {
             this.updateAllPassed(towercomp);
 
             this.setState({
+				name: json.tower.name,
                 list: towerlist
             })
         });
@@ -79,7 +84,6 @@ class TowerStat extends Component {
 			obj.index = i;
 			obj.topid = 't'+i;
 			obj.btnid = 't'+i+'p';
-			obj.divopen = 'divopen('+i+');'
 			obj.opbtn = '▼';
 			obj.skillfrom = (manage.skill + (size-i-1)*500);
 			obj.floor = size-i;
@@ -88,13 +92,13 @@ class TowerStat extends Component {
 
 			const clearstat = this.checkClear(pat[size-i-1]);
 			if(clearstat['clear'] && clearstat['rate'] == 100) {
-				obj.floorclear = '/img/tower/goldpassed.png';
+				obj.floorclear = process.env.PUBLIC_URL+"/general-img/tower/goldpassed.png";
 			}
 			else if(clearstat['clear']) {
-				obj.floorclear = '/img/tower/passed.png';
+				obj.floorclear = process.env.PUBLIC_URL+"/general-img/tower/passed.png";
 			}
 			else {
-				obj.floorclear = '/img/tower/running.png';
+				obj.floorclear = process.env.PUBLIC_URL+"/general-img/tower/running.png";
 			}
 			
 			if(clearstat['clear']) {
@@ -106,12 +110,17 @@ class TowerStat extends Component {
 					}
 
 					obj.titlechangable = txtTower.detail.titlechangable[lang];
-					obj.btnchangable = '<button class="btn btn-primary" onclick="floorTitlePopup(\''+manage.name+'\', '+(manage.levels-i-1)+', '+clearstat['rate']+', '+size+', $(\'#titlepopup\'))">'+txtTower.detail.btntitlechange[lang]+'</button>';
+					obj.titlechange = {};
+					obj.titlechange.tower = manage.name;
+					obj.titlechange.floor = manage.levels-i-1;
+					obj.titlechange.rate = clearstat['rate'];
+					obj.titlechange.allfloors = size;
+					obj.btnchangable = true;
 				}
 			}
 			else {
 				obj.titlechangable = txtTower.detail.titleunchangable[lang];
-				obj.btnchangable = '';
+				obj.btnchangable = false;
 			}
 
 			// id
@@ -123,74 +132,32 @@ class TowerStat extends Component {
 			for(let j = 0; j < pat[size-i-1].length; j++) {
 				const cfl = pat[size-i-1][j];
 				const flist = {};
-				flist.jacket = '/img/music/'+cfl.tower.musicid+'.jpg';
+				flist.jacket = commonData.commonImageURL+"music/"+cfl.tower.musicid+".jpg";
 				flist.name = cfl.tower.mname;
 				flist.pattern = GDPat[cfl.tower.ptcode-1].pat;
 				flist.lv = (cfl.tower.level/100).toFixed(2);
 
-				if(cfl.score > 0) {
-					let score = 0
-					if(cfl.skill != null) {
-						score = cfl.skill.score;
-					}
+				flist.condScore = cfl.tower.score;
+				flist.condRate = (cfl.tower.rate/100).toFixed(2);
+				flist.condCombo = cfl.tower.combo;
+				if(cfl.tower.fc == true) {
+					flist.condCombo += "(FC)";
+				}
 
-					if(score < cfl.tower.score) {
-						flist.score = '<font color="blue">'+score+"</font>";
-					}
-					else {
-						flist.score = '<font color="red">'+score+"</font>";
-					}
-					flist.condScore = cfl.tower.score;
+				if(cfl.skill != null) {
+					flist.score = cfl.skill.score;
+					flist.rate = (cfl.skill.rate/100).toFixed(2);
+					flist.combo = cfl.skill.combo;
 				}
 				else {
 					flist.score = 0;
-					flist.condScore = 0;
-				}
-
-				if(cfl.tower.rate > 0) {
-					let rate = 0
-					if(cfl.skill != null) {
-						rate = cfl.skill.rate;
-					}
-
-					if(rate < cfl.tower.rate) {
-						flist.rate = '<font color="blue">'+(rate/100).toFixed(2)+"</font>";
-					}
-					else {
-						flist.rate = '<font color="red">'+(rate/100).toFixed(2)+"</font>";
-					}
-					flist.condRate = (cfl.tower.rate/100).toFixed(2);
-				}
-				else {
 					flist.rate = 0;
-					flist.condRate = 0;
-				}
-
-				if(cfl.tower.combo > 0) {
-					let combo = 0;
-					if(cfl.skill != null) {
-						combo = cfl.skill.combo;
-					}
-
-					if(combo < cfl.tower.combo) {
-						flist.combo = '<font color="blue">'+combo+"</font>";
-					}
-					else {
-						flist.combo = '<font color="red">'+combo+"</font>";
-					}
-					flist.condCombo = cfl.tower.combo;
-					if(cfl.tower.fc == true) {
-						flist.condCombo += "(FC)";
-					}
-				}
-				else {
 					flist.combo = 0;
-					flist.condCombo = 0;
 				}
 				
 				flist.description = cfl.tower.description;
 				if(cfl.clear) {
-					flist.clear = '/img/tower/passed.png';
+					flist.clear = process.env.PUBLIC_URL+"/general-img/tower/passed.png";
 					if(towerMethod.checkMusicTitleExist(cfl.tower.musicid, cfl.tower.ptcode)) {
 						var title = towerMethod.getMusicTitle(cfl.tower.musicid, cfl.tower.ptcode);
 
@@ -200,7 +167,7 @@ class TowerStat extends Component {
 					}
 				}
 				else {
-					flist.clear = '/img/tower/running.png';
+					flist.clear = process.env.PUBLIC_URL+"/general-img/tower/running.png";
 					flist.titlechange = '';
 				}
 				obj.floorlist.push(flist);
@@ -242,10 +209,10 @@ class TowerStat extends Component {
 		}
 		
 		if(passed) {
-			html += process.env.PUBLIC_URL+"/img/tower/towercleared.png";
+			html += process.env.PUBLIC_URL+"/general-img/tower/towercleared.png";
 		}
 		else {
-			html += process.env.PUBLIC_URL+"/img/tower/towerprogressing.png";
+			html += process.env.PUBLIC_URL+"/general-img/tower/towerprogressing.png";
 		}
 		
 		this.setState({
@@ -265,19 +232,6 @@ class TowerStat extends Component {
 			if(rate < 70) towercomp[i] = false;
 			
 			if(i-1 >= 0 && !towercomp[i-1]) towercomp[i] = false;
-		}
-	}
-	
-	divopen(i) {
-		var div = $("#t"+i+"c");
-		
-		if(div.is(":visible")) {
-			div.hide();
-			$("#t"+i+"p").html("▼");
-		}
-		else {
-			div.show();
-			$("#t"+i+"p").html("▲");
 		}
 	}
 
@@ -320,7 +274,7 @@ class TowerStat extends Component {
                                 {/* 진행 상태 표기 */}
                                 <Row>
                                     <Col xs="12" id="towerlist">
-                                        <TowerStatList list={self.state.list} />
+                                        <TowerStatList id={self.props.userinfo.id} list={self.state.list} />
                                     </Col>
                                 </Row>
                             </CardBody>

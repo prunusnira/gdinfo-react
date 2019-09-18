@@ -40,6 +40,9 @@ class ProfileButton extends Component {
                         <Button style={{width:"100%"}} tag={Link} to={"/mybest/"+this.props.id}>
                             {txtProfile.button.mybest[lang]}
                         </Button>
+                        <Button style={{width:"100%"}} tag={Link} to={"/cleartable/"+this.props.id}>
+                            {txtProfile.button.clearRankTable[lang]}
+                        </Button>
                     </Col>
                     <Col xs="12" className="btn-group">
                         <Button style={{width:"100%"}} onClick={this.towerUpdate}>
@@ -61,19 +64,6 @@ class ProfileButton extends Component {
                         </Button>
                         <Button style={{width:"100%"}} tag={Link} to={"/mybest/"+this.props.id}>
                             {txtProfile.button.mybest[lang]}
-                        </Button>
-                    </Col>
-                    <Col xs="12" className="btn-group">
-                        <Button style={{width:"100%"}} onClick={() => this.addAsRival("gf")}>
-                            {"GF "+txtProfile.button.rivaladd[lang]}
-                        </Button>
-                        <Button style={{width:"100%"}} onClick={() => this.addAsRival("dm")}>
-                            {"DM "+txtProfile.button.rivaladd[lang]}
-                        </Button>
-                    </Col>
-                    <Col xs="12" className="btn-group">
-                        <Button style={{width:"100%"}} tag={Link} to={"/comparison/"+this.props.id+"/gf/1"}>
-                            {txtProfile.button.compare[lang]}
                         </Button>
                         <Button style={{width:"100%"}} tag={Link} to={"/profile/towerstatus/"+this.props.id}>
                             {txtProfile.button.towerstatus[lang]}

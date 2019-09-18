@@ -21,7 +21,7 @@ class CountTable extends Component {
                                     }} /><br/>
                                 {
                                     (function() {
-                                        if(d.pattern !== null || d.pattern !== "") {
+                                        if(d.pattern !== "") {
                                             // 이미지
                                             return <img alt="pattern-type" style={{width:"90px"}} src={d.pattern} />
                                         }

@@ -1,13 +1,13 @@
-const MAINURL = "https://gitadora.info/";
+const MAINURL = "https://data.gitadora.info/";
 const TESTURL = "http://test.gitadora.info:8080/";
 
-const url = TESTURL;
+const url = MAINURL;
 
 const commonData = {
     currentVersion: 27,
     commonDataURL: url+"d/",
     commonMainURL: url,
-    commonImageURL: MAINURL+"img/"
+    commonImageURL: url+"img/"
 }
 
 export default commonData;
