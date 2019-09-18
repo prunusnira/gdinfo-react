@@ -24,7 +24,8 @@ Thymeleaf (템플릿엔진) + Vue.js + jQuery + 기타 JS 라이브러리
 
 ## 현황
 
-현재는 jQuery가 사용된 js 파일들이 많이 포함되어 있으나 이는 개발중에 점차적으로 jQuery를 없애면서 React SPA 앱으로 변경될 예정
+public release 시행
+미사용 기능 혹은 js파일에 대한 정리 진행 중
 
 ## 개발 및 테스트 완료 이후
 
