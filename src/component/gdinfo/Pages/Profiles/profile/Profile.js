@@ -131,9 +131,7 @@ class Profile extends Component {
 
         if(this.state.profileData == null) {
             // show loading
-            return (
-                <h1>LOADING</h1>
-            )
+            return null;
         }
         else {
             const userinfo = this.state.profileData;
@@ -147,10 +145,12 @@ class Profile extends Component {
             const towertitle = userinfo.mydata.titletower;
             const commentTitle = txtProfile.table1.comment[lang];
             const gskill = userinfo.mydata.gskill;
+            const gskillex = userinfo.mydata.gskillex;
             const gskillmx = userinfo.mydata.gskillmx;
             const gskilltbre = userinfo.mydata.gskilltbre;
             const gskilltb = userinfo.mydata.gskilltb;
             const dskill = userinfo.mydata.dskill;
+            const dskillex = userinfo.mydata.dskillex;
             const dskillmx = userinfo.mydata.dskillmx;
             const dskilltbre = userinfo.mydata.dskilltbre;
             const dskilltb = userinfo.mydata.dskilltb;
@@ -300,17 +300,30 @@ class Profile extends Component {
                                         </Row>
                                         <hr class="col-12"/>
                                         <Row>
+                                            <Col xs="12">
+                                                {txtProfile.click[lang]}
+                                            </Col>
+                                        </Row>
+                                        <Row>
                                             <Col xs="6" className="text-center">GF</Col>
                                             <Col xs="6" className="text-center">DM</Col>
                                         </Row>
                                         <Row>
                                             <Col xs="6" className="text-center">
                                                 <Row>
-                                                    <Col xs="4" className="text-right">EX</Col>
+                                                    <Col xs="4" className="text-right">NX</Col>
                                                     <Col xs="8" className="text-center">
                                                         <SingleSkillColorChanger
                                                             link={"/skill/2/"+urlprop.id+"/gf/1/skilldesc"}
                                                             skill={gskill} />
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs="4" className="text-right">EX</Col>
+                                                    <Col xs="8" className="text-center">
+                                                        <SingleSkillColorChanger
+                                                            link={"/skill/10/"+urlprop.id+"/gf/1/skilldesc"}
+                                                            skill={gskillex} />
                                                     </Col>
                                                 </Row>
                                                 <Row>
@@ -340,11 +353,19 @@ class Profile extends Component {
                                             </Col>
                                             <Col xs="6" className="text-center">
                                                 <Row>
-                                                    <Col xs="4" className="text-right">EX</Col>
+                                                    <Col xs="4" className="text-right">NX</Col>
                                                     <Col xs="8" className="text-center">
                                                         <SingleSkillColorChanger
                                                             link={"/skill/2/"+urlprop.id+"/dm/1/skilldesc"}
                                                             skill={dskill} />
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs="4" className="text-right">EX</Col>
+                                                    <Col xs="8" className="text-center">
+                                                        <SingleSkillColorChanger
+                                                            link={"/skill/10/"+urlprop.id+"/dm/1/skilldesc"}
+                                                            skill={dskillex} />
                                                     </Col>
                                                 </Row>
                                                 <Row>

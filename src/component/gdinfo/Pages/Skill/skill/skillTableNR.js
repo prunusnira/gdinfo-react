@@ -1,4 +1,5 @@
 import React, {Component, Fragment} from 'react';
+import {Link} from 'react-router-dom';
 import './skill.css';
 import '../../Common/table.css';
 import commonData from '../../Common/commonData';
@@ -42,9 +43,9 @@ class SkillTableNR extends Component {
                                 <Row>
                                     <Col xs="12" className='text-left' style={{width:"100%"}}>
                                         <div style={{display:"table", tableLayout:"fixed", width:"100%", whiteSpace: "nowrap"}}>
-                                            <a className='innerhref' href={v.musiclink} style={{fontSize: "125%", display:"table-cell", overflowX:"hidden", textOverflow:"ellipsis"}}>
+                                            <Link className='innerhref' to={v.musiclink} style={{fontSize: "125%", display:"table-cell", overflowX:"hidden", textOverflow:"ellipsis"}}>
                                                 {v.musicname}
-                                            </a>
+                                            </Link>
                                         </div>
                                     </Col>
                                 </Row>

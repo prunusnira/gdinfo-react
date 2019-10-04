@@ -27,7 +27,7 @@ class SkillMenu extends Component {
                                     "/skill/4/"+this.props.id+"/dm/1/skilldesc"
                                 }>DM 100</Button>
                             <Button tag={Link} to={
-                                    "/skill/6/"+this.props.id+"/gf/1/1"
+                                    "/skill/6/"+this.props.id+"/dm/1/1"
                                 }>DM Skill</Button>
                         </Col>
                     </Row>
@@ -46,7 +46,7 @@ class SkillMenu extends Component {
                                     "/skill/3/"+this.props.id+"/dm/1/skilldesc"
                                 }>DM 100</Button>
                             <Button tag={Link} to={
-                                    "/skill/5/"+this.props.id+"/gf/1/1"
+                                    "/skill/5/"+this.props.id+"/dm/1/1"
                                 }>DM Skill</Button>
                         </Col>
                     </Row>
@@ -72,6 +72,25 @@ class SkillMenu extends Component {
                     <Row>
                         <Col xs="12">
                             EXCHAIN
+                        </Col>
+                        <Col xs="12" className="btn-group">
+                            <Button tag={Link} to={
+                                    "/skill/9/"+this.props.id+"/gf/1/skilldesc"
+                                }>GF 100</Button>
+                            <Button tag={Link} to={
+                                    "/skill/10/"+this.props.id+"/gf/1/1"
+                                }>GF Skill</Button>
+                            <Button tag={Link} to={
+                                    "/skill/9/"+this.props.id+"/dm/1/skilldesc"
+                                }>DM 100</Button>
+                            <Button tag={Link} to={
+                                    "/skill/10/"+this.props.id+"/dm/1/1"
+                                }>DM Skill</Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs="12">
+                            NEXTAGE
                         </Col>
                         <Col xs="12" className="btn-group">
                             <Button tag={Link} to={

@@ -16,7 +16,9 @@ import {
     DropdownItem,
     DropdownMenu,
     DropdownToggle,
-    UncontrolledDropdown
+    UncontrolledDropdown,
+    Row,
+    Col
 } from 'reactstrap'
 
 const lang = LData.lang;
@@ -114,6 +116,13 @@ class GDHeader extends Component {
         const self = this;
         return (
             <Fragment>
+                <div style={{position:"relative", zIndex:999}}>
+                    <Row>
+                        <Col xs="12" className="text-center">
+                            <b>{txtHeader.test[lang]}</b>
+                        </Col>
+                    </Row>
+                </div>
                 <header id="header">
                     <Navbar color='dark' className='bg-dark fixed-top'>
                         <NavbarBrand tag={Link} to="/index" onClick={() => {this.setState({isMenuOpen: false})}}>

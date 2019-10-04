@@ -24,11 +24,14 @@ class SkillSnapshotNR extends Component {
         skillTable1: [],
         skillTable2: [],
         sum1: 0,
-        sum2: 0
+        sum2: 0,
+        username: "",
+        savedate: ""
     }
 
     componentDidMount() {
         this.loadSnapshotData(this.props);
+        this.loadUserInfo(this.props);
     }
 
     loadSnapshotData(prop) {
@@ -61,8 +64,8 @@ class SkillSnapshotNR extends Component {
                         level: cur.lv,
                         rate: cur.rate,
                         skill: cur.skill,
-                        rank: "EXC",
-                        checkfc: "Y",
+                        rank: cur.rank,
+                        checkfc: cur.fc,
                         meter: cur.meter,
                         playtime: 1,
                         combo: 1
@@ -86,8 +89,8 @@ class SkillSnapshotNR extends Component {
                         level: cur.lv,
                         rate: cur.rate,
                         skill: cur.skill,
-                        rank: "EXC",
-                        checkfc: "Y",
+                        rank: cur.rank,
+                        checkfc: cur.fc,
                         meter: cur.meter,
                         playtime: 1,
                         combo: 1
@@ -108,7 +111,21 @@ class SkillSnapshotNR extends Component {
                 statLeft: (sum1+sum2).toFixed(2),
                 statLeftTitle: "Total Skill",
                 statMidTitle: "Hot Skill",
-                statRightTitle: "Other Skill"
+                statRightTitle: "Other Skill",
+                savedate: urlprop.date
+            });
+        });
+    }
+
+    loadUserInfo(props) {
+        const urlprop = props.match.params;
+        
+        axios.post(commonData.commonDataURL+"getuserid/"+urlprop.id)
+        .then((res) => {
+            const json = res.data.mydata;
+
+            this.setState({
+                username: json.name
             });
         });
     }
@@ -150,14 +167,14 @@ class SkillSnapshotNR extends Component {
                         <Row id="targetInfo">
                             <Col xs="12" className="text-center">
                                 <h4><b>Snapshot Of {gtypeLong}<br/>
-                                    <span>Skill by <span id="nameTop"></span></span>
+                                    <span>Skill by {self.state.username}</span>
                                 </b></h4>
                             </Col>
                             <Col xs="6" style={{textAlign:"center"}}>
                                 <b>Made by GITADORA.info</b>
                             </Col>
                             <Col xs="6" style={{textAlign:"center"}}>
-                                Saved Date: <span id="timeTop"></span>
+                                Saved Date: {self.state.savedate}
                             </Col>
                         </Row>
                     </CardHeader>

@@ -9,15 +9,15 @@
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
 export const GDPat = [
-	{num:1, pat:"BAS-G"},
+	{num:1, pat:"BSC-G"},
 	{num:2, pat:"ADV-G"},
 	{num:3, pat:"EXT-G"},
 	{num:4, pat:"MAS-G"},
-	{num:5, pat:"BAS-B"},
+	{num:5, pat:"BSC-B"},
 	{num:6, pat:"ADV-B"},
 	{num:7, pat:"EXT-B"},
 	{num:8, pat:"MAS-B"},
-	{num:9, pat:"BAS-D"},
+	{num:9, pat:"BSC-D"},
 	{num:10, pat:"ADV-D"},
 	{num:11, pat:"EXT-D"},
 	{num:12, pat:"MAS-D"},

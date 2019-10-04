@@ -27,7 +27,8 @@ class Music extends Component {
         composer: "",
         version: "",
         musicimg: "",
-        playername: ""
+        playername: "",
+        proflink: ""
     }
 
     componentDidMount() {
@@ -41,7 +42,8 @@ class Music extends Component {
         .then((res) => {
             const json = res.data.mydata;
             this.setState({
-                playername: json.name
+                playername: json.name,
+                proflink: "/profile/"+prop.match.params.userid
             });
         });
     }
@@ -71,7 +73,7 @@ class Music extends Component {
 
             for(let i = 1; i <= 12; i++) {
                 const obj = {};
-                obj.ranklink = '/ptdetail/'+music.id+'/'+i+'/1';
+                obj.ranklink = '/ptrank/'+music.id+'/'+i+'/1';
 
                 let skill = null;
                 switch(i) {
@@ -219,9 +221,9 @@ class Music extends Component {
                                         </div>
                                         <div className="div-table-cell" id="userinfo">
                                             <span>
-                                                <a id="player" className='innerhref' tag={Link} to="proflink">
+                                                <Link id="player" className='innerhref' to={self.state.proflink}>
                                                     {self.state.playername}
-                                                </a>
+                                                </Link>
                                             </span>
                                         </div>
                                     </div>

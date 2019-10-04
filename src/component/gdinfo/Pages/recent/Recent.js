@@ -65,7 +65,7 @@ class Recent extends Component {
                                             {txtIndex.click[lang]}
                                         </Col>
                                         <Col xs="12" id="rec">
-                                            <RecentTableDiv list={self.state.recentUserList} />
+                                            <RecentTableDiv isMain={true} list={self.state.recentUserList} />
                                         </Col>
                                     </Row>
                                 </CardText>

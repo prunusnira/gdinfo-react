@@ -25,9 +25,9 @@ class SRItem extends Component {
                                         <Row>
                                             <Col xs="12" className="text-left">
                                                 <span v-html='rank.towertitle'></span>
-                                                <a href="#no_div" style={{fontSize: "125%"}} className='innerhref' tag={Link} to={r.profilerank}>
+                                                <Link href="#no_div" style={{fontSize: "125%"}} className='innerhref' to={r.profilerank}>
                                                     {r.username}
-                                                </a>
+                                                </Link>
                                             </Col>
                                         </Row>
                                         <Row>

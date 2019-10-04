@@ -24,14 +24,14 @@ class RecentTableDiv extends Component {
                     const hour = date/60000/60;
                     const min = date/60000%60;
 
-                    const imgUrl = process.env.PUBLIC_URL+"/general-img/title/"+user.titletower+".png"
-                    const username = user.name+" ⓟ"
+                    const imgUrl = process.env.PUBLIC_URL+"/general-img/title/"+user.titletower+".png";
+                    const username = user.name+" ⓟ";
                     const updateTime = Math.floor(hour)+text.other.hrs[lang]+" "+Math.floor(min)+text.other.mins[lang];
                     const gskill = user.gskill.toFixed(2);
-                    const glink = "/skill/2/"+user.id+"/gf/1/1"
+                    const glink = "/skill/2/"+user.id+"/gf/1/1";
                     const dskill = user.dskill.toFixed(2);
-                    const dlink = "/skill/2/"+user.id+"/dm/1/1"
-                    const link = '/profile/'+user.id
+                    const dlink = "/skill/2/"+user.id+"/dm/1/1";
+                    const link = this.props.isMain ? '/profile/'+user.id : user.link;
 
                     return (
                         <div className="table-border-bottom" style={{padding:5+'px'}}>

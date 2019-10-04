@@ -4,7 +4,7 @@ const TESTURL = "http://test.gitadora.info:8080/";
 const url = MAINURL;
 
 const commonData = {
-    currentVersion: 27,
+    currentVersion: 28,
     commonDataURL: url+"d/",
     commonMainURL: url,
     commonImageURL: url+"img/"

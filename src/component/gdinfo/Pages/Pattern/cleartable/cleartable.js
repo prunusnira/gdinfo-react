@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import ClearTableRow from './tableRow';
 
@@ -35,7 +36,7 @@ class ClearTable extends Component {
             const icon = (json.titletower !== "") ? true:false;
             this.setState({
                 username: json.name,
-                profilelink: "/profile"+prop.match.params.userid,
+                profilelink: "/profile/"+prop.match.params.userid,
                 titletower: json.titletower,
                 iconOn: icon
             });
@@ -136,7 +137,7 @@ class ClearTable extends Component {
                                 <h3>Clear Status Table</h3>
                             </CardHeader>
                             <CardBody id="profile" className="text-center">
-                                <a href={self.state.profilelink} className='innerhref'
+                                <Link to={self.state.profilelink} className='innerhref'
                                     style={{fontSize:"130%"}}>
                                         {
                                             (function() {
@@ -147,7 +148,7 @@ class ClearTable extends Component {
                                             })()
                                         }
                                     {self.state.username} ⓟ
-                                </a>
+                                </Link>
                             </CardBody>
                         </Card>
                     </Col>

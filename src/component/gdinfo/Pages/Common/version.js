@@ -38,6 +38,27 @@ export const GDVer = [
 	{num:27, sv:"GD EXC", full:"GITADORA EXCHAIN"}
 ];
 
+export const skillPageVersion = (ptype) => {
+	switch(ptype) {
+		case 0:
+		case 1:
+		case 2:
+			return "NEXTAGE";
+		case 4:
+		case 6:
+			return "Tri-Boost";
+		case 3:
+		case 5:
+			return "Tri-Boost Re:EVOLVE";
+		case 7:
+		case 8:
+			return "MATIXX";
+		case 9:
+		case 10:
+			return "EXCHAIN";
+	}
+}
+
 export const generateVerFilter = (all) => {
 	var filter = "";
 	for(var i = 0; i < GDVer.length; i++) {

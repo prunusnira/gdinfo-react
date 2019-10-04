@@ -61,8 +61,8 @@ class SkillSnapshotSH extends Component {
                         level: cur.lv,
                         rate: cur.rate,
                         skill: cur.skill,
-                        rank: "EXC",
-                        checkfc: "Y",
+                        rank: cur.rank,
+                        checkfc: cur.fc,
                         meter: cur.meter,
                         playtime: 1,
                         combo: 1
@@ -86,8 +86,8 @@ class SkillSnapshotSH extends Component {
                         level: cur.lv,
                         rate: cur.rate,
                         skill: cur.skill,
-                        rank: "EXC",
-                        checkfc: "Y",
+                        rank: cur.rank,
+                        checkfc: cur.fc,
                         meter: cur.meter,
                         playtime: 1,
                         combo: 1

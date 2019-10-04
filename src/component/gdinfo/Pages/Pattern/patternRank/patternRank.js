@@ -29,28 +29,40 @@ class PatternRank extends Component {
         let pt = "";
         switch(urlprop.ptcode) {
             case 1:
+                pt = "BSC-G";
                 break;
             case 2:
+                pt = "ADV-G";
                 break;
             case 3:
+                pt = "EXT-G";
                 break;
             case 4:
+                pt = "MAS-G";
                 break;
             case 5:
+                pt = "BSC-B";
                 break;
             case 6:
+                pt = "ADV-B";
                 break;
             case 7:
+                pt = "EXT-B";
                 break;
             case 8:
+                pt = "MAS-B";
                 break;
             case 9:
+                pt = "BSC-D";
                 break;
             case 10:
+                pt = "ADV-D";
                 break;
             case 11:
+                pt = "EXT-D";
                 break;
             case 12:
+                pt = "MAS-D";
                 break;
             default:
                 break;
@@ -58,7 +70,7 @@ class PatternRank extends Component {
 
         this.state = {
             list: [],
-            version: 0,
+            version: commonData.currentVersion,
             pattern: pt,
             level: 0,
             mname: "",
@@ -77,6 +89,9 @@ class PatternRank extends Component {
 
     loadMusicData(prop) {
         const mid = prop.match.params.mid;
+        
+        const search = new URLSearchParams(prop.location.search);
+        const ver = search.get("ver") === null ? commonData.currentVersion : parseInt(search.get("ver"));
 
         axios.post(commonData.commonDataURL+"getmusic/"+mid)
         .then((res) => {
@@ -132,7 +147,8 @@ class PatternRank extends Component {
                 pattern: pattern,
                 mname: mname,
                 level: level,
-                composer: composer
+                composer: composer,
+                version: ver
             });
 
             this.loadRankData(prop);
@@ -336,10 +352,11 @@ class PatternRank extends Component {
                                         <h3>{txtPTRank.table.ranking[lang]}</h3>
                                     </Col>
                                     <Col xs="8" className="text-right btn-group">
-                                        <Button tag={Link} to={"/ptrank/"+mid+"/"+ptcode+"/1"} className="rank27">EXCHAIN</Button>
-                                        <Button tag={Link} to={"/ptrank/"+mid+"/"+ptcode+"/1?ver=26"} className="rank26">MATIXX</Button>
-                                        <Button tag={Link} to={"/ptrank/"+mid+"/"+ptcode+"/1?ver=25"} className="rank25">TBRE</Button>
-                                        <Button tag={Link} to={"/ptrank/"+mid+"/"+ptcode+"/1?ver=24"} className="rank24">Tri-Boost</Button>
+                                        <Button tag={Link} to={"/ptrank/"+mid+"/"+ptcode+"/1?ver=28"} className="rank28">NX</Button>
+                                        <Button tag={Link} to={"/ptrank/"+mid+"/"+ptcode+"/1?ver=27"} className="rank27">EX</Button>
+                                        <Button tag={Link} to={"/ptrank/"+mid+"/"+ptcode+"/1?ver=26"} className="rank26">MX</Button>
+                                        <Button tag={Link} to={"/ptrank/"+mid+"/"+ptcode+"/1?ver=25"} className="rank25">RE</Button>
+                                        <Button tag={Link} to={"/ptrank/"+mid+"/"+ptcode+"/1?ver=24"} className="rank24">TB</Button>
                                     </Col>
                                 </Row>
                             </CardHeader>
@@ -352,7 +369,10 @@ class PatternRank extends Component {
                                         <div id="empty"></div>
                                     </Col>
                                     <Col xs="12" className="text-center" id="pager">
-                                        <Pager />
+                                        <Pager cpage={urlprop.page}
+                                            allpage={self.state.allpage}
+                                            baseUrl={"/ptrank/"+urlprop.mid+"/"+urlprop.ptcode+"/"}
+                                            afterUrl={search} />
                                     </Col>
                                 </Row>
                             </CardBody>

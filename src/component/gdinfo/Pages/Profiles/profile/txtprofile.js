@@ -195,6 +195,11 @@ const txtProfile = {
             "ko":"탑 데이터 갱신이 완료되었습니다",
             "en":"Tower data updated"
         }
+    },
+    click: {
+        "jp":"* スキルをタッチしてスキル表に移行 *",
+        "ko":"* 스킬을 터치하여 스킬표로 이동 *",
+        "en":"* Touch skill to go to skill table *"
     }
 };
 

@@ -27,7 +27,25 @@ class PTListItem extends Component {
                                         <Link className='innerhref' to={p.link}>
                                             {p.name}
                                         </Link>
-                                        <span v-html="pt.removed"></span>
+                                        <span style={{color:"red"}}>
+                                            <br/>
+                                            {
+                                                (function() {
+                                                    switch(p.removed) {
+                                                        case 1:
+                                                            return <b>(removed in TB)</b>
+                                                        case 2:
+                                                            return <b>(removed in TBRE)</b>
+                                                        case 3:
+                                                            return <b>(removed in MX)</b>
+                                                        case 4:
+                                                            return <b>(removed in EX)</b>
+                                                        case 5:
+                                                            return <b>(removed in NX)</b>
+                                                    }
+                                                })()
+                                            }
+                                        </span>
                                     </span>
                                 </Col>
                                 <Col sm="8">

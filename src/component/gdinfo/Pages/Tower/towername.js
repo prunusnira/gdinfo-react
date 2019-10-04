@@ -8,7 +8,7 @@
  * 2. Also, products and libraries used to implement
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
-const towerName = [];
+export const towerName = [];
 towerName["towerDmDKDK"] = {
 	"jp":"DKDKの塔",
 	"ko":"DKDK의 탑",
@@ -69,7 +69,7 @@ towerName["towerSpModelDD"] = {
 	"en":"The Day Dream"
 }
 
-var towerDesc = new Array();
+export const towerDesc = new Array();
 towerDesc["towerDmDKDK"] = {
 	"jp":"(BPM) 1階: 130未満, 2階: 130~150, 3階: 150以上, 4階: 140未満 (EX), 5階: 140~170 (EX), 6階: 170~190, 7階: 190以上<br/>"+
 	"This tower is associated with Approved DTX <a class='innerhref' href='https://www.youtube.com/watch?v=zgQMe-jKxtE'>Link to Video</a>",
@@ -138,5 +138,3 @@ towerDesc["towerSpModelDD"] = {
 	"ko":"기타도라하면 생각나는 그 곡! 1, 3, 5층은 기타, 2, 4, 6층은 도라입니다.",
 	"en":"The music that reminds you for the name GITADORA! GF patterns for floor 1, 3, 5, and DM patterns for floor 2, 4, 6"
 }
-
-export default towerDesc;

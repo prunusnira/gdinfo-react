@@ -1,5 +1,5 @@
 import React, {Component, Fragment} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import axios from 'axios';
 import {connect} from 'react-redux';
 import Pager from '../../Common/pager';
@@ -14,6 +14,7 @@ import * as action from '../../../Redux/actions';
 import * as time from '../../Common/time';
 import * as skillMethod from './skillMethod';
 import scrShot from '../../Common/scrshot';
+import { skillPageVersion } from '../../Common/version';
 
 import {
     Container,
@@ -60,17 +61,30 @@ class SkillNR extends Component {
                 lv: getparams.get("lv"),
                 rank: getparams.get("rank"),
                 ver: getparams.get("ver"),
-                hot: getparams.get("hot"),
-                rival: getparams.get("rival")
+                hot: getparams.get("hot")
             },
             visibleLarge: "none",
             visibleLeft: "none",
             visibleRight: "none",
             allpage: 0,
-            pageType: "",
             menuVisible: "none",
-            self: false
+            self: false,
+            
+            // switch
+            switchver: false,
+            switchrank: false,
+            switchname: false,
+            switchorder: false,
+            nextver: 0,
+            nextrank: 0,
+            nextname: 0,
+            nextorder: "",
+            updatetime: ""
         }
+
+        this.switchVer = this.switchVer.bind(this);
+        this.switchRank = this.switchRank.bind(this);
+        this.switchName = this.switchName.bind(this);
     }
 
     componentDidMount() {
@@ -84,6 +98,7 @@ class SkillNR extends Component {
             case 3:
             case 4:
             case 7:
+            case 9:
                 this.setState({
                     visibleLarge: "block"
                 });
@@ -92,6 +107,7 @@ class SkillNR extends Component {
             case 5:
             case 6:
             case 8:
+            case 10:
             case 1000:
                 this.setState({
                     visibleLeft: "block",
@@ -104,6 +120,8 @@ class SkillNR extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        this.resetSwitch();
+
         const urlprop = nextProps.match.params;
 
         this.skillTableImport(nextProps);
@@ -115,6 +133,7 @@ class SkillNR extends Component {
             case 3:
             case 4:
             case 7:
+            case 9:
                 this.setState({
                     visibleLarge: "block",
                     visibleLeft: "none",
@@ -125,6 +144,7 @@ class SkillNR extends Component {
             case 5:
             case 6:
             case 8:
+            case 10:
             case 1000:
                 this.setState({
                     visibleLarge: "none",
@@ -180,6 +200,7 @@ class SkillNR extends Component {
                 case 3:
                 case 4:
                 case 7:
+                case 9:
                     statMidTitle = "Order";
 
                     switch(urlprop.order) {
@@ -221,6 +242,7 @@ class SkillNR extends Component {
                 case 5:
                 case 6:
                 case 8:
+                case 10:
                     statMidTitle = "Hot Skill";
                     statRightTitle = "Other Skill";
                     statMid = this.state.sum1.toFixed(2);
@@ -257,7 +279,8 @@ class SkillNR extends Component {
                 statRightTitle: statRightTitle,
                 statRight: statRight,
                 user: user,
-                self: self
+                self: self,
+                updatetime: time.unixTimeConverter(json.updatetime)
             });
         });
     }
@@ -280,13 +303,6 @@ class SkillNR extends Component {
 
                     sum1 += obj.skill1;
 
-                    if(json.rivaluser != null) {
-                        obj = this.generateTableRival(obj, json.rivaluser, json.rivaldata[i]);
-                    }
-                    else {
-                        obj.rivaldiv = {display:"none"};
-                    }
-
                     skillList1.push(obj);
                 }
             }
@@ -297,13 +313,6 @@ class SkillNR extends Component {
 
                     sum1 += obj.skill1;
 
-                    if(json.rivaluser != null) {
-                        obj = this.generateTableRival(obj, json.rivaluser, json.hrival[i]);
-                    }
-                    else {
-                        obj.rivaldiv = {display:"none"};
-                    }
-
                     skillList1.push(obj);
                 }
             }
@@ -313,13 +322,6 @@ class SkillNR extends Component {
                     let obj = skillMethod.generateTable(props, cur, i, json.page, urlprops.ptype, 2);
 
                     sum2 += obj.skill2;
-
-                    if(json.rivaluser != null) {
-                        obj = this.generateTableRival(obj, json.rivaluser, json.orival[i]);
-                    }
-                    else {
-                        obj.rivaldiv = {display:"none"};
-                    }
 
                     skillList2.push(obj);
                 }
@@ -336,6 +338,7 @@ class SkillNR extends Component {
             this.setState({
                 skillTable1: skillList1,
                 skillTable2: skillList2,
+                updatetime: time,
                 allpage: json.pages,
                 sum1: sum1,
                 sum2: sum2
@@ -362,23 +365,91 @@ class SkillNR extends Component {
         });
     }
 
+    switchVer(e) {
+        this.setState({
+            switchver: true,
+            nextver: e.target.value
+        });
+    }
+
+    switchRank(e) {
+        this.setState({
+            switchrank: true,
+            nextrank: e.target.value
+        });
+    }
+
+    switchName(e) {
+        this.setState({
+            switchname: true,
+            nextname: e.target.value
+        });
+    }
+
+    switchOrder(type) {
+        const currentOrder = this.props.match.params.order;
+        let next = currentOrder;
+        if(type === 0) {
+            if(currentOrder === "titleasc") next = "titledesc";
+            else next = "titleasc";
+        }
+        if(type === 1) {
+            if(currentOrder === "verasc") next = "verdesc";
+            else next = "verasc";
+        }
+
+        this.setState({
+            switchorder: true,
+            nextorder: next
+        });
+    }
+
+    resetSwitch() {
+        this.setState({
+            switchver: false,
+            switchrank: false,
+            switchname: false,
+            switchorder: false
+        });
+    }
+
     render() {
         const self = this;
         const urlprop = this.props.match.params;
         const search = this.props.location.search;
+
+        const pagetype = skillPageVersion(parseInt(urlprop.ptype));
 
         let gtype = "";
         if(urlprop.gtype === "gf") gtype = "GuitarFreaks";
         else gtype = "DrumMania"
         
         let desc = "";
-        if(urlprop.ptype === 1000) desc = "ALL EXCELLENT Skill";
+        if(parseInt(urlprop.ptype) === 1000) desc = txtSkill.exc[lang];
         else desc = "Skill by ";
 
         let user = "";
-        if(urlprop.ptype !== 1000) user = self.state.user.name; // (대충 사용자 이름 들어간다는 코멘트)
+        if(parseInt(urlprop.ptype) !== 1000) user = self.state.user.name; // (대충 사용자 이름 들어간다는 코멘트)
         // 유저 이름과 image 추가되어야 함
         
+        if(this.state.switchver) {
+            const exturl = new URLSearchParams(search)
+            exturl.set("ver", this.state.nextver);
+            return <Redirect to={"/skill/0/"+urlprop.userid+"/"+urlprop.gtype+"/"+urlprop.page+"/"+urlprop.order+"?"+exturl.toString()} />
+        }
+        if(this.state.switchrank) {
+            const exturl = new URLSearchParams(search)
+            exturl.set("rank", this.state.nextrank);
+            return <Redirect to={"/skill/0/"+urlprop.userid+"/"+urlprop.gtype+"/"+urlprop.page+"/"+urlprop.order+"?"+exturl.toString()} />
+        }
+        if(this.state.switchname) {
+            const exturl = new URLSearchParams(search)
+            exturl.set("name", this.state.nextname);
+            return <Redirect to={"/skill/0/"+urlprop.userid+"/"+urlprop.gtype+"/"+urlprop.page+"/"+urlprop.order+"?"+exturl.toString()} />
+        }
+        if(this.state.switchorder) {
+            return <Redirect to={"/skill/0/"+urlprop.userid+"/"+urlprop.gtype+"/"+urlprop.page+"/"+this.state.nextorder+search} />
+        }
         return (
             <Container>
                 <Row>
@@ -431,20 +502,158 @@ class SkillNR extends Component {
                         </Card>
                     </Col>
                 </Row>
+                {
+                    // ptype 0일때만 출현하도록 함
+                    (function() {
+                        if(parseInt(urlprop.ptype) === 0) {
+                            return (
+                                <Row>
+                                    <Col xs="12">
+                                        <Card>
+                                            <CardHeader>
+                                                <h3>Search Options</h3>
+                                            </CardHeader>
+                                            <CardBody>
+                                                <Row>
+                                                    <Col xs="4">
+                                                        <Row><Col xs="12" className="text-center">
+                                                            Version
+                                                        </Col></Row>
+                                                        <Row><Col xs="12">
+                                                            <select onChange={self.switchVer} className="form-control">
+                                                                <option value="--">SELECT</option>
+                                                                <option value="00">All</option>
+                                                                <option value="01">GF1</option>
+                                                                <option value="02">GF2dm1</option>
+                                                                <option value="03">GF3dm2</option>
+                                                                <option value="04">GF4dm3</option>
+                                                                <option value="05">GF5dm4</option>
+                                                                <option value="06">GF6dm5</option>
+                                                                <option value="07">GF7dm6</option>
+                                                                <option value="08">GF8dm7</option>
+                                                                <option value="09">GF9dm8</option>
+                                                                <option value="10">GF10dm9</option>
+                                                                <option value="11">GF11dm10</option>
+                                                                <option value="12">ee'mall</option>
+                                                                <option value="13">V</option>
+                                                                <option value="14">V2</option>
+                                                                <option value="15">V3</option>
+                                                                <option value="16">V4</option>
+                                                                <option value="17">V5</option>
+                                                                <option value="18">V6</option>
+                                                                <option value="19">XG</option>
+                                                                <option value="20">XG2</option>
+                                                                <option value="21">XG3</option>
+                                                                <option value="22">GD</option>
+                                                                <option value="23">GD OD</option>
+                                                                <option value="24">GD TB</option>
+                                                                <option value="25">GD TBRE</option>
+                                                                <option value="26">GD MX</option>
+                                                                <option value="27">GD EX</option>
+                                                                <option value="28">GD NX</option>
+                                                            </select>
+                                                        </Col></Row>
+                                                    </Col>
+                                                    <Col xs="4">
+                                                        <Row><Col xs="12" className="text-center">
+                                                            Rank
+                                                        </Col></Row>
+                                                        <Row><Col xs="12">
+                                                            <select onChange={self.switchRank} className="form-control">
+                                                                <option value="--">SELECT</option>
+                                                                <option value="0">ALL</option>
+                                                                <option value="9">EXC</option>
+                                                                <option value="8">SS</option>
+                                                                <option value="7">S</option>
+                                                                <option value="6">A</option>
+                                                                <option value="5">B</option>
+                                                                <option value="4">C</option>
+                                                                <option value="3">D</option>
+                                                                <option value="2">E</option>
+                                                                <option value="1">F</option>
+                                                            </select>
+                                                        </Col></Row>
+                                                    </Col>
+                                                    <Col xs="4">
+                                                        <Row><Col xs="12" className="text-center">
+                                                            Name
+                                                        </Col></Row>
+                                                        <Row><Col xs="12">
+                                                            <select onChange={self.switchName} className="form-control">
+                                                                <option value="-">SELECT</option>
+                                                                <option value="0">ALL</option>
+                                                                <option value="1">Number</option>
+                                                                <option value="2">A</option>
+                                                                <option value="3">B</option>
+                                                                <option value="4">C</option>
+                                                                <option value="5">D</option>
+                                                                <option value="6">E</option>
+                                                                <option value="7">F</option>
+                                                                <option value="8">G</option>
+                                                                <option value="9">H</option>
+                                                                <option value="10">I</option>
+                                                                <option value="11">J</option>
+                                                                <option value="12">K</option>
+                                                                <option value="13">L</option>
+                                                                <option value="14">M</option>
+                                                                <option value="15">N</option>
+                                                                <option value="16">O</option>
+                                                                <option value="17">P</option>
+                                                                <option value="18">Q</option>
+                                                                <option value="19">R</option>
+                                                                <option value="20">S</option>
+                                                                <option value="21">T</option>
+                                                                <option value="22">U</option>
+                                                                <option value="23">V</option>
+                                                                <option value="24">W</option>
+                                                                <option value="25">X</option>
+                                                                <option value="26">Y</option>
+                                                                <option value="27">Z</option>
+                                                                <option value="28">あ</option>
+                                                                <option value="29">か</option>
+                                                                <option value="30">さ</option>
+                                                                <option value="31">た</option>
+                                                                <option value="32">な</option>
+                                                                <option value="33">は</option>
+                                                                <option value="34">ま</option>
+                                                                <option value="35">や</option>
+                                                                <option value="36">ら</option>
+                                                                <option value="37">わ</option>
+                                                            </select>
+                                                        </Col></Row>
+                                                    </Col>
+                                                </Row>
+                                                <Row>
+                                                    <Col xs="12">
+                                                        <Row><Col xs="12" className="text-center">
+                                                            Order
+                                                        </Col></Row>
+                                                        <Row><Col xs="12" className="btn-group">
+                                                            <Button onClick={() => self.switchOrder(0)}>{txtSkill.filter.btn.title[lang]} ▲/▼</Button>
+                                                            <Button onClick={() => self.switchOrder(1)}>{txtSkill.filter.btn.version[lang]} ▲/▼</Button>
+                                                        </Col></Row>
+                                                    </Col>
+                                                </Row>
+                                            </CardBody>
+                                        </Card>
+                                    </Col>
+                                </Row>
+                            )
+                        }
+                    })()
+                }
                 <Card id='scrTable'>
                     <CardHeader>
                         <Row id="targetInfo">
                             <Col xs="12" className="text-center">
-                                <h4><b>GITADORA&nbsp;
-                                    <span>{self.state.pageType}</span><br/>
-                                    <span>{gtype} {desc} {user}</span>
-                                </b></h4>
+                                <h4><b>GITADORA {pagetype}<br/>
+                                {gtype} {desc} {user}</b></h4>
                             </Col>
                             <Col xs="6" style={{textAlign:"center"}}>
                                 <b>Made by GITADORA.info</b>
                             </Col>
                             <Col xs="6" style={{textAlign:"center"}}>
-                                Update Time: <span id="timeTop"></span>
+                                Update Time: {self.state.updatetime}
                             </Col>
                         </Row>
                     </CardHeader>

@@ -183,6 +183,25 @@ const txtSkill = {
             "ko":"스킬표가 저장되었습니다",
             "en":"Table saved"
         }
+    },
+    exc: {
+        "jp":"スキル理論値",
+        "ko":"스킬 이론치",
+        "en":"all exc skills"
+    },
+    filter: {
+        btn: {
+            title: {
+                "jp":"曲名順",
+                "ko":"이름순",
+                "en":"Title"
+            },
+            version: {
+                "jp":"バージョン",
+                "ko":"버전",
+                "en":"Version"
+            }
+        }
     }
 };
 

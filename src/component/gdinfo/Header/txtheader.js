@@ -9,6 +9,11 @@
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
 const txtHeader = {
+    test: {
+        "jp":"NEXTAGE対応のテストバージョンです",
+        "ko":"NEXTAGE 대응 테스트를 진행하고 있습니다",
+        "en":"This is test version for NEXTAGE"
+    },
     howtouse: {
         title: {
             "jp":"使い方",

@@ -5,7 +5,7 @@ class EXC extends Component {
     render() {
         const urlprop = this.props.match.params;
         return (
-            <Redirect to={"/skill/1000/0/"+urlprop.gtype+"/1/1"} />
+            <Redirect to={"/skill/1000/1/"+urlprop.gtype+"/1/1"} />
         )
     }
 }

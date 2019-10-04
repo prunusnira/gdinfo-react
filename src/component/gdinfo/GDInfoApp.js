@@ -20,6 +20,7 @@ import PlayCountLoginCheck from './Pages/Profiles/playcount/checkLogin';
 import SnapshotList from './Pages/Profiles/snapshot/list';
 import SnapshotLoginCheck from './Pages/Profiles/snapshot/checkLogin';
 import ProfileReset from './Pages/Profiles/reset/reset';
+import TowerClearStat from './Pages/Profiles/towerClearStat/towerClearStat';
 
 import MySkill from './Pages/Skill/myskill/myskill';
 import SkillNR from './Pages/Skill/skill/skillnr';
@@ -40,6 +41,7 @@ import CTLoginChk from './Pages/Pattern/cleartable/checkLogin';
 
 import TowerList from './Pages/Tower/towerList/towerlist';
 import TowerStat from './Pages/Tower/towerStat/towerstat';
+import TowerHowto from './Pages/Tower/towerHowto/towerHowto';
 
 import Error404 from './Pages/error/404';
 import Error500 from './Pages/error/500';
@@ -59,6 +61,7 @@ function GDInfoApp() {
             <Route path="/aboutmo" component={AboutMO} />
             {/* Profile */}
             <Switch>
+                <Route path="/profile/towerstatus/:id" component={TowerClearStat} />
                 <Route path="/profile/:id" component={Profile} />
                 <Route path="/profile" component={ProfileLoginCheck} />
             </Switch>
@@ -72,7 +75,7 @@ function GDInfoApp() {
             <Route path="/reset" component={ProfileReset} />
             {/* Skill */}
             <Route path="/myskill/:gtype" component={MySkill} />
-            <Route path="/skill/:ptype/:userid/:gtype/:page/:order" component={SkillNR} />
+            <Route exact path="/skill/:ptype/:userid/:gtype/:page/:order" component={SkillNR} />
             <Route path="/skill/snapshot/view/nr/:id/:date/:gtype" component={SkillSnapshotNR} />
             <Route path="/skill/snapshot/view/sh/:id/:date/:gtype" component={SkillSnapshotSH} />
             <Route path="/skillscr/:ptype/:userid/:gtype/:page/:order" component={SkillSH} />
@@ -94,6 +97,7 @@ function GDInfoApp() {
             {/* Tower */}
             <Route path="/tower/index" component={TowerList} />
             <Route path="/tower/stat/:tower" component={TowerStat} />
+            <Route path="/tower/howto" component={TowerHowto} />
             {/* Error */}
             <Route path="/error/404" component={Error404} />
             <Route path="/error/500" component={Error500} />

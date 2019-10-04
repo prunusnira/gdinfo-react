@@ -12,7 +12,7 @@ export const generateTable = (prop, cur, i, page, ptype, side) => {
     var obj = {};
     obj.num = (page-1)*30+i+1;
     obj.jacketurl = commonData.commonImageURL+"music/"+cur.musicid+".jpg";
-    obj.musiclink = "/music/"+cur.musicid+"/"+urlprop.id;
+    obj.musiclink = "/music/"+cur.musicid+"/"+urlprop.userid;
     obj.musicname = cur.mname;
     obj.level = (cur.level/100).toFixed(2);
     obj.version = GDVer[cur.version-1].sv;
@@ -43,9 +43,11 @@ export const generateTable = (prop, cur, i, page, ptype, side) => {
     }
 
     var rate = cur.rate;
-    if(ptype === 4 || ptype === 6) rate = cur.ratetb;
-    else if(ptype === 3 || ptype === 5) rate = cur.ratetbre;
-    else if(ptype === 7 || ptype === 8) rate = cur.ratemx;
+    const iptype = parseInt(ptype);
+    if(iptype === 4 || iptype === 6) rate = cur.ratetb;
+    else if(iptype === 3 || iptype === 5) rate = cur.ratetbre;
+    else if(iptype === 7 || iptype === 8) rate = cur.ratemx;
+    else if(iptype === 9 || iptype === 10) rate = cur.rateex;
 
     obj.rate = (rate/100).toFixed(2);
     obj.skill = Math.floor(rate*cur.level*20/10000)/100;

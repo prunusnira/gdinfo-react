@@ -253,7 +253,7 @@ class SearchResult extends Component {
                             <CardBody>
                                 <Row>
                                     <Col xs="12" id='user-result'>
-                                        <RecentTableDiv list={self.state.userlist} />
+                                        <RecentTableDiv isMain={false} list={self.state.userlist} />
                                     </Col>
                                 </Row>
                                 <Row>

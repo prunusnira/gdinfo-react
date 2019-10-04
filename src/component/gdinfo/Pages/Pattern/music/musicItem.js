@@ -19,9 +19,9 @@ class MusicItem extends Component {
                                 <div class='vert-cent-o'>
                                     <div class='vert-cent-m'>
                                         <div class='vert-cent-i'>
-                                            <a class='innerhref' tag={Link} to={music.ranklink}>
+                                            <Link class='innerhref' to={music.ranklink}>
                                                 {music.diff}<br/>{music.lv}
-                                            </a>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>

@@ -9,9 +9,6 @@
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
 const txtFooter = {
-    p1: "GITADORA Info (c) 2016 Nira(<a href='https://twitter.com/prunusnira'>@prunusNira</a>)",
-    p2: "Official Twitter(<a href='https://twitter.com/gitadorainfo'>@gitadorainfo</a>)" +
-                " | <a href='/terms'>Terms and Conditions</a>",
     about: {
         "jp":"このサイトはGoogle ChromeなどのWebKit類のブラウザに最適化されています",
         "ko":"이 사이트는 Google Chrome등의 WebKit 기반 브라우저에 최적화 되어있습니다.",

@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line} from 'recharts';
 import axios from 'axios';
+import commonData from '../../Common/commonData';
 
 class ProfileRecent extends Component {
     state = {
@@ -10,7 +11,7 @@ class ProfileRecent extends Component {
     }
 
     componentWillMount() {
-        axios.post("https://gitadora.info/d/skillrecord/"+this.props.id)
+        axios.post(commonData.commonDataURL+"skillrecord/"+this.props.id)
         .then((res) => {
             const record = res.data.record;
             const length = record.length;
@@ -62,12 +63,14 @@ class ProfileRecent extends Component {
 
 const CustomTooltip = ({ active, payload, label }) => {
     if (active) {
-        return (
-            <div>
-                <p>Date: {label}</p>
-                <p>Skill: {`${payload[0].value}`}</p>
-            </div>
-        );
+        if(payload !== null) {
+            return (
+                <div>
+                    <p>Date: {label}</p>
+                    <p>Skill: {`${payload[0].value}`}</p>
+                </div>
+            );
+        }
     }
 
     return null;

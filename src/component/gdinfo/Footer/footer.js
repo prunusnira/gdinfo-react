@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 import './footer.css';
 import LData from '../Pages/Common/language';
 import txtFooter from './txtfooter';
@@ -22,21 +23,23 @@ class GDFooter extends Component {
             <footer className="footer">
                 <Container className='innerfooter'>
                     <Row className='footerrow'>
-                        <Col xs="6">
+                        <Col sm="4">
                             <b>{txtFooter.langsel[lang]}</b><br/>
                             <a href="#no_div" onClick={() => this.langChange('ko')}>한국어</a><br/>
                             <a href="#no_div" onClick={() => this.langChange('jp')}>日本語</a><br/>
                             <a href="#no_div" onClick={() => this.langChange('en')}>English</a>
                         </Col>
-                        <Col xs="6">
-    
+                        <Col sm="8">
+                            <span>GITADORA Info (c) 2016 Nira(<a href="https://twitter.com/prunusnira" target="_blank">@prunusNira</a>)</span><br/>
+                            <span>Twitter <a href='https://twitter.com/gitadorainfo'>@gitadorainfo</a> | <Link to='/terms'>Terms and Conditions</Link></span><br/>
+                            <span>{txtFooter.about[lang]}</span>
                         </Col>
                     </Row>
-                    <Row className='footerrow'>
+                    <Row>
                         <Col xs="12">
-                            <span dangerouslySetInnerHTML={{__html: txtFooter.p1}} /><br/>
-                            <span dangerouslySetInnerHTML={{__html: txtFooter.p2}} /><br/>
-                            <span>{txtFooter.about[lang]}</span>
+                            Source Code<br/>
+                            <a href="https://github.com/prunusnira/gdinfo-react" target="_blank">Frontend GitHub</a>&nbsp;|&nbsp;
+                            <a href="https://github.com/prunusnira/gdinfo-public" target="_blank">Backend GitHub</a>
                         </Col>
                     </Row>
                     <Row className='footerrow'>

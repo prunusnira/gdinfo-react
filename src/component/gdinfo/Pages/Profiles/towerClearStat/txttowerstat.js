@@ -8,7 +8,7 @@
  * 2. Also, products and libraries used to implement
  *    this server are on USED-LIBRARIES file on root
  *****************************************************/
-var txtTowerStat = {
+const txtTowerStat = {
     towerhead: {
         "jp":"塔のクリア",
         "ko":"탑 클리어 현황",
@@ -45,3 +45,5 @@ var txtTowerStat = {
         "en":"To the top of the page"
     }
 };
+
+export default txtTowerStat;
