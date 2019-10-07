@@ -35,7 +35,8 @@ export const GDVer = [
 	{num:24, sv:"GD TB", full:"GITADORA Tri-Boost"},
 	{num:25, sv:"GD TBRE", full:"GITADORA Tri-Boost Re:Evolve"},
 	{num:26, sv:"GD MX", full:"GITADORA Matixx"},
-	{num:27, sv:"GD EXC", full:"GITADORA EXCHAIN"}
+	{num:27, sv:"GD EXC", full:"GITADORA EXCHAIN"},
+	{num:28, sv:"GD NX", full:"GITADORA NEXTAGE"}
 ];
 
 export const skillPageVersion = (ptype) => {
@@ -80,5 +81,3 @@ export const generateVerFilter = (all) => {
 	}
 	return filter;
 }
-
-export const currentVer = 27;

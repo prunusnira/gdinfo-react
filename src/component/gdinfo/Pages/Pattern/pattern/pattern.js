@@ -277,7 +277,7 @@ class PatternList extends Component {
             return <Redirect to={"/pattern/00/"+order+"/1?hot=o"}/>
         }
         if(this.state.switchver) {
-            return <Redirect to={"/pattern/"+this.state.nextver+"/"+order+"/1"+search}/>
+            return <Redirect to={"/pattern/"+this.state.nextver+"/"+order+"/1"}/>
         }
         if(this.state.switchorder) {
             return <Redirect to={"/pattern/"+this.state.nextver+"/"+this.state.nextorder+"/1"+search}/>

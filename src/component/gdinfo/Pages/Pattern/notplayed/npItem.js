@@ -4,6 +4,7 @@ import {
     Row,
     Col
 } from 'reactstrap';
+import commonData from '../../Common/commonData';
 
 class NpItem extends Component {
     render() {
@@ -18,7 +19,7 @@ class NpItem extends Component {
                                         style={{width:"75px", height:"75px"}}
                                         src={np.imgsrc}
                                         onError={(e)=>{
-                                            e.target.src="/img/music/empty.jpg";
+                                            e.target.src=commonData.commonImageURL+"music/empty.jpg";
                                         }} />
                                     <img alt="pattern"
                                         style={{width:"75px"}}

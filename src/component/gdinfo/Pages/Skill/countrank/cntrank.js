@@ -13,6 +13,7 @@ import {
     CardHeader,
     CardBody
 } from 'reactstrap';
+import commonData from '../../Common/commonData';
 
 const lang = LData.lang;
 
@@ -36,7 +37,7 @@ class PlaycountRanking extends Component {
 
     updateData(props) {
         const page = props.match.params.page;
-        axios.post("https://gitadora.info/d/cntrank/"+page)
+        axios.post(commonData.commonDataURL+"cntrank/"+page)
         .then((res) => {
             const json = res.data;
             const list = [];

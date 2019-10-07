@@ -20,25 +20,46 @@ import commonData from '../../Common/commonData';
 const lang = LData.lang;
 
 class ProfileReset extends Component {
-    state = {
-        redirect: false,
-        userid: 0
+    constructor(props) {
+        super(props);
+        this.state = {
+            redirect: false,
+            userid: 0
+        };
+
+        this.resetData = this.resetData.bind(this);
     }
 
-    reset() {
-        axios.post(commonData.commonDataURL+"resetdata", {
-            params: {
-                id: this.props.userinfo.id
+    resetData() {
+        const url = commonData.commonDataURL+"resetdata";
+
+        const data = new URLSearchParams();
+        data.append("id", this.props.userinfo.id);
+
+        const config = {
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
             }
-        })
+        };
+
+        axios.post(url, data/*, {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
+            }
+        }*/)
         .then((res) => {
             this.setState({
                 redirect: true
             });
+        })
+        .catch((err) => {
+            console.error(err);
         });
     }
 
     render() {
+        const self = this;
+
         if(this.state.redirect) {
             return <Redirect to="/profile" />
         }
@@ -85,7 +106,7 @@ class ProfileReset extends Component {
                                     
                                     <Row>
                                         <Col xs="6">
-                                            <Button onClick={() => this.resetData()} style={{width:"100%"}}>YES</Button>
+                                            <Button onClick={() => self.resetData()} style={{width:"100%"}}>YES</Button>
                                         </Col>
                                         <Col xs="6">
                                             <Button tag={Link} to="/index" style={{width:"100%"}}>NO</Button>
