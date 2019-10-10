@@ -44,6 +44,7 @@ export const skillPageVersion = (ptype) => {
 		case 0:
 		case 1:
 		case 2:
+		case 1000:
 			return "NEXTAGE";
 		case 4:
 		case 6:

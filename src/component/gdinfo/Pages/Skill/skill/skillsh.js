@@ -11,6 +11,7 @@ import * as skillMethod from './skillMethod';
 import './skill.css';
 import '../../Common/table.css';
 import scrShot from '../../Common/scrshot';
+import { skillPageVersion } from '../../Common/version';
 
 import {
     Container,
@@ -63,7 +64,6 @@ class SkillSH extends Component {
             visibleLeft: "none",
             visibleRight: "none",
             allpage: 0,
-            pageType: "",
             menuVisible: "none"
         }
     }
@@ -148,14 +148,20 @@ class SkillSH extends Component {
             let statMid = "";
             let statRight = "";
 
+            const user = {};
             // LEFT
-            if(urlprop.gtype === "gf") {
-                statLeftTitle = "GF Skill";
-                statLeft = json.gskill;
-            }
-            else if(urlprop.gtype === "dm") {
-                statLeftTitle = "DM Skill";
-                statLeft = json.dskill;
+            if(parseInt(urlprop.ptype) !== 1000) {
+                if(urlprop.gtype === "gf") {
+                    statLeftTitle = "GF Skill";
+                    statLeft = json.gskill;
+                }
+                else if(urlprop.gtype === "dm") {
+                    statLeftTitle = "DM Skill";
+                    statLeft = json.dskill;
+                }
+
+                user.name = json.name;
+                user.title = json.titletower;
             }
 
             // MIDDLE & RIGHT
@@ -164,6 +170,7 @@ class SkillSH extends Component {
                 case 3:
                 case 4:
                 case 7:
+                case 9:
                     statMidTitle = "Order";
 
                     switch(urlprop.order) {
@@ -205,6 +212,7 @@ class SkillSH extends Component {
                 case 5:
                 case 6:
                 case 8:
+                case 10:
                     statMidTitle = "Hot Skill";
                     statRightTitle = "Other Skill";
                     statMid = this.state.sum1.toFixed(2);
@@ -222,14 +230,16 @@ class SkillSH extends Component {
                     statMid = this.state.sum1.toFixed(2);
                     break;
                 case 1000:
+                    statLeftTitle = "Total Skill";
+                    statMidTitle = "Hot Skill";
+                    statRightTitle = "Other Skill";
+                    statMid = this.state.sum1.toFixed(2);
+                    statRight = this.state.sum2.toFixed(2);
+                    statLeft = (this.state.sum1 + this.state.sum2).toFixed(2);
                     break;
                 default:
                     break;
             }
-
-            const user = {};
-            user.name = json.name;
-            user.title = json.titletower;
 
             this.setState({
                 statLeftTitle: statLeftTitle,
@@ -284,8 +294,9 @@ class SkillSH extends Component {
                     skillList2.push(obj);
                 }
             }
-            
-            const updtime = new Date(json.user.updatetime);
+
+            const updtime = json !== null ? new Date(json.updatetime) : new Date();
+
             const time = updtime.getFullYear() + "/" + (updtime.getMonth()+1) + "/" +
                 updtime.getDate() + " " + updtime.getHours() + ":" + updtime.getMinutes();
             
@@ -294,7 +305,8 @@ class SkillSH extends Component {
                 skillTable2: skillList2,
                 allpage: json.pages,
                 sum1: sum1,
-                sum2: sum2
+                sum2: sum2,
+                updatetime: time
             });
             
             this.userInfoImport(props);
@@ -305,13 +317,15 @@ class SkillSH extends Component {
         const self = this;
         const urlprop = this.props.match.params;
         const search = this.props.location.search;
+
+        const pagetype = skillPageVersion(parseInt(urlprop.ptype));
         
         let desc = "";
-        if(urlprop.ptype === 1000) desc = "ALL EXCELLENT Skill";
+        if(parseInt(urlprop.ptype) === 1000) desc = txtSkill.exc[lang];
         else desc = "Skill by ";
 
         let user = "";
-        if(urlprop.ptype !== 1000) user = self.state.user.name; // (대충 사용자 이름 들어간다는 코멘트)
+        if(parseInt(urlprop.ptype) !== 1000) user = self.state.user.name; // (대충 사용자 이름 들어간다는 코멘트)
         // 유저 이름과 image 추가되어야 함
         
         let gtype = "";
@@ -357,10 +371,8 @@ class SkillSH extends Component {
                             <CardHeader>
                                 <Row id="targetInfo">
                                     <Col xs="12" className="text-center">
-                                        <h4><b>GITADORA&nbsp;
-                                            <span>{self.state.pageType}</span><br/>
-                                            <span>{gtype} {desc} {user}</span>
-                                        </b></h4>
+                                        <h4><b>GITADORA {pagetype}<br/>
+                                        {gtype} {desc} <Link className="innerhref" to={"/profile/"+urlprop.userid}>{user}</Link></b></h4>
                                         <b>Made by GITADORA.info</b>
                                     </Col>
                                 </Row>

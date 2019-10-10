@@ -271,6 +271,8 @@ class SkillNR extends Component {
                     break;
             }
 
+            const updtime = json !== null ? json.updatetime : new Date().getTime();
+
             this.setState({
                 statLeftTitle: statLeftTitle,
                 statLeft: statLeft,
@@ -280,7 +282,7 @@ class SkillNR extends Component {
                 statRight: statRight,
                 user: user,
                 self: self,
-                updatetime: time.unixTimeConverter(json.updatetime)
+                updatetime: time.unixTimeConverter(updtime)
             });
         });
     }
@@ -647,7 +649,7 @@ class SkillNR extends Component {
                         <Row id="targetInfo">
                             <Col xs="12" className="text-center">
                                 <h4><b>GITADORA {pagetype}<br/>
-                                {gtype} {desc} {user}</b></h4>
+                                {gtype} {desc} <Link className="innerhref" to={"/profile/"+urlprop.userid}>{user}</Link></b></h4>
                             </Col>
                             <Col xs="6" style={{textAlign:"center"}}>
                                 <b>Made by GITADORA.info</b>
