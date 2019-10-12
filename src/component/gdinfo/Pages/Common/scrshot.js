@@ -1,6 +1,7 @@
 import html2canvas from 'html2canvas';
 
 const scrShot = (divname, filename) => {
+    window.scrollTo(0, 0);
     html2canvas(document.getElementById(divname), {
         useCORS: true
     })
