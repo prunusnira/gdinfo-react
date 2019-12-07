@@ -23,7 +23,7 @@ class TowerHowto extends Component {
                     <Col xs="12">
                         <Card>
                             <CardHeader>
-                                <h3>Tower of GITADORA - How to Update</h3>
+                                <h3>The Tower - How to Update</h3>
                             </CardHeader>
                             <CardBody>
                                 <Row>

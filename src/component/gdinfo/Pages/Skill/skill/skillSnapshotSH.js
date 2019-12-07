@@ -154,7 +154,7 @@ class SkillSnapshotSH extends Component {
                                         <h4><b>Snapshot Of {gtypeLong}<br/>
                                             <span>Skill by <span id="nameTop"></span></span>
                                         </b></h4>
-                                        <b>Made by GITADORA.info</b>
+                                        <b>Made by SIN</b>
                                     </Col>
                                 </Row>
                             </CardHeader>
@@ -176,7 +176,7 @@ class SkillSnapshotSH extends Component {
                                         <Row>
                                             <Col xs="12" className="text-center">
                                                 <h4><b><span>{gtypeLong} </span>HOT SKILLS by <span id="nameTop1"></span></b></h4>
-                                                Made by GITADORA.Info
+                                                Made by SIN
                                             </Col>
                                         </Row>
                                         <Row>
@@ -188,7 +188,7 @@ class SkillSnapshotSH extends Component {
                                         <Row>
                                             <Col xs="12" className="text-center">
                                                 <h4><b><span>{gtypeLong} </span>OTHER SKILLS by <span id="nameTop2"></span></b></h4>
-                                                Made by GITADORA.Info
+                                                Made by SIN
                                             </Col>
                                         </Row>
                                         <Row>

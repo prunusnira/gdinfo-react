@@ -25,19 +25,19 @@ const txtAbout = {
         "en":"Filter, rival"
     },
     desc: {
-        "jp":"GITADORA Infoの使い方を説明します",
-        "ko":"GITADORA Info의 사용법을 설명합니다",
-        "en":"Introduce how to use GITADORA Info"
+        "jp":"SIN(サイン)の使い方を説明します",
+        "ko":"SIN(사인)의 사용법을 설명합니다",
+        "en":"Introduce how to use SIN (pronounce as 'sain')"
     },
     copy: {
         "jp":"下のボタンをを押すと「j」以外の" +
-            "avascript:$.getScript('https://data.gitadora.info/$/update');" +
+            "avascript:$.getScript('https://sindata.nira.one/$/update');" +
             "をコピーします。jだけ入力して他のはペーストしてください",
         "ko":"아래 버튼를 누르면 j를 제외한" +
-                "avascript:$.getScript('https://data.gitadora.info/$/update');" +
+                "avascript:$.getScript('https://sindata.nira.one/$/update');" +
                 "를 복사합니다. j만 입력 후 나머지는 붙여넣기 하시면 됩니다.",
         "en":"Touch the button below to copy script. It copies script except j, which means "+
-                "「avascript:$.getScript('https://data.gitadora.info/$/update');」"+
+                "「avascript:$.getScript('https://sindata.nira.one/$/update');」"+
                 "is copied. Just input 'j' and paste on the address bar."
     },
     device: {
@@ -92,12 +92,12 @@ const txtAbout = {
                 "en":"1) Current version"
             },
             cardt2: {
-                "jp":"2) 旧作 (MATIXX, Tri-Boost Re:Evolve)",
-                "ko":"2) 구버전 (MATIXX, Tri-Boost Re:Evolve)",
-                "en":"2) Old version (MATIXX, Tri-Boost Re:Evolve)"
+                "jp":"2) 旧作 (EXCHAIN, MATIXX, Tri-Boost Re:Evolve)",
+                "ko":"2) 구버전 (EXCHAIN, MATIXX, Tri-Boost Re:Evolve)",
+                "en":"2) Old version (EXCHAIN, MATIXX, Tri-Boost Re:Evolve)"
             },
-            addr1:"javascript:$.getScript('https://data.gitadora.info/$/update');",
-            addr2:"javascript:$.getScript('https://data.gitadora.info/$/updateOld');",
+            addr1:"javascript:$.getScript('https://sindata.nira.one/$/update');",
+            addr2:"javascript:$.getScript('https://sindata.nira.one/$/updateOld');",
             copy: {
                 "jp":"上のテキスト中「ｊ」以外のテキストをコピーしてください。" +
                         "その後、3-7)のように「ｊ」を先に入力したあとコピーしたテキストをペーストしてください。",
@@ -194,7 +194,7 @@ const txtAbout = {
                 "en":"1. Sign up"
             },
             desc: {
-                "jp":"右上のメニューボタンから「ログイン」をタッチするとGoogleアカウントでGITADORA Infoの登録に入ります",
+                "jp":"右上のメニューボタンから「ログイン」をタッチするとGoogleアカウントでSINの登録に入ります",
                 "ko":"페이지 상단 오른쪽 버튼을 누르고 로그인 선택하여 구글 아이디로 로그인하면 회원등록 과정으로 진행됩니다",
                 "en":"Click upper right menu button and select Login to sign in with Google account which leads to sign up sequence"
             }
@@ -231,9 +231,9 @@ const txtAbout = {
                 "en":"5) and select the card which you want to use"
             },
             s6: {
-                "jp":"6) <a class='innerhref' href='https://p.eagate.573.jp/game/gfdm/gitadora_matixx/p/index.html'>GITADORAのホムページ</a>に移動します。",
-                "ko":"6) <a class='innerhref' href='https://p.eagate.573.jp/game/gfdm/gitadora_matixx/p/index.html'>GITADORA 홈페이지</a>로 이동합니다.",
-                "en":"6) Go to <a class='innerhref' href='https://p.eagate.573.jp/game/gfdm/gitadora_matixx/p/index.html'>GITADORA site</a>"
+                "jp":"6) <a class='innerhref' href='https://p.eagate.573.jp/game/gfdm/gitadora_nextage/p/index.html'>GITADORAのホムページ</a>に移動します。",
+                "ko":"6) <a class='innerhref' href='https://p.eagate.573.jp/game/gfdm/gitadora_nextage/p/index.html'>GITADORA 홈페이지</a>로 이동합니다.",
+                "en":"6) Go to <a class='innerhref' href='https://p.eagate.573.jp/game/gfdm/gitadora_nextage/p/index.html'>GITADORA site</a>"
             },
             s7: {
                 "jp":"7) コピーしてたスクリプトをアドレス空間にペーストして実行します",

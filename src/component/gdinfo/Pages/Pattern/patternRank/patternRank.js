@@ -208,7 +208,8 @@ class PatternRank extends Component {
                         case 24: userskill = user.gskilltb; break;
                         case 25: userskill = user.gskilltbre; break;
                         case 26: userskill = user.gskillmx; break;
-                        case 27: userskill = user.gskill; break;
+                        case 27: userskill = user.gskillex; break;
+                        case 28: userskill = user.gskill; break;
                     }
                 }
                 else {
@@ -216,7 +217,8 @@ class PatternRank extends Component {
                         case 24: userskill = user.dskilltb; break;
                         case 25: userskill = user.dskilltbre; break;
                         case 26: userskill = user.dskillmx; break;
-                        case 27: userskill = user.dskill; break;
+                        case 27: userskill = user.dskillex; break;
+                        case 28: userskill = user.dskill; break;
                     }
                 }
 

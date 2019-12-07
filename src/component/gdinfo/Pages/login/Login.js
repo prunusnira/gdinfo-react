@@ -5,6 +5,7 @@ import {sha256} from 'js-sha256';
 import LData from '../Common/language';
 import GoogleLogin from 'react-google-login';
 import * as action from '../../Redux/actions/index';
+import txtLogin from './txtLogin';
 
 import {
     Container,
@@ -17,7 +18,6 @@ import {
 import commonData from '../Common/commonData';
 
 const lang = LData.lang;
-const text = LData.text;
 
 class Login extends Component {
     state = {
@@ -81,12 +81,12 @@ class Login extends Component {
                         <Col xs="12">
                             <Card>
                                 <CardHeader>
-                                    <h3>{text.login.title[lang]}</h3>
+                                    <h3>{txtLogin.title[lang]}</h3>
                                 </CardHeader>
                                 <CardBody>
                                     <Row>
                                         <Col xs="12">
-                                            <span>{text.login.google[lang]}</span>
+                                            <span>{txtLogin.google[lang]}</span>
                                         </Col>
                                         <Col xs="12">
                                             <GoogleLogin

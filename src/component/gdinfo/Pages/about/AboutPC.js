@@ -122,7 +122,7 @@ class AboutPC extends Component {
                                 
                                 <Col xs="12" className="about-part">
                                     {txtAbout.pc.step3.s6_1[lang]}
-                                    <a className='innerhref' href='https://p.eagate.573.jp/game/gfdm/gitadora_exchain/p/index.html'>{txtAbout.pc.step3.s6_2[lang]}</a>
+                                    <a className='innerhref' href='https://p.eagate.573.jp/game/gfdm/gitadora_nextage/p/index.html'>{txtAbout.pc.step3.s6_2[lang]}</a>
                                     {txtAbout.pc.step3.s6_3[lang]}
                                 </Col>
                                 

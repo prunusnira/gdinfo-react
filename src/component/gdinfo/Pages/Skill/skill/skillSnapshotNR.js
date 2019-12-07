@@ -171,7 +171,7 @@ class SkillSnapshotNR extends Component {
                                 </b></h4>
                             </Col>
                             <Col xs="6" style={{textAlign:"center"}}>
-                                <b>Made by GITADORA.info</b>
+                                <b>Made by SIN</b>
                             </Col>
                             <Col xs="6" style={{textAlign:"center"}}>
                                 Saved Date: {self.state.savedate}

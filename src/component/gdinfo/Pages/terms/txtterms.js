@@ -91,15 +91,20 @@ const txtTerms = {
         "ko":"5. 시행",
         "en":"5. Effect"
     },
-    s5c: {
-        "jp":"この利用規約は2016年4月1日から有効です<br/>" +
-                "改定履歴：2017年11月20日 - 英語の訳追加, eAmusementの名称変更<br/>" +
-                "この文書は韓国語版を訳したものです。",
-        "ko":"본 이용약관은 2016년 4월 1일부터 시행됩니다.<br/>" +
-                "개정이력: 2017년 11월 20일 - 영문번역 추가, eAmusement 명칭변경",
-        "en":"This document take effect from Apr. 1, 2016<br/>" +
-                "Changes: Nov. 20, 2016 - English translation added, eAmusement name change<br/>" +
-                "This document is translated version from Korean"
+    s5c1: {
+        "jp":"この利用規約は2016年4月1日から有効です",
+        "ko":"본 이용약관은 2016년 4월 1일부터 시행됩니다.",
+        "en":"This document take effect from Apr. 1, 2016"
+    },
+    s5c2: {
+        "jp":"改定履歴：2017年11月20日 - 英語の訳追加, eAmusementの名称変更",
+        "ko":"개정이력: 2017년 11월 20일 - 영문번역 추가, eAmusement 명칭변경",
+        "en":"Changes: Nov. 20, 2016 - English translation added, eAmusement name change"
+    },
+    s5c3: {
+        "jp":"この文書は韓国語版を訳したものです。",
+        "ko":"",
+        "en":"This document is translated version from Korean"
     }
 };
 

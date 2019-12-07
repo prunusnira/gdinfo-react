@@ -18,7 +18,8 @@ import {
     DropdownToggle,
     UncontrolledDropdown,
     Row,
-    Col
+    Col,
+    Alert
 } from 'reactstrap'
 
 const lang = LData.lang;
@@ -116,17 +117,17 @@ class GDHeader extends Component {
         const self = this;
         return (
             <Fragment>
-                {/*<div style={{position:"relative", zIndex:999}}>
+                <Alert onClose={() => console.log("")}>
                     <Row>
                         <Col xs="12" className="text-center">
                             <b>{txtHeader.test[lang]}</b>
                         </Col>
                     </Row>
-                </div>*/}
+                </Alert>
                 <header id="header">
                     <Navbar color='dark' className='bg-dark fixed-top'>
                         <NavbarBrand tag={Link} to="/index" onClick={() => {this.setState({isMenuOpen: false})}}>
-                            <img alt="icon" style={{maxHeight: 32+'px'}} src={require("./img/logoidx.png")}/>
+                            <img alt="icon" style={{maxHeight: 48+'px'}} src={require("./img/logoidx.png")}/>
                         </NavbarBrand>
                         <NavbarToggler onClick={this.toggleMenu}>
                             <img alt="icon" src={require("./img/btnmenu.jpg")}/>

@@ -20,9 +20,9 @@ const txtSrank = {
         "en":"Skill ranking (Total)"
     },
     desc: {
-        "jp":"GITADORA Info登録者の間のランキングです",
-        "ko":"GITADORA Info 등록자간의 랭킹입니다",
-        "en":"This ranking page is only for GITADORA Info users"
+        "jp":"SINの登録者の間のランキングです",
+        "ko":"SIN 등록자간의 랭킹입니다",
+        "en":"This ranking page is only for SIN users"
     },
     table: {
         comp: {

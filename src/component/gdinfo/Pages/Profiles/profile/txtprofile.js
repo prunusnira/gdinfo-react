@@ -92,11 +92,6 @@ const txtProfile = {
             "ko":"업데이트 갱신으로 플레이 횟수가 바뀌지 않았을 경우에 아래 버튼을 눌러보세요",
             "en":"When you find your play count is not updated after you used updater, please press the button below"
         },
-        rivaladd: {
-            "jp":"ライバル登録",
-            "ko":"라이벌 등록",
-            "en":"Add as rival"
-        },
         towerupdate: {
             "jp":"塔のクリア更新",
             "ko":"탑 클리어 상태 갱신",

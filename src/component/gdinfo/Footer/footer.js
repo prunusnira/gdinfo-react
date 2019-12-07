@@ -30,8 +30,8 @@ class GDFooter extends Component {
                             <a href="#no_div" onClick={() => this.langChange('en')}>English</a>
                         </Col>
                         <Col sm="8">
-                            <span>GITADORA Info (c) 2016 Nira(<a href="https://twitter.com/prunusnira" target="_blank">@prunusNira</a>)</span><br/>
-                            <span>Twitter <a href='https://twitter.com/gitadorainfo'>@gitadorainfo</a> | <Link to='/terms'>Terms and Conditions</Link></span><br/>
+                            <span>Skill Navigator (c) 2016 Nira(<a href="https://twitter.com/prunusnira" target="_blank">@prunusNira</a>)</span><br/>
+                            <span>Twitter <a href='https://twitter.com/sin_navigator'>@SIN_Navigator</a> | <Link to='/terms'>Terms and Conditions</Link></span><br/>
                             <span>{txtFooter.about[lang]}</span>
                         </Col>
                     </Row>

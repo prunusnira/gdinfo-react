@@ -10,9 +10,9 @@
  *****************************************************/
 const txtHeader = {
     test: {
-        "jp":"NEXTAGE対応のテストバージョンです",
-        "ko":"NEXTAGE 대응 테스트를 진행하고 있습니다",
-        "en":"This is test version for NEXTAGE"
+        "jp":"サイトのアドレスをsin.nira.oneに変更しました。gitadora.infoは2020年4月13日まで使えます。",
+        "ko":"사이트의 주소를 sin.nira.one으로 변경하였습니다. gitadora.info는 2020년 4월 13일까지 사용 가능합니다.",
+        "en":"Address is changed to sin.nira.one . gitadora.info can be used until Apr. 13, 2020"
     },
     howtouse: {
         title: {
@@ -114,16 +114,9 @@ const txtHeader = {
     },
     tower: {
         title: {
-            "jp":"ギタドラの塔",
-            "ko":"기타도라의 탑",
-            "en":"Tower of GITADORA"
-        }
-    },
-    piu: {
-        title: {
-            "jp":"PIU管理ツール",
-            "ko":"PIU 기록관리툴",
-            "en":"PIU status tool"
+            "jp":"ザ・タワー",
+            "ko":"타워",
+            "en":"The Tower"
         }
     },
     etc: {

@@ -10,9 +10,9 @@
  *****************************************************/
 const txtNewuser = {
     title: {
-        "jp":"GITADORA Infoへようこそ！",
-        "ko":"GITADORA Info에 오신 것을 환영합니다!",
-        "en":"Welcome to GITADORA Info"
+        "jp":"SIN [ Skill Navigator ] へようこそ！",
+        "ko":"SIN [ Skill Navigator ] 에 오신 것을 환영합니다!",
+        "en":"Welcome to SIN [ Skill Navigator ]"
     },
     desc: {
         "jp":"サービスを利用するためには利用規約に同意してください。利用規約はホムページの下にリンクがありますのでもう一度確認できます",

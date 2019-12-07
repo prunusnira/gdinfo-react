@@ -75,7 +75,7 @@ class TowerList extends Component {
                     <Col xs="12">
                         <Card>
                             <CardHeader>
-                                <h3>Tower of GITADORA</h3>
+                                <h3>The Tower</h3>
                             </CardHeader>
                             <CardBody>
                                 <Row>

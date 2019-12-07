@@ -14,7 +14,6 @@ import AboutMO from './Pages/about/AboutMO';
 
 import Profile from './Pages/Profiles/profile/profile';
 import ProfileLoginCheck from './Pages/Profiles/profile/checkLogin';
-import RivalList from './Pages/Profiles/rival/list';
 import PlayCount from './Pages/Profiles/playcount/playcount';
 import PlayCountLoginCheck from './Pages/Profiles/playcount/checkLogin';
 import SnapshotList from './Pages/Profiles/snapshot/list';
@@ -69,7 +68,6 @@ function GDInfoApp() {
                 <Route path="/mybest/:id" component={PlayCount} />
                 <Route path="/mybest" component={PlayCountLoginCheck} />
             </Switch>
-            <Route path="/rivallist" component={RivalList} />
             <Route path="/snapshot" component={SnapshotLoginCheck} />
             <Route path="/skill/snapshot/list/:id" component={SnapshotList} />
             <Route path="/reset" component={ProfileReset} />

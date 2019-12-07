@@ -373,7 +373,7 @@ class SkillSH extends Component {
                                     <Col xs="12" className="text-center">
                                         <h4><b>GITADORA {pagetype}<br/>
                                         {gtype} {desc} <Link className="innerhref" to={"/profile/"+urlprop.userid}>{user}</Link></b></h4>
-                                        <b>Made by GITADORA.info</b>
+                                        <b>Made by SIN.nira.one</b>
                                     </Col>
                                 </Row>
                             </CardHeader>
@@ -400,7 +400,7 @@ class SkillSH extends Component {
                                         <Row>
                                             <Col xs="12" className="text-center">
                                                 <h4><b><span>{gtypeShort} </span>HOT SKILLS by <span id="nameTop1"></span></b></h4>
-                                                Made by GITADORA.Info
+                                                Made by SIN.nira.one
                                             </Col>
                                         </Row>
                                         <Row>
@@ -412,7 +412,7 @@ class SkillSH extends Component {
                                         <Row>
                                             <Col xs="12" className="text-center">
                                                 <h4><b><span>{gtypeShort} </span>OTHER SKILLS by <span id="nameTop2"></span></b></h4>
-                                                Made by GITADORA.Info
+                                                Made by SIN.nira.one
                                             </Col>
                                         </Row>
                                         <Row>

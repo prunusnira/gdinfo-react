@@ -8,24 +8,14 @@ import {
     Button
 } from 'reactstrap';
 
+import commonData from '../../Common/commonData';
+
 const lang = LData.lang;
 
 class ProfileButton extends Component {
-    addAsRival(gtype) {
-        axios.get("/d/rivaladd/"+this.props.id+"/gf"+gtype)
-        .then((res) => {
-            if(res.data === true) {
-                alert("Rival is added successfully");
-            }
-            else {
-                return <Redirect push to="/rivalfail" />
-            }
-        });
-    }
-
     towerUpdate() {
 		if(window.confirm(txtProfile.towerupdate.alert[lang])) {
-			axios.post('/d/profile/towerupdate/'+this.props.id)
+			axios.post(commonData.commonDataURL+'profile/towerupdate/'+this.props.id)
 			.then((res) => {
 				alert(txtProfile.towerupdate.done[lang]);
 			});

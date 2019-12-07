@@ -81,8 +81,8 @@ class Recent extends Component {
                             </CardHeader>
                             <CardBody>
                                 <a class="twitter-timeline" data-dnt="true"
-                                    href="https://twitter.com/gitadorainfo"
-                                    data-widget-id="731000889108914176">GITADORA Info Twitter</a>
+                                    href="https://twitter.com/SIN_Navigator"
+                                    data-widget-id="731000889108914176">SIN_Navigator Twitter</a>
                                 {!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs")}
                             </CardBody>
                         </Card>

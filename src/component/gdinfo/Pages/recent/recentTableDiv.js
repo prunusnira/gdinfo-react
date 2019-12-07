@@ -14,9 +14,6 @@ const text = LData.text;
 class RecentTableDiv extends Component {
 
     render() {
-        // before ajax finish
-
-        // after ajax finish
         return (
             this.props.list.map(
                 user => {

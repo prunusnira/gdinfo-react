@@ -113,19 +113,6 @@ class Pager extends Component {
                 )
             }
         }
-    
-        // 맨 뒤에 입력-GO가 가능한 input 추가
-        /*var inp = document.createElement("input");
-        inp.type = "number";
-        inp.id = "pageinp";
-        outer.appendChild(inp);
-    
-        var gobtn = document.createElement("button");
-        gobtn.className = "btn btn-secondary";
-        gobtn.href="#no_div";
-        gobtn.setAttribute("onclick", "window.location.href='"+urla + $("#pageinp").val() + urlb+"';");
-        gobtn.textContent = "GO";
-        outer.appendChild(gobtn);*/
     }
 
     render() {

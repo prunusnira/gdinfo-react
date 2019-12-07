@@ -11,8 +11,8 @@
 const txtTower = {
     main: {
         desc: {
-            "jp":"塔を選択してください",
-            "ko":"탑을 선택해주세요",
+            "jp":"タワーを選択してください",
+            "ko":"타워을 선택해주세요",
             "en":"Select tower"
         },
         howto: {
@@ -31,16 +31,16 @@ const txtTower = {
             "en":"Special tower"
         },
         howto: {
-        	"jp":"「ギタドラの塔」対象曲の更新について",
-        	"ko":"기타도라의 탑 대상곡 갱신 방법",
+        	"jp":"「ザ・タワー」対象曲の更新について",
+        	"ko":"타워 대상곡 갱신 방법",
         	"en":"How to update tower"
         }
     },
     detail: {
         desc: {
-            "jp":"「ギタドラの塔」は今も更新中です。(Twitter参考)",
-            "ko":"기타도라의 탑은 계속 업데이트 중입니다. (트위터 참고)",
-            "en":"Tower of GITADORA is still in update. (Check our Twitter)"
+            "jp":"「ザ・タワー」は今も更新中です。(Twitter参考)",
+            "ko":"타워는 계속 업데이트 중입니다. (트위터 참고)",
+            "en":"The Tower is still in update. (Check our Twitter)"
         },
         progress: {
             "jp":"進行度",
@@ -90,9 +90,9 @@ const txtTower = {
             "en":"1. Add patterns you cleared into 'Favorite' folder from in-game or homepage."
         },
         step2: {
-            "jp":"2. GITADORA Infoのアップデーターから「GFお気に入り」や「DMお気に入り」ボタンを選択することで更新できます。",
-            "ko":"2. 기타도라인포 업데이터에서 'GF 즐겨찾기' 혹은 'DM 즐겨찾기' 버튼을 눌러 갱신하면 해당 곡들만 갱신할 수 있습니다.",
-            "en":"2. In GITADORA Info Updater, press 'GF Favorites' or 'DM Favirotes' button to update these songs."
+            "jp":"2. SINのアップデーターから「GFお気に入り」や「DMお気に入り」ボタンを選択することで更新できます。",
+            "ko":"2. SIN의 업데이터에서 'GF 즐겨찾기' 혹은 'DM 즐겨찾기' 버튼을 눌러 갱신하면 해당 곡들만 갱신할 수 있습니다.",
+            "en":"2. In SIN Updater, press 'GF Favorites' or 'DM Favirotes' button to update these songs."
         }
     },
     title: {

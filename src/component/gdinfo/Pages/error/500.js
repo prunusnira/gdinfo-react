@@ -29,8 +29,8 @@ const Error500 = () => {
                         {text.error.e500.e500_6[lang]}
                         <a target="_blank"
                             rel="noopener noreferrer"
-                            href="https://twitter.com/gitadorainfo">
-                            @gitadorainfo
+                            href="https://twitter.com/SIN_Navigator">
+                            @SIN_Navigator
                         </a>
                     </CardText>
                 </CardBody>

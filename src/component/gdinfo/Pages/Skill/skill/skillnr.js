@@ -652,7 +652,7 @@ class SkillNR extends Component {
                                 {gtype} {desc} <Link className="innerhref" to={"/profile/"+urlprop.userid}>{user}</Link></b></h4>
                             </Col>
                             <Col xs="6" style={{textAlign:"center"}}>
-                                <b>Made by GITADORA.info</b>
+                                <b>Made by SIN.nira.one</b>
                             </Col>
                             <Col xs="6" style={{textAlign:"center"}}>
                                 Update Time: {self.state.updatetime}

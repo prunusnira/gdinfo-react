@@ -108,6 +108,9 @@ class SearchResult extends Component {
                         case 4:
                             obj.removed = "<br/><span style='color:red'><b>(removed EXC)</b></span>";
                             break;
+                        case 5:
+                            obj.removed = "<br/><span style='color:red'><b>(removed NX)</b></span>";
+                            break;
                         default:
                             obj.removed = "";
                             break;

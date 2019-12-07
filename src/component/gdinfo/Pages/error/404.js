@@ -23,7 +23,7 @@ const Error404 = () => {
                     <CardText>
                         {text.error.e404_1[lang]}<br/>
                         {text.error.e404_2[lang]}<br/>
-                        Twitter <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/gitadorainfo">@gitadorainfo</a>
+                        Twitter <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/SIN_Navigator">@SIN_Navigator</a>
                     </CardText>
                 </CardBody>
             </Card>

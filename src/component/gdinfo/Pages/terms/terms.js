@@ -52,7 +52,9 @@ class Terms extends Component {
                                     </Col>
                                     <Col xs="12" style={{padding:"5px"}}>
                                         <h4>{txtTerms.s5t[lang]}</h4>
-                                        <span>{txtTerms.s5c[lang]}</span>
+                                        <span>{txtTerms.s5c1[lang]}</span><br/>
+                                        <span>{txtTerms.s5c2[lang]}</span><br/>
+                                        <span>{txtTerms.s5c3[lang]}</span>
                                     </Col>
                                 </Row>
                             </CardBody>
