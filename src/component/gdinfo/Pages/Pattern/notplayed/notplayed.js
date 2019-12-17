@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Link} from 'react-router-dom';
+import {Link, Redirect} from 'react-router-dom';
 import axios from 'axios';
 import NpItem from './npItem';
 import commonData from '../../Common/commonData';
@@ -29,8 +29,20 @@ class NotPlayed extends Component {
             list: [],
             empty: false,
             gtype: "",
-            allpage: 0
+            allpage: 0,
+
+            // 선택적
+            switchlv: false,
+            lv: 0,
+            switchver: false,
+            ver: "00",
+            switchhot: false,
+            switchoth: false,
+            switchclear: false
         }
+
+        this.switchLv = this.switchLv.bind(this);
+        this.switchVer = this.switchVer.bind(this);
     }
     
     componentDidMount() {
@@ -38,6 +50,15 @@ class NotPlayed extends Component {
     }
 
     componentWillReceiveProps(nextProps) {
+        // redirect 해제
+        this.setState({
+            switchlv: false,
+            switchver: false,
+            switchhot: false,
+            switchoth: false,
+            switchclear: false
+        });
+
         this.loadNPData(nextProps);
     }
 
@@ -116,9 +137,64 @@ class NotPlayed extends Component {
         });
     }
 
+    switchLv(e) {
+        if(e.target.value !== "--") {
+            this.setState({
+                switchver: true,
+                lv: parseInt(e.target.value)
+            });
+        }
+    }
+
+    switchVer(e) {
+        if(e.target.value !== "--") {
+            this.setState({
+                switchver: true,
+                ver: e.target.value
+            });
+        }
+    }
+
+    switchHot() {
+        this.setState({
+            switchhot: true
+        });
+    }
+
+    switchOther() {
+        this.setState({
+            switchoth: true
+        });
+    }
+
+    switchClear() {
+        this.setState({
+            switchhot: false,
+            switchoth: false,
+            switchclear: true
+        });
+    }
+
     render() {
         const self = this;
-        const urlprop = self.props.match.params;
+        const urlprop = this.props.match.params;
+        const search = this.props.location.search;
+
+        if(this.state.switchlv) {
+            return <Redirect to={"/notplayed/"+urlprop.gtype+"/"+urlprop.userid+"/"+urlprop.vertype+"/1?lv="+this.state.lv} />
+        }
+        if(this.state.switchver) {
+            return <Redirect to={"/notplayed/"+urlprop.gtype+"/"+urlprop.userid+"/"+urlprop.vertype+"/1?ver="+this.state.ver} />
+        }
+        if(this.state.switchhot) {
+            return <Redirect to={"/notplayed/"+urlprop.gtype+"/"+urlprop.userid+"/"+urlprop.vertype+"/1?hot=h"} />
+        }
+        if(this.state.switchoth) {
+            return <Redirect to={"/notplayed/"+urlprop.gtype+"/"+urlprop.userid+"/"+urlprop.vertype+"/1?hot=o"} />
+        }
+        if(this.state.switchclear) {
+            return <Redirect to={"/notplayed/"+urlprop.gtype+"/"+urlprop.userid+"/"+urlprop.vertype+"/1"} />
+        }
         return (
             <Container>
                 <Row>
@@ -140,7 +216,97 @@ class NotPlayed extends Component {
                                 <h3>Option Table</h3>
                             </CardHeader>
                             <CardBody>
-                                {/*<Filter />*/}
+                                <Row>
+                                    <Col xs="6">
+                                        <Row><Col xs="12" className="text-center">
+                                            Level
+                                        </Col></Row>
+                                        <Row><Col xs="12">
+                                            <select onChange={self.switchLv} className="form-control">
+                                                <option value="--">SELECT</option>
+                                                <option value="0">All</option>
+                                                <option value="1">1.00-1.49</option>
+                                                <option value="2">1.50-1.99</option>
+                                                <option value="3">2.00-2.49</option>
+                                                <option value="4">2.50-2.99</option>
+                                                <option value="5">3.00-3.49</option>
+                                                <option value="6">3.50-3.99</option>
+                                                <option value="7">4.00-4.49</option>
+                                                <option value="8">4.50-4.99</option>
+                                                <option value="9">5.00-5.49</option>
+                                                <option value="10">5.50-5.99</option>
+                                                <option value="11">6.00-6.49</option>
+                                                <option value="12">6.50-6.99</option>
+                                                <option value="13">7.00-7.49</option>
+                                                <option value="14">7.50-7.99</option>
+                                                <option value="15">8.00-8.49</option>
+                                                <option value="16">8.50-8.99</option>
+                                                <option value="17">9.00-9.49</option>
+                                                <option value="18">9.50-9.99</option>
+                                            </select>
+                                        </Col></Row>
+                                    </Col>
+                                    <Col xs="6">
+                                        <Row><Col xs="12" className="text-center">
+                                            Version
+                                        </Col></Row>
+                                        <Row><Col xs="12">
+                                            <select onChange={self.switchVer} className="form-control">
+                                                <option value="--">SELECT</option>
+                                                <option value="00">All</option>
+                                                <option value="01">GF1</option>
+                                                <option value="02">GF2dm1</option>
+                                                <option value="03">GF3dm2</option>
+                                                <option value="04">GF4dm3</option>
+                                                <option value="05">GF5dm4</option>
+                                                <option value="06">GF6dm5</option>
+                                                <option value="07">GF7dm6</option>
+                                                <option value="08">GF8dm7</option>
+                                                <option value="09">GF9dm8</option>
+                                                <option value="10">GF10dm9</option>
+                                                <option value="11">GF11dm10</option>
+                                                <option value="12">ee'mall</option>
+                                                <option value="13">V</option>
+                                                <option value="14">V2</option>
+                                                <option value="15">V3</option>
+                                                <option value="16">V4</option>
+                                                <option value="17">V5</option>
+                                                <option value="18">V6</option>
+                                                <option value="19">XG</option>
+                                                <option value="20">XG2</option>
+                                                <option value="21">XG3</option>
+                                                <option value="22">GD</option>
+                                                <option value="23">GD OD</option>
+                                                <option value="24">GD TB</option>
+                                                <option value="25">GD TBRE</option>
+                                                <option value="26">GD MX</option>
+                                                <option value="27">GD EX</option>
+                                                <option value="28">GD NX</option>
+                                            </select>
+                                        </Col></Row>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    <Col xs="6">
+                                        <Row><Col xs="12" className="text-center">
+                                            Hot/Other
+                                        </Col></Row>
+                                        <Row><Col xs="12" className="btn-group">
+                                            <Button onClick={() => self.switchHot()}>Hot</Button>
+                                            <Button onClick={() => self.switchOther()}>Other</Button>
+                                        </Col></Row>
+                                    </Col>
+                                    <Col xs="6">
+                                        <Row><Col xs="12" className="text-center">
+                                            Order
+                                        </Col></Row>
+                                        <Row><Col xs="12" className="btn-group">
+                                            <Button onClick={() => self.switchClear()}>Clear Options</Button>
+                                            {/*<Button onClick={() => self.switchOrder(0)}>{txtNp.filter.btn.title[lang]} ▲/▼</Button>
+                                            <Button onClick={() => self.switchOrder(1)}>{txtNp.filter.btn.version[lang]} ▲/▼</Button>*/}
+                                        </Col></Row>
+                                    </Col>
+                                </Row>
                             </CardBody>
                         </Card>
                     </Col>
@@ -154,21 +320,21 @@ class NotPlayed extends Component {
                             <CardBody>
                                 <Row>
                                     <Col xs="12" className="btn-group">
-                                        <Button tag={Link} to={"/notplayed/gf/"+urlprop.userid+"/0/1"}
+                                        <Button tag={Link} to={"/notplayed/gf/"+urlprop.userid+"/0/1"+search}
                                                 style={{width:"100%"}}>
                                             GF {txtNp.all[lang]}
                                         </Button>
-                                        <Button tag={Link} to={"/notplayed/dm/"+urlprop.userid+"/0/1"}
+                                        <Button tag={Link} to={"/notplayed/dm/"+urlprop.userid+"/0/1"+search}
                                                 style={{width:"100%"}}>
                                             DM {txtNp.all[lang]}
                                         </Button>
                                     </Col>
                                     <Col xs="12" className="btn-group">
-                                        <Button tag={Link} to={"/notplayed/gf/"+urlprop.userid+"/1/1"}
+                                        <Button tag={Link} to={"/notplayed/gf/"+urlprop.userid+"/1/1"+search}
                                                 style={{width:"100%"}}>
                                             GF {txtNp.ver[lang]}
                                         </Button>
-                                        <Button tag={Link} to={"/notplayed/dm/"+urlprop.userid+"/1/1"}
+                                        <Button tag={Link} to={"/notplayed/dm/"+urlprop.userid+"/1/1"+search}
                                                 style={{width:"100%"}}>
                                             DM {txtNp.ver[lang]}
                                         </Button>

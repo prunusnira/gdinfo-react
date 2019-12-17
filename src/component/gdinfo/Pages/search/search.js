@@ -5,6 +5,7 @@ import txtSearch from './txtsearch';
 import LData from '../Common/language';
 import RecentTableDiv from '../recent/recentTableDiv';
 import PatternListItem from '../Pattern/pattern/ptListItem';
+import {connect} from 'react-redux';
 
 import {
     Container,
@@ -80,6 +81,7 @@ class SearchResult extends Component {
     }
 
     getMusicList(prop) {
+        const self = this;
         axios.post(commonData.commonDataURL+"search/"+prop.type+"/"+prop.value+"/"+prop.page)
         .then((res) => {
             const json = res.data;
@@ -89,8 +91,8 @@ class SearchResult extends Component {
                     const cur = json.userList[i];
                     const obj = {};
                     obj.jacket = commonData.commonImageURL+"music/"+cur.id+".jpg";
-                    if(json.user != null)
-                        obj.link = "/music/"+cur.id+"/"+json.user.id;
+                    if(self.props.login)
+                        obj.link = "/music/"+cur.id+"/"+self.props.userinfo.id;
                     else
                         obj.link = "#no_div";
                     obj.name = cur.name;
@@ -276,4 +278,11 @@ class SearchResult extends Component {
     }
 }
 
-export default SearchResult;
+const mapStateToProps = (state) => {
+    return {
+        userinfo: state.tokenReducer.userinfo,
+        login: state.tokenReducer.login
+    }
+};
+
+export default connect(mapStateToProps)(SearchResult);

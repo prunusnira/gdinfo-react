@@ -111,7 +111,7 @@ class MusicItem extends Component {
                                     {/* 구작 달성률 */}
                                     <Col xs="12">
                                         {music.rateTitle} (OLD)<br/>
-                                        MX: {music.ratemx}% / TBRE: {music.ratetbre}% / TB: {music.ratetb}%
+                                        EX: {music.rateex}% / MX: {music.ratemx}% / TBRE: {music.ratetbre}% / TB: {music.ratetb}%
                                     </Col>
                                 </Row>
                             </Col>

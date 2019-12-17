@@ -13,8 +13,8 @@ class NpItem extends Component {
                 {
                     this.props.list.map((np, i) => {
                         return (
-                            <div class='div-table-row'>
-                                <div class='div-table-cell listimg'>
+                            <div className='div-table-row'>
+                                <div className='div-table-cell listimg'>
                                     <img alt="jacket-img"
                                         style={{width:"75px", height:"75px"}}
                                         src={np.imgsrc}
@@ -25,7 +25,7 @@ class NpItem extends Component {
                                         style={{width:"75px"}}
                                         src={np.pattern} />
                                 </div>
-                                <div class='div-table-cell'>
+                                <div className='div-table-cell'>
                                     <Row>
                                         <Col xs="12" className="text-left">
                                             <a className='innerhref'

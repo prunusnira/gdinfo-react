@@ -23,6 +23,20 @@ const txtNp = {
         "jp":"今作のみ",
         "ko":"이번작 한정",
         "en":"For current ver"
+    },
+    filter: {
+        btn: {
+            title: {
+                "jp":"曲名順",
+                "ko":"이름순",
+                "en":"Title"
+            },
+            version: {
+                "jp":"バージョン",
+                "ko":"버전",
+                "en":"Version"
+            }
+        }
     }
 };
 

@@ -144,6 +144,7 @@ class Music extends Component {
                             obj.clearmeter += "<div style='width:0.8vw; max-width:9px; background-color:#848484; float:left'>&nbsp;</div>";
                     }
                     
+                    obj.rateex = (skill.rateex/100).toFixed(2);
                     obj.ratemx = (skill.ratemx/100).toFixed(2);
                     obj.ratetbre = (skill.ratetbre/100).toFixed(2);
                     obj.ratetb = (skill.ratetb/100).toFixed(2);
@@ -176,6 +177,7 @@ class Music extends Component {
                     obj.rank = process.env.PUBLIC_URL+'/general-img/rank/rank_e.png';
                     obj.fc = '';
                     obj.clearmeter = '';
+                    obj.rateex = '0.00';
                     obj.ratemx = '0.00';
                     obj.ratetbre = '0.00';
                     obj.ratetb = '0.00';
