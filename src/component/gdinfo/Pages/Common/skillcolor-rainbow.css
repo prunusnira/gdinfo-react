@@ -10,14 +10,19 @@
 .color-text-flow span,
 .color-text-flow-hover:hover span {
   -webkit-animation-name: color-text-flow-keys;
+  -moz-animation-name: color-text-flow-keys;
           animation-name: color-text-flow-keys;
-  -webkit-animation-duration: 15s;
-          animation-duration: 15s;
+  -webkit-animation-duration: 50s;
+  -moz-animation-duration: 50s;
+          animation-duration: 50s;
   -webkit-animation-iteration-count: infinite;
+  -moz-animation-iteration-count: infinite;
           animation-iteration-count: infinite;
   -webkit-animation-direction: alternate;
+  -moz-animation-direction: alternate;
           animation-direction: alternate;
   -webkit-animation-fill-mode: forwards;
+  -moz-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
 }
 @-webkit-keyframes color-text-flow-keys {
