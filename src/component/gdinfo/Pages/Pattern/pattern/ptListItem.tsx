@@ -37,15 +37,15 @@ class PTListItem extends Component<Props> {
                                             {
                                                 (function() {
                                                     switch(p.removed) {
-                                                        case "1":
+                                                        case 1:
                                                             return <b>(removed in TB)</b>
-                                                        case "2":
+                                                        case 2:
                                                             return <b>(removed in TBRE)</b>
-                                                        case "3":
+                                                        case 3:
                                                             return <b>(removed in MX)</b>
-                                                        case "4":
+                                                        case 4:
                                                             return <b>(removed in EX)</b>
-                                                        case "5":
+                                                        case 5:
                                                             return <b>(removed in NX)</b>
                                                     }
                                                 })()

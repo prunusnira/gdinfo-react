@@ -96,7 +96,7 @@ class SearchResult extends Component<RouteComponentProps<IMatchProps> & Props, S
                     else {
                         obj.titletower = '';
                     }
-                    obj.link = '/profile/'+cur.id;
+                    obj.id = cur.id;
                     obj.name = cur.name;
                     obj.gskill = cur.gskill;
                     obj.dskill = cur.dskill;
@@ -131,27 +131,7 @@ class SearchResult extends Component<RouteComponentProps<IMatchProps> & Props, S
                     else
                         obj.link = "#no_div";
                     obj.name = cur.name;
-
-                    switch(cur.removed) {
-                        case 1:
-                            obj.removed = "<br/><span style='color:red'><b>(removed TB)</b></span>";
-                            break;
-                        case 2:
-                            obj.removed = "<br/><span style='color:red'><b>(removed TBRE)</b></span>";
-                            break;
-                        case 3:
-                            obj.removed = "<br/><span style='color:red'><b>(removed MX)</b></span>";
-                            break;
-                        case 4:
-                            obj.removed = "<br/><span style='color:red'><b>(removed EXC)</b></span>";
-                            break;
-                        case 5:
-                            obj.removed = "<br/><span style='color:red'><b>(removed NX)</b></span>";
-                            break;
-                        default:
-                            obj.removed = "";
-                            break;
-                    }
+                    obj.removed = parseInt(cur.removed);
 
                     for(let j = 0; j < 4; j++) {
                         const d = new EachDiffLine();

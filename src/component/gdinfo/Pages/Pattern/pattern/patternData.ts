@@ -2,7 +2,7 @@ export interface PatternData {
     jacket: string,
     link: string,
     name: string,
-    removed: string,
+    removed: number,
     difflist: Array<EachDiff>
 }
 
@@ -10,7 +10,7 @@ export class PatternMem implements PatternData {
     jacket: string = "";
     link: string = "";
     name: string = "";
-    removed: string = "";
+    removed: number = 0;
     difflist: Array<EachDiff> = new Array<EachDiff>();
 }
 

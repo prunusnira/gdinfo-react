@@ -49,7 +49,7 @@ class RecentTableDiv extends Component<Props> {
                                                 })()
                                             }
                                         </span>
-                                        <Link className="innerhref title" to={link}>{username}</Link>
+                                        <Link className="innerhref title" to={'/profile/'+user.id}>{username}</Link>
                                     </Col>
                                 </Row>
                                 <Row>

@@ -6,7 +6,6 @@ interface RecentData {
     dskill: number,
     updatetime: string,
     uptimelong: number,
-    link: string,
     glink: string,
     dlink: string
 }

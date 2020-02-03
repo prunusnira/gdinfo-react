@@ -111,7 +111,7 @@ class PatternList extends Component<RouteComponentProps<IMatchProps> & Props, St
                 }
                 
                 obj.name = music.name;
-                obj.removed = music.removed;
+                obj.removed = parseInt(music.removed);
 
                 obj.difflist = new Array<EachDiff>();
 
