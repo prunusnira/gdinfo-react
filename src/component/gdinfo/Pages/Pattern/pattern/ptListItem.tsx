@@ -27,7 +27,9 @@ class PTListItem extends Component<Props> {
                                         style={{width:"85px", height:"85px"}}
                                         src={p.jacket}
                                         onError={(e) => {
-                                            e.currentTarget.src=commonData.commonImageURL+"music/empty.jpg"}} /><br/>
+                                            e.currentTarget.onerror = null;
+                                            e.currentTarget.src = process.env.PUBLIC_URL+"/general-img/empty.jpg";
+                                        }} /><br/>
                                     <span>
                                         <Link className='innerhref' to={p.link}>
                                             {p.name}

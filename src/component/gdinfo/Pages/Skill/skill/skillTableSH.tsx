@@ -56,7 +56,8 @@ class SkillTableSH extends Component<Props> {
                                             padding: "0px", margin: "0px"}}
                                         src={skill.jacketurl}
                                         onError={(e) => {
-                                            e.currentTarget.src=commonData.commonImageURL+"music/empty.jpg"}} /><br/>
+                                            e.currentTarget.onerror = null;
+                                            e.currentTarget.src = process.env.PUBLIC_URL+"/general-img/empty.jpg"}} /><br/>
                                     <span>Lv. {skill.level}</span>
                                 </Col>
                                 <Col xs="6" className="text-center"

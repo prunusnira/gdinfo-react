@@ -221,7 +221,8 @@ class Music extends Component<RouteComponentProps<IMatchProps>, State> {
                                         <div className="div-table-cell">
                                             <img alt="jacket-img" src={self.state.musicimg}
                                                 onError={(e) => {
-                                                    e.currentTarget.src = commonData.commonImageURL+"music/empty.jpg";
+                                                    e.currentTarget.onerror = null;
+                                                    e.currentTarget.src = process.env.PUBLIC_URL+"/general-img/empty.jpg";
                                                  }} className='img-fluid' style={{maxWidth:"85px"}} />
                                         </div>
                                         <div className="div-table-cell">

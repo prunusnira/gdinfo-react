@@ -36,7 +36,7 @@ class SkillTableNR extends Component<Props> {
                                 <img alt="jacket-img" style={{width:"85px"}} src={v.jacketurl}
                                     onError={(e) => {
                                         e.currentTarget.onerror = null;
-                                        e.currentTarget.src=commonData.commonImageURL+"music/empty.jpg";
+                                        e.currentTarget.src = process.env.PUBLIC_URL+"/general-img/empty.jpg";
                                     }} /><br/>
                                 <img alt="pattern-img" style={{width:"85px"}} src={v.pattern} /><br/>
                                 <span>{v.level}</span><br/>
