@@ -1,5 +1,6 @@
 import commonData from '../../Common/commonData';
 import {GDVer} from '../../Common/version';
+import {getPatternImg300} from '../../Common/pattern';
 import {getPatternImg600} from '../../Common/pattern';
 import {skillTableColor} from '../../Common/skillcolor';
 import SkillTableData from './skillTableData';
@@ -29,25 +30,31 @@ export function generateTable(userid: string,
     obj.rankimg = getRankImg(cur.rank);
     obj.skill1 = 0;
     obj.skill2 = 0;
-    obj.pattern = getPatternImg600(cur.patterncode);
+    obj.pattern300 = getPatternImg300(cur.patterncode);
+    obj.pattern600 = getPatternImg600(cur.patterncode);
 
     if(cur.checkfc === "Y") {
         if(cur.rank !== "EXC") {
-            obj.fcimg = process.env.PUBLIC_URL+"/general-img/rank/fc_600.png";
+            obj.fcimg300 = process.env.PUBLIC_URL+"/general-img/rank/fc_300.png";
+            obj.fcimg600 = process.env.PUBLIC_URL+"/general-img/rank/fc_600.png";
             }
         else {
-            obj.fcimg = process.env.PUBLIC_URL+"/general-img/rank/exc_600.png";
+            obj.fcimg300 = process.env.PUBLIC_URL+"/general-img/rank/exc_300.png";
+            obj.fcimg600 = process.env.PUBLIC_URL+"/general-img/rank/exc_600.png";
         }
     }
     else {
         if(cur.playtime > 0) {
-            obj.fcimg = process.env.PUBLIC_URL+"/general-img/rank/cleared_600.png";
+            obj.fcimg300 = process.env.PUBLIC_URL+"/general-img/rank/cleared_300.png";
+            obj.fcimg600 = process.env.PUBLIC_URL+"/general-img/rank/cleared_600.png";
         }
         else {
-            obj.fcimg = process.env.PUBLIC_URL+"/general-img/rank/notplayed_600.png";
+            obj.fcimg300 = process.env.PUBLIC_URL+"/general-img/rank/notplayed_600.png";
+            obj.fcimg600 = process.env.PUBLIC_URL+"/general-img/rank/notplayed_600.png";
         }
         if(cur.combo === 0) {
-            obj.fcimg = "";
+            obj.fcimg300 = "";
+            obj.fcimg600 = "";
         }
     }
 

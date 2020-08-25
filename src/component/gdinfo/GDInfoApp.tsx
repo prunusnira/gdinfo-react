@@ -1,10 +1,11 @@
 import React from 'react';
 import GDHeader from './Header/header';
 import GDFooter from './Footer/footer';
-import {Route, Switch} from 'react-router-dom';
+import {Route, Switch, Redirect} from 'react-router-dom';
 
 import Recent from './Pages/recent/recent';
 import Login from './Pages/login/Login';
+import LoginFromApp from './Pages/login/LoginFromApp';
 import SearchResult from './Pages/search/search';
 import Terms from './Pages/terms/terms';
 import NewUser from './Pages/User/newuser/newuser';
@@ -51,6 +52,8 @@ function GDInfoApp() {
             <GDHeader />
             <Route exact path="/" component={Recent} />
             <Route path="/login" component={Login} />
+            <Route exact path="/app/login"  component={Recent} />
+            <Route path="/app/login/:uid" component={LoginFromApp} />
             <Route path="/index" component={Recent} />
             <Route path="/search/:type/:value/:page" component={SearchResult} />
             <Route path="/terms" component={Terms} />

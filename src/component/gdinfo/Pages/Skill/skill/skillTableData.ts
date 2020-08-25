@@ -9,8 +9,10 @@ class SkillTableData {
     rankimg: string = "";
     skill1: number = 0;
     skill2: number = 0;
-    pattern: string = "";
-    fcimg: string = "";
+    pattern300: string = "";
+    pattern600: string = "";
+    fcimg300: string = "";
+    fcimg600: string = "";
     rate: string = "";
     skill: number = 0;
     skillcolor: any = {};

@@ -57,3 +57,36 @@
     font-size: 36px;
     margin-left: 50px;
 }
+
+.zerogap {
+    padding: 0px;
+    margin: 0px;
+}
+
+.sharemark {
+    height: 15px;
+}
+
+@media screen and (min-width: 481px) {
+    .sharemark {
+        height: 25px;
+    }
+}
+
+.sharediff {
+    height: 12px;
+}
+
+@media screen and (min-width: 481px) {
+    .sharediff {
+        height: 18px;
+    }
+}
+
+.rate {
+    background-color: #186d18
+}
+
+.skill {
+    background-color: #182f6d
+}

@@ -49,32 +49,40 @@ class SkillTableSH extends Component<Props> {
                                 </Col>
                             </Row>
                             <Row>
-                                <Col xs="6"
-                                    style={{padding: "0px", margin: "0px"}}>
-                                    <img alt="jacket-img"
-                                        style={{width:"100%",
-                                            padding: "0px", margin: "0px"}}
+                                <Col xs="4"
+                                    className="text-center zerogap">
+                                    <img className="zerogap"
+                                        alt="jacket-img"
+                                        style={{width:"40px"}}
                                         src={skill.jacketurl}
                                         onError={(e) => {
                                             e.currentTarget.onerror = null;
-                                            e.currentTarget.src = process.env.PUBLIC_URL+"/general-img/empty.jpg"}} /><br/>
-                                    <span>Lv. {skill.level}</span>
+                                            e.currentTarget.src = process.env.PUBLIC_URL+"/general-img/empty.jpg"}} />
                                 </Col>
-                                <Col xs="6" className="text-center"
-                                    style={{padding: "0px", margin: "0px"}}>
-                                    <img alt="rank" style={{width: "100%",
-                                        padding: "0px", margin: "0px"}} src={skill.rankimg} /><br/>
-                                    <img alt="clearchk" style={{width: "100%",
-                                        padding: "0px", margin: "0px"}} src={skill.fcimg} /><br/>
-                                    <img style={{width: "100%",
-                                        padding: "0px", margin: "0px"}} src={skill.pattern} />
+                                <Col xs="8" className="text-center zerogap">
+                                    <Row className="zerogap">
+                                        <Col xs="12" className="zerogap">
+                                            <img className="sharediff zerogap" src={skill.pattern300} />
+                                            &nbsp;
+                                            <span style={{fontWeight: "bold"}}>{skill.level}</span>
+                                        </Col>
+                                    </Row>
+                                    <Row className="zerogap">
+                                        <Col xs="12" className="zerogap">
+                                            <img alt="rank" className="sharemark zerogap"
+                                                src={skill.rankimg} />
+                                            <img alt="clearchk" className="sharemark zerogap"
+                                                src={skill.fcimg300} />
+                                        </Col>
+                                    </Row>
                                 </Col>
                             </Row>
-                            <Row>
-                                <Col xs="12" className="text-center"
-                                    style={{fontSize: "100%",
-                                            padding: "0px", margin: "0px"}}>
-                                    {skill.rate}%/{skill.skill}
+                            <Row style={{paddingBottom: "5px"}}>
+                                <Col xs="6" className="text-center zerogap rate">
+                                    {skill.rate}%
+                                </Col>
+                                <Col xs="6" className="text-center zerogap skill">
+                                    {skill.skill.toFixed(2)}
                                 </Col>
                             </Row>
                         </Col>

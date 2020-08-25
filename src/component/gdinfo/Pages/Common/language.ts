@@ -176,7 +176,7 @@ class Language {
 			expires = "; expires="+date.toUTCString();
 		}
 		else expires = "";
-		document.cookie = name+"="+value+expires+"; path=/";
+		document.cookie = name+"="+value+expires+"; path=/; SameSite=None; Secure";
 	}
 
 	readCookie(name: string) {

@@ -64,7 +64,7 @@ class Recent extends Component<{}, State> {
                                 <Timeline
                                     dataSource={{
                                         sourceType: 'profile',
-                                        screenName: 'SIN_Navigator'
+                                        screenName: '_nira_one'
                                     }}
                                     options={{
                                         height: '400'
@@ -101,7 +101,7 @@ class Recent extends Component<{}, State> {
                                 <Timeline
                                     dataSource={{
                                         sourceType: 'profile',
-                                        screenName: 'SIN_Navigator'
+                                        screenName: '_nira_one'
                                     }}
                                     options={{
                                         height: '400'

@@ -258,13 +258,13 @@ class GDHeader extends Component<Props, State> {
                     </Collapse>
                 </Navbar>
 
-                <Alert onClose={() => console.log("")}>
+                {/*<Alert onClose={() => console.log("")}>
                     <Row>
                         <Col xs="12" className="text-center">
                             <b>{(txtHeader.test as any)[this.lang]}</b>
                         </Col>
                     </Row>
-                </Alert>
+                </Alert>*/}
             </Fragment>
         );
     }

@@ -14,7 +14,7 @@ class GDFooter extends Component {
     lang = LData.lang;
 
     langChange(type: string) {
-        document.cookie = "lang="+type+"; path=/";
+        document.cookie = "lang="+type+"; path=/; SameSite=None; Secure";
         window.location.reload();
     }
 
