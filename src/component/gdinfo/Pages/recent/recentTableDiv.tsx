@@ -8,6 +8,7 @@ import {
     Col
 } from 'reactstrap';
 import RecentData from './recentData';
+import txtProfile from '../Profiles/profile/txtprofile';
 
 interface Props {
     isMain: boolean,
@@ -19,6 +20,7 @@ class RecentTableDiv extends Component<Props> {
     text = LData.text;
 
     render() {
+        const self = this;
         return (
             this.props.list.map(
                 (user, i) => {
@@ -26,6 +28,7 @@ class RecentTableDiv extends Component<Props> {
                     const hour = date/60000/60;
                     const min = date/60000%60;
 
+                    const dataopen = user.opencount;
                     const imgUrl = process.env.PUBLIC_URL+"/general-img/title/"+user.titletower+".png";
                     const username = user.name+" ⓟ";
                     const updateTime = Math.floor(hour)+(this.text.other.hrs as any)[this.lang]+" "+Math.floor(min)+(this.text.other.mins as any)[this.lang];
@@ -33,7 +36,6 @@ class RecentTableDiv extends Component<Props> {
                     const glink = "/skill/2/"+user.id+"/gf/1/1";
                     const dskill = user.dskill;
                     const dlink = "/skill/2/"+user.id+"/dm/1/1";
-                    const link = this.props.isMain ? '/profile/'+user.id : "#no_div";
 
                     return (
                         <Row key={'recent'+i} className="table-border-bottom" style={{padding:5+'px'}}>
@@ -49,7 +51,16 @@ class RecentTableDiv extends Component<Props> {
                                                 })()
                                             }
                                         </span>
-                                        <Link className="innerhref title" to={'/profile/'+user.id}>{username}</Link>
+                                        {
+                                            (function() {
+                                                if(dataopen === "Y") {
+                                                    return <Link className="innerhref title" to={'/profile/'+user.id}>{username}</Link>
+                                                }
+                                                else {
+                                                    return <a className="innerhref title" style={{cursor: "not-allowed"}} href="#no_div">{(txtProfile.table1.emptyname as any)[self.lang]}</a>
+                                                }
+                                            })()
+                                        }
                                     </Col>
                                 </Row>
                                 <Row>
@@ -62,13 +73,31 @@ class RecentTableDiv extends Component<Props> {
                                 <Row>
                                     <Col xs="3" className="text-right">G</Col>
                                     <Col xs="9" className="text-left blackandwhite">
-                                        <SingleSkillColorChanger skill={gskill} link={glink} />
+                                        {
+                                            (function() {
+                                                if(dataopen === "Y") {
+                                                    return <SingleSkillColorChanger skill={gskill} link={glink} />
+                                                }
+                                                else {
+                                                    return <SingleSkillColorChanger skill={gskill} link={"#no_div"} />
+                                                }
+                                            })()
+                                        }
                                     </Col>
                                 </Row>
                                 <Row>
                                     <Col xs="3" className="text-right">D</Col>
                                     <Col xs="9" className="text-left blackandwhite">
-                                        <SingleSkillColorChanger skill={dskill} link={dlink} />
+                                        {
+                                            (function() {
+                                                if(dataopen === "Y") {
+                                                    return <SingleSkillColorChanger skill={dskill} link={dlink} />
+                                                }
+                                                else {
+                                                    return <SingleSkillColorChanger skill={dskill} link={"#no_div"} />
+                                                }
+                                            })()
+                                        }
                                     </Col>
                                 </Row>
                             </Col>

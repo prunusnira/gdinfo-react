@@ -20,7 +20,6 @@ class AboutPC extends Component {
     lang = LData.lang;
 
     render() {
-        const self = this;
         return (
             <Container fluid={true}>
                 <Row>

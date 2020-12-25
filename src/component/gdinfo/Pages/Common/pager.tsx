@@ -18,7 +18,7 @@ class Pager extends Component<Props> {
         outer.style.width = "100%";
         
         // 페이지가 7개 이하인 경우 모두 표시
-        if(end == (0 || 1)) {
+        if(end === (0 || 1)) {
             return (
                 <Button>1</Button>
             )

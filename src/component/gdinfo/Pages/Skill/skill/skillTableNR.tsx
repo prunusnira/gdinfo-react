@@ -2,7 +2,6 @@ import React, {Component, Fragment} from 'react';
 import {Link} from 'react-router-dom';
 import './skill.css';
 import '../../Common/table.css';
-import commonData from '../../Common/commonData';
 
 import {
     Row,

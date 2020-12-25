@@ -46,7 +46,7 @@ class ClearTable extends Component<RouteComponentProps<IMatchProps>, State> {
     loadUserData(prop: RouteComponentProps<IMatchProps>) {
         axios.post(commonData.commonDataURL+"getuserid/"+prop.match.params.userid)
         .then((res) => {
-            const json = res.data.mydata;
+            const json = JSON.parse(res.data.mydata);
             const icon = (json.titletower !== "") ? true:false;
             this.setState({
                 username: json.name,
@@ -60,7 +60,7 @@ class ClearTable extends Component<RouteComponentProps<IMatchProps>, State> {
     loadTableData(prop: RouteComponentProps<IMatchProps>, type: string) {
         axios.post(commonData.commonDataURL+"cleartable/"+type+"/"+prop.match.params.userid)
         .then((res) => {
-            const json = res.data.ctable;
+            const json = JSON.parse(res.data.ctable);
             const gval = [ 0, 0, 0, 0, 0, 0, 0, 0];
             const clearlist = new Array<TableData>();
 

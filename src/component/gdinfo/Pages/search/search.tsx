@@ -50,6 +50,7 @@ class RecentUser implements RecentData {
     link: string = "";
     glink: string = "";
     dlink: string = "";
+    opencount: string = "Y";
 }
 
 class SearchResult extends Component<RouteComponentProps<IMatchProps> & Props, State> {
@@ -85,12 +86,13 @@ class SearchResult extends Component<RouteComponentProps<IMatchProps> & Props, S
         axios.post(commonData.commonDataURL+"search/"+prop.type+"/"+prop.value+"/"+prop.page)
         .then((res) => {
             const json = res.data;
-            const userlist = [];
-            if(json.resultexist == "yes") {
-                for(let i = 0; i < json.userList.length; i++) {
-                    const cur = json.userList[i];
+            const userList = JSON.parse(json.userList);
+            const userlistDisp = [];
+            if(JSON.parse(json.resultexist) === "yes") {
+                for(let i = 0; i < userList.length; i++) {
+                    const cur = userList[i];
                     const obj = new RecentUser();
-                    if(cur.titletower != '') {
+                    if(cur.titletower !== '') {
                         obj.titletower = cur.titletower;
                     }
                     else {
@@ -104,11 +106,11 @@ class SearchResult extends Component<RouteComponentProps<IMatchProps> & Props, S
                     obj.dlink = "/skill/2/"+cur.id+"/dm/1/1";
                     obj.uptimelong = cur.updatetime;
                     
-                    userlist.push(obj);
+                    userlistDisp.push(obj);
                 }
 
                 this.setState({
-                    userlist: userlist,
+                    userlist: userlistDisp,
                     allpage: json.pages
                 });
             }
@@ -120,10 +122,11 @@ class SearchResult extends Component<RouteComponentProps<IMatchProps> & Props, S
         axios.post(commonData.commonDataURL+"search/"+prop.type+"/"+prop.value+"/"+prop.page)
         .then((res) => {
             const json = res.data;
+            const userList = JSON.parse(json.userList);
             const ptlist = [];
-            if(json.resultexist == "yes") {
-                for(let i = 0; i < json.userList.length; i++) {
-                    const cur = json.userList[i];
+            if(JSON.parse(json.resultexist) === "yes") {
+                for(let i = 0; i < userList.length; i++) {
+                    const cur = userList[i];
                     const obj = new PatternMem();
                     obj.jacket = commonData.commonImageURL+"music/"+cur.id+".jpg";
                     if(self.props.login)

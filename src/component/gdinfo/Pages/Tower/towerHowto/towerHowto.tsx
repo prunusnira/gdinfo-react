@@ -31,14 +31,14 @@ class TowerHowto extends Component {
                                         <span>{(txtTower.howto.step1 as any)[self.lang]}</span>
                                     </Col>
                                     <Col xs="12" className="about-part">
-                                        <img style={{width:"50%"}} src={require("./okiniiri.jpg")} />
+                                        <img alt="towerhowto1" style={{width:"50%"}} src={require("./okiniiri.jpg")} />
                                     </Col>
                                     <Col xs="12" className="about-part">
                                         <span>{(txtTower.howto.step2 as any)[self.lang]}</span>
                                     </Col>
                                     <Col xs="12" className="about-part">
-                                        <img style={{width:"40%"}} src={require("./update.jpg")} />
-                                        <img style={{width:"40%"}} src={require("./update2.jpg")} />
+                                        <img alt="towerhowto2" style={{width:"40%"}} src={require("./update.jpg")} />
+                                        <img alt="towerhowto3" style={{width:"40%"}} src={require("./update2.jpg")} />
                                     </Col>
                                 </Row>
                             </CardBody>

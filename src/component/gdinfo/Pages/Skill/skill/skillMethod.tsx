@@ -73,7 +73,6 @@ export function generateTable(userid: string,
     else if(side === 2) {
         obj.skill2 += obj.skill;
     }
-    obj.skill = obj.skill;
     
     const bg = skillTableColor(rate*cur.level*2/1000);
     if(bg.startsWith("#")) {

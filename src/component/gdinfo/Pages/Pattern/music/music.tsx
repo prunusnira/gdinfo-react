@@ -105,7 +105,7 @@ class Music extends Component<RouteComponentProps<IMatchProps>, State> {
                     case 12: obj.diff = 'MASTER'; obj.lv = (music.dmas/100).toFixed(2); skill = json.skill.s12; break;
                 }
 
-                if(obj.lv != "0.00" && skill != null) {
+                if(obj.lv !== "0.00" && skill !== null) {
                     obj.cleartime = skill.cleartime;
                     obj.playtime = skill.playtime;
                     obj.combo = skill.combo;
@@ -125,8 +125,8 @@ class Music extends Component<RouteComponentProps<IMatchProps>, State> {
                         default: obj.rank = process.env.PUBLIC_URL+'/general-img/rank/rank_e.png'; break;
                     }
 
-                    if(skill.checkfc == "Y") {
-                        if(skill.rank == "EXC")
+                    if(skill.checkfc === "Y") {
+                        if(skill.rank === "EXC")
                             obj.fc = "<img class='skillrank-img' src='"+process.env.PUBLIC_URL+"/general-img/rank/exc.png'>";
                         else
                             obj.fc = "<img class='skillrank-img' src='"+process.env.PUBLIC_URL+"/general-img/rank/fc.png'>";
@@ -143,9 +143,9 @@ class Music extends Component<RouteComponentProps<IMatchProps>, State> {
                     obj.clearmeter = '';
                     const meter = skill.meter.split('');
                     for(let k = 0; k < meter.length; k++) {
-                        if(meter[k] == "0")
+                        if(meter[k] === "0")
                             obj.clearmeter += "<div style='width:0.8vw; max-width:9px; background-color:#81BEF7; float:left'>&nbsp;</div>";
-                        else if(meter[k] == "1")
+                        else if(meter[k] === "1")
                             obj.clearmeter += "<div style='width:0.8vw; max-width:9px; background-color:#F3F781; float:left'>&nbsp;</div>";
                         else
                             obj.clearmeter += "<div style='width:0.8vw; max-width:9px; background-color:#848484; float:left'>&nbsp;</div>";

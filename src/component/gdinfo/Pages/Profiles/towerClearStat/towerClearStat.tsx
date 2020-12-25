@@ -2,11 +2,11 @@ import React, {Component} from 'react';
 import axios from 'axios';
 import txtTowerStat from './txttowerstat';
 import LData from '../../Common/language';
-import {towerName} from '../../Tower/towername';
 import {titlesp} from '../../Tower/titletxt';
 import TowerStatTable from './towerStatTable';
 import TitleStatTable from './titleStatTable';
 import {TowerClearData, TowerFloorData, FloorClearData} from './towerClearData';
+import {towerName} from '../../Tower/towername';
 
 import {
     Container,
@@ -46,13 +46,13 @@ class TowerClearStat extends Component<RouteComponentProps<IMatchProps>, State> 
         axios.post(commonData.commonDataURL+"profile/towerstatus/tower/"+prop.id)
         .then((res) => {
             const json = res.data;
-            const list = json.list;
-            const tower = json.tower;
+            const list = JSON.parse(json.list);
+            const tower = JSON.parse(json.tower);
             const towerlist = new Array<TowerClearData>();
 
             for(let i = 0; i < list.length; i++) {
                 const obj = new TowerClearData();
-                obj.tower = eval('towerName'+list[i])[this.lang];
+                obj.tower = (towerName as any)[list[i]][this.lang];
                 // Eval을 사용한 트릭
                 obj.floors = new Array<TowerFloorData>();
                 
@@ -60,12 +60,12 @@ class TowerClearStat extends Component<RouteComponentProps<IMatchProps>, State> 
                     if(list[i] === tower[j].tower) {
                         const floor = (tower[j].floor+1)+(txtTowerStat.floor as any)[this.lang];
                         let clear = "";
-                        if(tower[j].clear == "Y") clear = "Cleared";
+                        if(tower[j].clear === "Y") clear = "Cleared";
                         else clear = "Not cleared";
                         obj.floors.push({floor:floor, clear: clear});
                     }
                 }
-                if(obj.cont == "") obj.cont = (txtTowerStat.nodata as any)[this.lang];
+                if(obj.cont === "") obj.cont = (txtTowerStat.nodata as any)[this.lang];
                 towerlist.push(obj);
             }
 
@@ -79,7 +79,7 @@ class TowerClearStat extends Component<RouteComponentProps<IMatchProps>, State> 
         axios.post(commonData.commonDataURL+"profile/towerstatus/floor/"+prop.id)
         .then((res) => {
             const json = res.data;
-            const floor = json.floor;
+            const floor = JSON.parse(json.floor);
             const titlelist = [];
 
             for(let i = 0; i < floor.length; i++) {

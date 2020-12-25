@@ -53,3 +53,7 @@ body {
 	  color: #FFF;
 	}
 }
+
+.logoutbtn span {
+	color: black;
+}

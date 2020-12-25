@@ -5,7 +5,7 @@ import axios from 'axios';
 import txtNewuser from './txtnewuser';
 import txtTerms from '../../terms/txtterms';
 import LData from '../../Common/language';
-import {LoginInfo} from '../../../Redux/action';
+import {actionCreator, LoginInfo} from '../../../Redux/action';
 
 import {
     Container,
@@ -18,15 +18,13 @@ import {
 } from 'reactstrap';
 import commonData from '../../Common/commonData';
 import { StoreState } from '../../../Redux/reducer';
-
-interface IMatchProps {
-
-}
+import { AnyAction, bindActionCreators, Dispatch } from 'redux';
 
 interface Props {
     userinfo: LoginInfo,
     login: boolean,
-    setUserinfo: (info: LoginInfo) => void
+    setUserinfo: (info: LoginInfo) => void,
+    Actions: typeof actionCreator
 }
 
 interface State {
@@ -34,7 +32,7 @@ interface State {
     moveToIndex: boolean,
 }
 
-class NewUser extends Component<RouteComponentProps<IMatchProps> & Props, State> {
+class NewUser extends Component<Props, State> {
     lang = LData.lang;
 
     state: State = {
@@ -48,8 +46,10 @@ class NewUser extends Component<RouteComponentProps<IMatchProps> & Props, State>
 
     addNewUser() {
         const self = this;
+        const token = this.props.userinfo.token;
+        this.props.Actions.setLogout();
         const params = new URLSearchParams();
-        params.append("token", this.props.location.state.token);
+        params.append("token", token);
         axios.post(commonData.commonDataURL+"newuser", params)
         .then((res) => {
             const json = res.data.loginData;
@@ -156,4 +156,8 @@ const mapStateToProps = (state: StoreState) => {
     }
 };
 
-export default connect(mapStateToProps)(NewUser);
+const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
+    Actions: bindActionCreators(actionCreator, dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewUser);

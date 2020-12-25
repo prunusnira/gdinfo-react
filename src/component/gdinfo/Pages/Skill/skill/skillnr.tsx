@@ -212,7 +212,7 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
 
         axios.post(commonData.commonDataURL+"getuserid/"+props.match.params.userid)
         .then((res) => {
-            const json = res.data.mydata;
+            const json = JSON.parse(res.data.mydata);
 
             let statLeftTitle = "";
             let statMidTitle = "";
@@ -343,9 +343,10 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
             const skillList1 = [];
             const skillList2 = [];
 
-            if(json.skill.length > 0) {
-                for(let i = 0; i < json.skill.length; i++) {
-                    const cur = json.skill[i];
+            const skill = JSON.parse(json.skill);
+            if(skill.length > 0) {
+                for(let i = 0; i < skill.length; i++) {
+                    const cur = skill[i];
                     let obj = skillMethod.generateTable(urlprops.userid, cur, i, json.page, urlprops.ptype, 0);
 
                     sum1 += obj.skill1;
@@ -353,9 +354,11 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
                     skillList1.push(obj);
                 }
             }
-            if(json.hskill.length > 0) {
-                for(let i = 0; i < json.hskill.length; i++) {
-                    const cur = json.hskill[i];
+
+            const hskill = JSON.parse(json.hskill);
+            if(hskill.length > 0) {
+                for(let i = 0; i < hskill.length; i++) {
+                    const cur = hskill[i];
                     let obj = skillMethod.generateTable(urlprops.userid, cur, i, json.page, urlprops.ptype, 1);
 
                     sum1 += obj.skill1;
@@ -363,9 +366,11 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
                     skillList1.push(obj);
                 }
             }
-            if(json.oskill.length > 0) {
-                for(let i = 0; i < json.oskill.length; i++) {
-                    const cur = json.oskill[i];
+
+            const oskill = JSON.parse(json.oskill);
+            if(oskill.length > 0) {
+                for(let i = 0; i < oskill.length; i++) {
+                    const cur = oskill[i];
                     let obj = skillMethod.generateTable(urlprops.userid, cur, i, json.page, urlprops.ptype, 2);
 
                     sum2 += obj.skill2;
@@ -374,11 +379,12 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
                 }
             }
             
-            const updtime = new Date(json.user.updatetime);
+            const user = JSON.parse(json.user);
+            const updtime = new Date(user.updatetime);
             const time = updtime.getFullYear() + "/" + (updtime.getMonth()+1) + "/" +
                 updtime.getDate() + " " + updtime.getHours() + ":" + updtime.getMinutes();
             
-            if(json.skill.length === 0 && json.hskill.length === 0 && json.oskill.length === 0) {
+            if(skill.length === 0 && hskill.length === 0 && oskill.length === 0) {
         //        isEmpty = true;
             }
             

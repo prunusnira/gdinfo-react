@@ -78,58 +78,63 @@ class PlayCount extends Component<RouteComponentProps<IMatchProps> & Props, Stat
         .then((res) => {
             const json = res.data;
 
+            const mybestp = JSON.parse(json.mybestp);
+            const mybestpg = JSON.parse(json.mybestpg);
+            const mybestpd = JSON.parse(json.mybestpd);
+            const mybestm = JSON.parse(json.mybestm);
+
             const plist = [];
             const glist = [];
             const dlist = [];
             const mlist = [];
 
-            for(let i = 0; i < json.mybestp.length; i++) {
+            for(let i = 0; i < mybestp.length; i++) {
                 const mypdata: PlaycountData = {
                     key: 'p'+i,
                     number: i+1,
-                    jacket: commonData.commonImageURL+"music/"+json.mybestp[i].id+'.jpg',
-                    name: json.mybestp[i].name,
+                    jacket: commonData.commonImageURL+"music/"+mybestp[i].id+'.jpg',
+                    name: mybestp[i].name,
                     pattern: "",
-                    count: json.mybestp[i].playtime
+                    count: mybestp[i].playtime
                 };
-                mypdata.pattern = getPatternImg600(json.mybestp[i].patterncode);
+                mypdata.pattern = getPatternImg600(mybestp[i].patterncode);
                 plist.push(mypdata);
             }
 
-            for(let i = 0; i < json.mybestpg.length; i++) {
+            for(let i = 0; i < mybestpg.length; i++) {
                 const mygdata: PlaycountData = {
                     key: 'g'+i,
                     number: i+1,
-                    jacket: commonData.commonImageURL+"music/"+json.mybestpg[i].id+'.jpg',
-                    name: json.mybestpg[i].name,
+                    jacket: commonData.commonImageURL+"music/"+mybestpg[i].id+'.jpg',
+                    name: mybestpg[i].name,
                     pattern: "",
-                    count: json.mybestpg[i].playtime
+                    count: mybestpg[i].playtime
                 };
-                mygdata.pattern = getPatternImg600(json.mybestpg[i].patterncode);
+                mygdata.pattern = getPatternImg600(mybestpg[i].patterncode);
                 glist.push(mygdata);
             }
             
-            for(let i = 0; i < json.mybestpd.length; i++) {
+            for(let i = 0; i < mybestpd.length; i++) {
                 const myddata: PlaycountData = {
                     key: 'd'+i,
                     number: i+1,
-                    jacket: commonData.commonImageURL+"music/"+json.mybestpd[i].id+'.jpg',
-                    name: json.mybestpd[i].name,
+                    jacket: commonData.commonImageURL+"music/"+mybestpd[i].id+'.jpg',
+                    name: mybestpd[i].name,
                     pattern: "",
-                    count: json.mybestpd[i].playtime
+                    count: mybestpd[i].playtime
                 };
-                myddata.pattern = getPatternImg600(json.mybestpd[i].patterncode);
+                myddata.pattern = getPatternImg600(mybestpd[i].patterncode);
                 dlist.push(myddata);
             }
             
-            for(let i = 0; i < json.mybestm.length; i++) {
+            for(let i = 0; i < mybestm.length; i++) {
                 const mymdata: PlaycountData = {
                     key: 'm'+i,
                     number: i+1,
-                    jacket: commonData.commonImageURL+"music/"+json.mybestm[i].id+'.jpg',
-                    name: json.mybestm[i].name,
+                    jacket: commonData.commonImageURL+"music/"+mybestm[i].id+'.jpg',
+                    name: mybestm[i].name,
                     pattern: "",
-                    count: json.mybestm[i].playtime
+                    count: mybestm[i].playtime
                 };
                 mlist.push(mymdata);
             }

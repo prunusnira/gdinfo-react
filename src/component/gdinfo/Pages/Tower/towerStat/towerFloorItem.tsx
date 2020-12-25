@@ -75,7 +75,7 @@ class TowerFloorItem extends Component<Props> {
                                     </Row>
                                     <Row style={{paddingBottom:"10px"}} id='description'>
                                         <Col xs="4" className="text-right">
-                                            <img src={process.env.PUBLIC_URL+"/general-img/tower/rightbottom.png"} />
+                                            <img alt="towerbottom" src={process.env.PUBLIC_URL+"/general-img/tower/rightbottom.png"} />
                                         </Col>
                                         <Col xs="8" className="text-left">
                                             <span dangerouslySetInnerHTML={{__html: fl.description}}></span>
@@ -83,7 +83,7 @@ class TowerFloorItem extends Component<Props> {
                                     </Row>
                                 </Col>
                                 <Col xs="2">
-                                    <img style={{width:"50px"}} src={fl.clear} /><br/>
+                                    <img alt="towerclear" style={{width:"50px"}} src={fl.clear} /><br/>
                                     <span dangerouslySetInnerHTML={{__html: fl.titlechange}}></span>
                                 </Col>
                             </Row>

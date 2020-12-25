@@ -46,17 +46,7 @@ class ProfileReset extends Component<Props, State> {
         const data = new URLSearchParams();
         data.append("id", this.props.userinfo.id);
 
-        const config = {
-            headers: {
-                'X-Requested-With': 'XMLHttpRequest'
-            }
-        };
-
-        axios.post(url, data/*, {
-            headers: {
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8'
-            }
-        }*/)
+        axios.post(url, data)
         .then((res) => {
             this.setState({
                 redirect: true

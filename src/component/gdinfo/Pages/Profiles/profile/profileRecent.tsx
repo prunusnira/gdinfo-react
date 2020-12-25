@@ -30,10 +30,10 @@ class ProfileRecent extends Component<Props, State> {
         dmax: 0
     }
 
-    componentWillMount() {
+    componentDidMount() {
         axios.post(commonData.commonDataURL+"skillrecord/"+this.props.id)
         .then((res) => {
-            const record = res.data.record;
+            const record = JSON.parse(res.data.record);
             const length = record.length;
 
             // min max calc

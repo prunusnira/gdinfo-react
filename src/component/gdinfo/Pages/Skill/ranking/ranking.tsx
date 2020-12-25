@@ -55,10 +55,11 @@ class SkillRanking extends Component<RouteComponentProps<IMatchProps>, State> {
         .then((res) => {
             const json = res.data;
             const list = new Array<SRankData>();
+            const userList = JSON.parse(json.allUserList);
 
-            for(let i = 0; i < json.allUserList.length; i++) {
+            for(let i = 0; i < userList.length; i++) {
                 const obj = new SRankData();
-                const cur = json.allUserList[i];
+                const cur = userList[i];
                 obj.index = i+30*(parseInt(urlparam.page)-1)+1;
                 obj.profilerank = '/profile/'+cur.id;
 

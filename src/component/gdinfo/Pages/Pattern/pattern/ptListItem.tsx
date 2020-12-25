@@ -6,7 +6,6 @@ import {
     Row,
     Col
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
 import { PatternData } from './patternData';
 
 interface Props {

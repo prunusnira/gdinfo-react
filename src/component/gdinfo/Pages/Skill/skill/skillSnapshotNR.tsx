@@ -175,7 +175,7 @@ class SkillSnapshotNR extends Component<RouteComponentProps<IMatchProps>, State>
         const gtype = urlprop.gtype;
 
         let gtypeLong = "";
-        if(gtype == "gf") gtypeLong = "GuitarFreaks";
+        if(gtype === "gf") gtypeLong = "GuitarFreaks";
         else gtypeLong = "DrumMania";
 
         return (

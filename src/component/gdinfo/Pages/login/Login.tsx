@@ -39,7 +39,7 @@ class Login extends Component<Props, State> {
     updateUserinfo(info: LoginInfo) {
         this.props.Actions.setLogin(info);
     }
-
+    
     responseGoogle = (res: GoogleLoginResponse) => {
         const token = res.getBasicProfile().getEmail().split("@")[0];
         const hash = sha256(token);
@@ -52,15 +52,16 @@ class Login extends Component<Props, State> {
         xhr.onload = function() {
             const rtn = xhr.responseText;
             const json = JSON.parse(rtn);
+            const loginData = JSON.parse(json.loginData);
 
-            switch(json.loginData.stat) {
+            switch(loginData.stat) {
                 case "login":
-                    self.updateUserinfo(json.loginData);
+                    self.updateUserinfo(loginData);
                     window.location.href="/index";
                     break;
                 case "newuser":
                     self.setState({
-                        token: json.loginData.token,
+                        token: loginData.token,
                         newuser: true
                     });
                     break;
@@ -76,13 +77,14 @@ class Login extends Component<Props, State> {
     }
 
     render() {
-        const self = this;
-        if(self.state.newuser) {
+        if(this.state.newuser) {
+            // Redux LoginInfo token에 넣고 보내기
+            this.props.Actions.setLogin({
+                token: this.state.token,
+                id: ""
+            });
             return (
-                <Redirect to={{
-                    pathname: "/newuser",
-                    state: { token: self.state.token }
-                }} />
+                <Redirect to={{ pathname: "/newuser" }} />
             )
         }
         else {
@@ -106,6 +108,7 @@ class Login extends Component<Props, State> {
                                                 buttonText="Login with Google"
                                                 onSuccess={this.responseGoogle}
                                                 onFailure={this.responseFail}
+                                                isSignedIn={false}
                                                 cookiePolicy={'single_host_origin'} />
                                         </Col>
                                     </Row>

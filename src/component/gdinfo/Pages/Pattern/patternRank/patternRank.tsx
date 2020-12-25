@@ -117,51 +117,52 @@ class PatternRank extends Component<RouteComponentProps<IMatchProps> & Props, St
         .then((res) => {
             const json = res.data;
             const ptcode = prop.match.params.ptcode;
+            const music = JSON.parse(json.music);
 
             const pattern = getPatternImg600(parseInt(ptcode));
             let level: string = "";
             switch(parseInt(ptcode)) {
             case 1:
-                level = (json.music.gbsc/100).toFixed(2);
+                level = (music.gbsc/100).toFixed(2);
                 break;
             case 2:
-                level = (json.music.gadv/100).toFixed(2);
+                level = (music.gadv/100).toFixed(2);
                 break;
             case 3:
-                level = (json.music.gext/100).toFixed(2);
+                level = (music.gext/100).toFixed(2);
                 break;
             case 4:
-                level = (json.music.gmas/100).toFixed(2);
+                level = (music.gmas/100).toFixed(2);
                 break;
             case 5:
-                level = (json.music.bbsc/100).toFixed(2);
+                level = (music.bbsc/100).toFixed(2);
                 break;
             case 6:
-                level = (json.music.badv/100).toFixed(2);
+                level = (music.badv/100).toFixed(2);
                 break;
             case 7:
-                level = (json.music.bext/100).toFixed(2);
+                level = (music.bext/100).toFixed(2);
                 break;
             case 8:
-                level = (json.music.bmas/100).toFixed(2);
+                level = (music.bmas/100).toFixed(2);
                 break;
             case 9:
-                level = (json.music.dbsc/100).toFixed(2);
+                level = (music.dbsc/100).toFixed(2);
                 break;
             case 10:
-                level = (json.music.dadv/100).toFixed(2);
+                level = (music.dadv/100).toFixed(2);
                 break;
             case 11:
-                level = (json.music.dext/100).toFixed(2);
+                level = (music.dext/100).toFixed(2);
                 break;
             case 12:
-                level = (json.music.dmas/100).toFixed(2);
+                level = (music.dmas/100).toFixed(2);
                 break;
             default: level = ""; break;
             }
 
-            const mname = json.music.name;
-            const composer = json.music.composer;
+            const mname = music.name;
+            const composer = music.composer;
 
             this.setState({
                 pattern: pattern,
@@ -186,29 +187,33 @@ class PatternRank extends Component<RouteComponentProps<IMatchProps> & Props, St
                 mid+"/"+ptcode+"/"+page+"/"+version)
         .then((res) => {
             const json = res.data;
+
+            const music = JSON.parse(json.music);
+            const list = JSON.parse(json.list);
+            const users = JSON.parse(json.users);
 				
             let lv = 0;
             let userskill = 0;
             switch(parseInt(ptcode)) {
-            case 1: lv = json.music.gbsc; break;
-            case 2: lv = json.music.gadv; break;
-            case 3: lv = json.music.gext; break;
-            case 4: lv = json.music.gmas; break;
-            case 5: lv = json.music.bbsc; break;
-            case 6: lv = json.music.badv; break;
-            case 7: lv = json.music.bext; break;
-            case 8: lv = json.music.bmas; break;
-            case 9: lv = json.music.dbsc; break;
-            case 10: lv = json.music.dadv; break;
-            case 11: lv = json.music.dext; break;
-            case 12: lv = json.music.dmas; break;
+            case 1: lv = music.gbsc; break;
+            case 2: lv = music.gadv; break;
+            case 3: lv = music.gext; break;
+            case 4: lv = music.gmas; break;
+            case 5: lv = music.bbsc; break;
+            case 6: lv = music.badv; break;
+            case 7: lv = music.bext; break;
+            case 8: lv = music.bmas; break;
+            case 9: lv = music.dbsc; break;
+            case 10: lv = music.dadv; break;
+            case 11: lv = music.dext; break;
+            case 12: lv = music.dmas; break;
             default: lv = 0;
             }
 
             const ranklist = new Array<PTRankData>();
-            for(let i = 0; i < json.list.length; i++) {
-                const cur = json.list[i];
-                const user = json.users[i];
+            for(let i = 0; i < list.length; i++) {
+                const cur = list[i];
+                const user = users[i];
                 const obj = new PTRankData();
 
                 const rate = cur.rate;
@@ -253,7 +258,7 @@ class PatternRank extends Component<RouteComponentProps<IMatchProps> & Props, St
 
                 obj.index = (parseInt(page)-1)*30+i+1;
 
-                if(user.titletower != '') {
+                if(user.titletower !== '') {
                     obj.towertitle = "<img class='towertitle35' src='/img/title/"+user.titletower+".png' />";
                 }
                 else {
@@ -288,10 +293,10 @@ class PatternRank extends Component<RouteComponentProps<IMatchProps> & Props, St
                     break;
                 }
                 
-                if(cur.checkfc == "Y" && cur.rank != "EXC") {
+                if(cur.checkfc === "Y" && cur.rank !== "EXC") {
                     obj.fc = "<img class='fc-img' src='"+process.env.PUBLIC_URL+"/general-img/rank/fc_300.png' />";
                 }
-                else if(cur.checkfc == "Y" && cur.rank == "EXC") {
+                else if(cur.checkfc === "Y" && cur.rank === "EXC") {
                     obj.fc = "<img class='fc-img' src='"+process.env.PUBLIC_URL+"/general-img/rank/exc_300.png' />";
                 }
                 else {
@@ -312,7 +317,6 @@ class PatternRank extends Component<RouteComponentProps<IMatchProps> & Props, St
         const self = this;
         const urlprop = this.props.match.params;
         const search = this.props.location.search;
-        const params = new URLSearchParams(search);
 
         const mid = urlprop.mid;
         const ptcode = urlprop.ptcode;

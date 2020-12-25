@@ -18,12 +18,15 @@ import {
     DropdownMenu,
     DropdownToggle,
     UncontrolledDropdown,
-    Row,
-    Col,
-    Alert
+    Input,
+    InputGroup,
+    InputGroupAddon,
+    InputGroupText
 } from 'reactstrap'
 import { StoreState } from '../Redux/reducer';
 import { Dispatch, AnyAction, bindActionCreators } from 'redux';
+import { GoogleLogout } from 'react-google-login';
+import commonData from '../Pages/Common/commonData';
 
 interface Props {
     login: boolean,
@@ -35,12 +38,16 @@ interface State {
     isMenuOpen: boolean,
     isSearchOpen: boolean,
     searchType: string,
-    isToken: boolean
+    isToken: boolean,
+
+    searchNameWeight: number | "bold" | "normal" | "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "bolder" | "lighter" | undefined,
+    searchGSkillWeight: number | "bold" | "normal" | "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "bolder" | "lighter" | undefined,
+    searchDSkillWeight: number | "bold" | "normal" | "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "bolder" | "lighter" | undefined,
+    searchMusicWeight: number | "bold" | "normal" | "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "bolder" | "lighter" | undefined,
 }
 
 class GDHeader extends Component<Props, State> {
     lang = LData.lang;
-    searchBtn = "Player";
 
     constructor(props: Props) {
         super(props);
@@ -52,12 +59,12 @@ class GDHeader extends Component<Props, State> {
             isMenuOpen: false,
             isSearchOpen: false,
             searchType: "name",
-            isToken: false
+            isToken: false,
+            searchNameWeight: "bold",
+            searchGSkillWeight: "normal",
+            searchDSkillWeight: "normal",
+            searchMusicWeight: "normal",
         };
-    }
-
-    signOut = () => {
-        this.props.Actions.setLogout();
     }
 
     LoginButton() {
@@ -73,12 +80,16 @@ class GDHeader extends Component<Props, State> {
         }
         else {
             return (
-                <NavLink className="nav-link" tag={Link} to="#no_div" onClick={() => {
-                    this.signOut(); this.toggleMenu();}}>
+                <NavLink className="nav-link" tag={Link} to="#no_div"
+                    onClick={() => {this.toggleMenu();}}>
                     <img alt="icon" className="navicon" src={require("./img/logout.png")}/>
-                    <span className="navlefttxt">
-                        {(txtHeader.logout as any)[this.lang]}
-                    </span>
+                    <GoogleLogout
+                        className="logoutbtn"
+                        clientId={commonData.googleLoginClientId}
+                        buttonText={(txtHeader.logout as any)[this.lang]}
+                        onLogoutSuccess={
+                            () => this.props.Actions.setLogout()
+                        } />
                 </NavLink>
             );
         }
@@ -103,16 +114,36 @@ class GDHeader extends Component<Props, State> {
         
         switch(type) {
         case "name":
-            this.searchBtn = "Player";
+            this.setState({
+                searchNameWeight: "bold",
+                searchGSkillWeight: "normal",
+                searchDSkillWeight: "normal",
+                searchMusicWeight: "normal"
+            });
             break;
         case "gskill":
-            this.searchBtn = "G-Skill";
+            this.setState({
+                searchNameWeight: "normal",
+                searchGSkillWeight: "bold",
+                searchDSkillWeight: "normal",
+                searchMusicWeight: "normal"
+            });
             break;
         case "dskill":
-            this.searchBtn = "D-Skill";
+            this.setState({
+                searchNameWeight: "normal",
+                searchGSkillWeight: "normal",
+                searchDSkillWeight: "bold",
+                searchMusicWeight: "normal"
+            });
             break;
         case "music":
-            this.searchBtn = "Music";
+            this.setState({
+                searchNameWeight: "normal",
+                searchGSkillWeight: "normal",
+                searchDSkillWeight: "normal",
+                searchMusicWeight: "bold"
+            });
             break;
         default:
             break;
@@ -132,7 +163,7 @@ class GDHeader extends Component<Props, State> {
         const self = this;
         return (
             <Fragment>
-                <Navbar color='dark' className='bg-dark sticky-top'>
+                <Navbar color='dark' className='bg-dark sticky-top' expand="lg">
                     <NavbarBrand tag={Link} to="/index" onClick={() => {this.setState({isMenuOpen: false})}}>
                         <img alt="icon" style={{maxHeight: 48+'px'}} src={require("./img/logoidx.png")}/>
                     </NavbarBrand>
@@ -141,7 +172,7 @@ class GDHeader extends Component<Props, State> {
                         {/*<span className="navbar-toggler-icon"></span>*/}
                     </NavbarToggler>
 
-                    <Collapse isOpen={this.state.isMenuOpen} navbar>
+                    <Collapse isOpen={this.state.isMenuOpen} navbar className="flex-column">
                         <Nav className="mr-auto" navbar>
                             {/* login or logout button */}
                             <NavItem>
@@ -238,23 +269,21 @@ class GDHeader extends Component<Props, State> {
                                 </NavLink>
                             </NavItem>
                         </Nav>
-
-                        {/* search */}
-                        <NavbarToggler onClick={this.toggleSearch} href="#no_div">
-                            <span color='white'>Search: {this.searchBtn}</span>
-                        </NavbarToggler>
-                        <input className="form-control" id="searchinp" name="val" type="search"
-                            placeholder="Select type, Input and Press Enter"
-                            aria-label="Search" style={{width:100+'%'}}
-                            onKeyDown={self.doSearch} />
-                        <Collapse isOpen={this.state.isSearchOpen} navbar>
-                            <Nav className="mr-auto" navbar>
-                                <NavLink onClick={() => this.changeSearchType('name')} href="#no_div">Player</NavLink>
-                                <NavLink onClick={() => this.changeSearchType('gskill')} href="#no_div">G-Skill</NavLink>
-                                <NavLink onClick={() => this.changeSearchType('dskill')} href="#no_div">D-Skill</NavLink>
-                                <NavLink onClick={() => this.changeSearchType('music')} href="#no_div">Music</NavLink>
-                            </Nav>
-                        </Collapse>
+                        <Nav className="flex-row float-left">
+                            {/* search */}
+                            <InputGroup size="sm" style={{width: "100%"}}>
+                                <InputGroupAddon addonType="prepend">
+                                    <InputGroupText style={{fontWeight: this.state.searchNameWeight}} onClick={() => this.changeSearchType('name')} href="#no_div">Player</InputGroupText>
+                                    <InputGroupText style={{fontWeight: this.state.searchGSkillWeight}} onClick={() => this.changeSearchType('gskill')} href="#no_div">G-Skill</InputGroupText>
+                                    <InputGroupText style={{fontWeight: this.state.searchDSkillWeight}} onClick={() => this.changeSearchType('dskill')} href="#no_div">D-Skill</InputGroupText>
+                                    <InputGroupText style={{fontWeight: this.state.searchMusicWeight}} onClick={() => this.changeSearchType('music')} href="#no_div">Music</InputGroupText>
+                                </InputGroupAddon>
+                                <Input id="searchinp" name="val" type="search"
+                                    placeholder="Search"
+                                    aria-label="Search"
+                                    onKeyDown={self.doSearch} />
+                            </InputGroup>
+                        </Nav>
                     </Collapse>
                 </Navbar>
 

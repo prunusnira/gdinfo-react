@@ -52,15 +52,17 @@ class TowerStat extends Component<RouteComponentProps<IMatchProps> & Props, Stat
     loadTowerStatData(prop: RouteComponentProps<IMatchProps> & Props) {
         const urlprop = prop.match.params;
         const towerRecord = new Array<string>();
-        let towerlist = [];
+        let towerlistScr = [];
         const towercomp = new Array<boolean>();
         const clear = [];
 
         axios.post(commonData.commonDataURL+"towerdata/"+
                     urlprop.tower+"/"+prop.userinfo.id)
         .then((res) => {
-            const json = res.data;
-            const towheight = json.tower.levels;
+			const json = res.data;
+			const tower = JSON.parse(json.tower);
+			const towerlist = JSON.parse(json.towerlist);
+            const towheight = tower.levels;
     
             const pat = new Array<Array<TowerData>>(towheight);
             // 들어가기 전에 일단 패턴 분류부터
@@ -68,8 +70,8 @@ class TowerStat extends Component<RouteComponentProps<IMatchProps> & Props, Stat
                 pat[i] = new Array<TowerData>();
             }
             
-            for(let i = 0; i < json.towerlist.length; i++) {
-                pat[json.towerlist[i].tower.floor].push(json.towerlist[i]);
+            for(let i = 0; i < towerlist.length; i++) {
+                pat[towerlist[i].tower.floor].push(towerlist[i]);
             }
             
             for(let i = 0; i < towheight; i++) {
@@ -81,14 +83,14 @@ class TowerStat extends Component<RouteComponentProps<IMatchProps> & Props, Stat
             this.clearOX(towheight, pat, towercomp);
 
             // 각 탑의 정보 추가 (메인)
-            towerlist = this.updateTower(json.tower, pat, towerRecord, urlprop.tower);
+            towerlistScr = this.updateTower(tower, pat, towerRecord, urlprop.tower);
             
             // 탑의 클리어 상태 체크
             this.updateAllPassed(towercomp);
 
             this.setState({
-				name: json.tower.name,
-                list: towerlist
+				name: tower.name,
+                list: towerlistScr
             })
         });
     }
@@ -106,10 +108,8 @@ class TowerStat extends Component<RouteComponentProps<IMatchProps> & Props, Stat
 			obj.skillfrom = (manage.skill + (size-i-1)*500);
 			obj.floor = size-i;
 
-			const recIdx = size-i-1;
-
 			const clearstat = this.checkClear(pat[size-i-1]);
-			if(clearstat['clear'] && clearstat['rate'] == 100) {
+			if(clearstat['clear'] && clearstat['rate'] === 100) {
 				obj.floorclear = process.env.PUBLIC_URL+"/general-img/tower/goldpassed.png";
 			}
 			else if(clearstat['clear']) {
@@ -158,7 +158,7 @@ class TowerStat extends Component<RouteComponentProps<IMatchProps> & Props, Stat
 				flist.condScore = cfl.tower.score;
 				flist.condRate = cfl.tower.rate/100;
 				flist.condCombo = cfl.tower.combo;
-				if(cfl.tower.fc == true) {
+				if(cfl.tower.fc === true) {
 					flist.fc += "(FC)";
 				}
 
@@ -265,7 +265,7 @@ class TowerStat extends Component<RouteComponentProps<IMatchProps> & Props, Stat
                     <Col xs="12">
                         <Card>
                             <CardHeader>
-                                <h3 id="towername"></h3>
+                                <h3 id="towername">{this.state.name}</h3>
                             </CardHeader>
                             <CardBody className="text-center">
                                 <Row>

@@ -1,6 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import axios from 'axios';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import txtProfile from './txtprofile';
 import LData from '../../Common/language';
 import {

@@ -34,7 +34,7 @@ class RecentSelfInfo extends Component<Props, State> {
             axios.post(commonData.commonDataURL+"getuser/"+token)
             .then((res) => {
                 this.setState({
-                    data: res.data.mydata,
+                    data: JSON.parse(res.data.mydata),
                     loading: true
                 });
             });
@@ -64,10 +64,14 @@ class RecentSelfInfo extends Component<Props, State> {
                             {data.name}
                         </span><br/>
                         <span><b>GF</b>
-                            {data.gskill}
+                            <Link
+                                style={{color: "white"}}
+                                to={"/skill/2/"+data.id+"/gf/1/1"}>{data.gskill}</Link>
                         </span>&nbsp;&nbsp;&nbsp;
                         <span><b>DM</b>
-                            {data.dskill}
+                            <Link
+                                style={{color: "white"}}
+                                to={"/skill/2/"+data.id+"/dm/1/1"}>{data.dskill}</Link>
                         </span>
                     </CardText>
                 )

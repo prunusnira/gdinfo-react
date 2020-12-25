@@ -34,6 +34,11 @@ const txtProfile = {
             "jp":"コメント",
             "ko":"코멘트",
             "en":"Comment"
+        },
+        emptyname: {
+            "jp":"非公開",
+            "ko":"비공개",
+            "en":"PRIVATE"
         }
     },
     detail: {
@@ -47,10 +52,10 @@ const txtProfile = {
             "ko":"스킬 보기",
             "en":"Skill table"
         },
-        setopencount: {
-            "jp":"カウント公開",
-            "ko":"카운트 공개",
-            "en":"Open play count"
+        setdataopen: {
+            "jp":"情報公開設定",
+            "ko":"정보 공개 설정",
+            "en":"Open to public setting"
         },
         changecomment: {
             "jp":"コメント更新",
@@ -155,21 +160,16 @@ const txtProfile = {
                 "* You need all pattern data to check exact play count"
         }
     },
-    opencount: {
-        current: {
-            "jp":"現在のプレイカウント設定 ",
-            "ko":"현재의 플레이카운트 설정 ",
-            "en":"Open status - play count"
-        },
+    dataopen: {
         yes: {
             "jp":"公開",
             "ko":"공개",
-            "en":"Opened"
+            "en":"Open"
         },
         no: {
             "jp":"非公開",
             "ko":"비공개",
-            "en":"Closed"
+            "en":"Close"
         }
     },
     changecomment: {

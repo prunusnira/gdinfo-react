@@ -30,16 +30,17 @@ class GDFooter extends Component {
                             <a href="#no_div" onClick={() => this.langChange('en')}>English</a>
                         </Col>
                         <Col sm="8">
-                            <span>Skill Navigator (c) 2016 Nira(<a href="https://twitter.com/prunusnira" target="_blank">@prunusNira</a>)</span><br/>
-                            <span>Twitter <a href='https://twitter.com/sin_navigator'>@SIN_Navigator</a> | <Link to='/terms'>Terms and Conditions</Link></span><br/>
-                            <span>{(txtFooter.about as any)[this.lang]}</span>
+                            <span>Skill Navigator (c) 2016 Nira(<a href="https://twitter.com/prunusnira" target="_blank" rel="noopener noreferrer">@prunusNira</a>)</span><br/>
+                            <span>Twitter <a href='https://twitter.com/_nira_one'>@_nira_one</a> | <Link to='/terms'>Terms and Conditions</Link></span><br/>
+                            <span>{(txtFooter.about as any)[this.lang]}</span><br/>
+                            <span>{(txtFooter.fanpage as any)[this.lang]}</span>
                         </Col>
                     </Row>
                     <Row>
                         <Col xs="12">
                             Source Code<br/>
-                            <a href="https://github.com/prunusnira/gdinfo-react" target="_blank">Frontend GitHub</a>&nbsp;|&nbsp;
-                            <a href="https://github.com/prunusnira/gdinfo-public" target="_blank">Backend GitHub</a>
+                            <a href="https://github.com/prunusnira/gdinfo-react" target="_blank" rel="noopener noreferrer">Frontend GitHub</a>&nbsp;|&nbsp;
+                            <a href="https://github.com/prunusnira/gdinfo-public" target="_blank" rel="noopener noreferrer">Backend GitHub</a>
                         </Col>
                     </Row>
                     <Row className='footerrow'>

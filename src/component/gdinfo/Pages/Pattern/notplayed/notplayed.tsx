@@ -108,9 +108,11 @@ class NotPlayed extends Component<RouteComponentProps<IMatchProps>, State> {
         axios.post(ajaxurl)
         .then((res) => {
             const json = res.data;
-            for(let i = 0; i < json.music.length; i++) {
+            const music = JSON.parse(json.music);
+
+            for(let i = 0; i < music.length; i++) {
                 const obj = new NPData();
-                const cur = json.music[i];
+                const cur = music[i];
 
                 obj.imgsrc = commonData.commonImageURL+"music/"+cur.id+".jpg";
                 obj.link = '/music/'+cur.id+'/'+urlprop.userid;

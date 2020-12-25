@@ -43,52 +43,52 @@ export const getFloorTitle = (tower: string, floor: number, rate: number, allflo
 	switch(allfloors) {
 	case 4:
 		switch(floor) {
-		case 0: titlelist.push(titleshort+'lv1'); if(rate == 100) { titlelist.push(titleshort+'lv1g'); } break;
-		case 1: titlelist.push(titleshort+'lv2'); if(rate == 100) { titlelist.push(titleshort+'lv2g'); } break;
-		case 2: titlelist.push(titleshort+'lv3'); if(rate == 100) { titlelist.push(titleshort+'lv3g'); } break;
-		case 3: titlelist.push(titleshort+'lvm'); if(rate == 100) { titlelist.push(titleshort+'lvmg'); } break;
+		case 0: titlelist.push(titleshort+'lv1'); if(rate === 100) { titlelist.push(titleshort+'lv1g'); } break;
+		case 1: titlelist.push(titleshort+'lv2'); if(rate === 100) { titlelist.push(titleshort+'lv2g'); } break;
+		case 2: titlelist.push(titleshort+'lv3'); if(rate === 100) { titlelist.push(titleshort+'lv3g'); } break;
+		case 3: titlelist.push(titleshort+'lvm'); if(rate === 100) { titlelist.push(titleshort+'lvmg'); } break;
 		}
 		break;
 	case 5:
 		switch(floor) {
-		case 0: titlelist.push(titleshort+'lv1'); if(rate == 100) { titlelist.push(titleshort+'lv1g'); } break;
-		case 1: titlelist.push(titleshort+'lv2'); if(rate == 100) { titlelist.push(titleshort+'lv2g'); } break;
-		case 2: titlelist.push(titleshort+'lv3'); if(rate == 100) { titlelist.push(titleshort+'lv3g'); } break;
-		case 3: titlelist.push(titleshort+'lv4'); if(rate == 100) { titlelist.push(titleshort+'lv4g'); } break;
-		case 4: titlelist.push(titleshort+'lvm'); if(rate == 100) { titlelist.push(titleshort+'lvmg'); } break;
+		case 0: titlelist.push(titleshort+'lv1'); if(rate === 100) { titlelist.push(titleshort+'lv1g'); } break;
+		case 1: titlelist.push(titleshort+'lv2'); if(rate === 100) { titlelist.push(titleshort+'lv2g'); } break;
+		case 2: titlelist.push(titleshort+'lv3'); if(rate === 100) { titlelist.push(titleshort+'lv3g'); } break;
+		case 3: titlelist.push(titleshort+'lv4'); if(rate === 100) { titlelist.push(titleshort+'lv4g'); } break;
+		case 4: titlelist.push(titleshort+'lvm'); if(rate === 100) { titlelist.push(titleshort+'lvmg'); } break;
 		}
 		break;
 	case 6:
 		switch(floor) {
-		case 0: titlelist.push(titleshort+'lv1'); if(rate == 100) { titlelist.push(titleshort+'lv1g'); } break;
-		case 1: titlelist.push(titleshort+'lv2'); if(rate == 100) { titlelist.push(titleshort+'lv2g'); } break;
-		case 2: titlelist.push(titleshort+'lv3'); if(rate == 100) { titlelist.push(titleshort+'lv3g'); } break;
-		case 3: titlelist.push(titleshort+'lv4'); if(rate == 100) { titlelist.push(titleshort+'lv4g'); } break;
-		case 4: titlelist.push(titleshort+'lv5'); if(rate == 100) { titlelist.push(titleshort+'lv5g'); } break;
-		case 5: titlelist.push(titleshort+'lvm'); if(rate == 100) { titlelist.push(titleshort+'lvmg'); } break;
+		case 0: titlelist.push(titleshort+'lv1'); if(rate === 100) { titlelist.push(titleshort+'lv1g'); } break;
+		case 1: titlelist.push(titleshort+'lv2'); if(rate === 100) { titlelist.push(titleshort+'lv2g'); } break;
+		case 2: titlelist.push(titleshort+'lv3'); if(rate === 100) { titlelist.push(titleshort+'lv3g'); } break;
+		case 3: titlelist.push(titleshort+'lv4'); if(rate === 100) { titlelist.push(titleshort+'lv4g'); } break;
+		case 4: titlelist.push(titleshort+'lv5'); if(rate === 100) { titlelist.push(titleshort+'lv5g'); } break;
+		case 5: titlelist.push(titleshort+'lvm'); if(rate === 100) { titlelist.push(titleshort+'lvmg'); } break;
 		}
 		break;
 	case 7:
 		switch(floor) {
-		case 0: titlelist.push(titleshort+'lv1'); if(rate == 100) { titlelist.push(titleshort+'lv1g'); } break;
-		case 1: titlelist.push(titleshort+'lv2'); if(rate == 100) { titlelist.push(titleshort+'lv2g'); } break;
-		case 2: titlelist.push(titleshort+'lv3'); if(rate == 100) { titlelist.push(titleshort+'lv3g'); } break;
-		case 3: titlelist.push(titleshort+'lv4'); if(rate == 100) { titlelist.push(titleshort+'lv4g'); } break;
-		case 4: titlelist.push(titleshort+'lv5'); if(rate == 100) { titlelist.push(titleshort+'lv5g'); } break;
-		case 5: titlelist.push(titleshort+'lv6'); if(rate == 100) { titlelist.push(titleshort+'lv6g'); } break;
-		case 6: titlelist.push(titleshort+'lvm'); if(rate == 100) { titlelist.push(titleshort+'lvmg'); } break;
+		case 0: titlelist.push(titleshort+'lv1'); if(rate === 100) { titlelist.push(titleshort+'lv1g'); } break;
+		case 1: titlelist.push(titleshort+'lv2'); if(rate === 100) { titlelist.push(titleshort+'lv2g'); } break;
+		case 2: titlelist.push(titleshort+'lv3'); if(rate === 100) { titlelist.push(titleshort+'lv3g'); } break;
+		case 3: titlelist.push(titleshort+'lv4'); if(rate === 100) { titlelist.push(titleshort+'lv4g'); } break;
+		case 4: titlelist.push(titleshort+'lv5'); if(rate === 100) { titlelist.push(titleshort+'lv5g'); } break;
+		case 5: titlelist.push(titleshort+'lv6'); if(rate === 100) { titlelist.push(titleshort+'lv6g'); } break;
+		case 6: titlelist.push(titleshort+'lvm'); if(rate === 100) { titlelist.push(titleshort+'lvmg'); } break;
 		}
 		break;
 	case 8:
 		switch(floor) {
-		case 0: titlelist.push(titleshort+'lv1'); if(rate == 100) { titlelist.push(titleshort+'lv1g'); } break;
-		case 1: titlelist.push(titleshort+'lv2'); if(rate == 100) { titlelist.push(titleshort+'lv2g'); } break;
-		case 2: titlelist.push(titleshort+'lv3'); if(rate == 100) { titlelist.push(titleshort+'lv3g'); } break;
-		case 3: titlelist.push(titleshort+'lv4'); if(rate == 100) { titlelist.push(titleshort+'lv4g'); } break;
-		case 4: titlelist.push(titleshort+'lv5'); if(rate == 100) { titlelist.push(titleshort+'lv5g'); } break;
-		case 5: titlelist.push(titleshort+'lv6'); if(rate == 100) { titlelist.push(titleshort+'lv6g'); } break;
-		case 6: titlelist.push(titleshort+'lv7'); if(rate == 100) { titlelist.push(titleshort+'lv7g'); } break;
-		case 7: titlelist.push(titleshort+'lvm'); if(rate == 100) { titlelist.push(titleshort+'lvmg'); } break;
+		case 0: titlelist.push(titleshort+'lv1'); if(rate === 100) { titlelist.push(titleshort+'lv1g'); } break;
+		case 1: titlelist.push(titleshort+'lv2'); if(rate === 100) { titlelist.push(titleshort+'lv2g'); } break;
+		case 2: titlelist.push(titleshort+'lv3'); if(rate === 100) { titlelist.push(titleshort+'lv3g'); } break;
+		case 3: titlelist.push(titleshort+'lv4'); if(rate === 100) { titlelist.push(titleshort+'lv4g'); } break;
+		case 4: titlelist.push(titleshort+'lv5'); if(rate === 100) { titlelist.push(titleshort+'lv5g'); } break;
+		case 5: titlelist.push(titleshort+'lv6'); if(rate === 100) { titlelist.push(titleshort+'lv6g'); } break;
+		case 6: titlelist.push(titleshort+'lv7'); if(rate === 100) { titlelist.push(titleshort+'lv7g'); } break;
+		case 7: titlelist.push(titleshort+'lvm'); if(rate === 100) { titlelist.push(titleshort+'lvmg'); } break;
 		}
 		break;
 	}
@@ -125,13 +125,13 @@ export const getMusicTitle = (mid: number, ptcode: number) => {
 
 	rtn.type = titlesp[mid].type;
 	
-	if(rtn.type == 0) {
+	if(rtn.type === 0) {
 		rtn.title = titlesp[mid][ptcode].value;
 	}
-	else if(rtn.type == 1) {
+	else if(rtn.type === 1) {
 		rtn.title = titlesp[mid].value;
 	}
-	else if(rtn.type == 2) {
+	else if(rtn.type === 2) {
 		if(titlesp[mid][ptcode] != null) {
 			rtn.title = titlesp[mid][ptcode].value;
 		}
@@ -154,13 +154,13 @@ export const musicTitlePopup = (mid: number, ptcode: number, div: string) => {
 	option[0].setAttribute("value", mtitle.title);
 	
 	let t: Node;
-	if(mtitle.type == 0) {
+	if(mtitle.type === 0) {
 		t = document.createTextNode(titlesp[mid][ptcode][lang]);
 	}
-	else if(mtitle.type == 1) {
+	else if(mtitle.type === 1) {
 		t = document.createTextNode(titlesp[mid][lang]);
 	}
-	else if(mtitle.type == 2) {
+	else if(mtitle.type === 2) {
 		if(titlesp[mid][ptcode] != null) {
 			t = document.createTextNode(titlesp[mid][ptcode][lang]);
 		}
@@ -208,9 +208,11 @@ export const checkFloorTitleExist = (towername: string) => {
 
 export const checkMusicTitleExist = (mid: number, ptcode: number) => {
 	let isExist = false;
-	if(titlesp[mid] != "undefined" && titlesp[mid] != null) {
-		if(titlesp[mid].type == 0) {
-			if(titlesp[mid][ptcode] != "undefined" && titlesp[mid][ptcode] != null) {
+	if(titlesp[mid] !== undefined &&
+		titlesp[mid] != null) {
+		if(titlesp[mid].type === 0) {
+			if(titlesp[mid][ptcode] !== undefined &&
+				titlesp[mid][ptcode] != null) {
 				isExist = true;
 			}
 		}
@@ -226,10 +228,10 @@ export const addTowerTitleImage = (type: string, title: string) => {
 	const image = document.createElement("img");
 	image.src = "/img/title/"+title+".png";
 	
-	if(type == "35") {
+	if(type === "35") {
 		image.className = "towertitle35";
 	}
-	else if(type == "50") {
+	else if(type === "50") {
 		image.className = "towertitle50";
 	}
 	

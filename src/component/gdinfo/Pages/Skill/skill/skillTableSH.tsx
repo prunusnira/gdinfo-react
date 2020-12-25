@@ -6,7 +6,6 @@ import {
     Row,
     Col
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
 import SkillTableData from './skillTableData';
 
 interface Props {
@@ -62,7 +61,7 @@ class SkillTableSH extends Component<Props> {
                                 <Col xs="8" className="text-center zerogap">
                                     <Row className="zerogap">
                                         <Col xs="12" className="zerogap">
-                                            <img className="sharediff zerogap" src={skill.pattern300} />
+                                            <img alt="patternimg" className="sharediff zerogap" src={skill.pattern300} />
                                             &nbsp;
                                             <span style={{fontWeight: "bold"}}>{skill.level}</span>
                                         </Col>

@@ -80,7 +80,6 @@ class PatternList extends Component<RouteComponentProps<IMatchProps> & Props, St
     loadPatternList(props: RouteComponentProps<IMatchProps> & Props) {
         const urlprop = props.match.params;
         const search = props.location.search;
-        const params = new URLSearchParams(search);
 
         const ver = urlprop.ver;
         const order = urlprop.order;
@@ -89,15 +88,12 @@ class PatternList extends Component<RouteComponentProps<IMatchProps> & Props, St
         axios.post(commonData.commonDataURL+"ptrank/"+ver+"/"+order+"/"+page+search)
         .then((res) => {
             const json = res.data;
-            // 유저 로그인 판별
-            let id = -1;
-            if(json.user != null) id = json.user.id;
-
             const ptlist = new Array<PatternData>();
+            const musiclist = JSON.parse(json.musiclist);
 
-            for(let i = 0; i < json.musiclist.length; i++) {
+            for(let i = 0; i < musiclist.length; i++) {
                 const obj = new PatternMem();
-                const music = json.musiclist[i];
+                const music = musiclist[i];
 
                 //src
                 obj.jacket = commonData.commonImageURL+"music/"+music.id+".jpg";

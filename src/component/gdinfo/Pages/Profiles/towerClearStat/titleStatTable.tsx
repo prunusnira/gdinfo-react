@@ -17,7 +17,7 @@ class TitleStatTable extends Component<Props> {
                     this.props.list.map((t, i) => {
                         return (
                             <Col xs="12" className="text-left">
-                                <img className="towertitle50" src={t.src} />
+                                <img alt="towertitle" className="towertitle50" src={t.src} />
                                 <span>{t.name}</span>
                             </Col>
                         )

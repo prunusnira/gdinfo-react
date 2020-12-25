@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Redirect, RouteComponentProps} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {LoginInfo} from '../../../Redux/action';
-import { TokenState, StoreState } from '../../../Redux/reducer';
+import { StoreState } from '../../../Redux/reducer';
 
 interface IMatchprops {
     gtype: string

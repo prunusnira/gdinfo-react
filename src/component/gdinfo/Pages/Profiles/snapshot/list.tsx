@@ -44,7 +44,7 @@ class SnapshotList extends Component<RouteComponentProps<IMatchProps> & Props, S
         axios.post(commonData.commonDataURL+"skill/snapshot/list/"+this.props.match.params.id)
         .then((res) => {
             const json = res.data;
-            const list = json.list;
+            const list = JSON.parse(json.list);
 
             const gflist = [];
             const dmlist = [];

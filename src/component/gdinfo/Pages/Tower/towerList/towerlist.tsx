@@ -40,7 +40,8 @@ class TowerList extends Component<{}, State> {
         axios.post(commonData.commonDataURL+"towerlist")
         .then((res) => {
             const json = res.data;
-            const towernum = json.towerlist.length;
+            const towerlist = JSON.parse(json.towerlist);
+            const towernum = towerlist.length;
 
             const towergf = new Array<TowerListData>();
             const towerdm = new Array<TowerListData>();
@@ -51,16 +52,16 @@ class TowerList extends Component<{}, State> {
                 let l = 'ko';
                 if(this.lang === 'en') l = 'ko';
                 else if(this.lang === 'jp') l = 'jp';
-                obj.img = process.env.PUBLIC_URL+'/general-img/tower/'+json.towerlist[i]+'_'+l+'.jpg';
-                obj.link = '/tower/stat/'+json.towerlist[i];
+                obj.img = process.env.PUBLIC_URL+'/general-img/tower/'+towerlist[i]+'_'+l+'.jpg';
+                obj.link = '/tower/stat/'+towerlist[i];
 
-                if(json.towerlist[i].startsWith("towerGf")) {
+                if(towerlist[i].startsWith("towerGf")) {
                     towergf.push(obj);
                 }
-                else if(json.towerlist[i].startsWith("towerDm")) {
+                else if(towerlist[i].startsWith("towerDm")) {
                     towerdm.push(obj);
                 }
-                else if(json.towerlist[i].startsWith("towerSp")) {
+                else if(towerlist[i].startsWith("towerSp")) {
                     towersp.push(obj);
                 }
             }

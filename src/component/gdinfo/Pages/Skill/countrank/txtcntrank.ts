@@ -35,7 +35,7 @@ const txtCntRank = {
         emptyname: {
             "jp":"非公開",
             "ko":"비공개",
-            "en":"Not displayed"
+            "en":"PRIVATE"
         }
     }
 };

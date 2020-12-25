@@ -1,6 +1,4 @@
-import { Component } from 'react'
-/*****************************************************
- * GITADORA Info Server
+/* GITADORA Info Server
  * Developed by Tae Jun Kang a.k.a Prunus Nira
  * (c) Nira 2016
  *
@@ -8,7 +6,7 @@ import { Component } from 'react'
  *    Please refer to LICENSE file on root
  * 2. Also, products and libraries used to implement
  *    this server are on USED-LIBRARIES file on root
- *****************************************************/
+ */
 
 class Language {
 	// Cookie control from stackoverflow

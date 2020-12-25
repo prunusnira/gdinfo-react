@@ -142,10 +142,11 @@ class Profile extends Component<RouteComponentProps<IMatchProps> & Props, State>
 
         axios.post(commonData.commonDataURL+"getuserid/"+id)
         .then((res) => {
+            const json = JSON.parse(res.data.mydata);
             this.setState({
-                profileData: res.data.mydata,
-                comment: res.data.mydata.comment,
-                opencnt: res.data.mydata.opencount
+                profileData: json,
+                comment: json.comment,
+                opencnt: json.opencount
             });
         });
     }
@@ -198,7 +199,7 @@ class Profile extends Component<RouteComponentProps<IMatchProps> & Props, State>
                         <div>
                             <br/><br/><br/><br/>
                             <h3 style={{color: "black"}}>
-                                {(txtProfile.button.setopencount as any)[this.lang]}
+                                {(txtProfile.button.setdataopen as any)[this.lang]}
                             </h3>
                             <div className='div-table'>
                                 <div className='div-table-row'>
@@ -213,7 +214,7 @@ class Profile extends Component<RouteComponentProps<IMatchProps> & Props, State>
                                                         onClick={self.updateOpenValue} />
                                                 }
                                             })()}
-                                            YES
+                                            {(txtProfile.dataopen.yes as any)[this.lang]}
                                         </label>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <label id="opencntLabelNo" style={{color:"black"}}>
@@ -226,7 +227,7 @@ class Profile extends Component<RouteComponentProps<IMatchProps> & Props, State>
                                                         onClick={self.updateOpenValue} />
                                                 }
                                             })()}
-                                            NO
+                                            {(txtProfile.dataopen.no as any)[this.lang]}
                                         </label>
                                     </div>
                                 </div>
@@ -505,7 +506,7 @@ class Profile extends Component<RouteComponentProps<IMatchProps> & Props, State>
                                                                             {(txtProfile.button.countupdate as any)[self.lang]}
                                                                         </Button>
                                                                         <Button onClick={() => self.setOpenCount()}>
-                                                                            {(txtProfile.button.setopencount as any)[self.lang]}
+                                                                            {(txtProfile.button.setdataopen as any)[self.lang]}
                                                                         </Button>
                                                                     </Fragment>
                                                                 )

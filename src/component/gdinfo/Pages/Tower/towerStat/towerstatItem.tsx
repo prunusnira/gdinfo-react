@@ -56,7 +56,7 @@ class TowerStatList extends Component<Props> {
                                         </a>
                                     </Col>
                                     <Col xs="2">
-                                        <img style={{width:"50px"}} src={tl.floorclear} />
+                                        <img alt="floorclear" style={{width:"50px"}} src={tl.floorclear} />
                                     </Col>
                                     <Col xs="3">
                                         {tl.titlechangable}<br/>

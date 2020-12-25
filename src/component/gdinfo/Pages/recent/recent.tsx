@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, Fragment} from 'react';
 import axios from 'axios';
 import {Timeline} from 'react-twitter-widgets';
 import RecentTableDiv from './recentTableDiv';
@@ -12,17 +12,27 @@ import {
     Container,
     Card,
     CardHeader,
-    CardBody
+    CardBody,
+    ButtonGroup,
+    Button
 } from 'reactstrap';
 
 import commonData from '../Common/commonData';
 import RecentData from './recentData';
+import { StoreState } from '../../Redux/reducer';
+import { connect } from 'react-redux';
+import { LoginInfo } from '../../Redux/action';
+
+interface Props {
+    login: boolean,
+    userinfo: LoginInfo
+}
 
 interface State {
     recentUserList: Array<RecentData>
 }
 
-class Recent extends Component<{}, State> {
+class Recent extends Component<Props, State> {
     lang = LData.lang;
 
     state = {
@@ -34,7 +44,7 @@ class Recent extends Component<{}, State> {
         .then((resp) => {
             // response
             const data = resp.data;
-            const array = data.recent;
+            const array = JSON.parse(data.recent);
 
             this.setState({
                 recentUserList: array
@@ -46,6 +56,31 @@ class Recent extends Component<{}, State> {
         const self = this;
         return (
             <Container fluid={true}>
+                <Row>
+                    <Col xs="12" className="text-center">
+                    {/* 바로가기 버튼들 */}
+                    {
+                        (function() {
+                            if(self.props.login) {
+                                return (
+                                    <Fragment>
+                                        <ButtonGroup>
+                                            <Button href="/profile">Profile</Button>
+                                            <Button href="/myskill/gf">GF Skill</Button>
+                                            <Button href="/myskill/dm">DM Skill</Button>
+                                            <Button href="/mybest">My Best</Button>
+                                            <Button href="/tower/index">Tower</Button>
+                                        </ButtonGroup>
+                                    </Fragment>
+                                );
+                            }
+                            else {
+                                return null;
+                            }
+                        })()
+                    }
+                    </Col>
+                </Row>
                 <Row>
                     <Col lg="4" xs="12">
                         <Card id="self" style={{fontSize:'90%'}}>
@@ -116,4 +151,11 @@ class Recent extends Component<{}, State> {
     };
 }
 
-export default Recent;
+const mapStateToProps = (state: StoreState) => {
+    return {
+        userinfo: state.loginReducer.userinfo,
+        login: state.loginReducer.login
+    }
+};
+
+export default connect(mapStateToProps)(Recent);

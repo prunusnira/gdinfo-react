@@ -7,7 +7,8 @@ interface RecentData {
     updatetime: string,
     uptimelong: number,
     glink: string,
-    dlink: string
+    dlink: string,
+    opencount: string
 }
 
 export default RecentData;

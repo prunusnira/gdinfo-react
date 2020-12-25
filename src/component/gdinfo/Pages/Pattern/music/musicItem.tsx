@@ -102,7 +102,7 @@ class MusicItem extends Component<Props> {
                                                 {(txtMusic.rank as any)[this.lang]}
                                             </Col>
                                             <Col xs="6" className="text-left">
-                                                <img className='skillrank-img' src={music.rank} />
+                                                <img alt="rankimg" className='skillrank-img' src={music.rank} />
                                                 <span dangerouslySetInnerHTML={{__html: music.fc}}></span>
                                             </Col>
                                         </Row>

@@ -50,10 +50,11 @@ class PlaycountRanking extends Component<RouteComponentProps<IMatchProps>, State
         .then((res) => {
             const json = res.data;
             const list = new Array<CntrankData>();
-            
-            for(let i = 0; i < json.rank.length; i++) {
+            const rank = JSON.parse(json.rank);
+
+            for(let i = 0; i < rank.length; i++) {
                 const obj = new CntrankData();;
-                const cur = json.rank[i];
+                const cur = rank[i];
                 obj.index = 30*(parseInt(page) - 1)+i+1;
 
                 if(cur.opencount === "Y") {

@@ -18,7 +18,6 @@ import {
 import commonData from '../Common/commonData';
 import { StoreState } from '../../Redux/reducer';
 import { AnyAction, Dispatch, bindActionCreators } from 'redux';
-import ProfileData from '../Profiles/profile/profileData';
 
 interface Props {
     Actions: typeof actionCreator
