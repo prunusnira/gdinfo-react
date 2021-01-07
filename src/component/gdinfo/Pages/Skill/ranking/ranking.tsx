@@ -49,7 +49,6 @@ class SkillRanking extends Component<RouteComponentProps<IMatchProps>, State> {
     }
 
     updateRankList(props: RouteComponentProps<IMatchProps>) {
-        console.log("TEST");
         const urlparam = props.match.params;
         axios.post(commonData.commonDataURL+"rank/"+urlparam.gtype+"/"+urlparam.page)
         .then((res) => {
@@ -95,10 +94,6 @@ class SkillRanking extends Component<RouteComponentProps<IMatchProps>, State> {
                 allpage: json.pages
             });
         });
-    }
-
-    changeData() {
-        console.log("TESTS");
     }
 
     render() {

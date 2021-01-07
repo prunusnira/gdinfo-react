@@ -15,8 +15,16 @@ import {
     CardBody,
     Button
 } from 'reactstrap';
+import { StoreState } from '../../Redux/reducer';
+import { connect } from 'react-redux';
+import { LoginInfo } from '../../Redux/action';
 
-class AboutMO extends Component {
+interface Props {
+    userinfo: LoginInfo,
+    login: boolean
+}
+
+class AboutMO extends Component<Props> {
     lang = LData.lang;
 
     render() {
@@ -98,17 +106,51 @@ class AboutMO extends Component {
                                             {(txtAbout.pc.step2.addr1desc as any)[this.lang]}
                                         </CardHeader>
                                         <CardBody>
+                                            <CardText className="text-center">
+                                            {
+                                                (function() {
+                                                    if(self.props.login) {
+                                                        return (
+                                                            <b>{(txtAbout.pc.step2.addrLogin as any)[self.lang]}</b>
+                                                        )
+                                                    }
+                                                    else {
+                                                        return (
+                                                            <b>{(txtAbout.pc.step2.addrNoLogin as any)[self.lang]}</b>
+                                                        )
+                                                    }
+                                                })()
+                                            }
+                                            </CardText>
                                             <CardTitle>
                                                 {(txtAbout.pc.step2.cardt1 as any)[this.lang]}
                                             </CardTitle>
                                             <CardText>
-                                                <b>{txtAbout.pc.step2.addr1}</b>
+                                                {
+                                                    (function() {
+                                                        if(self.props.login) {
+                                                            return <b>javascript:$.getScript('https://sindata.nira.one/$/update?token={self.props.userinfo.token}');</b>;
+                                                        }
+                                                        else {
+                                                            return <b>javascript:$.getScript('https://sindata.nira.one/$/update');</b>;
+                                                        }
+                                                    })()
+                                                }
                                             </CardText>
                                             <CardTitle>
                                                 {(txtAbout.pc.step2.cardt2 as any)[this.lang]}
                                             </CardTitle>
                                             <CardText>
-                                                <b>{txtAbout.pc.step2.addr2}</b>
+                                                {
+                                                    (function() {
+                                                        if(self.props.login) {
+                                                            return <b>javascript:$.getScript('https://sindata.nira.one/$/updateOld?token={self.props.userinfo.token}');</b>;
+                                                        }
+                                                        else {
+                                                            return <b>javascript:$.getScript('https://sindata.nira.one/$/updateOld');</b>;
+                                                        }
+                                                    })()
+                                                }
                                             </CardText>
                                             <CardText>
                                                 {(txtAbout.pc.step2.copy as any)[this.lang]}
@@ -184,4 +226,11 @@ class AboutMO extends Component {
     }
 }
 
-export default AboutMO;
+const mapStateToProps = (state: StoreState) => {
+    return {
+        userinfo: state.loginReducer.userinfo,
+        login: state.loginReducer.login
+    }
+};
+
+export default connect(mapStateToProps)(AboutMO);

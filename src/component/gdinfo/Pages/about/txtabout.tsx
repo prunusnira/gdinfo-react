@@ -95,8 +95,16 @@ const txtAbout = {
                 "ko":"2) 구버전 (EXCHAIN, MATIXX, Tri-Boost Re:Evolve)",
                 "en":"2) Old version (EXCHAIN, MATIXX, Tri-Boost Re:Evolve)"
             },
-            addr1:"javascript:$.getScript('https://sindata.nira.one/$/update');",
-            addr2:"javascript:$.getScript('https://sindata.nira.one/$/updateOld');",
+            addrNoLogin: {
+                "jp":"ログインすることで下記のURLが変わります",
+                "ko":"로그인 시 아래의 URL이 바뀝니다",
+                "en":"URL written below changes after you login"
+            },
+            addrLogin: {
+                "jp":"下記のURLは個人専用です。絶対他人と共有しないようにしてください。",
+                "ko":"아래 URL은 개인별로 다릅니다. 절대 타인에게 공유하지 마세요.",
+                "en":"URL written differs each user. DO NOT SHARE your URL"
+            },
             copy: {
                 "jp":"上のテキスト中「ｊ」以外のテキストをコピーしてください。" +
                         "その後、3-7)のように「ｊ」を先に入力したあとコピーしたテキストをペーストしてください。",
