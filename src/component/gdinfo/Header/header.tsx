@@ -21,12 +21,15 @@ import {
     Input,
     InputGroup,
     InputGroupAddon,
-    InputGroupText
+    InputGroupText,
+    Alert,
+    Row,
+    Col
 } from 'reactstrap'
 import { StoreState } from '../Redux/reducer';
 import { Dispatch, AnyAction, bindActionCreators } from 'redux';
 import { GoogleLogout } from 'react-google-login';
-import commonData from '../Pages/Common/commonData';
+import CommonData from '../Pages/Common/commonData';
 
 interface Props {
     login: boolean,
@@ -85,7 +88,7 @@ class GDHeader extends Component<Props, State> {
                     <img alt="icon" className="navicon" src={require("./img/logout.png")}/>
                     <GoogleLogout
                         className="logoutbtn"
-                        clientId={commonData.googleLoginClientId}
+                        clientId={CommonData.googleLoginClientId}
                         buttonText={(txtHeader.logout as any)[this.lang]}
                         onLogoutSuccess={
                             () => this.props.Actions.setLogout()
@@ -179,16 +182,6 @@ class GDHeader extends Component<Props, State> {
                                 {this.LoginButton()}
                             </NavItem>
 
-                            {/* howto */}
-                            <NavItem>
-                                <NavLink tag={Link} to="/aboutpc" onClick={this.toggleMenu}>
-                                    <img alt="icon" className="navicon" src={require("./img/howto.png")}/>
-                                    <span className="navlefttxt">
-                                        {(txtHeader.howtouse.title as any)[this.lang]}
-                                    </span>
-                                </NavLink>
-                            </NavItem>
-
                             {/* mydata */}
                             <UncontrolledDropdown nav inNavbar>
                                 <DropdownToggle nav caret>
@@ -226,6 +219,9 @@ class GDHeader extends Component<Props, State> {
                                     </span>
                                 </DropdownToggle>
                                 <DropdownMenu left="true">
+                                    <DropdownItem tag={Link} to="/recent" onClick={this.toggleMenu}>
+                                        {(txtHeader.skill.recent as any)[this.lang]}
+                                    </DropdownItem>
                                     <DropdownItem tag={Link} to="/rank/gf/1" onClick={this.toggleMenu}>
                                         {(txtHeader.skill.rank as any)[this.lang]}
                                     </DropdownItem>
@@ -233,7 +229,7 @@ class GDHeader extends Component<Props, State> {
                                         {(txtHeader.skill.exc as any)[this.lang]}
                                     </DropdownItem>
                                     <DropdownItem tag={Link} to="/cntrank/1" onClick={this.toggleMenu}>
-                                        {(txtHeader.etc.countrank as any)[this.lang]}
+                                        {(txtHeader.skill.countrank as any)[this.lang]}
                                     </DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
@@ -251,10 +247,10 @@ class GDHeader extends Component<Props, State> {
                                         {(txtHeader.pattern.ptlist as any)[this.lang]}
                                     </DropdownItem>
                                     <DropdownItem tag={Link} to="/notplayed" onClick={this.toggleMenu}>
-                                        {(txtHeader.mymenu.notplayed as any)[this.lang]}
+                                        {(txtHeader.pattern.notplayed as any)[this.lang]}
                                     </DropdownItem>
                                     <DropdownItem tag={Link} to="/cleartable" onClick={this.toggleMenu}>
-                                        {(txtHeader.mymenu.cleartable as any)[this.lang]}
+                                        {(txtHeader.pattern.cleartable as any)[this.lang]}
                                     </DropdownItem>
                                 </DropdownMenu>
                             </UncontrolledDropdown>
@@ -287,13 +283,13 @@ class GDHeader extends Component<Props, State> {
                     </Collapse>
                 </Navbar>
 
-                {/*<Alert onClose={() => console.log("")}>
+                <Alert onClose={() => console.log("")}>
                     <Row>
                         <Col xs="12" className="text-center">
                             <b>{(txtHeader.test as any)[this.lang]}</b>
                         </Col>
                     </Row>
-                </Alert>*/}
+                </Alert>
             </Fragment>
         );
     }

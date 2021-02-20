@@ -1,4 +1,4 @@
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import {GDVer} from '../../Common/version';
 import {getPatternImg300} from '../../Common/pattern';
 import {getPatternImg600} from '../../Common/pattern';
@@ -21,7 +21,7 @@ export function generateTable(userid: string,
                             side: number): SkillTableData {
     const obj = new SkillTableData();
     obj.num = (page-1)*30+i+1;
-    obj.jacketurl = commonData.commonImageURL+"music/"+cur.musicid+".jpg";
+    obj.jacketurl = CommonData.jacketUrl+cur.musicid+".jpg";
     obj.musiclink = "/music/"+cur.musicid+"/"+userid;
     obj.musicname = cur.mname;
     obj.level = (cur.level/100).toFixed(2);

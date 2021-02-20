@@ -14,7 +14,7 @@ const text = LData.text;
 
 const Error404 = () => {
     return (
-        <Container fluid={true}>
+        <Container>
             <Card>
             <CardHeader>
                 <h3>404 ERROR</h3>

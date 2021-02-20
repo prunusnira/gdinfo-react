@@ -8,7 +8,7 @@ import {
     Button
 } from 'reactstrap';
 
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 
 interface Props {
     self: boolean,
@@ -20,7 +20,7 @@ class ProfileButton extends Component<Props> {
 
     towerUpdate() {
 		if(window.confirm((txtProfile.towerupdate.alert as any)[this.lang])) {
-			axios.post(commonData.commonDataURL+'profile/towerupdate/'+this.props.id)
+			axios.post(CommonData.dataUrl+'profile/towerupdate/'+this.props.id)
 			.then((res) => {
 				alert((txtProfile.towerupdate.done as any)[this.lang]);
 			});

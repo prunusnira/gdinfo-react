@@ -15,7 +15,7 @@ import {
     CardHeader,
     CardBody
 } from 'reactstrap';
-import commonData from '../Common/commonData';
+import CommonData from '../Common/commonData';
 import { RouteComponentProps } from 'react-router-dom';
 import RecentData from '../recent/recentData';
 import { StoreState } from '../../Redux/reducer';
@@ -83,7 +83,7 @@ class SearchResult extends Component<RouteComponentProps<IMatchProps> & Props, S
     }
 
     getUserList(prop: any) {
-        axios.post(commonData.commonDataURL+"search/"+prop.type+"/"+prop.value+"/"+prop.page)
+        axios.post(CommonData.dataUrl+"search/"+prop.type+"/"+prop.value+"/"+prop.page)
         .then((res) => {
             const json = res.data;
             const userList = JSON.parse(json.userList);
@@ -119,7 +119,7 @@ class SearchResult extends Component<RouteComponentProps<IMatchProps> & Props, S
 
     getMusicList(prop: any) {
         const self = this;
-        axios.post(commonData.commonDataURL+"search/"+prop.type+"/"+prop.value+"/"+prop.page)
+        axios.post(CommonData.dataUrl+"search/"+prop.type+"/"+prop.value+"/"+prop.page)
         .then((res) => {
             const json = res.data;
             const userList = JSON.parse(json.userList);
@@ -128,7 +128,7 @@ class SearchResult extends Component<RouteComponentProps<IMatchProps> & Props, S
                 for(let i = 0; i < userList.length; i++) {
                     const cur = userList[i];
                     const obj = new PatternMem();
-                    obj.jacket = commonData.commonImageURL+"music/"+cur.id+".jpg";
+                    obj.jacket = CommonData.jacketUrl+cur.id+".jpg";
                     if(self.props.login)
                         obj.link = "/music/"+cur.id+"/"+self.props.userinfo.id;
                     else
@@ -263,7 +263,7 @@ class SearchResult extends Component<RouteComponentProps<IMatchProps> & Props, S
         const self = this;
         const urlprop = this.props.match.params;
         return (
-            <Container fluid={true}>
+            <Container>
                 <Row>
                     <Col xs="12">
                         <Card>

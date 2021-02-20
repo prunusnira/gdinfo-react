@@ -4,7 +4,7 @@ import {
     Row,
     Col
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import NPData from './NPData';
 
 interface Props {
@@ -24,7 +24,7 @@ class NpItem extends Component<Props> {
                                         style={{width:"75px", height:"75px"}}
                                         src={np.imgsrc}
                                         onError={(e)=>{
-                                            e.currentTarget.src=commonData.commonImageURL+"music/empty.jpg";
+                                            e.currentTarget.src=CommonData.jacketUrl+"empty.jpg";
                                         }} />
                                     <img alt="pattern"
                                         style={{width:"75px"}}

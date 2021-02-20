@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Link, Redirect, RouteComponentProps} from 'react-router-dom';
 import axios from 'axios';
 import NpItem from './npItem';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import txtNp from './txtNotplayed';
 import {getPatternImg600} from '../../Common/pattern';
 import {GDVer} from '../../Common/version';
@@ -97,7 +97,7 @@ class NotPlayed extends Component<RouteComponentProps<IMatchProps>, State> {
         const nplist = new Array<NPData>();
 
         let isEmpty = false;
-        let ajaxurl = commonData.commonDataURL+"notplayed/"+
+        let ajaxurl = CommonData.dataUrl+"notplayed/"+
             urlprop.gtype+"/"+urlprop.userid+"/"+
             urlprop.vertype+"/"+urlprop.page;
 
@@ -114,7 +114,7 @@ class NotPlayed extends Component<RouteComponentProps<IMatchProps>, State> {
                 const obj = new NPData();
                 const cur = music[i];
 
-                obj.imgsrc = commonData.commonImageURL+"music/"+cur.id+".jpg";
+                obj.imgsrc = CommonData.jacketUrl+cur.id+".jpg";
                 obj.link = '/music/'+cur.id+'/'+urlprop.userid;
                 obj.name = cur.name;
                 obj.pattern = getPatternImg600(cur.ptcode);

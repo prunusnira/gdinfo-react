@@ -12,7 +12,7 @@ import axios from 'axios';
 //import {titletxt, titlesp} from './titletxt';
 import txtTower from './txttower';
 import LData from '../Common/language';
-import commonData from '../Common/commonData';
+import CommonData from '../Common/commonData';
 
 const titletxt = require("./titletxt").titletxt;
 const titlesp = require("./titletxt").titlesp;
@@ -183,7 +183,7 @@ export const popupRemove = (div: string) => {
 
 export const setTitle = (userid: string, currentTitleValue: string, jqdiv: string) => {
 	// 확정된 칭호를 프로필 DB에 등록
-	axios.post(commonData.commonDataURL+"towertitleapply/"+userid+"/"+currentTitleValue)
+	axios.post(CommonData.dataUrl+"towertitleapply/"+userid+"/"+currentTitleValue)
 	.then((res) => {
 		alert((txtTower.title.changed as any)[lang]);
 		popupRemove(jqdiv);
@@ -191,7 +191,7 @@ export const setTitle = (userid: string, currentTitleValue: string, jqdiv: strin
 }
 
 export const getTowerTitle = (userid: number, handler: (d: string) => void) => {
-	axios.post(commonData.commonDataURL+"towertitle/"+userid)
+	axios.post(CommonData.dataUrl+"towertitle/"+userid)
 	.then((res) => {
 		handler(res.data);
 	});

@@ -10,72 +10,35 @@
  *****************************************************/
 const txtHeader = {
     test: {
-        "jp":"サイトのアドレスをsin.nira.oneに変更しました。gitadora.infoは2020年4月13日まで使えます。",
-        "ko":"사이트의 주소를 sin.nira.one으로 변경하였습니다. gitadora.info는 2020년 4월 13일까지 사용 가능합니다.",
-        "en":"Address is changed to sin.nira.one . gitadora.info can be used until Apr. 13, 2020"
-    },
-    howtouse: {
-        title: {
-            "jp":"使い方",
-            "ko":"사용방법",
-            "en":"How to use"
-        },
-        update_au: {
-            "jp":"自動更新",
-            "ko":"자동 갱신",
-            "en":"Auto update"
-        },
-        update_man: {
-            "jp":"手動更新",
-            "ko":"수동 갱신",
-            "en":"Manual update"
-        },
-        filter_rival: {
-            "jp":"フィルター・ライバル",
-            "ko":"필터, 라이벌",
-            "en":"Filter, rival"
-        }
+        "jp":"現在、メンテナンスを行っております。時々不安定になる可能性があります。",
+        "ko":"현재 서버 점검이 진행중입니다. 부분적으로 서버가 불안해질 수 있습니다",
+        "en":"This service is under maintenance now. It sometimes become unstable."
     },
     mymenu: {
         title: {
-            "jp":"Myギタドラ",
-            "ko":"내 기타도라",
-            "en":"My GITADORA"
+            "jp":"マイデータ",
+            "ko":"내 데이터",
+            "en":"My Data"
         },
         profile: {
             "jp":"プロフィール",
-            "ko":"내 프로필",
-            "en":"My profile"
+            "ko":"프로필",
+            "en":"Profile"
         },
         gfskill: {
             "jp":"GFスキル",
-            "ko":"내 GF스킬",
-            "en":"My GF skill"
+            "ko":"GF스킬",
+            "en":"GF skill"
         },
         dmskill: {
             "jp":"DMスキル",
-            "ko":"내 DM스킬",
-            "en":"My DM skill"
+            "ko":"DM스킬",
+            "en":"DM skill"
         },
         best: {
-            "jp":"プレイ回数",
+            "jp":"プレイ数",
             "ko":"플레이 횟수",
             "en":"Most played"
-        },
-        notplayed: {
-            "jp":"未プレイ譜面",
-            "ko":"미 플레이 패턴",
-            "en":"Patterns not played"
-        },
-        cleartable: {
-            "jp":"クリアテーブル",
-            "ko":"클리어 테이블",
-            "en":"Clear table"
-        },
-        rivallist: {
-            "jp":"ライバルリスト",
-            "ko":"라이벌 리스트",
-            "en":"Rival list"
         },
         snapshot: {
             "jp":"スキル表保管箱",
@@ -84,6 +47,11 @@ const txtHeader = {
         }
     },
     skill: {
+        recent: {
+            "jp":"最近の更新リスト",
+            "ko":"최근 갱신 유저",
+            "en":"Recent updated users"
+        },
         title: {
             "jp":"スキル",
             "ko":"스킬",
@@ -98,6 +66,11 @@ const txtHeader = {
             "jp":"スキル理論値",
             "ko":"스킬 이론치",
             "en":"Theoretical Skill"
+        },
+        countrank: {
+            "jp":"プレイカウントランキング",
+            "ko":"플레이 카운트 랭킹",
+            "en":"Play count ranking"
         }
     },
     pattern: {
@@ -110,25 +83,23 @@ const txtHeader = {
             "jp":"譜面リスト",
             "ko":"패턴목록",
             "en":"Pattern List"
+        },
+        notplayed: {
+            "jp":"未プレイ譜面",
+            "ko":"미 플레이 패턴",
+            "en":"Patterns not played"
+        },
+        cleartable: {
+            "jp":"クリアテーブル",
+            "ko":"클리어 테이블",
+            "en":"Clear table"
         }
     },
     tower: {
         title: {
-            "jp":"ザ・タワー",
+            "jp":"塔",
             "ko":"타워",
-            "en":"The Tower"
-        }
-    },
-    etc: {
-        title: {
-            "jp":"その他",
-            "ko":"부가기능",
-            "en":"Others"
-        },
-        countrank: {
-            "jp":"プレイカウントランキング",
-            "ko":"플레이 카운트 랭킹",
-            "en":"Play count ranking"
+            "en":"Tower"
         }
     },
     login: {

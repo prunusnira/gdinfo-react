@@ -16,7 +16,7 @@ import {
     CardBody,
     Button
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import { StoreState } from '../../../Redux/reducer';
 import { AnyAction, bindActionCreators, Dispatch } from 'redux';
 
@@ -50,7 +50,7 @@ class NewUser extends Component<Props, State> {
         this.props.Actions.setLogout();
         const params = new URLSearchParams();
         params.append("token", token);
-        axios.post(commonData.commonDataURL+"newuser", params)
+        axios.post(CommonData.dataUrl+"newuser", params)
         .then((res) => {
             const json = res.data.loginData;
             switch(json.stat) {
@@ -71,7 +71,7 @@ class NewUser extends Component<Props, State> {
     }
 
     dropUser() {
-        axios.post(commonData.commonDataURL+"dropuser")
+        axios.post(CommonData.dataUrl+"dropuser")
         .then((res) => {
             this.setState({
                 moveToIndex: true
@@ -89,7 +89,7 @@ class NewUser extends Component<Props, State> {
         }
         else {
             return (
-                <Container fluid={true}>
+                <Container>
                     <Row>
                         <Col xs="12">
                             <Card>
@@ -102,35 +102,7 @@ class NewUser extends Component<Props, State> {
                                             <h4>{(txtNewuser.title as any)[this.lang]}</h4>
                                             <span>{(txtNewuser.desc as any)[this.lang]}</span>
                                         </Col>
-                                        <Col xs="12" style={{padding:"5px"}}>
-                                            <h4>{(txtTerms.s1t as any)[this.lang]}</h4>
-                                            <span>{(txtTerms.s1c as any)[this.lang]}</span>
-                                        </Col>
-                                        <Col xs="12" style={{padding:"5px"}}>
-                                            <h4>{(txtTerms.s2t as any)[this.lang]}</h4>
-                                            <span>{(txtTerms.s2c1 as any)[this.lang]}</span><br/>
-                                            <span>{(txtTerms.s2c2 as any)[this.lang]}</span><br/>
-                                            <span>{(txtTerms.s2c3 as any)[this.lang]}</span><br/>
-                                            <span>{(txtTerms.s2c4 as any)[this.lang]}</span>
-                                        </Col>
-                                        <Col xs="12" style={{padding:"5px"}}>
-                                            <h4>{(txtTerms.s3t as any)[this.lang]}</h4>
-                                            <span>{(txtTerms.s3c1 as any)[this.lang]}</span><br/>
-                                            <span>{(txtTerms.s3c2 as any)[this.lang]}</span>
-                                        </Col>
-                                        <Col xs="12" style={{padding:"5px"}}>
-                                            <h4>{(txtTerms.s4t as any)[this.lang]}</h4>
-                                            <span>{(txtTerms.s4c1 as any)[this.lang]}</span><br/>
-                                            <span>{(txtTerms.s4c2 as any)[this.lang]}</span><br/>
-                                            <span>{(txtTerms.s4c3 as any)[this.lang]}</span>
-                                        </Col>
-                                        <Col xs="12" style={{padding:"5px"}}>
-                                            <h4>{(txtTerms.s5t as any)[this.lang]}</h4>
-                                            <span>{(txtTerms.s5c1 as any)[this.lang]}</span><br/>
-                                            <span>{(txtTerms.s5c2 as any)[this.lang]}</span><br/>
-                                            <span>{(txtTerms.s5c3 as any)[this.lang]}</span>
-                                        </Col>
-                                        <Col xs="12" className="btn-group">
+                                        <Col xs="12" className="text-right">
                                             <Button onClick={() => self.addNewUser()}>
                                                 {(txtNewuser.btnsign as any)[this.lang]}
                                             </Button>

@@ -23,6 +23,11 @@ const txtFooter = {
         "jp":"言語選択",
         "ko":"언어선택",
         "en":"Language select"
+    },
+    precautions: {
+        "jp":"使用上の注意",
+        "ko":"사용상의 주의",
+        "en":"Precautions"
     }
 };
 

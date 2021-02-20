@@ -13,7 +13,7 @@ import {
     CardHeader,
     CardBody
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import CntrankData from './cntrankData';
 import { RouteComponentProps } from 'react-router-dom';
 
@@ -46,7 +46,7 @@ class PlaycountRanking extends Component<RouteComponentProps<IMatchProps>, State
 
     updateData(props: RouteComponentProps<IMatchProps>) {
         const page = props.match.params.page;
-        axios.post(commonData.commonDataURL+"cntrank/"+page)
+        axios.post(CommonData.dataUrl+"cntrank/"+page)
         .then((res) => {
             const json = res.data;
             const list = new Array<CntrankData>();
@@ -91,7 +91,7 @@ class PlaycountRanking extends Component<RouteComponentProps<IMatchProps>, State
     render() {
         const self = this;
         return (
-            <Container fluid={true}>
+            <Container>
                 <Row>
                     <Col xs="12">
                         <Card>

@@ -12,7 +12,7 @@ import {
     CardHeader,
     CardBody
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import { RouteComponentProps } from 'react-router-dom';
 
 interface IMatchProps {
@@ -41,7 +41,7 @@ class SnapshotList extends Component<RouteComponentProps<IMatchProps> & Props, S
     }
     
     componentDidMount() {
-        axios.post(commonData.commonDataURL+"skill/snapshot/list/"+this.props.match.params.id)
+        axios.post(CommonData.dataUrl+"skill/snapshot/list/"+this.props.match.params.id)
         .then((res) => {
             const json = res.data;
             const list = JSON.parse(json.list);
@@ -91,7 +91,7 @@ class SnapshotList extends Component<RouteComponentProps<IMatchProps> & Props, S
         const self = this;
 
         return (
-            <Container fluid={true}>
+            <Container>
                 <Row>
                     <Col xs="12">
                         <Card>

@@ -5,7 +5,7 @@ import PatternRankRow from './ptRankRow';
 import Pager from '../../Common/pager';
 import LData from '../../Common/language';
 import txtPTRank from './txtptrank';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import {skillTableColor} from '../../Common/skillcolor';
 import {getPatternImg600} from '../../Common/pattern';
 
@@ -90,7 +90,7 @@ class PatternRank extends Component<RouteComponentProps<IMatchProps> & Props, St
 
         this.state = {
             list: [],
-            version: commonData.currentVersion,
+            version: CommonData.currentVersion,
             pattern: pt,
             level: "",
             mname: "",
@@ -111,9 +111,9 @@ class PatternRank extends Component<RouteComponentProps<IMatchProps> & Props, St
         const mid = prop.match.params.mid;
         
         const search = new URLSearchParams(prop.location.search);
-        const ver = search.get("ver") === null ? commonData.currentVersion : parseInt(search.get("ver")!);
+        const ver = search.get("ver") === null ? CommonData.currentVersion : parseInt(search.get("ver")!);
 
-        axios.post(commonData.commonDataURL+"getmusic/"+mid)
+        axios.post(CommonData.dataUrl+"getmusic/"+mid)
         .then((res) => {
             const json = res.data;
             const ptcode = prop.match.params.ptcode;
@@ -182,8 +182,8 @@ class PatternRank extends Component<RouteComponentProps<IMatchProps> & Props, St
         const ptcode = urlprop.ptcode;
         const page = urlprop.page;
         let version = this.state.version;
-        if(version === 0) version = commonData.currentVersion;
-        axios.post(commonData.commonDataURL+"ptdetail/"+
+        if(version === 0) version = CommonData.currentVersion;
+        axios.post(CommonData.dataUrl+"ptdetail/"+
                 mid+"/"+ptcode+"/"+page+"/"+version)
         .then((res) => {
             const json = res.data;
@@ -348,9 +348,9 @@ class PatternRank extends Component<RouteComponentProps<IMatchProps> & Props, St
                             <CardBody>
                                 <Row id="upper">
                                     <Col sm="4" className="text-center"> 
-                                        <img alt="jacket-img" src={commonData.commonImageURL+"music/"+mid+".jpg"}
+                                        <img alt="jacket-img" src={CommonData.jacketUrl+mid+".jpg"}
                                             onError={(e) => {
-                                                e.currentTarget.src=commonData.commonImageURL+"music/empty.jpg"}}
+                                                e.currentTarget.src=CommonData.jacketUrl+"empty.jpg"}}
                                             style={{width:"75%", maxWidth: "100px"}} /><br/>
                                         <img alt="pattern" src={pattern}
                                             style={{width:"75%", maxWidth: "100px"}} /><br/>

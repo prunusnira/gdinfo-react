@@ -11,7 +11,7 @@ import {
     CardHeader,
     CardBody
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import TableData from './tableData';
 
 interface IMatchProps {
@@ -44,7 +44,7 @@ class ClearTable extends Component<RouteComponentProps<IMatchProps>, State> {
     }
 
     loadUserData(prop: RouteComponentProps<IMatchProps>) {
-        axios.post(commonData.commonDataURL+"getuserid/"+prop.match.params.userid)
+        axios.post(CommonData.dataUrl+"getuserid/"+prop.match.params.userid)
         .then((res) => {
             const json = JSON.parse(res.data.mydata);
             const icon = (json.titletower !== "") ? true:false;
@@ -58,7 +58,7 @@ class ClearTable extends Component<RouteComponentProps<IMatchProps>, State> {
     }
 
     loadTableData(prop: RouteComponentProps<IMatchProps>, type: string) {
-        axios.post(commonData.commonDataURL+"cleartable/"+type+"/"+prop.match.params.userid)
+        axios.post(CommonData.dataUrl+"cleartable/"+type+"/"+prop.match.params.userid)
         .then((res) => {
             const json = JSON.parse(res.data.ctable);
             const gval = [ 0, 0, 0, 0, 0, 0, 0, 0];

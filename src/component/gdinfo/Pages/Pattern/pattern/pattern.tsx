@@ -18,7 +18,7 @@ import {
     CardBody,
     Button
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import { PatternMem, PatternData, EachDiffLine, EachDiff } from './patternData';
 import { StoreState } from '../../../Redux/reducer';
 
@@ -85,7 +85,7 @@ class PatternList extends Component<RouteComponentProps<IMatchProps> & Props, St
         const order = urlprop.order;
         const page = urlprop.page;
 
-        axios.post(commonData.commonDataURL+"ptrank/"+ver+"/"+order+"/"+page+search)
+        axios.post(CommonData.dataUrl+"ptrank/"+ver+"/"+order+"/"+page+search)
         .then((res) => {
             const json = res.data;
             const ptlist = new Array<PatternData>();
@@ -96,7 +96,7 @@ class PatternList extends Component<RouteComponentProps<IMatchProps> & Props, St
                 const music = musiclist[i];
 
                 //src
-                obj.jacket = commonData.commonImageURL+"music/"+music.id+".jpg";
+                obj.jacket = CommonData.jacketUrl+music.id+".jpg";
                 
                 //href
                 if(props.login) {

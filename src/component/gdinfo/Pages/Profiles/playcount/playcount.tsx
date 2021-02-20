@@ -17,7 +17,7 @@ import {
     CardText,
     Button
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import { RouteComponentProps } from 'react-router-dom';
 import PlaycountData from './playcountData';
 import { CountBtnType1, CountBtnType2 } from './countBtnOnTop';
@@ -67,14 +67,14 @@ class PlayCount extends Component<RouteComponentProps<IMatchProps> & Props, Stat
     }
 
     componentDidMount() {
-        axios.post(commonData.commonDataURL+"getuserid/"+this.props.match.params.id)
+        axios.post(CommonData.dataUrl+"getuserid/"+this.props.match.params.id)
         .then((res) => {
             this.setState({
                 username: res.data.mydata.name,
                 towertitle: res.data.mydata.titletower
             });
         });
-        axios.post(commonData.commonDataURL+"mybest/"+this.props.match.params.id)
+        axios.post(CommonData.dataUrl+"mybest/"+this.props.match.params.id)
         .then((res) => {
             const json = res.data;
 
@@ -92,7 +92,7 @@ class PlayCount extends Component<RouteComponentProps<IMatchProps> & Props, Stat
                 const mypdata: PlaycountData = {
                     key: 'p'+i,
                     number: i+1,
-                    jacket: commonData.commonImageURL+"music/"+mybestp[i].id+'.jpg',
+                    jacket: CommonData.jacketUrl+mybestp[i].id+'.jpg',
                     name: mybestp[i].name,
                     pattern: "",
                     count: mybestp[i].playtime
@@ -105,7 +105,7 @@ class PlayCount extends Component<RouteComponentProps<IMatchProps> & Props, Stat
                 const mygdata: PlaycountData = {
                     key: 'g'+i,
                     number: i+1,
-                    jacket: commonData.commonImageURL+"music/"+mybestpg[i].id+'.jpg',
+                    jacket: CommonData.jacketUrl+mybestpg[i].id+'.jpg',
                     name: mybestpg[i].name,
                     pattern: "",
                     count: mybestpg[i].playtime
@@ -118,7 +118,7 @@ class PlayCount extends Component<RouteComponentProps<IMatchProps> & Props, Stat
                 const myddata: PlaycountData = {
                     key: 'd'+i,
                     number: i+1,
-                    jacket: commonData.commonImageURL+"music/"+mybestpd[i].id+'.jpg',
+                    jacket: CommonData.jacketUrl+mybestpd[i].id+'.jpg',
                     name: mybestpd[i].name,
                     pattern: "",
                     count: mybestpd[i].playtime
@@ -131,7 +131,7 @@ class PlayCount extends Component<RouteComponentProps<IMatchProps> & Props, Stat
                 const mymdata: PlaycountData = {
                     key: 'm'+i,
                     number: i+1,
-                    jacket: commonData.commonImageURL+"music/"+mybestm[i].id+'.jpg',
+                    jacket: CommonData.jacketUrl+mybestm[i].id+'.jpg',
                     name: mybestm[i].name,
                     pattern: "",
                     count: mybestm[i].playtime
@@ -198,7 +198,7 @@ class PlayCount extends Component<RouteComponentProps<IMatchProps> & Props, Stat
 
     render() {
         return (
-            <Container fluid={true}>
+            <Container>
                 <Row>
                     <Col xs="12">
                         <Card>

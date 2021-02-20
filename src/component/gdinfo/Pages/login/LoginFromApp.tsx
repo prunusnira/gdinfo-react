@@ -15,7 +15,7 @@ import {
     CardBody,
     Button
 } from 'reactstrap';
-import commonData from '../Common/commonData';
+import CommonData from '../Common/commonData';
 import { StoreState } from '../../Redux/reducer';
 import { AnyAction, Dispatch, bindActionCreators } from 'redux';
 
@@ -52,7 +52,7 @@ class LoginFromApp extends Component<RouteComponentProps<IMatchProps> & Props, S
     }
 
     checkUserTokenExist(token: string) {
-        axios.post(commonData.commonDataURL+"getuser/"+token)
+        axios.post(CommonData.dataUrl+"getuser/"+token)
         .then((res) => {
             if(res.data.mydata == null) {
                 // 로그인 되어있지 않은 상태
@@ -71,7 +71,7 @@ class LoginFromApp extends Component<RouteComponentProps<IMatchProps> & Props, S
         const self = this;
         
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', commonData.commonMainURL+"loginseq");
+        xhr.open('POST', CommonData.dataUrl+"loginseq");
         xhr.setRequestHeader('Content-Type',
                 'application/x-www-form-urlencoded');
         xhr.onload = function() {

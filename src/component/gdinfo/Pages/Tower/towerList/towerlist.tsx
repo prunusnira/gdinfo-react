@@ -14,7 +14,7 @@ import {
     CardBody,
     Button
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import TowerListData from './towerlistData';
 
 interface State {
@@ -37,7 +37,7 @@ class TowerList extends Component<{}, State> {
     }
 
     loadTowerList() {
-        axios.post(commonData.commonDataURL+"towerlist")
+        axios.post(CommonData.dataUrl+"towerlist")
         .then((res) => {
             const json = res.data;
             const towerlist = JSON.parse(json.towerlist);
@@ -78,7 +78,7 @@ class TowerList extends Component<{}, State> {
         const self = this;
 
         return (
-            <Container fluid={true}>
+            <Container>
                 <Row>
                     <Col xs="12">
                         <Card>

@@ -10,24 +10,24 @@
  *****************************************************/
 const txtNewuser = {
     title: {
-        "jp":"SIN [ Skill Navigator ] へようこそ！",
-        "ko":"SIN [ Skill Navigator ] 에 오신 것을 환영합니다!",
-        "en":"Welcome to SIN [ Skill Navigator ]"
+        "jp":"Skill Navigatorへようこそ！",
+        "ko":"Skill Navigator에 오신 것을 환영합니다!",
+        "en":"Welcome to Skill Navigator"
     },
     desc: {
-        "jp":"サービスを利用するためには利用規約に同意してください。利用規約はホムページの下にリンクがありますのでもう一度確認できます",
-        "ko":"서비스를 사용하기에 앞서 이용약관에 동의해야 합니다. 이 약관은 이후 홈페이지 하단의 이용약관에서 다시 볼 수 있습니다.",
-        "en":"You need to agree on terms and service. This document can be seen from the link at the bottom of web site"
+        "jp":"本サービスを利用する事に関する注意事項はサイトの下の「使用上の注意」を参考にしてください",
+        "ko":"본 서비스의 사용에 대한 주의사항은 홈페이지 하단의 '사용상의 주의'를 참고하시기 바랍니다.",
+        "en":"Please check [Precautions] from website below"
     },
     btnsign: {
-        "jp":"同意して加入",
-        "ko":"동의하고 가입",
-        "en":"Agree and enroll"
+        "jp":"登録",
+        "ko":"가입",
+        "en":"Enroll"
     },
     btndecline: {
-        "jp":"利用しない",
-        "ko":"사용하지 않음",
-        "en":"Disagree"
+        "jp":"キャンセル",
+        "ko":"취소",
+        "en":"Cancel"
     }
 };
 

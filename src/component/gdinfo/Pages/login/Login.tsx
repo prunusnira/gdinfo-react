@@ -15,7 +15,7 @@ import {
     CardHeader,
     CardBody
 } from 'reactstrap';
-import commonData from '../Common/commonData';
+import CommonData from '../Common/commonData';
 import { StoreState } from '../../Redux/reducer';
 import { AnyAction, Dispatch, bindActionCreators } from 'redux';
 
@@ -46,7 +46,7 @@ class Login extends Component<Props, State> {
         const self = this;
         
         const xhr = new XMLHttpRequest();
-        xhr.open('POST', commonData.commonMainURL+"loginseq");
+        xhr.open('POST', CommonData.dataUrl+"loginseq");
         xhr.setRequestHeader('Content-Type',
                 'application/x-www-form-urlencoded');
         xhr.onload = function() {
@@ -89,7 +89,7 @@ class Login extends Component<Props, State> {
         }
         else {
             return (
-                <Container fluid={true}>
+                <Container>
                     <Row>
                         <Col xs="12">
                             <Card>
@@ -104,7 +104,7 @@ class Login extends Component<Props, State> {
                                         <Col xs="12">
                                             <GoogleLogin
                                                 theme="dark"
-                                                clientId={commonData.googleLoginClientId}
+                                                clientId={CommonData.googleLoginClientId}
                                                 buttonText="Login with Google"
                                                 onSuccess={this.responseGoogle}
                                                 onFailure={this.responseFail}

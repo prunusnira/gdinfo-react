@@ -3,15 +3,13 @@ import GDHeader from './Header/header';
 import GDFooter from './Footer/footer';
 import {Route, Switch} from 'react-router-dom';
 
+import IndexPage from './Pages/index/index';
 import Recent from './Pages/recent/recent';
 import Login from './Pages/login/login';
 import LoginFromApp from './Pages/login/loginFromApp';
 import SearchResult from './Pages/search/search';
 import Terms from './Pages/terms/terms';
 import NewUser from './Pages/User/newuser/newuser';
-
-import AboutPC from './Pages/about/AboutPC';
-import AboutMO from './Pages/about/AboutMO';
 
 import Profile from './Pages/Profiles/profile/profile';
 import ProfileLoginCheck from './Pages/Profiles/profile/checkLogin';
@@ -50,17 +48,15 @@ function GDInfoApp() {
     return (
         <div>
             <GDHeader />
-            <Route exact path="/" component={Recent} />
+            <Route exact path="/" component={IndexPage} />
+            <Route path="/recent" component={Recent} />
             <Route path="/login" component={Login} />
             <Route exact path="/app/login"  component={Recent} />
             <Route path="/app/login/:uid" component={LoginFromApp} />
-            <Route path="/index" component={Recent} />
+            <Route path="/index" component={IndexPage} />
             <Route path="/search/:type/:value/:page" component={SearchResult} />
-            <Route path="/terms" component={Terms} />
+            <Route path="/precautions" component={Terms} />
             <Route path="/newuser" component={NewUser} />
-            {/* About */}
-            <Route path="/aboutpc" component={AboutPC} />
-            <Route path="/aboutmo" component={AboutMO} />
             {/* Profile */}
             <Switch>
                 <Route path="/profile/towerstatus/:id" component={TowerClearStat} />

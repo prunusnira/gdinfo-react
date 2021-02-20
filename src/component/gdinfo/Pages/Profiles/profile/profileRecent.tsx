@@ -1,7 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line} from 'recharts';
 import axios from 'axios';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import SkillRecord from './skillRecord';
 
 interface Props {
@@ -31,7 +31,7 @@ class ProfileRecent extends Component<Props, State> {
     }
 
     componentDidMount() {
-        axios.post(commonData.commonDataURL+"skillrecord/"+this.props.id)
+        axios.post(CommonData.dataUrl+"skillrecord/"+this.props.id)
         .then((res) => {
             const record = JSON.parse(res.data.record);
             const length = record.length;

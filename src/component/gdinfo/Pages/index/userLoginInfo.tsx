@@ -4,11 +4,11 @@ import {connect} from 'react-redux';
 import axios from 'axios';
 import LData from '../Common/language';
 import { CardText } from 'reactstrap';
-import commonData from '../Common/commonData';
+import CommonData from '../Common/commonData';
 import { StoreState } from '../../Redux/reducer';
 import { LoginInfo } from '../../Redux/action';
 import ProfileData from '../Profiles/profile/profileData';
-import txtIndex from './txtindex';
+import txtIndex from './txtIndex';
 
 interface Props {
     login: boolean,
@@ -20,7 +20,7 @@ interface State {
     loading: boolean
 }
 
-class RecentSelfInfo extends Component<Props, State> {
+class UserLoginInfo extends Component<Props, State> {
     lang = LData.lang;
 
     state: State = {
@@ -31,7 +31,7 @@ class RecentSelfInfo extends Component<Props, State> {
     componentDidMount() {
         const token = this.props.userinfo.token;
         if(token !== "") {
-            axios.post(commonData.commonDataURL+"getuser/"+token)
+            axios.post(CommonData.dataUrl+"getuser/"+token)
             .then((res) => {
                 this.setState({
                     data: JSON.parse(res.data.mydata),
@@ -103,4 +103,4 @@ const mapStateToProps = (state: StoreState) => {
     }
 };
 
-export default connect(mapStateToProps)(RecentSelfInfo);
+export default connect(mapStateToProps)(UserLoginInfo);

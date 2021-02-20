@@ -16,10 +16,10 @@ import {
     CardHeader,
     CardBody
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import { StoreState } from '../../../Redux/reducer';
 import { TowerStatData, TitleChange, FloorItemData, FloorClearData, TowerManage, TowerData } from './towerStatData';
-import { RouteComponentProps } from 'react-router-dom';
+import { Redirect, RouteComponentProps } from 'react-router-dom';
 
 interface IMatchProps {
 	tower: string
@@ -56,7 +56,7 @@ class TowerStat extends Component<RouteComponentProps<IMatchProps> & Props, Stat
         const towercomp = new Array<boolean>();
         const clear = [];
 
-        axios.post(commonData.commonDataURL+"towerdata/"+
+        axios.post(CommonData.dataUrl+"towerdata/"+
                     urlprop.tower+"/"+prop.userinfo.id)
         .then((res) => {
 			const json = res.data;
@@ -150,7 +150,7 @@ class TowerStat extends Component<RouteComponentProps<IMatchProps> & Props, Stat
 			for(let j = 0; j < pat[size-i-1].length; j++) {
 				const cfl = pat[size-i-1][j];
 				const flist = new FloorItemData();
-				flist.jacket = commonData.commonImageURL+"music/"+cfl.tower.musicid+".jpg";
+				flist.jacket = CommonData.jacketUrl+cfl.tower.musicid+".jpg";
 				flist.name = cfl.tower.mname;
 				flist.pattern = GDPat[cfl.tower.ptcode-1].pat;
 				flist.lv = (cfl.tower.level/100).toFixed(2);
@@ -259,8 +259,12 @@ class TowerStat extends Component<RouteComponentProps<IMatchProps> & Props, Stat
 
     render() {
         const self = this;
+		if(!this.props.login) {
+            return <Redirect to={"/error/500"} />
+        }
+
         return (
-            <Container fluid={true}>
+            <Container>
                 <Row>
                     <Col xs="12">
                         <Card>

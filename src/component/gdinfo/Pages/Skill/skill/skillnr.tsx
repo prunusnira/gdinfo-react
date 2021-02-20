@@ -7,7 +7,7 @@ import SkillTableNR from './skillTableNR';
 import SkillMenu from './skillMenu';
 import txtSkill from './txtskill';
 import LData from '../../Common/language';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import './skill.css';
 import '../../Common/table.css';
 import {LoginInfo} from '../../../Redux/action';
@@ -210,7 +210,7 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
             self = true;
         }
 
-        axios.post(commonData.commonDataURL+"getuserid/"+props.match.params.userid)
+        axios.post(CommonData.dataUrl+"getuserid/"+props.match.params.userid)
         .then((res) => {
             const json = JSON.parse(res.data.mydata);
 
@@ -333,7 +333,7 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
 
     skillTableImport(props: RouteComponentProps<IMatchPrpos> & Props) {
         const urlprops = props.match.params;
-        const ajaxurl = commonData.commonDataURL+skillMethod.generateURL(props.location.search,
+        const ajaxurl = CommonData.dataUrl+skillMethod.generateURL(props.location.search,
                                                     urlprops.ptype, urlprops.gtype, urlprops.page, urlprops.order, urlprops.userid);
         axios.post(ajaxurl)
         .then((res) => {
@@ -412,7 +412,7 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
     }
 
     createSnapshot(userid: string, gtype: string) {
-        axios.post(commonData.commonDataURL+"skill/snapshot/create/"+userid+"/"+gtype)
+        axios.post(CommonData.dataUrl+"skill/snapshot/create/"+userid+"/"+gtype)
         .then((res) => {
             alert((txtSkill.snapshot.created as any)[this.lang]);
         });
@@ -504,7 +504,7 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
             return <Redirect to={"/skill/0/"+urlprop.userid+"/"+urlprop.gtype+"/"+urlprop.page+"/"+this.state.nextorder+search} />
         }
         return (
-            <Container fluid={true}>
+            <Container>
                 <Row>
                     <Col xs="12">
                         <Card>

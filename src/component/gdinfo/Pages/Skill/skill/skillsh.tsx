@@ -5,7 +5,7 @@ import Pager from '../../Common/pager';
 import SkillTableSH from './skillTableSH';
 import txtSkill from './txtskill';
 import LData from '../../Common/language';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import * as time from '../../Common/time';
 import * as skillMethod from './skillMethod';
 import './skill.css';
@@ -168,7 +168,7 @@ class SkillSH extends Component<RouteComponentProps<IMatchProps>, State> {
         const urlprop = props.match.params;
         const state = this.state;
 
-        axios.post(commonData.commonDataURL+"getuserid/"+props.match.params.userid)
+        axios.post(CommonData.dataUrl+"getuserid/"+props.match.params.userid)
         .then((res) => {
             const json = JSON.parse(res.data.mydata);
 
@@ -287,7 +287,7 @@ class SkillSH extends Component<RouteComponentProps<IMatchProps>, State> {
 
     skillTableImport(props: RouteComponentProps<IMatchProps>) {
         const urlprops = props.match.params;
-        const ajaxurl = commonData.commonDataURL +
+        const ajaxurl = CommonData.dataUrl +
                         skillMethod.generateURL(props.location.search,
                                                 urlprops.ptype,
                                                 urlprops.gtype,
@@ -382,7 +382,7 @@ class SkillSH extends Component<RouteComponentProps<IMatchProps>, State> {
             gtypeShort = "DM";
         }
         return (
-            <Container fluid={true}>
+            <Container>
                 <Row>
                     <Col xs="12">
                         <Card>

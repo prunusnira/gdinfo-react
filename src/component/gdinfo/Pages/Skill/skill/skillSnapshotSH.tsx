@@ -15,7 +15,7 @@ import {
     CardBody,
     Button
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import SkillTableData from './skillTableData';
 import { RouteComponentProps } from 'react-router-dom';
 import SkillDBData from './skillDBData';
@@ -72,7 +72,7 @@ class SkillSnapshotSH extends Component<RouteComponentProps<IMatchProps>, State>
         const hotList = new Array<SkillTableData>();
         const otherList = new Array<SkillTableData>();
 
-        axios.post(commonData.commonDataURL+"skill/snapshot/load/"+urlprop.userid+"/"+urlprop.date+"/"+urlprop.gtype)
+        axios.post(CommonData.dataUrl+"skill/snapshot/load/"+urlprop.userid+"/"+urlprop.date+"/"+urlprop.gtype)
         .then((res) => {
             const json = res.data;
 

@@ -22,29 +22,28 @@ class GDFooter extends Component {
         return (
             <footer className="footer">
                 <Container className='innerfooter'>
-                    <Row className='footerrow'>
-                        <Col sm="4">
+                    <Row>
+                        <Col className='footerrow' sm="4">
                             <b>{(txtFooter.langsel as any)[this.lang]}</b><br/>
                             <a href="#no_div" onClick={() => this.langChange('ko')}>한국어</a><br/>
                             <a href="#no_div" onClick={() => this.langChange('jp')}>日本語</a><br/>
                             <a href="#no_div" onClick={() => this.langChange('en')}>English</a>
                         </Col>
-                        <Col sm="8">
+                        <Col className='footerrow' sm="8">
                             <span>Skill Navigator (c) 2016 Nira(<a href="https://twitter.com/prunusnira" target="_blank" rel="noopener noreferrer">@prunusNira</a>)</span><br/>
-                            <span>Twitter <a href='https://twitter.com/_nira_one'>@_nira_one</a> | <Link to='/terms'>Terms and Conditions</Link></span><br/>
+                            <span>Twitter <a href='https://twitter.com/_nira_one'>@_nira_one</a> | <Link to='/precautions'>{(txtFooter.precautions as any)[this.lang]}</Link></span><br/>
                             <span>{(txtFooter.about as any)[this.lang]}</span><br/>
-                            <span>{(txtFooter.fanpage as any)[this.lang]}</span>
+                            <span>{(txtFooter.fanpage as any)[this.lang]}</span><br/>
+                            <span>Developed with ReactJS and Redux, Hosted on AWS S3 and Lightsail</span>
                         </Col>
                     </Row>
                     <Row>
-                        <Col xs="12">
-                            Source Code<br/>
-                            <a href="https://github.com/prunusnira/gdinfo-react" target="_blank" rel="noopener noreferrer">Frontend GitHub</a>&nbsp;|&nbsp;
-                            <a href="https://github.com/prunusnira/gdinfo-public" target="_blank" rel="noopener noreferrer">Backend GitHub</a>
+                        <Col className='footerrow' sm="4">
+                            Github<br/>
+                            <a href="https://github.com/prunusnira/gdinfo-react" target="_blank" rel="noopener noreferrer">Frontend</a><br/>
+                            <a href="https://github.com/prunusnira/gdinfo-public" target="_blank" rel="noopener noreferrer">Backend</a>
                         </Col>
-                    </Row>
-                    <Row className='footerrow'>
-                        <Col xs="12">
+                        <Col className='footerrow' sm="8">
                             <span>
                                 Icons by<br/>
                                 Smashicons from flaticon(CC 3.0 BY) https://www.flaticon.com/authors/smashicons<br/>

@@ -20,7 +20,7 @@ import {
     CardBody,
     Button
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import ProfileData from './profileData';
 import { StoreState } from '../../../Redux/reducer';
 import ProfileBoard from './profileBoard';
@@ -79,7 +79,7 @@ class Profile extends Component<RouteComponentProps<IMatchProps> & Props, State>
 	}
 	
 	submitOpen(id: string, open: string) {
-        axios.get(commonData.commonDataURL+"setopencount", {
+        axios.get(CommonData.dataUrl+"setopencount", {
             params: {
                 open: open,
                 id: parseInt(id)
@@ -111,7 +111,7 @@ class Profile extends Component<RouteComponentProps<IMatchProps> & Props, State>
 	}
 	
 	submitComment(id: string, comment: string) {
-        axios.get(commonData.commonDataURL+"setcomment", {
+        axios.get(CommonData.dataUrl+"setcomment", {
             params: {
                 val: comment,
                 id: id
@@ -126,7 +126,7 @@ class Profile extends Component<RouteComponentProps<IMatchProps> & Props, State>
     }
     
     countUpdate() {
-		axios.post(commonData.commonDataURL+"profile/countupdate/"+this.props.userinfo.id)
+		axios.post(CommonData.dataUrl+"profile/countupdate/"+this.props.userinfo.id)
         .then((data) => {
             window.location.reload();
         });
@@ -140,7 +140,7 @@ class Profile extends Component<RouteComponentProps<IMatchProps> & Props, State>
             });
         }
 
-        axios.post(commonData.commonDataURL+"getuserid/"+id)
+        axios.post(CommonData.dataUrl+"getuserid/"+id)
         .then((res) => {
             const json = JSON.parse(res.data.mydata);
             this.setState({
@@ -268,7 +268,7 @@ class Profile extends Component<RouteComponentProps<IMatchProps> & Props, State>
                         </div>
                     </div>
                     
-                    <Container fluid={true}>
+                    <Container>
                         <Row>
                             <Col xs="12">
                                 <Card>

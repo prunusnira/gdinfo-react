@@ -17,7 +17,7 @@ import {
     CardBody,
     Button
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import { RouteComponentProps } from 'react-router-dom';
 
 interface IMatchProps {
@@ -43,7 +43,7 @@ class TowerClearStat extends Component<RouteComponentProps<IMatchProps>, State> 
     }
 
     loadTowerClearData(prop: IMatchProps) {
-        axios.post(commonData.commonDataURL+"profile/towerstatus/tower/"+prop.id)
+        axios.post(CommonData.dataUrl+"profile/towerstatus/tower/"+prop.id)
         .then((res) => {
             const json = res.data;
             const list = JSON.parse(json.list);
@@ -76,7 +76,7 @@ class TowerClearStat extends Component<RouteComponentProps<IMatchProps>, State> 
     }
 
     loadFloorClearData(prop: IMatchProps) {
-        axios.post(commonData.commonDataURL+"profile/towerstatus/floor/"+prop.id)
+        axios.post(CommonData.dataUrl+"profile/towerstatus/floor/"+prop.id)
         .then((res) => {
             const json = res.data;
             const floor = JSON.parse(json.floor);

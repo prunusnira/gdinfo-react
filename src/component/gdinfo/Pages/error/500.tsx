@@ -14,7 +14,7 @@ const text = LData.text;
 
 const Error500 = () => {
     return (
-        <Container fluid={true}>
+        <Container>
             <Card>
                 <CardHeader>
                     <h3>500 ERROR</h3>

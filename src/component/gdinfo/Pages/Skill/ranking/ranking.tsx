@@ -16,7 +16,7 @@ import {
     CardText,
     Button
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import SRankData from './srankData';
 
 interface IMatchProps {
@@ -50,7 +50,7 @@ class SkillRanking extends Component<RouteComponentProps<IMatchProps>, State> {
 
     updateRankList(props: RouteComponentProps<IMatchProps>) {
         const urlparam = props.match.params;
-        axios.post(commonData.commonDataURL+"rank/"+urlparam.gtype+"/"+urlparam.page)
+        axios.post(CommonData.dataUrl+"rank/"+urlparam.gtype+"/"+urlparam.page)
         .then((res) => {
             const json = res.data;
             const list = new Array<SRankData>();
@@ -99,7 +99,7 @@ class SkillRanking extends Component<RouteComponentProps<IMatchProps>, State> {
     render() {
         const self = this;
         return (
-            <Container fluid={true}>
+            <Container>
                 <Row>
                     <Col xs="12">
                         <Card>

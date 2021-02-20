@@ -15,7 +15,7 @@ import {
     CardBody,
     Button
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import { StoreState } from '../../../Redux/reducer';
 
 interface Props {
@@ -41,7 +41,7 @@ class ProfileReset extends Component<Props, State> {
     }
 
     resetData() {
-        const url = commonData.commonDataURL+"resetdata";
+        const url = CommonData.dataUrl+"resetdata";
 
         const data = new URLSearchParams();
         data.append("id", this.props.userinfo.id);

@@ -12,7 +12,7 @@ import {
     CardHeader,
     CardBody
 } from 'reactstrap';
-import commonData from '../../Common/commonData';
+import CommonData from '../../Common/commonData';
 import MusicData from './musicData';
 
 interface IMatchProps {
@@ -52,7 +52,7 @@ class Music extends Component<RouteComponentProps<IMatchProps>, State> {
     }
 
     loadPlayerName(prop: RouteComponentProps<IMatchProps>) {
-        axios.post(commonData.commonDataURL+"getuserid/"+prop.match.params.userid)
+        axios.post(CommonData.dataUrl+"getuserid/"+prop.match.params.userid)
         .then((res) => {
             const json = res.data.mydata;
             this.setState({
@@ -63,21 +63,21 @@ class Music extends Component<RouteComponentProps<IMatchProps>, State> {
     }
 
     loadMusicInfo(prop: RouteComponentProps<IMatchProps>) {
-        axios.post(commonData.commonDataURL+"getmusic/"+prop.match.params.mid)
+        axios.post(CommonData.dataUrl+"getmusic/"+prop.match.params.mid)
         .then((res) => {
             const json = res.data.music;
             this.setState({
                 musicname: json.name,
                 composer: json.composer,
                 version: GDVer[json.version - 1].full,
-                musicimg: commonData.commonImageURL+"music/"+prop.match.params.mid+".jpg"
+                musicimg: CommonData.jacketUrl+prop.match.params.mid+".jpg"
             });
         });
     }
 
     loadPatternInfo(prop: RouteComponentProps<IMatchProps>)  {
         const urlprop = prop.match.params;
-        axios.post(commonData.commonDataURL+"music/"+urlprop.mid+"/"+urlprop.userid)
+        axios.post(CommonData.dataUrl+"music/"+urlprop.mid+"/"+urlprop.userid)
         .then((res) => {
             const json = res.data;
             const music = json.music;

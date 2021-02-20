@@ -18,7 +18,7 @@ class TowerHowto extends Component {
         const self = this;
 
         return (
-            <Container fluid={true}>
+            <Container>
                 <Row>
                     <Col xs="12">
                         <Card>
