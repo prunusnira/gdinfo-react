@@ -23,16 +23,16 @@ class SkillMenu extends Component<Props> {
                         </Col>
                         <Col xs="12" className="btn-group">
                             <Button tag={Link} to={
-                                    "/skill/4/"+this.props.id+"/gf/1/skilldesc"
+                                    "/skill/3/"+this.props.id+"/gf/1/skilldesc"
                                 }>GF 100</Button>
                             <Button tag={Link} to={
-                                    "/skill/6/"+this.props.id+"/gf/1/1"
+                                    "/skill/4/"+this.props.id+"/gf/1/1"
                                 }>GF Skill</Button>
                             <Button tag={Link} to={
-                                    "/skill/4/"+this.props.id+"/dm/1/skilldesc"
+                                    "/skill/3/"+this.props.id+"/dm/1/skilldesc"
                                 }>DM 100</Button>
                             <Button tag={Link} to={
-                                    "/skill/6/"+this.props.id+"/dm/1/1"
+                                    "/skill/4/"+this.props.id+"/dm/1/1"
                                 }>DM Skill</Button>
                         </Col>
                     </Row>
@@ -42,16 +42,16 @@ class SkillMenu extends Component<Props> {
                         </Col>
                         <Col xs="12" className="btn-group">
                             <Button tag={Link} to={
-                                    "/skill/3/"+this.props.id+"/gf/1/skilldesc"
+                                    "/skill/5/"+this.props.id+"/gf/1/skilldesc"
                                 }>GF 100</Button>
                             <Button tag={Link} to={
-                                    "/skill/5/"+this.props.id+"/gf/1/1"
+                                    "/skill/6/"+this.props.id+"/gf/1/1"
                                 }>GF Skill</Button>
                             <Button tag={Link} to={
-                                    "/skill/3/"+this.props.id+"/dm/1/skilldesc"
+                                    "/skill/5/"+this.props.id+"/dm/1/skilldesc"
                                 }>DM 100</Button>
                             <Button tag={Link} to={
-                                    "/skill/5/"+this.props.id+"/dm/1/1"
+                                    "/skill/6/"+this.props.id+"/dm/1/1"
                                 }>DM Skill</Button>
                         </Col>
                     </Row>
@@ -96,6 +96,25 @@ class SkillMenu extends Component<Props> {
                     <Row>
                         <Col xs="12">
                             NEXTAGE
+                        </Col>
+                        <Col xs="12" className="btn-group">
+                            <Button tag={Link} to={
+                                    "/skill/11/"+this.props.id+"/gf/1/skilldesc"
+                                }>GF 100</Button>
+                            <Button tag={Link} to={
+                                    "/skill/12/"+this.props.id+"/gf/1/1"
+                                }>GF Skill</Button>
+                            <Button tag={Link} to={
+                                    "/skill/11/"+this.props.id+"/dm/1/skilldesc"
+                                }>DM 100</Button>
+                            <Button tag={Link} to={
+                                    "/skill/12/"+this.props.id+"/dm/1/1"
+                                }>DM Skill</Button>
+                        </Col>
+                    </Row>
+                    <Row>
+                        <Col xs="12">
+                            HIGH-VOLTAGE
                         </Col>
                         <Col xs="12" className="btn-group">
                             <Button tag={Link} to={

@@ -60,10 +60,11 @@ export function generateTable(userid: string,
 
     let rate = cur.rate;
     const iptype = parseInt(ptype);
-    if(iptype === 4 || iptype === 6) rate = cur.ratetb;
-    else if(iptype === 3 || iptype === 5) rate = cur.ratetbre;
+    if(iptype === 3 || iptype === 4) rate = cur.ratetb;
+    else if(iptype === 5 || iptype === 6) rate = cur.ratetbre;
     else if(iptype === 7 || iptype === 8) rate = cur.ratemx;
     else if(iptype === 9 || iptype === 10) rate = cur.rateex;
+    else if(iptype === 11 || iptype === 12) rate = cur.ratenx;
 
     obj.rate = (rate/100).toFixed(2);
     obj.skill = Math.floor(rate*cur.level*20/10000)/100;

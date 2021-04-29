@@ -131,7 +131,7 @@ class IndexPage extends Component<Props> {
                                         }
                                         </CardText>
                                         <CardTitle>
-                                            {(txtIndex.howto.cardt1 as any)[this.lang]} (NEX+AGE)
+                                            {(txtIndex.howto.cardt1 as any)[this.lang]} (HIGH-VOLTAGE)
                                         </CardTitle>
                                         <CardText>
                                             {
@@ -146,7 +146,7 @@ class IndexPage extends Component<Props> {
                                             }
                                         </CardText>
                                         <CardTitle>
-                                            {(txtIndex.howto.cardt2 as any)[this.lang]} (EXCHAIN, MATIXX, Tri-Boost Re:Evolve)
+                                            {(txtIndex.howto.cardt2 as any)[this.lang]} (NEXTAGE, EXCHAIN, MATIXX, Tri-Boost Re:Evolve)
                                         </CardTitle>
                                         <CardText>
                                             {

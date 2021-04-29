@@ -6,6 +6,8 @@ class ProfileData {
     token: string = "";
     gskill: number = 0;
     dskill: number = 0;
+    gskillnx: number = 0;
+    dskillnx: number = 0;
     gskillex: number = 0;
     dskillex: number = 0;
     gskillmx: number = 0;

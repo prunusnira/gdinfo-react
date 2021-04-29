@@ -109,16 +109,20 @@ class SkillSH extends Component<RouteComponentProps<IMatchProps>, State> {
             case 0:
             case 1:
             case 3:
-            case 4:
+            case 5:
             case 7:
+            case 9:
+            case 11:
                 this.setState({
                     visibleLarge: "block"
                 });
                 break;
             case 2:
-            case 5:
+            case 4:
             case 6:
             case 8:
+            case 10:
+            case 12:
             case 1000:
                 this.setState({
                     visibleLeft: "block",
@@ -140,8 +144,10 @@ class SkillSH extends Component<RouteComponentProps<IMatchProps>, State> {
             case 0:
             case 1:
             case 3:
-            case 4:
+            case 5:
             case 7:
+            case 9:
+            case 11:
                 this.setState({
                     visibleLarge: "block",
                     visibleLeft: "none",
@@ -149,9 +155,11 @@ class SkillSH extends Component<RouteComponentProps<IMatchProps>, State> {
                 });
                 break;
             case 2:
-            case 5:
+            case 4:
             case 6:
             case 8:
+            case 10:
+            case 12:
             case 1000:
                 this.setState({
                     visibleLarge: "none",
@@ -200,9 +208,10 @@ class SkillSH extends Component<RouteComponentProps<IMatchProps>, State> {
             switch(parseInt(urlprop.ptype)) {
                 case 0:
                 case 3:
-                case 4:
+                case 5:
                 case 7:
                 case 9:
+                case 11:
                     statMidTitle = "Order";
 
                     switch(urlprop.order) {
@@ -241,10 +250,11 @@ class SkillSH extends Component<RouteComponentProps<IMatchProps>, State> {
                     statRight = time.unixTimeConverter(json.updatetime);
                     break;
                 case 2:
-                case 5:
+                case 4:
                 case 6:
                 case 8:
                 case 10:
+                case 12:
                     statMidTitle = "Hot Skill";
                     statRightTitle = "Other Skill";
                     statMid = this.state.sum1.toFixed(2);

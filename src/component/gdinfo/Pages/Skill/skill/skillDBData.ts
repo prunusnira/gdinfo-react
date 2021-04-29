@@ -9,6 +9,7 @@ class SkillDBData {
     ratetbre: number = 0;
     ratemx: number = 0;
     rateex: number = 0;
+    ratenx: number = 0;
     skill: number = 0;
     rank: string = "";
     checkfc: string = "";

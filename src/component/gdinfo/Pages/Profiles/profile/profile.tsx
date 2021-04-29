@@ -169,11 +169,13 @@ class Profile extends Component<RouteComponentProps<IMatchProps> & Props, State>
             const name = (userinfo.name === "") ? "(No Name)" : userinfo.name;
             const towertitle = userinfo.titletower;
             const gskill = userinfo.gskill;
+            const gskillnx = userinfo.gskillnx;
             const gskillex = userinfo.gskillex;
             const gskillmx = userinfo.gskillmx;
             const gskilltbre = userinfo.gskilltbre;
             const gskilltb = userinfo.gskilltb;
             const dskill = userinfo.dskill;
+            const dskillnx = userinfo.dskillnx;
             const dskillex = userinfo.dskillex;
             const dskillmx = userinfo.dskillmx;
             const dskilltbre = userinfo.dskilltbre;
@@ -332,11 +334,19 @@ class Profile extends Component<RouteComponentProps<IMatchProps> & Props, State>
                                                 <Row>
                                                     <Col xs="6" className="text-center">
                                                         <Row>
-                                                            <Col xs="4" className="text-right">NX</Col>
+                                                            <Col xs="4" className="text-right">HV</Col>
                                                             <Col xs="8" className="text-center">
                                                                 <SingleSkillColorChanger
                                                                     link={"/skill/2/"+urlprop.id+"/gf/1/skilldesc"}
                                                                     skill={gskill} />
+                                                            </Col>
+                                                        </Row>
+                                                        <Row>
+                                                            <Col xs="4" className="text-right">NX</Col>
+                                                            <Col xs="8" className="text-center">
+                                                                <SingleSkillColorChanger
+                                                                    link={"/skill/2/"+urlprop.id+"/gf/1/skilldesc"}
+                                                                    skill={gskillnx} />
                                                             </Col>
                                                         </Row>
                                                         <Row>
@@ -374,11 +384,19 @@ class Profile extends Component<RouteComponentProps<IMatchProps> & Props, State>
                                                     </Col>
                                                     <Col xs="6" className="text-center">
                                                         <Row>
-                                                            <Col xs="4" className="text-right">NX</Col>
+                                                            <Col xs="4" className="text-right">HV</Col>
                                                             <Col xs="8" className="text-center">
                                                                 <SingleSkillColorChanger
                                                                     link={"/skill/2/"+urlprop.id+"/dm/1/skilldesc"}
                                                                     skill={dskill} />
+                                                            </Col>
+                                                        </Row>
+                                                        <Row>
+                                                            <Col xs="4" className="text-right">NX</Col>
+                                                            <Col xs="8" className="text-center">
+                                                                <SingleSkillColorChanger
+                                                                    link={"/skill/2/"+urlprop.id+"/dm/1/skilldesc"}
+                                                                    skill={dskillnx} />
                                                             </Col>
                                                         </Row>
                                                         <Row>

@@ -20,12 +20,22 @@ interface Props {
 
 class SingleSkillColorChanger extends Component<Props> {
 	render() {
-		return (
-			<Link className={this.color(this.props.skill)}
-				to={this.props.link}>
-				<span style={{fontWeight: "bold"}}>{this.props.skill.toFixed(2)}</span>
-			</Link>
-		)
+		if(this.props.skill !== undefined) {
+			return (
+				<Link className={this.color(this.props.skill)}
+					to={this.props.link}>
+					<span style={{fontWeight: "bold"}}>{this.props.skill.toFixed(2)}</span>
+				</Link>
+			)
+		}
+		else {
+			return (
+				<Link className={this.color(0)}
+					to={this.props.link}>
+					<span style={{fontWeight: "bold"}}>0.00</span>
+				</Link>
+			)
+		}
 	}
 
 	color(skill: number) {

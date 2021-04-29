@@ -141,7 +141,7 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
             case 0:
             case 1:
             case 3:
-            case 4:
+            case 5:
             case 7:
             case 9:
                 this.setState({
@@ -149,10 +149,11 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
                 });
                 break;
             case 2:
-            case 5:
+            case 4:
             case 6:
             case 8:
             case 10:
+            case 12:
             case 1000:
                 this.setState({
                     visibleLeft: "block",
@@ -176,9 +177,10 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
             case 0:
             case 1:
             case 3:
-            case 4:
+            case 5:
             case 7:
             case 9:
+            case 11:
                 this.setState({
                     visibleLarge: "block",
                     visibleLeft: "none",
@@ -186,10 +188,11 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
                 });
                 break;
             case 2:
-            case 5:
+            case 4:
             case 6:
             case 8:
             case 10:
+            case 12:
             case 1000:
                 this.setState({
                     visibleLarge: "none",
@@ -242,9 +245,10 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
             switch(parseInt(urlprop.ptype)) {
                 case 0:
                 case 3:
-                case 4:
+                case 5:
                 case 7:
                 case 9:
+                case 11:
                     statMidTitle = "Order";
 
                     switch(urlprop.order) {
@@ -283,10 +287,11 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
                     statRight = time.unixTimeConverter(json.updatetime);
                     break;
                 case 2:
-                case 5:
+                case 4:
                 case 6:
                 case 8:
                 case 10:
+                case 12:
                     statMidTitle = "Hot Skill";
                     statRightTitle = "Other Skill";
                     statMid = this.state.sum1.toFixed(2);
@@ -716,7 +721,7 @@ class SkillNR extends Component<RouteComponentProps<IMatchPrpos> & Props, State>
                                 <Row className="blackandwhite text-center" id="statusBar">
                                         {
                                             (function() {
-                                                if(urlprop.ptype === ("3" || "4" || "7")) {
+                                                if(urlprop.ptype === ('3' || '5' || '7' || '9' || '11')) {
                                                     return (
                                                         <Col xs="12">
                                                             <span style={{textAlign:"center"}}>

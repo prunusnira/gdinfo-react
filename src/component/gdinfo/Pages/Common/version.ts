@@ -35,7 +35,8 @@ export const GDVer = [
 	{num:25, sv:"GD TBRE", full:"GITADORA Tri-Boost Re:Evolve"},
 	{num:26, sv:"GD MX", full:"GITADORA Matixx"},
 	{num:27, sv:"GD EXC", full:"GITADORA EXCHAIN"},
-	{num:28, sv:"GD NX", full:"GITADORA NEXTAGE"}
+	{num:28, sv:"GD NX", full:"GITADORA NEXTAGE"},
+	{num:29, sv:"GD HV", full:"GITADORA HIGH-VOLTAGE"}
 ];
 
 export const skillPageVersion = (ptype: number) => {
@@ -44,12 +45,12 @@ export const skillPageVersion = (ptype: number) => {
 		case 1:
 		case 2:
 		case 1000:
-			return "NEXTAGE";
-		case 4:
-		case 6:
-			return "Tri-Boost";
+			return "HIGH-VOLTAGE";
 		case 3:
+		case 4:
+			return "Tri-Boost";
 		case 5:
+		case 6:
 			return "Tri-Boost Re:EVOLVE";
 		case 7:
 		case 8:
@@ -57,6 +58,9 @@ export const skillPageVersion = (ptype: number) => {
 		case 9:
 		case 10:
 			return "EXCHAIN";
+		case 11:
+		case 12:
+			return "NEXTAGE";
 	}
 }
 
