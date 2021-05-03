@@ -146,23 +146,17 @@ class Language {
 
 	setLang() {
 		let lang = navigator.language;
-		if(this.readCookie("lang") === 'ko' || this.readCookie("lang") === 'jp' || this.readCookie("lang") === 'en') {
-			lang = this.readCookie("lang")!;
+
+		if(lang==='ko' || lang==='ko-kr' || lang==='ko-KR') {
+			lang = 'ko';
+		}
+		else if(lang==='ja' || lang==='ja-jp' || lang==='ja-JP') {
+			lang = 'jp';
 		}
 		else {
-			if(lang==='ko' || lang==='ko-kr' || lang==='ko-KR') {
-				lang = 'ko';
-			}
-			else if(lang==='ja' || lang==='ja-jp' || lang==='ja-JP') {
-				lang = 'jp';
-			}
-			else {
-				lang = 'en';
-			}
-		
-			this.eraseCookie("lang");
-			this.createCookie("lang", lang, 0);
+			lang = 'en';
 		}
+
 		return lang;
 	}
 

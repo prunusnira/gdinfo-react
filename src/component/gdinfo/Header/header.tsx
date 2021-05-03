@@ -1,10 +1,7 @@
-import React, {Component, Fragment} from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
 import './header.css';
-import LData from '../Pages/Common/language';
 import txtHeader from './txtheader';
-import {LoginInfo, actionCreator} from '../Redux/action';
 
 import {
     Navbar,
@@ -26,57 +23,51 @@ import {
     Row,
     Col
 } from 'reactstrap'
-import { StoreState } from '../Redux/reducer';
-import { Dispatch, AnyAction, bindActionCreators } from 'redux';
 import { GoogleLogout } from 'react-google-login';
 import CommonData from '../Pages/Common/commonData';
+import store from '../../../mobx/store';
+import { observer } from 'mobx-react';
+import { isSynchronized } from 'mobx-persist-store';
+import { Header } from '../../../styled/styledOverall';
+import { HeaderNav, NavBar, NavItemX, NavTitle, ImageTitle, ImageIcon, NavMenu } from '../../../styled/styledHeader';
+import HeaderNavData from './headerNavData';
+import { ItemCol, ItemRow } from '../../../styled/styledCommon';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronDown, faSortDown } from '@fortawesome/free-solid-svg-icons';
+import NavSubItemWrapper from './navbar/navSubWrapper';
 
-interface Props {
-    login: boolean,
-    userinfo: LoginInfo,
-    Actions: typeof actionCreator
-}
+import ImgTitle from './img/logoidx.png'
+import ImgMenuIcon from './img/btnmenu.jpg'
+import ImgMydata from './img/mydata.png'
+import ImgSkill from './img/skill.png'
+import ImgPattern from './img/pattern.png'
+import ImgTower from './img/tower.png'
+import ImgLogin from './img/login.png'
+import ImgLogout from './img/logout.png'
 
-interface State {
-    isMenuOpen: boolean,
-    isSearchOpen: boolean,
-    searchType: string,
-    isToken: boolean,
+const GDHeader = observer(() => {
+    const [isMenuOpen, setMenuOpen] = useState(false)
+    const [searchType, setSerachType] = useState('name')
 
-    searchNameWeight: number | "bold" | "normal" | "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "bolder" | "lighter" | undefined,
-    searchGSkillWeight: number | "bold" | "normal" | "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "bolder" | "lighter" | undefined,
-    searchDSkillWeight: number | "bold" | "normal" | "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "bolder" | "lighter" | undefined,
-    searchMusicWeight: number | "bold" | "normal" | "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "bolder" | "lighter" | undefined,
-}
+    const [searchNameWeight, setNameWeight] = useState<number | "bold" | "normal" | "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "bolder" | "lighter" | undefined>('bold')
+    const [searchGSkillWeight, setGSkillWeight] = useState<number | "bold" | "normal" | "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "bolder" | "lighter" | undefined>('normal')
+    const [searchDSkillWeight, setDSkillWeight] = useState<number | "bold" | "normal" | "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "bolder" | "lighter" | undefined>('normal')
+    const [searchMusicWeight, setMusicWeight] = useState<number | "bold" | "normal" | "-moz-initial" | "inherit" | "initial" | "revert" | "unset" | "bolder" | "lighter" | undefined>('normal')
+    
+    const {language, loginUser, loginStatus} = store
+    const lang = language.lang
 
-class GDHeader extends Component<Props, State> {
-    lang = LData.lang;
-
-    constructor(props: Props) {
-        super(props);
-
-        this.toggleMenu = this.toggleMenu.bind(this);
-        this.toggleSearch = this.toggleSearch.bind(this);
-        this.changeSearchType = this.changeSearchType.bind(this);
-        this.state = {
-            isMenuOpen: false,
-            isSearchOpen: false,
-            searchType: "name",
-            isToken: false,
-            searchNameWeight: "bold",
-            searchGSkillWeight: "normal",
-            searchDSkillWeight: "normal",
-            searchMusicWeight: "normal",
-        };
+    if(!isSynchronized(store.language)) {
+        return null
     }
 
-    LoginButton() {
-        if(!this.props.login) {
+    const LoginButton = () => {
+        if(!loginStatus.isSigned) {
             return (
-                <NavLink tag={Link} to="/login" onClick={this.toggleMenu}>
+                <NavLink tag={Link} to="/login" onClick={toggleMenu}>
                     <img alt="icon" className="navicon" src={require("./img/login.png")}/>
                     <span className="navlefttxt">
-                        {(txtHeader.login as any)[this.lang]}
+                        {(txtHeader.login as any)[lang]}
                     </span>
                 </NavLink>
             );
@@ -84,226 +75,150 @@ class GDHeader extends Component<Props, State> {
         else {
             return (
                 <NavLink className="nav-link" tag={Link} to="#no_div"
-                    onClick={() => {this.toggleMenu();}}>
+                    onClick={toggleMenu}>
                     <img alt="icon" className="navicon" src={require("./img/logout.png")}/>
                     <GoogleLogout
                         className="logoutbtn"
                         clientId={CommonData.googleLoginClientId}
-                        buttonText={(txtHeader.logout as any)[this.lang]}
+                        buttonText={(txtHeader.logout as any)[lang]}
                         onLogoutSuccess={
-                            () => this.props.Actions.setLogout()
+                            () => loginUser.setLogout()
                         } />
                 </NavLink>
             );
         }
     }
 
-    toggleMenu = () => {
-        this.setState({
-            isMenuOpen: !this.state.isMenuOpen
-        });
+    const toggleMenu = () => {
+        setMenuOpen(!isMenuOpen)
     }
 
-    toggleSearch = () => {
-        this.setState({
-            isSearchOpen: !this.state.isSearchOpen
-        });
-    }
-
-    changeSearchType(type: string) {
-        this.setState({
-            searchType: type
-        });
+    const changeSearchType = (type: string) => {
+        setSerachType(type)
         
         switch(type) {
         case "name":
-            this.setState({
-                searchNameWeight: "bold",
-                searchGSkillWeight: "normal",
-                searchDSkillWeight: "normal",
-                searchMusicWeight: "normal"
-            });
+            setNameWeight('bold')
+            setGSkillWeight('normal')
+            setDSkillWeight('normal')
+            setMusicWeight('normal')
             break;
         case "gskill":
-            this.setState({
-                searchNameWeight: "normal",
-                searchGSkillWeight: "bold",
-                searchDSkillWeight: "normal",
-                searchMusicWeight: "normal"
-            });
+            setNameWeight('normal')
+            setGSkillWeight('bold')
+            setDSkillWeight('normal')
+            setMusicWeight('normal')
             break;
         case "dskill":
-            this.setState({
-                searchNameWeight: "normal",
-                searchGSkillWeight: "normal",
-                searchDSkillWeight: "bold",
-                searchMusicWeight: "normal"
-            });
+            setNameWeight('normal')
+            setGSkillWeight('normal')
+            setDSkillWeight('bold')
+            setMusicWeight('normal')
             break;
         case "music":
-            this.setState({
-                searchNameWeight: "normal",
-                searchGSkillWeight: "normal",
-                searchDSkillWeight: "normal",
-                searchMusicWeight: "bold"
-            });
+            setNameWeight('normal')
+            setGSkillWeight('normal')
+            setDSkillWeight('normal')
+            setMusicWeight('bold')
             break;
         default:
             break;
         }
-        console.log(type);
-        this.toggleSearch();
     }
 
-    doSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const doSearch = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if(e.keyCode === 13) {
-            window.location.href = "/search/"+this.state.searchType+"/"+
+            window.location.href = "/search/"+searchType+"/"+
                             e.currentTarget.value+"/1";
         }
     }
 
-    render() {
-        const self = this;
-        return (
-            <Fragment>
-                <Navbar color='dark' className='bg-dark sticky-top' expand="lg">
-                    <NavbarBrand tag={Link} to="/index" onClick={() => {this.setState({isMenuOpen: false})}}>
-                        <img alt="icon" style={{maxHeight: 48+'px'}} src={require("./img/logoidx.png")}/>
-                    </NavbarBrand>
-                    <NavbarToggler onClick={this.toggleMenu}>
-                        <img alt="icon" src={require("./img/btnmenu.jpg")}/>
-                        {/*<span className="navbar-toggler-icon"></span>*/}
-                    </NavbarToggler>
-
-                    <Collapse isOpen={this.state.isMenuOpen} navbar className="flex-column">
-                        <Nav className="mr-auto" navbar>
-                            {/* login or logout button */}
-                            <NavItem>
-                                {this.LoginButton()}
-                            </NavItem>
-
-                            {/* mydata */}
-                            <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    <img alt="icon" className="navicon" src={require("./img/mydata.png")}/>
+    return (
+        <Header>
+            <HeaderNav>
+                <NavBar>
+                    <NavTitle>
+                        <Link to={HeaderNavData.title.url}>
+                            <ImageTitle alt="icon" src={ImgTitle}/>
+                        </Link>
+                    </NavTitle>
+                    <NavMenu>
+                        <NavItemX>
+                            <Link to='#none' onClick={toggleMenu}>
+                                {/* My Data */}
+                                <ItemRow>
+                                    <ImageIcon alt="icon" src={ImgMydata}/>
                                     <span className="navlefttxt">
-                                        {(txtHeader.mymenu.title as any)[this.lang]}
+                                        {(txtHeader.mymenu.title as any)[lang]}
                                     </span>
-                                </DropdownToggle>
-                                {/* mydata-dropdown */}
-                                <DropdownMenu left="true">
-                                    <DropdownItem tag={Link} to="/profile" onClick={this.toggleMenu}>
-                                        {(txtHeader.mymenu.profile as any)[this.lang]}
-                                    </DropdownItem>
-                                    <DropdownItem tag={Link} to="/myskill/gf" onClick={this.toggleMenu}>
-                                        {(txtHeader.mymenu.gfskill as any)[this.lang]}
-                                    </DropdownItem>
-                                    <DropdownItem tag={Link} to="/myskill/dm" onClick={this.toggleMenu}>
-                                        {(txtHeader.mymenu.dmskill as any)[this.lang]}
-                                    </DropdownItem>
-                                    <DropdownItem tag={Link} to="/mybest" onClick={this.toggleMenu}>
-                                        {(txtHeader.mymenu.best as any)[this.lang]}
-                                    </DropdownItem>
-                                    <DropdownItem tag={Link} to="/snapshot" onClick={this.toggleMenu}>
-                                        {(txtHeader.mymenu.snapshot as any)[this.lang]}
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-
-                            {/* skill */}
-                            <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    <img alt="icon" className="navicon" src={require("./img/skill.png")}/>
+                                    <FontAwesomeIcon style={{color: 'white'}} icon={faSortDown} />
+                                </ItemRow>
+                            </Link>
+                            <NavSubItemWrapper
+                                key='menu-mydata'
+                                open={isMenuOpen}
+                                closeMenu={toggleMenu}
+                                items={HeaderNavData.mydata.sub} />
+                        </NavItemX>
+                        <NavItemX>
+                            <Link to='#none' onClick={toggleMenu}>
+                                {/* Skill */}
+                                <ItemRow>
+                                    <ImageIcon alt="icon" src={ImgSkill}/>
                                     <span className="navlefttxt">
-                                        {(txtHeader.skill.title as any)[this.lang]}
+                                        {(txtHeader.skill.title as any)[lang]}
                                     </span>
-                                </DropdownToggle>
-                                <DropdownMenu left="true">
-                                    <DropdownItem tag={Link} to="/recent" onClick={this.toggleMenu}>
-                                        {(txtHeader.skill.recent as any)[this.lang]}
-                                    </DropdownItem>
-                                    <DropdownItem tag={Link} to="/rank/gf/1" onClick={this.toggleMenu}>
-                                        {(txtHeader.skill.rank as any)[this.lang]}
-                                    </DropdownItem>
-                                    <DropdownItem tag={Link} to="/exc/gf" onClick={this.toggleMenu}>
-                                        {(txtHeader.skill.exc as any)[this.lang]}
-                                    </DropdownItem>
-                                    <DropdownItem tag={Link} to="/cntrank/1" onClick={this.toggleMenu}>
-                                        {(txtHeader.skill.countrank as any)[this.lang]}
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-                        
-                            {/* pattern */}
-                            <UncontrolledDropdown nav inNavbar>
-                                <DropdownToggle nav caret>
-                                    <img alt="icon" className="navicon" src={require("./img/pattern.png")}/>
+                                    <FontAwesomeIcon style={{color: 'white'}} icon={faSortDown} />
+                                </ItemRow>
+                            </Link>
+                            <NavSubItemWrapper
+                                key='menu-skill'
+                                open={isMenuOpen}
+                                closeMenu={toggleMenu}
+                                items={HeaderNavData.skill.sub} />
+                        </NavItemX>
+                        <NavItemX>
+                            <Link to='#none' onClick={toggleMenu}>
+                                {/* Pattern */}
+                                <ItemRow>
+                                    <ImageIcon alt="icon" src={ImgPattern}/>
                                     <span className="navlefttxt">
-                                        {(txtHeader.pattern.title as any)[this.lang]}
+                                        {(txtHeader.pattern.title as any)[lang]}
                                     </span>
-                                </DropdownToggle>
-                                <DropdownMenu left="true">
-                                    <DropdownItem tag={Link} to="/pattern/00/titleasc/1?hot=h" onClick={this.toggleMenu}>
-                                        {(txtHeader.pattern.ptlist as any)[this.lang]}
-                                    </DropdownItem>
-                                    <DropdownItem tag={Link} to="/notplayed" onClick={this.toggleMenu}>
-                                        {(txtHeader.pattern.notplayed as any)[this.lang]}
-                                    </DropdownItem>
-                                    <DropdownItem tag={Link} to="/cleartable" onClick={this.toggleMenu}>
-                                        {(txtHeader.pattern.cleartable as any)[this.lang]}
-                                    </DropdownItem>
-                                </DropdownMenu>
-                            </UncontrolledDropdown>
-
-                            {/* tower */}
-                            <NavItem>
-                                <NavLink tag={Link} to="/tower/index" onClick={this.toggleMenu}>
-                                    <img alt="icon" className="navicon" src={require("./img/tower.png")}/>
+                                    <FontAwesomeIcon style={{color: 'white'}} icon={faSortDown} />
+                                </ItemRow>
+                            </Link>
+                            <NavSubItemWrapper
+                                key='menu-pattern'
+                                open={isMenuOpen}
+                                closeMenu={toggleMenu}
+                                items={HeaderNavData.pattern.sub} />
+                        </NavItemX>
+                        <NavItemX>
+                            <Link to=''>
+                                {/* Tower */}
+                                <ItemRow>
+                                    <ImageIcon alt="icon" src={ImgTower}/>
                                     <span className="navlefttxt">
-                                        {(txtHeader.tower.title as any)[this.lang]}
+                                        {(txtHeader.tower.title as any)[lang]}
                                     </span>
-                                </NavLink>
-                            </NavItem>
-                        </Nav>
-                        <Nav className="flex-row float-left">
-                            {/* search */}
-                            <InputGroup size="sm" style={{width: "100%"}}>
-                                <InputGroupAddon addonType="prepend">
-                                    <InputGroupText style={{fontWeight: this.state.searchNameWeight}} onClick={() => this.changeSearchType('name')} href="#no_div">Player</InputGroupText>
-                                    <InputGroupText style={{fontWeight: this.state.searchGSkillWeight}} onClick={() => this.changeSearchType('gskill')} href="#no_div">G-Skill</InputGroupText>
-                                    <InputGroupText style={{fontWeight: this.state.searchDSkillWeight}} onClick={() => this.changeSearchType('dskill')} href="#no_div">D-Skill</InputGroupText>
-                                    <InputGroupText style={{fontWeight: this.state.searchMusicWeight}} onClick={() => this.changeSearchType('music')} href="#no_div">Music</InputGroupText>
-                                </InputGroupAddon>
-                                <Input id="searchinp" name="val" type="search"
-                                    placeholder="Search"
-                                    aria-label="Search"
-                                    onKeyDown={self.doSearch} />
-                            </InputGroup>
-                        </Nav>
-                    </Collapse>
-                </Navbar>
+                                </ItemRow>
+                            </Link>
+                        </NavItemX>
+                        <NavItemX>
+                            {LoginButton()}
+                        </NavItemX>
+                    </NavMenu>
+                </NavBar>
+            </HeaderNav>
 
-                <Alert onClose={() => console.log("")}>
-                    <Row>
-                        <Col xs="12" className="text-center">
-                            <b>{(txtHeader.test as any)[this.lang]}</b>
-                        </Col>
-                    </Row>
-                </Alert>
-            </Fragment>
-        );
-    }
-}
+            <ItemRow style={{backgroundColor: 'lightgreen'}}>
+                <ItemCol size={10} style={{textAlign: 'center', color: 'black'}}>
+                    <b>{(txtHeader.test as any)[lang]}</b>
+                </ItemCol>
+            </ItemRow>
+        </Header>
+    )
+})
 
-const mapStateToProps = (state: StoreState) => {
-    return {
-        userinfo: state.loginReducer.userinfo,
-        login: state.loginReducer.login
-    }
-};
-
-const mapDispatchToProps = (dispatch: Dispatch<AnyAction>) => ({
-    Actions: bindActionCreators(actionCreator, dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(GDHeader);
+export default GDHeader;
