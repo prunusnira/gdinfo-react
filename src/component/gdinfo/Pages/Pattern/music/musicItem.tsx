@@ -120,7 +120,7 @@ class MusicItem extends Component<Props> {
                                     {/* 구작 달성률 */}
                                     <Col xs="12">
                                         {(txtMusic.rate as any)[this.lang]} (OLD)<br/>
-                                        EX: {music.rateex}% / MX: {music.ratemx}% / TBRE: {music.ratetbre}% / TB: {music.ratetb}%
+                                        NX: {music.ratenx}% / EX: {music.rateex}% / MX: {music.ratemx}% / TBRE: {music.ratetbre}% / TB: {music.ratetb}%
                                     </Col>
                                 </Row>
                             </Col>

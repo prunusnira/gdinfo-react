@@ -65,7 +65,7 @@ class Music extends Component<RouteComponentProps<IMatchProps>, State> {
     loadMusicInfo(prop: RouteComponentProps<IMatchProps>) {
         axios.post(CommonData.dataUrl+"getmusic/"+prop.match.params.mid)
         .then((res) => {
-            const json = res.data.music;
+            const json = JSON.parse(res.data.music);
             this.setState({
                 musicname: json.name,
                 composer: json.composer,
@@ -80,7 +80,7 @@ class Music extends Component<RouteComponentProps<IMatchProps>, State> {
         axios.post(CommonData.dataUrl+"music/"+urlprop.mid+"/"+urlprop.userid)
         .then((res) => {
             const json = res.data;
-            const music = json.music;
+            const music = JSON.parse(json.music);
             const glist = [];
             const blist = [];
             const dlist = [];
@@ -90,22 +90,23 @@ class Music extends Component<RouteComponentProps<IMatchProps>, State> {
                 obj.ranklink = '/ptrank/'+music.id+'/'+i+'/1';
 
                 let skill = null;
+                const skillParse = JSON.parse(json.skill)
                 switch(i) {
-                    case 1: obj.diff = 'BASIC'; obj.lv = (music.gbsc/100).toFixed(2); skill = json.skill.s1; break;
-                    case 2: obj.diff = 'ADVANCED'; obj.lv = (music.gadv/100).toFixed(2); skill = json.skill.s2; break;
-                    case 3: obj.diff = 'EXTREME'; obj.lv = (music.gext/100).toFixed(2); skill = json.skill.s3; break;
-                    case 4: obj.diff = 'MASTER'; obj.lv = (music.gmas/100).toFixed(2); skill = json.skill.s4; break;
-                    case 5: obj.diff = 'BASIC'; obj.lv = (music.bbsc/100).toFixed(2); skill = json.skill.s5; break;
-                    case 6: obj.diff = 'ADVANCED'; obj.lv = (music.badv/100).toFixed(2); skill = json.skill.s6; break;
-                    case 7: obj.diff = 'EXTREME'; obj.lv = (music.bext/100).toFixed(2); skill = json.skill.s7; break;
-                    case 8: obj.diff = 'MASTER'; obj.lv = (music.bmas/100).toFixed(2); skill = json.skill.s8; break;
-                    case 9: obj.diff = 'BASIC'; obj.lv = (music.dbsc/100).toFixed(2); skill = json.skill.s9; break;
-                    case 10: obj.diff = 'ADVANCED'; obj.lv = (music.dadv/100).toFixed(2); skill = json.skill.s10; break;
-                    case 11: obj.diff = 'EXTREME'; obj.lv = (music.dext/100).toFixed(2); skill = json.skill.s11; break;
-                    case 12: obj.diff = 'MASTER'; obj.lv = (music.dmas/100).toFixed(2); skill = json.skill.s12; break;
+                    case 1: obj.diff = 'BASIC'; obj.lv = (music.gbsc/100).toFixed(2); skill = skillParse.s1; break;
+                    case 2: obj.diff = 'ADVANCED'; obj.lv = (music.gadv/100).toFixed(2); skill = skillParse.s2; break;
+                    case 3: obj.diff = 'EXTREME'; obj.lv = (music.gext/100).toFixed(2); skill = skillParse.s3; break;
+                    case 4: obj.diff = 'MASTER'; obj.lv = (music.gmas/100).toFixed(2); skill = skillParse.s4; break;
+                    case 5: obj.diff = 'BASIC'; obj.lv = (music.bbsc/100).toFixed(2); skill = skillParse.s5; break;
+                    case 6: obj.diff = 'ADVANCED'; obj.lv = (music.badv/100).toFixed(2); skill = skillParse.s6; break;
+                    case 7: obj.diff = 'EXTREME'; obj.lv = (music.bext/100).toFixed(2); skill = skillParse.s7; break;
+                    case 8: obj.diff = 'MASTER'; obj.lv = (music.bmas/100).toFixed(2); skill = skillParse.s8; break;
+                    case 9: obj.diff = 'BASIC'; obj.lv = (music.dbsc/100).toFixed(2); skill = skillParse.s9; break;
+                    case 10: obj.diff = 'ADVANCED'; obj.lv = (music.dadv/100).toFixed(2); skill = skillParse.s10; break;
+                    case 11: obj.diff = 'EXTREME'; obj.lv = (music.dext/100).toFixed(2); skill = skillParse.s11; break;
+                    case 12: obj.diff = 'MASTER'; obj.lv = (music.dmas/100).toFixed(2); skill = skillParse.s12; break;
                 }
 
-                if(obj.lv !== "0.00" && skill !== null) {
+                if(obj.lv !== "0.00" && (skill !== undefined && skill !== null)) {
                     obj.cleartime = skill.cleartime;
                     obj.playtime = skill.playtime;
                     obj.combo = skill.combo;
@@ -151,6 +152,7 @@ class Music extends Component<RouteComponentProps<IMatchProps>, State> {
                             obj.clearmeter += "<div style='width:0.8vw; max-width:9px; background-color:#848484; float:left'>&nbsp;</div>";
                     }
                     
+                    obj.ratenx = (skill.ratenx/100).toFixed(2);
                     obj.rateex = (skill.rateex/100).toFixed(2);
                     obj.ratemx = (skill.ratemx/100).toFixed(2);
                     obj.ratetbre = (skill.ratetbre/100).toFixed(2);
@@ -178,6 +180,7 @@ class Music extends Component<RouteComponentProps<IMatchProps>, State> {
                     obj.rank = process.env.PUBLIC_URL+'/general-img/rank/rank_e.png';
                     obj.fc = '';
                     obj.clearmeter = '';
+                    obj.ratenx = '0.00';
                     obj.rateex = '0.00';
                     obj.ratemx = '0.00';
                     obj.ratetbre = '0.00';

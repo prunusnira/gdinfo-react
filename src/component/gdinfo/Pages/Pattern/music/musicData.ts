@@ -11,6 +11,7 @@ class MusicData {
     rank: string = "";
     fc: string = "";
     clearmeter: string = "";
+    ratenx: string = "";
     rateex: string = "";
     ratemx: string = "";
     ratetbre: string = "";
