@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 
 import {
@@ -12,8 +12,8 @@ interface Props {
     afterUrl: string
 }
 
-class Pager extends Component<Props> {
-    createPager(current: number, end: number, urla: string, urlb: string) {
+const Pager = (props: Props) => {
+    const createPager = (current: number, end: number, urla: string, urlb: string) => {
         var outer = document.createElement("span");
         outer.style.width = "100%";
         
@@ -29,7 +29,7 @@ class Pager extends Component<Props> {
                 list.push(i);
             }
             return (
-                <Fragment>
+                <>
                     {
                         list.map((v, i) => {
                             return (
@@ -39,7 +39,7 @@ class Pager extends Component<Props> {
                             )
                         })
                     }
-                </Fragment>
+                </>
             )
         }
         else {
@@ -47,7 +47,7 @@ class Pager extends Component<Props> {
             if(current < 4) {
                 const list = [0, 1, 2, 3, 4];
                 return (
-                    <Fragment>
+                    <>
                         {
                             list.map((v, i) => {
                                 return (
@@ -62,7 +62,7 @@ class Pager extends Component<Props> {
                         <Button tag={Link} to={urla+end+urlb}>
                             {end}
                         </Button>
-                    </Fragment>
+                    </>
                 )
             }
     
@@ -73,7 +73,7 @@ class Pager extends Component<Props> {
                     list.push(i);
                 }
                 return (
-                    <Fragment>
+                    <>
                         <Button tag={Link} to={urla+1+urlb}>
                             1
                         </Button>
@@ -87,7 +87,7 @@ class Pager extends Component<Props> {
                                 )
                             })
                         }
-                    </Fragment>
+                    </>
                 )
             }
     
@@ -98,7 +98,7 @@ class Pager extends Component<Props> {
                     list.push(i);
                 }
                 return (
-                    <Fragment>
+                    <>
                         <Button tag={Link} to={urla+1+urlb}>
                             1
                         </Button>
@@ -116,28 +116,21 @@ class Pager extends Component<Props> {
                         <Button tag={Link} to={urla+end+urlb}>
                             {end}
                         </Button>
-                    </Fragment>
+                    </>
                 )
             }
         }
     }
 
-    render() {
-        const cpage = this.props.cpage;
-        const allpage = this.props.allpage;
-        const baseUrl = this.props.baseUrl;
-        const afterUrl = this.props.afterUrl;
-        const self = this;
-        return (
-            <Fragment>
-                {
-                    (function() {
-                        return self.createPager(cpage, allpage, baseUrl, afterUrl)
-                    })()
-                }
-            </Fragment>
-        )
-    }
+    return (
+        <>
+            {
+                (function() {
+                    return createPager(props.cpage, props.allpage, props.baseUrl, props.afterUrl)
+                })()
+            }
+        </>
+    )
 }
 
 export default Pager;

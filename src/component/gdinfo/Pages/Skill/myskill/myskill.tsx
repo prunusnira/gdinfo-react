@@ -1,10 +1,10 @@
-import React, {Component} from 'react';
-import {Redirect, RouteComponentProps} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {LoginInfo} from '../../../Redux/action';
-import { StoreState } from '../../../Redux/reducer';
+import { observer } from 'mobx-react';
+import React from 'react';
+import {Redirect, useParams} from 'react-router-dom';
+import store from '../../../../../mobx/store';
+import LoginInfo from '../../Common/loginInfo';
 
-interface IMatchprops {
+interface Matchprops {
     gtype: string
 }
 
@@ -13,27 +13,21 @@ interface Props {
     userinfo: LoginInfo
 }
 
-class ProfileLoginCheck extends Component<RouteComponentProps<IMatchprops> & Props> {
-    render() {
-        if(this.props.login) {
-            if(this.props.match.params.gtype === "gf") {
-                return <Redirect to={"/skill/2/"+this.props.userinfo.id+"/gf/1/1"} />
-            }
-            else {
-                return <Redirect to={"/skill/2/"+this.props.userinfo.id+"/dm/1/1"} />
-            }
+const ProfileLoginCheck = observer(() => {
+    const {loginUser, loginStatus} = store
+    const {gtype} = useParams<Matchprops>()
+
+    if(loginStatus.isSigned) {
+        if(gtype === "gf") {
+            return <Redirect to={`/skill/2/${loginUser.user.id}/gf/1/1`} />
         }
         else {
-            return <Redirect to={"/error/500"} />
+            return <Redirect to={`/skill/2/${loginUser.user.id}/dm/1/1`} />
         }
     }
-}
-
-const mapStateToProps = (state: StoreState) => {
-    return {
-        userinfo: state.loginReducer.userinfo,
-        login: state.loginReducer.login
+    else {
+        return <Redirect to={"/error/500"} />
     }
-};
+})
 
-export default connect(mapStateToProps)(ProfileLoginCheck);
+export default ProfileLoginCheck

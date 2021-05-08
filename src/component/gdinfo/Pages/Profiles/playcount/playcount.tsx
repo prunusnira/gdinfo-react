@@ -1,80 +1,47 @@
-import React, {Component} from 'react';
-import LData from '../../Common/language';
+import React, {useEffect, useState} from 'react';
 import txtPlayCount from './txtplaycount';
 import CountTable from './countTable';
 import axios from 'axios';
 import {getPatternImg600} from '../../Common/pattern';
 import scrShot from '../../Common/scrshot';
 
-import {
-    Container,
-    Row,
-    Col,
-    Card,
-    CardHeader,
-    CardBody,
-    CardTitle,
-    CardText,
-    Button
-} from 'reactstrap';
 import CommonData from '../../Common/commonData';
-import { RouteComponentProps } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import PlaycountData from './playcountData';
-import { CountBtnType1, CountBtnType2 } from './countBtnOnTop';
+import { observer } from 'mobx-react';
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../../../styled/styledCommon';
+import store from '../../../../../mobx/store';
 
-interface IMatchProps {
+interface MatchProps {
     id: string
 }
 
-interface Props {
+const PlayCount = observer(() => {
+    const [plist, setPList] = useState(Array<PlaycountData>())
+    const [glist, setGList] = useState(Array<PlaycountData>())
+    const [dlist, setDList] = useState(Array<PlaycountData>())
+    const [mlist, setMList] = useState(Array<PlaycountData>())
 
-}
+    const [userName, setUserName] = useState('')
+    const [towerTitle, setTowerTitle] = useState('')
 
-interface State {
-    plist: Array<PlaycountData>,
-    glist: Array<PlaycountData>,
-    dlist: Array<PlaycountData>,
-    mlist: Array<PlaycountData>,
-    dataReady: boolean,
-    username: string,
-    towertitle: string,
-    display0: string,
-    display1: string,
-    display2: string,
-    display3: string
-}
+    const [display0, setDisplay0] = useState('none')
+    const [display1, setDisplay1] = useState('block')
+    const [display2, setDisplay2] = useState('none')
+    const [display3, setDisplay3] = useState('none')
 
-class PlayCount extends Component<RouteComponentProps<IMatchProps> & Props, State> {
-    lang = LData.lang;
+    const {id} = useParams<MatchProps>()
 
-    constructor(props: RouteComponentProps<IMatchProps> & Props) {
-        super(props);
-        this.changeDiv = this.changeDiv.bind(this);
-    }
+    const lang = store.language.lang
 
-    state: State = {
-        plist: [],
-        glist: [],
-        dlist: [],
-        mlist: [],
-        dataReady: false,
-        username: "",
-        towertitle: "",
-        display0: "none",
-        display1: "block",
-        display2: "none",
-        display3: "none"
-    }
-
-    componentDidMount() {
-        axios.post(CommonData.dataUrl+"getuserid/"+this.props.match.params.id)
+    useEffect(() => {
+        axios.post(`${CommonData.dataUrl}getuserid/${id}`)
         .then((res) => {
-            this.setState({
-                username: res.data.mydata.name,
-                towertitle: res.data.mydata.titletower
-            });
+            const json = JSON.parse(res.data.mydata)
+            setUserName(json.name)
+            setTowerTitle(json.titletower)
         });
-        axios.post(CommonData.dataUrl+"mybest/"+this.props.match.params.id)
+        axios.post(`${CommonData.dataUrl}mybest/${id}`)
         .then((res) => {
             const json = res.data;
 
@@ -90,11 +57,11 @@ class PlayCount extends Component<RouteComponentProps<IMatchProps> & Props, Stat
 
             for(let i = 0; i < mybestp.length; i++) {
                 const mypdata: PlaycountData = {
-                    key: 'p'+i,
+                    key: `p${i}`,
                     number: i+1,
-                    jacket: CommonData.jacketUrl+mybestp[i].id+'.jpg',
+                    jacket: `${CommonData.jacketUrl}${mybestp[i].id}.jpg`,
                     name: mybestp[i].name,
-                    pattern: "",
+                    pattern: '',
                     count: mybestp[i].playtime
                 };
                 mypdata.pattern = getPatternImg600(mybestp[i].patterncode);
@@ -103,11 +70,11 @@ class PlayCount extends Component<RouteComponentProps<IMatchProps> & Props, Stat
 
             for(let i = 0; i < mybestpg.length; i++) {
                 const mygdata: PlaycountData = {
-                    key: 'g'+i,
+                    key: `g${i}`,
                     number: i+1,
-                    jacket: CommonData.jacketUrl+mybestpg[i].id+'.jpg',
+                    jacket: `${CommonData.jacketUrl}${mybestpg[i].id}.jpg`,
                     name: mybestpg[i].name,
-                    pattern: "",
+                    pattern: '',
                     count: mybestpg[i].playtime
                 };
                 mygdata.pattern = getPatternImg600(mybestpg[i].patterncode);
@@ -116,11 +83,11 @@ class PlayCount extends Component<RouteComponentProps<IMatchProps> & Props, Stat
             
             for(let i = 0; i < mybestpd.length; i++) {
                 const myddata: PlaycountData = {
-                    key: 'd'+i,
+                    key: `d${i}`,
                     number: i+1,
-                    jacket: CommonData.jacketUrl+mybestpd[i].id+'.jpg',
+                    jacket: `${CommonData.jacketUrl}${mybestpd[i].id}.jpg`,
                     name: mybestpd[i].name,
-                    pattern: "",
+                    pattern: '',
                     count: mybestpd[i].playtime
                 };
                 myddata.pattern = getPatternImg600(mybestpd[i].patterncode);
@@ -129,148 +96,129 @@ class PlayCount extends Component<RouteComponentProps<IMatchProps> & Props, Stat
             
             for(let i = 0; i < mybestm.length; i++) {
                 const mymdata: PlaycountData = {
-                    key: 'm'+i,
+                    key: `m${i}`,
                     number: i+1,
-                    jacket: CommonData.jacketUrl+mybestm[i].id+'.jpg',
+                    jacket: `${CommonData.jacketUrl}${mybestm[i].id}.jpg`,
                     name: mybestm[i].name,
-                    pattern: "",
+                    pattern: '',
                     count: mybestm[i].playtime
                 };
                 mlist.push(mymdata);
             }
 
-            this.setState({
-                plist: plist,
-                glist: glist,
-                dlist: dlist,
-                mlist: mlist,
-                dataReady: true,
-                display0: "block",
-                display1: "none",
-                display2: "none",
-                display3: "none"
-            });
-        });
-    }
+            setPList(plist)
+            setGList(glist)
+            setDList(dlist)
+            setMList(mlist)
+            setDisplay0('block')
+            setDisplay1('none')
+            setDisplay2('none')
+            setDisplay3('none')
+        })
+    }, [])
 
-    scrShot() {
-
-    }
-
-    changeDiv(num: number) {
+    const changeDiv = (num: number) => {
         switch(num) {
             case 0:
-                this.setState({
-                    display0: "block",
-                    display1: "none",
-                    display2: "none",
-                    display3: "none"
-                });
+                setDisplay0('block')
+                setDisplay1('none')
+                setDisplay2('none')
+                setDisplay3('none')
                 break;
             case 1:
-                this.setState({
-                    display0: "none",
-                    display1: "block",
-                    display2: "none",
-                    display3: "none"
-                });
+                setDisplay0('none')
+                setDisplay1('block')
+                setDisplay2('none')
+                setDisplay3('none')
                 break;
             case 2:
-                this.setState({
-                    display0: "none",
-                    display1: "none",
-                    display2: "block",
-                    display3: "none"
-                });
+                setDisplay0('none')
+                setDisplay1('none')
+                setDisplay2('block')
+                setDisplay3('none')
                 break;
             case 3:
-                this.setState({
-                    display0: "none",
-                    display1: "none",
-                    display2: "none",
-                    display3: "block"
-                });
+                setDisplay0('none')
+                setDisplay1('none')
+                setDisplay2('none')
+                setDisplay3('block')
                 break;
             default:
                 break;
         }
     }
 
-    render() {
-        return (
-            <Container>
-                <Row>
-                    <Col xs="12">
-                        <Card>
-                            <CardHeader>
-                                <h3>Play Count</h3>
-                            </CardHeader>
-                            <CardBody className="text-center">
-                                <Col xs="12">
-                                    <Button style={{width:"100%"}} onClick={() => scrShot("scrshot", this.props.match.params.id+"_mybest.jpg")}>
-                                        {(txtPlayCount.button.scrshot as any)[this.lang]}
-                                    </Button>
-                                </Col>
-                                <Col xs="12">
-                                    {(txtPlayCount.desc_1 as any)[this.lang]}
-                                    <span style={{color:"red"}}>
-                                        {(txtPlayCount.desc_2 as any)[this.lang]}
-                                    </span>
-                                    {(txtPlayCount.desc_3 as any)[this.lang]}
-                                </Col>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
-                <Row id="scrshot">
-                    <Col xs="12">
-                        <Card>
-                            <CardHeader className="text-center" id="userinfo">
-                                <h4>Most Played List</h4>
-                                <span>Player: <img alt="titletower" style={{width:"30px"}} src={process.env.PUBLIC_URL+"/general-img/title/"+this.state.towertitle+".png"} />{this.state.username}</span>
-                            </CardHeader>
-                            <CardBody>
-                                <CardTitle>
-                                    {/* under large size */}
-                                    <Row className="d-block d-lg-none">
-                                        <Col xs="12" className="btn-group btn-group-justified" role='group'>
-                                            <CountBtnType1 changeDiv={this.changeDiv} />
-                                        </Col>
-                                        <Col xs="12" className="btn-group btn-group-justified" role='group'>
-                                            <CountBtnType2 changeDiv={this.changeDiv} />
-                                        </Col>
-                                    </Row>
-                                    {/* from large size */}
-                                    <Row className="d-none d-lg-block">
-                                        <Col xs="12" className="btn-group btn-group-justified" role='group'>
-                                            <CountBtnType1 changeDiv={this.changeDiv} />
-                                            <CountBtnType2 changeDiv={this.changeDiv} />
-                                        </Col>
-                                    </Row>
-                                </CardTitle>
-                                <CardText>
-                                    <Row>
-                                        <Col xs="12" style={{display:this.state.display0}}>
-                                            <CountTable data={this.state.plist}></CountTable> {/*AllPattern*/}
-                                        </Col>
-                                        <Col xs="12" style={{display:this.state.display1}}>
-                                            <CountTable data={this.state.mlist}></CountTable> {/*GF*/}
-                                        </Col>
-                                        <Col xs="12" style={{display:this.state.display2}}>
-                                            <CountTable data={this.state.glist}></CountTable> {/*DM*/}
-                                        </Col>
-                                        <Col xs="12" style={{display:this.state.display3}}>
-                                            <CountTable data={this.state.dlist}></CountTable> {/*Music*/}
-                                        </Col>
-                                    </Row>
-                                </CardText>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
-        )
-    }
-}
+    return (
+        <Container>
+            <ItemRow setVertical={true}>
+                <BodyHeader>
+                    <h3>Play Count</h3>
+                </BodyHeader>
+                <BodyContent className="text-center">
+                    <ItemRow>
+                        <Button style={{width:"100%"}} onClick={() => scrShot("scrshot", `${id}_mybest.jpg`)}>
+                            {(txtPlayCount.button.scrshot as any)[lang]}
+                        </Button>
+                    </ItemRow>
+                    <ItemRow>
+                        {(txtPlayCount.desc_1 as any)[lang]}
+                        <span style={{color:"red"}}>
+                            {(txtPlayCount.desc_2 as any)[lang]}
+                        </span>
+                        {(txtPlayCount.desc_3 as any)[lang]}
+                    </ItemRow>
+                </BodyContent>
+            </ItemRow>
+            <ItemRow id="scrshot" setVertical={true}>
+                <BodyHeader className="text-center" id="userinfo">
+                    <h4>Most Played List</h4>
+                    <span>Player:&nbsp;
+                        <img
+                            alt="titletower"
+                            style={{width:"30px"}}
+                            src={`${process.env.PUBLIC_URL}/general-img/title/${towerTitle}.png`} />
+                        {userName}
+                    </span>
+                </BodyHeader>
+                <BodyContent>
+                    <ItemRow>
+                        <ItemCol size={5} isFlatUnderLg={true}>
+                            <Button style={{width:"100%"}} onClick={() => changeDiv(0)}>
+                                {(txtPlayCount.button.pt as any)[lang]}
+                            </Button>
+                        </ItemCol>
+                        <ItemCol size={5} isFlatUnderLg={true}>
+                            <Button style={{width:"100%"}} onClick={() => changeDiv(1)}>
+                                {(txtPlayCount.button.music as any)[lang]}
+                            </Button>
+                        </ItemCol>
+                        <ItemCol size={5} isFlatUnderLg={true}>
+                            <Button style={{width:"100%"}} onClick={() => changeDiv(2)}>
+                                {(txtPlayCount.button.gf as any)[lang]}
+                            </Button>
+                        </ItemCol>
+                        <ItemCol size={5} isFlatUnderLg={true}>
+                            <Button style={{width:"100%"}} onClick={() => changeDiv(3)}>
+                                {(txtPlayCount.button.dm as any)[lang]}
+                            </Button>
+                        </ItemCol>
+                    </ItemRow>
+                    <ItemRow style={{display:display0}}>
+                        <CountTable data={plist}></CountTable> {/*AllPattern*/}
+                    </ItemRow>
+                    <ItemRow style={{display:display1}}>
+                        <CountTable data={mlist}></CountTable> {/*GF*/}
+                    </ItemRow>
+                    <ItemRow style={{display:display2}}>
+                        <CountTable data={glist}></CountTable> {/*DM*/}
+                    </ItemRow>
+                    <ItemRow style={{display:display3}}>
+                        <CountTable data={dlist}></CountTable> {/*Music*/}
+                    </ItemRow>
+                </BodyContent>
+            </ItemRow>
+        </Container>
+    )
+})
 
 export default PlayCount;

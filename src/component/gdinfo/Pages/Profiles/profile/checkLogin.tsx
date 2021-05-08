@@ -1,30 +1,16 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Redirect} from 'react-router-dom';
-import {connect} from 'react-redux';
-import {LoginInfo} from '../../../Redux/action';
-import { StoreState } from '../../../Redux/reducer';
+import store from '../../../../../mobx/store';
 
-interface Props {
-    login: boolean,
-    userinfo: LoginInfo
-}
+const ProfileLoginCheck = () => {
+    const {loginUser, loginStatus} = store
 
-class ProfileLoginCheck extends Component<Props> {
-    render() {
-        if(this.props.login) {
-            return <Redirect to={"/profile/"+this.props.userinfo.id} />
-        }
-        else {
-            return <Redirect to={"/error/500"} />
-        }
+    if(loginStatus.isSigned) {
+        return <Redirect to={`/profile/${loginUser.user.id}`} />
+    }
+    else {
+        return <Redirect to={"/error/500"} />
     }
 }
 
-const mapStateToProps = (state: StoreState) => {
-    return {
-        userinfo: state.loginReducer.userinfo,
-        login: state.loginReducer.login
-    }
-};
-
-export default connect(mapStateToProps)(ProfileLoginCheck);
+export default ProfileLoginCheck

@@ -1,4 +1,4 @@
-import React, {Component, Fragment} from 'react';
+import React, {useEffect, useState} from 'react';
 import {LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line} from 'recharts';
 import axios from 'axios';
 import CommonData from '../../Common/commonData';
@@ -9,49 +9,53 @@ interface Props {
     type: string
 }
 
-interface State {
-    record: Array<SkillRecord>,
-    winsize: number,
-    length: number,
-    gmin: number,
-    gmax: number,
-    dmin: number,
-    dmax: number
-}
+const ProfileRecent = (props: Props) => {
+    const [record, setRecord] = useState(Array<SkillRecord>())
+    const [winsize, setWinsize] = useState(0)
+    const [length, setLength] = useState(0)
+    const [gmin, setGMin] = useState(0)
+    const [gmax, setGMax] = useState(0)
+    const [dmin, setDMin] = useState(0)
+    const [dmax, setDMax] = useState(0)
+    const [lineData, setLineData] = useState(Array<any>())
 
-class ProfileRecent extends Component<Props, State> {
-    state: State = {
-        record: [],
-        winsize: 0,
-        length: 0,
-        gmin: 0,
-        gmax: 0,
-        dmin: 0,
-        dmax: 0
-    }
-
-    componentDidMount() {
-        axios.post(CommonData.dataUrl+"skillrecord/"+this.props.id)
+    useEffect(() => {
+        axios.post(`${CommonData.dataUrl}skillrecord/${props.id}`)
         .then((res) => {
             const record = JSON.parse(res.data.record);
             const length = record.length;
 
             // min max calc
-            const minmax = this.getMinMax(record);
+            const minmax = getMinMax(record);
 
-            this.setState({
-                record: record,
-                winsize: this.widthCalc(window.innerWidth),
-                length: length,
-                gmin: minmax[0],
-                gmax: minmax[1],
-                dmin: minmax[2],
-                dmax: minmax[3]
-            });
-        });
-    }
+            setRecord(record)
+            setWinsize(widthCalc(window.innerWidth))
+            setLength(length)
+            setGMin(minmax[0])
+            setGMax(minmax[1])
+            setDMin(minmax[2])
+            setDMax(minmax[3])
+        })
 
-    getMinMax(record: Array<SkillRecord>) {
+        const data = [];
+        for(let i = 0; i < length; i++) {
+            if(props.type === "gf") {
+                data.push({
+                    name: record[i].date,
+                    uv: record[i].gskill
+                });
+            }
+            else {
+                data.push({
+                    name: record[i].date,
+                    pv: record[i].dskill
+                });
+            }
+        }
+        setLineData(data)
+    }, [])
+
+    const getMinMax = (record: Array<SkillRecord>) => {
         let gmin = 0;
         let gmax = 0;
         let dmin = 0;
@@ -87,67 +91,53 @@ class ProfileRecent extends Component<Props, State> {
         return [gmin, gmax, dmin, dmax];
     }
 
-    widthCalc(width: number) {
+    const widthCalc = (width: number) => {
         let calc = 0;
         if(width < 768) calc = width * 0.38;
         else calc = width * 0.25;
         return calc;
     }
 
-    resetGraph() {
-        this.setState({
-            record: []
-        });
+    const resetGraph = () => {
+        setRecord([])
     }
 
-    render () {
-        const data = [];
-        for(let i = 0; i < this.state.length; i++) {
-            if(this.props.type === "gf") {
-                data.push({name:this.state.record[i].date,
-                    uv:this.state.record[i].gskill});
-            }
-            else {
-                data.push({name:this.state.record[i].date,
-                    pv:this.state.record[i].dskill});
-            }
-        }
-        if(this.props.type === "dm") {
-            return (
-                <Fragment>
-                    <LineChart
-                        width={this.state.winsize}
-                        height={200}
-                        data={data} >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" stroke="white" />
-                            <YAxis domain={[this.state.dmin, this.state.dmax]} stroke="white" />
-                            <Tooltip
-                                cursor={true}
-                                content={<CustomTooltip/>} />
-                            <Line name="DM" type="monotone" dataKey="pv" stroke="#8884d8" />
-                    </LineChart>
-                </Fragment>
-            )
-        }
-        else {
-            return (
-                <Fragment>
-                    <LineChart
-                        width={this.state.winsize}
-                        height={200}
-                        data={data} >
-                            <CartesianGrid strokeDasharray="3 3" />
-                            <XAxis dataKey="name" stroke="white" />
-                            <YAxis domain={[this.state.gmin, this.state.gmax]} stroke="white" />
-                            <Tooltip
-                                cursor={true}
-                                content={<CustomTooltip/>} />
-                            <Line name="GF" type="monotone" dataKey="uv" stroke="#82ca9d" />
-                    </LineChart>
-                </Fragment>
-            )
-        }
+    
+    if(props.type === "dm") {
+        return (
+            <>
+                <LineChart
+                    width={winsize}
+                    height={200}
+                    data={lineData} >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" stroke="white" />
+                        <YAxis domain={[dmin, dmax]} stroke="white" />
+                        <Tooltip
+                            cursor={true}
+                            content={<CustomTooltip/>} />
+                        <Line name="DM" type="monotone" dataKey="pv" stroke="#8884d8" />
+                </LineChart>
+            </>
+        )
+    }
+    else {
+        return (
+            <>
+                <LineChart
+                    width={winsize}
+                    height={200}
+                    data={lineData} >
+                        <CartesianGrid strokeDasharray="3 3" />
+                        <XAxis dataKey="name" stroke="white" />
+                        <YAxis domain={[gmin, gmax]} stroke="white" />
+                        <Tooltip
+                            cursor={true}
+                            content={<CustomTooltip/>} />
+                        <Line name="GF" type="monotone" dataKey="uv" stroke="#82ca9d" />
+                </LineChart>
+            </>
+        )
     }
 }
 

@@ -21,11 +21,11 @@ const IndexPage = observer(() => {
         <>
             <Container>
                 <ItemRow>
-                    <ItemCol size={4}>
+                    <ItemCol size={3} isFlatUnderLg={true}>
                         <BodyHeader>
                             <h3>{(txtIndex.self.title as any)[lang]}</h3>
                         </BodyHeader>
-                        <BodyContent>
+                        <BodyContent style={{textAlign: 'center'}}>
                             <UserLoginInfo />
                         </BodyContent>
                         <BodyHeader className='visible-lg'>
@@ -43,7 +43,7 @@ const IndexPage = observer(() => {
                             />
                         </BodyContent>
                     </ItemCol>
-                    <ItemCol size={8}>
+                    <ItemCol size={7} isFlatUnderLg={true}>
                         <BodyHeader>
                             <h3>Skill Navigator</h3>
                         </BodyHeader>
@@ -85,10 +85,11 @@ const IndexPage = observer(() => {
                                 {(txtIndex.howto.desc as any)[lang]}
                             </ItemRow>
 
-                            <ItemRow style={{
-                                flexDirection: 'column',
-                                border: '1px solid white'
-                            }}>
+                            <ItemRow
+                                style={{
+                                    border: '1px solid white'
+                                }}
+                                setVertical={true}>
                                 <BodyHeader>
                                     {(txtIndex.howto.script as any)[lang]}
                                 </BodyHeader>
@@ -167,7 +168,7 @@ const IndexPage = observer(() => {
                                 Google Chrome (For all OS)
                             </ItemRow>
 
-                            <ItemRow>
+                            <ItemRow keepDirHor={true}>
                                 <ItemCol size={5}>
                                     <img alt="favo" className="howto-img2"
                                         src={process.env.PUBLIC_URL+"/general-img/howto/howto3-k.png"} />

@@ -1,30 +1,18 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Redirect} from 'react-router-dom';
-import {connect} from 'react-redux';
 import {LoginInfo} from '../../../Redux/action';
-import { StoreState } from '../../../Redux/reducer';
+import { observer } from 'mobx-react';
+import store from '../../../../../mobx/store';
 
-interface Props {
-    login: boolean,
-    userinfo: LoginInfo
-}
+const SnapshotLoginCheck = observer(() => {
+    const {loginUser, loginStatus} = store
 
-class SnapshotLoginCheck extends Component<Props> {
-    render() {
-        if(this.props.login) {
-            return <Redirect to={"/skill/snapshot/list/"+this.props.userinfo.id} />
-        }
-        else {
-            return <Redirect to={"/error/500"} />
-        }
+    if(loginStatus.isSigned) {
+        return <Redirect to={`/skill/snapshot/list/${loginUser.user.id}`} />
     }
-}
-
-const mapStateToProps = (state: StoreState) => {
-    return {
-        userinfo: state.loginReducer.userinfo,
-        login: state.loginReducer.login
+    else {
+        return <Redirect to={"/error/500"} />
     }
-};
+})
 
-export default connect(mapStateToProps)(SnapshotLoginCheck);
+export default SnapshotLoginCheck

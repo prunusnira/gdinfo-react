@@ -3,15 +3,15 @@ import React from 'react';
 import {Redirect} from 'react-router-dom';
 import store from '../../../../../mobx/store';
 
-const PlayCountLoginCheck = observer(() => {
+const NotPlayedLoginCheck = observer(() => {
     const {loginUser, loginStatus} = store
 
     if(loginStatus.isSigned) {
-        return <Redirect to={`/mybest/${loginUser.user.id}`} />
+        return <Redirect to={"/notplayed/gf/"+loginUser.user.id+"/0/1"} />
     }
     else {
         return <Redirect to={"/error/500"} />
     }
 })
 
-export default PlayCountLoginCheck
+export default NotPlayedLoginCheck

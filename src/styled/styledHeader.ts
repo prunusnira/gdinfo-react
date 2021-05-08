@@ -57,7 +57,7 @@ export const NavSubOuter = styled.ul<{isOpen: boolean}>`
     padding-top: 5px;
     padding-bottom: 5px;
     border: 1px solid grey;
-    border-radius: 25% 10%;
+    border-radius: 10%;
     ${props => props.isOpen ? 'display: block;' : 'display: none;'}
 `
 

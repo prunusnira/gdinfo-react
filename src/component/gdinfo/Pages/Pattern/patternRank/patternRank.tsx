@@ -1,196 +1,155 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import axios from 'axios';
-import {Link, RouteComponentProps} from 'react-router-dom';
+import {Link, useParams} from 'react-router-dom';
 import PatternRankRow from './ptRankRow';
 import Pager from '../../Common/pager';
-import LData from '../../Common/language';
 import txtPTRank from './txtptrank';
 import CommonData from '../../Common/commonData';
 import {skillTableColor} from '../../Common/skillcolor';
 import {getPatternImg600} from '../../Common/pattern';
 
-import {
-    Container,
-    Row,
-    Col,
-    Card,
-    CardHeader,
-    CardBody,
-    Button
-} from 'reactstrap';
 import PTRankData from './ptrankData';
+import store from '../../../../../mobx/store';
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../../../styled/styledCommon';
 
-interface IMatchProps {
+interface MatchProps {
     ptcode: string,
     mid: string,
     page: string
 }
 
-interface Props {
+const PatternRank = () => {
+    const [list, setList] = useState(Array<PTRankData>())
+    const [pattern, setPattern] = useState('')
+    const [level, setLevel] = useState('')
+    const [mname, setMName] = useState('')
+    const [composer, setComposer] = useState('')
+    const [allPage, setAllPage] = useState(0)
 
-}
+    const lang = store.language.lang
+    const {ptcode, mid, page} = useParams<MatchProps>()
+    const urlparams = new URLSearchParams(window.location.search)
 
-interface State {
-    list: Array<PTRankData>,
-    version: number,
-    pattern: string,
-    level: string,
-    mname: string,
-    composer: string,
-    allpage: number
-}
+    useEffect(() => {
+        // setup Pattern
+        setupPattern()
+        loadMusicData()
+    }, [ptcode])
 
-class PatternRank extends Component<RouteComponentProps<IMatchProps> & Props, State> {
-    lang = LData.lang;
-    constructor(props: RouteComponentProps<IMatchProps> & Props) {
-        super(props);
+    useEffect(() => {
+        loadRankData()
+    }, [urlparams.get('ver'), page])
 
-        const urlprop = props.match.params;
-        let pt = "";
-        switch(urlprop.ptcode) {
+    const setupPattern = () => {
+        switch(ptcode) {
             case "1":
-                pt = "BSC-G";
-                break;
+                setPattern("BSC-G")
+                break
             case "2":
-                pt = "ADV-G";
-                break;
+                setPattern("ADV-G")
+                break
             case "3":
-                pt = "EXT-G";
-                break;
+                setPattern("EXT-G")
+                break
             case "4":
-                pt = "MAS-G";
-                break;
+                setPattern("MAS-G")
+                break
             case "5":
-                pt = "BSC-B";
-                break;
+                setPattern("BSC-B")
+                break
             case "6":
-                pt = "ADV-B";
-                break;
+                setPattern("ADV-B")
+                break
             case "7":
-                pt = "EXT-B";
-                break;
+                setPattern("EXT-B")
+                break
             case "8":
-                pt = "MAS-B";
-                break;
+                setPattern("MAS-B")
+                break
             case "9":
-                pt = "BSC-D";
-                break;
+                setPattern("BSC-D")
+                break
             case "10":
-                pt = "ADV-D";
-                break;
+                setPattern("ADV-D")
+                break
             case "11":
-                pt = "EXT-D";
-                break;
+                setPattern("EXT-D")
+                break
             case "12":
-                pt = "MAS-D";
-                break;
+                setPattern("MAS-D")
+                break
             default:
-                break;
-        }
-
-        this.state = {
-            list: [],
-            version: CommonData.currentVersion,
-            pattern: pt,
-            level: "",
-            mname: "",
-            composer: "",
-            allpage: 0
+                break
         }
     }
 
-    componentDidMount() {
-        this.loadMusicData(this.props);
-    }
-
-    componentWillReceiveProps(nextProps: RouteComponentProps<IMatchProps> & Props) {
-        this.loadMusicData(nextProps);
-    }
-
-    loadMusicData(prop: RouteComponentProps<IMatchProps> & Props) {
-        const mid = prop.match.params.mid;
-        
-        const search = new URLSearchParams(prop.location.search);
-        const ver = search.get("ver") === null ? CommonData.currentVersion : parseInt(search.get("ver")!);
-
-        axios.post(CommonData.dataUrl+"getmusic/"+mid)
+    const loadMusicData = () => {
+        axios.post(`${CommonData.dataUrl}getmusic/${mid}`)
         .then((res) => {
-            const json = res.data;
-            const ptcode = prop.match.params.ptcode;
-            const music = JSON.parse(json.music);
+            const json = res.data
+            const music = JSON.parse(json.music)
 
-            const pattern = getPatternImg600(parseInt(ptcode));
+            const pattern = getPatternImg600(parseInt(ptcode))
             let level: string = "";
             switch(parseInt(ptcode)) {
             case 1:
-                level = (music.gbsc/100).toFixed(2);
-                break;
+                level = (music.gbsc/100).toFixed(2)
+                break
             case 2:
-                level = (music.gadv/100).toFixed(2);
-                break;
+                level = (music.gadv/100).toFixed(2)
+                break
             case 3:
-                level = (music.gext/100).toFixed(2);
-                break;
+                level = (music.gext/100).toFixed(2)
+                break
             case 4:
-                level = (music.gmas/100).toFixed(2);
-                break;
+                level = (music.gmas/100).toFixed(2)
+                break
             case 5:
-                level = (music.bbsc/100).toFixed(2);
-                break;
+                level = (music.bbsc/100).toFixed(2)
+                break
             case 6:
-                level = (music.badv/100).toFixed(2);
-                break;
+                level = (music.badv/100).toFixed(2)
+                break
             case 7:
-                level = (music.bext/100).toFixed(2);
-                break;
+                level = (music.bext/100).toFixed(2)
+                break
             case 8:
-                level = (music.bmas/100).toFixed(2);
-                break;
+                level = (music.bmas/100).toFixed(2)
+                break
             case 9:
-                level = (music.dbsc/100).toFixed(2);
-                break;
+                level = (music.dbsc/100).toFixed(2)
+                break
             case 10:
-                level = (music.dadv/100).toFixed(2);
-                break;
+                level = (music.dadv/100).toFixed(2)
+                break
             case 11:
-                level = (music.dext/100).toFixed(2);
-                break;
+                level = (music.dext/100).toFixed(2)
+                break
             case 12:
-                level = (music.dmas/100).toFixed(2);
-                break;
-            default: level = ""; break;
+                level = (music.dmas/100).toFixed(2)
+                break
+            default:
+                level = ""
+                break
             }
 
-            const mname = music.name;
-            const composer = music.composer;
+            setPattern(pattern)
+            setMName(music.name)
+            setComposer(music.composer)
+            setLevel(level)
 
-            this.setState({
-                pattern: pattern,
-                mname: mname,
-                level: level,
-                composer: composer,
-                version: ver
-            });
-
-            this.loadRankData(prop);
+            loadRankData();
         });
     }
 
-    loadRankData(prop: RouteComponentProps<IMatchProps> & Props) {
-        const urlprop = prop.match.params;
-        const mid = urlprop.mid;
-        const ptcode = urlprop.ptcode;
-        const page = urlprop.page;
-        let version = this.state.version;
-        if(version === 0) version = CommonData.currentVersion;
-        axios.post(CommonData.dataUrl+"ptdetail/"+
-                mid+"/"+ptcode+"/"+page+"/"+version)
+    const loadRankData = () => {
+        axios.post(`${CommonData.dataUrl}ptdetail/${mid}/${ptcode}/${page}/${urlparams.get('ver') === null ? CommonData.currentVersion : urlparams.get('ver')}`)
         .then((res) => {
             const json = res.data;
 
-            const music = JSON.parse(json.music);
-            const list = JSON.parse(json.list);
-            const users = JSON.parse(json.users);
+            const music = JSON.parse(json.music)
+            const list = JSON.parse(json.list)
+            const users = JSON.parse(json.users)
 				
             let lv = 0;
             let userskill = 0;
@@ -210,204 +169,188 @@ class PatternRank extends Component<RouteComponentProps<IMatchProps> & Props, St
             default: lv = 0;
             }
 
-            const ranklist = new Array<PTRankData>();
+            const ranklist = new Array<PTRankData>()
             for(let i = 0; i < list.length; i++) {
-                const cur = list[i];
-                const user = users[i];
-                const obj = new PTRankData();
+                const cur = list[i]
+                const user = users[i]
+                const obj = new PTRankData()
 
-                const rate = cur.rate;
-                obj.rate = rate/100;
-                const skill = obj.rate*lv*20/10000;
-                obj.skill = skill.toFixed(2);
-                const tableColor = skillTableColor(skill*100);
+                const rate = cur.rate
+                obj.rate = rate/100
+                const skill = obj.rate*lv*20/10000
+                obj.skill = skill.toFixed(2)
+                const tableColor = skillTableColor(skill*100)
                 if(tableColor.startsWith("#")) {
-                    obj.ratecolor = {width:"10px", backgroundColor: tableColor};
+                    obj.ratecolor = {width:"10px", backgroundColor: tableColor}
                 }
                 else {
-                    obj.ratecolor = {width:"10px", background: tableColor};
+                    obj.ratecolor = {width:"10px", background: tableColor}
                 }
 
                 if(parseInt(ptcode) < 9) {
-                    switch(version) {
-                        case 24: userskill = user.gskilltb; break;
-                        case 25: userskill = user.gskilltbre; break;
-                        case 26: userskill = user.gskillmx; break;
-                        case 27: userskill = user.gskillex; break;
-                        case 28: userskill = user.gskill; break;
+                    switch(urlparams.get('ver')) {
+                        case '24': userskill = user.gskilltb; break;
+                        case '25': userskill = user.gskilltbre; break;
+                        case '26': userskill = user.gskillmx; break;
+                        case '27': userskill = user.gskillex; break;
+                        case '28': userskill = user.gskillnx; break;
+                        case '29': userskill = user.gskill; break;
                     }
                 }
                 else {
-                    switch(version) {
-                        case 24: userskill = user.dskilltb; break;
-                        case 25: userskill = user.dskilltbre; break;
-                        case 26: userskill = user.dskillmx; break;
-                        case 27: userskill = user.dskillex; break;
-                        case 28: userskill = user.dskill; break;
+                    switch(urlparams.get('ver')) {
+                        case '24': userskill = user.dskilltb; break;
+                        case '25': userskill = user.dskilltbre; break;
+                        case '26': userskill = user.dskillmx; break;
+                        case '27': userskill = user.dskillex; break;
+                        case '28': userskill = user.dskillnx; break;
+                        case '29': userskill = user.dskill; break;
                     }
                 }
 
-                const tableColor2 = skillTableColor(userskill*2);
+                const tableColor2 = skillTableColor(userskill*2)
                 if(tableColor2.startsWith("#")) {
-                    obj.skillcolor = {width:"10px", backgroundColor: tableColor2};
+                    obj.skillcolor = {width:"10px", backgroundColor: tableColor2}
                 }
                 else {
-                    obj.skillcolor = {width:"10px", background: tableColor2};
+                    obj.skillcolor = {width:"10px", background: tableColor2}
                 }
                 
 
-                obj.index = (parseInt(page)-1)*30+i+1;
+                obj.index = (parseInt(page)-1)*30+i+1
 
                 if(user.titletower !== '') {
-                    obj.towertitle = "<img class='towertitle35' src='/img/title/"+user.titletower+".png' />";
+                    obj.towertitle = user.titletower
                 }
                 else {
-                    obj.towertitle = '';
+                    obj.towertitle = ''
                 }
 
-                obj.profile = '/music/'+mid+'/'+cur.userid;
-                obj.name = cur.name;
+                obj.profile = `/music/${mid}/${cur.userid}`
+                obj.name = cur.name
 
                 switch(cur.rank) {
                 case "E":
-                    obj.rank = process.env.PUBLIC_URL+"/general-img/rank/rank_e.png";
-                    break;
+                    obj.rank = `${process.env.PUBLIC_URL}/general-img/rank/rank_e.png`
+                    break
                 case "D":
-                    obj.rank = process.env.PUBLIC_URL+"/general-img/rank/rank_d.png";
-                    break;
+                    obj.rank = `${process.env.PUBLIC_URL}/general-img/rank/rank_d.png`
+                    break
                 case "C":
-                    obj.rank = process.env.PUBLIC_URL+"/general-img/rank/rank_c.png";
-                    break;
+                    obj.rank = `${process.env.PUBLIC_URL}/general-img/rank/rank_c.png`
+                    break
                 case "B":
-                    obj.rank = process.env.PUBLIC_URL+"/general-img/rank/rank_b.png";
-                    break;
+                    obj.rank = `${process.env.PUBLIC_URL}/general-img/rank/rank_b.png`
+                    break
                 case "A":
-                    obj.rank = process.env.PUBLIC_URL+"/general-img/rank/rank_a.png";
-                    break;
+                    obj.rank = `${process.env.PUBLIC_URL}/general-img/rank/rank_a.png`
+                    break
                 case "S":
-                    obj.rank = process.env.PUBLIC_URL+"/general-img/rank/rank_s.png";
-                    break;
+                    obj.rank = `${process.env.PUBLIC_URL}/general-img/rank/rank_s.png`
+                    break
                 case "SS":
                 case "EXC":
-                    obj.rank = process.env.PUBLIC_URL+"/general-img/rank/rank_ss.png";
-                    break;
+                    obj.rank = `${process.env.PUBLIC_URL}/general-img/rank/rank_ss.png`
+                    break
                 }
                 
                 if(cur.checkfc === "Y" && cur.rank !== "EXC") {
-                    obj.fc = "<img class='fc-img' src='"+process.env.PUBLIC_URL+"/general-img/rank/fc_300.png' />";
+                    obj.fc = "<img class='fc-img' src='"+process.env.PUBLIC_URL+"/general-img/rank/fc_300.png' />"
                 }
                 else if(cur.checkfc === "Y" && cur.rank === "EXC") {
-                    obj.fc = "<img class='fc-img' src='"+process.env.PUBLIC_URL+"/general-img/rank/exc_300.png' />";
+                    obj.fc = "<img class='fc-img' src='"+process.env.PUBLIC_URL+"/general-img/rank/exc_300.png' />"
                 }
                 else {
-                    obj.fc = "<img class='fc-img' src='"+process.env.PUBLIC_URL+"/general-img/rank/cleared_300.png' />";
+                    obj.fc = "<img class='fc-img' src='"+process.env.PUBLIC_URL+"/general-img/rank/cleared_300.png' />"
                 }
 
-                ranklist.push(obj);
+                ranklist.push(obj)
             }
 
-            this.setState({
-                list: ranklist,
-                allpage: json.pages
-            });
+            setList(ranklist)
+            setAllPage(json.pages)
         });
     }
 
-    render() {
-        const self = this;
-        const urlprop = this.props.match.params;
-        const search = this.props.location.search;
-
-        const mid = urlprop.mid;
-        const ptcode = urlprop.ptcode;
-        const pattern = self.state.pattern;
-        const level = self.state.level;
-        const mname = self.state.mname;
-        const composer = self.state.composer;
-
-        return (
-            <Container fluid={true}>
-                <Row>
-                    <Col xs="12">
-                        <Card>
-                            <CardHeader>
-                                <h3>{(txtPTRank.title as any)[this.lang]}</h3>
-                            </CardHeader>
-                            <CardBody className="text-center">
-                                <span>{(txtPTRank.desc as any)[this.lang]}</span>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs="12">
-                        <Card>
-                            <CardHeader>
-                                <h3>{(txtPTRank.table.ptinfo as any)[this.lang]}</h3>
-                            </CardHeader>
-                            <CardBody>
-                                <Row id="upper">
-                                    <Col sm="4" className="text-center"> 
-                                        <img alt="jacket-img" src={CommonData.jacketUrl+mid+".jpg"}
-                                            onError={(e) => {
-                                                e.currentTarget.src=CommonData.jacketUrl+"empty.jpg"}}
-                                            style={{width:"75%", maxWidth: "100px"}} /><br/>
-                                        <img alt="pattern" src={pattern}
-                                            style={{width:"75%", maxWidth: "100px"}} /><br/>
-                                        <span>{level}</span>
-                                    </Col>
-                                    <Col sm="8" className="text-center">
-                                        <Row style={{padding:"10px"}}>
-                                            <Col xs="12">
-                                                <span style={{fontSize:"125%"}}>{mname}</span><br/>
-                                                <span>{composer}</span>
-                                            </Col>
-                                        </Row>
-                                    </Col>
-                                </Row>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col xs="12">
-                        <Card>
-                            <CardHeader>
-                                <Row>
-                                    <Col xs="4">
-                                        <h3>{(txtPTRank.table.ranking as any)[this.lang]}</h3>
-                                    </Col>
-                                    <Col xs="8" className="text-right btn-group">
-                                        <Button tag={Link} to={"/ptrank/"+mid+"/"+ptcode+"/1?ver=28"} className="rank28">NX</Button>
-                                        <Button tag={Link} to={"/ptrank/"+mid+"/"+ptcode+"/1?ver=27"} className="rank27">EX</Button>
-                                        <Button tag={Link} to={"/ptrank/"+mid+"/"+ptcode+"/1?ver=26"} className="rank26">MX</Button>
-                                        <Button tag={Link} to={"/ptrank/"+mid+"/"+ptcode+"/1?ver=25"} className="rank25">RE</Button>
-                                        <Button tag={Link} to={"/ptrank/"+mid+"/"+ptcode+"/1?ver=24"} className="rank24">TB</Button>
-                                    </Col>
-                                </Row>
-                            </CardHeader>
-                            <CardBody>
-                                <Row>
-                                    <Col xs="12">
-                                        <div className='div-table table-border-outer' id="ranktable">
-                                            <PatternRankRow list={self.state.list} />
-                                        </div>
-                                        <div id="empty"></div>
-                                    </Col>
-                                    <Col xs="12" className="text-center" id="pager">
-                                        <Pager cpage={parseInt(urlprop.page)}
-                                            allpage={self.state.allpage}
-                                            baseUrl={"/ptrank/"+urlprop.mid+"/"+urlprop.ptcode+"/"}
-                                            afterUrl={search} />
-                                    </Col>
-                                </Row>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
-        )
-    }
+    return (
+        <Container>
+            <ItemRow setVertical={true}>
+                <BodyHeader>
+                    <h3>{(txtPTRank.title as any)[lang]}</h3>
+                </BodyHeader>
+                <BodyContent className="text-center">
+                    <span>{(txtPTRank.desc as any)[lang]}</span>
+                </BodyContent>
+            </ItemRow>
+            <ItemRow setVertical={true}>
+                <BodyHeader>
+                    <h3>{(txtPTRank.table.ptinfo as any)[lang]}</h3>
+                </BodyHeader>
+                <BodyContent>
+                    <ItemRow id="upper">
+                        <ItemCol size={3}> 
+                            <img alt="jacket-img" src={CommonData.jacketUrl+mid+".jpg"}
+                                onError={(e) => {
+                                    e.currentTarget.src=CommonData.jacketUrl+"empty.jpg"}}
+                                style={{width:"75%", maxWidth: "100px"}} /><br/>
+                            <img alt="pattern" src={pattern}
+                                style={{width:"75%", maxWidth: "100px"}} /><br/>
+                            <span>{level}</span>
+                        </ItemCol>
+                        <ItemCol size={7}>
+                            <ItemRow style={{padding:"10px"}} setVertical={true}>
+                                <span style={{fontSize:"125%"}}>{mname}</span><br/>
+                                <span>{composer}</span>
+                            </ItemRow>
+                        </ItemCol>
+                    </ItemRow>
+                </BodyContent>
+            </ItemRow>
+            <ItemRow setVertical={true}>
+                <BodyHeader>
+                    <ItemRow keepDirHor={true}>
+                        <ItemCol size={3}>
+                            <h3>{(txtPTRank.table.ranking as any)[lang]}</h3>
+                        </ItemCol>
+                        <ItemCol size={7} style={{textAlign: 'right'}}>
+                            <Link to={`/ptrank/${mid}/${ptcode}/1?ver=29`}>
+                                <Button className="rank29">HV</Button>
+                            </Link>
+                            <Link to={`/ptrank/${mid}/${ptcode}/1?ver=28`}>
+                                <Button className="rank28">NX</Button>
+                            </Link>
+                            <Link to={`/ptrank/${mid}/${ptcode}/1?ver=27`}>
+                                <Button className="rank27">EX</Button>
+                            </Link>
+                            <Link to={`/ptrank/${mid}/${ptcode}/1?ver=26`}>
+                                <Button className="rank26">MX</Button>
+                            </Link>
+                            <Link to={`/ptrank/${mid}/${ptcode}/1?ver=25`}>
+                                <Button className="rank25">RE</Button>
+                            </Link>
+                            <Link to={`/ptrank/${mid}/${ptcode}/1?ver=24`}>
+                                <Button className="rank24">TB</Button>
+                            </Link>
+                        </ItemCol>
+                    </ItemRow>
+                </BodyHeader>
+                <BodyContent>
+                    <ItemRow setVertical={true}>
+                        <div className='div-table table-border-outer' id="ranktable">
+                            <PatternRankRow list={list} />
+                        </div>
+                        <div id="empty"></div>
+                    </ItemRow>
+                    <ItemRow id="pager" keepDirHor={true}>
+                        <Pager cpage={parseInt(page)}
+                            allpage={allPage}
+                            baseUrl={`/ptrank/${mid}/${ptcode}/`}
+                            afterUrl={window.location.search} />
+                    </ItemRow>
+                </BodyContent>
+            </ItemRow>
+        </Container>
+    )
 }
 
 export default PatternRank;

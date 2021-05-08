@@ -1,132 +1,82 @@
-import React, {Component} from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 import {Link, Redirect} from 'react-router-dom';
-import {connect} from 'react-redux';
 import txtReset from './txtreset';
-import LData from '../../Common/language';
-import {LoginInfo} from '../../../Redux/action';
-
-import {
-    Container,
-    Row,
-    Col,
-    Card,
-    CardHeader,
-    CardBody,
-    Button
-} from 'reactstrap';
 import CommonData from '../../Common/commonData';
-import { StoreState } from '../../../Redux/reducer';
+import store from '../../../../../mobx/store';
+import { observer } from 'mobx-react';
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../../../styled/styledCommon';
 
-interface Props {
-    userinfo: LoginInfo,
-    login: boolean
-}
+const ProfileReset = observer(() => {
+    const [redirect, setRedirect] = useState(false)
 
-interface State {
-    redirect: boolean,
-    userid: number
-}
+    const {language, loginUser, loginStatus} = store
+    const lang = language.lang
 
-class ProfileReset extends Component<Props, State> {
-    lang = LData.lang;
-    constructor(props: Props) {
-        super(props);
-        this.state = {
-            redirect: false,
-            userid: 0
-        };
-
-        this.resetData = this.resetData.bind(this);
-    }
-
-    resetData() {
+    const resetData = () => {
         const url = CommonData.dataUrl+"resetdata";
 
         const data = new URLSearchParams();
-        data.append("id", this.props.userinfo.id);
+        data.append("id", loginUser.user.id);
 
         axios.post(url, data)
         .then((res) => {
-            this.setState({
-                redirect: true
-            });
+            setRedirect(true)
         })
         .catch((err) => {
             console.error(err);
         });
     }
 
-    render() {
-        const self = this;
-
-        if(this.state.redirect) {
-            return <Redirect to="/profile" />
-        }
-        if(!this.props.login) {
-            return <Redirect to="/error/500" />
-        }
-        else {
-            return (
-                <Container fluid={true}>
-                    <Row>
-                        <Col xs="12">
-                            <Card>
-                                <CardHeader>
-                                    <h3>Data Reset</h3>
-                                </CardHeader>
-                                <CardBody>
-                                    <Row>
-                                        <Col xs="12">
-                                            <Card>
-                                                <CardHeader>
-                                                    <h3>{(txtReset.title as any)[this.lang]}</h3>
-                                                </CardHeader>
-                                                <CardBody>
-                                                    <p>{(txtReset.desc1 as any)[this.lang]}</p>
-                                                </CardBody>
-                                            </Card>
-                                        </Col>
-                                    </Row>
-                                    <Row>
-                                        <Col xs="12">
-                                            <Card>
-                                                <CardHeader>
-                                                    <h3>{(txtReset.desc2t as any)[this.lang]}</h3>
-                                                </CardHeader>
-                                                <CardBody>
-                                                    <p>{(txtReset.desc2s as any)[this.lang]}</p>
-                                                    <p>{(txtReset.desc3 as any)[this.lang]}</p>
-                                                    <p>{(txtReset.desc4 as any)[this.lang]}</p>
-                                                    <p>{(txtReset.desc5 as any)[this.lang]}</p>
-                                                </CardBody>
-                                            </Card>
-                                        </Col>
-                                    </Row>
-                                    
-                                    <Row>
-                                        <Col xs="6">
-                                            <Button onClick={() => self.resetData()} style={{width:"100%"}}>YES</Button>
-                                        </Col>
-                                        <Col xs="6">
-                                            <Button tag={Link} to="/index" style={{width:"100%"}}>NO</Button>
-                                        </Col>
-                                    </Row>
-                                </CardBody>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Container>
-            )
-        }
+    if(redirect) {
+        return <Redirect to="/profile" />
     }
-}
-
-const mapStateToProps = (state: StoreState) => {
-    return {
-        userinfo: state.loginReducer.userinfo,
-        login: state.loginReducer.login
+    if(!loginStatus.isSigned) {
+        return <Redirect to="/error/500" />
     }
-};
+    else {
+        return (
+            <Container>
+                <ItemRow setVertical={true}>
+                    <BodyHeader>
+                        <h3>Data Reset</h3>
+                    </BodyHeader>
+                    <BodyContent>
+                        <ItemRow setVertical={true}>
+                            <BodyHeader>
+                                <h3>{(txtReset.title as any)[lang]}</h3>
+                            </BodyHeader>
+                            <BodyContent>
+                                <p>{(txtReset.desc1 as any)[lang]}</p>
+                            </BodyContent>
+                        </ItemRow>
+                        <ItemRow setVertical={true}>
+                            <BodyHeader>
+                                <h3>{(txtReset.desc2t as any)[lang]}</h3>
+                            </BodyHeader>
+                            <BodyContent>
+                                <p>{(txtReset.desc2s as any)[lang]}</p>
+                                <p>{(txtReset.desc3 as any)[lang]}</p>
+                                <p>{(txtReset.desc4 as any)[lang]}</p>
+                                <p>{(txtReset.desc5 as any)[lang]}</p>
+                            </BodyContent>
+                        </ItemRow>
+                        
+                        <ItemRow>
+                            <ItemCol size={5}>
+                                <Button onClick={() => resetData()} style={{width:"100%"}}>YES</Button>
+                            </ItemCol>
+                            <ItemCol size={5}>
+                                <Link to="/index">
+                                    <Button style={{width:"100%"}}>NO</Button>
+                                </Link>
+                            </ItemCol>
+                        </ItemRow>
+                    </BodyContent>
+                </ItemRow>
+            </Container>
+        )
+    }
+})
 
-export default connect(mapStateToProps)(ProfileReset);
+export default ProfileReset

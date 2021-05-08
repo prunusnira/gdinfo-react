@@ -1,12 +1,7 @@
-import React, {Component, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
-import {connect} from 'react-redux';
 import axios from 'axios';
-import LData from '../Common/language';
-import { CardText } from 'reactstrap';
 import CommonData from '../Common/commonData';
-import { StoreState } from '../../Redux/reducer';
-import { LoginInfo } from '../../Redux/action';
 import ProfileData from '../Profiles/profile/profileData';
 import txtIndex from './txtIndex';
 import store from '../../../../mobx/store';
@@ -28,13 +23,13 @@ const UserLoginInfo = observer(() => {
                 setLoading(true)
             })
         }
-    })
+    }, [])
 
     if(loginStatus.isSigned) {
         if(loading) {
             const imgurl = `${process.env.PUBLIC_URL}/general-img/title/${data.titletower}.png`;
             return (
-                <CardText>
+                <>
                     <span id='selftitle'>
                         ({data.title})
                     </span><br/>
@@ -60,7 +55,7 @@ const UserLoginInfo = observer(() => {
                             style={{color: "white"}}
                             to={`/skill/2/${data.id}/dm/1/1`}>{data.dskill}</Link>
                     </span>
-                </CardText>
+                </>
             )
         }
         else {

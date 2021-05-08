@@ -1,112 +1,97 @@
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
-import LData from '../Common/language';
 import SingleSkillColorChanger from '../Common/skillcolor';
 
-import {
-    Row,
-    Col
-} from 'reactstrap';
 import RecentData from './recentData';
 import txtProfile from '../Profiles/profile/txtprofile';
+import { observer } from 'mobx-react';
+import store from '../../../../mobx/store';
+import { ItemCol, ItemRow } from '../../../../styled/styledCommon';
+import TxtCommon from '../Common/txtCommon';
 
 interface Props {
     isMain: boolean,
     list: Array<RecentData>
 }
 
-class RecentTableDiv extends Component<Props> {
-    lang = LData.lang;
-    text = LData.text;
+const RecentTableDiv = observer((props: Props) => {
+    const lang = store.language.lang
 
-    render() {
-        const self = this;
+    const mapdata = props.list.map((user, i) => {
+        const date = new Date().getTime() - user.uptimelong
+        const hour = date/60000/60
+        const min = date/60000%60
+        
         return (
-            this.props.list.map(
-                (user, i) => {
-                    const date = new Date().getTime() - user.uptimelong;
-                    const hour = date/60000/60;
-                    const min = date/60000%60;
+            <ItemRow key={'recent'+i} className="table-border-bottom" style={{padding:5+'px'}}>
+                <ItemCol size={6}>
+                    <ItemRow>
+                        <span id="towertitle">
+                            {
+                                (function() {
+                                    if(user.titletower !== "") {
+                                        return (
+                                            <img
+                                                alt="titletower"
+                                                className="towertitle35"
+                                                src={`${process.env.PUBLIC_URL}/general-img/title/${user.titletower}.png`} />
+                                        )
+                                    }
+                                })()
+                            }
+                        </span>
+                        {
+                            (function() {
+                                if(user.opencount === "Y") {
+                                    return <Link className="innerhref title" to={'/profile/'+user.id}>{`${user.name} ⓟ`}</Link>
+                                }
+                                else {
+                                    return <a className="innerhref title" style={{cursor: "not-allowed"}} href="#no_div">{(txtProfile.table1.emptyname as any)[lang]}</a>
+                                }
+                            })()
+                        }
+                    </ItemRow>
+                    <ItemRow>
+                        {`${Math.floor(hour)}${(TxtCommon.other.hrs as any)[lang]} ${Math.floor(min)}${(TxtCommon.other.mins as any)[lang]}`}
+                    </ItemRow>
+                </ItemCol>
+                <ItemCol size={4}>
+                    <ItemRow>
+                        <ItemCol size={2} className="text-right">G</ItemCol>
+                        <ItemCol size={8} className="text-left blackandwhite">
+                            {
+                                (function() {
+                                    if(user.opencount === "Y") {
+                                        return <SingleSkillColorChanger skill={user.gskill} link={`/skill/2/${user.id}/gf/1/1`} />
+                                    }
+                                    else {
+                                        return <SingleSkillColorChanger skill={user.gskill} link={"#none"} />
+                                    }
+                                })()
+                            }
+                        </ItemCol>
+                    </ItemRow>
+                    <ItemRow>
+                        <ItemCol size={2} className="text-right">D</ItemCol>
+                        <ItemCol size={8} className="text-left blackandwhite">
+                            {
+                                (function() {
+                                    if(user.opencount === "Y") {
+                                        return <SingleSkillColorChanger skill={user.dskill} link={`/skill/2/${user.id}/dm/1/1`} />
+                                    }
+                                    else {
+                                        return <SingleSkillColorChanger skill={user.dskill} link={"#none"} />
+                                    }
+                                })()
+                            }
+                        </ItemCol>
+                    </ItemRow>
+                </ItemCol>
+            </ItemRow>
+        )
+    })
 
-                    const dataopen = user.opencount;
-                    const imgUrl = process.env.PUBLIC_URL+"/general-img/title/"+user.titletower+".png";
-                    const username = user.name+" ⓟ";
-                    const updateTime = Math.floor(hour)+(this.text.other.hrs as any)[this.lang]+" "+Math.floor(min)+(this.text.other.mins as any)[this.lang];
-                    const gskill = user.gskill;
-                    const glink = "/skill/2/"+user.id+"/gf/1/1";
-                    const dskill = user.dskill;
-                    const dlink = "/skill/2/"+user.id+"/dm/1/1";
+    return <>{mapdata}</>
+})
 
-                    return (
-                        <Row key={'recent'+i} className="table-border-bottom" style={{padding:5+'px'}}>
-                            <Col xs="7">
-                                <Row>
-                                    <Col xs="12" className="text-left">
-                                        <span id="towertitle">
-                                            {
-                                                (function() {
-                                                    if(user.titletower !== "") {
-                                                        return (<img alt="titletower" className="towertitle35" src={imgUrl} />)
-                                                    }
-                                                })()
-                                            }
-                                        </span>
-                                        {
-                                            (function() {
-                                                if(dataopen === "Y") {
-                                                    return <Link className="innerhref title" to={'/profile/'+user.id}>{username}</Link>
-                                                }
-                                                else {
-                                                    return <a className="innerhref title" style={{cursor: "not-allowed"}} href="#no_div">{(txtProfile.table1.emptyname as any)[self.lang]}</a>
-                                                }
-                                            })()
-                                        }
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col xs="12">
-                                        {updateTime}
-                                    </Col>
-                                </Row>
-                            </Col>
-                            <Col xs="5">
-                                <Row>
-                                    <Col xs="3" className="text-right">G</Col>
-                                    <Col xs="9" className="text-left blackandwhite">
-                                        {
-                                            (function() {
-                                                if(dataopen === "Y") {
-                                                    return <SingleSkillColorChanger skill={gskill} link={glink} />
-                                                }
-                                                else {
-                                                    return <SingleSkillColorChanger skill={gskill} link={"#no_div"} />
-                                                }
-                                            })()
-                                        }
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col xs="3" className="text-right">D</Col>
-                                    <Col xs="9" className="text-left blackandwhite">
-                                        {
-                                            (function() {
-                                                if(dataopen === "Y") {
-                                                    return <SingleSkillColorChanger skill={dskill} link={dlink} />
-                                                }
-                                                else {
-                                                    return <SingleSkillColorChanger skill={dskill} link={"#no_div"} />
-                                                }
-                                            })()
-                                        }
-                                    </Col>
-                                </Row>
-                            </Col>
-                        </Row>
-                    );
-                }
-            )
-        );
-    };
-}
-
-export default RecentTableDiv;
+export default RecentTableDiv

@@ -41,11 +41,6 @@ export const GDVer = [
 
 export const skillPageVersion = (ptype: number) => {
 	switch(ptype) {
-		case 0:
-		case 1:
-		case 2:
-		case 1000:
-			return "HIGH-VOLTAGE";
 		case 3:
 		case 4:
 			return "Tri-Boost";
@@ -61,6 +56,12 @@ export const skillPageVersion = (ptype: number) => {
 		case 11:
 		case 12:
 			return "NEXTAGE";
+		case 0:
+		case 1:
+		case 2:
+		case 1000:
+		default:
+			return "HIGH-VOLTAGE";
 	}
 }
 

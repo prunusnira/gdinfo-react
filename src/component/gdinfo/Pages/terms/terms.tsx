@@ -1,59 +1,43 @@
-import React, {Component} from 'react';
+import React from 'react';
+import store from '../../../../mobx/store';
+import { BodyContent, BodyHeader, Container, ItemRow } from '../../../../styled/styledCommon';
 import txtTerms from './txtterms';
-import LData from '../Common/language';
 
-import {
-    Container,
-    Row,
-    Col,
-    Card,
-    CardHeader,
-    CardBody
-} from 'reactstrap';
+const Terms = () => {
+    const lang = store.language.lang
 
-class Terms extends Component {
-    lang = LData.lang;
-
-    render() {
-        return (
-            <Container>
-                <Row>
-                    <Col xs="12">
-                        <Card>
-                            <CardHeader>
-                                <h3>{(txtTerms.title as any)[this.lang]}</h3>
-                            </CardHeader>
-                            <CardBody>
-                                <Row>
-                                    <Col xs="12" style={{padding:"5px"}}>
-                                        <h4>{(txtTerms.s1t as any)[this.lang]}</h4>
-                                        <span>{(txtTerms.s1c1 as any)[this.lang]}</span><br/>
-                                        <span>{(txtTerms.s1c2 as any)[this.lang]}</span><br/>
-                                        <span>{(txtTerms.s1c3 as any)[this.lang]}</span><br/>
-                                        <span>{(txtTerms.s1c4 as any)[this.lang]}</span>
-                                    </Col>
-                                    <Col xs="12" style={{padding:"5px"}}>
-                                        <h4>{(txtTerms.s2t as any)[this.lang]}</h4>
-                                        <span>{(txtTerms.s2c1 as any)[this.lang]}</span><br/>
-                                        <span>{(txtTerms.s2c2 as any)[this.lang]}</span>
-                                    </Col>
-                                    <Col xs="12" style={{padding:"5px"}}>
-                                        <h4>{(txtTerms.s3t as any)[this.lang]}</h4>
-                                        <span>{(txtTerms.s3c1 as any)[this.lang]}</span><br/>
-                                        <span>{(txtTerms.s3c2 as any)[this.lang]}</span><br/>
-                                        <span>{(txtTerms.s3c3 as any)[this.lang]}</span>
-                                    </Col>
-                                    <Col xs="12" style={{padding:"5px"}}>
-                                        <span>{(txtTerms.s4 as any)[this.lang]}</span>
-                                    </Col>
-                                </Row>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
-        )
-    }
+    return (
+        <Container>
+            <ItemRow setVertical={true}>
+                <BodyHeader>
+                    <h3>{(txtTerms.title as any)[lang]}</h3>
+                </BodyHeader>
+                <BodyContent>
+                    <ItemRow setVertical={true}>
+                        <h4>{(txtTerms.s1t as any)[lang]}</h4>
+                        <span>{(txtTerms.s1c1 as any)[lang]}</span>
+                        <span>{(txtTerms.s1c2 as any)[lang]}</span>
+                        <span>{(txtTerms.s1c3 as any)[lang]}</span>
+                        <span>{(txtTerms.s1c4 as any)[lang]}</span>
+                    </ItemRow>
+                    <ItemRow setVertical={true}>
+                        <h4>{(txtTerms.s2t as any)[lang]}</h4>
+                        <span>{(txtTerms.s2c1 as any)[lang]}</span>
+                        <span>{(txtTerms.s2c2 as any)[lang]}</span>
+                    </ItemRow>
+                    <ItemRow setVertical={true}>
+                        <h4>{(txtTerms.s3t as any)[lang]}</h4>
+                        <span>{(txtTerms.s3c1 as any)[lang]}</span>
+                        <span>{(txtTerms.s3c2 as any)[lang]}</span>
+                        <span>{(txtTerms.s3c3 as any)[lang]}</span>
+                    </ItemRow>
+                    <ItemRow setVertical={true}>
+                        <span>{(txtTerms.s4 as any)[lang]}</span>
+                    </ItemRow>
+                </BodyContent>
+            </ItemRow>
+        </Container>
+    )
 }
 
 export default Terms;

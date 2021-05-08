@@ -1,89 +1,42 @@
-import React, {Component} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import axios from 'axios';
 import Pager from '../Common/pager';
 import txtSearch from './txtsearch';
-import LData from '../Common/language';
 import RecentTableDiv from '../recent/recentTableDiv';
 import PatternListItem from '../Pattern/pattern/ptListItem';
-import {connect} from 'react-redux';
 
-import {
-    Container,
-    Row,
-    Col,
-    Card,
-    CardHeader,
-    CardBody
-} from 'reactstrap';
 import CommonData from '../Common/commonData';
-import { RouteComponentProps } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import RecentData from '../recent/recentData';
-import { StoreState } from '../../Redux/reducer';
 import { PatternMem, PatternData, EachDiffLine } from '../Pattern/pattern/patternData';
-import { LoginInfo } from '../../Redux/action';
+import store from '../../../../mobx/store';
+import { observer } from 'mobx-react';
+import { BodyContent, BodyHeader, Container, ItemRow } from '../../../../styled/styledCommon';
+import RecentUser from './recentUser';
 
-interface IMatchProps {
-    type: string,
-    page: string,
-    value: string
-}
+const SearchResult = observer(() =>  {
+    const [userlist, setUserlist] = useState(Array<RecentData>())
+    const [musiclist, setMusiclist] = useState(Array<PatternData>())
+    const [allpage, setAllpage] = useState(0)
 
-interface Props {
-    login: boolean,
-    userinfo: LoginInfo
-}
+    const type = useParams<string>()
+    const page = useParams<string>()
+    const value = useParams<string>()
 
-interface State {
-    userlist: Array<RecentData>,
-    musiclist: Array<PatternData>,
-    allpage: number
-}
+    const {language, loginStatus, loginUser} = store
+    const lang = language.lang
 
-class RecentUser implements RecentData {
-    id: number = 0;
-    titletower: string = "";
-    name: string = "";
-    gskill: number = 0;
-    dskill: number = 0;
-    updatetime: string = "";
-    uptimelong: number = 0;
-    link: string = "";
-    glink: string = "";
-    dlink: string = "";
-    opencount: string = "Y";
-}
-
-class SearchResult extends Component<RouteComponentProps<IMatchProps> & Props, State> {
-    lang = LData.lang;
-
-    state: State = {
-        userlist: [],
-        musiclist: [],
-        allpage: 0
-    }
-
-    componentDidMount() {
-        const urlprop = this.props.match.params;
-        if(urlprop.type === "music") {
-            this.getMusicList(urlprop);
+    useEffect(() => {
+        if(type === "music") {
+            getMusicList(type, page, value);
         }
         else {
-            this.getUserList(urlprop);
+            getUserList(type, page, value);
         }
-    }
+    }, [])
 
-    componentWillReceiveProps(nextProps: RouteComponentProps<IMatchProps> & Props) {
-        const urlprop = nextProps.match.params;
-        if(urlprop.type === "music") {
-            this.getMusicList(urlprop);
-        }
-        else {
-            this.getUserList(urlprop);
-        }
-    }
-
-    getUserList(prop: any) {
-        axios.post(CommonData.dataUrl+"search/"+prop.type+"/"+prop.value+"/"+prop.page)
+    const getUserList = (type: string, page: string, value: string) => {
+        axios.post(`${CommonData.dataUrl}search/${type}/${value}/${page}`)
         .then((res) => {
             const json = res.data;
             const userList = JSON.parse(json.userList);
@@ -109,17 +62,14 @@ class SearchResult extends Component<RouteComponentProps<IMatchProps> & Props, S
                     userlistDisp.push(obj);
                 }
 
-                this.setState({
-                    userlist: userlistDisp,
-                    allpage: json.pages
-                });
+                setUserlist(userlistDisp)
+                setAllpage(json.pages)
             }
         });
     }
 
-    getMusicList(prop: any) {
-        const self = this;
-        axios.post(CommonData.dataUrl+"search/"+prop.type+"/"+prop.value+"/"+prop.page)
+    const getMusicList = (type: string, page: string, value: string) => {
+        axios.post(`${CommonData.dataUrl}search/${type}/${value}/${page}`)
         .then((res) => {
             const json = res.data;
             const userList = JSON.parse(json.userList);
@@ -129,8 +79,8 @@ class SearchResult extends Component<RouteComponentProps<IMatchProps> & Props, S
                     const cur = userList[i];
                     const obj = new PatternMem();
                     obj.jacket = CommonData.jacketUrl+cur.id+".jpg";
-                    if(self.props.login)
-                        obj.link = "/music/"+cur.id+"/"+self.props.userinfo.id;
+                    if(loginStatus.isSigned)
+                        obj.link = `/music/${cur.id}/${loginUser.user.id}`;
                     else
                         obj.link = "#no_div";
                     obj.name = cur.name;
@@ -251,54 +201,33 @@ class SearchResult extends Component<RouteComponentProps<IMatchProps> & Props, S
                     ptlist.push(obj);
                 }
 
-                this.setState({
-                    musiclist: ptlist,
-                    allpage: json.pages
-                });
+                setMusiclist(ptlist)
+                setAllpage(json.pages)
             }
         });
     }
 
-    render() {
-        const self = this;
-        const urlprop = this.props.match.params;
-        return (
-            <Container>
-                <Row>
-                    <Col xs="12">
-                        <Card>
-                            <CardHeader>
-                                <h3>Search</h3>
-                                <span>{(txtSearch.desc as any)[this.lang]}</span>
-                            </CardHeader>
-                            <CardBody>
-                                <Row>
-                                    <Col xs="12" id='user-result'>
-                                        <RecentTableDiv isMain={false} list={self.state.userlist} />
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col xs="12" id='music-result'>
-                                        <PatternListItem list={self.state.musiclist} />
-                                    </Col>
-                                </Row>
-                                <Pager cpage={parseInt(urlprop.page)} allpage={self.state.allpage}
-                                    baseUrl={"/search/"+urlprop.type+"/"+urlprop.value+"/"}
-                                    afterUrl={""} />
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
-        )
-    }
-}
+    return (
+        <Container>
+            <ItemRow>
+                <BodyHeader>
+                    <h3>Search</h3>
+                    <span>{(txtSearch.desc as any)[lang]}</span>
+                </BodyHeader>
+                <BodyContent>
+                    <ItemRow>
+                        <RecentTableDiv isMain={false} list={userlist} />
+                    </ItemRow>
+                    <ItemRow>
+                        <PatternListItem list={musiclist} />
+                    </ItemRow>
+                    <Pager cpage={parseInt(page)} allpage={allpage}
+                        baseUrl={`/search/${type}/${value}/`}
+                        afterUrl={""} />
+                </BodyContent>
+            </ItemRow>
+        </Container>
+    )
+})
 
-const mapStateToProps = (state: StoreState) => {
-    return {
-        userinfo: state.loginReducer.userinfo,
-        login: state.loginReducer.login
-    }
-};
-
-export default connect(mapStateToProps)(SearchResult);
+export default SearchResult

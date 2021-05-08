@@ -55,9 +55,9 @@ const txtTerms = {
         "en":"2) (It never happened for 5 years but) If you get restriction or ban from eAmusement service, we can't help it. Sorry."
     },
     s3t: {
-        "jp":"4. 収集情報",
-        "ko":"4. 수집 정보",
-        "en":"4. Data collected"
+        "jp":"3. 収集情報",
+        "ko":"3. 수집 정보",
+        "en":"3. Data collected"
     },
     s3c1: {
         "jp":"サービス提供のため下記のデータを利用者から取得します",

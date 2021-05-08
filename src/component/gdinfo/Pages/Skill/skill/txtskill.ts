@@ -61,10 +61,15 @@ const txtSkill = {
         "ko":"현재 표 찍기",
         "en":"Take picture for this table"
     },
-    scrshotp: {
+    btnShareTable: {
         "jp":"共有用のスキル表",
         "ko":"공유용 스킬표",
-        "en":"Skill table for share"
+        "en":"Share usage skill table"
+    },
+    btnNormalTable: {
+        "jp":"通常スキル表",
+        "ko":"기본 스킬표",
+        "en":"Normal sized skill table"
     },
     order: {
         skillasc: {

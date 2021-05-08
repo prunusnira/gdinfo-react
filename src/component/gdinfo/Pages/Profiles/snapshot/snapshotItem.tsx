@@ -1,13 +1,10 @@
-import React, {Component, Fragment} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import txtSnapshot from './txtsnapshot';
-import LData from '../../Common/language';
 
-import {
-    Row,
-    Col,
-    Button
-} from 'reactstrap';
+import store from '../../../../../mobx/store';
+import { observer } from 'mobx-react';
+import { Button, ItemCol, ItemRow } from '../../../../../styled/styledCommon';
 
 interface Props {
     date: Array<string>,
@@ -15,40 +12,35 @@ interface Props {
     gtype: string
 }
 
-class SnapshotItem extends Component<Props> {
-    lang = LData.lang;
+const SnapshotItem = observer((props: Props) => {
+    const lang = store.language.lang
 
-    render() {
-        const date = this.props.date;
-        const uid = this.props.id;
-        const gtype = this.props.gtype;
-        return(
-            <Fragment>
-                {
-                    date.map((d, i) => {
-                        return (
-                            <Row>
-                                <Col md="5">
-                                    {d}
-                                </Col>
-                                <Col md="7" className="btn-group">
-                                    <Button tag={Link} to={"/skill/snapshot/view/nr/"+uid+"/"+d+"/"+gtype}>
-                                        {(txtSnapshot.btnN as any)[this.lang]}
-                                    </Button>
-                                    <Button tag={Link} to={"/skill/snapshot/view/sh/"+uid+"/"+d+"/"+gtype}>
-                                        {(txtSnapshot.btnS as any)[this.lang]}
-                                    </Button>
-                                    <Button charset='UTF-8' tag={Link} to={"/file/snapshot/"+uid+"/"+d+"_"+gtype+".json"}>
-                                        {(txtSnapshot.btnD as any)[this.lang]}
-                                    </Button>
-                                </Col>
-                            </Row>
-                        )
-                    })
-                }
-            </Fragment>
-        )
-    }
-}
+    return(
+        <>
+            {
+                props.date.map(d => {
+                    return (
+                        <ItemRow keepDirHor={true}>
+                            <ItemCol size={4}>
+                                {d}
+                            </ItemCol>
+                            <ItemCol size={6} className="btn-group">
+                                <Link to={`/skill/snapshot/view/nr/${props.id}/${d}/${props.gtype}`}>
+                                    <Button>{(txtSnapshot.btnN as any)[lang]}</Button>
+                                </Link>
+                                <Link to={`/skill/snapshot/view/sh/${props.id}/${d}/${props.gtype}`}>
+                                    <Button>{(txtSnapshot.btnS as any)[lang]}</Button>
+                                <Link to={`/file/snapshot/${props.id}/${d}_${props.gtype}.json`}>
+                                </Link>
+                                    <Button>{(txtSnapshot.btnD as any)[lang]}</Button>
+                                </Link>
+                            </ItemCol>
+                        </ItemRow>
+                    )
+                })
+            }
+        </>
+    )
+})
 
 export default SnapshotItem;

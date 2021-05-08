@@ -1,73 +1,83 @@
-import React, {Component, Fragment} from 'react';
+import React from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
 import txtProfile from './txtprofile';
-import LData from '../../Common/language';
-import {
-    Col,
-    Button
-} from 'reactstrap';
 
 import CommonData from '../../Common/commonData';
+import store from '../../../../../mobx/store';
+import { observer } from 'mobx-react';
+import { Button, ItemCol, ItemRow } from '../../../../../styled/styledCommon';
 
 interface Props {
-    self: boolean,
+    isOwnAccount: boolean,
     id: string
 }
 
-class ProfileButton extends Component<Props> {
-    lang = LData.lang;
+const ProfileButton = observer((props: Props) => {
+    const lang = store.language.lang
 
-    towerUpdate() {
-		if(window.confirm((txtProfile.towerupdate.alert as any)[this.lang])) {
-			axios.post(CommonData.dataUrl+'profile/towerupdate/'+this.props.id)
+    const towerUpdate = () => {
+		if(window.confirm((txtProfile.towerupdate.alert as any)[lang])) {
+			axios.post(`${CommonData.dataUrl}profile/towerupdate/${props.id}`)
 			.then((res) => {
-				alert((txtProfile.towerupdate.done as any)[this.lang]);
+				alert((txtProfile.towerupdate.done as any)[lang]);
 			});
 		}
     }
 
-    render() {
-        if(this.props.self) {
-            return (
-                <Fragment>
-                    <Col xs="12" className="btn-group">
-                        <Button style={{width:"100%"}} tag={Link} to={"/mybest/"+this.props.id}>
-                            {(txtProfile.button.mybest as any)[this.lang]}
+    if(props.isOwnAccount) {
+        return (
+            <>
+                <ItemRow>
+                    <ItemCol size={5} isFlatUnderLg={true}>
+                        <Link to={`/mybest/${props.id}`}>
+                            <Button style={{width:"100%"}}>
+                                {(txtProfile.button.mybest as any)[lang]}
+                            </Button>
+                        </Link>
+                        <Link to={`/cleartable/${props.id}`}>
+                            <Button style={{width:"100%"}}>
+                                {(txtProfile.button.clearRankTable as any)[lang]}
+                            </Button>
+                        </Link>
+                    </ItemCol>
+                    <ItemCol size={5} isFlatUnderLg={true}>
+                        <Button style={{width:"100%"}} onClick={towerUpdate}>
+                            {(txtProfile.button.towerupdate as any)[lang]}
                         </Button>
-                        <Button style={{width:"100%"}} tag={Link} to={"/cleartable/"+this.props.id}>
-                            {(txtProfile.button.clearRankTable as any)[this.lang]}
-                        </Button>
-                    </Col>
-                    <Col xs="12" className="btn-group">
-                        <Button style={{width:"100%"}} onClick={this.towerUpdate}>
-                            {(txtProfile.button.towerupdate as any)[this.lang]}
-                        </Button>
-                        <Button style={{width:"100%"}} tag={Link} to={"/profile/towerstatus/"+this.props.id}>
-                            {(txtProfile.button.towerstatus as any)[this.lang]}
-                        </Button>
-                    </Col>
-                </Fragment>
-            )
-        }
-        else {
-            return (
-                <Fragment>
-                    <Col xs="12" className="btn-group">
-                        <Button style={{width:"100%"}} tag={Link} to={"/cleartable/"+this.props.id}>
-                            {(txtProfile.button.clearRankTable as any)[this.lang]}
-                        </Button>
-                        <Button style={{width:"100%"}} tag={Link} to={"/mybest/"+this.props.id}>
-                            {(txtProfile.button.mybest as any)[this.lang]}
-                        </Button>
-                        <Button style={{width:"100%"}} tag={Link} to={"/profile/towerstatus/"+this.props.id}>
-                            {(txtProfile.button.towerstatus as any)[this.lang]}
-                        </Button>
-                    </Col>
-                </Fragment>
-            )
-        }
+                        <Link to={`/profile/towerstatus/${props.id}`}>
+                            <Button style={{width:"100%"}}>
+                                {(txtProfile.button.towerstatus as any)[lang]}
+                            </Button>
+                        </Link>
+                    </ItemCol>
+                </ItemRow>
+            </>
+        )
     }
-}
+    else {
+        return (
+            <>
+                <ItemRow>
+                    <Link to={`/cleartable/${props.id}`}>
+                        <Button style={{width:"100%"}}>
+                            {(txtProfile.button.clearRankTable as any)[lang]}
+                        </Button>
+                    </Link>
+                    <Link to={`/mybest/${props.id}`}>
+                        <Button style={{width:"100%"}}>
+                            {(txtProfile.button.mybest as any)[lang]}
+                        </Button>
+                    </Link>
+                    <Link to={`/profile/towerstatus/${props.id}`}>
+                        <Button style={{width:"100%"}}>
+                            {(txtProfile.button.towerstatus as any)[lang]}
+                        </Button>
+                    </Link>
+                </ItemRow>
+            </>
+        )
+    }
+})
 
 export default ProfileButton;

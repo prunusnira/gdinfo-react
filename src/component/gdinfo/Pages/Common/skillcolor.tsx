@@ -1,44 +1,14 @@
-/*****************************************************
- * GITADORA Info Server
- * Developed by Tae Jun Kang a.k.a Prunus Nira
- * (c) Nira 2016
- *
- * 1. This project is protected under GNU AGPL v3.0
- *    Please refer to LICENSE file on root
- * 2. Also, products and libraries used to implement
- *    this server are on USED-LIBRARIES file on root
- *****************************************************/
-import React, {Component} from 'react';
+import React from 'react';
 import {Link} from 'react-router-dom';
 import './skillcolor.css';
-//import './skillcolor-rainbow.css';
 
 interface Props {
 	skill: number,
 	link: string
 }
 
-class SingleSkillColorChanger extends Component<Props> {
-	render() {
-		if(this.props.skill !== undefined) {
-			return (
-				<Link className={this.color(this.props.skill)}
-					to={this.props.link}>
-					<span style={{fontWeight: "bold"}}>{this.props.skill.toFixed(2)}</span>
-				</Link>
-			)
-		}
-		else {
-			return (
-				<Link className={this.color(0)}
-					to={this.props.link}>
-					<span style={{fontWeight: "bold"}}>0.00</span>
-				</Link>
-			)
-		}
-	}
-
-	color(skill: number) {
+const SingleSkillColorChanger = (props: Props) => {
+	const color = (skill: number) => {
 		let colorClass = "s0";
 
 		if(skill < 1000) {
@@ -100,6 +70,23 @@ class SingleSkillColorChanger extends Component<Props> {
 		}
 
 		return colorClass;
+	}
+
+	if(props.skill !== undefined) {
+		return (
+			<Link className={color(props.skill)}
+				to={props.link}>
+				<span style={{fontWeight: "bold"}}>{props.skill.toFixed(2)}</span>
+			</Link>
+		)
+	}
+	else {
+		return (
+			<Link className={color(0)}
+				to={props.link}>
+				<span style={{fontWeight: "bold"}}>0.00</span>
+			</Link>
+		)
 	}
 }
 

@@ -1,47 +1,29 @@
-import React, {Component} from 'react';
+import React, {useEffect, useState} from 'react';
 import SnapshotItem from './snapshotItem';
 import axios from 'axios';
 import txtSnapshot from './txtsnapshot';
-import LData from '../../Common/language';
 
-import {
-    Container,
-    Row,
-    Col,
-    Card,
-    CardHeader,
-    CardBody
-} from 'reactstrap';
 import CommonData from '../../Common/commonData';
-import { RouteComponentProps } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import store from '../../../../../mobx/store';
+import { BodyContent, BodyHeader, Container, ItemCol, ItemRow } from '../../../../../styled/styledCommon';
 
-interface IMatchProps {
+interface MatchProps {
     id: string
 }
 
-interface Props {
+const SnapshotList = () => {
+    const [glist, setGList] = useState(Array<string>())
+    const [dlist, setDList] = useState(Array<string>())
+    const [gempty, setGEmpty] = useState(true)
+    const [dempty, setDEmpty] = useState(true)
 
-}
+    const {id} = useParams<MatchProps>()
 
-interface State {
-    glist: Array<string>,
-    dlist: Array<string>,
-    gempty: boolean,
-    dempty: boolean
-}
-
-class SnapshotList extends Component<RouteComponentProps<IMatchProps> & Props, State> {
-    lang = LData.lang;
-
-    state: State = {
-        glist: [],
-        dlist: [],
-        gempty: true,
-        dempty: true
-    }
+    const lang = store.language.lang
     
-    componentDidMount() {
-        axios.post(CommonData.dataUrl+"skill/snapshot/list/"+this.props.match.params.id)
+    useEffect(() => {
+        axios.post(`${CommonData.dataUrl}skill/snapshot/list/${id}`)
         .then((res) => {
             const json = res.data;
             const list = JSON.parse(json.list);
@@ -78,81 +60,65 @@ class SnapshotList extends Component<RouteComponentProps<IMatchProps> & Props, S
                 dempty = false;
             }
 
-            this.setState({
-                glist: gflist,
-                dlist: dmlist,
-                gempty: gempty,
-                dempty: dempty
-            });
-        });
-    }
+            setGList(gflist)
+            setDList(dmlist)
+            setGEmpty(gempty)
+            setDEmpty(dempty)
+        })
+    }, [])
 
-    render() {
-        const self = this;
-
-        return (
-            <Container>
-                <Row>
-                    <Col xs="12">
-                        <Card>
-                            <CardHeader>
-                                <h3>Snapshot List</h3>
-                            </CardHeader>
-                            <CardBody id="snaplist">
-                                <Row>
-                                    <Col xs="12">
-                                        {(txtSnapshot.desc1 as any)[this.lang]}<br/>
-                                        <b style={{color:"coral"}}>{(txtSnapshot.desc2 as any)[this.lang]}</b><br/>
-                                        {(txtSnapshot.desc3 as any)[this.lang]}<br/><br/>
-                                    </Col>
-                                </Row>
-                                <Row>
-                                    <Col sm="6">
-                                        <Card>
-                                            <CardHeader>
-                                                <h3>GuitarFreaks</h3>
-                                            </CardHeader>
-                                            <CardBody>
-                                                {
-                                                    (function() {
-                                                        if(self.state.gempty) {
-                                                            return (<h3>LIST IS EMPTY</h3>)
-                                                        }
-                                                        else {
-                                                            return (<SnapshotItem id={self.props.match.params.id} date={self.state.glist} gtype="gf" />)
-                                                        }
-                                                    })()
-                                                }
-                                            </CardBody>
-                                        </Card>
-                                    </Col>
-                                    <Col sm="6">
-                                        <Card>
-                                            <CardHeader>
-                                                <h3>DrumMania</h3>
-                                            </CardHeader>
-                                            <CardBody>
-                                                {
-                                                    (function() {
-                                                        if(self.state.dempty) {
-                                                            return (<h3>LIST IS EMPTY</h3>)
-                                                        }
-                                                        else {
-                                                            return (<SnapshotItem id={self.props.match.params.id} date={self.state.dlist} gtype="dm" />)
-                                                        }
-                                                    })()
-                                                }
-                                            </CardBody>
-                                        </Card>
-                                    </Col>
-                                </Row>
-                            </CardBody>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
-        )
-    }
+    return (
+        <Container>
+            <ItemRow setVertical={true}>
+                <BodyHeader>
+                    <h3>Snapshot List</h3>
+                </BodyHeader>
+                <BodyContent id="snaplist">
+                    <ItemRow>
+                        {(txtSnapshot.desc1 as any)[lang]}<br/>
+                        <b style={{color:"coral"}}>{(txtSnapshot.desc2 as any)[lang]}</b><br/>
+                        {(txtSnapshot.desc3 as any)[lang]}<br/><br/>
+                    </ItemRow>
+                    <ItemRow>
+                        <ItemCol size={5} isFlatUnderLg={true}>
+                            <BodyHeader>
+                                <h3>GuitarFreaks</h3>
+                            </BodyHeader>
+                            <BodyContent>
+                                {
+                                    (function() {
+                                        if(gempty) {
+                                            return (<h3>LIST IS EMPTY</h3>)
+                                        }
+                                        else {
+                                            return (<SnapshotItem id={id} date={glist} gtype="gf" />)
+                                        }
+                                    })()
+                                }
+                            </BodyContent>
+                        </ItemCol>
+                        <ItemCol size={5} isFlatUnderLg={true}>
+                            <BodyHeader>
+                                <h3>DrumMania</h3>
+                            </BodyHeader>
+                            <BodyContent>
+                                {
+                                    (function() {
+                                        if(dempty) {
+                                            return (<h3>LIST IS EMPTY</h3>)
+                                        }
+                                        else {
+                                            return (<SnapshotItem id={id} date={dlist} gtype="dm" />)
+                                        }
+                                    })()
+                                }
+                            </BodyContent>
+                        </ItemCol>
+                    </ItemRow>
+                </BodyContent>
+            </ItemRow>
+        </Container>
+    )
 }
 
 export default SnapshotList;

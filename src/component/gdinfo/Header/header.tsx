@@ -82,7 +82,10 @@ const GDHeader = observer(() => {
                         clientId={CommonData.googleLoginClientId}
                         buttonText={(txtHeader.logout as any)[lang]}
                         onLogoutSuccess={
-                            () => loginUser.setLogout()
+                            () => {
+                                loginUser.setLogout()
+                                loginStatus.setSignStatus(false)
+                            }
                         } />
                 </NavLink>
             );

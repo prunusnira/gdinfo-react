@@ -1,4 +1,4 @@
-class CntrankData {
+class PlayCntrankData {
     index: number = 0;
     towertitle: string = "";
     prlink: string = "";
@@ -8,4 +8,4 @@ class CntrankData {
     allcnt: number = 0;
 }
 
-export default CntrankData;
+export default PlayCntrankData;
