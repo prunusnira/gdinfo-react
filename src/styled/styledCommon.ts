@@ -15,11 +15,12 @@ const ItemRowBase = styled.div<{keepDirHor: boolean, setVertical: boolean}>`
     display: flex;
     padding-top: 5px;
     padding-bottom: 5px;
+    flex-wrap: wrap;
 
     ${props => props.keepDirHor?
         ``
         :
-        `@media screen and (max-width: 1200px) {
+        `@media screen and (max-width: 1199px) {
             flex-direction: column;
         }`
     }
@@ -37,7 +38,7 @@ export const ItemRow = defaultStyle(ItemRowBase, {keepDirHor: false, setVertical
 const ItemColBase = styled.div<{size: number, isFlatUnderLg: boolean}>`
     ${props => props.isFlatUnderLg ?
         `
-        @media screen and (max-width: 1200px) {
+        @media screen and (max-width: 1199px) {
             width: 100%;
         }
         @media screen and (min-width: 1200px) {
@@ -80,6 +81,12 @@ export const Button = styled.button`
     border: 1px solid black;
     background-color: #dddddd;
     padding: 10px;
+`
+
+export const ButtonSM = styled.button`
+    color: black;
+    border: 1px solid black;
+    background-color: #dddddd;
 `
 
 const IconBase = styled.img<{sizeType: string}>`

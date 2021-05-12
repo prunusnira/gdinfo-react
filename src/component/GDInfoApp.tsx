@@ -1,67 +1,72 @@
-import React, { useEffect, useState } from 'react';
-import GDHeader from './gdinfo/Header/header';
-import GDFooter from './gdinfo/Footer/footer';
-import {Route, Switch} from 'react-router-dom';
-import store from '../mobx/store';
+import React, { useEffect } from 'react'
+import GDHeader from './header/header'
+import GDFooter from './footer/footer'
+import {Route, Switch} from 'react-router-dom'
+import store from '../mobx/store'
+import { observer } from 'mobx-react'
 
 import {Center, OuterBox} from '../styled/styledOverall'
 
-import IndexPage from './gdinfo/Pages/index/index';
-import Recent from './gdinfo/Pages/recent/recent';
-import Login from './gdinfo/Pages/login/login';
-import LoginFromApp from './gdinfo/Pages/login/loginFromApp';
-import SearchResult from './gdinfo/Pages/search/search';
-import Terms from './gdinfo/Pages/terms/terms';
-import NewUser from './gdinfo/Pages/User/newuser/newuser';
+import IndexPage from './index/index'
+import Recent from './recent/recent'
+import Login from './user/login/login'
+import LoginFromApp from './user/login/loginFromApp'
+import SearchResult from './search/search'
+import NewUser from './user/newuser/newuser'
 
-import Profile from './gdinfo/Pages/Profiles/profile/profile';
-import ProfileLoginCheck from './gdinfo/Pages/Profiles/profile/checkLogin';
-import PlayCount from './gdinfo/Pages/Profiles/playcount/playcount';
-import PlayCountLoginCheck from './gdinfo/Pages/Profiles/playcount/checkLogin';
-import SnapshotList from './gdinfo/Pages/Profiles/snapshot/list';
-import SnapshotLoginCheck from './gdinfo/Pages/Profiles/snapshot/checkLogin';
-import ProfileReset from './gdinfo/Pages/Profiles/reset/reset';
-import TowerClearStat from './gdinfo/Pages/Profiles/towerClearStat/towerClearStat';
+import Profile from './user/profile/profile'
+import ProfileLoginCheck from './user/profile/checkLogin'
+import PlayCount from './user/playcount/playcount'
+import PlayCountLoginCheck from './user/playcount/checkLogin'
+import SnapshotList from './user/snapshot/snapshotList'
+import SnapshotLoginCheck from './user/snapshot/checkLogin'
+import ProfileReset from './user/reset/reset'
+import TowerClearStat from './tower/towerClearStat/towerClearStat'
 
-import MySkill from './gdinfo/Pages/Skill/myskill/myskill';
-import SkillContainer from './gdinfo/Pages/Skill/skill/skill';
-import SkillRanking from './gdinfo/Pages/Skill/ranking/skillranking';
-import PlaycountRanking from './gdinfo/Pages/Skill/playcntrank/playcntrank';
-import SkillSnapshot from './gdinfo/Pages/Skill/skill/skillSnapshot';
-import EXC from './gdinfo/Pages/Skill/skill/exc';
+import MySkill from './skill/myskill'
+import SkillContainer from './skill/skill/skill'
+import SkillRanking from './skill/ranking/skillranking'
+import PlaycountRanking from './skill/playcntrank/playcntrank'
+import SkillSnapshot from './skill/skill/skillSnapshot'
+import EXC from './skill/skill/exc'
 
-import PatternList from './gdinfo/Pages/Pattern/pattern/pattern';
-import PatternRank from './gdinfo/Pages/Pattern/patternRank/patternRank';
-import NoRecordMusicList from './gdinfo/Pages/Pattern/noRecordMusic/noRecordMusicList';
-import NotPlayedLoginCheck from './gdinfo/Pages/Pattern/noRecordMusic/npLoginChk';
-import Music from './gdinfo/Pages/Pattern/music/music';
-import ClearTable from './gdinfo/Pages/Pattern/cleartable/cleartable';
-import CTLoginChk from './gdinfo/Pages/Pattern/cleartable/checkLogin';
+import PatternList from './pattern/pattern/pattern'
+import PatternRank from './pattern/patternRank/patternRank'
+import NoRecordMusicList from './pattern/noRecordMusic/noRecordList'
+import NotPlayedLoginCheck from './pattern/noRecordMusic/npLoginChk'
+import Music from './pattern/music/music'
+import ClearTable from './pattern/cleartable/clearTable'
+import ClearTableLoginChk from './pattern/cleartable/checkLogin'
 
-import TowerList from './gdinfo/Pages/Tower/towerList/towerlist';
-import TowerStat from './gdinfo/Pages/Tower/towerStat/towerstat';
-import TowerHowto from './gdinfo/Pages/Tower/towerHowto/towerHowto';
+import TowerList from './tower/towerList/towerlist'
+import TowerStat from './tower/towerStat/towerStat'
+import TowerHowto from './tower/towerHowto/towerHowto'
 
-import Error404 from './gdinfo/Pages/error/404';
-import Error500 from './gdinfo/Pages/error/500';
-import LData from './gdinfo/Pages/Common/language';
-import { observer } from 'mobx-react';
-import { isSynchronized } from 'mobx-persist-store';
+import Error404 from './error/404'
+import Error500 from './error/500'
+import LData from './common/language'
+import CommonData from './common/commonData'
 
 /**
  * header/footer를 제외하고는 react-router-dom으로 구성함
  */
 const GDInfoApp = observer(() => {
-    const {language, loginUser, loginStatus} = store
+    const {language, version} = store
 
-    if(!isSynchronized(store.language)) {
-        return null
-    }
-    else {
-        if(language.lang === '') {
+    useEffect(() => {
+        if(version.version === null ||
+            version.version === undefined ||
+            version.version < CommonData.internalVersion) {
+            localStorage.clear()
+            version.setVersion(CommonData.internalVersion)
+        }
+    
+        if(language.lang === null ||
+            language.lang === undefined ||
+            language.lang === '') {
             language.setLang(LData.setLang())
         }
-    }
+    }, [])
 
     return (
         <OuterBox>
@@ -74,7 +79,6 @@ const GDInfoApp = observer(() => {
                 <Route exact path="/app/login"  component={Recent} />
                 <Route path="/app/login/:uid" component={LoginFromApp} />
                 <Route path="/search/:type/:value/:page" component={SearchResult} />
-                <Route path="/precautions" component={Terms} />
                 <Route path="/newuser" component={NewUser} />
                 {/* Profile */}
                 <Switch>
@@ -107,19 +111,19 @@ const GDInfoApp = observer(() => {
                 <Route path="/music/:mid/:userid" component={Music} />
                 <Switch>
                     <Route path="/cleartable/:userid" component={ClearTable} />
-                    <Route path="/cleartable/" component={CTLoginChk} />
+                    <Route path="/cleartable/" component={ClearTableLoginChk} />
                 </Switch>
                 {/* Tower */}
-{/*                <Route path="/tower/index" component={TowerList} />
+                <Route path="/tower/index" component={TowerList} />
                 <Route path="/tower/stat/:tower" component={TowerStat} />
                 <Route path="/tower/howto" component={TowerHowto} />
                 {/* Error */}
-{/*                <Route path="/error/404" component={Error404} />
-                <Route path="/error/500" component={Error500} />*/}
+                <Route path="/error/404" component={Error404} />
+                <Route path="/error/500" component={Error500} />
             </Center>
             <GDFooter />
         </OuterBox>
-    );
+    )
 })
 
-export default GDInfoApp;
+export default GDInfoApp
