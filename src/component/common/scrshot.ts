@@ -1,29 +1,27 @@
-import html2canvas from 'html2canvas';
+import html2canvas from 'html2canvas'
 
 const scrShot = (divname: string, filename: string) => {
     window.scrollTo(0, 0);
     html2canvas(document.getElementById(divname)!, {
         useCORS: true,
-        logging: true
     })
-    .then(function(canvas) {
+    .then(canvas => {
         // dataUrl로 뽑으면 파일명이 너무 길어서
         // 웹킷 브라우저에서는 길이 제한으로 잘라버림
         // 그래서 blob으로 변경할 필요가 있음
-        const dataUrl = canvas.toDataURL("image/jpeg");
-        const blob = uriToBlob(dataUrl);
-        const downloadUrl = URL.createObjectURL(blob);
+        const dataUrl = canvas.toDataURL("image/jpeg")
+        const blob = uriToBlob(dataUrl)
+        const downloadUrl = URL.createObjectURL(blob)
 
-        const el = document.createElement("a");
-        //el.href = canvas.toDataURL("image/jpeg");
-        el.href = downloadUrl;
-        el.download = filename;
-        el.click();
+        const el = document.createElement("a")
+        el.href = downloadUrl
+        el.download = filename
+        el.click()
 
-        URL.revokeObjectURL(downloadUrl);
+        URL.revokeObjectURL(downloadUrl)
     })
-    .catch(function (error) {
-        console.error('oops, something went wrong!', error);
+    .catch(error => {
+        console.error('html2canvas error', error)
     })
 }
 

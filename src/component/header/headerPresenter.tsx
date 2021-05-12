@@ -40,33 +40,29 @@ const HeaderPresenter = observer((props: Props) => {
     const LoginButton = () => {
         if(!loginStatus.isSigned) {
             return (
-                <NavItemX>
-                    <Link to="/login" onClick={props.closeMenu}>
-                        <img alt="icon" className="navicon" src={`${process.env.PUBLIC_URL}/general-img/header/login.png`}/>
-                        <span className="navlefttxt">
-                            {(txtHeader.login as any)[lang]}
-                        </span>
-                    </Link>
-                </NavItemX>
+                <Link to="/login" onClick={props.closeMenu}>
+                    <img alt="icon" className="navicon" src={`${process.env.PUBLIC_URL}/general-img/header/login.png`}/>
+                    <span className="navlefttxt">
+                        {(txtHeader.login as any)[lang]}
+                    </span>
+                </Link>
             );
         }
         else {
             return (
-                <NavItemX>
-                    <Link to="#no_div" onClick={props.closeMenu}>
-                        <img alt="icon" className="navicon" src={`${process.env.PUBLIC_URL}/general-img/header/logout.png`}/>
-                        <GoogleLogout
-                            className="logoutbtn"
-                            clientId={CommonData.googleLoginClientId}
-                            buttonText={(txtHeader.logout as any)[lang]}
-                            onLogoutSuccess={
-                                () => {
-                                    loginUser.setLogout()
-                                    loginStatus.setSignStatus(false)
-                                }
-                            } />
-                    </Link>
-                </NavItemX>
+                <Link to="#no_div" onClick={props.closeMenu}>
+                    <img alt="icon" className="navicon" src={`${process.env.PUBLIC_URL}/general-img/header/logout.png`}/>
+                    <GoogleLogout
+                        className="logoutbtn"
+                        clientId={CommonData.googleLoginClientId}
+                        buttonText={(txtHeader.logout as any)[lang]}
+                        onLogoutSuccess={
+                            () => {
+                                loginUser.setLogout()
+                                loginStatus.setSignStatus(false)
+                            }
+                        } />
+                </Link>
             );
         }
     }

@@ -28,7 +28,6 @@ const ClearTable = () => {
         axios.post(`${CommonData.dataUrl}getuserid/${userid}`)
         .then((res) => {
             const json = JSON.parse(res.data.mydata)
-            const icon = (json.titletower !== "") ? true:false
             setUserName(json.name)
             setProfLink(`/profile/${userid}`)
             setTitleTower(json.titletower)

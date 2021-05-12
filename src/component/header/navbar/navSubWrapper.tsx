@@ -17,8 +17,8 @@ const NavSubItemWrapper = (props: Props) => {
     return (
         <NavSubOuter isOpen={props.open}>
             {
-                props.items.map(d => (
-                    <NavSubItem>
+                props.items.map((d, i) => (
+                    <NavSubItem key={`nav${i}`}>
                         <Link
                             to={d.link}
                             onClick={props.closeMenu}>

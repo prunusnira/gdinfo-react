@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import TowerStatList from './towerStatItem'
 import { TowerStatData } from './towerStatData'
 import txtTower from '../txttower'

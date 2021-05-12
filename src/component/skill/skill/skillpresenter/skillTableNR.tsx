@@ -13,9 +13,9 @@ const SkillTableNR: React.FC<{list: Array<SkillItemData>}> = list => {
     return (
         <>
         {
-            list.list.map(v => {
+            list.list.map((v, i) => {
                 return (
-                    <div className="div-table-row skilltable" style={{borderBottom: "1px solid black"}}>
+                    <div key={`j${i}`} className="div-table-row skilltable" style={{borderBottom: "1px solid black"}}>
                         {/* 스킬색상 부분 */}
                         <div className="div-table-cell" style={v.tableColor}>
                             {/* 번호 */}
@@ -26,10 +26,10 @@ const SkillTableNR: React.FC<{list: Array<SkillItemData>}> = list => {
                         </div>
                         <div className="div-table-cell text-center" style={{padding:"5px !important", margin:"0px !important"}}>
                             {/* 재킷 및 패턴 */}
-                            <img alt="jacket-img" style={{width:"75px"}} src={v.iconUrl}
+                            <img alt={`jacket-img${i}`} style={{width:"75px"}} src={v.iconUrl}
                                 onError={(e) => {
                                     e.currentTarget.onerror = null;
-                                    e.currentTarget.src = process.env.PUBLIC_URL+"/general-img/empty.jpg";
+                                    e.currentTarget.src = `${process.env.PUBLIC_URL}/general-img/empty.jpg`
                                 }} />
                             <br/>
                             <span>{v.version}</span>

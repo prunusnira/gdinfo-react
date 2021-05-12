@@ -1,4 +1,3 @@
-import { icon } from "@fortawesome/fontawesome-svg-core";
 import styled from "styled-components";
 
 // 아이템에 대한 기본값을 설정하는 메소드
@@ -99,10 +98,12 @@ const iconSize = (sizeType: string) => {
         case 'lg':
             rtn = `width: 50px;
             height: 50px;`
+            break
         case 'sm':
         default:
             rtn = `width: 35px;
             height: 35px;`
+            break
     }
     return rtn
 }
