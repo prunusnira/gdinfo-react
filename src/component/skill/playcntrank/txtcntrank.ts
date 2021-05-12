@@ -20,13 +20,6 @@ const txtCntRank = {
             "ko":"정확한 플레이 카운트를 알기 위해서는 전곡 데이터가 필요합니다.",
             "en":"For exact count, you need to update all patterns"
         }
-    },
-    table: {
-        emptyname: {
-            "jp":"非公開",
-            "ko":"비공개",
-            "en":"PRIVATE"
-        }
     }
 };
 
