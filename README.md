@@ -12,9 +12,9 @@ This project was started with [Create React App](https://github.com/facebook/cre
 
 1) create-react-app based app creation
 2) Using react-router-dom
-3) UI with reactstrap (bootstrap - same with original)
+3) UI created with styled-componetns using CSS Flexbox (sort of bootstrap/reactstrap used)
 4) AJAX with axios
-5) Changed raphael.js to Recharts
+5) Recharts used for graph (profile)
 
 ## Exceptions
 
