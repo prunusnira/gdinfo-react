@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom'
 import store from '../../../mobx/store'
 import { observer } from 'mobx-react'
 import PlaycountRankingPresenter from './playcntrankPresenter'
+import TxtCommon from '../../common/txtCommon'
 
 interface MatchProps {
     page: string
@@ -47,7 +48,7 @@ const PlaycountRanking = observer(() => {
                 if(cur.opencount === "N") {
                     obj.towertitle = ''
                     obj.prlink = ""
-                    obj.name = (txtCntRank.table.emptyname as any)[lang]
+                    obj.name = (TxtCommon.emptyname as any)[lang]
                 }
 
                 list.push(obj)

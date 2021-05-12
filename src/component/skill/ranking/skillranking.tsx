@@ -60,6 +60,15 @@ const SkillRanking  = observer(() => {
                 obj.dskill = cur.dskill.toFixed(2)
                 obj.dlink = `/skill/2/${cur.id}/dm/1/1`
                 obj.allskill = (cur.gskill+cur.dskill).toFixed(2)
+                
+                if(cur.opencount === "N") {
+                    obj.towertitle = ''
+                    obj.userid = 0
+                    obj.username = (TxtCommon.emptyname as any)[lang]
+                    obj.profilerank = '#none'
+                    obj.glink = '#none'
+                    obj.dlink = '#none'
+                }
 
                 list.push(obj)
             }

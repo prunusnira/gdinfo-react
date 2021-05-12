@@ -126,6 +126,11 @@ const TxtCommon = {
                 "<a class='innerhref' href='http://chrome.google.com'>구글 크롬</a>을 사용해주세요",
         "en":"SIN DOES NOT support Internet Explorer.<br />"+
                 "Please use <a class='innerhref' href='http://chrome.google.com'>Google Chrome</a> instead."
+    },
+    emptyname: {
+        "jp":"非公開",
+        "ko":"비공개",
+        "en":"PRIVATE"
     }
 }
 

@@ -48,7 +48,7 @@ const SkillRankingItem = observer((props: Props) => {
                                     <Link to={r.glink}>
                                         <SingleSkillColorChanger
                                             skill={parseFloat(r.gskill)}
-                                            link={`/skill/2/${r.userid}/gf/1/1`} />
+                                            link={r.glink} />
                                     </Link>
                                 </td>
                             </tr>
@@ -58,7 +58,7 @@ const SkillRankingItem = observer((props: Props) => {
                                     <Link to={r.dlink}>
                                         <SingleSkillColorChanger
                                             skill={parseFloat(r.dskill)}
-                                            link={`/skill/2/${r.userid}/dm/1/1`} />
+                                            link={r.dlink} />
                                     </Link>
                                 </td>
                             </tr>
