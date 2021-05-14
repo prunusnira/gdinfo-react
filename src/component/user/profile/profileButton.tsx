@@ -29,23 +29,27 @@ const ProfileButton = observer((props: Props) => {
         return (
             <>
                 <ItemRow>
-                    <ItemCol size={5} isFlatUnderLg={true}>
-                        <Link to={`/mybest/${props.id}`}>
+                    <ItemCol size={2.5} isFlatUnderLg={true}>
+                        <Link to={`/mybest/${props.id}`} style={{width:"100%"}}>
                             <Button style={{width:"100%"}}>
                                 {(txtProfile.button.mybest as any)[lang]}
                             </Button>
                         </Link>
-                        <Link to={`/cleartable/${props.id}`}>
+                    </ItemCol>
+                    <ItemCol size={2.5} isFlatUnderLg={true}>
+                        <Link to={`/cleartable/${props.id}`} style={{width:"100%"}}>
                             <Button style={{width:"100%"}}>
                                 {(txtProfile.button.clearRankTable as any)[lang]}
                             </Button>
                         </Link>
                     </ItemCol>
-                    <ItemCol size={5} isFlatUnderLg={true}>
+                    <ItemCol size={2.5} isFlatUnderLg={true}>
                         <Button style={{width:"100%"}} onClick={towerUpdate}>
                             {(txtProfile.button.towerupdate as any)[lang]}
                         </Button>
-                        <Link to={`/profile/towerstatus/${props.id}`}>
+                    </ItemCol>
+                    <ItemCol size={2.5} isFlatUnderLg={true}>
+                        <Link to={`/profile/towerstatus/${props.id}`} style={{width:"100%"}}>
                             <Button style={{width:"100%"}}>
                                 {(txtProfile.button.towerstatus as any)[lang]}
                             </Button>
@@ -59,21 +63,27 @@ const ProfileButton = observer((props: Props) => {
         return (
             <>
                 <ItemRow>
-                    <Link to={`/cleartable/${props.id}`}>
-                        <Button style={{width:"100%"}}>
-                            {(txtProfile.button.clearRankTable as any)[lang]}
-                        </Button>
-                    </Link>
-                    <Link to={`/mybest/${props.id}`}>
-                        <Button style={{width:"100%"}}>
-                            {(txtProfile.button.mybest as any)[lang]}
-                        </Button>
-                    </Link>
-                    <Link to={`/profile/towerstatus/${props.id}`}>
-                        <Button style={{width:"100%"}}>
-                            {(txtProfile.button.towerstatus as any)[lang]}
-                        </Button>
-                    </Link>
+                    <ItemCol size={3.3} isFlatUnderLg={true}>
+                        <Link to={`/cleartable/${props.id}`} style={{width:"100%"}}>
+                            <Button style={{width:"100%"}}>
+                                {(txtProfile.button.clearRankTable as any)[lang]}
+                            </Button>
+                        </Link>
+                    </ItemCol>
+                    <ItemCol size={3.3} isFlatUnderLg={true}>
+                        <Link to={`/mybest/${props.id}`} style={{width:"100%"}}>
+                            <Button style={{width:"100%"}}>
+                                {(txtProfile.button.mybest as any)[lang]}
+                            </Button>
+                        </Link>
+                    </ItemCol>
+                    <ItemCol size={3.3} isFlatUnderLg={true}>
+                        <Link to={`/profile/towerstatus/${props.id}`} style={{width:"100%"}}>
+                            <Button style={{width:"100%"}}>
+                                {(txtProfile.button.towerstatus as any)[lang]}
+                            </Button>
+                        </Link>
+                    </ItemCol>
                 </ItemRow>
             </>
         )

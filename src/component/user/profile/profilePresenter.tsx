@@ -235,23 +235,23 @@ const ProfilePresenter = (props: Props) => {
                                     </tr>
                                     <tr>
                                         <th>{(txtProfile.detailed.s as any)[props.lang]}</th>
-                                        <td id="tableGskill">{`${props.profileData.gskill} (${props.profileData.gskillall})`}</td>
-                                        <td id="tableDskill">{`${props.profileData.dskill} (${props.profileData.dskillall})`}</td>
+                                        <td id="tableGskill">{`${props.profileData.gskill.toFixed(2)} (${props.profileData.gskillall})`}</td>
+                                        <td id="tableDskill">{`${props.profileData.dskill.toFixed(2)} (${props.profileData.dskillall})`}</td>
                                     </tr>
                                     <tr>
                                         <th>{(txtProfile.detailed.clv as any)[props.lang]}</th>
-                                        <td id="tableGclear">{`${props.profileData.gclearlv} (${props.profileData.gclearnum})`}</td>
-                                        <td id="tableDclear">{`${props.profileData.dclearlv} (${props.profileData.dclearnum})`}</td>
+                                        <td id="tableGclear">{`${props.profileData.gclearlv.toFixed(2)} (${props.profileData.gclearnum})`}</td>
+                                        <td id="tableDclear">{`${props.profileData.dclearlv.toFixed(2)} (${props.profileData.dclearnum})`}</td>
                                     </tr>
                                     <tr>
                                         <th>{(txtProfile.detailed.flv as any)[props.lang]}</th>
-                                        <td id="tableGfc">{`${props.profileData.gfclv} (${props.profileData.gfcnum})`}</td>
-                                        <td id="tableDfc">{`${props.profileData.dfclv} (${props.profileData.dfcnum})`}</td>
+                                        <td id="tableGfc">{`${props.profileData.gfclv.toFixed(2)} (${props.profileData.gfcnum})`}</td>
+                                        <td id="tableDfc">{`${props.profileData.dfclv.toFixed(2)} (${props.profileData.dfcnum})`}</td>
                                     </tr>
                                     <tr>
                                         <th>{(txtProfile.detailed.elv as any)[props.lang]}</th>
-                                        <td id="tableGexc">{`${props.profileData.gexclv} (${props.profileData.gexcnum})`}</td>
-                                        <td id="tableDexc">{`${props.profileData.dexclv} (${props.profileData.dexcnum})`}</td>
+                                        <td id="tableGexc">{`${props.profileData.gexclv.toFixed(2)} (${props.profileData.gexcnum})`}</td>
+                                        <td id="tableDexc">{`${props.profileData.dexclv.toFixed(2)} (${props.profileData.dexcnum})`}</td>
                                     </tr>
                                     {
                                         (function() {

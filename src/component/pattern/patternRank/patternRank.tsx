@@ -6,6 +6,8 @@ import {skillTableColor} from '../../common/skillcolor';
 import {getPatternImg600} from '../../common/pattern';
 import PTRankData from './ptrankData';
 import PatternRankPresenter from './patternRankPresenter';
+import TxtCommon from '../../common/txtCommon';
+import store from '../../../mobx/store';
 
 interface MatchProps {
     ptcode: string,
@@ -188,7 +190,7 @@ const PatternRank = () => {
                         case '26': userskill = user.gskillmx; break;
                         case '27': userskill = user.gskillex; break;
                         case '28': userskill = user.gskillnx; break;
-                        case '29': userskill = user.gskill; break;
+                        case '29': default: userskill = user.gskill; break;
                     }
                 }
                 else {
@@ -198,7 +200,7 @@ const PatternRank = () => {
                         case '26': userskill = user.dskillmx; break;
                         case '27': userskill = user.dskillex; break;
                         case '28': userskill = user.dskillnx; break;
-                        case '29': userskill = user.dskill; break;
+                        case '29': default: userskill = user.dskill; break;
                     }
                 }
 
@@ -222,6 +224,12 @@ const PatternRank = () => {
 
                 obj.profile = `/music/${mid}/${cur.userid}`
                 obj.name = cur.name
+
+                if(user.opencount === 'N') {
+                    obj.towertitle = ''
+                    obj.profile = `#none`
+                    obj.name = (TxtCommon.emptyname as any)[store.language.lang]
+                }
 
                 switch(cur.rank) {
                 case "E":
@@ -247,15 +255,13 @@ const PatternRank = () => {
                     obj.rank = `${process.env.PUBLIC_URL}/general-img/rank/rank_ss.png`
                     break
                 }
-                
-                if(cur.checkfc === "Y" && cur.rank !== "EXC") {
-                    obj.fc = "<img class='fc-img' src='"+process.env.PUBLIC_URL+"/general-img/rank/fc_300.png' />"
+
+                if(cur.checkfc === 'Y') {
+                    obj.fc = true
                 }
-                else if(cur.checkfc === "Y" && cur.rank === "EXC") {
-                    obj.fc = "<img class='fc-img' src='"+process.env.PUBLIC_URL+"/general-img/rank/exc_300.png' />"
-                }
-                else {
-                    obj.fc = "<img class='fc-img' src='"+process.env.PUBLIC_URL+"/general-img/rank/cleared_300.png' />"
+
+                if(cur.rank === 'EXC') {
+                    obj.exc = true
                 }
 
                 ranklist.push(obj)
