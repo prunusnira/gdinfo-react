@@ -170,11 +170,11 @@ const HeaderPresenter = observer((props: Props) => {
                 </SearchBarSection>
             </HeaderNav>
 
-            <ItemRow style={{backgroundColor: 'lightgreen'}}>
+            {/*<ItemRow style={{backgroundColor: 'lightgreen'}}>
                 <ItemCol size={10} style={{textAlign: 'center', color: 'black'}}>
                     <b>{(txtHeader.test as any)[lang]}</b>
                 </ItemCol>
-            </ItemRow>
+            </ItemRow>*/}
         </Header>
     )
 })

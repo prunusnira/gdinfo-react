@@ -32,8 +32,18 @@ const PatternRankRow = (props: Props) => {
                                     </ItemCol>
                                     <ItemCol size={5} style={{textAlign: 'left'}}>
                                         <img alt="rank" className='skillrank-img' src={pd.rank} />
-                                        <span v-html='pd.fc'></span>
-                                        / {pd.skill} / {pd.rate}%
+                                        {
+                                            pd.fc ?
+                                            (
+                                                pd.exc ?
+                                                <img className='fc-img' src={`${process.env.PUBLIC_URL}/general-img/rank/exc_300.png`} />
+                                                :
+                                                <img className='fc-img' src={`${process.env.PUBLIC_URL}/general-img/rank/fc_300.png`} />
+                                            )
+                                            :
+                                            <img className='fc-img' src={`${process.env.PUBLIC_URL}/general-img/rank/cleared_300.png`} />
+                                        }
+                                        / {pd.skill} / {pd.rate.toFixed(2)}%
                                     </ItemCol>
                                 </ItemRow>
                             </div>

@@ -8,7 +8,8 @@ class PTRankData {
     profile: string = "";
     name: string = "";
     rank: string = "";
-    fc: string = "";
+    fc: boolean = false;
+    exc: boolean = false;
 }
 
 export default PTRankData;

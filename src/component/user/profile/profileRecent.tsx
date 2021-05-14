@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line} from 'recharts';
+import {LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Line, ResponsiveContainer} from 'recharts';
 import axios from 'axios';
 import CommonData from '../../common/commonData';
 import SkillRecord from './skillRecord';
@@ -28,6 +28,22 @@ const ProfileRecent = (props: Props) => {
             // min max calc
             const minmax = getMinMax(record);
 
+            const data = [];
+            for(let i = 0; i < length; i++) {
+                if(props.type === "gf") {
+                    data.push({
+                        name: record[i].date,
+                        uv: record[i].gskill
+                    });
+                }
+                else {
+                    data.push({
+                        name: record[i].date,
+                        pv: record[i].dskill
+                    });
+                }
+            }
+
             setRecord(record)
             setWinsize(widthCalc(window.innerWidth))
             setLength(length)
@@ -35,24 +51,8 @@ const ProfileRecent = (props: Props) => {
             setGMax(minmax[1])
             setDMin(minmax[2])
             setDMax(minmax[3])
+            setLineData(data)
         })
-
-        const data = [];
-        for(let i = 0; i < length; i++) {
-            if(props.type === "gf") {
-                data.push({
-                    name: record[i].date,
-                    uv: record[i].gskill
-                });
-            }
-            else {
-                data.push({
-                    name: record[i].date,
-                    pv: record[i].dskill
-                });
-            }
-        }
-        setLineData(data)
     }, [])
 
     const getMinMax = (record: Array<SkillRecord>) => {
@@ -105,10 +105,10 @@ const ProfileRecent = (props: Props) => {
     
     if(props.type === "dm") {
         return (
-            <>
+            <ResponsiveContainer
+                width='100%'
+                height={200}>
                 <LineChart
-                    width={winsize}
-                    height={200}
                     data={lineData} >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" stroke="white" />
@@ -118,15 +118,15 @@ const ProfileRecent = (props: Props) => {
                             content={<CustomTooltip/>} />
                         <Line name="DM" type="monotone" dataKey="pv" stroke="#8884d8" />
                 </LineChart>
-            </>
+            </ResponsiveContainer>
         )
     }
     else {
         return (
-            <>
+            <ResponsiveContainer
+                width='100%'
+                height={200}>
                 <LineChart
-                    width={winsize}
-                    height={200}
                     data={lineData} >
                         <CartesianGrid strokeDasharray="3 3" />
                         <XAxis dataKey="name" stroke="white" />
@@ -136,7 +136,7 @@ const ProfileRecent = (props: Props) => {
                             content={<CustomTooltip/>} />
                         <Line name="GF" type="monotone" dataKey="uv" stroke="#82ca9d" />
                 </LineChart>
-            </>
+            </ResponsiveContainer>
         )
     }
 }
