@@ -131,11 +131,11 @@ const SkillContainer: React.FC<{share: boolean}> = observer(share => {
     const setUpperTableText = () => {
         if(gtype === 'gf') {
             setStatLeftTitle('GF Skill')
-            setStatLeft(user.gskill.toString())
+            setStatLeft(user.gskill.toFixed(2))
         }
         else if(gtype === 'dm') {
             setStatLeftTitle('DM Skill')
-            setStatLeft(user.dskill.toString())
+            setStatLeft(user.dskill.toFixed(2))
         }
         setStatRightTitle('Updated at')
         setStatRight(time.unixTimeConverter(parseInt(user.updatetime)))
@@ -206,101 +206,101 @@ const SkillContainer: React.FC<{share: boolean}> = observer(share => {
             case 3:
                 if(gtype === 'gf') {
                     setStatLeftTitle('GF Skill')
-                    setStatLeft(user.gskilltb.toString())
+                    setStatLeft(user.gskilltb.toFixed(2))
                 }
                 else if(gtype === 'dm') {
                     setStatLeftTitle('DM Skill')
-                    setStatLeft(user.dskilltb.toString())
+                    setStatLeft(user.dskilltb.toFixed(2))
                 }
                 break
             case 5:
                 if(gtype === 'gf') {
                     setStatLeftTitle('GF Skill')
-                    setStatLeft(user.gskilltbre.toString())
+                    setStatLeft(user.gskilltbre.toFixed(2))
                 }
                 else if(gtype === 'dm') {
                     setStatLeftTitle('DM Skill')
-                    setStatLeft(user.dskilltbre.toString())
+                    setStatLeft(user.dskilltbre.toFixed(2))
                 }
                 break
             case 7:
                 if(gtype === 'gf') {
                     setStatLeftTitle('GF Skill')
-                    setStatLeft(user.gskillmx.toString())
+                    setStatLeft(user.gskillmx.toFixed(2))
                 }
                 else if(gtype === 'dm') {
                     setStatLeftTitle('DM Skill')
-                    setStatLeft(user.dskillmx.toString())
+                    setStatLeft(user.dskillmx.toFixed(2))
                 }
                 break
             case 9:
                 if(gtype === 'gf') {
                     setStatLeftTitle('GF Skill')
-                    setStatLeft(user.gskillex.toString())
+                    setStatLeft(user.gskillex.toFixed(2))
                 }
                 else if(gtype === 'dm') {
                     setStatLeftTitle('DM Skill')
-                    setStatLeft(user.dskillex.toString())
+                    setStatLeft(user.dskillex.toFixed(2))
                 }
                 break
             case 11:
                 if(gtype === 'gf') {
                     setStatLeftTitle('GF Skill')
-                    setStatLeft(user.gskillnx.toString())
+                    setStatLeft(user.gskillnx.toFixed(2))
                 }
                 else if(gtype === 'dm') {
                     setStatLeftTitle('DM Skill')
-                    setStatLeft(user.dskillnx.toString())
+                    setStatLeft(user.dskillnx.toFixed(2))
                 }
                 break
             case 4:
                 if(gtype === 'gf') {
                     setStatLeftTitle('GF Skill')
-                    setStatLeft(user.gskilltb.toString())
+                    setStatLeft(user.gskilltb.toFixed(2))
                 }
                 else if(gtype === 'dm') {
                     setStatLeftTitle('DM Skill')
-                    setStatLeft(user.dskilltb.toString())
+                    setStatLeft(user.dskilltb.toFixed(2))
                 }
                 break
             case 6:
                 if(gtype === 'gf') {
                     setStatLeftTitle('GF Skill')
-                    setStatLeft(user.gskilltbre.toString())
+                    setStatLeft(user.gskilltbre.toFixed(2))
                 }
                 else if(gtype === 'dm') {
                     setStatLeftTitle('DM Skill')
-                    setStatLeft(user.dskilltbre.toString())
+                    setStatLeft(user.dskilltbre.toFixed(2))
                 }
                 break
             case 8:
                 if(gtype === 'gf') {
                     setStatLeftTitle('GF Skill')
-                    setStatLeft(user.gskillmx.toString())
+                    setStatLeft(user.gskillmx.toFixed(2))
                 }
                 else if(gtype === 'dm') {
                     setStatLeftTitle('DM Skill')
-                    setStatLeft(user.dskillmx.toString())
+                    setStatLeft(user.dskillmx.toFixed(2))
                 }
                 break
             case 10:
                 if(gtype === 'gf') {
                     setStatLeftTitle('GF Skill')
-                    setStatLeft(user.gskillex.toString())
+                    setStatLeft(user.gskillex.toFixed(2))
                 }
                 else if(gtype === 'dm') {
                     setStatLeftTitle('DM Skill')
-                    setStatLeft(user.dskillex.toString())
+                    setStatLeft(user.dskillex.toFixed(2))
                 }
                 break
             case 12:
                 if(gtype === 'gf') {
                     setStatLeftTitle('GF Skill')
-                    setStatLeft(user.gskillnx.toString())
+                    setStatLeft(user.gskillnx.toFixed(2))
                 }
                 else if(gtype === 'dm') {
                     setStatLeftTitle('DM Skill')
-                    setStatLeft(user.dskillnx.toString())
+                    setStatLeft(user.dskillnx.toFixed(2))
                 }
                 break
             case 1000:
@@ -366,7 +366,7 @@ const SkillContainer: React.FC<{share: boolean}> = observer(share => {
                     const cur = skill[i];
                     let obj = generateSkillItem(cur, i)
 
-                    sum1 += Math.floor(cur.rate*cur.level*20/10000)
+                    sum1 += Math.floor(getRate(parseInt(ptype), cur)*cur.level*20/10000)
 
                     skillList1.push(obj);
                 }
@@ -378,7 +378,7 @@ const SkillContainer: React.FC<{share: boolean}> = observer(share => {
                     const cur = hskill[i];
                     let obj = generateSkillItem(cur, i)
 
-                    sum1 += Math.floor(cur.rate*cur.level*20/10000)
+                    sum1 += Math.floor(getRate(parseInt(ptype), cur)*cur.level*20/10000)
 
                     skillList1.push(obj);
                 }
@@ -390,7 +390,7 @@ const SkillContainer: React.FC<{share: boolean}> = observer(share => {
                     const cur = oskill[i];
                     let obj = generateSkillItem(cur, i)
 
-                    sum2 += Math.floor(cur.rate*cur.level*20/10000)
+                    sum2 += Math.floor(getRate(parseInt(ptype), cur)*cur.level*20/10000)
 
                     skillList2.push(obj);
                 }
@@ -408,6 +408,32 @@ const SkillContainer: React.FC<{share: boolean}> = observer(share => {
             setSkillSum1(sum1)
             setSkillSum2(sum2)
         })
+    }
+
+    const getRate = (ptype: number, cur: MusicFetchData) => {
+        // rate 선택
+        let rate = 0
+        switch(ptype) {
+            case 3: case 4:
+                rate = cur.ratetb
+                break
+            case 5: case 6:
+                rate = cur.ratetbre
+                break
+            case 7: case 8:
+                rate = cur.ratemx
+                break
+            case 9: case 10:
+                rate = cur.rateex
+                break
+            case 11: case 12:
+                rate = cur.ratenx
+                break
+            case 0: case 1: case 2: default:
+                rate = cur.rate
+                break
+        }
+        return rate
     }
 
     // 스킬 데이터를 가져오기 위한 데이터 URL을 생성하는 함수
