@@ -7,6 +7,7 @@ class UserSkillData {
     cleartime: number = 0;
     rank: string = "";
     rate: number = 0;
+    ratenx: number = 0;
     rateex: number = 0;
     ratemx: number = 0;
     ratetbre: number = 0;

@@ -1,4 +1,4 @@
-import UserSkillData from "../../skill/skill/userSkillData";
+import UserSkillData from "./userSkillData";
 
 export class TowerStatData {
     index: number = 0;
@@ -29,13 +29,10 @@ export class FloorItemData {
     name: string = "";
     pattern: string = "";
     lv: string = "";
-    condScore: number = 0;
     condRate: number = 0;
-    condCombo: number = 0;
-    fc: string = "";
-    score: number = 0;
+    condFc: boolean = false;
     rate: number = 0;
-    combo: number = 0;
+    fc: boolean = false;
     description: string = "";
     clear: string = "";
     titlechange: string = "";

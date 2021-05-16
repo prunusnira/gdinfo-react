@@ -26,19 +26,6 @@ const TowerFloorItem = (props: Props) => {
                                 </ItemCol>
                                 <ItemCol size={3}>
                                     <span className='tower-div-span'>
-                                        Score <span>{
-                                            (function() {
-                                                if(fl.score > fl.condScore) {
-                                                    return <span style={{color:"red"}}>{fl.score}</span>
-                                                }
-                                                else if(fl.score < fl.condScore) {
-                                                    return <span style={{color:"blue"}}>{fl.score}</span>
-                                                }
-                                                else {
-                                                    return <span>{fl.score}</span>
-                                                }
-                                            })()
-                                        }</span> / {fl.condScore}<br/>
                                         Rate <span>{
                                             (function() {
                                                 if(fl.rate > fl.condRate) {
@@ -52,19 +39,16 @@ const TowerFloorItem = (props: Props) => {
                                                 }
                                             })()
                                         }</span>% / {fl.condRate}%<br/>
-                                        Combo <span>{
+                                        FC <span>{
                                             (function() {
-                                                if(fl.combo > fl.condCombo) {
-                                                    return <span style={{color:"red"}}>{fl.combo}</span>
-                                                }
-                                                else if(fl.combo < fl.condCombo) {
-                                                    return <span style={{color:"blue"}}>{fl.combo}</span>
+                                                if(fl.fc) {
+                                                    return <span style={{color:"red"}}>FC</span>
                                                 }
                                                 else {
-                                                    return <span>{fl.combo}</span>
+                                                    return <span style={{color:"blue"}}>Non-FC</span>
                                                 }
                                             })()
-                                        }</span> / {fl.condCombo}
+                                        }</span> / {fl.condFc ? "FC" : "Non-FC"}
                                     </span>
                                 </ItemCol>
                             </ItemRow>

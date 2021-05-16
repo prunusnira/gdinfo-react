@@ -110,7 +110,7 @@ const ProfilePresenter = (props: Props) => {
                                             <ItemCol size={3} className="text-right">NX</ItemCol>
                                             <ItemCol size={7} className="text-center">
                                                 <SingleSkillColorChanger
-                                                    link={`/skill/2/${props.id}/gf/1/skilldesc`}
+                                                    link={`/skill/12/${props.id}/gf/1/skilldesc`}
                                                     skill={props.profileData.gskillnx} />
                                             </ItemCol>
                                         </ItemRow>
@@ -160,7 +160,7 @@ const ProfilePresenter = (props: Props) => {
                                             <ItemCol size={3} className="text-right">NX</ItemCol>
                                             <ItemCol size={7} className="text-center">
                                                 <SingleSkillColorChanger
-                                                    link={`/skill/2/${props.id}/dm/1/skilldesc`}
+                                                    link={`/skill/12/${props.id}/dm/1/skilldesc`}
                                                     skill={props.profileData.dskillnx} />
                                             </ItemCol>
                                         </ItemRow>

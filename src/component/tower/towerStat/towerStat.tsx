@@ -135,22 +135,24 @@ const TowerStat = observer(() => {
 				flist.pattern = GDPat[cfl.tower.ptcode-1].pat
 				flist.lv = (cfl.tower.level/100).toFixed(2)
 
-				flist.condScore = cfl.tower.score
 				flist.condRate = cfl.tower.rate/100
-				flist.condCombo = cfl.tower.combo
-				if(cfl.tower.fc === true) {
-					flist.fc += "(FC)"
-				}
+				if(cfl.tower.fc === true) flist.condFc = true
 
 				if(cfl.skill != null) {
-					flist.score = cfl.skill.score
-					flist.rate = cfl.skill.rate/100
-					flist.combo = cfl.skill.combo
+					// 역대 rate 중 가장 높은 것 가져오기
+					const ratearr =
+						[cfl.skill.rate, cfl.skill.ratetb, cfl.skill.ratetbre,
+							cfl.skill.ratemx, cfl.skill.rateex, cfl.skill.ratenx]
+					
+					let rate = 0
+					ratearr.filter(x => { if(rate < x) rate = x })
+					
+					flist.rate = rate/100
+					flist.fc = cfl.skill.checkfc === "Y" ? true : false
 				}
 				else {
-					flist.score = 0
 					flist.rate = 0
-					flist.combo = 0
+					flist.fc = false
 				}
 				
 				flist.description = cfl.tower.description
