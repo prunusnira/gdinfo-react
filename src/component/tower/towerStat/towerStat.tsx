@@ -2,13 +2,15 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import txtTower from '../txttower'
 import {GDPat} from '../../common/pattern'
-import * as towerMethod from '../towertitle'
 import CommonData from '../../common/commonData'
-import { TowerStatData, TitleChange, FloorItemData, FloorClearData, TowerManage, TowerData } from './towerStatData'
+import { TowerStatData, FloorItemData, FloorClearData, TowerManage, TowerData } from './towerStatData'
 import { Redirect, useParams } from 'react-router-dom'
 import store from '../../../mobx/store'
 import { observer } from 'mobx-react'
 import TowerStatPresenter from './towerStatPresenter'
+import TitleChangeModal from './titleChangeModal/titleChangeModal'
+import TitleType from './data/titleType'
+import { titlesp, titletxt } from '../titletxt'
 
 interface MatchProps {
 	tower: string
@@ -18,6 +20,8 @@ const TowerStat = observer(() => {
 	const [list, setList] = useState(Array<TowerStatData>())
 	const [isPassed, setPassed] = useState('')
 	const [name, setName] = useState('')
+	const [showTitleChangeModal, setTitleChangeModal] = useState(false)
+	const [titleToBeChanged, setTitleToBeChanged] = useState<TitleType>({type: 0, title: '', display: ''})
 
 	const {loginUser, loginStatus, language} = store
 	const {tower} = useParams<MatchProps>()
@@ -95,19 +99,21 @@ const TowerStat = observer(() => {
 			}
 			
 			if(clearstat['clear']) {
-				if(towerMethod.checkFloorTitleExist(manage.name)) {
-					var titles = towerMethod.getFloorTitle(manage.name, (manage.levels-i-1), clearstat['rate'], size)
-					
-					for(var j = 0; j < titles.length; j++) {
-						towerRecord.push(titles[j])
-					}
+				if(checkFloorTitleExist(manage.name)) {
+					var title =
+						getFloorTitle(
+							manage.name,
+							(manage.levels-i-1),
+							clearstat['rate'],
+							size,
+							lang)
 
 					obj.titlechangable = (txtTower.detail.titlechangable as any)[lang]
-					obj.titlechange = new TitleChange()
-					obj.titlechange.tower = manage.name
-					obj.titlechange.floor = manage.levels-i-1
-					obj.titlechange.rate = clearstat['rate']
-					obj.titlechange.allfloors = size
+					obj.titlechange = {
+						type: 0,
+						title: title.title,
+						display: title.display
+					}
 					obj.btnchangable = true
 				}
 			}
@@ -158,21 +164,13 @@ const TowerStat = observer(() => {
 				flist.description = cfl.tower.description
 				if(cfl.clear) {
 					flist.clear = `${process.env.PUBLIC_URL}/general-img/tower/passed.png`
-					if(towerMethod.checkMusicTitleExist(cfl.tower.musicid, cfl.tower.ptcode)) {
-						const title = towerMethod.getMusicTitle(cfl.tower.musicid, cfl.tower.ptcode).title
-
-						towerRecord.push(title)
-
-						flist.titlechange = '<button class="btn btn-primary" onclick="musicTitlePopup('
-											+cfl.tower.musicid+', '
-											+cfl.tower.ptcode
-											+', "titlepopup"))">'
-											+(txtTower.detail.btntitlechange as any)[lang]+'</button>';
+					if(checkMusicTitleExist(cfl.tower.musicid, cfl.tower.ptcode)) {
+						flist.title = getMusicTitle(cfl.tower.musicid, cfl.tower.ptcode, lang)
 					}
 				}
 				else {
 					flist.clear = `${process.env.PUBLIC_URL}/general-img/tower/running.png`
-					flist.titlechange = ''
+					flist.title = null
 				}
 				obj.floorlist.push(flist)
 			}
@@ -237,16 +235,131 @@ const TowerStat = observer(() => {
 		}
 	}
 
+	const changeTitle = (title: string) => {
+		axios.post(`${CommonData.dataUrl}towertitleapply/${loginUser.user.id}/${title}`)
+		.then(res => {
+			alert((txtTower.title.changed as any)[lang])
+			setTitleChangeModal(false)
+		})
+	}
+
+	const getFloorTitle = (tower: string,
+								floor: number,
+								rate: number,
+								allfloors: number,
+								lang: string) => {
+		// 타이틀 목록 가져오기
+		let titleshort = "";
+
+		// 1. 탑 이름에 따른 접두어 결정
+		switch(tower) {
+			case "towerDmDKDK": titleshort = "dkdk"; break;
+			case "towerDmLeftPedal": titleshort = "lp"; break;
+			case "towerDmNote": titleshort = "note"; break;
+			case "towerDmFc": titleshort = "dmfc"; break;
+			case "towerGfChord": titleshort = "chord"; break;
+			case "towerGfAlter": titleshort = "alter"; break;
+			case "towerGfMixed": titleshort = "mix"; break;
+			case "towerGfFc": titleshort = "gffc"; break;
+			case "towerTest": titleshort = "test"; break;
+			default: titleshort = ""; break;
+		}
+
+		let titlertn: TitleType = {
+			type: 0,
+			title: '',
+			display: ''
+		}
+
+		if(titleshort !== '') {
+			if(allfloors === floor+1) {
+				titlertn.title = `${titleshort}lvm`
+			}
+			else {
+				titlertn.title = `${titleshort}lv${floor+1}`
+			}
+
+			if(rate === 100) {
+				titlertn.title = `${titlertn.title}g`
+			}
+		}
+		titlertn.display = (titletxt as any)[titlertn.title][lang]
+
+		return titlertn
+	}
+
+	const getMusicTitle = (mid: number, ptcode: number, lang: string) => {
+		const rtn: TitleType = {
+			type: 0,
+			title: '',
+			display: ''
+		};
+
+		rtn.type = (titlesp as any)[mid].type;
+
+		if(rtn.type === 0) {
+			rtn.title = (titlesp as any)[mid][ptcode].value;
+			rtn.display = (titlesp as any)[mid][ptcode][lang];
+		}
+		else if(rtn.type === 1) {
+			rtn.title = (titlesp as any)[mid].value;
+			rtn.display = (titlesp as any)[mid][lang];
+		}
+		else if(rtn.type === 2) {
+			if((titlesp as any)[mid][ptcode] != null) {
+				rtn.title = (titlesp as any)[mid][ptcode].value;
+				rtn.display = (titlesp as any)[mid][ptcode][lang];
+			}
+			else {
+				rtn.title = (titlesp as any)[mid].value;
+				rtn.display = (titlesp as any)[mid][lang];
+			}
+		}
+
+		return rtn;
+	}
+
+	const checkFloorTitleExist = (towername: string) => {
+		let exist = true;
+		if(towername.startsWith("towerSp")) {
+		exist = false;
+		}
+
+		return exist;
+	}
+
+	const checkMusicTitleExist = (mid: number, ptcode: number) => {
+		let isExist = false;
+		if((titlesp as any)[mid] !== undefined &&
+			(titlesp as any)[mid] != null) {
+		isExist = true;
+		}
+
+		return isExist;
+	}
+
     if(!loginStatus.isSigned) {
 		return <Redirect to={"/error/500"} />
 	}
 	return (
-		<TowerStatPresenter
-			name={name}
-			isPassed={isPassed}
-			id={loginUser.user.id}
-			list={list}
-			lang={lang} />
+		<>
+			<TowerStatPresenter
+				name={name}
+				isPassed={isPassed}
+				id={loginUser.user.id}
+				list={list}
+				lang={lang}
+
+				showTitleChangeModal={showTitleChangeModal}
+				setTitleChangeModal={setTitleChangeModal}
+				setTitleToBeChanged={setTitleToBeChanged} />
+			<TitleChangeModal
+				lang={lang}
+				showTitleChangeModal={showTitleChangeModal}
+				titleToBeChanged={titleToBeChanged}
+				setTitleChangeModal={setTitleChangeModal}
+				changeTitle={changeTitle} />
+		</>
 	)
 })
 

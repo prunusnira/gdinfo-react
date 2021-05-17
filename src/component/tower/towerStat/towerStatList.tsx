@@ -1,14 +1,17 @@
 import React from 'react'
 import TowerFloorItem from './towerFloorItem'
 import txtTower from '../txttower'
-import * as towerMethod from '../towertitle'
 import { TowerStatData } from './towerStatData'
 import { Button, ItemCol, ItemRow } from '../../../styled/styledCommon'
+import TitleType from './data/titleType'
 
 interface Props {
     list: Array<TowerStatData>,
     id: string,
-    lang: string
+    lang: string,
+
+    setTitleToBeChanged: (t: TitleType) => void,
+    setTitleChangeModal: (b: boolean) => void,
 }
 
 const TowerStatList = (props: Props) => {
@@ -17,10 +20,10 @@ const TowerStatList = (props: Props) => {
 
         if(div) {
             if(div.style.display === "none") {
-                div.style.display = "block";
+                div.style.display = "block"
             }
             else {
-                div.style.display = "none";
+                div.style.display = "none"
             }
         }
     }
@@ -54,12 +57,10 @@ const TowerStatList = (props: Props) => {
                                     (function() {
                                         if(tl.btnchangable === true) {
                                             return (
-                                                <Button onClick={() => towerMethod.floorTitlePopup(
-                                                    tl.titlechange.tower,
-                                                    tl.titlechange.floor,
-                                                    tl.titlechange.rate,
-                                                    tl.titlechange.allfloors
-                                                )}>
+                                                <Button onClick={() => {
+                                                    props.setTitleToBeChanged(tl.titlechange)
+                                                    props.setTitleChangeModal(true)
+                                                }}>
                                                     {(txtTower.detail.btntitlechange as any)[props.lang]}
                                                 </Button>
                                             )
@@ -77,7 +78,12 @@ const TowerStatList = (props: Props) => {
                                     {tl.clearnotice}
                                 </span>
                             </ItemRow>
-                            <TowerFloorItem list={tl.floorlist} />
+                            <TowerFloorItem
+                                lang={props.lang}
+                                list={tl.floorlist}
+
+                                setTitleChangeModal={props.setTitleChangeModal}
+                                setTitleToBeChanged={props.setTitleToBeChanged} />
                         </ItemRow>
                     </ItemRow>
                 )
@@ -87,4 +93,4 @@ const TowerStatList = (props: Props) => {
     )
 }
 
-export default TowerStatList;
+export default TowerStatList
