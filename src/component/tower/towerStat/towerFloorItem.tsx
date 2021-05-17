@@ -1,9 +1,15 @@
 import React from 'react';
-import { ItemCol, ItemRow } from '../../../styled/styledCommon';
+import { Button, ItemCol, ItemRow } from '../../../styled/styledCommon';
+import txtTower from '../txttower';
+import TitleType from './data/titleType';
 import { FloorItemData } from './towerStatData';
 
 interface Props {
-    list: Array<FloorItemData>
+    lang: string,
+    list: Array<FloorItemData>,
+
+    setTitleToBeChanged: (t: TitleType) => void,
+    setTitleChangeModal: (b: boolean) => void,
 }
 
 const TowerFloorItem = (props: Props) => {
@@ -66,7 +72,23 @@ const TowerFloorItem = (props: Props) => {
                         </ItemCol>
                         <ItemCol size={2}>
                             <img alt="towerclear" style={{width:"50px"}} src={fl.clear} /><br/>
-                            <span dangerouslySetInnerHTML={{__html: fl.titlechange}}></span>
+                            {
+                                (function() {
+                                    if(fl.title !== null) {
+                                        return (
+                                            <Button onClick={() => {
+                                                props.setTitleToBeChanged(fl.title!)
+                                                props.setTitleChangeModal(true)
+                                            }}>
+                                                {(txtTower.detail.btntitlechange as any)[props.lang]}
+                                            </Button>
+                                        )
+                                    }
+                                    else {
+                                        return null
+                                    }
+                                })()
+                            }
                         </ItemCol>
                     </ItemRow>
                 )
@@ -76,4 +98,4 @@ const TowerFloorItem = (props: Props) => {
     )
 }
 
-export default TowerFloorItem;
+export default TowerFloorItem

@@ -1,16 +1,21 @@
 import React from 'react'
-import TowerStatList from './towerStatItem'
+import TowerStatList from './towerStatList'
 import { TowerStatData } from './towerStatData'
 import txtTower from '../txttower'
 import { BodyContent, BodyHeader, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
 import { towerName, towerDesc } from '../towername'
+import TitleType from './data/titleType'
 
 interface Props {
     name: string,
     isPassed: string,
     id: string,
     list: Array<TowerStatData>,
-    lang: string
+    lang: string,
+
+	showTitleChangeModal: boolean,
+    setTitleToBeChanged: (t: TitleType) => void,
+    setTitleChangeModal: (b: boolean) => void,
 }
 
 const TowerStatPresenter = (props: Props) => {
@@ -55,7 +60,10 @@ const TowerStatPresenter = (props: Props) => {
 						<TowerStatList
 							id={props.id}
 							list={props.list}
-							lang={props.lang} />
+							lang={props.lang}
+
+							setTitleChangeModal={props.setTitleChangeModal}
+							setTitleToBeChanged={props.setTitleToBeChanged} />
 					</ItemRow>
 				</BodyContent>
 			</ItemRow>
