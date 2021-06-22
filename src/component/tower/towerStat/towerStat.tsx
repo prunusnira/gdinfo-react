@@ -297,16 +297,16 @@ const TowerStat = observer(() => {
 
 		rtn.type = (titlesp as any)[mid].type;
 
-		if(rtn.type === 0) {
+		if(rtn.type === 0 && (titlesp as any)[mid][ptcode] !== undefined) {
 			rtn.title = (titlesp as any)[mid][ptcode].value;
 			rtn.display = (titlesp as any)[mid][ptcode][lang];
 		}
-		else if(rtn.type === 1) {
+		else if(rtn.type === 1 && (titlesp as any)[mid] !== undefined) {
 			rtn.title = (titlesp as any)[mid].value;
 			rtn.display = (titlesp as any)[mid][lang];
 		}
 		else if(rtn.type === 2) {
-			if((titlesp as any)[mid][ptcode] != null) {
+			if((titlesp as any)[mid][ptcode] !== undefined) {
 				rtn.title = (titlesp as any)[mid][ptcode].value;
 				rtn.display = (titlesp as any)[mid][ptcode][lang];
 			}
