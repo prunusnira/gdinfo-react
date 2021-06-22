@@ -59,16 +59,6 @@ const txtIndex = {
             "ko":"아래 URL은 개인별로 다릅니다. 절대 타인에게 공유하지 마세요.",
             "en":"URL written differs each user. DO NOT SHARE your URL"
         },
-        cardt1: {
-            "jp":"1) 現在起動中のバージョン",
-            "ko":"1) 현재 가동중인 버전",
-            "en":"1) Current version"
-        },
-        cardt2: {
-            "jp":"2) 旧作",
-            "ko":"2) 구버전",
-            "en":"2) Old version"
-        },
         desc2: {
             "jp":"ギタドラの公式サイトに移動してブックマークを実行したりスクリプトを実行します",
             "ko":"기타도라 홈페이지로 이동하여 북마크를 실행하거나 스크립트를 붙여넣고 실행합니다",

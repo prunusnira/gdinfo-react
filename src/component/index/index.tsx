@@ -111,28 +111,10 @@ const IndexPage = observer(() => {
                                     }
                                     </ItemRow>
                                     <ItemRow>
-                                        {(txtIndex.howto.cardt1 as any)[lang]} (HIGH-VOLTAGE)
-                                    </ItemRow>
-                                    <ItemRow>
                                         {
                                             (function() {
                                                 if(loginStatus.isSigned) {
                                                     return <b>javascript:$.getScript('https://sindata.nira.one/$/update?token={loginUser.user.token}');</b>;
-                                                }
-                                                else {
-                                                    return <b>Please login first</b>;
-                                                }
-                                            })()
-                                        }
-                                    </ItemRow>
-                                    <ItemRow>
-                                        {(txtIndex.howto.cardt2 as any)[lang]} (NEXTAGE, EXCHAIN, MATIXX, Tri-Boost Re:Evolve)
-                                    </ItemRow>
-                                    <ItemRow>
-                                        {
-                                            (function() {
-                                                if(loginStatus.isSigned) {
-                                                    return <b>javascript:$.getScript('https://sindata.nira.one/$/updateOld?token={loginUser.user.token}');</b>;
                                                 }
                                                 else {
                                                     return <b>Please login first</b>;
@@ -169,7 +151,7 @@ const IndexPage = observer(() => {
                                 ※{(txtIndex.howto.browser as any)[lang]}
                             </ItemRow>
                             <ItemRow>
-                                Google Chrome (For all OS)
+                                Google Chrome (for all OS), Safari (for iOS)
                             </ItemRow>
 
                             <ItemRow keepDirHor={true}>
