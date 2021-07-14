@@ -21,8 +21,9 @@ const NavSubItemWrapper = (props: Props) => {
                     <NavSubItem key={`nav${i}`}>
                         <Link
                             to={d.link}
-                            onClick={props.closeMenu}>
-                            {(d.title as any)[lang]}
+                            onClick={props.closeMenu}
+                            data-testid={`header-${d.link}`}>
+                            {d.title}
                         </Link>
                     </NavSubItem>
                 ))

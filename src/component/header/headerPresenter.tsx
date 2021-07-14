@@ -2,18 +2,20 @@ import React from 'react'
 import { HeaderNav, NavBar, NavItemX, NavTitle, ImageTitle, ImageIcon, NavMenu, NavToggle, SearchBarSection, SearchBar } from '../../styled/styledHeader'
 import {Link} from 'react-router-dom'
 import './header.css'
-import txtHeader from './txtheader'
 import { GoogleLogout } from 'react-google-login'
 import CommonData from '../common/commonData'
 import { Header } from '../../styled/styledOverall'
-import HeaderNavData from './headerNavData'
-import { ButtonSM, ItemCol, ItemRow } from '../../styled/styledCommon'
+import { ButtonSM, ItemRow } from '../../styled/styledCommon'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faSortDown } from '@fortawesome/free-solid-svg-icons'
 import NavSubItemWrapper from './navbar/navSubWrapper'
 import store from '../../mobx/store'
 import { observer } from 'mobx-react'
 import { isSynchronized } from 'mobx-persist-store'
+
+import HeaderNavDataKo from './headerNavData-ko'
+import HeaderNavDataJp from './headerNavData-jp'
+import HeaderNavDataEn from './headerNavData-en'
 
 interface Props {
     isMenuOpen: boolean,
@@ -33,6 +35,10 @@ const HeaderPresenter = observer((props: Props) => {
     const {language, loginUser, loginStatus} = store
     const lang = language.lang
     
+    const HeaderNavData =
+        lang === 'ko' ? HeaderNavDataKo :
+            lang === 'jp' ? HeaderNavDataJp : HeaderNavDataEn
+    
     if(!isSynchronized(store.language)) {
         return null
     }
@@ -40,10 +46,10 @@ const HeaderPresenter = observer((props: Props) => {
     const LoginButton = () => {
         if(!loginStatus.isSigned) {
             return (
-                <Link to="/login" onClick={props.closeMenu}>
+                <Link to="/login" onClick={props.closeMenu} data-testid={`header-login`}>
                     <img alt="icon" className="navicon" src={`${process.env.PUBLIC_URL}/general-img/header/login.png`}/>
                     <span className="navlefttxt">
-                        {(txtHeader.login as any)[lang]}
+                        {HeaderNavData.login.title}
                     </span>
                 </Link>
             );
@@ -55,7 +61,7 @@ const HeaderPresenter = observer((props: Props) => {
                     <GoogleLogout
                         className="logoutbtn"
                         clientId={CommonData.googleLoginClientId}
-                        buttonText={(txtHeader.logout as any)[lang]}
+                        buttonText={HeaderNavData.logout.title}
                         onLogoutSuccess={
                             () => {
                                 loginUser.setLogout()
@@ -72,7 +78,7 @@ const HeaderPresenter = observer((props: Props) => {
             <HeaderNav>
                 <NavBar>
                     <NavTitle>
-                        <Link to={HeaderNavData.title.url}>
+                        <Link to={HeaderNavData.title.url} data-testid={`header-index`}>
                             <ImageTitle alt="icon" src={`${process.env.PUBLIC_URL}/general-img/header/logoidx.png`}/>
                         </Link>
                     </NavTitle>
@@ -86,7 +92,7 @@ const HeaderPresenter = observer((props: Props) => {
                                 <ItemRow keepDirHor={true}>
                                     <ImageIcon alt="icon" src={`${process.env.PUBLIC_URL}/general-img/header/mydata.png`}/>
                                     <span className="navlefttxt">
-                                        {(txtHeader.mymenu.title as any)[lang]}
+                                        {HeaderNavData.mydata.text}
                                     </span>
                                     <FontAwesomeIcon style={{color: 'white'}} icon={faSortDown} />
                                 </ItemRow>
@@ -103,7 +109,7 @@ const HeaderPresenter = observer((props: Props) => {
                                 <ItemRow keepDirHor={true}>
                                     <ImageIcon alt="icon" src={`${process.env.PUBLIC_URL}/general-img/header/skill.png`}/>
                                     <span className="navlefttxt">
-                                        {(txtHeader.skill.title as any)[lang]}
+                                        {HeaderNavData.skill.text}
                                     </span>
                                     <FontAwesomeIcon style={{color: 'white'}} icon={faSortDown} />
                                 </ItemRow>
@@ -120,7 +126,7 @@ const HeaderPresenter = observer((props: Props) => {
                                 <ItemRow keepDirHor={true}>
                                     <ImageIcon alt="icon" src={`${process.env.PUBLIC_URL}/general-img/header/pattern.png`}/>
                                     <span className="navlefttxt">
-                                        {(txtHeader.pattern.title as any)[lang]}
+                                        {HeaderNavData.pattern.text}
                                     </span>
                                     <FontAwesomeIcon style={{color: 'white'}} icon={faSortDown} />
                                 </ItemRow>
@@ -132,12 +138,12 @@ const HeaderPresenter = observer((props: Props) => {
                                 items={HeaderNavData.pattern.sub} />
                         </NavItemX>
                         <NavItemX>
-                            <Link to='/tower/index' onClick={props.closeMenu}>
+                            <Link to='/tower/index' onClick={props.closeMenu} data-testid='header-tower'>
                                 {/* Tower */}
                                 <ItemRow keepDirHor={true}>
                                     <ImageIcon alt="icon" src={`${process.env.PUBLIC_URL}/general-img/header/tower.png`}/>
                                     <span className="navlefttxt">
-                                        {(txtHeader.tower.title as any)[lang]}
+                                        {HeaderNavData.tower.title}
                                     </span>
                                 </ItemRow>
                             </Link>
@@ -165,14 +171,14 @@ const HeaderPresenter = observer((props: Props) => {
                         ref={props.searchRef}
                         onKeyDown={props.searchEnter} />
                     <ButtonSM onClick={props.searchClick}>
-                        {(txtHeader.search as any)[lang]}
+                        {HeaderNavData.search}
                     </ButtonSM>
                 </SearchBarSection>
             </HeaderNav>
 
             {/*<ItemRow style={{backgroundColor: 'lightgreen'}}>
                 <ItemCol size={10} style={{textAlign: 'center', color: 'black'}}>
-                    <b>{(txtHeader.test as any)[lang]}</b>
+                    <b>{HeaderNavData.test}</b>
                 </ItemCol>
             </ItemRow>*/}
         </Header>

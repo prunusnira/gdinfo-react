@@ -1,9 +1,5 @@
 type NavSubItemType = {
-    title: {
-        jp: string,
-        ko: string,
-        en: string
-    },
+    title: string,
     link: string
 }
 

@@ -1,33 +1,52 @@
 import React from 'react';
-import {Link} from 'react-router-dom';
-import txtFooter from './txtfooter';
 
 import store from '../../mobx/store';
 import { Footer } from '../../styled/styledOverall';
 import { FooterOuter } from '../../styled/styledFooter';
 import { ItemCol, ItemRow } from '../../styled/styledCommon';
 
-const GDFooter = () =>{
+import txtFooterKo from './txtfooter-ko';
+import txtFooterJp from './txtfooter-jp';
+import txtFooterEn from './txtfooter-en';
+import { ImageTitle } from '../../styled/styledHeader';
+import { observer } from 'mobx-react';
+
+const GDFooter = observer(() =>{
     const lang = store.language.lang
 
     const langChange = (type: string) => {
         store.language.setLang(type)
     }
 
+    const txtFooter =
+        lang === 'ko' ? txtFooterKo :
+            lang === 'jp' ? txtFooterJp : txtFooterEn
+
     return (
         <Footer>
             <FooterOuter>
                 <ItemRow>
                     <ItemCol size={3} isFlatUnderLg={true}>
-                        <b>{(txtFooter.langsel as any)[lang]}</b><br/>
+                        <ImageTitle alt="icon" src={`${process.env.PUBLIC_URL}/general-img/header/logoidx.png`}/>
+                    </ItemCol>
+                    <ItemCol size={3.5} isFlatUnderLg={true}>
+                        <span>(c) 2016 Nira</span><br/>
+                        <span>Twitter <a href='https://twitter.com/_nira_one'>@_nira_one</a></span><br/>
+                    </ItemCol>
+                    <ItemCol size={3.5} isFlatUnderLg={true}>
+                        <span>Support Me <a target='_blank' rel='noopener noreferrer' href='https://toon.at/donate/636950009395591920'>Toonation</a></span><br/>
+                    </ItemCol>
+                </ItemRow>
+                <ItemRow>
+                    <ItemCol size={3} isFlatUnderLg={true}>
+                        <b>{txtFooter.langsel}</b><br/>
                         <a href="#no_div" onClick={() => langChange('ko')}>한국어</a><br/>
                         <a href="#no_div" onClick={() => langChange('jp')}>日本語</a><br/>
                         <a href="#no_div" onClick={() => langChange('en')}>English</a>
                     </ItemCol>
                     <ItemCol size={7} isFlatUnderLg={true}>
-                        <span>Skill Navigator (c) 2016 Nira | Announcement Twitter <a href='https://twitter.com/_nira_one'>@_nira_one</a></span><br/>
-                        <span>{(txtFooter.about as any)[lang]}</span><br/>
-                        <span>{(txtFooter.fanpage as any)[lang]}</span><br/>
+                        <span>{txtFooter.about}</span><br/>
+                        <span>{txtFooter.fanpage}</span><br/>
                         <span>Developed with ReactJS, SpringBoot, MariaDB, MobX and styled-components</span><br/>
                         <span>Hosted on AWS S3 and Lightsail</span>
                     </ItemCol>
@@ -50,6 +69,6 @@ const GDFooter = () =>{
             </FooterOuter>
         </Footer>
     )
-}
+})
 
 export default GDFooter;

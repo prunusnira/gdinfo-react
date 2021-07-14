@@ -1,11 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {Link} from 'react-router-dom';
-import axios from 'axios';
-import CommonData from '../common/commonData';
-import ProfileData from '../user/profile/profileData';
-import txtIndex from './txtIndex';
-import store from '../../mobx/store';
-import { observer } from 'mobx-react';
+import React, {useEffect, useState} from 'react'
+import {Link} from 'react-router-dom'
+import axios from 'axios'
+import CommonData from '../common/commonData'
+import ProfileData from '../user/profile/profileData'
+import store from '../../mobx/store'
+import { observer } from 'mobx-react'
+
+import txtIndexKo from './txtIndex-ko'
+import txtIndexJp from './txtIndex-jp'
+import txtIndexEn from './txtIndex-en'
 
 const UserLoginInfo = observer(() => {
     const [loading, setLoading] = useState(false)
@@ -13,6 +16,10 @@ const UserLoginInfo = observer(() => {
 
     const {language, loginUser, loginStatus} = store
     const lang = language.lang
+
+    const txtIndex =
+        lang === 'ko' ? txtIndexKo :
+            lang === 'jp' ? txtIndexJp : txtIndexEn
 
     useEffect(() => {
         const token = loginUser.user.token;
@@ -61,8 +68,8 @@ const UserLoginInfo = observer(() => {
         else {
             return (
                 <span>
-                    <Link to="/login">{(txtIndex.self.login as any)[lang]}</Link>
-                    {(txtIndex.self.loginFirst as any)[lang]}
+                    <Link to="/login">{txtIndex.self.login}</Link>
+                    {txtIndex.self.loginFirst}
                 </span>
             )
         }
@@ -70,8 +77,8 @@ const UserLoginInfo = observer(() => {
     else {
         return (
             <span>
-                <Link to="/login">{(txtIndex.self.login as any)[lang]}</Link>
-                {(txtIndex.self.loginFirst as any)[lang]}
+                <Link to="/login">{txtIndex.self.login}</Link>
+                {txtIndex.self.loginFirst}
             </span>
         )
     }

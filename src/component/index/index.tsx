@@ -1,17 +1,24 @@
-import React from 'react';
-import {Timeline} from 'react-twitter-widgets';
-import UserLoginInfo from './userLoginInfo';
-import txtIndex from './txtIndex';
+import React from 'react'
+import {Timeline} from 'react-twitter-widgets'
+import UserLoginInfo from './userLoginInfo'
 
-import './index.css';
-import store from '../../mobx/store';
-import { observer } from 'mobx-react';
-import { BodyContent, BodyHeader, Container, ItemCol, ItemRow, Button } from '../../styled/styledCommon';
-import { Link } from 'react-router-dom';
+import './index.css'
+import store from '../../mobx/store'
+import { observer } from 'mobx-react'
+import { BodyContent, BodyHeader, Container, ItemCol, ItemRow, Button } from '../../styled/styledCommon'
+import { Link } from 'react-router-dom'
+
+import txtIndexKo from './txtIndex-ko'
+import txtIndexJp from './txtIndex-jp'
+import txtIndexEn from './txtIndex-en'
 
 const IndexPage = observer(() => {
     const {language, loginUser, loginStatus} = store
     const lang = language.lang
+
+    const txtIndex =
+        lang === 'ko' ? txtIndexKo :
+            lang === 'jp' ? txtIndexJp : txtIndexEn
 
     return (
         <>
@@ -19,13 +26,13 @@ const IndexPage = observer(() => {
                 <ItemRow>
                     <ItemCol size={3} isFlatUnderLg={true}>
                         <BodyHeader>
-                            <h3>{(txtIndex.self.title as any)[lang]}</h3>
+                            <h3>{txtIndex.self.title}</h3>
                         </BodyHeader>
                         <BodyContent style={{textAlign: 'center'}}>
                             <UserLoginInfo />
                         </BodyContent>
                         <BodyHeader className='visible-lg'>
-                            <h3>{(txtIndex.notice as any)[lang]}</h3>
+                            <h3>{txtIndex.notice}</h3>
                         </BodyHeader>
                         <BodyContent className='visible-lg'>
                             <Timeline
@@ -76,17 +83,17 @@ const IndexPage = observer(() => {
                             </ItemRow>
 
                             <ItemRow>
-                                <h4>{(txtIndex.about.title as any)[lang]}</h4>
+                                <h4>{txtIndex.about.title}</h4>
                             </ItemRow>
                             <ItemRow>
-                                {(txtIndex.about.cont as any)[lang]}
+                                {txtIndex.about.cont}
                             </ItemRow>
 
                             <ItemRow>
-                                <h4>{(txtIndex.howto.title as any)[lang]}</h4>
+                                <h4>{txtIndex.howto.title}</h4>
                             </ItemRow>
                             <ItemRow>
-                                {(txtIndex.howto.desc as any)[lang]}
+                                {txtIndex.howto.desc}
                             </ItemRow>
 
                             <ItemRow
@@ -95,17 +102,17 @@ const IndexPage = observer(() => {
                                 }}
                                 setVertical={true}>
                                 <BodyHeader>
-                                    {(txtIndex.howto.script as any)[lang]}
+                                    {txtIndex.howto.script}
                                 </BodyHeader>
                                 <BodyContent>
                                     <ItemRow>
                                     {
                                         (function() {
                                             if(loginStatus.isSigned) {
-                                                return (txtIndex.howto.addrLogin as any)[lang]
+                                                return txtIndex.howto.addrLogin
                                             }
                                             else {
-                                                return <b style={{color:'yellow'}}>★{(txtIndex.howto.addrNoLogin as any)[lang]}</b>
+                                                return <b style={{color:'yellow'}}>★{txtIndex.howto.addrNoLogin}</b>
                                             }
                                         })()
                                     }
@@ -126,10 +133,10 @@ const IndexPage = observer(() => {
                             </ItemRow>
 
                             <ItemRow>
-                                {(txtIndex.howto.desc2 as any)[lang]}
+                                {txtIndex.howto.desc2}
                             </ItemRow>
                             <ItemRow>
-                                ({(txtIndex.howto.desc3 as any)[lang]})
+                                ({txtIndex.howto.desc3})
                             </ItemRow>
 
                             <ItemRow>
@@ -137,7 +144,7 @@ const IndexPage = observer(() => {
                                     src={process.env.PUBLIC_URL+"/general-img/howto/howto1-register.png"} />
                             </ItemRow>
                             <ItemRow>
-                                ※{(txtIndex.howto.desc4 as any)[lang]}
+                                ※{txtIndex.howto.desc4}
                             </ItemRow>
 
                             <ItemRow>
@@ -145,10 +152,10 @@ const IndexPage = observer(() => {
                                     src={process.env.PUBLIC_URL+"/general-img/howto/howto2-browser.png"} />
                             </ItemRow>
                             <ItemRow>
-                                ※{(txtIndex.howto.desc4 as any)[lang]}
+                                ※{txtIndex.howto.desc4}
                             </ItemRow>
                             <ItemRow>
-                                ※{(txtIndex.howto.browser as any)[lang]}
+                                ※{txtIndex.howto.browser}
                             </ItemRow>
                             <ItemRow>
                                 Google Chrome (for all OS), Safari (for iOS)
@@ -167,7 +174,7 @@ const IndexPage = observer(() => {
 
                             <ItemRow>
                                 <BodyHeader className='visible-underlg'>
-                                    <h3>{(txtIndex.notice as any)[lang]}</h3>
+                                    <h3>{txtIndex.notice}</h3>
                                 </BodyHeader>
                                 <BodyContent className='visible-underlg'>
                                     <Timeline
