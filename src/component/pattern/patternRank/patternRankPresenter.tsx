@@ -3,10 +3,13 @@ import {Link} from 'react-router-dom'
 import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
 import PatternRankRow from './ptRankRow'
 import Pager from '../../common/pager'
-import txtPTRank from './txtptrank'
 import store from '../../../mobx/store';
 import CommonData from '../../common/commonData';
 import PTRankData from './ptrankData'
+
+import txtPTRankKo from '../../../lang/pattern/patternRank/txtPTRank-ko'
+import txtPTRankJp from '../../../lang/pattern/patternRank/txtPTRank-jp'
+import txtPTRankEn from '../../../lang/pattern/patternRank/txtPTRank-en'
 
 interface Props {
     mid: string,
@@ -22,20 +25,24 @@ interface Props {
 
 const PatternRankPresenter = (props: Props) => {
     const lang = store.language.lang
+    
+    const txtPTRank =
+        lang === 'ko' ? txtPTRankKo :
+            lang === 'jp' ? txtPTRankJp : txtPTRankEn
 
     return (
         <Container>
             <ItemRow setVertical={true}>
                 <BodyHeader>
-                    <h3>{(txtPTRank.title as any)[lang]}</h3>
+                    <h3>{txtPTRank.title}</h3>
                 </BodyHeader>
                 <BodyContent className="text-center">
-                    <span>{(txtPTRank.desc as any)[lang]}</span>
+                    <span>{txtPTRank.desc}</span>
                 </BodyContent>
             </ItemRow>
             <ItemRow setVertical={true}>
                 <BodyHeader>
-                    <h3>{(txtPTRank.table.ptinfo as any)[lang]}</h3>
+                    <h3>{txtPTRank.table.ptinfo}</h3>
                 </BodyHeader>
                 <BodyContent>
                     <ItemRow id="upper">
@@ -61,7 +68,7 @@ const PatternRankPresenter = (props: Props) => {
                 <BodyHeader>
                     <ItemRow keepDirHor={true}>
                         <ItemCol size={3}>
-                            <h3>{(txtPTRank.table.ranking as any)[lang]}</h3>
+                            <h3>{txtPTRank.table.ranking}</h3>
                         </ItemCol>
                         <ItemCol size={7} style={{textAlign: 'right'}}>
                             <Link to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=29`}>

@@ -1,7 +1,10 @@
 import React from "react"
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap"
 import { Button } from "../../../styled/styledCommon"
-import txtProfile from "./txtprofile"
+
+import txtProfileKo from '../../../lang/user/profile/txtProfile-ko'
+import txtProfileJp from '../../../lang/user/profile/txtProfile-jp'
+import txtProfileEn from '../../../lang/user/profile/txtProfile-en'
 
 interface Props {
     lang: string,
@@ -13,14 +16,18 @@ interface Props {
 }
 
 const ModalComment = (props: Props) => {
+    const txtProfile =
+        props.lang === 'ko' ? txtProfileKo :
+            props.lang === 'jp' ? txtProfileJp : txtProfileEn
+
     return (
         <Modal isOpen={props.isCommentOpen}>
             <ModalHeader style={{backgroundColor: '#353535'}}>
-                {(txtProfile.button.changecomment as any)[props.lang]}
+                {txtProfile.button.changecomment}
             </ModalHeader>
             <ModalBody>
                 <label style={{color:'black'}} htmlFor="newcomment">
-                    {(txtProfile.changecomment.desc as any)[props.lang]}<br/>
+                    {txtProfile.changecomment.desc}<br/>
                 </label>
                 <input ref={props.commentInput}
                     className="form-control" type="text"

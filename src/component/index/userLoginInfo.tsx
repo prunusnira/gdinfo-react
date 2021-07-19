@@ -6,9 +6,9 @@ import ProfileData from '../user/profile/profileData'
 import store from '../../mobx/store'
 import { observer } from 'mobx-react'
 
-import txtIndexKo from './txtIndex-ko'
-import txtIndexJp from './txtIndex-jp'
-import txtIndexEn from './txtIndex-en'
+import txtIndexKo from '../../lang/index/txtIndex-ko'
+import txtIndexJp from '../../lang/index/txtIndex-jp'
+import txtIndexEn from '../../lang/index/txtIndex-en'
 
 const UserLoginInfo = observer(() => {
     const [loading, setLoading] = useState(false)

@@ -1,13 +1,18 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import SingleSkillColorChanger from '../common/skillcolor';
+import React from 'react'
+import {Link} from 'react-router-dom'
+import SingleSkillColorChanger from '../common/skillcolor'
 
-import RecentData from './recentData';
-import txtProfile from '../user/profile/txtprofile';
-import { observer } from 'mobx-react';
-import store from '../../mobx/store';
-import { ItemCol, ItemRow } from '../../styled/styledCommon';
-import TxtCommon from '../common/txtCommon';
+import RecentData from './recentData'
+import { observer } from 'mobx-react'
+import store from '../../mobx/store'
+import { ItemCol, ItemRow } from '../../styled/styledCommon'
+
+import txtProfileKo from '../../lang/user/profile/txtProfile-ko'
+import txtProfileJp from '../../lang/user/profile/txtProfile-jp'
+import txtProfileEn from '../../lang/user/profile/txtProfile-en'
+import TxtCommonKo from '../../lang/common/txtCommon-ko'
+import TxtCommonJp from '../../lang/common/txtCommon-jp'
+import TxtCommonEn from '../../lang/common/txtCommon-en'
 
 interface Props {
     isMain: boolean,
@@ -16,6 +21,14 @@ interface Props {
 
 const RecentTableDiv = observer((props: Props) => {
     const lang = store.language.lang
+
+    const txtProfile =
+        lang === 'ko' ? txtProfileKo :
+            lang === 'jp' ? txtProfileJp : txtProfileEn
+    
+    const TxtCommon =
+        lang === 'ko' ? TxtCommonKo :
+            lang === 'jp' ? TxtCommonJp : TxtCommonEn
 
     const mapdata = props.list.map((user, i) => {
         const date = new Date().getTime() - user.uptimelong
@@ -47,16 +60,24 @@ const RecentTableDiv = observer((props: Props) => {
                         {
                             (function() {
                                 if(user.opencount === "Y") {
-                                    return <Link className="innerhref title" to={'/profile/'+user.id}>{`${user.name} ⓟ`}</Link>
+                                    return (
+                                        <Link className="innerhref title" to={'/profile/'+user.id}>
+                                            {`${user.name} ⓟ`}
+                                        </Link>
+                                    )
                                 }
                                 else {
-                                    return <a className="innerhref title" style={{cursor: "not-allowed"}} href="#no_div">{(txtProfile.table1.emptyname as any)[lang]}</a>
+                                    return (
+                                        <a className="innerhref title" style={{cursor: "not-allowed"}} href="#no_div">
+                                            {txtProfile.table1.emptyname}
+                                        </a>
+                                    )
                                 }
                             })()
                         }
                     </ItemRow>
                     <ItemRow>
-                        {`${Math.floor(hour)}${(TxtCommon.other.hrs as any)[lang]} ${Math.floor(min)}${(TxtCommon.other.mins as any)[lang]}`}
+                        {`${Math.floor(hour)}${TxtCommon.other.hrs} ${Math.floor(min)}${TxtCommon.other.mins}`}
                     </ItemRow>
                 </ItemCol>
                 <ItemCol size={4} className='blackandwhite'>

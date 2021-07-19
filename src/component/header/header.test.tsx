@@ -1,15 +1,15 @@
 import React from 'react'
-import Header from './header'
 import {render, RenderResult} from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import "@testing-library/jest-dom/extend-expect"
+import SinHeader from './sinHeader'
 
 let headerDom: RenderResult
 
 beforeEach(() => {
     headerDom = render(
         <MemoryRouter>
-            <Header />
+            <SinHeader />
         </MemoryRouter>
     )
 })

@@ -8,9 +8,9 @@ import { observer } from 'mobx-react'
 import { BodyContent, BodyHeader, Container, ItemCol, ItemRow, Button } from '../../styled/styledCommon'
 import { Link } from 'react-router-dom'
 
-import txtIndexKo from './txtIndex-ko'
-import txtIndexJp from './txtIndex-jp'
-import txtIndexEn from './txtIndex-en'
+import txtIndexKo from '../../lang/index/txtIndex-ko'
+import txtIndexJp from '../../lang/index/txtIndex-jp'
+import txtIndexEn from '../../lang/index/txtIndex-en'
 
 const IndexPage = observer(() => {
     const {language, loginUser, loginStatus} = store
@@ -51,7 +51,7 @@ const IndexPage = observer(() => {
                             <h3>Skill Navigator</h3>
                         </BodyHeader>
                         <BodyContent>
-                            <ItemRow keepDirHor={true}>
+                            <ItemRow keepDirHor={true} style={{alignItems:'center'}}>
                             {
                                 (function() {
                                     if(loginStatus.isSigned) {
@@ -118,16 +118,16 @@ const IndexPage = observer(() => {
                                     }
                                     </ItemRow>
                                     <ItemRow>
-                                        {
-                                            (function() {
-                                                if(loginStatus.isSigned) {
-                                                    return <b>javascript:$.getScript('https://sindata.nira.one/$/update?token={loginUser.user.token}');</b>;
-                                                }
-                                                else {
-                                                    return <b>Please login first</b>;
-                                                }
-                                            })()
-                                        }
+                                    {
+                                        (function() {
+                                            if(loginStatus.isSigned) {
+                                                return <b>javascript:$.getScript('https://sindata.nira.one/$/update?token={loginUser.user.token}');</b>;
+                                            }
+                                            else {
+                                                return <b>Please login first</b>;
+                                            }
+                                        })()
+                                    }
                                     </ItemRow>
                                 </BodyContent>
                             </ItemRow>

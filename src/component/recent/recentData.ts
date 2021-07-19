@@ -1,4 +1,4 @@
-interface RecentData {
+type RecentData = {
     id: number,
     titletower: string,
     name: string,

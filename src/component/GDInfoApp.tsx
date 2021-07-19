@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
-import GDHeader from './header/header'
-import GDFooter from './footer/footer'
+import SinHeader from './header/sinHeader'
+import SinFooter from './footer/sinFooter'
 import {Route, Switch} from 'react-router-dom'
 import store from '../mobx/store'
 import { observer } from 'mobx-react'
@@ -30,7 +30,7 @@ import PlaycountRanking from './skill/playcntrank/playcntrank'
 import SkillSnapshot from './skill/skill/skillSnapshot'
 import EXC from './skill/skill/exc'
 
-import PatternList from './pattern/pattern/pattern'
+import PTList from './pattern/patternList/ptList'
 import PatternRank from './pattern/patternRank/patternRank'
 import NoRecordMusicList from './pattern/noRecordMusic/noRecordList'
 import NotPlayedLoginCheck from './pattern/noRecordMusic/npLoginChk'
@@ -70,7 +70,7 @@ const GDInfoApp = observer(() => {
 
     return (
         <OuterBox>
-            <GDHeader />
+            <SinHeader />
             <Center>
                 <Route exact path="/" component={IndexPage} />
                 <Route path="/index" component={IndexPage} />
@@ -102,7 +102,7 @@ const GDInfoApp = observer(() => {
                 <Route path="/cntrank/:page" component={PlaycountRanking} />
                 <Route path="/exc/:gtype" component={EXC} />
                 {/* Pattern */}
-                <Route path="/pattern/:ver/:order/:page" component={PatternList} />
+                <Route path="/pattern/:ver/:order/:page" component={PTList} />
                 <Route path="/ptrank/:mid/:ptcode/:page" component={PatternRank} />
                 <Switch>
                     <Route path="/notplayed/:gtype/:userid/:vertype/:page" component={NoRecordMusicList} />
@@ -121,7 +121,7 @@ const GDInfoApp = observer(() => {
                 <Route path="/error/404" component={Error404} />
                 <Route path="/error/500" component={Error500} />
             </Center>
-            <GDFooter />
+            <SinFooter />
         </OuterBox>
     )
 })

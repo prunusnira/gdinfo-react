@@ -41,6 +41,5 @@ describe('button link test', () => {
     })
     it('tower', () => {
         expect(dom.getByText('Tower').closest('a')).toHaveAttribute('href', '/tower/index')
-        dom.debug()
     })
 })

@@ -11,11 +11,14 @@ import store from '../../../mobx/store';
 import { observer } from 'mobx-react';
 import { GDVer } from '../../common/version';
 import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon';
-import txtSkill from './txtskill';
 import { Row } from 'reactstrap';
 import SkillTableSH from './skillpresenter/skillTableSH';
 import SkillTableNR from './skillpresenter/skillTableNR';
 import SnapshotData from './skillItem/snapshotData';
+
+import txtSkillKo from "../../../lang/skill/skill/txtSkill-ko"
+import txtSkillJp from "../../../lang/skill/skill/txtSkill-jp"
+import txtSkillEn from "../../../lang/skill/skill/txtSkill-en"
 
 interface MatchProps {
     sharestr: string,
@@ -41,7 +44,11 @@ const SkillSnapshot = observer(() => {
     
     const [username, setUserName] = useState('')
     
-    const lang = store.language.lang;
+    const lang = store.language.lang
+
+    const txtSkill =
+        lang === 'ko' ? txtSkillKo :
+            lang === 'jp' ? txtSkillJp : txtSkillEn
 
     const {sharestr, id, date, gtype, time} = useParams<MatchProps>()
 
@@ -245,7 +252,7 @@ const SkillSnapshot = observer(() => {
                     <ItemRow style={{width:"100%"}} className="btn-group">
                         <Button style={{width:"100%"}}
                             onClick={() => scrShot("scrTable", id+"_"+gtype+"_all_"+time+".jpg")}>
-                            {(txtSkill.scrshot as any)[lang]}
+                            {txtSkill.scrshot}
                         </Button>
                     </ItemRow>
                 </BodyContent>

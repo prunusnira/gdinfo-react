@@ -1,13 +1,16 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
-import {Redirect, Link, useParams} from 'react-router-dom';
-import txtLogin from './txtLogin';
+import React, {useEffect, useState} from 'react'
+import axios from 'axios'
+import {Redirect, Link, useParams} from 'react-router-dom'
 
-import CommonData from '../../common/commonData';
-import { observer } from 'mobx-react';
-import store from '../../../mobx/store';
-import LoginInfo from '../../common/loginInfo';
-import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon';
+import CommonData from '../../common/commonData'
+import { observer } from 'mobx-react'
+import store from '../../../mobx/store'
+import LoginInfo from '../../common/loginInfo'
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
+
+import txtLoginKo from '../../../lang/user/login/txtLogin-ko'
+import txtLoginJp from '../../../lang/user/login/txtLogin-jp'
+import txtLoginEn from '../../../lang/user/login/txtLogin-en'
 
 interface MatchProps {
     uid: string
@@ -22,6 +25,10 @@ const LoginFromApp = observer(() => {
 
     const {language, loginUser, loginStatus} = store
     const lang = language.lang
+
+    const txtLogin =
+        lang === 'ko' ? txtLoginKo :
+            lang === 'jp' ? txtLoginJp : txtLoginEn
 
     useEffect(() => {
         // 존재하는 token인지 확인
@@ -90,14 +97,14 @@ const LoginFromApp = observer(() => {
                 <ItemRow>
                     <ItemCol size={12}>
                         <BodyHeader>
-                            <h3>{(txtLogin.titleAppFail as any)[lang]}</h3>
+                            <h3>{txtLogin.titleAppFail}</h3>
                         </BodyHeader>
                         <BodyContent>
                             <ItemRow>
-                                <h4>{(txtLogin.contentAppFailTitle as any)[lang]}</h4>
+                                <h4>{txtLogin.contentAppFailTitle}</h4>
                             </ItemRow>
                             <ItemRow>
-                                <span dangerouslySetInnerHTML={{__html: (txtLogin.contentAppFail as any)[lang]}}></span>
+                                <span dangerouslySetInnerHTML={{__html: txtLogin.contentAppFail}}></span>
                             </ItemRow>
                             <ItemRow>
                                 <Link to='/'>

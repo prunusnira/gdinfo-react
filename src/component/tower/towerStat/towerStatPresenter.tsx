@@ -1,17 +1,19 @@
 import React from 'react'
 import TowerStatList from './towerStatList'
 import { TowerStatData } from './towerStatData'
-import txtTower from '../txttower'
 import { BodyContent, BodyHeader, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
-import { towerName, towerDesc } from '../towername'
 import TitleType from './data/titleType'
+import store from '../../../mobx/store'
+
+import { towerName, towerDesc } from '../../../lang/tower/towername'
+import txtTowerKo from '../../../lang/tower/txtTower-ko'
+import txtTowerJp from '../../../lang/tower/txtTower-jp'
+import txtTowerEn from '../../../lang/tower/txtTower-en'
 
 interface Props {
     name: string,
     isPassed: string,
-    id: string,
     list: Array<TowerStatData>,
-    lang: string,
 
 	showTitleChangeModal: boolean,
     setTitleToBeChanged: (t: TitleType) => void,
@@ -19,6 +21,12 @@ interface Props {
 }
 
 const TowerStatPresenter = (props: Props) => {
+	const lang = store.language.lang
+	const id = store.loginUser.user.id
+    const txtTower =
+        lang === 'ko' ? txtTowerKo :
+            lang === 'jp' ? txtTowerJp : txtTowerEn
+			
 	return (
 		<Container>
 			<ItemRow setVertical={true}>
@@ -26,7 +34,7 @@ const TowerStatPresenter = (props: Props) => {
 					<h3 id="towername">
 					{
 						(towerName as any)[props.name] !== undefined ?
-							(towerName as any)[props.name][props.lang] : ''
+							(towerName as any)[props.name][lang] : ''
 					}
 					</h3>
 				</BodyHeader>
@@ -34,11 +42,11 @@ const TowerStatPresenter = (props: Props) => {
 					<ItemRow>
 						<span dangerouslySetInnerHTML={{
 							__html: (towerDesc as any)[props.name] !== undefined ?
-							(towerDesc as any)[props.name][props.lang] : ''}}>
+							(towerDesc as any)[props.name][lang] : ''}}>
 						</span>
 					</ItemRow>
 					<ItemRow>
-						{(txtTower.detail.desc as any)[props.lang]}
+						{txtTower.detail.desc}
 					</ItemRow>
 				</BodyContent>
 			</ItemRow>
@@ -58,10 +66,8 @@ const TowerStatPresenter = (props: Props) => {
 					{/* 진행 상태 표기 */}
 					<ItemRow id="towerlist" setVertical={true}>
 						<TowerStatList
-							id={props.id}
+							id={id}
 							list={props.list}
-							lang={props.lang}
-
 							setTitleChangeModal={props.setTitleChangeModal}
 							setTitleToBeChanged={props.setTitleToBeChanged} />
 					</ItemRow>

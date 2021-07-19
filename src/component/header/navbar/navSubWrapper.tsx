@@ -1,19 +1,19 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import store from "../../../mobx/store";
-import { NavSubItem, NavSubOuter } from "../../../styled/styledHeader";
-import NavSubItemType from "./navSubItemType";
+import React from "react"
+import { Link } from "react-router-dom"
+import { NavSubItem, NavSubOuter } from "../../../styled/styledHeader"
 
-interface Props {
+type NavSubItemType = {
+    title: string,
+    link: string
+}
+
+type Props = {
     open: boolean,
     items: NavSubItemType[],
     closeMenu: () => void
 }
 
 const NavSubItemWrapper = (props: Props) => {
-    const {language} = store
-    const lang = language.lang
-
     return (
         <NavSubOuter isOpen={props.open}>
             {

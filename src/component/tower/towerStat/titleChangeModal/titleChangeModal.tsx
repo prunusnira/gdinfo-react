@@ -2,10 +2,13 @@ import React from 'react'
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
 import { Button, Icon, ItemRow } from '../../../../styled/styledCommon'
 import TitleType from '../data/titleType'
-import TxtTitleChangeModal from './txTitleChangeModal'
+
+import TxtTitleChangeModalKo from '../../../../lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-ko'
+import TxtTitleChangeModalJp from '../../../../lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-jp'
+import TxtTitleChangeModalEn from '../../../../lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-en'
+import store from '../../../../mobx/store'
 
 interface Props {
-    lang: string,
     showTitleChangeModal: boolean,
     titleToBeChanged: TitleType,
     setTitleChangeModal: (b: boolean) => void,
@@ -13,14 +16,19 @@ interface Props {
 }
 
 const TitleChangeModal = (props: Props) => {
+	const lang = store.language.lang
+    const TxtTitleChangeModal =
+        lang === 'ko' ? TxtTitleChangeModalKo :
+            lang === 'jp' ? TxtTitleChangeModalJp : TxtTitleChangeModalEn
+
     return (
         <Modal isOpen={props.showTitleChangeModal}>
             <ModalHeader style={{backgroundColor: '#353535'}}>
-                {(TxtTitleChangeModal.title as any)[props.lang]}
+                {TxtTitleChangeModal.title}
             </ModalHeader>
             <ModalBody>
                 <ItemRow style={{color:"black"}}>
-                    {(TxtTitleChangeModal.body as any)[props.lang]}
+                    {TxtTitleChangeModal.body}
                 </ItemRow>
                 <ItemRow style={{color:"black"}}>
                     <Icon src={`${process.env.PUBLIC_URL}/general-img/title/${props.titleToBeChanged.title}.png`} />

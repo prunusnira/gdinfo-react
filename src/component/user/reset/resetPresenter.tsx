@@ -1,7 +1,10 @@
 import React from 'react'
-import {Link} from 'react-router-dom';
-import txtReset from './txtreset';
-import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon';
+import {Link} from 'react-router-dom'
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
+
+import txtResetKo from '../../../lang/user/reset/txtReset-ko'
+import txtResetJp from '../../../lang/user/reset/txtReset-jp'
+import txtResetEn from '../../../lang/user/reset/txtReset-en'
 
 interface Props {
     lang: string,
@@ -9,6 +12,10 @@ interface Props {
 }
 
 const ResetPresenter = (props: Props) => {
+    const txtReset =
+        props.lang === 'ko' ? txtResetKo :
+            props.lang === 'jp' ? txtResetJp : txtResetEn
+
     return (
         <Container>
             <ItemRow setVertical={true}>
@@ -18,21 +25,21 @@ const ResetPresenter = (props: Props) => {
                 <BodyContent>
                     <ItemRow setVertical={true}>
                         <BodyHeader>
-                            <h3>{(txtReset.title as any)[props.lang]}</h3>
+                            <h3>{txtReset.title}</h3>
                         </BodyHeader>
                         <BodyContent>
-                            <p>{(txtReset.desc1 as any)[props.lang]}</p>
+                            <p>{txtReset.desc1}</p>
                         </BodyContent>
                     </ItemRow>
                     <ItemRow setVertical={true}>
                         <BodyHeader>
-                            <h3>{(txtReset.desc2t as any)[props.lang]}</h3>
+                            <h3>{txtReset.desc2t}</h3>
                         </BodyHeader>
                         <BodyContent>
-                            <p>{(txtReset.desc2s as any)[props.lang]}</p>
-                            <p>{(txtReset.desc3 as any)[props.lang]}</p>
-                            <p>{(txtReset.desc4 as any)[props.lang]}</p>
-                            <p>{(txtReset.desc5 as any)[props.lang]}</p>
+                            <p>{txtReset.desc2s}</p>
+                            <p>{txtReset.desc3}</p>
+                            <p>{txtReset.desc4}</p>
+                            <p>{txtReset.desc5}</p>
                         </BodyContent>
                     </ItemRow>
                     

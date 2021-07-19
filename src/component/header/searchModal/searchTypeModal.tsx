@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react"
 import { FormGroup, Label, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap"
 import store from "../../../mobx/store"
 import { Button } from "../../../styled/styledCommon"
-import TxtModal from "./txtmodal"
+import TxtModalKo from "../../../lang/header/searchmodal/txtmodal-ko"
+import TxtModalJp from "../../../lang/header/searchmodal/txtmodal-jp"
+import TxtModalEn from "../../../lang/header/searchmodal/txtmodal-en"
 
 interface Props {
     isOpen: boolean,
@@ -14,19 +16,20 @@ interface Props {
 const SearchTypeModal = (props: Props) => {
     const [type, setType] = useState(props.currentType)
     const lang = store.language.lang
+    
+    const TxtModal =
+        lang === 'ko' ? TxtModalKo :
+            lang === 'jp' ? TxtModalJp : TxtModalEn
+    
 
     const changeType = (e: React.ChangeEvent<HTMLInputElement>) => {
         setType(e.currentTarget.value)
     }
 
-    useEffect(() => {
-
-    }, [type])
-
     return (
         <Modal isOpen={props.isOpen}>
             <ModalHeader style={{backgroundColor: '#252525'}}>
-                {(TxtModal.title as any)[lang]}
+                {TxtModal.title}
             </ModalHeader>
             <ModalBody style={{backgroundColor: '#414141', padding: '20px'}}>
                 <FormGroup>
@@ -37,7 +40,7 @@ const SearchTypeModal = (props: Props) => {
                                 id='searchradio_music' value='music'
                                 checked={type === 'music' ? true : false}
                                 onChange={changeType} />
-                            {(TxtModal.music as any)[lang]}
+                            {TxtModal.music}
                         </Label>
                     </FormGroup>
                     <FormGroup>
@@ -47,7 +50,7 @@ const SearchTypeModal = (props: Props) => {
                                 id='searchradio_gskill' value='gskill'
                                 checked={type === 'gskill' ? true : false}
                                 onChange={changeType} />
-                            {(TxtModal.gskill as any)[lang]}
+                            {TxtModal.gskill}
                         </Label>
                     </FormGroup>
                     <FormGroup>
@@ -57,7 +60,7 @@ const SearchTypeModal = (props: Props) => {
                                 id='searchradio_dskill' value='dskill'
                                 checked={type === 'dskill' ? true : false}
                                 onChange={changeType} />
-                            {(TxtModal.dskill as any)[lang]}
+                            {TxtModal.dskill}
                         </Label>
                     </FormGroup>
                     <FormGroup>
@@ -67,7 +70,7 @@ const SearchTypeModal = (props: Props) => {
                                 id='searchradio_player' value='player'
                                 checked={type === 'player' ? true : false}
                                 onChange={changeType} />
-                            {(TxtModal.player as any)[lang]}
+                            {TxtModal.player}
                         </Label>
                     </FormGroup>
                 </FormGroup>
