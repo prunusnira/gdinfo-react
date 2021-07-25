@@ -1,6 +1,6 @@
 import {Link} from 'react-router-dom'
 import ClearTableRow from './clearTableRow'
-import { BodyContent, BodyHeader, Container, ItemRow } from '../../../styled/styledCommon'
+import { BodyContent, BodyHeader, Container, ItemRow } from '@/styled/styledCommon'
 import React from 'react'
 import ClearTableData from './clearTableData'
 

@@ -1,34 +1,43 @@
 import React from "react"
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap"
-import { Button } from "../../../styled/styledCommon"
-import txtProfile from "./txtprofile"
+import { Button } from "@/styled/styledCommon"
+import store from "@/mobx/store"
+
+import txtProfileKo from '@/lang/user/profile/txtProfile-ko'
+import txtProfileJp from '@/lang/user/profile/txtProfile-jp'
+import txtProfileEn from '@/lang/user/profile/txtProfile-en'
 
 interface Props {
-    lang: string,
     isCommentOpen: boolean,
-    commentInput: React.RefObject<HTMLInputElement>
     id: string,
-    submitComment: (id: string, comment: string) => void,
+    submitComment: () => void,
     closeComment: () => void,
+    setComment: (s: string) => void,
 }
 
 const ModalComment = (props: Props) => {
+    const lang = store.language.lang
+    const txtProfile =
+        lang === 'ko' ? txtProfileKo :
+            lang === 'jp' ? txtProfileJp : txtProfileEn
+
     return (
         <Modal isOpen={props.isCommentOpen}>
             <ModalHeader style={{backgroundColor: '#353535'}}>
-                {(txtProfile.button.changecomment as any)[props.lang]}
+                {txtProfile.button.changecomment}
             </ModalHeader>
             <ModalBody>
                 <label style={{color:'black'}} htmlFor="newcomment">
-                    {(txtProfile.changecomment.desc as any)[props.lang]}<br/>
+                    {txtProfile.changecomment.desc}<br/>
                 </label>
-                <input ref={props.commentInput}
+                <input
                     className="form-control" type="text"
-                    name="newcomment" id="commentInput" />
+                    name="newcomment" id="commentInput"
+                    onChange={(e) => props.setComment(e.currentTarget.value)} />
             </ModalBody>
             <ModalFooter style={{backgroundColor: '#dddddd'}}>
                 <Button onClick={props.closeComment}>Cancel</Button>
-                <Button onClick={() => props.submitComment(props.id, props.commentInput.current!.value)}>Apply</Button>
+                <Button onClick={() => props.submitComment()}>Apply</Button>
             </ModalFooter>
         </Modal>
     )

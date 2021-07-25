@@ -1,7 +1,7 @@
-import React from 'react';
-import {Redirect} from 'react-router-dom';
-import { observer } from 'mobx-react';
-import store from '../../../mobx/store';
+import React from 'react'
+import {Redirect} from 'react-router-dom'
+import { observer } from 'mobx-react'
+import store from '@/mobx/store'
 
 const SnapshotLoginCheck = observer(() => {
     const {loginUser, loginStatus} = store

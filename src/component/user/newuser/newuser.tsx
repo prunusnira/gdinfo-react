@@ -1,85 +1,29 @@
-import React, { useEffect, useState } from 'react';
-import {Redirect} from 'react-router-dom';
-import axios from 'axios';
+import React from 'react'
+import {Redirect} from 'react-router-dom'
+import store from '@/mobx/store'
+import { observer } from 'mobx-react'
+import NewUserPresenter from './newuserPresenter'
+import Error500 from '@/component/error/500'
+import useUserInfo from '@/component/user/login/useUserInfo'
+import useUserCheck from './useUserCheck'
+import useUserAdd from './useUserAdd'
+import useUserDrop from './useUserDrop'
 
-import CommonData from '../../common/commonData';
-import store from '../../../mobx/store';
-import { observer } from 'mobx-react';
-import LoginInfo from '../../common/loginInfo';
-import NewUserPresenter from './newuserPresenter';
-import Error500 from '../../error/500';
-import txtNewuser from './txtnewuser';
+import txtNewuserKo from '@/lang/user/newuser/txtNewUser-ko'
+import txtNewuserJp from '@/lang/user/newuser/txtNewUser-jp'
+import txtNewuserEn from '@/lang/user/newuser/txtNewUser-en'
 
 const NewUser = observer(() => {
-    const [moveToIndex, setMoveToIndex] = useState(false)
-    const [isValidAccess, setValidAccess] = useState(true)
+    const [newUser, token, updateUserInfo] = useUserInfo()
+    const [moveToIndex, isValidAccess, setMoveToIndex] = useUserCheck()
+    const addNewUser = useUserAdd(updateUserInfo, setMoveToIndex)
+    const dropUser = useUserDrop(setMoveToIndex)
 
-    const {language, loginUser, loginStatus} = store
+    const {language} = store
     const lang = language.lang
-
-    useEffect(() => {
-        // params에 token이 있는지 확인
-        if(checkParamHasToken()) {
-            // 토큰이 이미 DB에 있는지 확인
-            checkUserAlreadyExist()
-        }
-        else {
-            setValidAccess(false)
-        }
-    }, [])
-
-    const checkParamHasToken = () => {
-        const token = loginUser.user.token
-        if(token === '') return false
-        else return true
-    }
-
-    const checkUserAlreadyExist = () => {
-        const token = loginUser.user.token
-        fetch(`${CommonData.dataUrl}getuser/${token}`)
-        .then(d => {
-            return d.json()
-        })
-        .then(d => {
-            if(d.mydata !== 'null') {
-                setValidAccess(false)
-            }
-        })
-    }
-
-    const updateUserinfo = (info: LoginInfo) => {
-        loginUser.setUserData(info)
-        loginStatus.setSignStatus(true)
-    }
-
-    const addNewUser = () => {
-        const params = new URLSearchParams()
-        params.append("token", loginUser.user.token)
-        axios.post(`${CommonData.dataUrl}newuser`, params)
-        .then((res) => {
-            const json = JSON.parse(res.data.loginData)
-            switch(json.stat) {
-                case "login":
-                    updateUserinfo({
-                        token: json.token,
-                        id: json.id
-                    })
-                    setMoveToIndex(true)
-                    break;
-                case "error":
-                default:
-                    setMoveToIndex(true)
-                    break;
-            }
-        });
-    }
-
-    const dropUser = () => {
-        axios.post(`${CommonData.dataUrl}dropuser`)
-        .then((res) => {
-            setMoveToIndex(true)
-        })
-    }
+    const txtNewuser =
+        lang === 'ko' ? txtNewuserKo :
+            lang === 'jp' ? txtNewuserJp : txtNewuserEn
 
     if(moveToIndex) {
         return <Redirect to={"/index"} />
@@ -87,13 +31,12 @@ const NewUser = observer(() => {
     else if(isValidAccess) {
         return (
             <NewUserPresenter
-                lang={lang}
                 addNewUser={addNewUser}
                 dropUser={dropUser} />
         )
     }
     else {
-        alert((txtNewuser.invalidAccess as any)[lang])
+        alert(txtNewuser.invalidAccess)
         return (
             <Error500 />
         )

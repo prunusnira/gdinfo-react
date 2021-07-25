@@ -1,7 +1,7 @@
-class SkillRecord {
-    date: string = "";
-    gskill: string = "";
-    dskill: string = "";
+type SkillRecord = {
+    date: string,
+    gskill: string,
+    dskill: string,
 }
 
-export default SkillRecord;
+export default SkillRecord

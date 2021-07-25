@@ -28,52 +28,52 @@ export const GDVer = [
 	{num:27, sv:"GD EXC", full:"GITADORA EXCHAIN"},
 	{num:28, sv:"GD NX", full:"GITADORA NEXTAGE"},
 	{num:29, sv:"GD HV", full:"GITADORA HIGH-VOLTAGE"}
-];
+]
 
 export const skillPageVersion = (ptype: number) => {
 	switch(ptype) {
 		case 3:
 		case 4:
-			return "Tri-Boost";
+			return "Tri-Boost"
 		case 5:
 		case 6:
-			return "Tri-Boost Re:EVOLVE";
+			return "Tri-Boost Re:EVOLVE"
 		case 7:
 		case 8:
-			return "MATIXX";
+			return "MATIXX"
 		case 9:
 		case 10:
-			return "EXCHAIN";
+			return "EXCHAIN"
 		case 11:
 		case 12:
-			return "NEXTAGE";
+			return "NEXTAGE"
 		case 0:
 		case 1:
 		case 2:
 		case 1000:
 		default:
-			return "HIGH-VOLTAGE";
+			return "HIGH-VOLTAGE"
 	}
 }
 
 export const generateVerFilter = (all: boolean) => {
-	let filter = "";
+	let filter = ""
 	for(let i = 0; i < GDVer.length; i++) {
-		let verstr = GDVer[i].num.toString();
+		let verstr = GDVer[i].num.toString()
 		if(GDVer[i].num < 10) {
-			verstr = "0"+verstr;
+			verstr = `0${verstr}`
 		}
 		filter +=
-			"<div class='div-table-cell filter-obj'>"+
-				"<label><input type='checkbox' name='ver[]' value='"+verstr+"'>"+GDVer[i].sv+"</label>"+
-			"</div>";
+			`<div class='div-table-cell filter-obj'>
+				<label><input type='checkbox' name='ver[]' value='${verstr}'>${GDVer[i].sv}</label>
+			</div>`
 	}
 	
 	if(all) {
 		filter +=
-			"<div class='div-table-cell filter-obj'>"+
-				"<label><input type='checkbox' name='ver[]' value='00'>All Songs</label>"+
-			"</div>";
+			`<div class='div-table-cell filter-obj'>
+				<label><input type='checkbox' name='ver[]' value='00'>All Songs</label>
+			</div>`
 	}
-	return filter;
+	return filter
 }

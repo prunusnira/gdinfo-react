@@ -1,7 +1,7 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import { Icon, ItemCol, ItemRow } from '../../../styled/styledCommon';
-import PTRankData from './ptrankData';
+import React from 'react'
+import {Link} from 'react-router-dom'
+import { Icon, ItemCol, ItemRow } from '@/styled/styledCommon'
+import PTRankData from './ptrankData'
 
 interface Props {
     list: Array<PTRankData>

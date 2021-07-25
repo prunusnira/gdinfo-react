@@ -1,7 +1,6 @@
-import React from 'react';
-import { BodyContent, BodyHeader, ItemRow } from '../../../styled/styledCommon';
-
-import { TowerClearData } from './towerClearData';
+import React from 'react'
+import { BodyContent, BodyHeader, ItemRow } from '@/styled/styledCommon'
+import { TowerClearData } from './towerClearData'
 
 interface Props {
     list: Array<TowerClearData>

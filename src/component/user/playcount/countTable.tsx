@@ -1,13 +1,12 @@
-import React from 'react';
-import txtPlayCount from './txtplaycount';
+import React from 'react'
+import { Row, Col } from 'reactstrap'
+import PlaycountData from './playcountData'
+import store from '@/mobx/store'
+import { observer } from 'mobx-react'
 
-import {
-    Row,
-    Col
-} from 'reactstrap';
-import PlaycountData from './playcountData';
-import store from '../../../mobx/store';
-import { observer } from 'mobx-react';
+import txtPlayCountKo from '@/lang/user/playcount/txtPlayCount-ko'
+import txtPlayCountJp from '@/lang/user/playcount/txtPlayCount-jp'
+import txtPlayCountEn from '@/lang/user/playcount/txtPlayCount-en'
 
 interface Props {
     data: Array<PlaycountData>
@@ -15,6 +14,10 @@ interface Props {
 
 const CountTable = observer((props: Props) => {
     const lang = store.language.lang
+
+    const txtPlayCount =
+        lang === 'ko' ? txtPlayCountKo :
+            lang === 'jp' ? txtPlayCountJp : txtPlayCountEn
 
     return (
         <Row>
@@ -43,7 +46,7 @@ const CountTable = observer((props: Props) => {
                         </span>
                         <span style={{fontSize:"80%"}}>
                             {d.number}. {d.name}<br/>
-                            {d.count}{(txtPlayCount.table.time as any)[lang]}
+                            {d.count}{txtPlayCount.table.time}
                         </span>
                     </Col>
                 )

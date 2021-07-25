@@ -1,4 +1,4 @@
-interface RecentData {
+type RecentData = {
     id: number,
     titletower: string,
     name: string,
@@ -11,4 +11,4 @@ interface RecentData {
     opencount: string
 }
 
-export default RecentData;
+export default RecentData

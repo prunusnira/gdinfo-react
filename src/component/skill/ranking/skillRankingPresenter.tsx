@@ -1,11 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
 import SkillRankingItem from './rankingItem'
-import txtSrank from './txtskillrank'
-import Pager from '../../common/pager'
-import store from '../../../mobx/store'
+import Pager from '@/component/common/pager'
+import store from '@/mobx/store'
 import SRankData from './srankData'
+
+import txtSrankKo from '@/lang/skill/ranking/txtSkillRank-ko'
+import txtSrankJp from '@/lang/skill/ranking/txtSkillRank-jp'
+import txtSrankEn from '@/lang/skill/ranking/txtSkillRank-en'
 
 interface Props {
     gtype: string,
@@ -17,15 +20,19 @@ interface Props {
 const SkillRankingPresenter = (props: Props) => {
     const lang = store.language.lang
     
+    const txtSrank =
+        lang === 'ko' ? txtSrankKo :
+            lang === 'jp' ? txtSrankJp : txtSrankEn
+    
     return (
         <Container>
             <ItemRow setVertical={true}>
                 <BodyHeader>
-                    <h3>Skill Ranking</h3>
+                    <h3>{txtSrank.title}</h3>
                 </BodyHeader>
                 <BodyContent className="text-center">
                     <ItemRow>
-                        {(txtSrank.desc as any)[lang]}
+                        {txtSrank.desc}
                     </ItemRow>
                     <ItemRow keepDirHor={true}>
                         <ItemCol size={3.3}>
@@ -65,7 +72,7 @@ const SkillRankingPresenter = (props: Props) => {
                 </BodyHeader>
                 <BodyContent>
                     <ItemRow style={{paddingBottom:"20px"}}>
-                        {(txtSrank.click as any)[lang]}
+                        {txtSrank.click}
                     </ItemRow>
                     <ItemRow>
                         <div className="div-table" id="ranktable">

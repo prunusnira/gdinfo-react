@@ -1,12 +1,15 @@
 import React from 'react'
-import txtPlayCount from './txtplaycount';
-import CountTable from './countTable';
-import scrShot from '../../common/scrshot';
-import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon';
-import PlaycountData from './playcountData';
+import CountTable from './countTable'
+import scrShot from '@/component/common/scrshot'
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
+import PlaycountData from './playcountData'
+import store from '@/mobx/store'
+
+import txtPlayCountKo from '@/lang/user/playcount/txtPlayCount-ko'
+import txtPlayCountJp from '@/lang/user/playcount/txtPlayCount-jp'
+import txtPlayCountEn from '@/lang/user/playcount/txtPlayCount-en'
 
 interface Props {
-    lang: string,
     userName: string,
     id: string,
     towerTitle: string,
@@ -22,6 +25,11 @@ interface Props {
 }
 
 const PlayCountPresenter = (props: Props) => {
+    const lang = store.language.lang
+    const txtPlayCount =
+        lang === 'ko' ? txtPlayCountKo :
+            lang === 'jp' ? txtPlayCountJp : txtPlayCountEn
+
     return (
         <Container>
             <ItemRow setVertical={true}>
@@ -31,15 +39,15 @@ const PlayCountPresenter = (props: Props) => {
                 <BodyContent className="text-center">
                     <ItemRow>
                         <Button style={{width:"100%"}} onClick={() => scrShot("scrshot", `${props.id}_mybest.jpg`)}>
-                            {(txtPlayCount.button.scrshot as any)[props.lang]}
+                            {txtPlayCount.button.scrshot}
                         </Button>
                     </ItemRow>
                     <ItemRow>
-                        {(txtPlayCount.desc_1 as any)[props.lang]}
+                        {txtPlayCount.desc_1}
                         <span style={{color:"red"}}>
-                            {(txtPlayCount.desc_2 as any)[props.lang]}
+                            {txtPlayCount.desc_2}
                         </span>
-                        {(txtPlayCount.desc_3 as any)[props.lang]}
+                        {txtPlayCount.desc_3}
                     </ItemRow>
                 </BodyContent>
             </ItemRow>
@@ -58,22 +66,22 @@ const PlayCountPresenter = (props: Props) => {
                     <ItemRow>
                         <ItemCol size={5} isFlatUnderLg={true}>
                             <Button style={{width:"100%"}} onClick={() => props.changeDiv(0)}>
-                                {(txtPlayCount.button.pt as any)[props.lang]}
+                                {txtPlayCount.button.pt}
                             </Button>
                         </ItemCol>
                         <ItemCol size={5} isFlatUnderLg={true}>
                             <Button style={{width:"100%"}} onClick={() => props.changeDiv(1)}>
-                                {(txtPlayCount.button.music as any)[props.lang]}
+                                {txtPlayCount.button.music}
                             </Button>
                         </ItemCol>
                         <ItemCol size={5} isFlatUnderLg={true}>
                             <Button style={{width:"100%"}} onClick={() => props.changeDiv(2)}>
-                                {(txtPlayCount.button.gf as any)[props.lang]}
+                                {txtPlayCount.button.gf}
                             </Button>
                         </ItemCol>
                         <ItemCol size={5} isFlatUnderLg={true}>
                             <Button style={{width:"100%"}} onClick={() => props.changeDiv(3)}>
-                                {(txtPlayCount.button.dm as any)[props.lang]}
+                                {txtPlayCount.button.dm}
                             </Button>
                         </ItemCol>
                     </ItemRow>

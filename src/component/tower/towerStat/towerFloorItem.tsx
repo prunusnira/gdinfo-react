@@ -1,18 +1,25 @@
-import React from 'react';
-import { Button, ItemCol, ItemRow } from '../../../styled/styledCommon';
-import txtTower from '../txttower';
-import TitleType from './data/titleType';
-import { FloorItemData } from './towerStatData';
+import React from 'react'
+import { Button, ItemCol, ItemRow } from '@/styled/styledCommon'
+import TitleType from './data/titleType'
+import { FloorItemData } from './towerStatData'
+
+import txtTowerKo from '@/lang/tower/txtTower-ko'
+import txtTowerJp from '@/lang/tower/txtTower-jp'
+import txtTowerEn from '@/lang/tower/txtTower-en'
+import store from '@/mobx/store'
 
 interface Props {
-    lang: string,
     list: Array<FloorItemData>,
-
     setTitleToBeChanged: (t: TitleType) => void,
     setTitleChangeModal: (b: boolean) => void,
 }
 
 const TowerFloorItem = (props: Props) => {
+	const lang = store.language.lang
+    const txtTower =
+        lang === 'ko' ? txtTowerKo :
+            lang === 'jp' ? txtTowerJp : txtTowerEn
+
     return (
         <>
         {
@@ -80,7 +87,7 @@ const TowerFloorItem = (props: Props) => {
                                                 props.setTitleToBeChanged(fl.title!)
                                                 props.setTitleChangeModal(true)
                                             }}>
-                                                {(txtTower.detail.btntitlechange as any)[props.lang]}
+                                                {txtTower.detail.btntitlechange}
                                             </Button>
                                         )
                                     }

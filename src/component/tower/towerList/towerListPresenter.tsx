@@ -1,10 +1,13 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import TowerListImg from './toweritem'
-import txtTower from '../txttower'
 import TowerListData from './towerlistData'
-import store from '../../../mobx/store'
-import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
+import store from '@/mobx/store'
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
+
+import txtTowerKo from '@/lang/tower/txtTower-ko'
+import txtTowerJp from '@/lang/tower/txtTower-jp'
+import txtTowerEn from '@/lang/tower/txtTower-en'
 
 interface Props {
     towerGF: Array<TowerListData>,
@@ -15,6 +18,10 @@ interface Props {
 const TowerListPresenter = (props: Props) => {
     const lang = store.language.lang
 
+    const txtTower =
+        lang === 'ko' ? txtTowerKo :
+            lang === 'jp' ? txtTowerJp : txtTowerEn
+
     return (
         <Container>
             <ItemRow setVertical={true}>
@@ -23,12 +30,12 @@ const TowerListPresenter = (props: Props) => {
                 </BodyHeader>
                 <BodyContent>
                     <ItemRow>
-                        {(txtTower.main.desc as any)[lang]}
+                        {txtTower.main.desc}
                     </ItemRow>
                     <ItemRow>
                         <Link to={"/tower/howto"}>
                             <Button>
-                                {(txtTower.main.howto as any)[lang]}
+                                {txtTower.main.howto}
                             </Button>
                         </Link>
                     </ItemRow>
@@ -38,7 +45,7 @@ const TowerListPresenter = (props: Props) => {
             <ItemRow id="towerlist">
                 <ItemCol size={5} isFlatUnderLg={true}>
                     <BodyHeader>
-                        <h3>{(txtTower.main.skilltower as any)[lang]}&nbsp;GuitarFreaks</h3>
+                        <h3>{txtTower.main.skilltower}&nbsp;GuitarFreaks</h3>
                     </BodyHeader>
                     <BodyContent>
                         <ItemRow setVertical={true}>
@@ -48,7 +55,7 @@ const TowerListPresenter = (props: Props) => {
                 </ItemCol>
                 <ItemCol size={5} isFlatUnderLg={true}>
                     <BodyHeader>
-                        <h3>{(txtTower.main.skilltower as any)[lang]}&nbsp;DrumMania</h3>
+                        <h3>{txtTower.main.skilltower}&nbsp;DrumMania</h3>
                     </BodyHeader>
                     <BodyContent>
                         <ItemRow setVertical={true}>
@@ -59,7 +66,7 @@ const TowerListPresenter = (props: Props) => {
             </ItemRow>
             <ItemRow setVertical={true}>
                 <BodyHeader>
-                    <h3>{(txtTower.main.sptower as any)[lang]}</h3>
+                    <h3>{txtTower.main.sptower}</h3>
                 </BodyHeader>
                 <BodyContent>
                     <ItemRow setVertical={true}>

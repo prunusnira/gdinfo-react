@@ -1,13 +1,13 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import '../skill.css';
-import '../../../common/table.css';
+import React from 'react'
+import {Link} from 'react-router-dom'
+import '../skill.css'
+import '@/component/common/table.css'
+import SkillItemData from '../skillItem/skillItemData'
 
 import {
     Row,
     Col
-} from 'reactstrap';
-import SkillItemData from '../skillItem/skillItemData';
+} from 'reactstrap'
 
 const SkillTableNR: React.FC<{list: Array<SkillItemData>}> = list => {
     return (

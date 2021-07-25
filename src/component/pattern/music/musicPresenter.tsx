@@ -1,9 +1,9 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
-import { BodyContent, BodyHeader, Container, ItemRow } from '../../../styled/styledCommon';
+import { BodyContent, BodyHeader, Container, ItemRow } from '@/styled/styledCommon';
 import MusicItem from './musicItem';
-import CommonData from '../../common/commonData';
-import MusicData from './musicData';
+import CommonData from '@/component/common/commonData';
+import MusicDataType from './musicData';
 
 interface Props {
     mid: string,
@@ -12,9 +12,7 @@ interface Props {
     version: string,
     profLink: string,
     playerName: string,
-    glist: Array<MusicData>,
-    blist: Array<MusicData>,
-    dlist: Array<MusicData>,
+    patternlist: Array<MusicDataType>,
 }
 
 const MusicPresenter = (props: Props) => {
@@ -58,19 +56,19 @@ const MusicPresenter = (props: Props) => {
                     <h3>Guitar</h3>
                 </BodyHeader>
                 <BodyContent>
-                    <MusicItem list={props.glist} />
+                    <MusicItem list={props.patternlist} type={0} />
                 </BodyContent>
                 <BodyHeader>
                     <h3>Bass</h3>
                 </BodyHeader>
                 <BodyContent>
-                    <MusicItem list={props.blist} />
+                    <MusicItem list={props.patternlist} type={1} />
                 </BodyContent>
                 <BodyHeader>
                     <h3>Drum</h3>
                 </BodyHeader>
                 <BodyContent>
-                    <MusicItem list={props.dlist} />
+                    <MusicItem list={props.patternlist} type={2} />
                 </BodyContent>
             </ItemRow>
         </Container>

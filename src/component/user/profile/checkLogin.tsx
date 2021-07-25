@@ -1,6 +1,6 @@
-import React from 'react';
-import {Redirect} from 'react-router-dom';
-import store from '../../../mobx/store';
+import React from 'react'
+import {Redirect} from 'react-router-dom'
+import store from '@/mobx/store'
 
 const ProfileLoginCheck = () => {
     const {loginUser, loginStatus} = store

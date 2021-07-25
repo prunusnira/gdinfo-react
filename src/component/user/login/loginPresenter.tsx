@@ -1,9 +1,12 @@
 import React from 'react'
-import GoogleLogin, { GoogleLoginResponse } from 'react-google-login';
-import txtLogin from './txtLogin';
-import CommonData from '../../common/commonData';
-import { BodyContent, BodyHeader, Container, ItemCol, ItemRow } from '../../../styled/styledCommon';
-import store from '../../../mobx/store';
+import GoogleLogin, { GoogleLoginResponse } from 'react-google-login'
+import CommonData from '@/component/common/commonData'
+import { BodyContent, BodyHeader, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
+import store from '@/mobx/store'
+
+import txtLoginKo from '@/lang/user/login/txtLogin-ko'
+import txtLoginJp from '@/lang/user/login/txtLogin-jp'
+import txtLoginEn from '@/lang/user/login/txtLogin-en'
 
 interface Props {
     responseGoogle: (res: GoogleLoginResponse) => void,
@@ -13,17 +16,21 @@ interface Props {
 const LoginPresenter = (props: Props) => {
     const lang = store.language.lang
 
+    const txtLogin =
+        lang === 'ko' ? txtLoginKo :
+            lang === 'jp' ? txtLoginJp : txtLoginEn
+
     return (
         <>
             <Container>
                 <ItemRow>
                     <ItemCol size={10}>
                         <BodyHeader>
-                            <h3>{(txtLogin.title as any)[lang]}</h3>
+                            <h3>{txtLogin.title}</h3>
                         </BodyHeader>
                         <BodyContent>
                             <ItemRow>
-                                <span>{(txtLogin.google as any)[lang]}</span>
+                                <span>{txtLogin.google}</span>
                             </ItemRow>
                             <ItemRow>
                                 <GoogleLogin

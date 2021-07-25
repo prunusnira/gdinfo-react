@@ -1,7 +1,7 @@
-import { observer } from 'mobx-react';
-import React from 'react';
-import {Redirect, useParams} from 'react-router-dom';
-import store from '../../mobx/store';
+import { observer } from 'mobx-react'
+import React from 'react'
+import {Redirect, useParams} from 'react-router-dom'
+import store from '@/mobx/store'
 
 interface Matchprops {
     gtype: string

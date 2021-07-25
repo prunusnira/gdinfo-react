@@ -1,5 +1,5 @@
 import React from 'react'
-import { ItemCol } from '../../../styled/styledCommon'
+import { ItemCol } from '@/styled/styledCommon'
 import { FloorClearData } from './towerClearData'
 
 interface Props {

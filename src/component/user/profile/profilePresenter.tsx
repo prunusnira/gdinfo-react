@@ -1,46 +1,55 @@
 import React from 'react'
-import {Link} from 'react-router-dom';
-import ProfileButton from './profileButton';
-import txtProfile from './txtprofile';
-import ProfileBoard from './profileBoard';
-import ProfileRecent from './profileRecent';
-import SingleSkillColorChanger from '../../common/skillcolor';
-import { BodyContent, BodyHeader, Button, Container, Icon, ItemCol, ItemRow } from '../../../styled/styledCommon';
-import ProfileData from './profileData';
-import ModalInfoOpen from './modalInfoOpen';
-import ModalComment from './modalComment';
+import {Link} from 'react-router-dom'
+import ProfileButton from './profileButton'
+import ProfileBoard from './profileBoard'
+import ProfileRecent from './profileRecent'
+import SingleSkillColorChanger from '@/component/common/skillcolor'
+import { BodyContent, BodyHeader, Button, Container, Icon, ItemCol, ItemRow } from '@/styled/styledCommon'
+import ProfileData from './profileData'
+import ModalInfoOpen from './modalInfoOpen'
+import ModalComment from './modalComment'
+import store from '@/mobx/store'
+
+import txtProfileKo from '@/lang/user/profile/txtProfile-ko'
+import txtProfileJp from '@/lang/user/profile/txtProfile-jp'
+import txtProfileEn from '@/lang/user/profile/txtProfile-en'
 
 interface Props {
-    lang: string,
     comment: string,
 
-    isCountOpen: boolean,
+    isInfoOpen: boolean,
     openUserInfo: string,
     updateOpenValue: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void,
     submitOpen: (id: string, open: string) => void,
-    setCountDlgClose: () => void,
+    setInfoDlgClose: () => void,
 
     isCommentOpen: boolean,
-    commentInput: React.RefObject<HTMLInputElement>,
-    submitComment: (id: string, comment: string) => void,
+    submitComment: () => void,
     closeComment: () => void,
+    setComment: (s: string) => void,
 
     isOwnAccount: boolean,
     profileData: ProfileData,
     id: string,
 
     setCommentDlgOpen: () => void,
-    countUpdate: () => void,
-    setCountDlgOpen: () => void,
+    infoUpdate: () => void,
+    setInfoDlgOpen: () => void,
 }
 
 const ProfilePresenter = (props: Props) => {
+    const lang = store.language.lang
+
+    const txtProfile =
+        lang === 'ko' ? txtProfileKo :
+            lang === 'jp' ? txtProfileJp : txtProfileEn
+
     return (
         <>  
             <Container>
                 <ItemRow setVertical={true}>
                     <BodyHeader>
-                        <h3>{(txtProfile.profile as any)[props.lang]}</h3>
+                        <h3>{txtProfile.profile}</h3>
                     </BodyHeader>
                     <BodyContent
                         className="text-center"
@@ -49,7 +58,7 @@ const ProfilePresenter = (props: Props) => {
                             <ItemCol size={7} isFlatUnderLg={true}>
                                 <ItemRow>
                                     <ItemCol size={3}>
-                                        {(txtProfile.table1.prof as any)[props.lang]}<br/>
+                                        {txtProfile.table1.prof}<br/>
                                     </ItemCol>
                                     <ItemCol size={7}>
                                         <ItemRow>
@@ -71,13 +80,13 @@ const ProfilePresenter = (props: Props) => {
                                 </ItemRow>
                                 <ItemRow>
                                     <ItemCol size={3}>
-                                        {(txtProfile.table1.comment as any)[props.lang]}<br/>
+                                        {txtProfile.table1.comment}<br/>
                                         {
                                             (function() {
                                                 if(props.isOwnAccount) {
                                                     return (
                                                         <Button onClick={props.setCommentDlgOpen}>
-                                                            {(txtProfile.button.changecomment as any)[props.lang]}
+                                                            {txtProfile.button.changecomment}
                                                         </Button>
                                                     )
                                                 }
@@ -90,7 +99,7 @@ const ProfilePresenter = (props: Props) => {
                                 </ItemRow>
                                 <hr className="col-12"/>
                                 <ItemRow style={{justifyContent: 'center'}}>
-                                    {(txtProfile.click as any)[props.lang]}
+                                    {txtProfile.click}
                                 </ItemRow>
                                 <ItemRow keepDirHor={true}>
                                     <ItemCol size={5} isFlatUnderLg={false} className="text-center">GF</ItemCol>
@@ -222,7 +231,7 @@ const ProfilePresenter = (props: Props) => {
                 
                 <ItemRow id="targetTable" setVertical={true}>
                     <BodyHeader>
-                        <h3>{(txtProfile.detail as any)[props.lang]}</h3>
+                        <h3>{txtProfile.detail}</h3>
                     </BodyHeader>
                     <BodyContent>
                         <ItemRow>
@@ -234,22 +243,22 @@ const ProfilePresenter = (props: Props) => {
                                         <th>DrumMania</th>
                                     </tr>
                                     <tr>
-                                        <th>{(txtProfile.detailed.s as any)[props.lang]}</th>
+                                        <th>{txtProfile.detailed.s}</th>
                                         <td id="tableGskill">{`${props.profileData.gskill.toFixed(2)} (${props.profileData.gskillall})`}</td>
                                         <td id="tableDskill">{`${props.profileData.dskill.toFixed(2)} (${props.profileData.dskillall})`}</td>
                                     </tr>
                                     <tr>
-                                        <th>{(txtProfile.detailed.clv as any)[props.lang]}</th>
+                                        <th>{txtProfile.detailed.clv}</th>
                                         <td id="tableGclear">{`${props.profileData.gclearlv.toFixed(2)} (${props.profileData.gclearnum})`}</td>
                                         <td id="tableDclear">{`${props.profileData.dclearlv.toFixed(2)} (${props.profileData.dclearnum})`}</td>
                                     </tr>
                                     <tr>
-                                        <th>{(txtProfile.detailed.flv as any)[props.lang]}</th>
+                                        <th>{txtProfile.detailed.flv}</th>
                                         <td id="tableGfc">{`${props.profileData.gfclv.toFixed(2)} (${props.profileData.gfcnum})`}</td>
                                         <td id="tableDfc">{`${props.profileData.dfclv.toFixed(2)} (${props.profileData.dfcnum})`}</td>
                                     </tr>
                                     <tr>
-                                        <th>{(txtProfile.detailed.elv as any)[props.lang]}</th>
+                                        <th>{txtProfile.detailed.elv}</th>
                                         <td id="tableGexc">{`${props.profileData.gexclv.toFixed(2)} (${props.profileData.gexcnum})`}</td>
                                         <td id="tableDexc">{`${props.profileData.dexclv.toFixed(2)} (${props.profileData.dexcnum})`}</td>
                                     </tr>
@@ -258,7 +267,7 @@ const ProfilePresenter = (props: Props) => {
                                             if(props.openUserInfo === "N" && !props.isOwnAccount) {
                                                 return (
                                                     <tr>
-                                                        <th id="tableAcnt">{(txtProfile.detailed.count as any)[props.lang]}<br/>Closed</th>
+                                                        <th id="tableAcnt">{txtProfile.detailed.count}<br/>Closed</th>
                                                         <td id="tableGcnt">Closed</td>
                                                         <td id="tableDcnt">Closed</td>
                                                     </tr>
@@ -268,7 +277,7 @@ const ProfilePresenter = (props: Props) => {
                                                 return (
                                                     <tr>
                                                         <th id="tableAcnt">
-                                                            {(txtProfile.detailed.count as any)[props.lang]}<br/>
+                                                            {txtProfile.detailed.count}<br/>
                                                             {props.profileData.countgf + props.profileData.countdm}
                                                         </th>
                                                         <td id="tableGcnt">{props.profileData.countgf}</td>
@@ -286,11 +295,11 @@ const ProfilePresenter = (props: Props) => {
                                             if(props.isOwnAccount) {
                                                 return (
                                                     <>
-                                                        <Button onClick={props.countUpdate}>
-                                                            {(txtProfile.button.countupdate as any)[props.lang]}
+                                                        <Button onClick={props.infoUpdate}>
+                                                            {txtProfile.button.countupdate}
                                                         </Button>
-                                                        <Button onClick={props.setCountDlgOpen}>
-                                                            {(txtProfile.button.setdataopen as any)[props.lang]}
+                                                        <Button onClick={props.setInfoDlgOpen}>
+                                                            {txtProfile.button.setdataopen}
                                                         </Button>
                                                     </>
                                                 )
@@ -299,7 +308,7 @@ const ProfilePresenter = (props: Props) => {
                                     }
                                 </ItemRow>
                                 <span className="prof-table" dangerouslySetInnerHTML={{
-                                    __html:(txtProfile.detailed.countdesc as any)[props.lang]
+                                    __html: txtProfile.detailed.countdesc
                                 }}>
                                 </span><br/>
                                 <ItemRow id="reset">
@@ -309,7 +318,7 @@ const ProfilePresenter = (props: Props) => {
                                                 return (
                                                     <Link to={"/reset"}>
                                                         <Button type="submit">
-                                                            {(txtProfile.button.reset as any)[props.lang]}
+                                                            {txtProfile.button.reset}
                                                         </Button>
                                                     </Link>
                                                 )
@@ -330,21 +339,19 @@ const ProfilePresenter = (props: Props) => {
             </Container>
 
             <ModalInfoOpen
-                lang={props.lang}
-                isCountOpen={props.isCountOpen}
+                isCountOpen={props.isInfoOpen}
                 opencount={props.openUserInfo}
                 id={props.id}
                 updateOpenValue={props.updateOpenValue}
                 submitOpen={props.submitOpen}
-                setCountDlgClose={props.setCountDlgClose} />
+                setCountDlgClose={props.setInfoDlgClose} />
             
             <ModalComment
-                lang={props.lang}
                 isCommentOpen={props.isCommentOpen}
-                commentInput={props.commentInput}
                 id={props.id}
                 submitComment={props.submitComment}
-                closeComment={props.closeComment} />
+                closeComment={props.closeComment}
+                setComment={props.setComment} />
         </>
     )
 }

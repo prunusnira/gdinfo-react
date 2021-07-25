@@ -3,12 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.css';
 import './component/css/overall-b.css';
-import GDRoot from './component/GDRoot';
 import * as serviceWorker from './serviceWorker';
+import App from './component/App';
 
 ReactDOM.render(
     <React.StrictMode>
-        <GDRoot />
+        <App />
     </React.StrictMode>,
     document.getElementById('root')
 );

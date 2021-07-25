@@ -1,20 +1,27 @@
 import React from 'react'
 import TowerFloorItem from './towerFloorItem'
-import txtTower from '../txttower'
 import { TowerStatData } from './towerStatData'
-import { Button, ItemCol, ItemRow } from '../../../styled/styledCommon'
+import { Button, ItemCol, ItemRow } from '@/styled/styledCommon'
 import TitleType from './data/titleType'
+
+import txtTowerKo from '@/lang/tower/txtTower-ko'
+import txtTowerJp from '@/lang/tower/txtTower-jp'
+import txtTowerEn from '@/lang/tower/txtTower-en'
+import store from '@/mobx/store'
 
 interface Props {
     list: Array<TowerStatData>,
     id: string,
-    lang: string,
-
     setTitleToBeChanged: (t: TitleType) => void,
     setTitleChangeModal: (b: boolean) => void,
 }
 
 const TowerStatList = (props: Props) => {
+	const lang = store.language.lang
+    const txtTower =
+        lang === 'ko' ? txtTowerKo :
+            lang === 'jp' ? txtTowerJp : txtTowerEn
+
 	const divopen = (i: string) => {
 		const div = document.getElementById(i+"c");
 
@@ -61,7 +68,7 @@ const TowerStatList = (props: Props) => {
                                                     props.setTitleToBeChanged(tl.titlechange)
                                                     props.setTitleChangeModal(true)
                                                 }}>
-                                                    {(txtTower.detail.btntitlechange as any)[props.lang]}
+                                                    {txtTower.detail.btntitlechange}
                                                 </Button>
                                             )
                                         }
@@ -79,9 +86,7 @@ const TowerStatList = (props: Props) => {
                                 </span>
                             </ItemRow>
                             <TowerFloorItem
-                                lang={props.lang}
                                 list={tl.floorlist}
-
                                 setTitleChangeModal={props.setTitleChangeModal}
                                 setTitleToBeChanged={props.setTitleToBeChanged} />
                         </ItemRow>

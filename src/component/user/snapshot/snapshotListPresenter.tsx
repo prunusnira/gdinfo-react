@@ -1,18 +1,24 @@
 import React from 'react'
-import SnapshotItem from './snapshotItem';
-import txtSnapshot from './txtsnapshot';
-import { BodyContent, BodyHeader, Container, ItemCol, ItemRow } from '../../../styled/styledCommon';
+import SnapshotItem from './snapshotItem'
+import { BodyContent, BodyHeader, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
+import store from '@/mobx/store'
+
+import txtSnapshotKo from '@/lang/user/snapshot/txtSnapshot-ko'
+import txtSnapshotJp from '@/lang/user/snapshot/txtSnapshot-jp'
+import txtSnapshotEn from '@/lang/user/snapshot/txtSnapshot-en'
 
 interface Props {
-    lang: string,
-    gempty: boolean,
-    dempty: boolean,
     id: string,
     glist: Array<string>,
     dlist: Array<string>,
 }
 
 const SnapshotListPresenter = (props: Props) => {
+    const lang = store.language.lang
+    const txtSnapshot =
+        lang === 'ko' ? txtSnapshotKo :
+            lang === 'jp' ? txtSnapshotJp : txtSnapshotEn
+
     return (
         <Container>
             <ItemRow setVertical={true}>
@@ -21,9 +27,9 @@ const SnapshotListPresenter = (props: Props) => {
                 </BodyHeader>
                 <BodyContent id="snaplist">
                     <ItemRow setVertical={true}>
-                        {(txtSnapshot.desc1 as any)[props.lang]}<br/>
-                        <b style={{color:"coral"}}>{(txtSnapshot.desc2 as any)[props.lang]}</b><br/>
-                        {(txtSnapshot.desc3 as any)[props.lang]}<br/><br/>
+                        {txtSnapshot.desc1}<br/>
+                        <b style={{color:"coral"}}>{txtSnapshot.desc2}</b><br/>
+                        {txtSnapshot.desc3}<br/><br/>
                     </ItemRow>
                     <ItemRow>
                         <ItemCol size={5} isFlatUnderLg={true}>
@@ -33,7 +39,7 @@ const SnapshotListPresenter = (props: Props) => {
                             <BodyContent>
                                 {
                                     (function() {
-                                        if(props.gempty) {
+                                        if(props.glist.length === 0) {
                                             return (<h3>LIST IS EMPTY</h3>)
                                         }
                                         else {
@@ -50,7 +56,7 @@ const SnapshotListPresenter = (props: Props) => {
                             <BodyContent>
                                 {
                                     (function() {
-                                        if(props.dempty) {
+                                        if(props.dlist.length === 0) {
                                             return (<h3>LIST IS EMPTY</h3>)
                                         }
                                         else {
