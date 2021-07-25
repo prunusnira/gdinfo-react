@@ -1,8 +1,8 @@
 import React from 'react'
 import {Link} from 'react-router-dom';
-import { BodyContent, BodyHeader, Container, ItemRow } from '../../../styled/styledCommon';
+import { BodyContent, BodyHeader, Container, ItemRow } from '@/styled/styledCommon';
 import MusicItem from './musicItem';
-import CommonData from '../../common/commonData';
+import CommonData from '@/component/common/commonData';
 import MusicDataType from './musicData';
 
 interface Props {

@@ -1,18 +1,18 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import SingleSkillColorChanger from '../common/skillcolor'
+import SingleSkillColorChanger from '@/component/common/skillcolor'
 
 import RecentData from './recentData'
 import { observer } from 'mobx-react'
-import store from '../../mobx/store'
-import { ItemCol, ItemRow } from '../../styled/styledCommon'
+import store from '@/mobx/store'
+import { ItemCol, ItemRow } from '@/styled/styledCommon'
 
-import txtProfileKo from '../../lang/user/profile/txtProfile-ko'
-import txtProfileJp from '../../lang/user/profile/txtProfile-jp'
-import txtProfileEn from '../../lang/user/profile/txtProfile-en'
-import TxtCommonKo from '../../lang/common/txtCommon-ko'
-import TxtCommonJp from '../../lang/common/txtCommon-jp'
-import TxtCommonEn from '../../lang/common/txtCommon-en'
+import txtProfileKo from '@/lang/user/profile/txtProfile-ko'
+import txtProfileJp from '@/lang/user/profile/txtProfile-jp'
+import txtProfileEn from '@/lang/user/profile/txtProfile-en'
+import TxtCommonKo from '@/lang/common/txtCommon-ko'
+import TxtCommonJp from '@/lang/common/txtCommon-jp'
+import TxtCommonEn from '@/lang/common/txtCommon-en'
 
 interface Props {
     isMain: boolean,

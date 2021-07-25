@@ -1,6 +1,6 @@
 import React, { useState } from "react"
-import { HeaderNav } from "../../styled/styledHeader"
-import { Header } from "../../styled/styledOverall"
+import { HeaderNav } from "@/styled/styledHeader"
+import { Header } from "@/styled/styledOverall"
 import HeaderNavBar from "./navbar/headernav"
 import SearchBarComp from "./searchBar/searchBar"
 import SearchTypeModal from "./searchModal/searchTypeModal"

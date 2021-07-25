@@ -1,17 +1,17 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
-import store from '../../../mobx/store'
+import store from '@/mobx/store'
 import { observer } from 'mobx-react'
 import NewUserPresenter from './newuserPresenter'
-import Error500 from '../../error/500'
-import useUserInfo from '../login/useUserInfo'
+import Error500 from '@/component/error/500'
+import useUserInfo from '@/component/user/login/useUserInfo'
 import useUserCheck from './useUserCheck'
 import useUserAdd from './useUserAdd'
 import useUserDrop from './useUserDrop'
 
-import txtNewuserKo from '../../../lang/user/newuser/txtNewUser-ko'
-import txtNewuserJp from '../../../lang/user/newuser/txtNewUser-jp'
-import txtNewuserEn from '../../../lang/user/newuser/txtNewUser-en'
+import txtNewuserKo from '@/lang/user/newuser/txtNewUser-ko'
+import txtNewuserJp from '@/lang/user/newuser/txtNewUser-jp'
+import txtNewuserEn from '@/lang/user/newuser/txtNewUser-en'
 
 const NewUser = observer(() => {
     const [newUser, token, updateUserInfo] = useUserInfo()

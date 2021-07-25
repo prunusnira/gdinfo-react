@@ -1,6 +1,6 @@
 import React from 'react'
-import { BodyContent, BodyHeader, ItemRow } from '../../../styled/styledCommon'
-import Pager from '../../common/pager'
+import { BodyContent, BodyHeader, ItemRow } from '@/styled/styledCommon'
+import Pager from '@/component/common/pager'
 import NpItem from './npItem'
 import {Redirect} from 'react-router-dom'
 import NPData from './NPData'

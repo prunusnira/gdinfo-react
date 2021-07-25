@@ -19,9 +19,16 @@
     "noEmit": true,
     "jsx": "react",
     "sourceMap": false,
+    "noFallthroughCasesInSwitch": true
   },
   "include": [
     "src",
-    "./jest-setup.ts"
-  ]
+    "./jest-setup.ts",
+    "./craco.config.js"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/node_modules/*"
+  ],
+  "extends": "./tsconfig.paths.json"
 }

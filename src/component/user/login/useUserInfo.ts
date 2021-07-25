@@ -1,6 +1,6 @@
 import { useState } from "react"
-import store from "../../../mobx/store"
-import LoginInfo from "../../common/loginInfo"
+import store from "@/mobx/store"
+import LoginInfo from "../loginInfo"
 
 type UserInfoReturn = [
     boolean, string,

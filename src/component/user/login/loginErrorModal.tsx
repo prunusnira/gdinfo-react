@@ -1,11 +1,11 @@
 import React from "react"
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap"
-import { Button, ItemRow } from "../../../styled/styledCommon"
-import store from "../../../mobx/store"
+import { Button, ItemRow } from "@/styled/styledCommon"
+import store from "@/mobx/store"
 
-import txtLoginKo from '../../../lang/user/login/txtLogin-ko'
-import txtLoginJp from '../../../lang/user/login/txtLogin-jp'
-import txtLoginEn from '../../../lang/user/login/txtLogin-en'
+import txtLoginKo from '@/lang/user/login/txtLogin-ko'
+import txtLoginJp from '@/lang/user/login/txtLogin-jp'
+import txtLoginEn from '@/lang/user/login/txtLogin-en'
 
 interface Props {
     errorMsg: string,

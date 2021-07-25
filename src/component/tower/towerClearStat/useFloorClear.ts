@@ -1,8 +1,7 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import { titlesp } from "../../../lang/tower/titletxt"
-import store from "../../../mobx/store"
-import CommonData from "../../common/commonData"
+import { getFloorClearStatus } from "@/api/getTowerData"
+import { titlesp } from "@/lang/tower/titletxt"
+import store from "@/mobx/store"
 import { FloorClearData } from "./towerClearData"
 
 const useFloorClear = (id: string) => {
@@ -15,9 +14,8 @@ const useFloorClear = (id: string) => {
     const lang = store.language.lang
 
     const loadFloorClearData = () => {
-        axios.post(`${CommonData.dataUrl}profile/towerstatus/floor/${id}`)
-        .then((res) => {
-            const json = res.data;
+        getFloorClearStatus(id)
+        .then((json) => {
             const floor = JSON.parse(json.floor);
             const titlelist = [];
 

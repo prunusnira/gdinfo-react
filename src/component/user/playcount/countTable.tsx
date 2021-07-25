@@ -1,15 +1,12 @@
-import React from 'react';
-import {
-    Row,
-    Col
-} from 'reactstrap';
-import PlaycountData from './playcountData';
-import store from '../../../mobx/store';
-import { observer } from 'mobx-react';
+import React from 'react'
+import { Row, Col } from 'reactstrap'
+import PlaycountData from './playcountData'
+import store from '@/mobx/store'
+import { observer } from 'mobx-react'
 
-import txtPlayCountKo from '../../../lang/user/playcount/txtPlayCount-ko'
-import txtPlayCountJp from '../../../lang/user/playcount/txtPlayCount-jp'
-import txtPlayCountEn from '../../../lang/user/playcount/txtPlayCount-en'
+import txtPlayCountKo from '@/lang/user/playcount/txtPlayCount-ko'
+import txtPlayCountJp from '@/lang/user/playcount/txtPlayCount-jp'
+import txtPlayCountEn from '@/lang/user/playcount/txtPlayCount-en'
 
 interface Props {
     data: Array<PlaycountData>

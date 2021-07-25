@@ -1,9 +1,9 @@
-import React from 'react';
-import {useParams} from 'react-router-dom';
-import MusicPresenter from './musicPresenter';
-import useUserData from '../../common/useUserData';
-import useMusicInfo from './useMusicInfo';
-import usePatternInfo from './usePatternInfo';
+import React from 'react'
+import {useParams} from 'react-router-dom'
+import MusicPresenter from './musicPresenter'
+import useUserData from '@/component/common/useUserData'
+import useMusicInfo from './useMusicInfo'
+import usePatternInfo from './usePatternInfo'
 
 interface MatchProps {
     userid: string,

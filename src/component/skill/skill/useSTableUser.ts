@@ -1,8 +1,7 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import store from "../../../mobx/store"
-import CommonData from "../../common/commonData"
-import ProfileData from "../../user/profile/profileData"
+import { getUserFromId } from "@/api/getUserData"
+import store from "@/mobx/store"
+import ProfileData from "@/component/user/profile/profileData"
 
 type UserReturn = [ProfileData, boolean]
 
@@ -28,9 +27,9 @@ const useSTableUser = (userid: string, ptype: string): UserReturn => {
         }
         else {
             // 서버에서 사용자 정보를 가져옴
-            axios.post(`${CommonData.dataUrl}getuserid/${userid}`)
-            .then((res) => {
-                const json = JSON.parse(res.data.mydata) as ProfileData
+            getUserFromId(userid)
+            .then((data) => {
+                const json = JSON.parse(data.mydata) as ProfileData
                 setUser(json)
             })
         }

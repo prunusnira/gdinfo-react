@@ -1,5 +1,5 @@
-import React from 'react';
-import CommonData from '../../common/commonData';
+import React from 'react'
+import CommonData from '@/component/common/commonData'
 
 interface Props {
     id: string,
@@ -25,4 +25,4 @@ const ProfileBoard = (props: Props) => {
     )
 }
 
-export default ProfileBoard;
+export default ProfileBoard

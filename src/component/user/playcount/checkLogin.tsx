@@ -1,7 +1,7 @@
-import { observer } from 'mobx-react';
-import React from 'react';
-import {Redirect} from 'react-router-dom';
-import store from '../../../mobx/store';
+import { observer } from 'mobx-react'
+import React from 'react'
+import {Redirect} from 'react-router-dom'
+import store from '@/mobx/store'
 
 const PlayCountLoginCheck = observer(() => {
     const {loginUser, loginStatus} = store

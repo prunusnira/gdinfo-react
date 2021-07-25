@@ -1,14 +1,14 @@
 import React from 'react'
 import {Redirect} from 'react-router-dom'
-import { BodyContent, BodyHeader, ItemRow } from '../../../styled/styledCommon'
-import Pager from '../../common/pager'
+import { BodyContent, BodyHeader, ItemRow } from '@/styled/styledCommon'
+import Pager from '@/component/common/pager'
 import PatternListItem from './ptListItem'
 import { PatternData } from './patternData'
-import store from '../../../mobx/store'
+import store from '@/mobx/store'
 
-import txtPatternKo from '../../../lang/pattern/pattern/txtPattern-ko'
-import txtPatternJp from '../../../lang/pattern/pattern/txtPattern-jp'
-import txtPatternEn from '../../../lang/pattern/pattern/txtPattern-en'
+import txtPatternKo from '@/lang/pattern/pattern/txtPattern-ko'
+import txtPatternJp from '@/lang/pattern/pattern/txtPattern-jp'
+import txtPatternEn from '@/lang/pattern/pattern/txtPattern-en'
 
 interface Props {
     switchHot: boolean,

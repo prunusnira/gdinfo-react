@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import { observer } from 'mobx-react'
 import PlayCountPresenter from './playcountPresenter'
-import useUserData from '../../common/useUserData'
+import useUserData from '@/component/common/useUserData'
 import usePlayCount from './usePlayCount'
 import useCountDivCtrl from './useCountDivCtrl'
 

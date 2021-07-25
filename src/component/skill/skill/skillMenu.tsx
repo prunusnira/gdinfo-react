@@ -1,11 +1,6 @@
-import React, {Fragment} from 'react';
-import {Link} from 'react-router-dom';
-
-import {
-    Row,
-    Col,
-    Button
-} from 'reactstrap';
+import React, {Fragment} from 'react'
+import {Link} from 'react-router-dom'
+import { Row, Col, Button } from 'reactstrap'
 
 interface Props {
     ptype: string,

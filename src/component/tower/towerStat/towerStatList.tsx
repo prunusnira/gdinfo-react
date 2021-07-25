@@ -1,13 +1,13 @@
 import React from 'react'
 import TowerFloorItem from './towerFloorItem'
 import { TowerStatData } from './towerStatData'
-import { Button, ItemCol, ItemRow } from '../../../styled/styledCommon'
+import { Button, ItemCol, ItemRow } from '@/styled/styledCommon'
 import TitleType from './data/titleType'
 
-import txtTowerKo from '../../../lang/tower/txtTower-ko'
-import txtTowerJp from '../../../lang/tower/txtTower-jp'
-import txtTowerEn from '../../../lang/tower/txtTower-en'
-import store from '../../../mobx/store'
+import txtTowerKo from '@/lang/tower/txtTower-ko'
+import txtTowerJp from '@/lang/tower/txtTower-jp'
+import txtTowerEn from '@/lang/tower/txtTower-en'
+import store from '@/mobx/store'
 
 interface Props {
     list: Array<TowerStatData>,

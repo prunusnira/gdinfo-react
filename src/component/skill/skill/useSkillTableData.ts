@@ -1,6 +1,5 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import CommonData from "../../common/commonData"
+import { getSkillTable } from "@/api/getSkillData"
 import MusicFetchData from "./skillItem/musicFetchData"
 import SkillItemData from "./skillItem/skillItemData"
 import { generateSkillItem, generateURL, getRate } from "./skillMethods"
@@ -30,9 +29,8 @@ const useSkillTableData = (
     }, [window.location.href])
     
     const setSkillTableData = () => {
-        axios.post(`${CommonData.dataUrl}${generateURL(order, ptype, userid, gtype, page)}`)
-        .then((res) => {
-            const json = res.data
+        getSkillTable(generateURL(order, ptype, userid, gtype, page))
+        .then((json) => {
             let sum1 = 0
             let sum2 = 0
             const skillList1: SkillItemData[] = []

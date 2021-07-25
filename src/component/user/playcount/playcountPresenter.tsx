@@ -1,13 +1,13 @@
 import React from 'react'
 import CountTable from './countTable'
-import scrShot from '../../common/scrshot'
-import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
+import scrShot from '@/component/common/scrshot'
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
 import PlaycountData from './playcountData'
+import store from '@/mobx/store'
 
-import txtPlayCountKo from '../../../lang/user/playcount/txtPlayCount-ko'
-import txtPlayCountJp from '../../../lang/user/playcount/txtPlayCount-jp'
-import txtPlayCountEn from '../../../lang/user/playcount/txtPlayCount-en'
-import store from '../../../mobx/store'
+import txtPlayCountKo from '@/lang/user/playcount/txtPlayCount-ko'
+import txtPlayCountJp from '@/lang/user/playcount/txtPlayCount-jp'
+import txtPlayCountEn from '@/lang/user/playcount/txtPlayCount-en'
 
 interface Props {
     userName: string,

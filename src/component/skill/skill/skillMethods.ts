@@ -1,7 +1,7 @@
-import CommonData from "../../common/commonData"
-import { getPatternImg300, getPatternImg600 } from "../../common/pattern"
-import { skillTableColor } from "../../common/skillcolor"
-import { GDVer } from "../../common/version"
+import CommonData from "@/component/common/commonData"
+import { getPatternImg300, getPatternImg600 } from "@/component/common/pattern"
+import { skillTableColor } from "@/component/common/skillcolor"
+import { GDVer } from "@/component/common/version"
 import MusicFetchData from "./skillItem/musicFetchData"
 import SkillItemData from "./skillItem/skillItemData"
 

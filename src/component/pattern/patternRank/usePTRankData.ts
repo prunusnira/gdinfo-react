@@ -1,13 +1,13 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import CommonData from "../../common/commonData"
-import { skillTableColor } from "../../common/skillcolor"
+import CommonData from "@/component/common/commonData"
+import { skillTableColor } from "@/component/common/skillcolor"
 import PTRankData from "./ptrankData"
-import store from "../../../mobx/store"
+import store from "@/mobx/store"
+import { getPatternRank } from "@/api/getMusicData"
 
-import TxtCommonKo from '../../../lang/common/txtCommon-ko'
-import TxtCommonJp from '../../../lang/common/txtCommon-jp'
-import TxtCommonEn from '../../../lang/common/txtCommon-en'
+import TxtCommonKo from '@/lang/common/txtCommon-ko'
+import TxtCommonJp from '@/lang/common/txtCommon-jp'
+import TxtCommonEn from '@/lang/common/txtCommon-en'
 
 type RankDataReturn = [Array<PTRankData>, number]
 
@@ -40,10 +40,9 @@ const usePTRankData = (
             lang === 'jp' ? TxtCommonJp : TxtCommonEn
 
     const loadRankData = () => {
-        axios.post(`${CommonData.dataUrl}ptrank/${mid}/${ptcode}/${page}/${urlparams.get('ver') === null ? CommonData.currentVersion : urlparams.get('ver')}`)
-        .then((res) => {
-            const json = res.data;
-
+        const verparam = urlparams.get('ver') === null ? CommonData.currentVersion.toString() : urlparams.get('ver')!!
+        getPatternRank(mid, ptcode, page, verparam)
+        .then((json) => {
             const music = JSON.parse(json.music)
             const list = JSON.parse(json.list)
             const users = JSON.parse(json.users)
@@ -70,7 +69,19 @@ const usePTRankData = (
             for(let i = 0; i < list.length; i++) {
                 const cur = list[i]
                 const user = users[i]
-                const obj = new PTRankData()
+                const obj: PTRankData = {
+                    rate: 0,
+                    skill: '',
+                    ratecolor: {},
+                    skillcolor: {},
+                    index: 0,
+                    towertitle: '',
+                    profile: '',
+                    name: '',
+                    rank: '',
+                    fc: false,
+                    exc: false,
+                }
 
                 const rate = cur.rate
                 obj.rate = rate/100

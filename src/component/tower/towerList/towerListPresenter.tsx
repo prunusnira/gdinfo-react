@@ -2,12 +2,12 @@ import React from 'react'
 import {Link} from 'react-router-dom'
 import TowerListImg from './toweritem'
 import TowerListData from './towerlistData'
-import store from '../../../mobx/store'
-import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
+import store from '@/mobx/store'
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
 
-import txtTowerKo from '../../../lang/tower/txtTower-ko'
-import txtTowerJp from '../../../lang/tower/txtTower-jp'
-import txtTowerEn from '../../../lang/tower/txtTower-en'
+import txtTowerKo from '@/lang/tower/txtTower-ko'
+import txtTowerJp from '@/lang/tower/txtTower-jp'
+import txtTowerEn from '@/lang/tower/txtTower-en'
 
 interface Props {
     towerGF: Array<TowerListData>,

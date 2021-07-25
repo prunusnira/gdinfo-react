@@ -1,5 +1,5 @@
 import React from 'react'
-import {getByText, render, RenderResult, waitFor} from '@testing-library/react'
+import {render, RenderResult} from '@testing-library/react'
 import { MemoryRouter, Route } from 'react-router-dom'
 import "@testing-library/jest-dom/extend-expect"
 import ClearTable from './clearTable'

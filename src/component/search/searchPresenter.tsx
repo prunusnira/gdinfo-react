@@ -1,15 +1,15 @@
 import React from "react"
-import store from "../../mobx/store"
-import { BodyContent, BodyHeader, Container, ItemRow } from "../../styled/styledCommon"
-import RecentTableDiv from "../recent/recentTableDiv"
-import RecentData from "../recent/recentData"
-import { PatternData } from "../pattern/patternList/patternData"
-import PatternListItem from '../pattern/patternList/ptListItem'
-import Pager from "../common/pager"
+import store from "@/mobx/store"
+import { BodyContent, BodyHeader, Container, ItemRow } from "@/styled/styledCommon"
+import RecentTableDiv from "@/component/recent/recentTableDiv"
+import RecentData from "@/component/recent/recentData"
+import { PatternData } from "@/component/pattern/patternList/patternData"
+import PatternListItem from '@/component/pattern/patternList/ptListItem'
+import Pager from "@/component/common/pager"
 
-import txtSearchKo from '../../lang/search/txtSearch-ko'
-import txtSearchJp from '../../lang/search/txtSearch-jp'
-import txtSearchEn from '../../lang/search/txtSearch-en'
+import txtSearchKo from '@/lang/search/txtSearch-ko'
+import txtSearchJp from '@/lang/search/txtSearch-jp'
+import txtSearchEn from '@/lang/search/txtSearch-en'
 
 type SearchProps = {
     userlist: Array<RecentData>,

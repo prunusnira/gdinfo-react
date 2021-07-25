@@ -1,19 +1,19 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from "../../../../styled/styledCommon"
-import Pager from "../../../common/pager"
-import ProfileData from "../../../user/profile/profileData"
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from "@/styled/styledCommon"
+import Pager from "@/component/common/pager"
+import ProfileData from "@/component/user/profile/profileData"
 import SkillItemData from "../skillItem/skillItemData"
 import SkillMenu from "../skillMenu"
 import SkillTableNR from "./skillTableNR"
 import SkillTableSH from "./skillTableSH"
-import * as Time from '../../../common/time'
+import * as Time from '@/component/common/time'
 import { Row } from "reactstrap"
-import { skillPageVersion } from '../../../common/version'
+import { skillPageVersion } from '@/component/common/version'
 
-import txtSkillKo from "../../../../lang/skill/skill/txtSkill-ko"
-import txtSkillJp from "../../../../lang/skill/skill/txtSkill-jp"
-import txtSkillEn from "../../../../lang/skill/skill/txtSkill-en"
+import txtSkillKo from "@/lang/skill/skill/txtSkill-ko"
+import txtSkillJp from "@/lang/skill/skill/txtSkill-jp"
+import txtSkillEn from "@/lang/skill/skill/txtSkill-en"
 
 interface Props {
     // share table

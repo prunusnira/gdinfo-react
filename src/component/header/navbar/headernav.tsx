@@ -3,16 +3,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import React from "react"
 import { GoogleLogout } from "react-google-login"
 import { Link } from "react-router-dom"
-import store from "../../../mobx/store"
-import { ItemRow } from "../../../styled/styledCommon"
-import { ImageIcon, ImageTitle, NavBar, NavItemX, NavMenu, NavTitle, NavToggle } from "../../../styled/styledHeader"
+import store from "@/mobx/store"
+import { ItemRow } from "@/styled/styledCommon"
+import { ImageIcon, ImageTitle, NavBar, NavItemX, NavMenu, NavTitle, NavToggle } from "@/styled/styledHeader"
 import NavSubItemWrapper from "./navSubWrapper"
 import '../header.css'
 
-import HeaderNavDataKo from '../../../lang/header/headerNavData-ko'
-import HeaderNavDataJp from '../../../lang/header/headerNavData-jp'
-import HeaderNavDataEn from '../../../lang/header/headerNavData-en'
-import CommonData from "../../common/commonData"
+import HeaderNavDataKo from '@/lang/header/headerNavData-ko'
+import HeaderNavDataJp from '@/lang/header/headerNavData-jp'
+import HeaderNavDataEn from '@/lang/header/headerNavData-en'
+import CommonData from "@/component/common/commonData"
 import { observer } from "mobx-react"
 
 type HeaderNavProps = {

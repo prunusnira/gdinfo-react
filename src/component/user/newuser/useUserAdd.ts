@@ -1,7 +1,6 @@
-import axios from "axios"
-import store from "../../../mobx/store"
-import CommonData from "../../common/commonData"
-import LoginInfo from "../../common/loginInfo"
+import { apiNewUser } from "@/api/updateUserData"
+import store from "@/mobx/store"
+import LoginInfo from "../loginInfo"
 
 const useUserAdd = (
     updateUserInfo: (info: LoginInfo, isSignIn: boolean, isNewUser: boolean) => void,
@@ -12,9 +11,9 @@ const useUserAdd = (
     const addNewUser = () => {
         const params = new URLSearchParams()
         params.append("token", loginUser.user.token)
-        axios.post(`${CommonData.dataUrl}newuser`, params)
-        .then((res) => {
-            const json = JSON.parse(res.data.loginData)
+        apiNewUser(params)
+        .then((data) => {
+            const json = JSON.parse(data.loginData)
             switch(json.stat) {
                 case "login":
                     const loginData: LoginInfo = {

@@ -1,6 +1,5 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import CommonData from "./commonData"
+import { getUserFromId } from "@/api/getUserData"
 
 const useUserData = (userid: string) => {
     const [userName, setUserName] = useState('')
@@ -12,9 +11,9 @@ const useUserData = (userid: string) => {
     })
     
     const loadUserData = () => {
-        axios.post(`${CommonData.dataUrl}getuserid/${userid}`)
-        .then((res) => {
-            const json = JSON.parse(res.data.mydata)
+        getUserFromId(userid)
+        .then((data) => {
+            const json = JSON.parse(data.mydata)
             setUserName(json.name)
             setProfLink(`/profile/${userid}`)
             setTitleTower(json.titletower)

@@ -1,6 +1,6 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { NavSubItem, NavSubOuter } from "../../../styled/styledHeader"
+import { NavSubItem, NavSubOuter } from "@/styled/styledHeader"
 
 type NavSubItemType = {
     title: string,

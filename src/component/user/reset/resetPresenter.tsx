@@ -1,20 +1,21 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
+import store from '@/mobx/store'
 
-import txtResetKo from '../../../lang/user/reset/txtReset-ko'
-import txtResetJp from '../../../lang/user/reset/txtReset-jp'
-import txtResetEn from '../../../lang/user/reset/txtReset-en'
+import txtResetKo from '@/lang/user/reset/txtReset-ko'
+import txtResetJp from '@/lang/user/reset/txtReset-jp'
+import txtResetEn from '@/lang/user/reset/txtReset-en'
 
 interface Props {
-    lang: string,
     resetData: () => void
 }
 
 const ResetPresenter = (props: Props) => {
+    const lang = store.language.lang
     const txtReset =
-        props.lang === 'ko' ? txtResetKo :
-            props.lang === 'jp' ? txtResetJp : txtResetEn
+        lang === 'ko' ? txtResetKo :
+            lang === 'jp' ? txtResetJp : txtResetEn
 
     return (
         <Container>

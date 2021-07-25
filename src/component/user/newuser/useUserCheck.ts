@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import store from "../../../mobx/store"
-import CommonData from "../../common/commonData"
+import store from "@/mobx/store"
+import CommonData from "@/component/common/commonData"
 
 type CheckReturn = [boolean, boolean, (b: boolean) => void]
 

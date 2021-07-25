@@ -1,7 +1,6 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import CommonData from "../../common/commonData"
-import { GDVer } from "../../common/version"
+import { getMusicData } from "@/api/getMusicData"
+import { GDVer } from "@/component/common/version"
 
 const useMusicInfo = (mid: string) => {
     const [musicName, setMusicName] = useState('')
@@ -13,9 +12,9 @@ const useMusicInfo = (mid: string) => {
     }, [])
 
     const loadMusicInfo = () => {
-        axios.post(`${CommonData.dataUrl}getmusic/${mid}`)
-        .then((res) => {
-            const json = JSON.parse(res.data.music)
+        getMusicData(mid)
+        .then((data) => {
+            const json = JSON.parse(data.music)
             setMusicName(json.name)
             setComposer(json.composer)
             setVersion(GDVer[json.version - 1].full)

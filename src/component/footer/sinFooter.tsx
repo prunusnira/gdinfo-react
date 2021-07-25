@@ -1,15 +1,15 @@
 import React from 'react';
-
-import store from '../../mobx/store';
-import { Footer } from '../../styled/styledOverall';
-import { FooterOuter } from '../../styled/styledFooter';
-import { ItemCol, ItemRow } from '../../styled/styledCommon';
-
-import txtFooterKo from '../../lang/footer/txtfooter-ko';
-import txtFooterJp from '../../lang/footer/txtfooter-jp';
-import txtFooterEn from '../../lang/footer/txtfooter-en';
-import { ImageTitle } from '../../styled/styledHeader';
 import { observer } from 'mobx-react';
+
+import store from '@/mobx/store';
+import { Footer } from '@/styled/styledOverall';
+import { FooterOuter } from '@/styled/styledFooter';
+import { ItemCol, ItemRow } from '@/styled/styledCommon';
+
+import txtFooterKo from '@/lang/footer/txtfooter-ko';
+import txtFooterJp from '@/lang/footer/txtfooter-jp';
+import txtFooterEn from '@/lang/footer/txtfooter-en';
+import { ImageTitle } from '@/styled/styledHeader';
 
 const SinFooter = observer(() =>{
     const lang = store.language.lang

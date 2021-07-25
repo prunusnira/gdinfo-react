@@ -1,12 +1,12 @@
 import React from 'react'
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
-import { Button, Icon, ItemRow } from '../../../../styled/styledCommon'
+import { Button, Icon, ItemRow } from '@/styled/styledCommon'
 import TitleType from '../data/titleType'
 
-import TxtTitleChangeModalKo from '../../../../lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-ko'
-import TxtTitleChangeModalJp from '../../../../lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-jp'
-import TxtTitleChangeModalEn from '../../../../lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-en'
-import store from '../../../../mobx/store'
+import TxtTitleChangeModalKo from '@/lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-ko'
+import TxtTitleChangeModalJp from '@/lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-jp'
+import TxtTitleChangeModalEn from '@/lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-en'
+import store from '@/mobx/store'
 
 interface Props {
     showTitleChangeModal: boolean,

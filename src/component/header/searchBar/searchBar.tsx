@@ -1,11 +1,11 @@
 import React from "react"
-import { ButtonSM } from "../../../styled/styledCommon"
-import { SearchBar, SearchBarSection } from "../../../styled/styledHeader"
-import store from "../../../mobx/store"
+import { ButtonSM } from "@/styled/styledCommon"
+import { SearchBar, SearchBarSection } from "@/styled/styledHeader"
+import store from "@/mobx/store"
 
-import HeaderNavDataKo from '../../../lang/header/headerNavData-ko'
-import HeaderNavDataJp from '../../../lang/header/headerNavData-jp'
-import HeaderNavDataEn from '../../../lang/header/headerNavData-en'
+import HeaderNavDataKo from '@/lang/header/headerNavData-ko'
+import HeaderNavDataJp from '@/lang/header/headerNavData-jp'
+import HeaderNavDataEn from '@/lang/header/headerNavData-en'
 
 type SearchBarProps = {
     searchType: string,

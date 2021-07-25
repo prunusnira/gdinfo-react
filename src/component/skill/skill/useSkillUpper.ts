@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react"
-import store from "../../../mobx/store"
-import * as time from '../../common/time'
-import ProfileData from "../../user/profile/profileData"
+import store from "@/mobx/store"
+import * as time from '@/component/common/time'
+import ProfileData from "@/component/user/profile/profileData"
 
-import txtSkillKo from "../../../lang/skill/skill/txtSkill-ko"
-import txtSkillJp from "../../../lang/skill/skill/txtSkill-jp"
-import txtSkillEn from "../../../lang/skill/skill/txtSkill-en"
+import txtSkillKo from "@/lang/skill/skill/txtSkill-ko"
+import txtSkillJp from "@/lang/skill/skill/txtSkill-jp"
+import txtSkillEn from "@/lang/skill/skill/txtSkill-en"
 
 const useSkillTableUpper = (
     user: ProfileData,

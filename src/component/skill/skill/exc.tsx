@@ -1,5 +1,5 @@
-import React from 'react';
-import {Redirect, useParams} from 'react-router-dom';
+import React from 'react'
+import {Redirect, useParams} from 'react-router-dom'
 
 interface MatchProps {
     gtype: string

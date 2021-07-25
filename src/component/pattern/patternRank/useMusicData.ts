@@ -1,7 +1,6 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import CommonData from "../../common/commonData";
-import { getPatternImg600 } from "../../common/pattern";
+import { useEffect, useState } from "react"
+import { getMusicData } from "@/api/getMusicData"
+import { getPatternImg600 } from "@/component/common/pattern"
 
 type MusicDataReturn = [string, string, string, string]
 
@@ -65,9 +64,8 @@ const useMusicData = (
     }
 
     const loadMusicData = () => {
-        axios.post(`${CommonData.dataUrl}getmusic/${mid}`)
-        .then((res) => {
-            const json = res.data
+        getMusicData(mid)
+        .then((json) => {
             const music = JSON.parse(json.music)
 
             const pattern = getPatternImg600(parseInt(ptcode))

@@ -1,9 +1,6 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-
-import {
-    Button
-} from 'reactstrap';
+import React from 'react'
+import {Link} from 'react-router-dom'
+import { Button, ItemRow } from '@/styled/styledCommon';
 
 interface Props {
     cpage: number,
@@ -33,9 +30,9 @@ const Pager = (props: Props) => {
                     {
                         list.map((v, i) => {
                             return (
-                                <Button tag={Link} to={urla+(v+1)+urlb}>
-                                    {v+1}
-                                </Button>
+                                <Link to={`${urla}${v+1}${urlb}`}>
+                                    <Button>{v+1}</Button>
+                                </Link>
                             )
                         })
                     }
@@ -51,17 +48,17 @@ const Pager = (props: Props) => {
                         {
                             list.map((v, i) => {
                                 return (
-                                    <Button tag={Link} to={urla+(v+1)+urlb}>
-                                        {v+1}
-                                    </Button>
+                                    <Link to={`${urla}${v+1}${urlb}`}>
+                                        <Button>{v+1}</Button>
+                                    </Link>
                                 )
                             })
                         }
     
                         <span>......</span>
-                        <Button tag={Link} to={urla+end+urlb}>
-                            {end}
-                        </Button>
+                        <Link to={`${urla}${end}${urlb}`}>
+                            <Button>{end}</Button>
+                        </Link>
                     </>
                 )
             }
@@ -74,16 +71,16 @@ const Pager = (props: Props) => {
                 }
                 return (
                     <>
-                        <Button tag={Link} to={urla+1+urlb}>
-                            1
-                        </Button>
+                        <Link to={`${urla}1${urlb}`}>
+                            <Button>1</Button>
+                        </Link>
                         <span>......</span>
                         {
                             list.map(v => {
                                 return (
-                                    <Button tag={Link} to={urla+(v+1)+urlb}>
-                                        {v+1}
-                                    </Button>
+                                    <Link to={`${urla}${v+1}${urlb}`}>
+                                        <Button>{v+1}</Button>
+                                    </Link>
                                 )
                             })
                         }
@@ -99,23 +96,23 @@ const Pager = (props: Props) => {
                 }
                 return (
                     <>
-                        <Button tag={Link} to={urla+1+urlb}>
-                            1
-                        </Button>
+                        <Link to={`${urla}1${urlb}`}>
+                            <Button>1</Button>
+                        </Link>
                         <span>...</span>
                         {       
                             list.map((v, i) => {
                                 return (
-                                    <Button tag={Link} to={urla+(v+1)+urlb}>
-                                        {v+1}
-                                    </Button>
+                                    <Link to={`${urla}${v+1}${urlb}`}>
+                                        <Button>{v+1}</Button>
+                                    </Link>
                                 )
                             })
                         }
                         <span>...</span>
-                        <Button tag={Link} to={urla+end+urlb}>
-                            {end}
-                        </Button>
+                        <Link to={`${urla}${end}${urlb}`}>
+                            <Button>{end}</Button>
+                        </Link>
                     </>
                 )
             }
@@ -123,13 +120,13 @@ const Pager = (props: Props) => {
     }
 
     return (
-        <>
+        <ItemRow keepDirHor={true}>
             {
                 (function() {
                     return createPager(props.cpage, props.allpage, props.baseUrl, props.afterUrl)
                 })()
             }
-        </>
+        </ItemRow>
     )
 }
 

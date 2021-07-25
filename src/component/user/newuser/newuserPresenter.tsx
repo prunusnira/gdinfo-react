@@ -1,10 +1,10 @@
 import React from 'react'
-import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
-import store from '../../../mobx/store'
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
+import store from '@/mobx/store'
 
-import txtNewuserKo from '../../../lang/user/newuser/txtNewUser-ko'
-import txtNewuserJp from '../../../lang/user/newuser/txtNewUser-jp'
-import txtNewuserEn from '../../../lang/user/newuser/txtNewUser-en'
+import txtNewuserKo from '@/lang/user/newuser/txtNewUser-ko'
+import txtNewuserJp from '@/lang/user/newuser/txtNewUser-jp'
+import txtNewuserEn from '@/lang/user/newuser/txtNewUser-en'
 
 interface Props {
     addNewUser: () => void,

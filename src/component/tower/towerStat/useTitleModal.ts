@@ -1,13 +1,12 @@
-import axios from "axios"
 import { useState } from "react"
-import loginUser from "../../../mobx/loginUser"
-import CommonData from "../../common/commonData"
+import loginUser from "@/mobx/loginUser"
 import TitleType from "./data/titleType"
-import store from "../../../mobx/store"
+import store from "@/mobx/store"
+import { setTowerTitle } from "@/api/updateTowerData"
 
-import txtTowerKo from '../../../lang/tower/txtTower-ko'
-import txtTowerJp from '../../../lang/tower/txtTower-jp'
-import txtTowerEn from '../../../lang/tower/txtTower-en'
+import txtTowerKo from '@/lang/tower/txtTower-ko'
+import txtTowerJp from '@/lang/tower/txtTower-jp'
+import txtTowerEn from '@/lang/tower/txtTower-en'
 
 type TitleModalReturn = [
     boolean, TitleType,
@@ -27,7 +26,7 @@ const useTitleModal = (): TitleModalReturn => {
             lang === 'jp' ? txtTowerJp : txtTowerEn
 
 	const changeTitle = (title: string) => {
-		axios.post(`${CommonData.dataUrl}towertitleapply/${loginUser.user.id}/${title}`)
+        setTowerTitle(loginUser.user.id, title)
 		.then(res => {
 			alert(txtTower.title.changed)
 			setTitleChangeModal(false)

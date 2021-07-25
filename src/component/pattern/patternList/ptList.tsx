@@ -6,7 +6,7 @@ import usePTList from './usePTList'
 import usePatternSelector from './usePatternSelector'
 import PTListSelector from './ptListSelector'
 import PTListTitle from './ptListTitle'
-import { Container } from '../../../styled/styledCommon'
+import { Container } from '@/styled/styledCommon'
 
 interface MatchProps {
     order: string,

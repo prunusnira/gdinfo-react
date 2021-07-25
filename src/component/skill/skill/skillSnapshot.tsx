@@ -1,24 +1,24 @@
-import React, {useEffect, useState} from 'react';
-import axios from 'axios';
-import { getPatternImg300, getPatternImg600 } from '../../common/pattern';
-import scrShot from '../../common/scrshot';
+import React, {useEffect, useState} from 'react'
+import axios from 'axios'
+import { getPatternImg300, getPatternImg600 } from '@/component/common/pattern'
+import scrShot from '@/component/common/scrshot'
 
-import { skillTableColor } from '../../common/skillcolor';
-import CommonData from '../../common/commonData';
-import { useParams } from 'react-router-dom';
-import SkillItemData from './skillItem/skillItemData';
-import store from '../../../mobx/store';
-import { observer } from 'mobx-react';
-import { GDVer } from '../../common/version';
-import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon';
-import { Row } from 'reactstrap';
-import SkillTableSH from './skillpresenter/skillTableSH';
-import SkillTableNR from './skillpresenter/skillTableNR';
-import SnapshotData from './skillItem/snapshotData';
+import { skillTableColor } from '@/component/common/skillcolor'
+import CommonData from '@/component/common/commonData'
+import { useParams } from 'react-router-dom'
+import SkillItemData from './skillItem/skillItemData'
+import store from '@/mobx/store'
+import { observer } from 'mobx-react'
+import { GDVer } from '@/component/common/version'
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
+import { Row } from 'reactstrap'
+import SkillTableSH from './skillpresenter/skillTableSH'
+import SkillTableNR from './skillpresenter/skillTableNR'
+import SnapshotData from './skillItem/snapshotData'
 
-import txtSkillKo from "../../../lang/skill/skill/txtSkill-ko"
-import txtSkillJp from "../../../lang/skill/skill/txtSkill-jp"
-import txtSkillEn from "../../../lang/skill/skill/txtSkill-en"
+import txtSkillKo from "@/lang/skill/skill/txtSkill-ko"
+import txtSkillJp from "@/lang/skill/skill/txtSkill-jp"
+import txtSkillEn from "@/lang/skill/skill/txtSkill-en"
 
 interface MatchProps {
     sharestr: string,

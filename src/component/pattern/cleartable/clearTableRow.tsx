@@ -1,5 +1,5 @@
-import React from 'react';
-import ClearTableData from './clearTableData';
+import React from 'react'
+import ClearTableData from './clearTableData'
 
 interface Props {
     list: Array<ClearTableData>

@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react"
-import store from '../../../mobx/store'
-import axios from 'axios'
-import CommonData from '../../common/commonData'
+import store from '@/mobx/store'
 import SRankData from './srankData'
+import { getSkillRank } from "@/api/getSkillData"
 
-import TxtCommonKo from '../../../lang/common/txtCommon-ko'
-import TxtCommonJp from '../../../lang/common/txtCommon-jp'
-import TxtCommonEn from '../../../lang/common/txtCommon-en'
+import TxtCommonKo from '@/lang/common/txtCommon-ko'
+import TxtCommonJp from '@/lang/common/txtCommon-jp'
+import TxtCommonEn from '@/lang/common/txtCommon-en'
 
 type SRDataReturn = [Array<SRankData>, number]
 
@@ -28,9 +27,8 @@ const useSkillRankingData = (
     }, [gtype, page])
 
     const updateRankList = () => {
-        axios.post(`${CommonData.dataUrl}rank/${gtype}/${page}`)
-        .then((res) => {
-            const json = res.data
+        getSkillRank(gtype, page)
+        .then((json) => {
             const list = new Array<SRankData>()
             const userList = JSON.parse(json.allUserList)
 

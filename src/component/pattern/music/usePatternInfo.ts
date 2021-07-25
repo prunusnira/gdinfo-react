@@ -1,6 +1,5 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import CommonData from "../../common/commonData"
+import { getPatternData } from "@/api/getMusicData"
 import MusicDataType from "./musicData"
 
 const usePatternInfo = (mid: string, userid: string) => {
@@ -11,9 +10,8 @@ const usePatternInfo = (mid: string, userid: string) => {
     }, [])
 
     const loadPatternInfo = () => {
-        axios.post(`${CommonData.dataUrl}music/${mid}/${userid}`)
-        .then((res) => {
-            const json = res.data
+        getPatternData(mid, userid)
+        .then((json) => {
             const music = JSON.parse(json.music)
             const list = Array<MusicDataType>()
 

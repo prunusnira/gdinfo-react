@@ -1,14 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import SingleSkillColorChanger from '../../common/skillcolor'
+import SingleSkillColorChanger from '@/component/common/skillcolor'
 import SRankData from './srankData'
 import { observer } from 'mobx-react'
-import store from '../../../mobx/store'
-import { Icon, ItemRow } from '../../../styled/styledCommon'
+import store from '@/mobx/store'
+import { Icon, ItemRow } from '@/styled/styledCommon'
 
-import txtSrankKo from '../../../lang/skill/ranking/txtSkillRank-ko'
-import txtSrankJp from '../../../lang/skill/ranking/txtSkillRank-jp'
-import txtSrankEn from '../../../lang/skill/ranking/txtSkillRank-en'
+import txtSrankKo from '@/lang/skill/ranking/txtSkillRank-ko'
+import txtSrankJp from '@/lang/skill/ranking/txtSkillRank-jp'
+import txtSrankEn from '@/lang/skill/ranking/txtSkillRank-en'
 
 interface Props {
     rank: Array<SRankData>,

@@ -1,7 +1,7 @@
-import React from 'react';
-import { ItemCol, ItemRow } from '../../../styled/styledCommon';
-import CommonData from '../../common/commonData';
-import NPData from './NPData';
+import React from 'react'
+import { ItemCol, ItemRow } from '@/styled/styledCommon'
+import CommonData from '@/component/common/commonData'
+import NPData from './NPData'
 
 interface Props {
     list: Array<NPData>

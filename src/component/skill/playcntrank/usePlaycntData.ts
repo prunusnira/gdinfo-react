@@ -1,12 +1,11 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import CommonData from "../../common/commonData"
 import PlaycntRankData from "./playcntrankData"
-import store from '../../../mobx/store'
+import store from '@/mobx/store'
+import { getPlayCountRank } from "@/api/getSkillData"
 
-import TxtCommonKo from '../../../lang/common/txtCommon-ko'
-import TxtCommonJp from '../../../lang/common/txtCommon-jp'
-import TxtCommonEn from '../../../lang/common/txtCommon-en'
+import TxtCommonKo from '@/lang/common/txtCommon-ko'
+import TxtCommonJp from '@/lang/common/txtCommon-jp'
+import TxtCommonEn from '@/lang/common/txtCommon-en'
 
 type PlaycntDataReturn = [Array<PlaycntRankData>, number]
 
@@ -25,9 +24,8 @@ const usePlaycntData = (page: string): PlaycntDataReturn => {
             lang === 'jp' ? TxtCommonJp : TxtCommonEn
 
     const updateData = () => {
-        axios.post(`${CommonData.dataUrl}cntrank/${page}`)
-        .then((res) => {
-            const json = res.data
+        getPlayCountRank(page)
+        .then((json) => {
             const list = new Array<PlaycntRankData>()
             const rank = JSON.parse(json.rank)
 

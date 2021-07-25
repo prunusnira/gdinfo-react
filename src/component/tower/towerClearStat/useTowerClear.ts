@@ -1,13 +1,12 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import { towerName } from "../../../lang/tower/towername"
-import store from "../../../mobx/store"
-import CommonData from "../../common/commonData"
+import { towerName } from "@/lang/tower/towername"
+import store from "@/mobx/store"
 import { TowerClearData, TowerFloorData } from "./towerClearData"
 
-import txtTowerStatKo from '../../../lang/tower/towerClearStat/txtTowerStat-ko'
-import txtTowerStatJp from '../../../lang/tower/towerClearStat/txtTowerStat-jp'
-import txtTowerStatEn from '../../../lang/tower/towerClearStat/txtTowerStat-en'
+import txtTowerStatKo from '@/lang/tower/towerClearStat/txtTowerStat-ko'
+import txtTowerStatJp from '@/lang/tower/towerClearStat/txtTowerStat-jp'
+import txtTowerStatEn from '@/lang/tower/towerClearStat/txtTowerStat-en'
+import { getTowerClearStatus } from "@/api/getTowerData"
 
 const useTowerClear = (id: string) => {
     const [towerList, setTowerList] = useState(Array<TowerClearData>())
@@ -23,9 +22,8 @@ const useTowerClear = (id: string) => {
             lang === 'jp' ? txtTowerStatJp : txtTowerStatEn
 
     const loadTowerClearData = () => {
-        axios.post(`${CommonData.dataUrl}profile/towerstatus/tower/${id}`)
-        .then((res) => {
-            const json = res.data
+        getTowerClearStatus(id)
+        .then((json) => {
             const list = JSON.parse(json.list)
             const tower = JSON.parse(json.tower)
             const towerlist = new Array<TowerClearData>()

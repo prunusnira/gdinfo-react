@@ -1,16 +1,9 @@
-import React, {useState} from 'react'
-import axios from 'axios'
-import CommonData from '../../common/commonData'
+import React from 'react'
 import { Redirect, useParams } from 'react-router-dom'
-import store from '../../../mobx/store'
+import store from '@/mobx/store'
 import { observer } from 'mobx-react'
 import TowerStatPresenter from './towerStatPresenter'
 import TitleChangeModal from './titleChangeModal/titleChangeModal'
-import TitleType from './data/titleType'
-
-import txtTowerKo from '../../../lang/tower/txtTower-ko'
-import txtTowerJp from '../../../lang/tower/txtTower-jp'
-import txtTowerEn from '../../../lang/tower/txtTower-en'
 import useTowerStat from './useTowerStat'
 import useTitleModal from './useTitleModal'
 

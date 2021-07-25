@@ -1,10 +1,10 @@
 import React from 'react'
 import {Redirect, useParams} from 'react-router-dom'
 import axios from 'axios'
-import CommonData from '../../common/commonData'
-import scrShot from '../../common/scrshot'
+import CommonData from '@/component/common/commonData'
+import scrShot from '@/component/common/scrshot'
 import { observer } from 'mobx-react'
-import store from '../../../mobx/store'
+import store from '@/mobx/store'
 import useSkillTableData from './useSkillTableData'
 import useSTableUser from './useSTableUser'
 import useSkillTableVisibility from './useSkillTableVisibility'
@@ -12,9 +12,9 @@ import useSkillTableUpper from './useSkillUpper'
 import useSkillSelector from './useSkillSelector'
 import SkillPresenter from './skillpresenter/skillPresenter'
 
-import txtSkillKo from "../../../lang/skill/skill/txtSkill-ko"
-import txtSkillJp from "../../../lang/skill/skill/txtSkill-jp"
-import txtSkillEn from "../../../lang/skill/skill/txtSkill-en"
+import txtSkillKo from "@/lang/skill/skill/txtSkill-ko"
+import txtSkillJp from "@/lang/skill/skill/txtSkill-jp"
+import txtSkillEn from "@/lang/skill/skill/txtSkill-en"
 
 interface MatchProps {
     order: string,

@@ -1,7 +1,7 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import CommonData from "../../common/commonData"
-import { getPatternImg600 } from "../../common/pattern"
+import { getPlayCount } from "@/api/getUserData"
+import CommonData from "@/component/common/commonData"
+import { getPatternImg600 } from "@/component/common/pattern"
 import PlaycountData from "./playcountData"
 
 const usePlayCount = (id: string) => {
@@ -15,19 +15,17 @@ const usePlayCount = (id: string) => {
     }, [])
 
     const createPlayCountList = () => {
-        axios.post(`${CommonData.dataUrl}mybest/${id}`)
-        .then((res) => {
-            const json = res.data;
+        getPlayCount(id)
+        .then((json) => {
+            const mybestp = JSON.parse(json.mybestp)
+            const mybestpg = JSON.parse(json.mybestpg)
+            const mybestpd = JSON.parse(json.mybestpd)
+            const mybestm = JSON.parse(json.mybestm)
 
-            const mybestp = JSON.parse(json.mybestp);
-            const mybestpg = JSON.parse(json.mybestpg);
-            const mybestpd = JSON.parse(json.mybestpd);
-            const mybestm = JSON.parse(json.mybestm);
-
-            const plist = [];
-            const glist = [];
-            const dlist = [];
-            const mlist = [];
+            const plist = []
+            const glist = []
+            const dlist = []
+            const mlist = []
 
             for(let i = 0; i < mybestp.length; i++) {
                 const mypdata: PlaycountData = {
@@ -37,9 +35,9 @@ const usePlayCount = (id: string) => {
                     name: mybestp[i].name,
                     pattern: '',
                     count: mybestp[i].playtime
-                };
-                mypdata.pattern = getPatternImg600(mybestp[i].patterncode);
-                plist.push(mypdata);
+                }
+                mypdata.pattern = getPatternImg600(mybestp[i].patterncode)
+                plist.push(mypdata)
             }
 
             for(let i = 0; i < mybestpg.length; i++) {
@@ -50,9 +48,9 @@ const usePlayCount = (id: string) => {
                     name: mybestpg[i].name,
                     pattern: '',
                     count: mybestpg[i].playtime
-                };
-                mygdata.pattern = getPatternImg600(mybestpg[i].patterncode);
-                glist.push(mygdata);
+                }
+                mygdata.pattern = getPatternImg600(mybestpg[i].patterncode)
+                glist.push(mygdata)
             }
             
             for(let i = 0; i < mybestpd.length; i++) {
@@ -63,9 +61,9 @@ const usePlayCount = (id: string) => {
                     name: mybestpd[i].name,
                     pattern: '',
                     count: mybestpd[i].playtime
-                };
-                myddata.pattern = getPatternImg600(mybestpd[i].patterncode);
-                dlist.push(myddata);
+                }
+                myddata.pattern = getPatternImg600(mybestpd[i].patterncode)
+                dlist.push(myddata)
             }
             
             for(let i = 0; i < mybestm.length; i++) {
@@ -76,8 +74,8 @@ const usePlayCount = (id: string) => {
                     name: mybestm[i].name,
                     pattern: '',
                     count: mybestm[i].playtime
-                };
-                mlist.push(mymdata);
+                }
+                mlist.push(mymdata)
             }
 
             setPList(plist)

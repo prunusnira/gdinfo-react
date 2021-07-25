@@ -2,15 +2,15 @@ import React, {useEffect, useState} from 'react'
 import axios from 'axios'
 import {Redirect, Link, useParams} from 'react-router-dom'
 
-import CommonData from '../../common/commonData'
+import CommonData from '@/component/common/commonData'
 import { observer } from 'mobx-react'
-import store from '../../../mobx/store'
-import LoginInfo from '../../common/loginInfo'
-import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
+import store from '@/mobx/store'
+import LoginInfo from '../loginInfo'
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
 
-import txtLoginKo from '../../../lang/user/login/txtLogin-ko'
-import txtLoginJp from '../../../lang/user/login/txtLogin-jp'
-import txtLoginEn from '../../../lang/user/login/txtLogin-en'
+import txtLoginKo from '@/lang/user/login/txtLogin-ko'
+import txtLoginJp from '@/lang/user/login/txtLogin-jp'
+import txtLoginEn from '@/lang/user/login/txtLogin-en'
 
 interface MatchProps {
     uid: string

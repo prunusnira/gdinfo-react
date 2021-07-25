@@ -1,14 +1,14 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
 import SkillRankingItem from './rankingItem'
-import Pager from '../../common/pager'
-import store from '../../../mobx/store'
+import Pager from '@/component/common/pager'
+import store from '@/mobx/store'
 import SRankData from './srankData'
 
-import txtSrankKo from '../../../lang/skill/ranking/txtSkillRank-ko'
-import txtSrankJp from '../../../lang/skill/ranking/txtSkillRank-jp'
-import txtSrankEn from '../../../lang/skill/ranking/txtSkillRank-en'
+import txtSrankKo from '@/lang/skill/ranking/txtSkillRank-ko'
+import txtSrankJp from '@/lang/skill/ranking/txtSkillRank-jp'
+import txtSrankEn from '@/lang/skill/ranking/txtSkillRank-en'
 
 interface Props {
     gtype: string,

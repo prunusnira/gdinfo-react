@@ -1,7 +1,7 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import store from "../../../mobx/store"
-import CommonData from "../../common/commonData"
+import { getPatternList } from "@/api/getMusicData"
+import store from "@/mobx/store"
+import CommonData from "@/component/common/commonData"
 import { EachDiff, PatternData } from "./patternData"
 
 type PTListReturn = [Array<PatternData>, number]
@@ -21,9 +21,8 @@ const usePTList = (
     const {loginStatus, loginUser} = store
 
     const loadPatternList = () => {
-        axios.post(`${CommonData.dataUrl}pattern/${ver}/${order}/${page}${window.location.search}`)
-        .then((res) => {
-            const json = res.data
+        getPatternList(ver, order, page, window.location.search)
+        .then((json) => {
             const ptlist = new Array<PatternData>()
             const musiclist = JSON.parse(json.musiclist)
 

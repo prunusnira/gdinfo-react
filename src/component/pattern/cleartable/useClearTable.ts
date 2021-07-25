@@ -1,6 +1,5 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import CommonData from "../../common/commonData"
+import { getClearTable } from "@/api/getUserData"
 import ClearTableData from "./clearTableData"
 
 const useClearTable = (userid: string, type: string) => {
@@ -11,9 +10,9 @@ const useClearTable = (userid: string, type: string) => {
     }, [])
 
     const loadTableData = (type: string) => {
-        axios.post(`${CommonData.dataUrl}cleartable/${type}/${userid}`)
-        .then((res) => {
-            const json = JSON.parse(res.data.ctable)
+        getClearTable(userid, type)
+        .then((data) => {
+            const json = JSON.parse(data.ctable)
             const gval = [ 0, 0, 0, 0, 0, 0, 0, 0]
             const clearlist = new Array<ClearTableData>()
 

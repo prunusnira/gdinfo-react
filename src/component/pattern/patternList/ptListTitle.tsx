@@ -1,10 +1,10 @@
 import React from "react"
-import { BodyContent, BodyHeader, ItemRow } from "../../../styled/styledCommon"
-import store from "../../../mobx/store";
+import { BodyContent, BodyHeader, ItemRow } from "@/styled/styledCommon"
+import store from "@/mobx/store";
 
-import txtPatternKo from '../../../lang/pattern/pattern/txtPattern-ko';
-import txtPatternJp from '../../../lang/pattern/pattern/txtPattern-jp';
-import txtPatternEn from '../../../lang/pattern/pattern/txtPattern-en';
+import txtPatternKo from '@/lang/pattern/pattern/txtPattern-ko';
+import txtPatternJp from '@/lang/pattern/pattern/txtPattern-jp';
+import txtPatternEn from '@/lang/pattern/pattern/txtPattern-en';
 
 const PTListTitle = () => {
     const lang = store.language.lang

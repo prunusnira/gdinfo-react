@@ -1,8 +1,8 @@
-import React from 'react';
-import {Link} from 'react-router-dom';
-import PTListItemRow from './ptListItemRow';
-import { PatternData } from './patternData';
-import { ItemCol, ItemRow } from '../../../styled/styledCommon';
+import React from 'react'
+import {Link} from 'react-router-dom'
+import PTListItemRow from './ptListItemRow'
+import { PatternData } from './patternData'
+import { ItemCol, ItemRow } from '@/styled/styledCommon'
 
 interface Props {
     list: Array<PatternData>

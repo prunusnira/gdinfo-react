@@ -1,8 +1,7 @@
 import {useEffect, useState} from 'react'
-import axios from 'axios'
-import CommonData from '../../common/commonData'
 import TowerListData from './towerlistData'
-import store from '../../../mobx/store'
+import store from '@/mobx/store'
+import { getTowerList } from '@/api/getTowerData'
 
 const useTowerList = () => {
     const [towerGF, setTowerGF] = useState(Array<TowerListData>())
@@ -16,9 +15,8 @@ const useTowerList = () => {
     const lang = store.language.lang
 
     const loadTowerList = () => {
-        axios.post(`${CommonData.dataUrl}towerlist`)
-        .then((res) => {
-            const json = res.data
+        getTowerList()
+        .then((json) => {
             const towerlist = JSON.parse(json.towerlist)
             const towernum = towerlist.length
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { Icon, ItemCol, ItemRow } from '../../../styled/styledCommon'
+import { Icon, ItemCol, ItemRow } from '@/styled/styledCommon'
 import PlaycntRankData from './playcntrankData'
 
 interface Props {

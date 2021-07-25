@@ -1,14 +1,13 @@
 import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
-import axios from 'axios'
-import CommonData from '../common/commonData'
-import ProfileData from '../user/profile/profileData'
-import store from '../../mobx/store'
+import { getUserFromToken } from '@/api/getUserData'
+import ProfileData from '@/component/user/profile/profileData'
+import store from '@/mobx/store'
 import { observer } from 'mobx-react'
 
-import txtIndexKo from '../../lang/index/txtIndex-ko'
-import txtIndexJp from '../../lang/index/txtIndex-jp'
-import txtIndexEn from '../../lang/index/txtIndex-en'
+import txtIndexKo from '@/lang/index/txtIndex-ko'
+import txtIndexJp from '@/lang/index/txtIndex-jp'
+import txtIndexEn from '@/lang/index/txtIndex-en'
 
 const UserLoginInfo = observer(() => {
     const [loading, setLoading] = useState(false)
@@ -24,9 +23,9 @@ const UserLoginInfo = observer(() => {
     useEffect(() => {
         const token = loginUser.user.token;
         if(token !== "") {
-            axios.post(CommonData.dataUrl+"getuser/"+token)
-            .then((res) => {
-                setData(JSON.parse(res.data.mydata))
+            getUserFromToken(token)
+            .then((data) => {
+                setData(JSON.parse(data.mydata))
                 setLoading(true)
             })
         }

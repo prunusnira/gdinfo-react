@@ -1,12 +1,12 @@
 import React from 'react'
-import GoogleLogin, { GoogleLoginResponse } from 'react-google-login';
-import CommonData from '../../common/commonData';
-import { BodyContent, BodyHeader, Container, ItemCol, ItemRow } from '../../../styled/styledCommon';
-import store from '../../../mobx/store';
+import GoogleLogin, { GoogleLoginResponse } from 'react-google-login'
+import CommonData from '@/component/common/commonData'
+import { BodyContent, BodyHeader, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
+import store from '@/mobx/store'
 
-import txtLoginKo from '../../../lang/user/login/txtLogin-ko'
-import txtLoginJp from '../../../lang/user/login/txtLogin-jp'
-import txtLoginEn from '../../../lang/user/login/txtLogin-en'
+import txtLoginKo from '@/lang/user/login/txtLogin-ko'
+import txtLoginJp from '@/lang/user/login/txtLogin-jp'
+import txtLoginEn from '@/lang/user/login/txtLogin-en'
 
 interface Props {
     responseGoogle: (res: GoogleLoginResponse) => void,

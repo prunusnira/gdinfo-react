@@ -1,13 +1,13 @@
 import React from 'react'
-import { BodyContent, BodyHeader, Button, Container, ItemRow } from '../../../styled/styledCommon'
+import { BodyContent, BodyHeader, Button, Container, ItemRow } from '@/styled/styledCommon'
 import TowerStatTable from './towerStatTable'
 import TitleStatTable from './titleStatTable'
 import { TowerClearData, FloorClearData } from './towerClearData'
 
-import txtTowerStatKo from '../../../lang/tower/towerClearStat/txtTowerStat-ko'
-import txtTowerStatJp from '../../../lang/tower/towerClearStat/txtTowerStat-jp'
-import txtTowerStatEn from '../../../lang/tower/towerClearStat/txtTowerStat-en'
-import store from '../../../mobx/store'
+import txtTowerStatKo from '@/lang/tower/towerClearStat/txtTowerStat-ko'
+import txtTowerStatJp from '@/lang/tower/towerClearStat/txtTowerStat-jp'
+import txtTowerStatEn from '@/lang/tower/towerClearStat/txtTowerStat-en'
+import store from '@/mobx/store'
 
 interface Props {
     towerList: Array<TowerClearData>,

@@ -1,15 +1,15 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import store from "../../../mobx/store"
-import CommonData from "../../common/commonData"
+import store from "@/mobx/store"
+import CommonData from "@/component/common/commonData"
 import { FloorClearData, FloorItemData, TowerData, TowerManage, TowerStatData } from "./towerStatData"
-import { GDPat } from "../../common/pattern"
+import { GDPat } from "@/component/common/pattern"
 import TitleType from "./data/titleType"
-import { titlesp, titletxt } from "../../../lang/tower/titletxt"
+import { titlesp, titletxt } from "@/lang/tower/titletxt"
+import { getTowerStatus } from "@/api/getTowerData"
 
-import txtTowerKo from '../../../lang/tower/txtTower-ko'
-import txtTowerJp from '../../../lang/tower/txtTower-jp'
-import txtTowerEn from '../../../lang/tower/txtTower-en'
+import txtTowerKo from '@/lang/tower/txtTower-ko'
+import txtTowerJp from '@/lang/tower/txtTower-jp'
+import txtTowerEn from '@/lang/tower/txtTower-en'
 
 type TowerStatReturn = [string, string, Array<TowerStatData>]
 
@@ -36,9 +36,8 @@ const useTowerStat = (tower: string): TowerStatReturn => {
         let towerlistScr = []
         const clear = []
 
-        axios.post(`${CommonData.dataUrl}towerdata/${tower}/${loginUser.user.id}`)
-        .then((res) => {
-			const json = res.data
+		getTowerStatus(tower, loginUser.user.id)
+        .then((json) => {
 			const tower = JSON.parse(json.tower)
 			const towerlist = JSON.parse(json.towerlist)
             const towheight = tower.levels

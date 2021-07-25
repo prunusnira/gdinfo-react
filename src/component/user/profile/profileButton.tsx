@@ -1,15 +1,15 @@
-import React from 'react';
-import axios from 'axios';
-import {Link} from 'react-router-dom';
+import React from 'react'
+import axios from 'axios'
+import {Link} from 'react-router-dom'
 
-import CommonData from '../../common/commonData';
-import store from '../../../mobx/store';
-import { observer } from 'mobx-react';
-import { Button, ItemCol, ItemRow } from '../../../styled/styledCommon';
+import CommonData from '@/component/common/commonData'
+import store from '@/mobx/store'
+import { observer } from 'mobx-react'
+import { Button, ItemCol, ItemRow } from '@/styled/styledCommon'
 
-import txtProfileKo from '../../../lang/user/profile/txtProfile-ko'
-import txtProfileJp from '../../../lang/user/profile/txtProfile-jp'
-import txtProfileEn from '../../../lang/user/profile/txtProfile-en'
+import txtProfileKo from '@/lang/user/profile/txtProfile-ko'
+import txtProfileJp from '@/lang/user/profile/txtProfile-jp'
+import txtProfileEn from '@/lang/user/profile/txtProfile-en'
 
 interface Props {
     isOwnAccount: boolean,

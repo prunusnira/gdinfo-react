@@ -11,4 +11,4 @@ type RecentData = {
     opencount: string
 }
 
-export default RecentData;
+export default RecentData

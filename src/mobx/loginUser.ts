@@ -1,5 +1,5 @@
 import { makeAutoObservable } from "mobx"
-import LoginInfo from "../component/common/loginInfo"
+import LoginInfo from "../component/user/loginInfo"
 
 const emptyUser: LoginInfo = {
     token: '',

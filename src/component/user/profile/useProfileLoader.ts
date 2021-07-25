@@ -1,19 +1,17 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import store from "../../../mobx/store"
-import CommonData from "../../common/commonData"
+import { getUserFromId } from "@/api/getUserData"
+import store from "@/mobx/store"
 import ProfileData from "./profileData"
 
-type ProfileReturn = [
-    ProfileData, boolean, string, string,
-    (s: string) => void, (s: string) => void,
-]
+type ProfileReturn = [ProfileData, boolean]
 
-const useProfileLoader = (id: string) => {
+const useProfileLoader = (
+    id: string,
+    setComment: (s: string) => void,
+    setOpenUserInfo: (s: string) => void,
+): ProfileReturn => {
     const [profileData, setProfileData] = useState(new ProfileData())
     const [isOwnAccount, setOwnAccount] = useState(false)
-    const [openUserInfo, setOpenUserInfo] = useState('N')
-    const [comment, setComment] = useState('')
     
     useEffect(() => {
         checkOwnAccount()
@@ -29,19 +27,16 @@ const useProfileLoader = (id: string) => {
     }
 
     const getUserData = () => {
-        axios.post(`${CommonData.dataUrl}getuserid/${id}`)
-        .then((res) => {
-            const json = JSON.parse(res.data.mydata);
+        getUserFromId(id)
+        .then((data) => {
+            const json = JSON.parse(data.mydata);
             setProfileData(json)
             setComment(json.comment)
             setOpenUserInfo(json.opencount)
         });
     }
 
-    return [
-        profileData, isOwnAccount, openUserInfo, comment,
-        setOpenUserInfo, setComment
-    ]
+    return [profileData, isOwnAccount]
 }
 
 export default useProfileLoader

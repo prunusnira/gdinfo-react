@@ -1,8 +1,8 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import CommonData from "../../common/commonData"
-import { getPatternImg600 } from "../../common/pattern"
-import { GDVer } from "../../common/version"
+import { getNoRecordData } from "@/api/getMusicData"
+import CommonData from "@/component/common/commonData"
+import { getPatternImg600 } from "@/component/common/pattern"
+import { GDVer } from "@/component/common/version"
 import NPData from "./NPData"
 
 type NoRecordDataReturn = [ NPData[], number ]
@@ -31,9 +31,8 @@ const useNoRecordData = (
         const nplist = new Array<NPData>()
 
         let isEmpty = false
-        axios.post(`${CommonData.dataUrl}notplayed/${gtype}/${userid}/${vertype}/${page}${window.location.search}`)
-        .then((res) => {
-            const json = res.data
+        getNoRecordData(gtype, userid, vertype, page, window.location.search)
+        .then((json) => {
             const music = JSON.parse(json.music)
 
             for(let i = 0; i < music.length; i++) {

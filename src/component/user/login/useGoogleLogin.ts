@@ -1,8 +1,8 @@
-import { sha256 } from "js-sha256";
-import { useState } from "react";
-import { GoogleLoginResponse } from "react-google-login";
-import CommonData from "../../common/commonData";
-import LoginInfo from "../../common/loginInfo";
+import { sha256 } from "js-sha256"
+import { useState } from "react"
+import { GoogleLoginResponse } from "react-google-login"
+import CommonData from "@/component/common/commonData"
+import LoginInfo from "../loginInfo"
 
 type LoginReturn = [
     boolean, string,

@@ -1,15 +1,15 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
-import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
+import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
 import PatternRankRow from './ptRankRow'
-import Pager from '../../common/pager'
-import store from '../../../mobx/store';
-import CommonData from '../../common/commonData';
+import Pager from '@/component/common/pager'
+import store from '@/mobx/store';
+import CommonData from '@/component/common/commonData';
 import PTRankData from './ptrankData'
 
-import txtPTRankKo from '../../../lang/pattern/patternRank/txtPTRank-ko'
-import txtPTRankJp from '../../../lang/pattern/patternRank/txtPTRank-jp'
-import txtPTRankEn from '../../../lang/pattern/patternRank/txtPTRank-en'
+import txtPTRankKo from '@/lang/pattern/patternRank/txtPTRank-ko'
+import txtPTRankJp from '@/lang/pattern/patternRank/txtPTRank-jp'
+import txtPTRankEn from '@/lang/pattern/patternRank/txtPTRank-en'
 
 interface Props {
     mid: string,
@@ -97,7 +97,13 @@ const PatternRankPresenter = (props: Props) => {
                         <div className='div-table table-border-outer' id="ranktable">
                             <PatternRankRow list={props.list} />
                         </div>
-                        <div id="empty"></div>
+                        {
+                            (function() {
+                                if(props.list.length === 0) {
+                                    return <div id="empty">Loading... or No records</div>
+                                }
+                            })()
+                        }
                     </ItemRow>
                     <ItemRow id="pager" keepDirHor={true}>
                         <Pager cpage={parseInt(props.page)}

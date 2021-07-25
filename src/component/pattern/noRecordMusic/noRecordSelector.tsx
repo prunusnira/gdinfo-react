@@ -1,11 +1,11 @@
 import React from "react"
 import { Link } from "react-router-dom"
-import { BodyContent, BodyHeader, Button, ItemCol, ItemRow } from "../../../styled/styledCommon"
-import store from "../../../mobx/store"
+import { BodyContent, BodyHeader, Button, ItemCol, ItemRow } from "@/styled/styledCommon"
+import store from "@/mobx/store"
 
-import txtNoRecordKo from '../../../lang/pattern/noRecord/txtNoRecord-ko'
-import txtNoRecordJp from '../../../lang/pattern/noRecord/txtNoRecord-jp'
-import txtNoRecordEn from '../../../lang/pattern/noRecord/txtNoRecord-en'
+import txtNoRecordKo from '@/lang/pattern/noRecord/txtNoRecord-ko'
+import txtNoRecordJp from '@/lang/pattern/noRecord/txtNoRecord-jp'
+import txtNoRecordEn from '@/lang/pattern/noRecord/txtNoRecord-en'
 
 type SelectorType = {
     userid: string,

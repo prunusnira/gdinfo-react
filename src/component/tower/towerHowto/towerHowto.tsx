@@ -1,10 +1,10 @@
 import React from 'react'
-import store from '../../../mobx/store'
-import { BodyContent, BodyHeader, Container, ItemRow } from '../../../styled/styledCommon'
+import store from '@/mobx/store'
+import { BodyContent, BodyHeader, Container, ItemRow } from '@/styled/styledCommon'
 
-import txtTowerKo from '../../../lang/tower/txtTower-ko'
-import txtTowerJp from '../../../lang/tower/txtTower-jp'
-import txtTowerEn from '../../../lang/tower/txtTower-en'
+import txtTowerKo from '@/lang/tower/txtTower-ko'
+import txtTowerJp from '@/lang/tower/txtTower-jp'
+import txtTowerEn from '@/lang/tower/txtTower-en'
 
 const TowerHowto = () => {
     const lang = store.language.lang

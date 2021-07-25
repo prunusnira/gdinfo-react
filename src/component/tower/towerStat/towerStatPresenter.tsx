@@ -1,14 +1,14 @@
 import React from 'react'
 import TowerStatList from './towerStatList'
 import { TowerStatData } from './towerStatData'
-import { BodyContent, BodyHeader, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
+import { BodyContent, BodyHeader, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
 import TitleType from './data/titleType'
-import store from '../../../mobx/store'
+import store from '@/mobx/store'
 
-import { towerName, towerDesc } from '../../../lang/tower/towername'
-import txtTowerKo from '../../../lang/tower/txtTower-ko'
-import txtTowerJp from '../../../lang/tower/txtTower-jp'
-import txtTowerEn from '../../../lang/tower/txtTower-en'
+import { towerName, towerDesc } from '@/lang/tower/towername'
+import txtTowerKo from '@/lang/tower/txtTower-ko'
+import txtTowerJp from '@/lang/tower/txtTower-jp'
+import txtTowerEn from '@/lang/tower/txtTower-en'
 
 interface Props {
     name: string,

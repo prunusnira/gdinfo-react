@@ -1,7 +1,7 @@
 import html2canvas from 'html2canvas'
 
 const scrShot = (divname: string, filename: string) => {
-    window.scrollTo(0, 0);
+    window.scrollTo(0, 0)
     html2canvas(document.getElementById(divname)!, {
         useCORS: true,
     })
@@ -26,25 +26,25 @@ const scrShot = (divname: string, filename: string) => {
 }
 
 function uriToBlob(uri: String): Blob {
-    let byteString: String = "";
+    let byteString: String = ""
 
     // base64 데이터를 raw binary로 변환
     if(uri.split(',')[0].indexOf('base64') >= 0) {
-        byteString = atob(uri.split(',')[1]);
+        byteString = atob(uri.split(',')[1])
     }
     else {
-        byteString = unescape(uri.split(',')[1]);
+        byteString = unescape(uri.split(',')[1])
     }
 
     // mime type 추출
-    const mime = uri.split(',')[0].split(':')[1].split(';')[0];
+    const mime = uri.split(',')[0].split(':')[1].split(';')[0]
 
     // typed array에 string 쓰기
-    const ia = new Uint8Array(byteString.length);
+    const ia = new Uint8Array(byteString.length)
     for(let i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
+        ia[i] = byteString.charCodeAt(i)
     }
-    return new Blob([ia], {type:mime});
+    return new Blob([ia], {type:mime})
 }
 
-export default scrShot;
+export default scrShot

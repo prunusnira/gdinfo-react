@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react"
+import React, { useState } from "react"
 import { FormGroup, Label, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap"
-import store from "../../../mobx/store"
-import { Button } from "../../../styled/styledCommon"
-import TxtModalKo from "../../../lang/header/searchmodal/txtmodal-ko"
-import TxtModalJp from "../../../lang/header/searchmodal/txtmodal-jp"
-import TxtModalEn from "../../../lang/header/searchmodal/txtmodal-en"
+import store from "@/mobx/store"
+import { Button } from "@/styled/styledCommon"
+import TxtModalKo from "@/lang/header/searchmodal/txtmodal-ko"
+import TxtModalJp from "@/lang/header/searchmodal/txtmodal-jp"
+import TxtModalEn from "@/lang/header/searchmodal/txtmodal-en"
 
 interface Props {
     isOpen: boolean,

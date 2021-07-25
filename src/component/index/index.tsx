@@ -3,14 +3,14 @@ import {Timeline} from 'react-twitter-widgets'
 import UserLoginInfo from './userLoginInfo'
 
 import './index.css'
-import store from '../../mobx/store'
+import store from '@/mobx/store'
 import { observer } from 'mobx-react'
-import { BodyContent, BodyHeader, Container, ItemCol, ItemRow, Button } from '../../styled/styledCommon'
+import { BodyContent, BodyHeader, Container, ItemCol, ItemRow, Button } from '@/styled/styledCommon'
 import { Link } from 'react-router-dom'
 
-import txtIndexKo from '../../lang/index/txtIndex-ko'
-import txtIndexJp from '../../lang/index/txtIndex-jp'
-import txtIndexEn from '../../lang/index/txtIndex-en'
+import txtIndexKo from '@/lang/index/txtIndex-ko'
+import txtIndexJp from '@/lang/index/txtIndex-jp'
+import txtIndexEn from '@/lang/index/txtIndex-en'
 
 const IndexPage = observer(() => {
     const {language, loginUser, loginStatus} = store

@@ -1,7 +1,6 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import CommonData from "../common/commonData";
-import RecentData from "../recent/recentData";
+import { useEffect, useState } from "react"
+import { getSearchResult } from "@/api/getSearchResult"
+import RecentData from "@/component/recent/recentData"
 
 const useUserSearch = (
     type: string,
@@ -16,9 +15,8 @@ const useUserSearch = (
     }, [])
 
     const getUserList = () => {
-        axios.post(`${CommonData.dataUrl}search/${type}/${value}/${page}`)
-        .then((res) => {
-            const json = res.data
+        getSearchResult(type, value, page)
+        .then((json) => {
             const userList = JSON.parse(json.userList)
             const userlistDisp = []
             if(JSON.parse(json.resultexist) === "yes") {

@@ -1,24 +1,23 @@
 import React from 'react'
 import SnapshotItem from './snapshotItem'
-import { BodyContent, BodyHeader, Container, ItemCol, ItemRow } from '../../../styled/styledCommon'
+import { BodyContent, BodyHeader, Container, ItemCol, ItemRow } from '@/styled/styledCommon'
+import store from '@/mobx/store'
 
-import txtSnapshotKo from '../../../lang/user/snapshot/txtSnapshot-ko'
-import txtSnapshotJp from '../../../lang/user/snapshot/txtSnapshot-jp'
-import txtSnapshotEn from '../../../lang/user/snapshot/txtSnapshot-en'
+import txtSnapshotKo from '@/lang/user/snapshot/txtSnapshot-ko'
+import txtSnapshotJp from '@/lang/user/snapshot/txtSnapshot-jp'
+import txtSnapshotEn from '@/lang/user/snapshot/txtSnapshot-en'
 
 interface Props {
-    lang: string,
-    gempty: boolean,
-    dempty: boolean,
     id: string,
     glist: Array<string>,
     dlist: Array<string>,
 }
 
 const SnapshotListPresenter = (props: Props) => {
+    const lang = store.language.lang
     const txtSnapshot =
-        props.lang === 'ko' ? txtSnapshotKo :
-            props.lang === 'jp' ? txtSnapshotJp : txtSnapshotEn
+        lang === 'ko' ? txtSnapshotKo :
+            lang === 'jp' ? txtSnapshotJp : txtSnapshotEn
 
     return (
         <Container>
@@ -40,7 +39,7 @@ const SnapshotListPresenter = (props: Props) => {
                             <BodyContent>
                                 {
                                     (function() {
-                                        if(props.gempty) {
+                                        if(props.glist.length === 0) {
                                             return (<h3>LIST IS EMPTY</h3>)
                                         }
                                         else {
@@ -57,7 +56,7 @@ const SnapshotListPresenter = (props: Props) => {
                             <BodyContent>
                                 {
                                     (function() {
-                                        if(props.dempty) {
+                                        if(props.dlist.length === 0) {
                                             return (<h3>LIST IS EMPTY</h3>)
                                         }
                                         else {

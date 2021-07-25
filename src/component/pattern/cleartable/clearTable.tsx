@@ -2,7 +2,7 @@ import React from 'react'
 import {useParams} from 'react-router-dom'
 import ClearTablePresenter from './clearTablePresenter'
 import useClearTable from './useClearTable'
-import useUserData from '../../common/useUserData'
+import useUserData from '@/component/common/useUserData'
 
 interface MatchProps {
     userid: string

@@ -1,8 +1,8 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import store from "../../mobx/store";
-import CommonData from "../common/commonData";
-import { EachDiff, PatternData } from "../pattern/patternList/patternData";
+import { useEffect, useState } from "react"
+import { getSearchResult } from "@/api/getSearchResult"
+import store from "@/mobx/store"
+import CommonData from "@/component/common/commonData"
+import { EachDiff, PatternData } from "@/component/pattern/patternList/patternData"
 
 const useMusicSearch = (
     type: string,
@@ -18,9 +18,8 @@ const useMusicSearch = (
     }, [])
 
     const getMusicList = () => {
-        axios.post(`${CommonData.dataUrl}search/${type}/${value}/${page}`)
-        .then((res) => {
-            const json = res.data
+        getSearchResult(type, value, page)
+        .then((json) => {
             const userList = JSON.parse(json.userList)
             const ptlist = []
             if(JSON.parse(json.resultexist) === "yes") {
