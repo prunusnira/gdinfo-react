@@ -7,7 +7,7 @@ type CommentReturn = [
 
 const useComment = (
     id: string,
-    comment: string,
+    nextComment: string,
     setComment: (s: string) => void
 ): CommentReturn => {
     const [isCommentOpen, setCommentOpen] = useState(false)
@@ -21,10 +21,10 @@ const useComment = (
 	}
 	
 	const submitComment = () => {
-        apiSubmitComment(comment, id)
+        apiSubmitComment(nextComment, id)
         .then((res) => {
             closeComment()
-            setComment(comment)
+            setComment(nextComment)
         });
     }
     return [isCommentOpen, setCommentDlgOpen, closeComment, submitComment]

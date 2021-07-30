@@ -1,65 +1,54 @@
-import React, {useEffect, useState} from 'react'
 import {Link} from 'react-router-dom'
-import { getUserFromToken } from '@/api/getUserData'
-import ProfileData from '@/component/user/profile/profileData'
 import store from '@/mobx/store'
-import { observer } from 'mobx-react'
 
 import txtIndexKo from '@/lang/index/txtIndex-ko'
 import txtIndexJp from '@/lang/index/txtIndex-jp'
 import txtIndexEn from '@/lang/index/txtIndex-en'
+import React from 'react'
+import ProfileData from '../user/profile/profileData'
 
-const UserLoginInfo = observer(() => {
-    const [loading, setLoading] = useState(false)
-    const [data, setData] = useState(new ProfileData())
+type LoginInfoProps = {
+    loading: boolean,
+    data: ProfileData
+}
 
-    const {language, loginUser, loginStatus} = store
+const LoginInfoPresenter = (props: LoginInfoProps) => {
+    const {language, loginStatus} = store
     const lang = language.lang
 
     const txtIndex =
         lang === 'ko' ? txtIndexKo :
             lang === 'jp' ? txtIndexJp : txtIndexEn
 
-    useEffect(() => {
-        const token = loginUser.user.token;
-        if(token !== "") {
-            getUserFromToken(token)
-            .then((data) => {
-                setData(JSON.parse(data.mydata))
-                setLoading(true)
-            })
-        }
-    }, [])
-
-    if(loginStatus.isSigned) {
-        if(loading) {
-            const imgurl = `${process.env.PUBLIC_URL}/general-img/title/${data.titletower}.png`;
+    //if(loginStatus.isSigned) {
+        if(props.loading) {
+            const imgurl = `${process.env.PUBLIC_URL}/general-img/title/${props.data.titletower}.png`;
             return (
                 <>
                     <span id='selftitle'>
-                        ({data.title})
+                        ({props.data.title})
                     </span><br/>
                     <span id='towertitleself'>
                         {
                             (function() {
-                                if(data.titletower !== "") {
+                                if(props.data.titletower !== "") {
                                     return (<img alt="titletower" className='towertitle35' src={imgurl} />)
                                 }
                             })()
                         }
                     </span>
                     <span style={{fontSize:'125%'}} id='selfname'>
-                        {data.name}
+                        {props.data.name}
                     </span><br/>
                     <span><b>GF</b>
                         <Link
                             style={{color: "white"}}
-                            to={`/skill/2/${data.id}/gf/1/1`}>{data.gskill}</Link>
+                            to={`/skill/2/${props.data.id}/gf/1/1`}>{props.data.gskill}</Link>
                     </span>&nbsp;&nbsp;&nbsp;
                     <span><b>DM</b>
                         <Link
                             style={{color: "white"}}
-                            to={`/skill/2/${data.id}/dm/1/1`}>{data.dskill}</Link>
+                            to={`/skill/2/${props.data.id}/dm/1/1`}>{props.data.dskill}</Link>
                     </span>
                 </>
             )
@@ -72,7 +61,7 @@ const UserLoginInfo = observer(() => {
                 </span>
             )
         }
-    }
+    /*}
     else {
         return (
             <span>
@@ -80,7 +69,7 @@ const UserLoginInfo = observer(() => {
                 {txtIndex.self.loginFirst}
             </span>
         )
-    }
-})
+    }*/
+}
 
-export default UserLoginInfo;
+export default LoginInfoPresenter

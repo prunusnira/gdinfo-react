@@ -11,11 +11,11 @@ const PlayCntRankItem = (props: Props) => {
     return (
         <>
         {
-            props.list.map(v => {
+            props.list.map((v, i) => {
                 return (
                     <ItemRow
                         style={{paddingTop:"3px", paddingBottom:"3px"}}
-                        keepDirHor={true}>
+                        keepDirHor={true} key={i}>
                         <ItemCol size={1}>
                             {v.index}
                         </ItemCol>

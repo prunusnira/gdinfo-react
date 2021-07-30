@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import store from "@/mobx/store"
-import CommonData from "@/component/common/commonData"
+import {getUserFromToken} from "@/api/getUserData"
 
 type CheckReturn = [boolean, boolean, (b: boolean) => void]
 
@@ -29,7 +29,7 @@ const useUserCheck = (): CheckReturn => {
 
     const checkUserAlreadyExist = () => {
         const token = loginUser.user.token
-        fetch(`${CommonData.dataUrl}getuser/${token}`)
+        getUserFromToken(token)
         .then(d => {
             return d.json()
         })

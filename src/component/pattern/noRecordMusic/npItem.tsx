@@ -11,9 +11,9 @@ const NpItem = (props: Props) => {
     return (
         <>
             {
-                props.list.map(np => {
+                props.list.map((np, i) => {
                     return (
-                        <ItemCol size={5} isFlatUnderLg={true}>
+                        <ItemCol size={5} isFlatUnderLg={true} key={i}>
                             <div className='div-table' id="playlist">
                                 <div className='div-table-row'>
                                     <div className='div-table-cell listimg'>

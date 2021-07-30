@@ -2,13 +2,14 @@ import React from "react"
 import { ButtonSM } from "@/styled/styledCommon"
 import { SearchBar, SearchBarSection } from "@/styled/styledHeader"
 import store from "@/mobx/store"
+import { SearchType } from "../useSearch"
 
 import HeaderNavDataKo from '@/lang/header/headerNavData-ko'
 import HeaderNavDataJp from '@/lang/header/headerNavData-jp'
 import HeaderNavDataEn from '@/lang/header/headerNavData-en'
 
 type SearchBarProps = {
-    searchType: string,
+    searchType: SearchType,
     openSearchTypeDlg: (b: boolean) => void,
     setSearchTxt: (s: string) => void,
     searchEnter: (e: React.KeyboardEvent<HTMLInputElement>) => void,
@@ -28,10 +29,10 @@ const SearchBarComp = (props: SearchBarProps) => {
                 {
                     (function() {
                         switch(props.searchType) {
-                            case 'music': return 'Music'
-                            case 'gskill': return 'GSkill'
-                            case 'dskill': return 'DSkill'
-                            case 'player': return 'Player'
+                            case SearchType.music: return 'Music'
+                            case SearchType.gskill: return 'GSkill'
+                            case SearchType.dskill: return 'DSkill'
+                            case SearchType.player: return 'Player'
                         }
                     })()
                 }

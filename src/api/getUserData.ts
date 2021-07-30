@@ -36,3 +36,8 @@ export const getSnapshotList = async (id: string) => {
     const res = await axios.get(`${CommonData.dataUrl}skill/snapshot/list/${id}`)
     return res.data
 }
+
+export const getGraph = async (id: string) => {
+    const res = await axios.post(`${CommonData.dataUrl}skillrecord/${id}`)
+    return res.data
+}

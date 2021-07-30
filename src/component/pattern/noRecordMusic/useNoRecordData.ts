@@ -30,7 +30,6 @@ const useNoRecordData = (
 
         const nplist = new Array<NPData>()
 
-        let isEmpty = false
         getNoRecordData(gtype, userid, vertype, page, window.location.search)
         .then((json) => {
             const music = JSON.parse(json.music)

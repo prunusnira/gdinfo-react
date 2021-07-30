@@ -12,20 +12,18 @@ export const apiDropUser = async () => {
 }
 
 export const apiSubmitComment = async (comment: string, id: string) => {
-    const res = await axios.post(`${CommonData.dataUrl}setcomment`, {
-        val: comment,
-        id: id
-    })
+    const param = new URLSearchParams()
+    param.set('val', comment)
+    param.set('id', id)
+    const res = await axios.post(`${CommonData.dataUrl}setcomment`, param)
     return res.statusText
 }
 
 export const apiSubmitDataOpen = async (id: string, open: string) => {
-    const res = await axios.post(`${CommonData.dataUrl}setopencount`, {
-        data: {
-            open: open,
-            id: parseInt(id)
-        }
-    })
+    const param = new URLSearchParams()
+    param.set('open', open)
+    param.set('id', id)
+    const res = await axios.post(`${CommonData.dataUrl}setopencount`, param)
     return res.statusText
 }
 

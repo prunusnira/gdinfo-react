@@ -6,9 +6,9 @@ interface Props {
 }
 
 const ClearTableRow = (props: Props) => {
-    const data = props.list.map(clear => {
+    const data = props.list.map((clear, i) => {
         return (
-            <div className="div-table-row">
+            <div className="div-table-row" key={i}>
                 <div className="div-table-cell">{clear.level}</div>
                 <div className="div-table-cell">{clear.exc}</div>
                 <div className="div-table-cell">{clear.ss}</div>
