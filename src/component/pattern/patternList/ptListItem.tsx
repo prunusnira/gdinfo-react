@@ -12,9 +12,9 @@ const PTListItem = (props: Props) => {
     return (
         <>
         {
-            props.list.map(p => {
+            props.list.map((p, i) => {
                 return (
-                    <ItemRow className="table-border-bottom" style={{padding:"10px"}}>
+                    <ItemRow className="table-border-bottom" style={{padding:"10px"}} key={i}>
                         <ItemCol
                             size={3}
                             style={{

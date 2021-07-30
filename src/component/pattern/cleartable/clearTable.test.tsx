@@ -1,30 +1,40 @@
-import React from 'react'
-import {render, RenderResult} from '@testing-library/react'
-import { MemoryRouter, Route } from 'react-router-dom'
-import "@testing-library/jest-dom/extend-expect"
-import ClearTable from './clearTable'
-import { ReactElement } from 'react'
+import { render } from "@testing-library/react"
+import '@testing-library/jest-dom'
+import React from "react"
+import { MemoryRouter } from "react-router-dom"
+import ClearTable from "./clearTable"
+import ClearTableData from "./clearTableData"
 
-let dom: RenderResult
+const mockClearTableData: ClearTableData[] = [{
+    level:'1.0',
+    exc: 2,
+    ss: 1,
+    s: 0,
+    a: 0,
+    b: 0,
+    c: 0,
+    f: 0,
+    all: 3,
+    n: 0
+}]
 
-const renderWithRouter = (children: ReactElement, init: string) => (
-    render(
-        <MemoryRouter initialEntries={[init]}>
-            <Route path='/cleartable/:userid'>
-                {children}
-            </Route>
-        </MemoryRouter>
-    )
-)
+jest.mock('./useClearTable', () => ({
+    __esModule: true,
+    default: () => (mockClearTableData)
+}))
 
-beforeEach(() => {
-    dom = renderWithRouter(
-        <ClearTable />, '/cleartable/18'
-    )
-})
+jest.mock('react-router-dom', () => ({
+    ...jest.requireActual('react-router-dom'),
+    useParams: () => ({userid: '18'})
+}))
 
-describe('check clear table render', () => {
-    it('page render check', () => {
-        dom.getByText('Clear Status Table')
+describe('클리어 테이블 데이터 표시 테스트', () => {
+    it('데이터 표시 테스트', () => {
+        const dom = render(
+            <MemoryRouter>
+                <ClearTable />
+            </MemoryRouter>
+        )
+        expect(dom.getAllByText('3')).toHaveLength(2)
     })
 })

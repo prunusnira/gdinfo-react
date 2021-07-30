@@ -10,17 +10,17 @@ const TowerStatTable = (props: Props) => {
     return (
         <>
             {
-                props.list.map(t => {
+                props.list.map((t, i) => {
                     return (
-                        <ItemRow  setVertical={true}>
+                        <ItemRow setVertical={true} key={`t${i}`}>
                             <BodyHeader>
                                 {t.tower}
                             </BodyHeader>
                             <BodyContent>
                             {
-                                t.floors.map(x => {
+                                t.floors.map((x, j) => {
                                     return (
-                                        <ItemRow>
+                                        <ItemRow key={`tf${j}`}>
                                             {x.floor}: {x.clear}
                                         </ItemRow>
                                     )

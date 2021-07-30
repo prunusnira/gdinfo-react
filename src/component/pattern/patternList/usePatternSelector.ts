@@ -61,7 +61,7 @@ const usePatternSelector = (
             if(currentOrder === "verasc") next = "verdesc";
             else next = "verasc";
         }
-        setSwitchOther(true)
+        setSwitchOrder(true)
         setNextVer(ver)
         setNextOrder(next)
     }

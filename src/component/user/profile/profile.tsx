@@ -14,12 +14,13 @@ interface MatchProps {
 
 const Profile = observer(() => {
     const [comment, setComment] = useState('')
+    const [nextComment, setNextComment] = useState('')
     const [openUserInfo, setOpenUserInfo] = useState('N')
     const {id} = useParams<MatchProps>()
     const [profileData, isOwnAccount] = useProfileLoader(id, setComment, setOpenUserInfo)
     const [
         isCommentOpen, setCommentDlgOpen, closeComment, submitComment
-    ] = useComment(id, comment, setComment)
+    ] = useComment(id, nextComment, setComment)
     const [
         isInfoOpen, setInfoDlgOpen, setInfoDlgClose, submitOpen, infoUpdate, updateOpenValue
     ] = useInfoOpen(setOpenUserInfo)
@@ -31,18 +32,18 @@ const Profile = observer(() => {
     else {
         return (
             <ProfilePresenter
-                comment={comment}
-                
                 isInfoOpen={isInfoOpen}
                 openUserInfo={openUserInfo}
                 updateOpenValue={updateOpenValue}
                 submitOpen={submitOpen}
                 setInfoDlgClose={setInfoDlgClose}
                 
+                comment={comment}
+                nextComment={nextComment}
                 isCommentOpen={isCommentOpen}
                 submitComment={submitComment}
                 closeComment={closeComment}
-                setComment={setComment}
+                setNextComment={setNextComment}
                 
                 isOwnAccount={isOwnAccount}
                 profileData={profileData}

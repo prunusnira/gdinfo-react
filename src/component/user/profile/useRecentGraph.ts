@@ -1,7 +1,6 @@
-import axios from "axios"
 import { useEffect, useState } from "react"
-import CommonData from "@/component/common/commonData"
 import SkillRecord from "./skillRecord"
+import { getGraph } from "@/api/getUserData"
 
 type GraphReturn = [Array<any>, number, number]
 
@@ -11,27 +10,27 @@ const useRecentGraph = (id: string, type: string): GraphReturn => {
     const [lineData, setLineData] = useState(Array<any>())
     
     useEffect(() => {
-        getGraph()
+        getGraphData()
     }, [])
 
-    const getGraph = () => {
-        axios.post(`${CommonData.dataUrl}skillrecord/${id}`)
-        .then((res) => {
-            const record = JSON.parse(res.data.record);
+    const getGraphData = () => {
+        getGraph(id)
+        .then((data) => {
+            const record = JSON.parse(data.record);
             const length = record.length;
 
             const minmax = getMinMax(record, type);
 
-            const data = [];
+            const line = [];
             for(let i = 0; i < length; i++) {
                 if(type === "gf") {
-                    data.push({
+                    line.push({
                         name: record[i].date,
                         uv: record[i].gskill
                     });
                 }
                 else {
-                    data.push({
+                    line.push({
                         name: record[i].date,
                         uv: record[i].dskill
                     });
@@ -40,7 +39,7 @@ const useRecentGraph = (id: string, type: string): GraphReturn => {
 
             setMin(minmax[0])
             setMax(minmax[1])
-            setLineData(data)
+            setLineData(line)
         })
     }
 

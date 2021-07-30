@@ -11,9 +11,9 @@ const PatternRankRow = (props: Props) => {
     return (
         <>
             {
-                props.list.map(pd => {
+                props.list.map((pd, i) => {
                     return (
-                        <div className='div-table-row table-border-bottom'>
+                        <div className='div-table-row table-border-bottom' key={i}>
                             <div className='div-table-cell' style={pd.ratecolor}></div>
                             <div className='div-table-cell' style={pd.skillcolor}></div>
                             <div className='div-table-cell'>{pd.index}</div>

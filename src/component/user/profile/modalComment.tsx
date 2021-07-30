@@ -12,7 +12,7 @@ interface Props {
     id: string,
     submitComment: () => void,
     closeComment: () => void,
-    setComment: (s: string) => void,
+    setNextComment: (s: string) => void,
 }
 
 const ModalComment = (props: Props) => {
@@ -33,7 +33,7 @@ const ModalComment = (props: Props) => {
                 <input
                     className="form-control" type="text"
                     name="newcomment" id="commentInput"
-                    onChange={(e) => props.setComment(e.currentTarget.value)} />
+                    onChange={(e) => props.setNextComment(e.currentTarget.value)} />
             </ModalBody>
             <ModalFooter style={{backgroundColor: '#dddddd'}}>
                 <Button onClick={props.closeComment}>Cancel</Button>

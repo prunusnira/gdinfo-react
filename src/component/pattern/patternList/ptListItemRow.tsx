@@ -10,9 +10,9 @@ const PTListItemRow = (props: Props) => {
     return (
         <>
         {
-            props.list.map(diff => {
+            props.list.map((diff, i) => {
                 return (
-                    <div className='div-table-row'>
+                    <div className='div-table-row' key={`r${i}`}>
                         <div className='div-table-cell'>
                             {diff.diff}
                         </div>

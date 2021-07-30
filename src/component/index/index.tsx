@@ -1,6 +1,6 @@
 import React from 'react'
 import {Timeline} from 'react-twitter-widgets'
-import UserLoginInfo from './userLoginInfo'
+import UserLoginInfo from './LoginInfo'
 
 import './index.css'
 import store from '@/mobx/store'

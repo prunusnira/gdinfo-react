@@ -15,18 +15,18 @@ import txtProfileJp from '@/lang/user/profile/txtProfile-jp'
 import txtProfileEn from '@/lang/user/profile/txtProfile-en'
 
 interface Props {
-    comment: string,
-
     isInfoOpen: boolean,
     openUserInfo: string,
     updateOpenValue: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void,
     submitOpen: (id: string, open: string) => void,
     setInfoDlgClose: () => void,
 
+    comment: string,
+    nextComment: string,
     isCommentOpen: boolean,
     submitComment: () => void,
     closeComment: () => void,
-    setComment: (s: string) => void,
+    setNextComment: (s: string) => void,
 
     isOwnAccount: boolean,
     profileData: ProfileData,
@@ -237,57 +237,60 @@ const ProfilePresenter = (props: Props) => {
                         <ItemRow>
                             <ItemCol size={7}>
                                 <table className="table prof-table text-center" style={{width:100+'%'}}>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>GuitarFreaks</th>
-                                        <th>DrumMania</th>
-                                    </tr>
-                                    <tr>
-                                        <th>{txtProfile.detailed.s}</th>
-                                        <td id="tableGskill">{`${props.profileData.gskill.toFixed(2)} (${props.profileData.gskillall})`}</td>
-                                        <td id="tableDskill">{`${props.profileData.dskill.toFixed(2)} (${props.profileData.dskillall})`}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{txtProfile.detailed.clv}</th>
-                                        <td id="tableGclear">{`${props.profileData.gclearlv.toFixed(2)} (${props.profileData.gclearnum})`}</td>
-                                        <td id="tableDclear">{`${props.profileData.dclearlv.toFixed(2)} (${props.profileData.dclearnum})`}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{txtProfile.detailed.flv}</th>
-                                        <td id="tableGfc">{`${props.profileData.gfclv.toFixed(2)} (${props.profileData.gfcnum})`}</td>
-                                        <td id="tableDfc">{`${props.profileData.dfclv.toFixed(2)} (${props.profileData.dfcnum})`}</td>
-                                    </tr>
-                                    <tr>
-                                        <th>{txtProfile.detailed.elv}</th>
-                                        <td id="tableGexc">{`${props.profileData.gexclv.toFixed(2)} (${props.profileData.gexcnum})`}</td>
-                                        <td id="tableDexc">{`${props.profileData.dexclv.toFixed(2)} (${props.profileData.dexcnum})`}</td>
-                                    </tr>
-                                    {
-                                        (function() {
-                                            if(props.openUserInfo === "N" && !props.isOwnAccount) {
-                                                return (
-                                                    <tr>
-                                                        <th id="tableAcnt">{txtProfile.detailed.count}<br/>Closed</th>
-                                                        <td id="tableGcnt">Closed</td>
-                                                        <td id="tableDcnt">Closed</td>
-                                                    </tr>
-                                                )
-                                            }
-                                            else {
-                                                return (
-                                                    <tr>
-                                                        <th id="tableAcnt">
-                                                            {txtProfile.detailed.count}<br/>
-                                                            {props.profileData.countgf + props.profileData.countdm}
-                                                        </th>
-                                                        <td id="tableGcnt">{props.profileData.countgf}</td>
-                                                        <td id="tableDcnt">{props.profileData.countdm}</td>
-                                                    </tr>
-                                                )
-                                            }
-                                        })()
-                                    }
-                                    
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>GuitarFreaks</th>
+                                            <th>DrumMania</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>{txtProfile.detailed.s}</th>
+                                            <td id="tableGskill">{`${props.profileData.gskill.toFixed(2)} (${props.profileData.gskillall})`}</td>
+                                            <td id="tableDskill">{`${props.profileData.dskill.toFixed(2)} (${props.profileData.dskillall})`}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{txtProfile.detailed.clv}</th>
+                                            <td id="tableGclear">{`${props.profileData.gclearlv.toFixed(2)} (${props.profileData.gclearnum})`}</td>
+                                            <td id="tableDclear">{`${props.profileData.dclearlv.toFixed(2)} (${props.profileData.dclearnum})`}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{txtProfile.detailed.flv}</th>
+                                            <td id="tableGfc">{`${props.profileData.gfclv.toFixed(2)} (${props.profileData.gfcnum})`}</td>
+                                            <td id="tableDfc">{`${props.profileData.dfclv.toFixed(2)} (${props.profileData.dfcnum})`}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>{txtProfile.detailed.elv}</th>
+                                            <td id="tableGexc">{`${props.profileData.gexclv.toFixed(2)} (${props.profileData.gexcnum})`}</td>
+                                            <td id="tableDexc">{`${props.profileData.dexclv.toFixed(2)} (${props.profileData.dexcnum})`}</td>
+                                        </tr>
+                                        {
+                                            (function() {
+                                                if(props.openUserInfo === "N" && !props.isOwnAccount) {
+                                                    return (
+                                                        <tr>
+                                                            <th id="tableAcnt">{txtProfile.detailed.count}<br/>Closed</th>
+                                                            <td id="tableGcnt">Closed</td>
+                                                            <td id="tableDcnt">Closed</td>
+                                                        </tr>
+                                                    )
+                                                }
+                                                else {
+                                                    return (
+                                                        <tr>
+                                                            <th id="tableAcnt">
+                                                                {txtProfile.detailed.count}<br/>
+                                                                {props.profileData.countgf + props.profileData.countdm}
+                                                            </th>
+                                                            <td id="tableGcnt">{props.profileData.countgf}</td>
+                                                            <td id="tableDcnt">{props.profileData.countdm}</td>
+                                                        </tr>
+                                                    )
+                                                }
+                                            })()
+                                        }
+                                    </tbody>
                                 </table>
                                 <ItemRow id="countupdate">
                                     {
@@ -351,7 +354,7 @@ const ProfilePresenter = (props: Props) => {
                 id={props.id}
                 submitComment={props.submitComment}
                 closeComment={props.closeComment}
-                setComment={props.setComment} />
+                setNextComment={props.setNextComment} />
         </>
     )
 }

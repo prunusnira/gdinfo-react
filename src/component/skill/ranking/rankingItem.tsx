@@ -4,7 +4,7 @@ import SingleSkillColorChanger from '@/component/common/skillcolor'
 import SRankData from './srankData'
 import { observer } from 'mobx-react'
 import store from '@/mobx/store'
-import { Icon, ItemRow } from '@/styled/styledCommon'
+import { Icon, ItemCol, ItemRow } from '@/styled/styledCommon'
 
 import txtSrankKo from '@/lang/skill/ranking/txtSkillRank-ko'
 import txtSrankJp from '@/lang/skill/ranking/txtSkillRank-jp'
@@ -23,15 +23,16 @@ const SkillRankingItem = observer((props: Props) => {
             lang === 'jp' ? txtSrankJp : txtSrankEn
 
     return (
-        <table style={{width: '100%'}}>
+        <>
         {
             props.rank.map(r => {
                 return (
-                <tr key={r.index}>
-                        <td style={{textAlign: 'center'}}>
+                    <ItemRow key={r.index} keepDirHor={true}
+                            style={{paddingTop: '5px', paddingBottom: '5px'}}>
+                        <ItemCol style={{textAlign: 'center', verticalAlign: 'middle'}} size={2}>
                             {r.index}
-                        </td>
-                        <td style={{paddingTop: '5px', paddingBottom: '5px'}}>
+                        </ItemCol>
+                        <ItemCol size={5}>
                             <ItemRow keepDirHor={true}>
                                 {
                                     (function() {
@@ -47,42 +48,44 @@ const SkillRankingItem = observer((props: Props) => {
                             <ItemRow>
                                 {txtSrank.table.uptime} {r.time}
                             </ItemRow>
-                        </td>
-                        <td className='blackandwhite'>
-                            <tr>
-                                <td>G&nbsp;</td>
-                                <td>
-                                    <Link to={r.glink}>
-                                        <SingleSkillColorChanger
-                                            skill={parseFloat(r.gskill)}
-                                            link={r.glink} />
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>D&nbsp;</td>
-                                <td>
-                                    <Link to={r.dlink}>
-                                        <SingleSkillColorChanger
-                                            skill={parseFloat(r.dskill)}
-                                            link={r.dlink} />
-                                    </Link>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>A&nbsp;</td>
-                                <td>
+                        </ItemCol>
+                        <ItemCol className='blackandwhite' size={3}>
+                            <ItemRow keepDirHor={true}>
+                                <ItemCol style={{textAlign:'center'}} size={2}>
+                                    G
+                                </ItemCol>
+                                <ItemCol size={8}>
+                                    <SingleSkillColorChanger
+                                        skill={parseFloat(r.gskill)}
+                                        link={r.glink} />
+                                </ItemCol>
+                            </ItemRow>
+                            <ItemRow keepDirHor={true}>
+                                <ItemCol style={{textAlign:'center'}} size={2}>
+                                    D
+                                </ItemCol>
+                                <ItemCol size={8}>
+                                    <SingleSkillColorChanger
+                                        skill={parseFloat(r.dskill)}
+                                        link={r.dlink} />
+                                </ItemCol>
+                            </ItemRow>
+                            <ItemRow keepDirHor={true}>
+                                <ItemCol style={{textAlign:'center'}} size={2}>
+                                    A
+                                </ItemCol>
+                                <ItemCol size={8}>
                                     <SingleSkillColorChanger
                                         skill={parseFloat(r.allskill)}
                                         link="#none" />
-                                </td>
-                            </tr>
-                        </td>
-                    </tr>
+                                </ItemCol>
+                            </ItemRow>
+                        </ItemCol>
+                    </ItemRow>
                 )
             })
         }
-        </table>
+        </>
     )
 })
 

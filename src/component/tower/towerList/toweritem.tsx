@@ -12,7 +12,7 @@ const TowerListImg = (props: Props) => {
         {
             props.list.map((tower, i) => {
                 return (
-                    <Link key={i} to={tower.link}>
+                    <Link key={i} to={tower.link} data-testid='towerUrl'>
                         <img alt="towerimg"
                             src={tower.img} />
                     </Link>
