@@ -16,8 +16,8 @@ const useUserInfo = (): UserInfoReturn => {
     const updateUserInfo = (info: LoginInfo, isSignIn: boolean, isNewUser: boolean) => {
         loginUser.setUserData(info)
         loginStatus.setSignStatus(isSignIn)
-        setNewUser(isNewUser)
         setToken(info.token)
+        setNewUser(isNewUser)
     }
 
     return [newUser, token, updateUserInfo]

@@ -2,20 +2,22 @@ import { useEffect, useState } from "react"
 import store from "@/mobx/store"
 import {getUserFromToken} from "@/api/getUserData"
 
-type CheckReturn = [boolean, boolean, (b: boolean) => void]
+type CheckReturn = [boolean, boolean, boolean, (b: boolean) => void]
 
 const useUserCheck = (): CheckReturn => {
     const [moveToIndex, setMoveToIndex] = useState(false)
-    const [isValidAccess, setValidAccess] = useState(true)
+    const [isValidAccess, setValidAccess] = useState(false)
+    const [isNewUserMode, setNewUserMode] = useState(true)
     
     useEffect(() => {
         // params에 token이 있는지 확인
         if(checkParamHasToken()) {
             // 토큰이 이미 DB에 있는지 확인
             checkUserAlreadyExist()
+            setNewUserMode(true)
         }
         else {
-            setValidAccess(false)
+            setNewUserMode(false)
         }
     }, [])
 
@@ -31,7 +33,7 @@ const useUserCheck = (): CheckReturn => {
         const token = loginUser.user.token
         getUserFromToken(token)
         .then(d => {
-            return d.json()
+            return d
         })
         .then(d => {
             if(d.mydata !== 'null') {
@@ -40,7 +42,7 @@ const useUserCheck = (): CheckReturn => {
         })
     }
 
-    return [moveToIndex, isValidAccess, setMoveToIndex]
+    return [moveToIndex, isValidAccess, isNewUserMode, setMoveToIndex]
 }
 
 export default useUserCheck

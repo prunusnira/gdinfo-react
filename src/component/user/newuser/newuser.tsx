@@ -12,10 +12,11 @@ import useUserDrop from './useUserDrop'
 import txtNewuserKo from '@/lang/user/newuser/txtNewUser-ko'
 import txtNewuserJp from '@/lang/user/newuser/txtNewUser-jp'
 import txtNewuserEn from '@/lang/user/newuser/txtNewUser-en'
+import Error404 from '@/component/error/404'
 
 const NewUser = observer(() => {
     const [newUser, token, updateUserInfo] = useUserInfo()
-    const [moveToIndex, isValidAccess, setMoveToIndex] = useUserCheck()
+    const [moveToIndex, isValidAccess, isNewUserMode, setMoveToIndex] = useUserCheck()
     const addNewUser = useUserAdd(updateUserInfo, setMoveToIndex)
     const dropUser = useUserDrop(setMoveToIndex)
 
@@ -29,6 +30,12 @@ const NewUser = observer(() => {
         return <Redirect to={"/index"} />
     }
     else if(isValidAccess) {
+        alert(txtNewuser.existAccess)
+        return (
+            <Error500 />
+        )
+    }
+    else if(isNewUserMode) {
         return (
             <NewUserPresenter
                 addNewUser={addNewUser}
@@ -38,7 +45,7 @@ const NewUser = observer(() => {
     else {
         alert(txtNewuser.invalidAccess)
         return (
-            <Error500 />
+            <Error404 />
         )
     }
 })
