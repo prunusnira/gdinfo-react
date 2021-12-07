@@ -12,7 +12,7 @@ const useUserSearch = (
     
     useEffect(() => {
         if(type !== 'music') getUserList()
-    }, [])
+    }, [page])
 
     const getUserList = () => {
         getSearchResult(type, value, page)
