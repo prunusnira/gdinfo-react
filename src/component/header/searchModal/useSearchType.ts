@@ -18,7 +18,7 @@ const useSearchType = (searchType: SearchType): SearchTypeReturn => {
             case 'dskill':
                 rtn = SearchType.dskill
                 break
-            case 'name':
+            case 'player':
                 rtn = SearchType.player
                 break
         }

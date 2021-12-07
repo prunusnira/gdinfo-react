@@ -36,7 +36,7 @@ const useSkillRankingData = (
                 const obj: SRankData = {
                     index: 0,
                     userid: 0,
-                    profilerank: '',
+                    profile: '',
                     towertitle: '',
                     username: '',
                     time: '',
@@ -48,7 +48,7 @@ const useSkillRankingData = (
                 }
                 const cur = userList[i]
                 obj.index = i+30*(parseInt(page)-1)+1
-                obj.profilerank = '/profile/'+cur.id
+                obj.profile = '/profile/'+cur.id
 
                 if(cur.titletower !== '')
                     obj.towertitle = `/general-img/title/${cur.titletower}.png`
@@ -78,7 +78,7 @@ const useSkillRankingData = (
                     obj.towertitle = ''
                     obj.userid = 0
                     obj.username = TxtCommon.emptyname
-                    obj.profilerank = '#none'
+                    obj.profile = '#none'
                     obj.glink = '#none'
                     obj.dlink = '#none'
                 }

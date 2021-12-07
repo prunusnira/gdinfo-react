@@ -1,7 +1,7 @@
 type SRankData = {
     index: number,
     userid: number,
-    profilerank: string,
+    profile: string,
     towertitle: string,
     username: string,
     time: string,

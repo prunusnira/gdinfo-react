@@ -41,7 +41,7 @@ const SkillRankingItem = observer((props: Props) => {
                                         }
                                     })()
                                 }
-                                <Link href="#no_div" style={{fontSize: "125%"}} className='innerhref' to={r.profilerank}>
+                                <Link href="#no_div" style={{fontSize: "125%"}} className='innerhref' to={r.profile}>
                                     {r.username}
                                 </Link>
                             </ItemRow>

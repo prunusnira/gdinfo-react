@@ -15,7 +15,7 @@ const useMusicSearch = (
     
     useEffect(() => {
         if(type === 'music') getMusicList()
-    }, [])
+    }, [page])
 
     const getMusicList = () => {
         getSearchResult(type, value, page)
