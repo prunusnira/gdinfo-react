@@ -5,7 +5,6 @@ import React from "react";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import SkillItemData from "../skill/skillItem/skillItemData";
 import PopupMusicData from "./popupMusicData";
-import { SkillPopupBody } from "./skillPopup.style";
 
 type PopupProps = {
     popupOpen: boolean;

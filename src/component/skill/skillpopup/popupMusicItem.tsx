@@ -2,11 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import MusicDataType from "./musicData";
 import store from "@/mobx/store";
-import { ItemCol, ItemRow } from "@/styled/styledCommon";
 
 import txtMusicKo from "@/lang/pattern/music/txtmusic-ko";
-import txtMusicJp from "@/lang/pattern/music/txtmusic-ko";
-import txtMusicEn from "@/lang/pattern/music/txtmusic-ko";
+import txtMusicJp from "@/lang/pattern/music/txtmusic-jp";
+import txtMusicEn from "@/lang/pattern/music/txtmusic-en";
 import {
     ItemCont,
     ItemDiff,
@@ -17,6 +16,7 @@ import {
     ItemWrapper,
     MusicItemWrapper,
 } from "./popupMusicItem.style";
+import { observer } from "mobx-react";
 
 interface Props {
     list: Array<MusicDataType>;
