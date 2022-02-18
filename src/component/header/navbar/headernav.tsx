@@ -5,7 +5,8 @@ import { GoogleLogout } from "react-google-login"
 import { Link } from "react-router-dom"
 import store from "@/mobx/store"
 import { ItemRow } from "@/styled/styledCommon"
-import { ImageIcon, ImageTitle, NavBar, NavItemX, NavMenu, NavTitle, NavToggle } from "@/styled/styledHeader"
+import { ImageIcon, ImageTitle } from "@/styled/styledHeader"
+import { NavBar, NavItemX, NavMenu, NavTitle, NavToggle} from './headernav.style'
 import NavSubItemWrapper from "./navSubWrapper"
 import '../header.css'
 

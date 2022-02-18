@@ -1,13 +1,14 @@
 const txtIndex = {
     self: {
-        title: "User Logined",
+        title: "User",
         login: "Sign in",
         loginFirst: " first please",
     },
     notice: "Notice",
     about: {
         title: "What is this web site?",
-        cont: "You can record your GITADORA skill data and share with other players",
+        cont: `You can record your GITADORA skill data and share with other players.
+        Please check announcement from Twitter account.`,
     },
     howto: {
         title: "How to use",

@@ -5,6 +5,7 @@ const txtMusic = {
     score: "점수",
     combo: "콤보",
     skill: "스킬",
-}
+    oldrate: "구작 달성률",
+};
 
 export default txtMusic;

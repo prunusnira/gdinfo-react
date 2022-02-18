@@ -1,6 +1,6 @@
 import React from "react"
 import { ButtonSM } from "@/styled/styledCommon"
-import { SearchBar, SearchBarSection } from "@/styled/styledHeader"
+import { SearchBar, SearchBarSection } from "./searchBar.style"
 import store from "@/mobx/store"
 import { SearchType } from "../useSearch"
 

@@ -49,6 +49,8 @@ const PTListItem = (props: Props) => {
                                                 return <b>(removed in EX)</b>
                                             case 5:
                                                 return <b>(removed in NX)</b>
+                                            case 6:
+                                                return <b>(removed in HV)</b>
                                         }
                                     })()
                                 }

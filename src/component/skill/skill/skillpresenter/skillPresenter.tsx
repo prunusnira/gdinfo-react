@@ -1,152 +1,172 @@
-import React from "react"
-import { Link } from "react-router-dom"
-import { BodyContent, BodyHeader, Button, Container, ItemCol, ItemRow } from "@/styled/styledCommon"
-import Pager from "@/component/common/pager"
-import ProfileData from "@/component/user/profile/profileData"
-import SkillItemData from "../skillItem/skillItemData"
-import SkillMenu from "../skillMenu"
-import SkillTableNR from "./skillTableNR"
-import SkillTableSH from "./skillTableSH"
-import * as Time from '@/component/common/time'
-import { Row } from "reactstrap"
-import { skillPageVersion } from '@/component/common/version'
+import React from "react";
+import { Link } from "react-router-dom";
+import {
+    BodyContent,
+    BodyHeader,
+    Button,
+    Container,
+    ItemCol,
+    ItemRow,
+} from "@/styled/styledCommon";
+import Pager from "@/component/common/pager";
+import ProfileData from "@/component/user/profile/profileData";
+import SkillItemData from "../skillItem/skillItemData";
+import SkillMenu from "../skillMenu";
+import SkillTableNR from "./skillTableNR";
+import SkillTableSH from "./skillTableSH";
+import * as Time from "@/component/common/time";
+import { Row } from "reactstrap";
+import { skillPageVersion } from "@/component/common/version";
 
-import txtSkillKo from "@/lang/skill/skill/txtSkill-ko"
-import txtSkillJp from "@/lang/skill/skill/txtSkill-jp"
-import txtSkillEn from "@/lang/skill/skill/txtSkill-en"
+import txtSkillKo from "@/lang/skill/skill/txtSkill-ko";
+import txtSkillJp from "@/lang/skill/skill/txtSkill-jp";
+import txtSkillEn from "@/lang/skill/skill/txtSkill-en";
+import {
+    SkillBody,
+    SkillHeader,
+    SkillRow,
+    SkillTableOuter,
+    SkillTableWrapper,
+    SkillTableWrapperSH,
+    SkillWrapper,
+} from "./skillPresenter.style";
 
 interface Props {
     // share table
-    share: boolean,
+    share: boolean;
 
     // url query
-    ptype: string,
-    userid: string,
-    gtype: string,
-    page: string,
-    order: string,
+    ptype: string;
+    userid: string;
+    gtype: string;
+    page: string;
+    order: string;
 
     // data
-    lang: string,
+    lang: string;
 
     // 스킬표 상단 타이틀
-    tableTxtGType: string,
-    tableTxtDesc: string,
+    tableTxtGType: string;
+    tableTxtDesc: string;
 
     // 스킬표 상단 데이터
-    statLeftTitle: string,
-    statLeft: string,
-    statMidTitle: string,
-    statMid: string,
-    statRightTitle: string,
-    statRight: string,
-    updateTime: string,
+    statLeftTitle: string;
+    statLeft: string;
+    statMidTitle: string;
+    statMid: string;
+    statRightTitle: string;
+    statRight: string;
+    updateTime: string;
 
     // states
-    ownAccount: boolean,
-    menuVisible: boolean,
+    ownAccount: boolean;
+    menuVisible: boolean;
 
-    visibleLarge: boolean,
-    visibleLeft: boolean,
-    visibleRight: boolean,
-    allpage: number,
+    visibleLarge: boolean;
+    visibleLeft: boolean;
+    visibleRight: boolean;
+    allpage: number;
 
-    user: ProfileData,
-    skillTable1: Array<SkillItemData>,
-    skillTable2: Array<SkillItemData>,
+    user: ProfileData;
+    skillTable1: Array<SkillItemData>;
+    skillTable2: Array<SkillItemData>;
 
     // methods
-    createSnapshot: (userid: string, gtype: string) => void,
-    showTableMenu: () => void,
-    scrShot: (divname: string, filename: string) => void,
+    createSnapshot: (userid: string, gtype: string) => void;
+    showTableMenu: () => void;
+    scrShot: (divname: string, filename: string) => void;
 
     // methods for ptype 0 menus
-    switchVer: (e: React.ChangeEvent<HTMLSelectElement>) => void,
-    switchRank: (e: React.ChangeEvent<HTMLSelectElement>) => void,
-    switchName: (e: React.ChangeEvent<HTMLSelectElement>) => void,
-    switchOrder: (order: number) => void,
+    switchVer: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    switchRank: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    switchName: (e: React.ChangeEvent<HTMLSelectElement>) => void;
+    switchOrder: (order: number) => void;
+
+    // popup
+    openPopup: (item: SkillItemData) => void;
 }
 
 const SkillPresenter = (props: Props) => {
     const txtSkill =
-        props.lang === 'ko' ? txtSkillKo :
-            props.lang === 'jp' ? txtSkillJp : txtSkillEn
+        props.lang === "ko" ? txtSkillKo : props.lang === "jp" ? txtSkillJp : txtSkillEn;
 
     return (
-        <Container>
-            <ItemRow setVertical={true}>
-                <BodyHeader>
-                    <h3>Skill Table</h3>
-                </BodyHeader>
-                <BodyContent id="scrshotdiv">
-                    <ItemRow>
-                        <ItemCol size={5} isFlatUnderLg={true}>
-                        {
-                            props.share ?
-                            (
-                                <Link style={{width:"100%"}} to={`/skill/${props.ptype}/${props.userid}/${props.gtype}/${props.page}/${props.order}${window.location.search}`}>
-                                    <Button style={{width:"100%"}}>
-                                        {txtSkill.btnNormalTable}
-                                    </Button>
-                                </Link>
-                            )
-                            :
-                            (
-                                <Link style={{width:"100%"}} to={`/skillscr/${props.ptype}/${props.userid}/${props.gtype}/${props.page}/${props.order}${window.location.search}`}>
-                                    <Button style={{width:"100%"}}>
-                                        {txtSkill.btnShareTable}
-                                    </Button>
-                                </Link>
+        <SkillWrapper>
+            <SkillHeader>
+                <h4>Skill Menu</h4>
+            </SkillHeader>
+            <SkillBody>
+                <SkillRow justifyContent={"center"} alignItems={"center"}>
+                    {props.share ? (
+                        <Link
+                            to={`/skill/${props.ptype}/${props.userid}/${props.gtype}/${props.page}/${props.order}${window.location.search}`}
+                        >
+                            <Button>{txtSkill.btnNormalTable}</Button>
+                        </Link>
+                    ) : (
+                        <Link
+                            to={`/skillscr/${props.ptype}/${props.userid}/${props.gtype}/${props.page}/${props.order}${window.location.search}`}
+                        >
+                            <Button>{txtSkill.btnShareTable}</Button>
+                        </Link>
+                    )}
+                    <Button
+                        onClick={() =>
+                            props.scrShot(
+                                "scrTable",
+                                `${props.userid}_${props.gtype}_all_${
+                                    props.page
+                                }_${Time.getTimeScr()}.jpg`
                             )
                         }
-                        </ItemCol>
-                        <ItemCol size={5} isFlatUnderLg={true}>
-                            <Button style={{width:"100%"}} onClick={() => props.scrShot("scrTable", `${props.userid}_${props.gtype}_all_${props.page}_${Time.getTimeScr()}.jpg`)}>
-                                {txtSkill.scrshot}
-                            </Button>
-                        </ItemCol>
-                    </ItemRow>
+                    >
+                        {txtSkill.scrshot}
+                    </Button>
                     {
                         // 본인 계정인 경우 snapshot 생성
-                        (function() {
-                            if(props.ownAccount) {
+                        (function () {
+                            if (props.ownAccount) {
                                 return (
-                                    <ItemRow>
-                                        <Button style={{width:"100%"}} onClick={() => props.createSnapshot(props.userid, props.gtype)}>
-                                            {txtSkill.snapshot.button}
-                                        </Button>
-                                    </ItemRow>
-                                )
+                                    <Button
+                                        onClick={() =>
+                                            props.createSnapshot(props.userid, props.gtype)
+                                        }
+                                    >
+                                        {txtSkill.snapshot.button}
+                                    </Button>
+                                );
                             }
                         })()
                     }
-                </BodyContent>
-                <BodyContent>
-                    <ItemRow style={{justifyContent: 'center'}}>
-                        <a className="innerhref" href="#no_div" onClick={props.showTableMenu}>
-                            {txtSkill.float}
-                        </a>
-                    </ItemRow>
-                    <ItemRow style={{display: props.menuVisible?'block':'none'}}>
-                        <SkillMenu ptype={props.ptype} id={props.userid} />
-                    </ItemRow>
-                </BodyContent>
-            </ItemRow>
+                </SkillRow>
+
+                <SkillRow justifyContent={"center"} alignItems={"center"}>
+                    <a className="innerhref" href="#no_div" onClick={props.showTableMenu}>
+                        {txtSkill.float}
+                    </a>
+                </SkillRow>
+                <SkillRow style={{ display: props.menuVisible ? "block" : "none" }}>
+                    <SkillMenu ptype={props.ptype} id={props.userid} />
+                </SkillRow>
+            </SkillBody>
             {
                 // ptype 0일때만 출현하도록 함
-                (function() {
-                    if(parseInt(props.ptype) === 0) {
+                (function () {
+                    if (parseInt(props.ptype) === 0) {
                         return (
-                            <ItemRow setVertical={true}>
-                                <BodyHeader>
-                                    <h3>Search Options</h3>
-                                </BodyHeader>
-                                <BodyContent>
-                                    <ItemRow>
+                            <>
+                                <SkillHeader>
+                                    <h4>Search Options</h4>
+                                </SkillHeader>
+                                <SkillBody>
+                                    <SkillRow>
                                         <ItemCol size={3.3} isFlatUnderLg={true}>
                                             <ItemRow>Version</ItemRow>
                                             <ItemRow>
-                                                <select onChange={props.switchVer} className="form-control">
+                                                <select
+                                                    onChange={props.switchVer}
+                                                    className="form-control"
+                                                >
                                                     <option value="--">SELECT</option>
                                                     <option value="00">All</option>
                                                     <option value="01">GF1</option>
@@ -183,7 +203,10 @@ const SkillPresenter = (props: Props) => {
                                         <ItemCol size={3.3} isFlatUnderLg={true}>
                                             <ItemRow>Rank</ItemRow>
                                             <ItemRow>
-                                                <select onChange={props.switchRank} className="form-control">
+                                                <select
+                                                    onChange={props.switchRank}
+                                                    className="form-control"
+                                                >
                                                     <option value="--">SELECT</option>
                                                     <option value="0">ALL</option>
                                                     <option value="9">EXC</option>
@@ -201,7 +224,10 @@ const SkillPresenter = (props: Props) => {
                                         <ItemCol size={3.3} isFlatUnderLg={true}>
                                             <ItemRow>Name</ItemRow>
                                             <ItemRow>
-                                                <select onChange={props.switchName} className="form-control">
+                                                <select
+                                                    onChange={props.switchName}
+                                                    className="form-control"
+                                                >
                                                     <option value="-">SELECT</option>
                                                     <option value="0">ALL</option>
                                                     <option value="1">Number</option>
@@ -244,153 +270,180 @@ const SkillPresenter = (props: Props) => {
                                                 </select>
                                             </ItemRow>
                                         </ItemCol>
-                                    </ItemRow>
-                                    <ItemRow>
-                                        Order
-                                    </ItemRow>
+                                    </SkillRow>
+                                    <ItemRow>Order</ItemRow>
                                     <ItemRow keepDirHor={true}>
                                         <ItemCol size={5}>
                                             <Button
-                                                style={{width: '100%'}}
-                                                onClick={() => props.switchOrder(0)}>
-                                                    {txtSkill.filter.btn.title} ▲/▼
+                                                style={{
+                                                    width: "100%",
+                                                }}
+                                                onClick={() => props.switchOrder(0)}
+                                            >
+                                                {txtSkill.filter.btn.title} ▲/▼
                                             </Button>
                                         </ItemCol>
                                         <ItemCol size={5}>
                                             <Button
-                                                style={{width: '100%'}}
-                                                onClick={() => props.switchOrder(1)}>
-                                                    {txtSkill.filter.btn.version} ▲/▼
+                                                style={{
+                                                    width: "100%",
+                                                }}
+                                                onClick={() => props.switchOrder(1)}
+                                            >
+                                                {txtSkill.filter.btn.version} ▲/▼
                                             </Button>
                                         </ItemCol>
                                     </ItemRow>
-                                </BodyContent>
-                            </ItemRow>
-                        )
+                                </SkillBody>
+                            </>
+                        );
                     }
                 })()
             }
-            <ItemRow id='scrTable' setVertical={true}>
-                <BodyHeader>
-                    <ItemRow id="targetInfo" setVertical={true}>
-                        <ItemRow style={{justifyContent: 'center'}}>
-                            <h4><b>GITADORA {skillPageVersion(parseInt(props.ptype))}<br/>
-                            {props.tableTxtGType} {props.tableTxtDesc}&nbsp;
-                            {
-                                props.ptype !== '1000' ?
-                                <Link className="innerhref" to={`/profile/${props.userid}`}>{props.user.name}</Link>
-                                :
-                                ''
-                            }
-                            </b></h4>
-                        </ItemRow>
-                        <ItemRow keepDirHor={true}>
-                            <ItemCol size={5} style={{textAlign:"center"}}>
-                                <b>sin.nira.one</b>
-                            </ItemCol>
-                            <ItemCol size={5} style={{textAlign:"center"}}>
-                                Last update: {props.updateTime}
-                            </ItemCol>
-                        </ItemRow>
-                    </ItemRow>
-                </BodyHeader>
-                <BodyContent>
+            <SkillBody id="scrTable">
+                <SkillHeader id="targetInfo">
+                    <SkillRow justifyContent={"center"}>
+                        <h4>
+                            <b>
+                                GITADORA {skillPageVersion(parseInt(props.ptype))}
+                                <br />
+                                {props.tableTxtGType} {props.tableTxtDesc}
+                                &nbsp;
+                                {props.ptype !== "1000" ? (
+                                    <Link className="innerhref" to={`/profile/${props.userid}`}>
+                                        {props.user.name}
+                                    </Link>
+                                ) : (
+                                    ""
+                                )}
+                            </b>
+                        </h4>
+                    </SkillRow>
+                    <SkillRow>
+                        <ItemCol size={5} style={{ textAlign: "center" }}>
+                            <b>sin.nira.one</b>
+                        </ItemCol>
+                        <ItemCol size={5} style={{ textAlign: "center" }}>
+                            Last update: {props.updateTime}
+                        </ItemCol>
+                    </SkillRow>
+                </SkillHeader>
+                <SkillBody>
                     <ItemRow
                         className="skillupper blackandwhite"
-                        style={{justifyContent: 'center'}}
-                        keepDirHor={true}>
-                        <ItemCol size={3} style={{justifyContent: 'center', textAlign: 'center'}}>
-                            {props.statLeftTitle}<br/>{props.statLeft}
+                        style={{ justifyContent: "center" }}
+                        keepDirHor={true}
+                    >
+                        <ItemCol
+                            size={3}
+                            style={{
+                                justifyContent: "center",
+                                textAlign: "center",
+                            }}
+                        >
+                            {props.statLeftTitle}
+                            <br />
+                            {props.statLeft}
                         </ItemCol>
-                        <ItemCol size={3} style={{justifyContent: 'center', textAlign: 'center'}}>
-                            {props.statMidTitle}<br/>{props.statMid}
+                        <ItemCol
+                            size={3}
+                            style={{
+                                justifyContent: "center",
+                                textAlign: "center",
+                            }}
+                        >
+                            {props.statMidTitle}
+                            <br />
+                            {props.statMid}
                         </ItemCol>
-                        <ItemCol size={3} style={{justifyContent: 'center', textAlign: 'center'}}>
-                            {props.statRightTitle}<br/>{props.statRight}
+                        <ItemCol
+                            size={3}
+                            style={{
+                                justifyContent: "center",
+                                textAlign: "center",
+                            }}
+                        >
+                            {props.statRightTitle}
+                            <br />
+                            {props.statRight}
                         </ItemCol>
                     </ItemRow>
-                </BodyContent>
-                <BodyContent>
-                    <ItemRow id="targetTable" setVertical={true}>
-                        <ItemRow className='div-table' id="fullTable" style={{display: props.visibleLarge?'block':'none'}}>
-                            <Row>
-                            {
-                                props.share ?
-                                <SkillTableSH list={props.skillTable1} />
-                                :
-                                <SkillTableNR list={props.skillTable1} />
-                            }
-                            </Row>
-                            {
-                                (function() {
-                                    if(props.skillTable1.length === 0) {
-                                        return txtSkill.tablehead.empty
-                                    }
-                                })()
-                            }
-                        </ItemRow>
-                        <ItemRow setVertical={props.share ? true:false}>
-                            <ItemCol
-                                size={props.share ? 10:5}
-                                isFlatUnderLg={true} id="halfTableLeft"
-                                style={{paddingBottom:"100px", display: props.visibleLeft?'block':'none'}}>
-                                <ItemRow>
-                                    <h2><b>HOT</b></h2>
-                                </ItemRow>
-                                <ItemRow
-                                    className='div-table'
-                                    style={{display:'block'}}>
-                                    <Row>
-                                    {
-                                        props.share ?
-                                        <SkillTableSH list={props.skillTable1} />
-                                        :
-                                        <SkillTableNR list={props.skillTable1} />
-                                    }
-                                    </Row>
-                                </ItemRow>
-                            </ItemCol>
-                            <ItemCol
-                                size={props.share ? 10:5}
-                                isFlatUnderLg={true} id="halfTableRight"
-                                style={{display: props.visibleRight?'block':'none'}}>
-                                <ItemRow>
-                                    <h2><b>OTHER</b></h2>
-                                </ItemRow>
-                                <ItemRow
-                                    className='div-table'
-                                    style={{display:'block'}}>
-                                    <Row>
-                                    {
-                                        props.share ?
-                                        <SkillTableSH list={props.skillTable2} />
-                                        :
-                                        <SkillTableNR list={props.skillTable2} />
-                                    }
-                                    </Row>
-                                </ItemRow>
-                            </ItemCol>
-                            {
-                                (function() {
-                                    if(props.skillTable1.length === 0 && props.skillTable2.length === 0) {
-                                        return txtSkill.tablehead.empty
-                                    }
-                                })()
-                            }
-                        </ItemRow>
-                    </ItemRow>
-                    <div id="skillEmpty" style={{width:"100%", textAlign:"center"}}></div>
-                    <ItemRow className="text-center" keepDirHor={true}>
+                </SkillBody>
+                <SkillBody>
+                    <SkillTableOuter>
+                        {props.share && props.visibleLarge && (
+                            <SkillTableSH list={props.skillTable1} openPopup={props.openPopup} />
+                        )}
+                        {props.share && props.visibleLeft && (
+                            <SkillTableWrapperSH>
+                                <SkillRow justifyContent={"center"}>
+                                    <h4>HOT</h4>
+                                </SkillRow>
+                                <SkillTableOuter>
+                                    <SkillTableSH
+                                        list={props.skillTable1}
+                                        openPopup={props.openPopup}
+                                    />
+                                </SkillTableOuter>
+                            </SkillTableWrapperSH>
+                        )}
+                        {props.share && props.visibleRight && (
+                            <SkillTableWrapperSH>
+                                <SkillRow justifyContent={"center"}>
+                                    <h4>Other</h4>
+                                </SkillRow>
+                                <SkillTableOuter>
+                                    <SkillTableSH
+                                        list={props.skillTable2}
+                                        openPopup={props.openPopup}
+                                    />
+                                </SkillTableOuter>
+                            </SkillTableWrapperSH>
+                        )}
+                        {!props.share && props.visibleLarge && (
+                            <SkillTableWrapper>
+                                <SkillTableNR
+                                    list={props.skillTable1}
+                                    openPopup={props.openPopup}
+                                />
+                            </SkillTableWrapper>
+                        )}
+                        {!props.share && props.visibleLeft && (
+                            <SkillTableWrapper>
+                                <SkillRow justifyContent={"center"}>
+                                    <h4>HOT</h4>
+                                </SkillRow>
+                                <SkillTableNR
+                                    list={props.skillTable1}
+                                    openPopup={props.openPopup}
+                                />
+                            </SkillTableWrapper>
+                        )}
+                        {!props.share && props.visibleRight && (
+                            <SkillTableWrapper>
+                                <SkillRow justifyContent={"center"}>
+                                    <h4>Other</h4>
+                                </SkillRow>
+                                <SkillTableNR
+                                    list={props.skillTable2}
+                                    openPopup={props.openPopup}
+                                />
+                            </SkillTableWrapper>
+                        )}
+                    </SkillTableOuter>
+                    <div id="skillEmpty" style={{ width: "100%", textAlign: "center" }}></div>
+                    <SkillRow>
                         <Pager
                             cpage={parseInt(props.page)}
                             allpage={props.allpage}
                             baseUrl={`/skill/${props.ptype}/${props.userid}/${props.gtype}/`}
-                            afterUrl={`/${props.order}${window.location.search}`} />
-                    </ItemRow>
-                </BodyContent>
-            </ItemRow>
-        </Container>
-    )
-}
+                            afterUrl={`/${props.order}${window.location.search}`}
+                        />
+                    </SkillRow>
+                </SkillBody>
+            </SkillBody>
+        </SkillWrapper>
+    );
+};
 
-export default SkillPresenter
+export default SkillPresenter;

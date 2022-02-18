@@ -1,6 +1,5 @@
 import React, { useState } from "react"
-import { HeaderNav } from "@/styled/styledHeader"
-import { Header } from "@/styled/styledOverall"
+import { HeaderOuter, Header } from "./sinHeader.style"
 import HeaderNavBar from "./navbar/headernav"
 import SearchBarComp from "./searchBar/searchBar"
 import SearchTypeModal from "./searchModal/searchTypeModal"
@@ -18,27 +17,25 @@ const SinHeader = () => {
     ] = useSearch(searchTxt)
 
     return (
-        <>
+        <HeaderOuter>
             <Header>
-                <HeaderNav>
-                    <HeaderNavBar
-                        isMenuOpen={isMenuOpen}
-                        toggleMenu={toggleMenu}
-                        closeMenu={closeMenu} />
-                    <SearchBarComp
-                        searchType={searchType}
-                        openSearchTypeDlg={openSearchTypeDlg}
-                        setSearchTxt={setSearchTxt}
-                        searchEnter={searchEnter}
-                        searchClick={searchClick} />
-                </HeaderNav>
+                <HeaderNavBar
+                    isMenuOpen={isMenuOpen}
+                    toggleMenu={toggleMenu}
+                    closeMenu={closeMenu} />
+                <SearchBarComp
+                    searchType={searchType}
+                    openSearchTypeDlg={openSearchTypeDlg}
+                    setSearchTxt={setSearchTxt}
+                    searchEnter={searchEnter}
+                    searchClick={searchClick} />
             </Header>
             <SearchTypeModal
                 isOpen={searchTypeDlg}
                 currentType={searchType}
                 cancel={closeSearchTypeDlg}
                 ok={changeSearchType} />
-        </>
+        </HeaderOuter>
     )
 }
 

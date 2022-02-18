@@ -5,6 +5,7 @@ const txtMusic = {
     score: "Score",
     combo: "Combo",
     skill: "Skill",
-}
+    oldrate: "Old Rate",
+};
 
 export default txtMusic;
