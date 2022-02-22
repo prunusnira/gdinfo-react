@@ -1,5 +1,5 @@
 const txtProfile = {
-    profile: "Profile",
+    profile: "User Info",
     table1: {
         prof: "Profile",
         title: "Title",
@@ -7,8 +7,13 @@ const txtProfile = {
         comment: "Comment",
         emptyname: "PRIVATE",
     },
+    oldver: {
+        more: "Click to see old versions",
+        less: "Close",
+    },
     detail: "Details",
     button: {
+        title: "Shortcut",
         chkpskill: "Skill table",
         setdataopen: "Open to public setting",
         changecomment: "Change comment",
@@ -16,10 +21,12 @@ const txtProfile = {
         mybest: "Play count",
         compare: "Skill comparision",
         reset: "Skill data reset",
-        resetdanger: "This button will reset all the skill data and CANNOT be restored. Will you continue?",
+        resetdanger:
+            "This button will reset all the skill data and CANNOT be restored. Will you continue?",
         resetdone: "Skill data reset complete",
         countupdate: "Update playcount",
-        countdesc: "When you find your play count is not updated after you used updater, please press the button below",
+        countdesc:
+            "When you find your play count is not updated after you used updater, please press the button below",
         towerupdate: "Update tower status",
         towerstatus: "Show tower status",
     },
@@ -30,10 +37,10 @@ const txtProfile = {
         elv: "EXC",
         count: "Play count",
         notopen: "Closed",
-        countdesc: "About play count<br/>" +
-                "* Play count is sum of all number stages (Including stage failure)<br/>"+
-                "* Others can or cannot see your data via your settings<br/>"+
-                "* You need all pattern data to check exact play count",
+        countdesc: `About play count
+            * Play count is sum of all number stages (Including stage failure)
+            * Others can or cannot see your data via your settings
+            * You need all pattern data to check exact play count`,
     },
     dataopen: {
         yes: "Open",
@@ -47,6 +54,6 @@ const txtProfile = {
         done: "Tower data updated",
     },
     click: "* Touch skill to go to skill table *",
-}
+};
 
-export default txtProfile
+export default txtProfile;
