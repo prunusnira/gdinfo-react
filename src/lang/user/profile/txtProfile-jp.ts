@@ -1,5 +1,5 @@
 const txtProfile = {
-    profile: "プロフィール",
+    profile: "ユーザー情報",
     table1: {
         prof: "ユーザー",
         title: "称号",
@@ -7,8 +7,13 @@ const txtProfile = {
         comment: "コメント",
         emptyname: "非公開",
     },
+    oldver: {
+        more: "タッチして旧作スキルを確認",
+        less: "Close",
+    },
     detail: "詳細情報",
     button: {
+        title: "ショットカット",
         chkpskill: "スキル表",
         setdataopen: "情報公開設定",
         changecomment: "コメント更新",
@@ -16,7 +21,8 @@ const txtProfile = {
         mybest: "プレイ回数",
         compare: "スキル比較",
         reset: "スキルデータをリセット",
-        resetdanger: "この作業は保存されているスキルデータをリセットします。復旧できないので気をつけてください。続きますか？",
+        resetdanger:
+            "この作業は保存されているスキルデータをリセットします。復旧できないので気をつけてください。続きますか？",
         resetdone: "スキルデータをリセットしました。",
         countupdate: "プレイカウント更新",
         countdesc: "更新後、プレイ回数だけが更新されなかった場合以下のボタンを押してください",
@@ -30,11 +36,10 @@ const txtProfile = {
         elv: "エクセレント",
         count: "プレイ数",
         notopen: "非公開",
-        countdesc: "プレイ数について" +
-                "* プレイ数は今までプレイしたステージの数です(Stage Failedも含む)<br/>"+
-                "* 公開設定により他人に見せることができます(基本非公開)<br/>" +
-                "* 正確な計算のためには全曲のスキルデータが必要です<br/>" +
-                "スキルデータをアップデートするとプレイ数も一緒にアップデートします",
+        countdesc: `プレイ数について
+            * プレイ数は今までプレイしたステージの数です(Stage Failedも含む)
+            * 公開設定により他人に見せることができます(基本非公開)
+            * 正確な計算のためには全曲のスキルデータが必要です`,
     },
     dataopen: {
         yes: "公開",
@@ -48,6 +53,6 @@ const txtProfile = {
         done: "塔のデータを更新しました。",
     },
     click: "* スキルをタッチしてスキル表に移行 *",
-}
+};
 
-export default txtProfile
+export default txtProfile;

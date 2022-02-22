@@ -1,28 +1,22 @@
-import React from 'react'
-import CommonData from '@/component/common/commonData'
+import React from "react";
+import CommonData from "@/component/common/commonData";
 
 interface Props {
-    id: string,
-    visibleLg: boolean
+    id: string;
 }
 
 const ProfileBoard = (props: Props) => {
-    const checkLg = () => {
-        if(props.visibleLg === true) {
-            return 'visible-lg'
-        }
-        else {
-            return 'visible-underlg'
-        }
-    }
-
     return (
-        <img alt="board" style={{width:"100%", maxWidth: "360px"}} className={checkLg()}
+        <img
+            alt="board"
+            style={{ width: "100%", maxWidth: "360px" }}
             src={`${CommonData.dataUrl}board/${props.id}.png`}
             onError={(e: any) => {
-                e.target.src=`${CommonData.jacketUrl}empty.jpg`;
-            }} />
-    )
-}
+                e.target.src = `${CommonData.jacketUrl}empty.jpg`;
+                e.target.style = "width:0;height:0;";
+            }}
+        />
+    );
+};
 
-export default ProfileBoard
+export default ProfileBoard;
