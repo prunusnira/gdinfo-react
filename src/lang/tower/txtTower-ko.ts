@@ -6,7 +6,6 @@ const txtTower = {
         howto: "타워 대상곡 갱신 방법",
     },
     detail: {
-        desc: "타워는 계속 업데이트 중입니다. (트위터 참고)",
         progress: "진행도",
         below: "필요: 하위 층 클리어",
         titlechangable: "칭호변경 가능",
@@ -22,7 +21,7 @@ const txtTower = {
     },
     title: {
         changed: "칭호가 변경되었습니다",
-    }
-}
+    },
+};
 
-export default txtTower
+export default txtTower;
