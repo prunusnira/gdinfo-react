@@ -101,10 +101,11 @@ const ProfilePresenter = (props: Props) => {
                             {props.profileData.name === "" ? "(No Name)" : props.profileData.name}
                         </UIName>
                         <UIComment>{props.comment}</UIComment>
-
-                        <Button onClick={props.setCommentDlgOpen}>
-                            {txtProfile.button.changecomment}
-                        </Button>
+                        {props.isOwnAccount && (
+                            <Button onClick={props.setCommentDlgOpen}>
+                                {txtProfile.button.changecomment}
+                            </Button>
+                        )}
                         <UISkillWrapper show={true}>
                             <UISkill>
                                 <UISkillTitle>GF SKILL</UISkillTitle>

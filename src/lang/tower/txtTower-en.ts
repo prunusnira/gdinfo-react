@@ -6,7 +6,6 @@ const txtTower = {
         howto: "How to update tower",
     },
     detail: {
-        desc: "The Tower is still in update. (Check our Twitter)",
         progress: "Progress",
         below: "Needed: Under floors cleared",
         titlechangable: "Title Changable",
@@ -22,7 +21,7 @@ const txtTower = {
     },
     title: {
         changed: "Title has changed.",
-    }
-}
+    },
+};
 
-export default txtTower
+export default txtTower;

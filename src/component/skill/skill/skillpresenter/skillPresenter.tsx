@@ -25,7 +25,7 @@ import {
     SkillBody,
     SkillHeader,
     SkillRow,
-    SkillTableOuter,
+    SkillTableOuterSH,
     SkillTableWrapper,
     SkillTableWrapperSH,
     SkillWrapper,
@@ -370,67 +370,63 @@ const SkillPresenter = (props: Props) => {
                     </ItemRow>
                 </SkillBody>
                 <SkillBody>
-                    <SkillTableOuter>
-                        {props.share && props.visibleLarge && (
-                            <SkillTableSH list={props.skillTable1} openPopup={props.openPopup} />
-                        )}
-                        {props.share && props.visibleLeft && (
-                            <SkillTableWrapperSH>
-                                <SkillRow justifyContent={"center"}>
-                                    <h4>HOT</h4>
-                                </SkillRow>
-                                <SkillTableOuter>
-                                    <SkillTableSH
-                                        list={props.skillTable1}
-                                        openPopup={props.openPopup}
-                                    />
-                                </SkillTableOuter>
-                            </SkillTableWrapperSH>
-                        )}
-                        {props.share && props.visibleRight && (
-                            <SkillTableWrapperSH>
-                                <SkillRow justifyContent={"center"}>
-                                    <h4>Other</h4>
-                                </SkillRow>
-                                <SkillTableOuter>
-                                    <SkillTableSH
-                                        list={props.skillTable2}
-                                        openPopup={props.openPopup}
-                                    />
-                                </SkillTableOuter>
-                            </SkillTableWrapperSH>
-                        )}
-                        {!props.share && props.visibleLarge && (
-                            <SkillTableWrapper>
-                                <SkillTableNR
+                    {props.share && props.visibleLarge && (
+                        <SkillTableWrapperSH>
+                            <SkillTableOuterSH>
+                                <SkillTableSH
                                     list={props.skillTable1}
                                     openPopup={props.openPopup}
                                 />
-                            </SkillTableWrapper>
-                        )}
-                        {!props.share && props.visibleLeft && (
-                            <SkillTableWrapper>
-                                <SkillRow justifyContent={"center"}>
-                                    <h4>HOT</h4>
-                                </SkillRow>
-                                <SkillTableNR
+                            </SkillTableOuterSH>
+                        </SkillTableWrapperSH>
+                    )}
+                    {props.share && props.visibleLeft && (
+                        <SkillTableWrapperSH>
+                            <SkillRow justifyContent={"center"}>
+                                <h4>HOT</h4>
+                            </SkillRow>
+                            <SkillTableOuterSH>
+                                <SkillTableSH
                                     list={props.skillTable1}
                                     openPopup={props.openPopup}
                                 />
-                            </SkillTableWrapper>
-                        )}
-                        {!props.share && props.visibleRight && (
-                            <SkillTableWrapper>
-                                <SkillRow justifyContent={"center"}>
-                                    <h4>Other</h4>
-                                </SkillRow>
-                                <SkillTableNR
+                            </SkillTableOuterSH>
+                        </SkillTableWrapperSH>
+                    )}
+                    {props.share && props.visibleRight && (
+                        <SkillTableWrapperSH>
+                            <SkillRow justifyContent={"center"}>
+                                <h4>Other</h4>
+                            </SkillRow>
+                            <SkillTableOuterSH>
+                                <SkillTableSH
                                     list={props.skillTable2}
                                     openPopup={props.openPopup}
                                 />
-                            </SkillTableWrapper>
-                        )}
-                    </SkillTableOuter>
+                            </SkillTableOuterSH>
+                        </SkillTableWrapperSH>
+                    )}
+                    {!props.share && props.visibleLarge && (
+                        <SkillTableWrapper>
+                            <SkillTableNR list={props.skillTable1} openPopup={props.openPopup} />
+                        </SkillTableWrapper>
+                    )}
+                    {!props.share && props.visibleLeft && (
+                        <SkillTableWrapper>
+                            <SkillRow justifyContent={"center"}>
+                                <h4>HOT</h4>
+                            </SkillRow>
+                            <SkillTableNR list={props.skillTable1} openPopup={props.openPopup} />
+                        </SkillTableWrapper>
+                    )}
+                    {!props.share && props.visibleRight && (
+                        <SkillTableWrapper>
+                            <SkillRow justifyContent={"center"}>
+                                <h4>Other</h4>
+                            </SkillRow>
+                            <SkillTableNR list={props.skillTable2} openPopup={props.openPopup} />
+                        </SkillTableWrapper>
+                    )}
                     <div id="skillEmpty" style={{ width: "100%", textAlign: "center" }}></div>
                     <SkillRow>
                         <Pager

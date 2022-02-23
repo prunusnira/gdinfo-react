@@ -1,59 +1,49 @@
-import React from 'react'
-import { Row, Col } from 'reactstrap'
-import PlaycountData from './playcountData'
-import store from '@/mobx/store'
-import { observer } from 'mobx-react'
+import React from "react";
+import PlaycountData from "./playcountData";
+import store from "@/mobx/store";
+import { observer } from "mobx-react";
 
-import txtPlayCountKo from '@/lang/user/playcount/txtPlayCount-ko'
-import txtPlayCountJp from '@/lang/user/playcount/txtPlayCount-jp'
-import txtPlayCountEn from '@/lang/user/playcount/txtPlayCount-en'
+import txtPlayCountKo from "@/lang/user/playcount/txtPlayCount-ko";
+import txtPlayCountJp from "@/lang/user/playcount/txtPlayCount-jp";
+import txtPlayCountEn from "@/lang/user/playcount/txtPlayCount-en";
+import { CountJacket, CountMusic, CountPattern, CountPlay, CountWrapper } from "./countTable.style";
 
 interface Props {
-    data: Array<PlaycountData>
+    data: Array<PlaycountData>;
 }
 
 const CountTable = observer((props: Props) => {
-    const lang = store.language.lang
+    const lang = store.language.lang;
 
     const txtPlayCount =
-        lang === 'ko' ? txtPlayCountKo :
-            lang === 'jp' ? txtPlayCountJp : txtPlayCountEn
+        lang === "ko" ? txtPlayCountKo : lang === "jp" ? txtPlayCountJp : txtPlayCountEn;
 
     return (
-        <Row>
-        {
-            props.data.map(d => {
+        <>
+            {props.data.map((d, i) => {
                 return (
-                    <Col key={d.key} lg="2" xs="4" sm="3" className="text-center" style={{height:"200px"}}>
-                        <span style={{display:"block", margin:"0 auto"}}>
-                            <img alt="jacket-img" className='listimg-skill' src={d.jacket}
-                                onError={(e) => {
-                                    e.currentTarget.onerror = null
-                                    e.currentTarget.src=process.env.PUBLIC_URL+"/general-img/empty.jpg";
-                                }} /><br/>
-                            {
-                                (function() {
-                                    if(d.pattern !== "") {
-                                        // 이미지
-                                        return <img alt="pattern-type" style={{width:"90px"}} src={d.pattern} />
-                                    }
-                                    else {
-                                        // 빈칸
-                                        return <span></span>
-                                    }
-                                })()
-                            }
-                        </span>
-                        <span style={{fontSize:"80%"}}>
-                            {d.number}. {d.name}<br/>
-                            {d.count}{txtPlayCount.table.time}
-                        </span>
-                    </Col>
-                )
-            })
-        }
-        </Row>
-    )
-})
+                    <CountWrapper key={`count${i}`}>
+                        <CountJacket
+                            alt="jacket-img"
+                            src={d.jacket}
+                            onError={(e) => {
+                                e.currentTarget.onerror = null;
+                                e.currentTarget.src =
+                                    process.env.PUBLIC_URL + "/general-img/empty.jpg";
+                            }}
+                        />
+                        {d.pattern !== "" && <CountPattern alt="pattern-type" src={d.pattern} />}
+                        <CountMusic>
+                            {d.number}. {d.name}
+                        </CountMusic>
+                        <CountPlay>
+                            {d.count} {txtPlayCount.table.time}
+                        </CountPlay>
+                    </CountWrapper>
+                );
+            })}
+        </>
+    );
+});
 
 export default CountTable;
