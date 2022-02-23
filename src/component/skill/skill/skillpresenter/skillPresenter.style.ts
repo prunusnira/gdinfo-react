@@ -37,19 +37,22 @@ export const SkillHeader = styled.div`
 export const SkillBody = styled.div`
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 100%;
     background-color: ${BGGray};
 
     padding: 5px 0;
 `;
 
-export const SkillTableOuter = styled.section`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-
+export const SkillTableOuterSH = styled.section`
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(25%, auto));
     width: 100%;
+
+    @media screen and (max-width: 599px) {
+        grid-template-columns: repeat(auto-fill, minmax(33%, auto));
+    }
 `;
 
 export const SkillTableWrapper = styled.section`
@@ -63,4 +66,5 @@ export const SkillTableWrapperSH = styled.section`
     display: flex;
     flex-direction: column;
     width: 100%;
+    max-width: 800px;
 `;
