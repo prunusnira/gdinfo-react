@@ -1,54 +1,60 @@
-import React from 'react'
-import {useParams} from 'react-router-dom'
-import { observer } from 'mobx-react'
-import PTListPresenter from './ptListPresenter'
-import usePTList from './usePTList'
-import usePatternSelector from './usePatternSelector'
-import PTListSelector from './ptListSelector'
-import PTListTitle from './ptListTitle'
-import { Container } from '@/styled/styledCommon'
+import React from "react";
+import { useParams } from "react-router-dom";
+import { observer } from "mobx-react";
+import PTListPresenter from "./ptListPresenter";
+import usePTList from "./usePTList";
+import usePatternSelector from "./usePatternSelector";
+import PTListSelector from "./ptListSelector";
+import PTListTitle from "./ptListTitle";
+import { Container } from "@/styled/styledCommon";
+import { PTListContainer } from "./ptList.style";
 
 interface MatchProps {
-    order: string,
-    ver: string,
-    page: string
+    order: string;
+    ver: string;
+    page: string;
 }
 
 const PTList = observer(() => {
-    const {order, ver, page} = useParams<MatchProps>()
-    const [list, allPage] = usePTList(order, ver, page)
+    const { order, ver, page } = useParams<MatchProps>();
+    const [list, allPage] = usePTList(order, ver, page);
     const [
-        switchHot, switchHotMethod,
-        switchOther, switchOtherMethod,
-        switchVer, switchVerMethod,
-        switchOrder, switchOrderMethod,
-        nextVer, nextOrder
-    ] = usePatternSelector(order, ver, page)
+        switchHot,
+        switchHotMethod,
+        switchOther,
+        switchOtherMethod,
+        switchVer,
+        switchVerMethod,
+        switchOrder,
+        switchOrderMethod,
+        nextVer,
+        nextOrder,
+    ] = usePatternSelector(order, ver, page);
 
     return (
-        <Container>
+        <PTListContainer>
             <PTListTitle />
             <PTListSelector
                 switchHotMethod={switchHotMethod}
                 switchOtherMethod={switchOtherMethod}
                 switchVerMethod={switchVerMethod}
-                switchOrderMethod={switchOrderMethod} />
+                switchOrderMethod={switchOrderMethod}
+            />
             <PTListPresenter
                 switchHot={switchHot}
                 switchOther={switchOther}
                 switchVer={switchVer}
                 switchOrder={switchOrder}
-
                 order={order}
                 nextVer={nextVer}
                 nextOrder={nextOrder}
-                
                 list={list}
                 page={page}
                 allPage={allPage}
-                ver={ver} />
-        </Container>
-    )
-})
+                ver={ver}
+            />
+        </PTListContainer>
+    );
+});
 
-export default PTList
+export default PTList;
