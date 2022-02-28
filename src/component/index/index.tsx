@@ -4,13 +4,21 @@ import UserLoginInfo from "./LoginInfo";
 import "./index.css";
 import store from "@/mobx/store";
 import { observer } from "mobx-react";
-import { BodyContent, BodyHeader, ItemCol, ItemRow, Button } from "@/styled/styledCommon";
+import { Button } from "@/styled/styledCommon";
 import { Link } from "react-router-dom";
 
 import txtIndexKo from "@/lang/index/txtIndex-ko";
 import txtIndexJp from "@/lang/index/txtIndex-jp";
 import txtIndexEn from "@/lang/index/txtIndex-en";
-import { IndexContainer, IndexLoginDiv } from "./index.style";
+import {
+    IndexContainer,
+    IndexContent,
+    IndexImg,
+    IndexRow,
+    IndexScript,
+    IndexScriptWrapper,
+    IndexTitle,
+} from "./index.style";
 
 const IndexPage = observer(() => {
     const { language, loginUser, loginStatus } = store;
@@ -24,18 +32,13 @@ const IndexPage = observer(() => {
                 {(function () {
                     if (loginStatus.isSigned) {
                         return (
-                            <IndexLoginDiv>
-                                <ItemRow>
-                                    <BodyHeader>
-                                        <h4>{txtIndex.self.title}</h4>
-                                    </BodyHeader>
-                                    <BodyContent style={{ textAlign: "center" }}>
-                                        <UserLoginInfo />
-                                    </BodyContent>
-                                    <BodyHeader>
-                                        <h4>Quick Links</h4>
-                                    </BodyHeader>
-                                    <BodyContent style={{ textAlign: "center" }}>
+                            <>
+                                <IndexTitle>
+                                    <h4>{txtIndex.self.title}</h4>
+                                </IndexTitle>
+                                <IndexContent>
+                                    <UserLoginInfo />
+                                    <IndexRow>
                                         <Link to="/profile">
                                             <Button>Profile</Button>
                                         </Link>
@@ -51,134 +54,86 @@ const IndexPage = observer(() => {
                                         <Link to="/tower/index">
                                             <Button>Tower</Button>
                                         </Link>
-                                    </BodyContent>
-                                </ItemRow>
-                            </IndexLoginDiv>
+                                    </IndexRow>
+                                </IndexContent>
+                            </>
                         );
                     } else {
                         return (
-                            <IndexLoginDiv>
-                                <ItemRow>
-                                    <BodyHeader>
-                                        <h4>{txtIndex.self.title}</h4>
-                                    </BodyHeader>
-                                    <BodyContent style={{ textAlign: "center" }}>
-                                        <UserLoginInfo />
-                                    </BodyContent>
-                                </ItemRow>
-                            </IndexLoginDiv>
+                            <>
+                                <IndexTitle>
+                                    <h4>{txtIndex.self.title}</h4>
+                                </IndexTitle>
+                                <IndexContent>
+                                    <UserLoginInfo />
+                                </IndexContent>
+                            </>
                         );
                     }
                 })()}
 
-                <ItemRow>
-                    <ItemCol isFlatUnderLg={true}>
-                        <BodyHeader>
-                            <h4>{txtIndex.about.title}</h4>
-                        </BodyHeader>
-                        <BodyContent>
-                            {txtIndex.about.cont}
-                            <br />
-                            <a href="https://twitter.com/_nira_one">@_nira_one</a>
-                        </BodyContent>
+                <IndexTitle>
+                    <h4>{txtIndex.about.title}</h4>
+                </IndexTitle>
+                <IndexContent>
+                    {txtIndex.about.cont}
+                    <br />
+                    <a href="https://twitter.com/_nira_one">@_nira_one</a>
+                </IndexContent>
 
-                        <BodyHeader>
-                            <h4>{txtIndex.howto.title}</h4>
-                        </BodyHeader>
-                        <BodyContent>{txtIndex.howto.desc}</BodyContent>
-                        <BodyContent>
-                            <ItemRow
-                                style={{
-                                    border: "1px solid white",
-                                }}
-                                setVertical={true}
-                            >
-                                <BodyHeader>{txtIndex.howto.script}</BodyHeader>
-                                <BodyContent>
-                                    <ItemRow>
-                                        {(function () {
-                                            if (loginStatus.isSigned) {
-                                                return txtIndex.howto.addrLogin;
-                                            } else {
-                                                return (
-                                                    <b style={{ color: "yellow" }}>
-                                                        ★{txtIndex.howto.addrNoLogin}
-                                                    </b>
-                                                );
-                                            }
-                                        })()}
-                                    </ItemRow>
-                                    <ItemRow style={{ wordBreak: "break-all" }}>
-                                        {(function () {
-                                            if (loginStatus.isSigned) {
-                                                return (
-                                                    <b>
-                                                        javascript:$.getScript('https://sindata.nira.one/$/update?token=
-                                                        {loginUser.user.token}');
-                                                    </b>
-                                                );
-                                            } else {
-                                                return <b>Please login first</b>;
-                                            }
-                                        })()}
-                                    </ItemRow>
-                                </BodyContent>
-                            </ItemRow>
+                <IndexTitle>
+                    <h4>{txtIndex.howto.title}</h4>
+                </IndexTitle>
+                <IndexContent>1. {txtIndex.howto.desc}</IndexContent>
+                <IndexContent>
+                    <IndexScriptWrapper>
+                        <IndexTitle>{txtIndex.howto.script}</IndexTitle>
+                        <IndexContent>
+                            {loginStatus.isSigned ? (
+                                txtIndex.howto.addrLogin
+                            ) : (
+                                <b style={{ color: "yellow" }}>★{txtIndex.howto.addrNoLogin}</b>
+                            )}
+                        </IndexContent>
+                        <IndexScript>
+                            {loginStatus.isSigned ? (
+                                <b>
+                                    javascript:$.getScript('https://sindata.nira.one/$/update?token=
+                                    {loginUser.user.token}');
+                                </b>
+                            ) : (
+                                <b>Please login first</b>
+                            )}
+                        </IndexScript>
+                    </IndexScriptWrapper>
+                </IndexContent>
+                <IndexContent>
+                    <IndexRow>{txtIndex.howto.desc2}</IndexRow>
+                    <IndexRow>({txtIndex.howto.desc3})</IndexRow>
+                    <IndexImg
+                        alt="favo"
+                        src={process.env.PUBLIC_URL + "/general-img/howto/howto1-register.png"}
+                    />
+                    <IndexRow>※{txtIndex.howto.desc4}</IndexRow>
 
-                            <ItemRow>{txtIndex.howto.desc2}</ItemRow>
-                            <ItemRow>({txtIndex.howto.desc3})</ItemRow>
+                    <IndexImg
+                        alt="favo"
+                        src={process.env.PUBLIC_URL + "/general-img/howto/howto2-browser.png"}
+                    />
+                    <IndexRow>※{txtIndex.howto.desc4}</IndexRow>
+                    <IndexRow>※{txtIndex.howto.browser}</IndexRow>
+                    <IndexRow>Google Chrome (for all OS), Safari (for iOS)</IndexRow>
 
-                            <ItemRow>
-                                <img
-                                    alt="favo"
-                                    className="howto-img"
-                                    src={
-                                        process.env.PUBLIC_URL +
-                                        "/general-img/howto/howto1-register.png"
-                                    }
-                                />
-                            </ItemRow>
-                            <ItemRow>※{txtIndex.howto.desc4}</ItemRow>
+                    <IndexImg
+                        alt="favo"
+                        src={process.env.PUBLIC_URL + "/general-img/howto/howto3-k.png"}
+                    />
 
-                            <ItemRow>
-                                <img
-                                    alt="favo"
-                                    className="howto-img2"
-                                    src={
-                                        process.env.PUBLIC_URL +
-                                        "/general-img/howto/howto2-browser.png"
-                                    }
-                                />
-                            </ItemRow>
-                            <ItemRow>※{txtIndex.howto.desc4}</ItemRow>
-                            <ItemRow>※{txtIndex.howto.browser}</ItemRow>
-                            <ItemRow>Google Chrome (for all OS), Safari (for iOS)</ItemRow>
-
-                            <ItemRow keepDirHor={true}>
-                                <ItemCol size={5}>
-                                    <img
-                                        alt="favo"
-                                        className="howto-img2"
-                                        src={
-                                            process.env.PUBLIC_URL +
-                                            "/general-img/howto/howto3-k.png"
-                                        }
-                                    />
-                                </ItemCol>
-                                <ItemCol size={5}>
-                                    <img
-                                        alt="favo"
-                                        className="howto-img2"
-                                        src={
-                                            process.env.PUBLIC_URL +
-                                            "/general-img/howto/howto3-j.png"
-                                        }
-                                    />
-                                </ItemCol>
-                            </ItemRow>
-                        </BodyContent>
-                    </ItemCol>
-                </ItemRow>
+                    <IndexImg
+                        alt="favo"
+                        src={process.env.PUBLIC_URL + "/general-img/howto/howto3-j.png"}
+                    />
+                </IndexContent>
             </IndexContainer>
         </>
     );
