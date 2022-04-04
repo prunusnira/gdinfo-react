@@ -4,6 +4,7 @@ import Pager from "@/module/common/pager";
 import NpItem from "./npItem";
 import { Redirect } from "react-router-dom";
 import NPData from "./NPData";
+import ContentLayout from "@/component/content/standardContent";
 
 interface Props {
     switchLv: boolean;
@@ -52,33 +53,24 @@ const NoRecordPresenter = (props: Props) => {
         return <Redirect to={`/notplayed/${props.gtype}/${props.userid}/${props.vertype}/1`} />;
     }
     return (
-        <ItemRow setVertical={true}>
-            <BodyHeader>
-                <h3>Non Play List</h3>
-                {/* GuitarFreaks or DrumMania */}
-                <span>{props.gtype === "gf" ? "GuitarFreaks" : "DrumMania"}</span>
-            </BodyHeader>
-            <BodyContent>
-                <ItemRow>
-                    <NpItem list={props.list} />
-                </ItemRow>
-                <div style={{ width: "100%", textAlign: "center" }}>
-                    <h3>
-                        {(function () {
-                            if (props.list.length === 0) return "List is empty";
-                        })()}
-                    </h3>
-                </div>
-                <ItemRow keepDirHor={true}>
-                    <Pager
-                        cpage={parseInt(props.page)}
-                        allpage={props.allPage}
-                        baseUrl={`/notplayed/${props.gtype}/${props.userid}/${props.vertype}/`}
-                        afterUrl={window.location.search}
-                    />
-                </ItemRow>
-            </BodyContent>
-        </ItemRow>
+        <ContentLayout
+            title={`${props.gtype === "gf" ? "GuitarFreaks" : "DrumMania"} No record list`}
+        >
+            <NpItem list={props.list} />
+            <div style={{ width: "100%", textAlign: "center" }}>
+                <h3>
+                    {(function () {
+                        if (props.list.length === 0) return "List is empty";
+                    })()}
+                </h3>
+            </div>
+            <Pager
+                cpage={parseInt(props.page)}
+                allpage={props.allPage}
+                baseUrl={`/notplayed/${props.gtype}/${props.userid}/${props.vertype}/`}
+                afterUrl={window.location.search}
+            />
+        </ContentLayout>
     );
 };
 
