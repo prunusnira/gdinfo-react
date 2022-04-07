@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { BodyContent, BodyHeader, Button, ItemCol, ItemRow } from "@/styled/styledCommon";
+import { Button, ItemCol, ItemRow } from "@/styled/styledCommon";
 import store from "@/mobx/store";
 
 import txtNoRecordKo from "@/lang/pattern/noRecord/txtNoRecord-ko";

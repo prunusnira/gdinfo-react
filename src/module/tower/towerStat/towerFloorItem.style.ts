@@ -1,10 +1,16 @@
+import { Select } from "@/styled/color";
 import styled from "styled-components";
 
 export const FloorItemWrapper = styled.section`
     display: flex;
     flex-direction: row;
+    align-items: center;
     width: 100%;
     padding: 5px;
+
+    &:hover {
+        background-color: ${Select};
+    }
 `;
 
 export const FIImgWrapper = styled.div`
@@ -48,5 +54,5 @@ export const FIClearImg = styled.img`
     height: 35px;
 `;
 export const FIUserTitle = styled.button`
-    width: 75px;
+    width: 80px;
 `;

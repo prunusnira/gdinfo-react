@@ -1,3 +1,4 @@
+import { Black, White } from "@/styled/color";
 import styled from "styled-components";
 
 export const LIWrapper = styled.section`
@@ -14,6 +15,17 @@ export const LIRow = styled.div`
     align-items: center;
     width: 100%;
     max-width: 800px;
+`;
+
+export const LISkillRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 800px;
+    background-color: ${Black};
+    color: ${White};
 `;
 
 export const LIIcon = styled.img`

@@ -1,10 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import SingleSkillColorChanger from "@/module/common/skillcolor";
 import SRankData from "./srankData";
 import { observer } from "mobx-react";
 import store from "@/mobx/store";
-import { Icon } from "@/styled/styledCommon";
 
 import txtSrankKo from "@/lang/skill/ranking/txtSkillRank-ko";
 import txtSrankJp from "@/lang/skill/ranking/txtSkillRank-jp";
@@ -15,8 +13,6 @@ import {
     SRItemWrapper,
     SRLink,
     SRNum,
-    SRSkillRow,
-    SRSkillType,
     SRSkillVal,
     SRSkillWrapper,
     SRUpdate,

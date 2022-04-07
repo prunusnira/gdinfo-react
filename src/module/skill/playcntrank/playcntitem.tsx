@@ -1,6 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Icon, ItemCol, ItemRow } from "@/styled/styledCommon";
 import PlaycntRankData from "./playcntrankData";
 import { PCRICnt, PCRIIcon, PCRILink, PCRINum, PCRIUser, PCRIWrapper } from "./playcntItem.style";
 

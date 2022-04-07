@@ -8,14 +8,9 @@ import { Button } from "@/styled/styledCommon";
 import txtTowerKo from "@/lang/tower/txtTower-ko";
 import txtTowerJp from "@/lang/tower/txtTower-jp";
 import txtTowerEn from "@/lang/tower/txtTower-en";
-import {
-    TowerHowTo,
-    TowerListImgs,
-    TowerListObj,
-    TowerListSection,
-    TowerListTitle,
-    TowerListWrapper,
-} from "./towerListPresenter.style";
+import { TowerHowTo, TowerListImgs } from "./towerListPresenter.style";
+import CommonLayout from "@/component/layout/commonLayout";
+import ContentLayout from "@/component/content/standardContent";
 
 interface Props {
     towerGF: Array<TowerListData>;
@@ -29,11 +24,8 @@ const TowerListPresenter = (props: Props) => {
     const txtTower = lang === "ko" ? txtTowerKo : lang === "jp" ? txtTowerJp : txtTowerEn;
 
     return (
-        <TowerListWrapper>
-            <TowerListTitle>
-                <h4>Skill Navigator Tower</h4>
-            </TowerListTitle>
-            <TowerListSection>
+        <CommonLayout>
+            <ContentLayout title={"Tower"}>
                 <TowerHowTo>
                     {txtTower.main.desc}
                     <br />
@@ -41,32 +33,26 @@ const TowerListPresenter = (props: Props) => {
                         <Button>{txtTower.main.howto}</Button>
                     </Link>
                 </TowerHowTo>
-                <TowerListObj>
-                    <TowerListTitle>
-                        <h4>{txtTower.main.skilltower}&nbsp;GuitarFreaks</h4>
-                    </TowerListTitle>
+
+                <ContentLayout title={`${txtTower.main.skilltower} GuitarFreaks`}>
                     <TowerListImgs>
                         <TowerListImg list={props.towerGF} />
                     </TowerListImgs>
-                </TowerListObj>
-                <TowerListObj>
-                    <TowerListTitle>
-                        <h4>{txtTower.main.skilltower}&nbsp;DrumMania</h4>
-                    </TowerListTitle>
+                </ContentLayout>
+
+                <ContentLayout title={`${txtTower.main.skilltower} DrumMania`}>
                     <TowerListImgs>
                         <TowerListImg list={props.towerDM} />
                     </TowerListImgs>
-                </TowerListObj>
-                <TowerListObj>
-                    <TowerListTitle>
-                        <h4>{txtTower.main.sptower}</h4>
-                    </TowerListTitle>
+                </ContentLayout>
+
+                <ContentLayout title={txtTower.main.sptower}>
                     <TowerListImgs>
                         <TowerListImg list={props.towerSP} />
                     </TowerListImgs>
-                </TowerListObj>
-            </TowerListSection>
-        </TowerListWrapper>
+                </ContentLayout>
+            </ContentLayout>
+        </CommonLayout>
     );
 };
 

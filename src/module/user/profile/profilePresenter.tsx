@@ -33,8 +33,6 @@ import {
 } from "./profilePresenter.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDoubleDown, faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
-import CommonData from "@/module/common/commonData";
-import axios from "axios";
 import CommonLayout from "@/component/layout/commonLayout";
 import ContentLayout from "@/component/content/standardContent";
 
@@ -66,14 +64,6 @@ const ProfilePresenter = (props: Props) => {
     const lang = store.language.lang;
 
     const txtProfile = lang === "ko" ? txtProfileKo : lang === "jp" ? txtProfileJp : txtProfileEn;
-
-    const towerUpdate = () => {
-        if (window.confirm(txtProfile.towerupdate.alert)) {
-            axios.post(`${CommonData.dataUrl}profile/towerupdate/${props.id}`).then((res) => {
-                alert(txtProfile.towerupdate.done);
-            });
-        }
-    };
 
     return (
         <CommonLayout>
@@ -323,15 +313,9 @@ const ProfilePresenter = (props: Props) => {
                     <Link to={`/cleartable/${props.id}`}>
                         <ProfButton>{txtProfile.button.clearRankTable}</ProfButton>
                     </Link>
-                    <Link to={`/profile/towerstatus/${props.id}`}>
-                        <ProfButton>{txtProfile.button.towerstatus}</ProfButton>
-                    </Link>
 
                     {props.isOwnAccount && (
                         <>
-                            <ProfButton onClick={towerUpdate}>
-                                {txtProfile.button.towerupdate}
-                            </ProfButton>
                             <ProfButton onClick={props.infoUpdate}>
                                 {txtProfile.button.countupdate}
                             </ProfButton>

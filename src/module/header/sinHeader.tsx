@@ -10,7 +10,7 @@ const SinHeader = () => {
     return (
         <HeaderOuter>
             <Header isTop={isTransparent}>
-                <SideBar />
+                <SideBar isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
                 <HeaderNavBar
                     isMenuOpen={isMenuOpen}
                     toggleMenu={toggleMenu}

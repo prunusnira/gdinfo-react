@@ -1,31 +1,30 @@
-import React from 'react'
-import ClearTableData from './clearTableData'
+import React from "react";
+import ClearTableData from "./clearTableData";
+import { TableText } from "./clearTablePresenter.style";
 
 interface Props {
-    list: Array<ClearTableData>
+    list: Array<ClearTableData>;
 }
 
 const ClearTableRow = (props: Props) => {
     const data = props.list.map((clear, i) => {
         return (
-            <div className="div-table-row" key={i}>
-                <div className="div-table-cell">{clear.level}</div>
-                <div className="div-table-cell">{clear.exc}</div>
-                <div className="div-table-cell">{clear.ss}</div>
-                <div className="div-table-cell">{clear.s}</div>
-                <div className="div-table-cell">{clear.a}</div>
-                <div className="div-table-cell">{clear.b}</div>
-                <div className="div-table-cell">{clear.c}</div>
-                <div className="div-table-cell">{clear.f}</div>
-                <div className="div-table-cell">{clear.n}</div>
-                <div className="div-table-cell">{clear.all}</div>
-            </div>
-        )
-    })
-    
-    return (
-        <>{data}</>
-    )
-}
+            <>
+                <TableText>{clear.level}</TableText>
+                <TableText>{clear.exc}</TableText>
+                <TableText>{clear.ss}</TableText>
+                <TableText>{clear.s}</TableText>
+                <TableText>{clear.a}</TableText>
+                <TableText>{clear.b}</TableText>
+                <TableText>{clear.c}</TableText>
+                <TableText>{clear.f}</TableText>
+                <TableText>{clear.n}</TableText>
+                <TableText>{clear.all}</TableText>
+            </>
+        );
+    });
 
-export default ClearTableRow
+    return <>{data}</>;
+};
+
+export default ClearTableRow;

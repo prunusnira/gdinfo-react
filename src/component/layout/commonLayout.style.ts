@@ -1,11 +1,12 @@
 import { Background, Black } from "@/styled/color";
 import styled from "styled-components";
 
-export const Outer = styled.main`
+export const Outer = styled.main<{ dark: boolean }>`
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: ${Background};
+
+    ${(props) => (props.dark ? `background-color: ${Black};` : `background-color: ${Background}`)}
 `;
 
 export const Container = styled.section`
@@ -15,10 +16,9 @@ export const Container = styled.section`
     align-items: center;
 
     padding-top: 60px;
-    border: 1px solid ${Black};
 
     // media query를 사용하여 width 마다 별도로 지정
-    @media screen and (max-width: 360px) {
+    @media screen and (max-width: 415px) {
         // mobile
         width: 100%;
     }

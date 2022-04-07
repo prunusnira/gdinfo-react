@@ -17,7 +17,6 @@ import PlayCountLoginCheck from "./user/playcount/checkLogin";
 import SnapshotList from "./user/snapshot/snapshotList";
 import SnapshotLoginCheck from "./user/snapshot/checkLogin";
 import ProfileReset from "./user/reset/reset";
-import TowerClearStat from "./tower/towerClearStat/towerClearStat";
 
 import MySkill from "./skill/myskill";
 import SkillContainer from "./skill/skill/skill";
@@ -76,7 +75,6 @@ const App = observer(() => {
             <Route path="/newuser" component={NewUser} />
             {/* Profile */}
             <Switch>
-                <Route path="/profile/towerstatus/:id" component={TowerClearStat} />
                 <Route path="/profile/:id" component={Profile} />
                 <Route path="/profile" component={ProfileLoginCheck} />
             </Switch>

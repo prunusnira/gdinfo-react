@@ -1,3 +1,4 @@
+import { Black, White } from "@/styled/color";
 import styled from "styled-components";
 
 export const NavBar = styled.div`
@@ -7,13 +8,15 @@ export const NavBar = styled.div`
 `;
 
 export const NavTitle = styled.div`
+    display: flex;
+    align-items: center;
     font-size: 20px;
 `;
 
-export const NavMenu = styled.ul<{ isToggled: boolean }>`
-    margin: 0px !important;
+export const NavMenu = styled.ul`
+    margin: 0 5px 0 0 !important;
     display: flex;
-    align-items: flex-start;
+    align-items: center;
     list-style-type: none;
 `;
 
@@ -23,15 +26,36 @@ export const NavToggle = styled.div`
     }
 `;
 
-export const NavItemX = styled.li`
+export const NavItem = styled.li<{ dark: boolean }>`
     order: 3;
     flex: 1 1 auto;
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+    z-index: 11;
+    ${(props) => (props.dark ? `color: ${White};` : `color: ${Black};`)}
 
     @media screen and (min-width: 1050px) {
         display: block;
         align-items: flex-start;
+    }
+
+    .logout {
+        box-shadow: none !important;
+        display: block !important;
+        font-size: 16px !important;
+        text-decoration: none !important;
+        background-color: transparent !important;
+
+        ${(props) => (props.dark ? `color: ${White} !important;` : `color: ${Black} !important;`)}
+    }
+
+    span {
+        box-shadow: none !important;
+        display: block !important;
+        font-size: 16px !important;
+        text-decoration: none !important;
+
+        ${(props) => (props.dark ? `color: ${White} !important;` : `color: ${Black} !important;`)}
     }
 `;
 

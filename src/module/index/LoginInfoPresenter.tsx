@@ -6,7 +6,16 @@ import txtIndexJp from "@/lang/index/txtIndex-jp";
 import txtIndexEn from "@/lang/index/txtIndex-en";
 import React from "react";
 import ProfileData from "../user/profile/profileData";
-import { LIWrapper, LIRow, LIIcon, LIName, LIType, LIVal } from "./logininfoPresaenter.style";
+import {
+    LIWrapper,
+    LIRow,
+    LIIcon,
+    LIName,
+    LIType,
+    LIVal,
+    LISkillRow,
+} from "./logininfoPresaenter.style";
+import SingleSkillColorChanger from "../common/skillcolor";
 
 type LoginInfoProps = {
     loading: boolean;
@@ -31,24 +40,26 @@ const LoginInfoPresenter = (props: LoginInfoProps) => {
                     )}
                     <LIName>{props.data.name}</LIName>
                 </LIRow>
-                <LIRow>
+                <LISkillRow>
                     <LIType>
                         <b>GF</b>
                     </LIType>
                     <LIVal>
-                        <Link style={{ color: "white" }} to={`/skill/2/${props.data.id}/gf/1/1`}>
-                            {props.data.gskill}
-                        </Link>
+                        <SingleSkillColorChanger
+                            link={`/skill/2/${props.data.id}/gf/1/1`}
+                            skill={props.data.gskill}
+                        />
                     </LIVal>
                     <LIType>
                         <b>DM</b>
                     </LIType>
                     <LIVal>
-                        <Link style={{ color: "white" }} to={`/skill/2/${props.data.id}/dm/1/1`}>
-                            {props.data.dskill}
-                        </Link>
+                        <SingleSkillColorChanger
+                            link={`/skill/2/${props.data.id}/dm/1/1`}
+                            skill={props.data.dskill}
+                        />
                     </LIVal>
-                </LIRow>
+                </LISkillRow>
             </LIWrapper>
         );
     } else {

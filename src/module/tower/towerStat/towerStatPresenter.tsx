@@ -4,13 +4,10 @@ import { TowerStatData } from "./towerStatData";
 import TitleType from "./data/titleType";
 import store from "@/mobx/store";
 
-import { towerName, towerDesc } from "@/lang/tower/towername";
-import {
-    TowerStatDesc,
-    TowerStatTable,
-    TowerStatTitle,
-    TowerStatWrapper,
-} from "./towerStatPresenter.style";
+import { towerName } from "@/lang/tower/towername";
+import { TowerStatTable } from "./towerStatPresenter.style";
+import CommonLayout from "@/component/layout/commonLayout";
+import ContentLayout from "@/component/content/standardContent";
 
 interface Props {
     name: string;
@@ -27,28 +24,20 @@ const TowerStatPresenter = (props: Props) => {
     const id = store.loginUser.user.id;
 
     return (
-        <TowerStatWrapper>
-            <TowerStatTitle>
-                <h4>
-                    {(towerName as any)[props.name] !== undefined
-                        ? (towerName as any)[props.name][lang]
-                        : ""}
-                </h4>
-            </TowerStatTitle>
-            <TowerStatDesc>
-                {(towerDesc as any)[props.name] !== undefined
-                    ? (towerDesc as any)[props.name][lang]
-                    : ""}
-            </TowerStatDesc>
-            <TowerStatTable>
-                <TowerStatList
-                    id={id}
-                    list={props.list}
-                    setTitleChangeModal={props.setTitleChangeModal}
-                    setTitleToBeChanged={props.setTitleToBeChanged}
-                />
-            </TowerStatTable>
-        </TowerStatWrapper>
+        <CommonLayout>
+            <ContentLayout
+                title={(towerName as any)[props.name] && (towerName as any)[props.name][lang]}
+            >
+                <TowerStatTable>
+                    <TowerStatList
+                        id={id}
+                        list={props.list}
+                        setTitleChangeModal={props.setTitleChangeModal}
+                        setTitleToBeChanged={props.setTitleToBeChanged}
+                    />
+                </TowerStatTable>
+            </ContentLayout>
+        </CommonLayout>
     );
 };
 

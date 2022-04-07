@@ -1,13 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-    BodyContent,
-    BodyHeader,
-    Button,
-    Container,
-    ItemCol,
-    ItemRow,
-} from "@/styled/styledCommon";
+import { Button } from "@/styled/styledCommon";
 import PatternRankRow from "./ptRankRow";
 import Pager from "@/module/common/pager";
 import store from "@/mobx/store";

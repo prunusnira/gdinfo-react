@@ -68,9 +68,10 @@ const IndexPage = observer(() => {
                 })()}
 
                 <ContentLayout title={txtIndex.about.title}>
-                    {txtIndex.about.cont}
-                    <br />
-                    <a href="https://twitter.com/_nira_one">@_nira_one</a>
+                    <IndexContent>{txtIndex.about.cont}</IndexContent>
+                    <IndexContent>
+                        <a href="https://twitter.com/_nira_one">@_nira_one</a>
+                    </IndexContent>
                 </ContentLayout>
 
                 <ContentLayout title={txtIndex.howto.title}>

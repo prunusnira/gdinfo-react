@@ -1,18 +1,21 @@
 import store from "@/mobx/store";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { observer } from "mobx-react";
 import React, { useEffect, useState } from "react";
 import SearchBarComp from "../../searchBar/searchBar";
 import SearchTypeModal from "../../searchModal/searchTypeModal";
 import useSearch from "../../useSearch";
 import { getSideBarList } from "../data/sidebarData";
-import { SideBarButton, SideBarContainer } from "./sidebar.style";
+import { SideBarContainer } from "./sidebar.style";
 import SideBarItem from "./sidebarItem";
 
-const SideBar = observer(() => {
-    const lang = store.language.lang;
-    const [isOpen, setOpen] = useState(false);
+type Props = {
+    isMenuOpen: boolean;
+    toggleMenu: () => void;
+};
+
+const SideBar = observer(({ isMenuOpen, toggleMenu }: Props) => {
+    const { language, dark } = store;
+    const lang = language.lang;
     const [sideBarList, setSideBarList] = useState(getSideBarList(lang));
     const [searchTxt, setSearchTxt] = useState("");
     const [
@@ -31,10 +34,7 @@ const SideBar = observer(() => {
 
     return (
         <>
-            <SideBarButton onClick={() => setOpen(!isOpen)}>
-                <FontAwesomeIcon icon={faBars} />
-            </SideBarButton>
-            <SideBarContainer isOpen={isOpen}>
+            <SideBarContainer isOpen={isMenuOpen} dark={dark.dark}>
                 <SearchBarComp
                     searchType={searchType}
                     openSearchTypeDlg={openSearchTypeDlg}

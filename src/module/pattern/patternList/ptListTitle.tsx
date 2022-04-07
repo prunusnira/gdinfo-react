@@ -1,5 +1,4 @@
 import React from "react";
-import { BodyContent, BodyHeader, ItemRow } from "@/styled/styledCommon";
 import store from "@/mobx/store";
 
 import txtPatternKo from "@/lang/pattern/pattern/txtPattern-ko";

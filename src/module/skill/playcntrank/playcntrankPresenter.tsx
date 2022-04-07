@@ -2,19 +2,12 @@ import React from "react";
 import PlayCntRankItem from "./playcntitem";
 import Pager from "@/module/common/pager";
 import store from "@/mobx/store";
-import { BodyContent, BodyHeader, Container, ItemRow } from "@/styled/styledCommon";
 import PlaycntRankData from "./playcntrankData";
 
 import txtCntRankKo from "@/lang/skill/playcntrank/txtCountRank-ko";
 import txtCntRankJp from "@/lang/skill/playcntrank/txtCountRank-jp";
 import txtCntRankEn from "@/lang/skill/playcntrank/txtCountRank-en";
-import {
-    PCRContainer,
-    PCRDesc,
-    PCRListWrapper,
-    PCRPagerWrapper,
-    PCRTitle,
-} from "./playcntrankPresenter.style";
+import { PCRDesc, PCRListWrapper, PCRPagerWrapper } from "./playcntrankPresenter.style";
 import CommonLayout from "@/component/layout/commonLayout";
 import ContentLayout from "@/component/content/standardContent";
 

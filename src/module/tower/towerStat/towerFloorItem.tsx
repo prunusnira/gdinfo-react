@@ -1,5 +1,4 @@
 import React from "react";
-import { Button, ItemCol, ItemRow } from "@/styled/styledCommon";
 import TitleType from "./data/titleType";
 import { FloorItemData } from "./towerStatData";
 

@@ -5,7 +5,6 @@ import NoRecordTitle from "./noRecordTitle";
 import NoRecordSelector from "./noRecordSelector";
 import useNoRecordData from "./useNoRecordData";
 import useNoRecordSelector from "./useNoRecordSelector";
-import { Container } from "@/styled/styledCommon";
 import CommonLayout from "@/component/layout/commonLayout";
 import ContentLayout from "@/component/content/standardContent";
 

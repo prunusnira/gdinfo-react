@@ -1,11 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import SingleSkillColorChanger from "@/module/common/skillcolor";
 
 import RecentData from "./recentData";
 import { observer } from "mobx-react";
 import store from "@/mobx/store";
-import { ItemCol, ItemRow } from "@/styled/styledCommon";
 
 import txtProfileKo from "@/lang/user/profile/txtProfile-ko";
 import txtProfileJp from "@/lang/user/profile/txtProfile-jp";

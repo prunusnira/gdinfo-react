@@ -1,17 +1,7 @@
-import { Black, MenuBack, White } from "@/styled/color";
+import { Black, MenuBack, MenuBackDark, White } from "@/styled/color";
 import styled from "styled-components";
 
-export const SideBarButton = styled.button`
-    position: absolute;
-    right: 10px;
-    top: 15px;
-    z-index: 11;
-    border: 1px solid ${Black};
-    border-radius: 50%;
-    background-color: ${White};
-`;
-
-export const SideBarContainer = styled.section<{ isOpen: boolean }>`
+export const SideBarContainer = styled.section<{ isOpen: boolean; dark: boolean }>`
     display: flex;
     flex-direction: column;
 
@@ -19,9 +9,7 @@ export const SideBarContainer = styled.section<{ isOpen: boolean }>`
     height: 100vh;
     position: absolute;
     right: 0;
-    background-color: ${MenuBack};
-    color: ${Black};
-    padding: 50px 5px 0 5px;
+    padding: 75px 5px 0 5px;
     overflow-y: auto;
 
     @media screen and (max-width: 360px) {
@@ -39,4 +27,11 @@ export const SideBarContainer = styled.section<{ isOpen: boolean }>`
             right: -360px;`
             : `transition: right 0.1s ease-in-out;
             right: 0px;`}
+
+    ${(props) =>
+        props.dark
+            ? `
+    background-color: ${MenuBackDark};`
+            : `
+    background-color: ${MenuBack};`}
 `;

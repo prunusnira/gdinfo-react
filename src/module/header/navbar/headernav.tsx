@@ -2,14 +2,16 @@ import React from "react";
 import { GoogleLogout } from "react-google-login";
 import { Link } from "react-router-dom";
 import store from "@/mobx/store";
-import { ItemRow } from "@/styled/styledCommon";
-import { NavBar, NavItemX, NavLogo, NavMenu, NavTitle } from "./headernav.style";
+import { NavBar, NavItem, NavLogo, NavMenu, NavTitle } from "./headernav.style";
 
 import HeaderNavDataKo from "@/lang/header/headerNavData-ko";
 import HeaderNavDataJp from "@/lang/header/headerNavData-jp";
 import HeaderNavDataEn from "@/lang/header/headerNavData-en";
 import CommonData from "@/module/common/commonData";
 import { observer } from "mobx-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars } from "@fortawesome/free-solid-svg-icons";
+import ToggleSwitch from "@/component/toggleSwitch/toggleSwitch";
 
 type HeaderNavProps = {
     isMenuOpen: boolean;
@@ -19,7 +21,7 @@ type HeaderNavProps = {
 };
 
 const HeaderNavBar = observer((props: HeaderNavProps) => {
-    const { language, loginUser, loginStatus } = store;
+    const { language, loginUser, loginStatus, dark } = store;
     const lang = language.lang;
 
     const HeaderNavData =
@@ -29,25 +31,22 @@ const HeaderNavBar = observer((props: HeaderNavProps) => {
         if (!loginStatus.isSigned) {
             return (
                 <Link to="/login" onClick={props.closeMenu} data-testid={`header-login`}>
-                    <ItemRow keepDirHor={true}>
-                        <span>{HeaderNavData.login.title}</span>
-                    </ItemRow>
+                    <span>{HeaderNavData.login.title}</span>
                 </Link>
             );
         } else {
             return (
                 <Link to="#no_div" onClick={props.closeMenu}>
-                    <ItemRow keepDirHor={true}>
-                        <GoogleLogout
-                            clientId={CommonData.googleLoginClientId}
-                            buttonText={HeaderNavData.logout.title}
-                            icon={false}
-                            onLogoutSuccess={() => {
-                                loginUser.setLogout();
-                                loginStatus.setSignStatus(false);
-                            }}
-                        />
-                    </ItemRow>
+                    <GoogleLogout
+                        className="logout"
+                        clientId={CommonData.googleLoginClientId}
+                        buttonText={HeaderNavData.logout.title}
+                        icon={false}
+                        onLogoutSuccess={() => {
+                            loginUser.setLogout();
+                            loginStatus.setSignStatus(false);
+                        }}
+                    />
                 </Link>
             );
         }
@@ -64,8 +63,19 @@ const HeaderNavBar = observer((props: HeaderNavProps) => {
                 </Link>
             </NavTitle>
 
-            <NavMenu isToggled={props.isMenuOpen}>
-                <NavItemX>{LoginButton()}</NavItemX>
+            <NavMenu>
+                <NavItem dark={dark.dark}>
+                    Dark
+                    <ToggleSwitch
+                        id={`darkmode`}
+                        actualValue={dark.dark}
+                        callback={dark.changeDark}
+                    />
+                </NavItem>
+                <NavItem dark={dark.dark}>{LoginButton()}</NavItem>
+                <NavItem dark={dark.dark} onClick={() => props.toggleMenu()}>
+                    <FontAwesomeIcon icon={faBars} />
+                </NavItem>
             </NavMenu>
         </NavBar>
     );

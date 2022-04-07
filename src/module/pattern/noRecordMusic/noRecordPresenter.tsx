@@ -1,5 +1,4 @@
 import React from "react";
-import { BodyContent, BodyHeader, ItemRow } from "@/styled/styledCommon";
 import Pager from "@/module/common/pager";
 import NpItem from "./npItem";
 import { Redirect } from "react-router-dom";
