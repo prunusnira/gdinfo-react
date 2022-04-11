@@ -1,9 +1,11 @@
+import { Black, White } from "@/styled/color";
 import { ButtonSM } from "@/styled/styledCommon";
 import styled from "styled-components";
 
 export const SearchBarSection = styled.div`
     display: flex;
     width: 100%;
+    position: relative;
 `;
 
 export const SearchBar = styled.input`
@@ -14,9 +16,26 @@ export const SearchBar = styled.input`
 `;
 
 export const SearchButton = styled(ButtonSM)`
-    position: relative;
-    right: 30px;
-    border-radius: 45%;
+    position: absolute;
+    height: 48px;
+    right: 20px;
     background-color: transparent;
     border: 0;
+`;
+
+export const SearchTypeButton = styled.button<{ dark: boolean }>`
+    width: 100%;
+    border-radius: 15px;
+    font-weight: bold;
+
+    ${(props) =>
+        props.dark
+            ? `
+    border: solid 1px ${White};
+    color: ${White};
+    background-color: transparent;`
+            : `
+    border: solid 1px ${Black};
+    color: ${Black};
+    background-color: transparent;`}
 `;

@@ -1,3 +1,4 @@
+import { HeaderBGColor, HeaderBGColorDark } from "@/styled/color";
 import styled from "styled-components";
 
 export const HeaderOuter = styled.header`
@@ -13,7 +14,7 @@ export const HeaderOuter = styled.header`
     z-index: 10;
 `;
 
-export const Header = styled.header<{ isTop: boolean }>`
+export const Header = styled.header<{ isTop: boolean; dark: boolean }>`
     display: flex;
     flex-direction: column;
 
@@ -23,6 +24,8 @@ export const Header = styled.header<{ isTop: boolean }>`
 
     ${(props) =>
         props.isTop
-            ? `background-color: rgba(255, 87, 51, 0);`
-            : `background-color: rgba(255, 87, 51, 1);`}
+            ? `background-color: transparent;`
+            : props.dark
+            ? `background-color: ${HeaderBGColorDark};`
+            : `background-color: ${HeaderBGColor};`}
 `;

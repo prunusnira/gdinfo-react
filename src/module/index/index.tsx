@@ -3,7 +3,7 @@ import UserLoginInfo from "./LoginInfo";
 
 import store from "@/mobx/store";
 import { observer } from "mobx-react";
-import { Button } from "@/styled/styledCommon";
+import { Anchor, Button } from "@/styled/styledCommon";
 import { Link } from "react-router-dom";
 
 import txtIndexKo from "@/lang/index/txtIndex-ko";
@@ -22,7 +22,7 @@ import CommonLayout from "@/component/layout/commonLayout";
 import ContentLayout from "@/component/content/standardContent";
 
 const IndexPage = observer(() => {
-    const { language, loginUser, loginStatus } = store;
+    const { language, loginUser, loginStatus, dark } = store;
     const lang = language.lang;
 
     const txtIndex = lang === "ko" ? txtIndexKo : lang === "jp" ? txtIndexJp : txtIndexEn;
@@ -70,7 +70,14 @@ const IndexPage = observer(() => {
                 <ContentLayout title={txtIndex.about.title}>
                     <IndexContent>{txtIndex.about.cont}</IndexContent>
                     <IndexContent>
-                        <a href="https://twitter.com/_nira_one">@_nira_one</a>
+                        <Anchor
+                            target="blank"
+                            rel="noopener noreferrer"
+                            href="https://twitter.com/_nira_one"
+                            dark={dark.dark}
+                        >
+                            @_nira_one
+                        </Anchor>
                     </IndexContent>
                 </ContentLayout>
 

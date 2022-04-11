@@ -5,7 +5,7 @@ import SearchBarComp from "../../searchBar/searchBar";
 import SearchTypeModal from "../../searchModal/searchTypeModal";
 import useSearch from "../../useSearch";
 import { getSideBarList } from "../data/sidebarData";
-import { SideBarContainer } from "./sidebar.style";
+import { SideBarContainer, SideBarInner } from "./sidebar.style";
 import SideBarItem from "./sidebarItem";
 
 type Props = {
@@ -35,16 +35,18 @@ const SideBar = observer(({ isMenuOpen, toggleMenu }: Props) => {
     return (
         <>
             <SideBarContainer isOpen={isMenuOpen} dark={dark.dark}>
-                <SearchBarComp
-                    searchType={searchType}
-                    openSearchTypeDlg={openSearchTypeDlg}
-                    setSearchTxt={setSearchTxt}
-                    searchEnter={searchEnter}
-                    searchClick={searchClick}
-                />
-                {sideBarList.map((x) => (
-                    <SideBarItem iconSrc={x.iconSrc} text={x.text} href={x.href} sub={x.sub} />
-                ))}
+                <SideBarInner>
+                    <SearchBarComp
+                        searchType={searchType}
+                        openSearchTypeDlg={openSearchTypeDlg}
+                        setSearchTxt={setSearchTxt}
+                        searchEnter={searchEnter}
+                        searchClick={searchClick}
+                    />
+                    {sideBarList.map((x) => (
+                        <SideBarItem iconSrc={x.iconSrc} text={x.text} href={x.href} sub={x.sub} />
+                    ))}
+                </SideBarInner>
             </SideBarContainer>
             <SearchTypeModal
                 isOpen={searchTypeDlg}

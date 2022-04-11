@@ -3,13 +3,16 @@ import { HeaderOuter, Header } from "./sinHeader.style";
 import HeaderNavBar from "./navbar/headernav";
 import useHeader from "./useHeader";
 import SideBar from "./sidebar/view/sidebar";
+import { observer } from "mobx-react";
+import store from "@/mobx/store";
 
-const SinHeader = () => {
+const SinHeader = observer(() => {
+    const { dark } = store;
     const { isMenuOpen, toggleMenu, closeMenu, isTransparent } = useHeader();
 
     return (
         <HeaderOuter>
-            <Header isTop={isTransparent}>
+            <Header isTop={isTransparent} dark={dark.dark}>
                 <SideBar isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
                 <HeaderNavBar
                     isMenuOpen={isMenuOpen}
@@ -19,6 +22,6 @@ const SinHeader = () => {
             </Header>
         </HeaderOuter>
     );
-};
+});
 
 export default SinHeader;

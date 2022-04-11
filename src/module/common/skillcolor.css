@@ -72,7 +72,7 @@
 }
 
 .s9 {
-    background: -webkit-linear-gradient(#ff00ff, #ff00ff);
+    background: -webkit-linear-gradient(#ff7dff, #ff7dff);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -86,7 +86,7 @@
 }
 
 .s11 {
-    background: -webkit-linear-gradient(#ff0000, #ff0000);
+    background: -webkit-linear-gradient(#ff5a5a, #ff5a5a);
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;

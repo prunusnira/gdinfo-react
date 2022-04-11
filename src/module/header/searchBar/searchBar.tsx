@@ -1,14 +1,11 @@
 import React from "react";
-import { ButtonSM } from "@/styled/styledCommon";
-import { SearchBar, SearchBarSection, SearchButton } from "./searchBar.style";
+import { SearchBar, SearchBarSection, SearchButton, SearchTypeButton } from "./searchBar.style";
 import store from "@/mobx/store";
 import { SearchType } from "../useSearch";
 
-import HeaderNavDataKo from "@/lang/header/headerNavData-ko";
-import HeaderNavDataJp from "@/lang/header/headerNavData-jp";
-import HeaderNavDataEn from "@/lang/header/headerNavData-en";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { observer } from "mobx-react";
 
 type SearchBarProps = {
     searchType: SearchType;
@@ -18,15 +15,13 @@ type SearchBarProps = {
     searchClick: () => void;
 };
 
-const SearchBarComp = (props: SearchBarProps) => {
+const SearchBarComp = observer((props: SearchBarProps) => {
     const lang = store.language.lang;
-
-    const HeaderNavData =
-        lang === "ko" ? HeaderNavDataKo : lang === "jp" ? HeaderNavDataJp : HeaderNavDataEn;
+    const { dark } = store;
 
     return (
         <>
-            <ButtonSM onClick={() => props.openSearchTypeDlg(true)}>
+            <SearchTypeButton dark={dark.dark} onClick={() => props.openSearchTypeDlg(true)}>
                 {(function () {
                     switch (props.searchType) {
                         case SearchType.music:
@@ -39,10 +34,10 @@ const SearchBarComp = (props: SearchBarProps) => {
                             return "Player";
                     }
                 })()}
-            </ButtonSM>
+            </SearchTypeButton>
             <SearchBarSection>
                 <SearchBar
-                    placeholder={"Search Bar"}
+                    placeholder={"Search"}
                     onChange={(e) => props.setSearchTxt(e.currentTarget.value)}
                     onKeyDown={props.searchEnter}
                 />
@@ -52,6 +47,6 @@ const SearchBarComp = (props: SearchBarProps) => {
             </SearchBarSection>
         </>
     );
-};
+});
 
 export default SearchBarComp;

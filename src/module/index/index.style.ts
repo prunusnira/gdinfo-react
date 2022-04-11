@@ -42,6 +42,7 @@ export const IndexScriptWrapper = styled.section`
     margin: 10px;
     border: 1px solid ${SkillBottomLine};
     background-color: ${White};
+    color: ${Black};
 `;
 
 export const IndexScript = styled.div`

@@ -10,14 +10,7 @@ import SkillItemData from "./skillItem/skillItemData";
 import store from "@/mobx/store";
 import { observer } from "mobx-react";
 import { GDVer } from "@/module/common/version";
-import {
-    BodyContent,
-    BodyHeader,
-    Button,
-    Container,
-    ItemCol,
-    ItemRow,
-} from "@/styled/styledCommon";
+import { Button, ItemCol, ItemRow } from "@/styled/styledCommon";
 import { Row } from "reactstrap";
 import SkillTableSH from "./skillpresenter/skillTableSH";
 import SkillTableNR from "./skillpresenter/skillTableNR";
@@ -26,6 +19,14 @@ import SnapshotData from "./skillItem/snapshotData";
 import txtSkillKo from "@/lang/skill/skill/txtSkill-ko";
 import txtSkillJp from "@/lang/skill/skill/txtSkill-jp";
 import txtSkillEn from "@/lang/skill/skill/txtSkill-en";
+import CommonLayout from "@/component/layout/commonLayout";
+import ContentLayout from "@/component/content/standardContent";
+import {
+    SkillBody,
+    SkillHeader,
+    SkillRow,
+    SkillTableWrapper,
+} from "./skillpresenter/skillPresenter.style";
 
 interface MatchProps {
     sharestr: string;
@@ -240,17 +241,10 @@ const SkillSnapshot = observer(() => {
     };
 
     return (
-        <Container>
-            <ItemRow setVertical={true}>
-                <BodyHeader>
-                    <h3>Skill Table</h3>
-                </BodyHeader>
-                <BodyContent id="scrshotdiv">
-                    {/*<span id='gtype' th:attr='data-gtype=${gtype}'></span>*/}
-                    <ItemRow className="text-center">
-                        <h4>Screenshot</h4>
-                    </ItemRow>
-                    <ItemRow style={{ width: "100%" }} className="btn-group">
+        <CommonLayout>
+            <ContentLayout title={"Skill Table"}>
+                <ItemRow setVertical={true}>
+                    <ContentLayout title={"Screenshot"}>
                         <Button
                             style={{ width: "100%" }}
                             onClick={() =>
@@ -259,95 +253,90 @@ const SkillSnapshot = observer(() => {
                         >
                             {txtSkill.scrshot}
                         </Button>
-                    </ItemRow>
-                </BodyContent>
-            </ItemRow>
-            <ItemRow id="scrTable" setVertical={true}>
-                <BodyHeader id="targetInfo">
-                    <ItemRow>
-                        <h4>
-                            <b>
-                                Snapshot Of {gtype === "gf" ? "GuitarFreaks" : "DrumMania"}
-                                <br />
-                                <span>Skill by {username}</span>
-                            </b>
-                        </h4>
-                    </ItemRow>
-                    <ItemRow>
-                        <ItemCol size={5} style={{ textAlign: "center" }}>
-                            <b>Made by SIN</b>
-                        </ItemCol>
-                        <ItemCol size={5} style={{ textAlign: "center" }}>
-                            Saved Date: {date}
-                        </ItemCol>
-                    </ItemRow>
-                </BodyHeader>
-                <BodyContent>
-                    <ItemRow
-                        className="skillupper blackandwhite"
-                        style={{ justifyContent: "center" }}
-                        keepDirHor={true}
-                    >
-                        <ItemCol size={3} style={{ justifyContent: "center", textAlign: "center" }}>
-                            {statLeftTitle}
-                            <br />
-                            {statLeft}
-                        </ItemCol>
-                        <ItemCol size={3} style={{ justifyContent: "center", textAlign: "center" }}>
-                            {statMidTitle}
-                            <br />
-                            {statMid}
-                        </ItemCol>
-                        <ItemCol size={3} style={{ justifyContent: "center", textAlign: "center" }}>
-                            {statRightTitle}
-                            <br />
-                            {statRight}
-                        </ItemCol>
-                    </ItemRow>
-                    <ItemRow id="targetTable">
-                        <ItemRow setVertical={share ? true : false}>
-                            <ItemCol
-                                size={share ? 10 : 5}
-                                isFlatUnderLg={true}
-                                id="halfTableLeft"
-                                style={{ paddingBottom: "100px" }}
-                            >
-                                <ItemRow>
-                                    <h2>
-                                        <b>HOT</b>
-                                    </h2>
-                                </ItemRow>
-                                <ItemRow className="div-table" style={{ display: "block" }}>
-                                    <Row>
-                                        {share ? (
-                                            <SkillTableSH list={skillTable1} openPopup={() => {}} />
-                                        ) : (
-                                            <SkillTableNR list={skillTable1} openPopup={() => {}} />
-                                        )}
-                                    </Row>
-                                </ItemRow>
+                    </ContentLayout>
+                </ItemRow>
+                <SkillBody id="scrTable">
+                    <SkillHeader id="targetInfo">
+                        <SkillRow justifyContent={"center"}>
+                            <h4>
+                                {`Snapshot Of ${gtype === "gf" ? "GuitarFreaks" : "DrumMania"}
+                                    Skill by ${username}`}
+                            </h4>
+                        </SkillRow>
+                        <SkillRow>
+                            <ItemCol size={5} style={{ textAlign: "center" }}>
+                                <b>sin.nira.one</b>
                             </ItemCol>
-                            <ItemCol size={share ? 10 : 5} isFlatUnderLg={true} id="halfTableRight">
-                                <ItemRow>
-                                    <h2>
-                                        <b>OTHER</b>
-                                    </h2>
-                                </ItemRow>
-                                <ItemRow className="div-table" style={{ display: "block" }}>
-                                    <Row>
-                                        {share ? (
-                                            <SkillTableSH list={skillTable2} openPopup={() => {}} />
-                                        ) : (
-                                            <SkillTableNR list={skillTable2} openPopup={() => {}} />
-                                        )}
-                                    </Row>
-                                </ItemRow>
+                            <ItemCol size={5} style={{ textAlign: "center" }}>
+                                Saved Date: {date}
+                            </ItemCol>
+                        </SkillRow>
+                    </SkillHeader>
+                    <SkillBody>
+                        <ItemRow
+                            className="skillupper blackandwhite"
+                            style={{ justifyContent: "center" }}
+                            keepDirHor={true}
+                        >
+                            <ItemCol
+                                size={3}
+                                style={{ justifyContent: "center", textAlign: "center" }}
+                            >
+                                {statLeftTitle}
+                                <br />
+                                {statLeft}
+                            </ItemCol>
+                            <ItemCol
+                                size={3}
+                                style={{ justifyContent: "center", textAlign: "center" }}
+                            >
+                                {statMidTitle}
+                                <br />
+                                {statMid}
+                            </ItemCol>
+                            <ItemCol
+                                size={3}
+                                style={{ justifyContent: "center", textAlign: "center" }}
+                            >
+                                {statRightTitle}
+                                <br />
+                                {statRight}
                             </ItemCol>
                         </ItemRow>
-                    </ItemRow>
-                </BodyContent>
-            </ItemRow>
-        </Container>
+                    </SkillBody>
+                    <SkillBody id="targetTable">
+                        <SkillTableWrapper>
+                            <SkillRow justifyContent={"center"}>
+                                <h4>HOT</h4>
+                            </SkillRow>
+                            <ItemRow className="div-table" style={{ display: "block" }}>
+                                <Row>
+                                    {share ? (
+                                        <SkillTableSH list={skillTable1} openPopup={() => {}} />
+                                    ) : (
+                                        <SkillTableNR list={skillTable1} openPopup={() => {}} />
+                                    )}
+                                </Row>
+                            </ItemRow>
+                        </SkillTableWrapper>
+                        <SkillTableWrapper>
+                            <SkillRow justifyContent={"center"}>
+                                <h4>OTHER</h4>
+                            </SkillRow>
+                            <ItemRow className="div-table" style={{ display: "block" }}>
+                                <Row>
+                                    {share ? (
+                                        <SkillTableSH list={skillTable2} openPopup={() => {}} />
+                                    ) : (
+                                        <SkillTableNR list={skillTable2} openPopup={() => {}} />
+                                    )}
+                                </Row>
+                            </ItemRow>
+                        </SkillTableWrapper>
+                    </SkillBody>
+                </SkillBody>
+            </ContentLayout>
+        </CommonLayout>
     );
 });
 
