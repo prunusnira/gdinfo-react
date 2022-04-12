@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@/styled/styledCommon";
+import { Button, ThemedLink } from "@/styled/styledCommon";
 import store from "@/mobx/store";
 
 import txtResetKo from "@/lang/user/reset/txtReset-ko";
@@ -8,13 +7,15 @@ import txtResetJp from "@/lang/user/reset/txtReset-jp";
 import txtResetEn from "@/lang/user/reset/txtReset-en";
 import CommonLayout from "@/component/layout/commonLayout";
 import ContentLayout from "@/component/content/standardContent";
+import { observer } from "mobx-react";
 
 interface Props {
     resetData: () => void;
 }
 
-const ResetPresenter = (props: Props) => {
+const ResetPresenter = observer((props: Props) => {
     const lang = store.language.lang;
+    const { dark } = store;
     const txtReset = lang === "ko" ? txtResetKo : lang === "jp" ? txtResetJp : txtResetEn;
 
     return (
@@ -31,13 +32,13 @@ const ResetPresenter = (props: Props) => {
                         YES
                     </Button>
 
-                    <Link to="/index">
+                    <ThemedLink dark={dark.dark} to="/index">
                         <Button style={{ width: "100%" }}>NO</Button>
-                    </Link>
+                    </ThemedLink>
                 </ContentLayout>
             </ContentLayout>
         </CommonLayout>
     );
-};
+});
 
 export default ResetPresenter;

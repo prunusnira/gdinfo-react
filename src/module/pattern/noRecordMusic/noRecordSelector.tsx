@@ -1,12 +1,12 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button, ItemCol, ItemRow } from "@/styled/styledCommon";
+import { Button, ItemCol, ItemRow, ThemedLink } from "@/styled/styledCommon";
 import store from "@/mobx/store";
 
 import txtNoRecordKo from "@/lang/pattern/noRecord/txtNoRecord-ko";
 import txtNoRecordJp from "@/lang/pattern/noRecord/txtNoRecord-jp";
 import txtNoRecordEn from "@/lang/pattern/noRecord/txtNoRecord-en";
 import ContentLayout from "@/component/content/standardContent";
+import { observer } from "mobx-react";
 
 type SelectorType = {
     userid: string;
@@ -17,8 +17,9 @@ type SelectorType = {
     switchClearMethod: () => void;
 };
 
-const NoRecordSelector = (props: SelectorType) => {
+const NoRecordSelector = observer((props: SelectorType) => {
     const lang = store.language.lang;
+    const { dark } = store;
 
     const txtNoRecord =
         lang === "ko" ? txtNoRecordKo : lang === "jp" ? txtNoRecordJp : txtNoRecordEn;
@@ -125,37 +126,41 @@ const NoRecordSelector = (props: SelectorType) => {
             <ContentLayout title={"Select Type"}>
                 <ItemRow keepDirHor={true}>
                     <ItemCol size={5} isFlatUnderLg={true}>
-                        <Link
+                        <ThemedLink
+                            dark={dark.dark}
                             style={{ width: "100%" }}
                             to={`/notplayed/gf/${props.userid}/0/1${window.location.search}`}
                         >
                             <Button style={{ width: "100%" }}>GF {txtNoRecord.all}</Button>
-                        </Link>
-                        <Link
+                        </ThemedLink>
+                        <ThemedLink
+                            dark={dark.dark}
                             style={{ width: "100%" }}
                             to={`/notplayed/dm/${props.userid}/0/1${window.location.search}`}
                         >
                             <Button style={{ width: "100%" }}>DM {txtNoRecord.all}</Button>
-                        </Link>
+                        </ThemedLink>
                     </ItemCol>
                     <ItemCol size={5} isFlatUnderLg={true}>
-                        <Link
+                        <ThemedLink
+                            dark={dark.dark}
                             style={{ width: "100%" }}
                             to={`/notplayed/gf/${props.userid}/1/1${window.location.search}`}
                         >
                             <Button style={{ width: "100%" }}>GF {txtNoRecord.ver}</Button>
-                        </Link>
-                        <Link
+                        </ThemedLink>
+                        <ThemedLink
+                            dark={dark.dark}
                             style={{ width: "100%" }}
                             to={`/notplayed/dm/${props.userid}/1/1${window.location.search}`}
                         >
                             <Button style={{ width: "100%" }}>DM {txtNoRecord.ver}</Button>
-                        </Link>
+                        </ThemedLink>
                     </ItemCol>
                 </ItemRow>
             </ContentLayout>
         </>
     );
-};
+});
 
 export default NoRecordSelector;

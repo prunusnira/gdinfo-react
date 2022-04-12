@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@/styled/styledCommon";
+import { Button, ThemedLink } from "@/styled/styledCommon";
 import PatternRankRow from "./ptRankRow";
 import Pager from "@/module/common/pager";
 import store from "@/mobx/store";
@@ -20,6 +19,7 @@ import {
 } from "./patternRankPresenter.style";
 import CommonLayout from "@/component/layout/commonLayout";
 import ContentLayout from "@/component/content/standardContent";
+import { observer } from "mobx-react";
 
 interface Props {
     mid: string;
@@ -33,8 +33,9 @@ interface Props {
     allPage: number;
 }
 
-const PatternRankPresenter = (props: Props) => {
+const PatternRankPresenter = observer((props: Props) => {
     const lang = store.language.lang;
+    const { dark } = store;
 
     const txtPTRank = lang === "ko" ? txtPTRankKo : lang === "jp" ? txtPTRankJp : txtPTRankEn;
 
@@ -68,24 +69,42 @@ const PatternRankPresenter = (props: Props) => {
                 </ContentLayout>
                 <ContentLayout title={txtPTRank.table.ranking}>
                     <PRRow>
-                        <Link to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=29`}>
+                        <ThemedLink
+                            dark={dark.dark}
+                            to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=29`}
+                        >
                             <Button className="rank29">HV</Button>
-                        </Link>
-                        <Link to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=28`}>
+                        </ThemedLink>
+                        <ThemedLink
+                            dark={dark.dark}
+                            to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=28`}
+                        >
                             <Button className="rank28">NX</Button>
-                        </Link>
-                        <Link to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=27`}>
+                        </ThemedLink>
+                        <ThemedLink
+                            dark={dark.dark}
+                            to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=27`}
+                        >
                             <Button className="rank27">EX</Button>
-                        </Link>
-                        <Link to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=26`}>
+                        </ThemedLink>
+                        <ThemedLink
+                            dark={dark.dark}
+                            to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=26`}
+                        >
                             <Button className="rank26">MX</Button>
-                        </Link>
-                        <Link to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=25`}>
+                        </ThemedLink>
+                        <ThemedLink
+                            dark={dark.dark}
+                            to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=25`}
+                        >
                             <Button className="rank25">RE</Button>
-                        </Link>
-                        <Link to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=24`}>
+                        </ThemedLink>
+                        <ThemedLink
+                            dark={dark.dark}
+                            to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=24`}
+                        >
                             <Button className="rank24">TB</Button>
-                        </Link>
+                        </ThemedLink>
                     </PRRow>
                     <PatternRankRow list={props.list} />
                     {(function () {
@@ -103,6 +122,6 @@ const PatternRankPresenter = (props: Props) => {
             </ContentLayout>
         </CommonLayout>
     );
-};
+});
 
 export default PatternRankPresenter;

@@ -11,7 +11,7 @@ export const HeaderOuter = styled.header`
     position: fixed;
     background-color: transparent;
     top: 0;
-    z-index: 10;
+    z-index: 11;
 `;
 
 export const Header = styled.header<{ isTop: boolean; dark: boolean }>`
@@ -23,9 +23,10 @@ export const Header = styled.header<{ isTop: boolean; dark: boolean }>`
     transition: background-color 0.2s ease-in-out;
 
     ${(props) =>
-        props.isTop
-            ? `background-color: transparent;`
-            : props.dark
+        // props.isTop
+        // ? `background-color: transparent;`
+        // :
+        props.dark
             ? `background-color: ${HeaderBGColorDark};`
             : `background-color: ${HeaderBGColor};`}
 `;

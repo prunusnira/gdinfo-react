@@ -1,8 +1,14 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { AnchorColor, AnchorColorDark } from "./color";
 
 export const Anchor = styled.a<{ dark: boolean }>`
     ${(props) => (props.dark ? `color: ${AnchorColorDark};` : `color: ${AnchorColor};`)}
+`;
+
+export const ThemedLink = styled(Link)<{ dark: boolean }>`
+    ${(props) =>
+        props.dark ? `color: ${AnchorColorDark} !important;` : `color: ${AnchorColor} !important;`}
 `;
 
 // 아이템에 대한 기본값을 설정하는 메소드
@@ -54,37 +60,11 @@ const widthSize = (size: number) => {
     return `width: ${size * 10}%;`;
 };
 
-export const Container = styled.div`
-    max-width: 1280px;
-    width: 100%;
-`;
-
-export const BodyHeader = styled.div`
-    width: 100%;
-    background-color: #252525;
-    color: white;
-    font-weight: bold;
-    padding: 10px;
-`;
-
-export const BodyContent = styled.div`
-    width: 100%;
-    background-color: #414141;
-    color: white;
-    padding: 10px;
-`;
-
 export const Button = styled.button`
     color: black;
     border: 1px solid black;
     background-color: #dddddd;
     padding: 10px;
-`;
-
-export const ButtonSM = styled.button`
-    color: black;
-    border: 1px solid black;
-    background-color: #dddddd;
 `;
 
 const IconBase = styled.img<{ sizeType: string }>`

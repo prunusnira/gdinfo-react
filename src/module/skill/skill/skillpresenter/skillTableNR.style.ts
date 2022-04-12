@@ -1,5 +1,12 @@
 import styled from "styled-components";
-import { Select, SkillBottomLine, SkillTitleColor, White } from "@/styled/color";
+import {
+    AnchorColor,
+    AnchorColorDark,
+    Select,
+    SkillBottomLine,
+    SkillTitleColor,
+    White,
+} from "@/styled/color";
 
 export const SkillItemWrapper = styled.div`
     display: flex;
@@ -102,7 +109,7 @@ export const SkillClear = styled.img`
     }
 `;
 
-export const SkillTitle = styled.div`
+export const SkillTitle = styled.div<{ dark: boolean }>`
     font-size: 18px;
     @media screen and (max-width: 499px) {
         font-size: 15px;
@@ -111,7 +118,8 @@ export const SkillTitle = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: ${SkillTitleColor};
+
+    ${(props) => (props.dark ? `color: ${AnchorColorDark};` : `color: ${AnchorColor};`)}
 `;
 
 export const SkillValueWrapper = styled.div`

@@ -1,5 +1,7 @@
+import store from "@/mobx/store";
+import { ThemedLink } from "@/styled/styledCommon";
+import { observer } from "mobx-react";
 import React from "react";
-import { Link } from "react-router-dom";
 import { EachDiff } from "./patternData";
 import { GridCell } from "./ptList.style";
 
@@ -7,7 +9,8 @@ interface Props {
     list: Array<EachDiff>;
 }
 
-const PTListItemRow = (props: Props) => {
+const PTListItemRow = observer((props: Props) => {
+    const { dark } = store;
     return (
         <>
             {props.list.map((diff, i) => {
@@ -15,25 +18,25 @@ const PTListItemRow = (props: Props) => {
                     <>
                         <GridCell>{diff.diff}</GridCell>
                         <GridCell>
-                            <Link className="innerhref" to={diff.glink}>
+                            <ThemedLink dark={dark.dark} className="innerhref" to={diff.glink}>
                                 {diff.glv}
-                            </Link>
+                            </ThemedLink>
                         </GridCell>
                         <GridCell>
-                            <Link className="innerhref" to={diff.blink}>
+                            <ThemedLink dark={dark.dark} className="innerhref" to={diff.blink}>
                                 {diff.blv}
-                            </Link>
+                            </ThemedLink>
                         </GridCell>
                         <GridCell>
-                            <Link className="innerhref" to={diff.dlink}>
+                            <ThemedLink dark={dark.dark} className="innerhref" to={diff.dlink}>
                                 {diff.dlv}
-                            </Link>
+                            </ThemedLink>
                         </GridCell>
                     </>
                 );
             })}
         </>
     );
-};
+});
 
 export default PTListItemRow;

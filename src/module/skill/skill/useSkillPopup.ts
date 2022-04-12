@@ -1,5 +1,5 @@
-import useMusicInfo from "@/module/pattern/music/useMusicInfo";
-import usePatternInfo from "@/module/pattern/music/usePatternInfo";
+import useMusicInfo from "./useMusicInfo";
+import usePatternInfo from "./usePatternInfo";
 import { useState } from "react";
 
 const useSkillPopup = (userid: string) => {

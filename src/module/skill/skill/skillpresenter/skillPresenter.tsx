@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button, ItemCol, ItemRow } from "@/styled/styledCommon";
+import { Anchor, Button, ItemCol, ItemRow, ThemedLink } from "@/styled/styledCommon";
 import Pager from "@/module/common/pager";
 import ProfileData from "@/module/user/profile/profileData";
 import SkillItemData from "../skillItem/skillItemData";
@@ -23,6 +22,8 @@ import {
 } from "./skillPresenter.style";
 import CommonLayout from "@/component/layout/commonLayout";
 import ContentLayout from "@/component/content/standardContent";
+import store from "@/mobx/store";
+import { observer } from "mobx-react";
 
 interface Props {
     // share table
@@ -79,27 +80,30 @@ interface Props {
     openPopup: (mid: number) => void;
 }
 
-const SkillPresenter = (props: Props) => {
+const SkillPresenter = observer((props: Props) => {
     const txtSkill =
         props.lang === "ko" ? txtSkillKo : props.lang === "jp" ? txtSkillJp : txtSkillEn;
 
+    const { dark } = store;
     return (
         <CommonLayout>
             <ContentLayout title={"Skill Menu"}>
                 <SkillBody>
                     <SkillRow justifyContent={"center"} alignItems={"center"}>
                         {props.share ? (
-                            <Link
+                            <ThemedLink
+                                dark={dark.dark}
                                 to={`/skill/${props.ptype}/${props.userid}/${props.gtype}/${props.page}/${props.order}${window.location.search}`}
                             >
                                 <Button>{txtSkill.btnNormalTable}</Button>
-                            </Link>
+                            </ThemedLink>
                         ) : (
-                            <Link
+                            <ThemedLink
+                                dark={dark.dark}
                                 to={`/skillscr/${props.ptype}/${props.userid}/${props.gtype}/${props.page}/${props.order}${window.location.search}`}
                             >
                                 <Button>{txtSkill.btnShareTable}</Button>
-                            </Link>
+                            </ThemedLink>
                         )}
                         <Button
                             onClick={() =>
@@ -132,9 +136,9 @@ const SkillPresenter = (props: Props) => {
                     </SkillRow>
 
                     <SkillRow justifyContent={"center"} alignItems={"center"}>
-                        <a className="innerhref" href="#no_div" onClick={props.showTableMenu}>
+                        <Anchor dark={dark.dark} onClick={props.showTableMenu}>
                             {txtSkill.float}
-                        </a>
+                        </Anchor>
                     </SkillRow>
                     <SkillRow style={{ display: props.menuVisible ? "block" : "none" }}>
                         <SkillMenu ptype={props.ptype} id={props.userid} />
@@ -303,9 +307,13 @@ const SkillPresenter = (props: Props) => {
                                     {props.tableTxtGType} {props.tableTxtDesc}
                                     &nbsp;
                                     {props.ptype !== "1000" ? (
-                                        <Link className="innerhref" to={`/profile/${props.userid}`}>
+                                        <ThemedLink
+                                            dark={dark.dark}
+                                            className="innerhref"
+                                            to={`/profile/${props.userid}`}
+                                        >
                                             {props.user.name}
-                                        </Link>
+                                        </ThemedLink>
                                     ) : (
                                         ""
                                     )}
@@ -443,6 +451,6 @@ const SkillPresenter = (props: Props) => {
             </ContentLayout>
         </CommonLayout>
     );
-};
+});
 
 export default SkillPresenter;

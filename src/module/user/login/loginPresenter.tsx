@@ -22,7 +22,7 @@ const LoginPresenter = (props: Props) => {
 
     return (
         <CommonLayout>
-            <ContentLayout title={txtLogin.title}>
+            <ContentLayout title={txtLogin.title} isHalf>
                 <LoginParagraph>
                     <span>{txtLogin.google}</span>
                     <GoogleLogin

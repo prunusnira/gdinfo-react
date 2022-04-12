@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@/styled/styledCommon";
+import { Button, ThemedLink } from "@/styled/styledCommon";
 import SkillRankingItem from "./rankingItem";
 import Pager from "@/module/common/pager";
 import store from "@/mobx/store";
@@ -10,16 +9,15 @@ import txtSrankKo from "@/lang/skill/ranking/txtSkillRank-ko";
 import txtSrankJp from "@/lang/skill/ranking/txtSkillRank-jp";
 import txtSrankEn from "@/lang/skill/ranking/txtSkillRank-en";
 import {
-    SRContainer,
     SRIndex,
     SRIndexWrapper,
     SRListWrapper,
     SRPagerWrapper,
-    SRTitle,
     SRTypeWrapper,
 } from "./skillRankingPresenter.style";
 import CommonLayout from "@/component/layout/commonLayout";
 import ContentLayout from "@/component/content/standardContent";
+import { observer } from "mobx-react";
 
 interface Props {
     gtype: string;
@@ -28,8 +26,9 @@ interface Props {
     allPage: number;
 }
 
-const SkillRankingPresenter = (props: Props) => {
+const SkillRankingPresenter = observer((props: Props) => {
     const lang = store.language.lang;
+    const { dark } = store;
 
     const txtSrank = lang === "ko" ? txtSrankKo : lang === "jp" ? txtSrankJp : txtSrankEn;
 
@@ -39,15 +38,12 @@ const SkillRankingPresenter = (props: Props) => {
                 title={`${txtSrank.title} ${props.gtype === "gf" ? `GuitarFreaks` : `DrumMania`}`}
             >
                 <SRTypeWrapper>
-                    <Link to="/rank/gf/1">
+                    <ThemedLink dark={dark.dark} to="/rank/gf/1">
                         <Button>GuitarFreaks Ranking</Button>
-                    </Link>
-                    <Link to="/rank/dm/1">
+                    </ThemedLink>
+                    <ThemedLink dark={dark.dark} to="/rank/dm/1">
                         <Button>DrumMania Ranking</Button>
-                    </Link>
-                    {/* <Link to="/rank/all/1">
-                    <Button>GF+DM Rank</Button>
-                </Link> */}
+                    </ThemedLink>
                 </SRTypeWrapper>
                 <SRIndexWrapper>
                     <SRIndex>GF</SRIndex>
@@ -67,6 +63,6 @@ const SkillRankingPresenter = (props: Props) => {
             </ContentLayout>
         </CommonLayout>
     );
-};
+});
 
 export default SkillRankingPresenter;

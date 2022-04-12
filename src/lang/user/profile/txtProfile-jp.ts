@@ -11,6 +11,7 @@ const txtProfile = {
         more: "タッチして旧作スキルを確認",
         less: "Close",
     },
+    graph: "スキルグラフ",
     detail: "詳細情報",
     button: {
         title: "ショットカット",

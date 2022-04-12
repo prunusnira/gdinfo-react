@@ -5,6 +5,9 @@ import ClearTableData from "./clearTableData";
 import CommonLayout from "@/component/layout/commonLayout";
 import ContentLayout from "@/component/content/standardContent";
 import { ClearTableWrapper, TableHeader } from "./clearTablePresenter.style";
+import { observer } from "mobx-react";
+import { ThemedLink } from "@/styled/styledCommon";
+import store from "@/mobx/store";
 
 interface Props {
     profileLink: string;
@@ -14,11 +17,17 @@ interface Props {
     dlist: Array<ClearTableData>;
 }
 
-const ClearTablePresenter = (props: Props) => {
+const ClearTablePresenter = observer((props: Props) => {
+    const { dark } = store;
     return (
         <CommonLayout>
             <ContentLayout title={"Clear Status Table"}>
-                <Link to={props.profileLink} className="innerhref" style={{ fontSize: "130%" }}>
+                <ThemedLink
+                    dark={dark.dark}
+                    to={props.profileLink}
+                    className="innerhref"
+                    style={{ fontSize: "130%" }}
+                >
                     {(function () {
                         if (props.titleTower !== "") {
                             return (
@@ -30,7 +39,7 @@ const ClearTablePresenter = (props: Props) => {
                         }
                     })()}
                     {props.userName}
-                </Link>
+                </ThemedLink>
 
                 <ContentLayout title={"GuitarFreaks"}>
                     <ClearTableWrapper>
@@ -66,6 +75,6 @@ const ClearTablePresenter = (props: Props) => {
             </ContentLayout>
         </CommonLayout>
     );
-};
+});
 
 export default ClearTablePresenter;

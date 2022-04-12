@@ -21,6 +21,8 @@ import {
     SkillValue,
     SkillValueWrapper,
 } from "./skillTableSH.style";
+import store from "@/mobx/store";
+import { observer } from "mobx-react";
 
 type SkillTableProps = {
     list: Array<SkillItemData>;
@@ -28,7 +30,9 @@ type SkillTableProps = {
     openPopup: (mid: number) => void;
 };
 
-const SkillTableSH = ({ list, openPopup }: SkillTableProps) => {
+const SkillTableSH = observer(({ list, openPopup }: SkillTableProps) => {
+    const { dark } = store;
+
     return (
         <>
             {list.map((v, i) => {
@@ -40,7 +44,7 @@ const SkillTableSH = ({ list, openPopup }: SkillTableProps) => {
                     >
                         <SkillItemNumber style={v.tableColor}>{v.num}</SkillItemNumber>
                         <SkillInfoWrapper>
-                            <SkillTitle>{v.musicTitle}</SkillTitle>
+                            <SkillTitle dark={dark.dark}>{v.musicTitle}</SkillTitle>
                             <SkillDataWrapper>
                                 <SkillJacketWrapper>
                                     <SkillJacket
@@ -89,6 +93,6 @@ const SkillTableSH = ({ list, openPopup }: SkillTableProps) => {
             })}
         </>
     );
-};
+});
 
 export default SkillTableSH;

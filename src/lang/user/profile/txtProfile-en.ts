@@ -11,6 +11,7 @@ const txtProfile = {
         more: "Click to see old versions",
         less: "Close",
     },
+    graph: "Skill Graph",
     detail: "Details",
     button: {
         title: "Shortcut",

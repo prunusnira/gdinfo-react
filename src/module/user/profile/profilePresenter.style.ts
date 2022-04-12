@@ -2,14 +2,10 @@ import { Black, SkillBGColor, White } from "@/styled/color";
 import { Button } from "@/styled/styledCommon";
 import styled from "styled-components";
 
-export const ProfileUserInfo = styled.section`
+export const ProfileWrapper = styled.article`
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     justify-content: center;
-    align-items: center;
-
-    width: 100%;
-    max-width: 620px;
 `;
 
 export const UITitle = styled.div`
@@ -78,12 +74,22 @@ export const UISkillBoxVal = styled.div`
     padding: 5px;
 `;
 
-export const ProfileGraphWrapper = styled.section`
+export const GraphWrapper = styled.section`
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
     max-width: 800px;
     padding: 30px;
+`;
+
+export const GraphRow = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+`;
+
+export const GraphType = styled.div`
+    width: 30px;
 `;
 
 export const ProfileDetailGrid = styled.div`

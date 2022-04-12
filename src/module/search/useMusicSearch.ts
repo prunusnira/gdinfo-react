@@ -50,7 +50,7 @@ const useMusicSearch = (
                             dlv: "",
                         };
                         if (j === 0) {
-                            d.diff = "BASIC";
+                            d.diff = "BSC";
                             if (cur.gbsc !== 0) {
                                 d.glink = `/ptrank/${cur.id}/1/1`;
                                 d.glv = (cur.gbsc / 100).toFixed(2);
@@ -73,7 +73,7 @@ const useMusicSearch = (
                                 d.dlv = "";
                             }
                         } else if (j === 1) {
-                            d.diff = "ADVANCED";
+                            d.diff = "ADV";
                             if (cur.gadv !== 0) {
                                 d.glink = `/ptrank/${cur.id}/2/1`;
                                 d.glv = (cur.gadv / 100).toFixed(2);
@@ -96,7 +96,7 @@ const useMusicSearch = (
                                 d.dlv = "";
                             }
                         } else if (j === 2) {
-                            d.diff = "EXTREME";
+                            d.diff = "EXT";
                             if (cur.gext !== 0) {
                                 d.glink = `/ptrank/${cur.id}/3/1`;
                                 d.glv = (cur.gext / 100).toFixed(2);
@@ -119,7 +119,7 @@ const useMusicSearch = (
                                 d.dlv = "";
                             }
                         } else if (j === 3) {
-                            d.diff = "MASTER";
+                            d.diff = "MAS";
                             if (cur.gmas !== 0) {
                                 d.glink = `/ptrank/${cur.id}/4/1`;
                                 d.glv = (cur.gmas / 100).toFixed(2);

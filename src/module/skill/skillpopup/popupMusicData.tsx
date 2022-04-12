@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import CommonData from "@/module/common/commonData";
-import MusicDataType from "@/module/pattern/music/musicData";
+import MusicDataType from "@/module/skill/skill/musicData";
 import {
     ModalComposer,
     ModalTapItem,

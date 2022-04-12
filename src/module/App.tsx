@@ -6,7 +6,6 @@ import { observer } from "mobx-react";
 import IndexPage from "./index/index";
 import Recent from "./recent/recent";
 import Login from "./user/login/login";
-import LoginFromApp from "./user/login/loginFromApp";
 import SearchResult from "./search/search";
 import NewUser from "./user/newuser/newuser";
 
@@ -29,7 +28,6 @@ import PTList from "./pattern/patternList/ptList";
 import PatternRank from "./pattern/patternRank/patternRank";
 import NoRecordMusicList from "./pattern/noRecordMusic/noRecordList";
 import NotPlayedLoginCheck from "./pattern/noRecordMusic/npLoginChk";
-import Music from "./pattern/music/music";
 import ClearTable from "./pattern/cleartable/clearTable";
 import ClearTableLoginChk from "./pattern/cleartable/checkLogin";
 
@@ -41,6 +39,7 @@ import Error404 from "./error/404";
 import Error500 from "./error/500";
 import LData from "./common/language";
 import CommonData from "./common/commonData";
+import { GlobalStyle } from "@/styled/globalStyle";
 
 /**
  * header/footer를 제외하고는 react-router-dom으로 구성함
@@ -65,12 +64,11 @@ const App = observer(() => {
 
     return (
         <BrowserRouter>
+            <GlobalStyle />
             <Route exact path="/" component={IndexPage} />
             <Route path="/index" component={IndexPage} />
             <Route path="/recent" component={Recent} />
             <Route path="/login" component={Login} />
-            <Route exact path="/app/login" component={Recent} />
-            <Route path="/app/login/:uid" component={LoginFromApp} />
             <Route path="/search/:type/:value/:page" component={SearchResult} />
             <Route path="/newuser" component={NewUser} />
             {/* Profile */}
@@ -110,7 +108,6 @@ const App = observer(() => {
                 />
                 <Route path="/notplayed" component={NotPlayedLoginCheck} />
             </Switch>
-            <Route path="/music/:mid/:userid" component={Music} />
             <Switch>
                 <Route path="/cleartable/:userid" component={ClearTable} />
                 <Route path="/cleartable/" component={ClearTableLoginChk} />

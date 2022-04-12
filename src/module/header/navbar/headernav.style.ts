@@ -5,6 +5,7 @@ export const NavBar = styled.div`
     padding: 10px 20px 10px 20px;
     display: flex;
     justify-content: space-between;
+    z-index: 11;
 `;
 
 export const NavTitle = styled.div`
@@ -31,7 +32,6 @@ export const NavItem = styled.li<{ dark: boolean }>`
     flex: 1 1 auto;
     padding-left: 10px;
     padding-right: 10px;
-    z-index: 11;
     ${(props) => (props.dark ? `color: ${White};` : `color: ${Black};`)}
 
     @media screen and (min-width: 1050px) {

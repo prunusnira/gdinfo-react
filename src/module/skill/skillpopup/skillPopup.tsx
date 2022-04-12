@@ -1,5 +1,4 @@
-import MusicDataType from "@/module/pattern/music/musicData";
-import { BGGray, Black } from "@/styled/color";
+import MusicDataType from "../skill/musicData";
 import { Button } from "@/styled/styledCommon";
 import React from "react";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";

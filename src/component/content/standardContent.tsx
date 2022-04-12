@@ -6,12 +6,13 @@ import { Wrapper, Title, Body } from "./standardContent.style";
 type Props = {
     title: string;
     children?: React.ReactNode;
+    isHalf?: boolean;
 };
 
-const ContentLayout = observer(({ title, children }: Props) => {
+const ContentLayout = observer(({ title, children, isHalf }: Props) => {
     const { dark } = store;
     return (
-        <Wrapper>
+        <Wrapper isHalf={isHalf}>
             <Title dark={dark.dark}>{title}</Title>
             <Body dark={dark.dark}>{children}</Body>
         </Wrapper>

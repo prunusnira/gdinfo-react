@@ -10,6 +10,7 @@ export const TableHeader = styled.div`
     text-align: center;
     background-color: ${Select};
     border-bottom: 2px solid ${Black};
+    color: ${Black};
 `;
 
 export const TableText = styled.div`

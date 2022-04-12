@@ -16,14 +16,16 @@ import {
     LISkillRow,
 } from "./logininfoPresaenter.style";
 import SingleSkillColorChanger from "../common/skillcolor";
+import { ThemedLink } from "@/styled/styledCommon";
+import { observer } from "mobx-react";
 
 type LoginInfoProps = {
     loading: boolean;
     data: ProfileData;
 };
 
-const LoginInfoPresenter = (props: LoginInfoProps) => {
-    const { language } = store;
+const LoginInfoPresenter = observer((props: LoginInfoProps) => {
+    const { language, dark } = store;
     const lang = language.lang;
 
     const txtIndex = lang === "ko" ? txtIndexKo : lang === "jp" ? txtIndexJp : txtIndexEn;
@@ -65,11 +67,13 @@ const LoginInfoPresenter = (props: LoginInfoProps) => {
     } else {
         return (
             <LIWrapper>
-                <Link to="/login">{txtIndex.self.login}</Link>
+                <ThemedLink dark={dark.dark} to="/login">
+                    {txtIndex.self.login}
+                </ThemedLink>
                 {txtIndex.self.loginFirst}
             </LIWrapper>
         );
     }
-};
+});
 
 export default LoginInfoPresenter;

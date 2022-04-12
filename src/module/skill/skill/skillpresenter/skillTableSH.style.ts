@@ -1,6 +1,14 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { Select, SkillBottomLine, SkillTitleColor, White } from "@/styled/color";
+import {
+    AnchorColor,
+    AnchorColorDark,
+    Black,
+    Select,
+    SkillBottomLine,
+    SkillTitleColor,
+    White,
+} from "@/styled/color";
 
 export const SkillItemWrapper = styled.div`
     display: flex;
@@ -24,7 +32,6 @@ export const SkillItemNumber = styled.div`
 
     font-size: 14px;
     @media screen and (max-width: 499px) {
-        width: 20px;
         font-size: 12px;
     }
 `;
@@ -86,13 +93,13 @@ export const SkillClear = styled.img`
     height: 25px;
 `;
 
-export const SkillTitle = styled.div`
+export const SkillTitle = styled.div<{ dark: boolean }>`
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: ${SkillTitleColor};
     font-size: 14px;
+    ${(props) => (props.dark ? `color: ${AnchorColorDark};` : `color: ${AnchorColor};`)}
 `;
 
 export const SkillValueWrapper = styled.div`
@@ -112,6 +119,7 @@ export const SkillRate = styled.div`
     font-size: 14px;
     width: 100%;
     background-color: lightblue;
+    color: ${Black};
     @media screen and (max-width: 499px) {
         font-size: 10px;
     }
@@ -126,6 +134,7 @@ export const SkillValue = styled.div`
     font-size: 14px;
     width: 100%;
     background-color: lightgreen;
+    color: ${Black};
     @media screen and (max-width: 499px) {
         font-size: 10px;
     }

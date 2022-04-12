@@ -16,9 +16,9 @@ export const SideBarContainer = styled.section<{ isOpen: boolean; dark: boolean 
 
     ${(props) =>
         !props.isOpen
-            ? `transition: right 0.1s ease-in-out;
+            ? `transition: right 0.5s ease-in-out;
             right: -100%;`
-            : `transition: right 0.1s ease-in-out;
+            : `transition: right 0.5s ease-in-out;
             right: 0px;`}
 
     ${(props) =>

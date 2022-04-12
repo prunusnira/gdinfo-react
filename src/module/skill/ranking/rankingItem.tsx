@@ -18,6 +18,7 @@ import {
     SRUpdate,
     SRUser,
 } from "./rankingItem.style";
+import { ThemedLink } from "@/styled/styledCommon";
 
 interface Props {
     rank: Array<SRankData>;
@@ -26,6 +27,7 @@ interface Props {
 
 const SkillRankingItem = observer((props: Props) => {
     const lang = store.language.lang;
+    const { dark } = store;
 
     const txtSrank = lang === "ko" ? txtSrankKo : lang === "jp" ? txtSrankJp : txtSrankEn;
 
@@ -38,9 +40,9 @@ const SkillRankingItem = observer((props: Props) => {
                         <SRInfoWrapper>
                             <SRUser>
                                 {r.towertitle !== "" && <SRIcon src={r.towertitle} />}
-                                <SRLink href="#no_div" to={r.profile}>
+                                <ThemedLink dark={dark.dark} href="#no_div" to={r.profile}>
                                     {r.username}
-                                </SRLink>
+                                </ThemedLink>
                             </SRUser>
                             <SRUpdate>
                                 {txtSrank.table.uptime} {r.time}

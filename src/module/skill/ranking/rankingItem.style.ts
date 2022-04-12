@@ -40,8 +40,6 @@ export const SRUser = styled.div`
     text-overflow: ellipsis;
     white-space: nowrap;
 
-    font-size: 24px;
-
     @media screen and (max-width: 499px) {
         font-size: 16px;
     }

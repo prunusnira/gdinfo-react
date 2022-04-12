@@ -2,12 +2,16 @@ import React from "react";
 import CommonData from "@/module/common/commonData";
 import NPData from "./NPData";
 import { NPItemImg, NPItemLeft, NPItemPattern, NPItemRow } from "./npItem.style";
+import { Anchor } from "@/styled/styledCommon";
+import store from "@/mobx/store";
+import { observer } from "mobx-react";
 
 interface Props {
     list: Array<NPData>;
 }
 
-const NpItem = (props: Props) => {
+const NpItem = observer((props: Props) => {
+    const { dark } = store;
     return (
         <>
             {props.list.map((np, i) => {
@@ -23,9 +27,9 @@ const NpItem = (props: Props) => {
                             <img alt="pattern" style={{ width: "60px" }} src={np.pattern} />
                         </NPItemLeft>
                         <NPItemPattern>
-                            <a className="innerhref" href={np.link}>
+                            <Anchor dark={dark.dark} className="innerhref" href={np.link}>
                                 {np.name}
-                            </a>
+                            </Anchor>
                             <span>
                                 {np.lv} / {np.ver}
                             </span>
@@ -35,6 +39,6 @@ const NpItem = (props: Props) => {
             })}
         </>
     );
-};
+});
 
 export default NpItem;

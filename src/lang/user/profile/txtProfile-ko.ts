@@ -11,6 +11,7 @@ const txtProfile = {
         more: "눌러서 이전 버전 기록 보기",
         less: "닫기",
     },
+    graph: "스킬 추이",
     detail: "상세 정보",
     button: {
         title: "바로가기",

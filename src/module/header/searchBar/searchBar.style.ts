@@ -1,5 +1,4 @@
 import { Black, White } from "@/styled/color";
-import { ButtonSM } from "@/styled/styledCommon";
 import styled from "styled-components";
 
 export const SearchBarSection = styled.div`
@@ -15,7 +14,7 @@ export const SearchBar = styled.input`
     width: 100%;
 `;
 
-export const SearchButton = styled(ButtonSM)`
+export const SearchButton = styled.button`
     position: absolute;
     height: 48px;
     right: 20px;

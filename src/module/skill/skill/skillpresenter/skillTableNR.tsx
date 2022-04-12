@@ -20,6 +20,8 @@ import {
     SkillValue,
     SkillValueWrapper,
 } from "./skillTableNR.style";
+import store from "@/mobx/store";
+import { observer } from "mobx-react";
 
 type SkillTableProps = {
     list: Array<SkillItemData>;
@@ -27,7 +29,9 @@ type SkillTableProps = {
     openPopup: (mid: number) => void;
 };
 
-const SkillTableNR = ({ list, openPopup }: SkillTableProps) => {
+const SkillTableNR = observer(({ list, openPopup }: SkillTableProps) => {
+    const { dark } = store;
+
     return (
         <>
             {list.map((v, i) => {
@@ -50,7 +54,7 @@ const SkillTableNR = ({ list, openPopup }: SkillTableProps) => {
                         </SkillJacketWrapper>
                         <SkillDataWrapper>
                             <SkillDataRow>
-                                <SkillTitle>{v.musicTitle}</SkillTitle>
+                                <SkillTitle dark={dark.dark}>{v.musicTitle}</SkillTitle>
                             </SkillDataRow>
                             <SkillDataRow>
                                 <SkillSubData>
@@ -87,6 +91,6 @@ const SkillTableNR = ({ list, openPopup }: SkillTableProps) => {
             })}
         </>
     );
-};
+});
 
 export default SkillTableNR;

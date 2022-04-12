@@ -1,9 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import TowerListImg from "./toweritem";
 import TowerListData from "./towerlistData";
 import store from "@/mobx/store";
-import { Button } from "@/styled/styledCommon";
+import { Button, ThemedLink } from "@/styled/styledCommon";
 
 import txtTowerKo from "@/lang/tower/txtTower-ko";
 import txtTowerJp from "@/lang/tower/txtTower-jp";
@@ -11,6 +10,7 @@ import txtTowerEn from "@/lang/tower/txtTower-en";
 import { TowerHowTo, TowerListImgs } from "./towerListPresenter.style";
 import CommonLayout from "@/component/layout/commonLayout";
 import ContentLayout from "@/component/content/standardContent";
+import { observer } from "mobx-react";
 
 interface Props {
     towerGF: Array<TowerListData>;
@@ -18,8 +18,9 @@ interface Props {
     towerSP: Array<TowerListData>;
 }
 
-const TowerListPresenter = (props: Props) => {
+const TowerListPresenter = observer((props: Props) => {
     const lang = store.language.lang;
+    const { dark } = store;
 
     const txtTower = lang === "ko" ? txtTowerKo : lang === "jp" ? txtTowerJp : txtTowerEn;
 
@@ -29,9 +30,9 @@ const TowerListPresenter = (props: Props) => {
                 <TowerHowTo>
                     {txtTower.main.desc}
                     <br />
-                    <Link to={"/tower/howto"}>
+                    <ThemedLink dark={dark.dark} to={"/tower/howto"}>
                         <Button>{txtTower.main.howto}</Button>
-                    </Link>
+                    </ThemedLink>
                 </TowerHowTo>
 
                 <ContentLayout title={`${txtTower.main.skilltower} GuitarFreaks`}>
@@ -54,6 +55,6 @@ const TowerListPresenter = (props: Props) => {
             </ContentLayout>
         </CommonLayout>
     );
-};
+});
 
 export default TowerListPresenter;

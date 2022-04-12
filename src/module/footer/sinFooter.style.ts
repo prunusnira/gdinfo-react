@@ -2,14 +2,16 @@ import { White } from "@/styled/color";
 import styled from "styled-components";
 
 export const FooterOuter = styled.footer`
-    flex: 0 0 auto;
+    flex: 1 0 auto;
 
     display: flex;
     flex-direction: row;
     justify-content: center;
+    align-items: center;
 
     background-color: #111;
     font-size: 80%;
+    width: 100%;
 
     a {
         color: #aaaaff;

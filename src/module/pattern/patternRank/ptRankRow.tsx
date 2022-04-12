@@ -1,6 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Icon } from "@/styled/styledCommon";
+import { Icon, ThemedLink } from "@/styled/styledCommon";
 import PTRankData from "./ptrankData";
 import {
     PRColRank,
@@ -13,12 +12,15 @@ import {
     PRStatusImg,
     PRUserName,
 } from "./ptRankRow.style";
+import store from "@/mobx/store";
+import { observer } from "mobx-react";
 
 interface Props {
     list: Array<PTRankData>;
 }
 
-const PatternRankRow = (props: Props) => {
+const PatternRankRow = observer((props: Props) => {
+    const { dark } = store;
     return (
         <>
             {props.list.map((pd, i) => {
@@ -33,9 +35,9 @@ const PatternRankRow = (props: Props) => {
                                     src={`${process.env.PUBLIC_URL}/general-img/title/${pd.towertitle}.png`}
                                 />
                             ) : null}
-                            <Link className="innerhref" to={pd.profile}>
-                                {pd.name} ⓟ
-                            </Link>
+                            <ThemedLink dark={dark.dark} className="innerhref" to={pd.profile}>
+                                {pd.name}
+                            </ThemedLink>
                         </PRUserName>
                         <PRStatus>
                             <PRRankImg alt="rank" src={pd.rank} />
@@ -62,6 +64,6 @@ const PatternRankRow = (props: Props) => {
             })}
         </>
     );
-};
+});
 
 export default PatternRankRow;

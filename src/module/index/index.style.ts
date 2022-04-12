@@ -3,11 +3,17 @@ import styled from "styled-components";
 
 export const IndexContainer = styled.section`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
 
     width: 100%;
+    -webkit-transform: width 0.75s ease-in;
+    -moz-transform: width 0.75s ease-in;
+    -ms-transform: width 0.75s ease-in;
+    -o-transform: width 0.75s ease-in;
+    transform: width 0.75s ease-in;
 `;
 
 export const IndexContent = styled.div`

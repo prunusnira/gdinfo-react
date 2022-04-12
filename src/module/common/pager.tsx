@@ -1,7 +1,8 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { Button } from "@/styled/styledCommon";
+import { Button, ThemedLink } from "@/styled/styledCommon";
 import { PagerWrapper } from "./pager.style";
+import { observer } from "mobx-react";
+import store from "@/mobx/store";
 
 interface Props {
     cpage: number;
@@ -10,7 +11,8 @@ interface Props {
     afterUrl: string;
 }
 
-const Pager = (props: Props) => {
+const Pager = observer((props: Props) => {
+    const { dark } = store;
     const createPager = (current: number, end: number, urla: string, urlb: string) => {
         var outer = document.createElement("span");
         outer.style.width = "100%";
@@ -27,9 +29,9 @@ const Pager = (props: Props) => {
                 <>
                     {list.map((v, i) => {
                         return (
-                            <Link to={`${urla}${v + 1}${urlb}`}>
+                            <ThemedLink dark={dark.dark} to={`${urla}${v + 1}${urlb}`}>
                                 <Button>{v + 1}</Button>
-                            </Link>
+                            </ThemedLink>
                         );
                     })}
                 </>
@@ -42,16 +44,16 @@ const Pager = (props: Props) => {
                     <>
                         {list.map((v, i) => {
                             return (
-                                <Link to={`${urla}${v + 1}${urlb}`}>
+                                <ThemedLink dark={dark.dark} to={`${urla}${v + 1}${urlb}`}>
                                     <Button>{v + 1}</Button>
-                                </Link>
+                                </ThemedLink>
                             );
                         })}
 
                         <span>......</span>
-                        <Link to={`${urla}${end}${urlb}`}>
+                        <ThemedLink dark={dark.dark} to={`${urla}${end}${urlb}`}>
                             <Button>{end}</Button>
-                        </Link>
+                        </ThemedLink>
                     </>
                 );
             }
@@ -64,15 +66,15 @@ const Pager = (props: Props) => {
                 }
                 return (
                     <>
-                        <Link to={`${urla}1${urlb}`}>
+                        <ThemedLink dark={dark.dark} to={`${urla}1${urlb}`}>
                             <Button>1</Button>
-                        </Link>
+                        </ThemedLink>
                         <span>......</span>
                         {list.map((v) => {
                             return (
-                                <Link to={`${urla}${v + 1}${urlb}`}>
+                                <ThemedLink dark={dark.dark} to={`${urla}${v + 1}${urlb}`}>
                                     <Button>{v + 1}</Button>
-                                </Link>
+                                </ThemedLink>
                             );
                         })}
                     </>
@@ -87,21 +89,21 @@ const Pager = (props: Props) => {
                 }
                 return (
                     <>
-                        <Link to={`${urla}1${urlb}`}>
+                        <ThemedLink dark={dark.dark} to={`${urla}1${urlb}`}>
                             <Button>1</Button>
-                        </Link>
+                        </ThemedLink>
                         <span>...</span>
                         {list.map((v, i) => {
                             return (
-                                <Link to={`${urla}${v + 1}${urlb}`}>
+                                <ThemedLink dark={dark.dark} to={`${urla}${v + 1}${urlb}`}>
                                     <Button>{v + 1}</Button>
-                                </Link>
+                                </ThemedLink>
                             );
                         })}
                         <span>...</span>
-                        <Link to={`${urla}${end}${urlb}`}>
+                        <ThemedLink dark={dark.dark} to={`${urla}${end}${urlb}`}>
                             <Button>{end}</Button>
-                        </Link>
+                        </ThemedLink>
                     </>
                 );
             }
@@ -115,6 +117,6 @@ const Pager = (props: Props) => {
             })()}
         </PagerWrapper>
     );
-};
+});
 
 export default Pager;

@@ -10,4 +10,5 @@ export const TowerListImgs = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
     width: 100%;
+    max-width: 600px;
 `;

@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import MusicDataType from "./musicData";
 import store from "@/mobx/store";
 
@@ -17,14 +16,16 @@ import {
     MusicItemWrapper,
 } from "./popupMusicItem.style";
 import { observer } from "mobx-react";
+import { ThemedLink } from "@/styled/styledCommon";
 
 interface Props {
     list: Array<MusicDataType>;
     type: number;
 }
 
-const PopupMusicItem = (props: Props) => {
+const PopupMusicItem = observer((props: Props) => {
     const lang = store.language.lang;
+    const { dark } = store;
 
     const txtMusic = lang === "ko" ? txtMusicKo : lang === "jp" ? txtMusicJp : txtMusicEn;
 
@@ -44,9 +45,13 @@ const PopupMusicItem = (props: Props) => {
                                         {music.diff}&nbsp;{music.lv}
                                     </ItemDiff>
                                     <ItemRank>
-                                        <Link className="innerhref" to={music.ranklink}>
+                                        <ThemedLink
+                                            dark={dark.dark}
+                                            className="innerhref"
+                                            to={music.ranklink}
+                                        >
                                             Pattern Ranking
-                                        </Link>
+                                        </ThemedLink>
                                     </ItemRank>
                                 </ItemDiffWrapper>
                                 <ItemOuter>
@@ -115,6 +120,6 @@ const PopupMusicItem = (props: Props) => {
             })}
         </>
     );
-};
+});
 
 export default PopupMusicItem;

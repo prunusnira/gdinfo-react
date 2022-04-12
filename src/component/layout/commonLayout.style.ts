@@ -3,13 +3,17 @@ import styled from "styled-components";
 
 export const Outer = styled.main<{ dark: boolean }>`
     display: flex;
-    justify-content: center;
-    width: 100%;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    height: 100%;
+    overflow-y: scroll;
 
     ${(props) => (props.dark ? `background-color: ${Black};` : `background-color: ${Background}`)}
 `;
 
 export const Container = styled.section`
+    flex-grow: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,4 +35,8 @@ export const Container = styled.section`
         width: 100%;
         max-width: 1024px;
     }
+`;
+
+export const FooterWrapper = styled.section`
+    width: 100%;
 `;

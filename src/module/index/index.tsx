@@ -3,7 +3,7 @@ import UserLoginInfo from "./LoginInfo";
 
 import store from "@/mobx/store";
 import { observer } from "mobx-react";
-import { Anchor, Button } from "@/styled/styledCommon";
+import { Anchor, Button, ThemedLink } from "@/styled/styledCommon";
 import { Link } from "react-router-dom";
 
 import txtIndexKo from "@/lang/index/txtIndex-ko";
@@ -34,24 +34,24 @@ const IndexPage = observer(() => {
                     if (loginStatus.isSigned) {
                         return (
                             <>
-                                <ContentLayout title={txtIndex.self.title}>
+                                <ContentLayout title={txtIndex.self.title} isHalf={true}>
                                     <UserLoginInfo />
                                     <IndexRow>
-                                        <Link to="/profile">
+                                        <ThemedLink dark={dark.dark} to="/profile">
                                             <Button>Profile</Button>
-                                        </Link>
-                                        <Link to="/myskill/gf">
+                                        </ThemedLink>
+                                        <ThemedLink dark={dark.dark} to="/myskill/gf">
                                             <Button>GF Skill</Button>
-                                        </Link>
-                                        <Link to="/myskill/dm">
+                                        </ThemedLink>
+                                        <ThemedLink dark={dark.dark} to="/myskill/dm">
                                             <Button>DM Skill</Button>
-                                        </Link>
-                                        <Link to="/mybest">
+                                        </ThemedLink>
+                                        <ThemedLink dark={dark.dark} to="/mybest">
                                             <Button>My Best</Button>
-                                        </Link>
-                                        <Link to="/tower/index">
+                                        </ThemedLink>
+                                        <ThemedLink dark={dark.dark} to="/tower/index">
                                             <Button>Tower</Button>
-                                        </Link>
+                                        </ThemedLink>
                                     </IndexRow>
                                 </ContentLayout>
                             </>
@@ -59,7 +59,7 @@ const IndexPage = observer(() => {
                     } else {
                         return (
                             <>
-                                <ContentLayout title={txtIndex.self.title}>
+                                <ContentLayout title={txtIndex.self.title} isHalf={true}>
                                     <UserLoginInfo />
                                 </ContentLayout>
                             </>
@@ -67,7 +67,7 @@ const IndexPage = observer(() => {
                     }
                 })()}
 
-                <ContentLayout title={txtIndex.about.title}>
+                <ContentLayout title={txtIndex.about.title} isHalf={true}>
                     <IndexContent>{txtIndex.about.cont}</IndexContent>
                     <IndexContent>
                         <Anchor

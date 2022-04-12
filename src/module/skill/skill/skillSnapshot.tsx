@@ -11,7 +11,6 @@ import store from "@/mobx/store";
 import { observer } from "mobx-react";
 import { GDVer } from "@/module/common/version";
 import { Button, ItemCol, ItemRow } from "@/styled/styledCommon";
-import { Row } from "reactstrap";
 import SkillTableSH from "./skillpresenter/skillTableSH";
 import SkillTableNR from "./skillpresenter/skillTableNR";
 import SnapshotData from "./skillItem/snapshotData";
@@ -310,13 +309,11 @@ const SkillSnapshot = observer(() => {
                                 <h4>HOT</h4>
                             </SkillRow>
                             <ItemRow className="div-table" style={{ display: "block" }}>
-                                <Row>
-                                    {share ? (
-                                        <SkillTableSH list={skillTable1} openPopup={() => {}} />
-                                    ) : (
-                                        <SkillTableNR list={skillTable1} openPopup={() => {}} />
-                                    )}
-                                </Row>
+                                {share ? (
+                                    <SkillTableSH list={skillTable1} openPopup={() => {}} />
+                                ) : (
+                                    <SkillTableNR list={skillTable1} openPopup={() => {}} />
+                                )}
                             </ItemRow>
                         </SkillTableWrapper>
                         <SkillTableWrapper>
@@ -324,13 +321,11 @@ const SkillSnapshot = observer(() => {
                                 <h4>OTHER</h4>
                             </SkillRow>
                             <ItemRow className="div-table" style={{ display: "block" }}>
-                                <Row>
-                                    {share ? (
-                                        <SkillTableSH list={skillTable2} openPopup={() => {}} />
-                                    ) : (
-                                        <SkillTableNR list={skillTable2} openPopup={() => {}} />
-                                    )}
-                                </Row>
+                                {share ? (
+                                    <SkillTableSH list={skillTable2} openPopup={() => {}} />
+                                ) : (
+                                    <SkillTableNR list={skillTable2} openPopup={() => {}} />
+                                )}
                             </ItemRow>
                         </SkillTableWrapper>
                     </SkillBody>

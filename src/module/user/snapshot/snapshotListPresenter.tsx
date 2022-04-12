@@ -7,6 +7,7 @@ import txtSnapshotJp from "@/lang/user/snapshot/txtSnapshot-jp";
 import txtSnapshotEn from "@/lang/user/snapshot/txtSnapshot-en";
 import CommonLayout from "@/component/layout/commonLayout";
 import ContentLayout from "@/component/content/standardContent";
+import { SnapshotListWrapper } from "./snapshotListPresenter.style";
 
 interface Props {
     id: string;
@@ -30,22 +31,26 @@ const SnapshotListPresenter = (props: Props) => {
                     {txtSnapshot.desc3}
                 </p>
                 <ContentLayout title={"GuitarFreaks"}>
-                    {(function () {
-                        if (props.glist.length === 0) {
-                            return <h3>LIST IS EMPTY</h3>;
-                        } else {
-                            return <SnapshotItem id={props.id} date={props.glist} gtype="gf" />;
-                        }
-                    })()}
+                    <SnapshotListWrapper>
+                        {(function () {
+                            if (props.glist.length === 0) {
+                                return <h3>LIST IS EMPTY</h3>;
+                            } else {
+                                return <SnapshotItem id={props.id} date={props.glist} gtype="gf" />;
+                            }
+                        })()}
+                    </SnapshotListWrapper>
                 </ContentLayout>
                 <ContentLayout title={"DrumMania"}>
-                    {(function () {
-                        if (props.dlist.length === 0) {
-                            return <h3>LIST IS EMPTY</h3>;
-                        } else {
-                            return <SnapshotItem id={props.id} date={props.dlist} gtype="dm" />;
-                        }
-                    })()}
+                    <SnapshotListWrapper>
+                        {(function () {
+                            if (props.dlist.length === 0) {
+                                return <h3>LIST IS EMPTY</h3>;
+                            } else {
+                                return <SnapshotItem id={props.id} date={props.dlist} gtype="dm" />;
+                            }
+                        })()}
+                    </SnapshotListWrapper>
                 </ContentLayout>
             </ContentLayout>
         </CommonLayout>
