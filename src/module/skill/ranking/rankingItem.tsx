@@ -11,7 +11,6 @@ import {
     SRIcon,
     SRInfoWrapper,
     SRItemWrapper,
-    SRLink,
     SRNum,
     SRSkillVal,
     SRSkillWrapper,

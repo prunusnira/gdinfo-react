@@ -6,7 +6,7 @@ const usePatternInfo = (mid: string, userid: string) => {
     const [ptinfo, setPatternInfo] = useState(Array<MusicDataType>());
 
     useEffect(() => {
-        if (mid !== "0" && userid != "") loadPatternInfo();
+        if (mid !== "0" && userid !== "") loadPatternInfo();
         else setPatternInfo([]);
     }, [mid, userid]);
 

@@ -1,6 +1,4 @@
 import { persistence, StorageAdapter } from "mobx-persist-store";
-import CryptoJS from "crypto-js";
-import CommonData from "../module/common/commonData";
 
 const persistStoreNoneEnc = <T extends Record<string, any>>(
     target: T,

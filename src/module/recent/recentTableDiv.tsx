@@ -12,7 +12,6 @@ import TxtCommonKo from "@/lang/common/txtCommon-ko";
 import TxtCommonJp from "@/lang/common/txtCommon-jp";
 import TxtCommonEn from "@/lang/common/txtCommon-en";
 import {
-    RecentLink,
     RecentUserRow,
     RecentSkillRow,
     UpdateTime,

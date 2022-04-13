@@ -11,7 +11,7 @@ interface MatchProps {
 
 const PlayCount = observer(() => {
     const { id } = useParams<MatchProps>();
-    const [userName, profileLink, titleTower] = useUserData(id);
+    const { userName, titleTower } = useUserData(id);
     const { plist, glist, dlist, mlist } = usePlayCount(id);
 
     return (

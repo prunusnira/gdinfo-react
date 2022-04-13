@@ -2,7 +2,6 @@ import store from "@/mobx/store";
 import { ThemedLink } from "@/styled/styledCommon";
 import { observer } from "mobx-react";
 import React from "react";
-import { Link } from "react-router-dom";
 import { SideBarItemType } from "../data/sidebarData";
 import {
     SBIcon,
@@ -38,8 +37,13 @@ const SideBarItem = observer(({ iconSrc, text, href, sub }: Props) => {
                 </ThemedLink>
                 <SideBarSubWrapper>
                     {sub &&
-                        sub.map((x) => (
-                            <SideBarSubItem text={x.text} href={x.href} dark={dark.dark} />
+                        sub.map((x, i) => (
+                            <SideBarSubItem
+                                key={`sidebarSub${i}`}
+                                text={x.text}
+                                href={x.href}
+                                dark={dark.dark}
+                            />
                         ))}
                 </SideBarSubWrapper>
             </>
@@ -53,8 +57,13 @@ const SideBarItem = observer(({ iconSrc, text, href, sub }: Props) => {
                 </SideBarItemWrapper>
                 <SideBarSubWrapper>
                     {sub &&
-                        sub.map((x) => (
-                            <SideBarSubItem text={x.text} href={x.href} dark={dark.dark} />
+                        sub.map((x, i) => (
+                            <SideBarSubItem
+                                key={`sidebarSub${i}`}
+                                text={x.text}
+                                href={x.href}
+                                dark={dark.dark}
+                            />
                         ))}
                 </SideBarSubWrapper>
             </>

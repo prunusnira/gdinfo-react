@@ -19,7 +19,7 @@ const useUserData = (userid: string) => {
         });
     };
 
-    return [userName, profileLink, titleTower];
+    return { userName, profileLink, titleTower };
 };
 
 export default useUserData;

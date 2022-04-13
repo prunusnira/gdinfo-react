@@ -4,7 +4,6 @@ import UserLoginInfo from "./LoginInfo";
 import store from "@/mobx/store";
 import { observer } from "mobx-react";
 import { Anchor, Button, ThemedLink } from "@/styled/styledCommon";
-import { Link } from "react-router-dom";
 
 import txtIndexKo from "@/lang/index/txtIndex-ko";
 import txtIndexJp from "@/lang/index/txtIndex-jp";

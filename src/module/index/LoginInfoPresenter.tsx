@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import store from "@/mobx/store";
 
 import txtIndexKo from "@/lang/index/txtIndex-ko";

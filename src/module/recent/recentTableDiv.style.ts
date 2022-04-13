@@ -6,7 +6,6 @@ import {
     SkillTitleColor,
     White,
 } from "@/styled/color";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 export const RecentUserRow = styled.section`
@@ -32,10 +31,6 @@ export const UserName = styled.div`
     @media screen and (max-width: 499px) {
         font-size: 14px;
     }
-`;
-
-export const RecentLink = styled(Link)`
-    color: ${SkillTitleColor};
 `;
 
 export const EmptyUser = styled.span<{ dark: boolean }>`

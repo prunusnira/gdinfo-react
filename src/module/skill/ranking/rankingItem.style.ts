@@ -1,5 +1,4 @@
-import { Select, SelectDark, SkillBGColor, SkillTitleColor } from "@/styled/color";
-import { Link } from "react-router-dom";
+import { Select, SelectDark, SkillBGColor } from "@/styled/color";
 import styled from "styled-components";
 
 export const SRItemWrapper = styled.section<{ dark: boolean }>`
@@ -54,14 +53,6 @@ export const SRIcon = styled.img`
         width: 30px;
         height: 30px;
     }
-`;
-
-export const SRLink = styled(Link)`
-    color: ${SkillTitleColor};
-
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
 `;
 
 export const SRUpdate = styled.div``;

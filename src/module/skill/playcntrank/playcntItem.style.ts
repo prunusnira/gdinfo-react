@@ -1,5 +1,4 @@
-import { Select, SelectDark, SkillTitleColor } from "@/styled/color";
-import { Link } from "react-router-dom";
+import { Select, SelectDark } from "@/styled/color";
 import styled from "styled-components";
 
 export const PCRIWrapper = styled.section<{ dark: boolean }>`
@@ -31,10 +30,6 @@ export const PCRIUser = styled.div`
 export const PCRIIcon = styled.img`
     width: 30px;
     height: 30px;
-`;
-
-export const PCRILink = styled(Link)`
-    color: ${SkillTitleColor};
 `;
 
 export const PCRICnt = styled.div`

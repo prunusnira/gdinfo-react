@@ -16,7 +16,6 @@ type SearchBarProps = {
 };
 
 const SearchBarComp = observer((props: SearchBarProps) => {
-    const lang = store.language.lang;
     const { dark } = store;
 
     return (

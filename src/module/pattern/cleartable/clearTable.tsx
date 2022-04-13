@@ -12,7 +12,7 @@ const ClearTable = () => {
     const { userid } = useParams<MatchProps>();
     const glist = useClearTable(userid, "gf");
     const dlist = useClearTable(userid, "dm");
-    const [userName, profileLink, titleTower] = useUserData(userid);
+    const { userName, profileLink, titleTower } = useUserData(userid);
 
     return (
         <ClearTablePresenter

@@ -1,4 +1,4 @@
-import { Black, MenuBack, MenuBackDark, White } from "@/styled/color";
+import { MenuBack, MenuBackDark } from "@/styled/color";
 import styled from "styled-components";
 
 export const SideBarContainer = styled.section<{ isOpen: boolean; dark: boolean }>`

@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import ClearTableRow from "./clearTableRow";
 import React from "react";
 import ClearTableData from "./clearTableData";

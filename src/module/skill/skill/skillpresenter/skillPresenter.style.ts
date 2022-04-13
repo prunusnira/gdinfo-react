@@ -1,4 +1,4 @@
-import { BGGray, ContentBody, ContentBodyDark } from "@/styled/color";
+import { ContentBody, ContentBodyDark } from "@/styled/color";
 import styled from "styled-components";
 
 export const SkillRow = styled.div<{

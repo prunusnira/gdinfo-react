@@ -15,7 +15,7 @@ import txtNewuserEn from "@/lang/user/newuser/txtNewUser-en";
 import Error404 from "@/module/error/404";
 
 const NewUser = observer(() => {
-    const [newUser, token, updateUserInfo] = useUserInfo();
+    const { updateUserInfo } = useUserInfo();
     const [moveToIndex, isValidAccess, isNewUserMode, setMoveToIndex] = useUserCheck();
     const addNewUser = useUserAdd(updateUserInfo, setMoveToIndex);
     const dropUser = useUserDrop(setMoveToIndex);

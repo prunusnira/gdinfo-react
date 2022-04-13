@@ -8,7 +8,7 @@ import useUserInfo from "./useUserInfo";
 import useGoogleLogin from "./useGoogleLogin";
 
 const Login = observer(() => {
-    const [newUser, token, updateUserInfo] = useUserInfo();
+    const { newUser, token, updateUserInfo } = useUserInfo();
     const [isLoginError, loginErrorMsg, responseGoogle, responseFail] =
         useGoogleLogin(updateUserInfo);
     const { loginUser } = store;

@@ -16,7 +16,7 @@ const NpItem = observer((props: Props) => {
         <>
             {props.list.map((np, i) => {
                 return (
-                    <NPItemRow key={i}>
+                    <NPItemRow key={`npitem${i}`}>
                         <NPItemLeft>
                             <NPItemImg
                                 src={np.imgsrc}

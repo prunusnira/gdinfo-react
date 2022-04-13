@@ -5,7 +5,7 @@ import store from "@/mobx/store";
 import txtPatternKo from "@/lang/pattern/pattern/txtPattern-ko";
 import txtPatternJp from "@/lang/pattern/pattern/txtPattern-jp";
 import txtPatternEn from "@/lang/pattern/pattern/txtPattern-en";
-import { PTListBody, PTListCol, PTListRow, PTListTitleDiv } from "./ptList.style";
+import { PTListCol, PTListRow } from "./ptList.style";
 import ContentLayout from "@/component/content/standardContent";
 
 type SelectorType = {

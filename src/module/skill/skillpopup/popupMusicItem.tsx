@@ -25,7 +25,6 @@ interface Props {
 
 const PopupMusicItem = observer((props: Props) => {
     const lang = store.language.lang;
-    const { dark } = store;
 
     const txtMusic = lang === "ko" ? txtMusicKo : lang === "jp" ? txtMusicJp : txtMusicEn;
 

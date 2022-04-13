@@ -1,6 +1,6 @@
 import React from "react";
 import PlaycntRankData from "./playcntrankData";
-import { PCRICnt, PCRIIcon, PCRILink, PCRINum, PCRIUser, PCRIWrapper } from "./playcntItem.style";
+import { PCRICnt, PCRIIcon, PCRINum, PCRIUser, PCRIWrapper } from "./playcntItem.style";
 import store from "@/mobx/store";
 import { observer } from "mobx-react";
 import { ThemedLink } from "@/styled/styledCommon";

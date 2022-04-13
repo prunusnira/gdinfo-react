@@ -44,8 +44,6 @@ const SkillSnapshot = observer(() => {
     const [statRightTitle, setStatRightTitle] = useState("");
     const [statRight, setStatRight] = useState("");
 
-    const [skillSum1, setSkillSum1] = useState(0);
-    const [skillSum2, setSkillSum2] = useState(0);
     const [skillTable1, setSkillTable1] = useState(Array<SkillItemData>());
     const [skillTable2, setSkillTable2] = useState(Array<SkillItemData>());
 

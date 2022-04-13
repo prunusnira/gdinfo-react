@@ -9,14 +9,7 @@ import PTRankData from "./ptrankData";
 import txtPTRankKo from "@/lang/pattern/patternRank/txtPTRank-ko";
 import txtPTRankJp from "@/lang/pattern/patternRank/txtPTRank-jp";
 import txtPTRankEn from "@/lang/pattern/patternRank/txtPTRank-en";
-import {
-    PRBody,
-    PRCol,
-    PRContainer,
-    PRRow,
-    PRTitle,
-    PRTitleRank,
-} from "./patternRankPresenter.style";
+import { PRBody, PRCol, PRRow } from "./patternRankPresenter.style";
 import CommonLayout from "@/component/layout/commonLayout";
 import ContentLayout from "@/component/content/standardContent";
 import { observer } from "mobx-react";

@@ -1,15 +1,5 @@
-import { BGGray, Black } from "@/styled/color";
+import { Black } from "@/styled/color";
 import styled from "styled-components";
-
-export const PTListContainer = styled.article`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    max-width: 1280px;
-    background-color: ${BGGray};
-`;
 
 export const PTListTitleDiv = styled.div`
     width: 100%;

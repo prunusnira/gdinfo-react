@@ -43,8 +43,14 @@ const SideBar = observer(({ isMenuOpen, toggleMenu }: Props) => {
                         searchEnter={searchEnter}
                         searchClick={searchClick}
                     />
-                    {sideBarList.map((x) => (
-                        <SideBarItem iconSrc={x.iconSrc} text={x.text} href={x.href} sub={x.sub} />
+                    {sideBarList.map((x, i) => (
+                        <SideBarItem
+                            key={`sidebar${i}`}
+                            iconSrc={x.iconSrc}
+                            text={x.text}
+                            href={x.href}
+                            sub={x.sub}
+                        />
                     ))}
                 </SideBarInner>
             </SideBarContainer>

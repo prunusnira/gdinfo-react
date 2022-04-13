@@ -3,10 +3,6 @@ import store from "@/mobx/store";
 import { observer } from "mobx-react";
 import { Button, ThemedLink } from "@/styled/styledCommon";
 
-import txtSnapshotKo from "@/lang/user/snapshot/txtSnapshot-ko";
-import txtSnapshotJp from "@/lang/user/snapshot/txtSnapshot-jp";
-import txtSnapshotEn from "@/lang/user/snapshot/txtSnapshot-en";
-
 interface Props {
     date: Array<string>;
     id: string;
@@ -14,11 +10,7 @@ interface Props {
 }
 
 const SnapshotItem = observer((props: Props) => {
-    const lang = store.language.lang;
     const { dark } = store;
-
-    const txtSnapshot =
-        lang === "ko" ? txtSnapshotKo : lang === "jp" ? txtSnapshotJp : txtSnapshotEn;
 
     return (
         <>

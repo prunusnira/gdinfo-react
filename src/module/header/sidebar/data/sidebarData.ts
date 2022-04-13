@@ -1,7 +1,6 @@
 import HeaderNavDataKo from "@/lang/header/headerNavData-ko";
 import HeaderNavDataJp from "@/lang/header/headerNavData-jp";
 import HeaderNavDataEn from "@/lang/header/headerNavData-en";
-import store from "@/mobx/store";
 
 export type SideBarItemType = {
     iconSrc?: string;

@@ -44,7 +44,11 @@ const Pager = observer((props: Props) => {
                     <>
                         {list.map((v, i) => {
                             return (
-                                <ThemedLink dark={dark.dark} to={`${urla}${v + 1}${urlb}`}>
+                                <ThemedLink
+                                    key={`pager${i}`}
+                                    dark={dark.dark}
+                                    to={`${urla}${v + 1}${urlb}`}
+                                >
                                     <Button>{v + 1}</Button>
                                 </ThemedLink>
                             );
@@ -70,9 +74,13 @@ const Pager = observer((props: Props) => {
                             <Button>1</Button>
                         </ThemedLink>
                         <span>......</span>
-                        {list.map((v) => {
+                        {list.map((v, i) => {
                             return (
-                                <ThemedLink dark={dark.dark} to={`${urla}${v + 1}${urlb}`}>
+                                <ThemedLink
+                                    key={`pager${i}`}
+                                    dark={dark.dark}
+                                    to={`${urla}${v + 1}${urlb}`}
+                                >
                                     <Button>{v + 1}</Button>
                                 </ThemedLink>
                             );
@@ -95,7 +103,11 @@ const Pager = observer((props: Props) => {
                         <span>...</span>
                         {list.map((v, i) => {
                             return (
-                                <ThemedLink dark={dark.dark} to={`${urla}${v + 1}${urlb}`}>
+                                <ThemedLink
+                                    key={`pager${i}`}
+                                    dark={dark.dark}
+                                    to={`${urla}${v + 1}${urlb}`}
+                                >
                                     <Button>{v + 1}</Button>
                                 </ThemedLink>
                             );
