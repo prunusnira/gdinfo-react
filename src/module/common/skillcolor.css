@@ -1,0 +1,185 @@
+/*****************************************************
+ * GITADORA Info Server
+ * Developed by Tae Jun Kang a.k.a Prunus Nira
+ * (c) Nira 2016
+ *
+ * 1. This project is protected under GNU AGPL v3.0
+ *    Please refer to LICENSE file on root
+ * 2. Also, products and libraries used to implement
+ *    this server are on USED-LIBRARIES file on root
+ *****************************************************/
+.s0 {
+    background: -webkit-linear-gradient(#eeeeee, #eeeeee);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s1 {
+    background: -webkit-linear-gradient(#facc2e, #facc2e);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s2 {
+    background: -webkit-linear-gradient(#facc2e, #eeeeee);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s3 {
+    background: -webkit-linear-gradient(#ffff5c, #ffff5c);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s4 {
+    background: -webkit-linear-gradient(#ffff5c, #eeeeee);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s5 {
+    background: -webkit-linear-gradient(#33ff00, #33ff00);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s6 {
+    background: -webkit-linear-gradient(#33ff00, #eeeeee);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s7 {
+    background: -webkit-linear-gradient(#7598ff, #7598ff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s8 {
+    background: -webkit-linear-gradient(#7598ff, #eeeeee);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s9 {
+    background: -webkit-linear-gradient(#ff7dff, #ff7dff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s10 {
+    background: -webkit-linear-gradient(#ff00ff, #eeeeee);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s11 {
+    background: -webkit-linear-gradient(#ff5a5a, #ff5a5a);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s12 {
+    background: -webkit-linear-gradient(#ff0000, #eeeeee);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s13 {
+    background: -webkit-linear-gradient(#dd8844, #eeeeee);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s14 {
+    background: -webkit-linear-gradient(#888888, #dddddd);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s15 {
+    background: -webkit-linear-gradient(#c3c300, #ffffb7, #ffffb7);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s16 {
+    background: -webkit-linear-gradient(#eeeeee, #eeeeee);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s17 {
+    background: -webkit-linear-gradient(#eeeeee, #eeeeee);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.s18 {
+    background: -webkit-linear-gradient(#eeeeee, #eeeeee);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.color-text-flow {
+    color: white;
+
+    background: linear-gradient(
+        to right,
+        #ff5a5a,
+        #ff8a5a,
+        #ffff00,
+        #00ff00,
+        #5acbff,
+        #a500ff,
+        #ff5a5a,
+        #ff8a5a,
+        #ffff00,
+        #00ff00,
+        #5acbff
+    );
+    background-clip: text;
+    text-fill-color: transparent;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
+    background-position-x: 0;
+    background-position-y: 0;
+    background-size: 200% 100%;
+
+    animation-name: whoosh;
+    animation-duration: 5000ms;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+    animation-fill-mode: forwards;
+}
+
+@keyframes whoosh {
+    0% {
+        background-position-x: 0;
+    }
+    100% {
+        background-position-x: 100%;
+    }
+}

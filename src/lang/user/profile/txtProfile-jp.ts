@@ -11,6 +11,7 @@ const txtProfile = {
         more: "タッチして旧作スキルを確認",
         less: "Close",
     },
+    graph: "スキルグラフ",
     detail: "詳細情報",
     button: {
         title: "ショットカット",
@@ -40,6 +41,9 @@ const txtProfile = {
             * プレイ数は今までプレイしたステージの数です(Stage Failedも含む)
             * 公開設定により他人に見せることができます(基本非公開)
             * 正確な計算のためには全曲のスキルデータが必要です`,
+    },
+    board: {
+        title: "プレイヤーボード",
     },
     dataopen: {
         yes: "公開",

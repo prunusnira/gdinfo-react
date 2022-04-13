@@ -11,6 +11,7 @@ const txtProfile = {
         more: "Click to see old versions",
         less: "Close",
     },
+    graph: "Skill Graph",
     detail: "Details",
     button: {
         title: "Shortcut",
@@ -41,6 +42,9 @@ const txtProfile = {
             * Play count is sum of all number stages (Including stage failure)
             * Others can or cannot see your data via your settings
             * You need all pattern data to check exact play count`,
+    },
+    board: {
+        title: "Player Board",
     },
     dataopen: {
         yes: "Open",

@@ -1,83 +1,82 @@
 const HeaderNavData = {
     title: {
-        url: "/index"
+        url: "/index",
     },
     mydata: {
         text: "My Data",
         sub: [
             {
                 title: "Profile",
-                link: "/profile"
+                link: "/profile",
             },
             {
                 title: "GF skill",
-                link: "/myskill/gf"
+                link: "/myskill/gf",
             },
             {
                 title: "DM skill",
-                link: "/myskill/dm"
+                link: "/myskill/dm",
             },
             {
                 title: "Most played",
-                link: "/mybest"
+                link: "/mybest",
             },
             {
                 title: "Skill Table Snapshot",
-                link: "/snapshot"
+                link: "/snapshot",
             },
-        ]
+        ],
     },
     skill: {
         text: "Skill",
         sub: [
             {
                 title: "Recent updated users",
-                link: "/recent"
+                link: "/recent",
             },
             {
                 title: "Skill ranking",
-                link: "/rank/gf/1"
+                link: "/rank/gf/1",
             },
             {
                 title: "Theoretical Skill",
-                link: "/exc/gf"
+                link: "/exc/gf",
             },
             {
                 title: "Play count ranking",
-                link: "/cntrank/1"
+                link: "/cntrank/1",
             },
-        ]
+        ],
     },
     pattern: {
         text: "Pattern",
         sub: [
             {
                 title: "Pattern List",
-                link: "/pattern/00/titleasc/1?hot=h"
+                link: "/pattern/00/titleasc/1?hot=h",
             },
             {
                 title: "Patterns not played",
-                link: "/notplayed"
+                link: "/notplayed",
             },
             {
                 title: "Clear table",
-                link: "/cleartable"
+                link: "/cleartable",
             },
-        ]
+        ],
     },
     tower: {
         title: "Tower",
-        link: "/tower/index"
+        link: "/tower/index",
     },
     login: {
         title: "Sign in/up",
-        link: "/login"
+        link: "/login",
     },
     logout: {
-        title: "Sign out"
+        title: "Sign out",
     },
-    search: "Search",
     test: "This service is under maintenance now. It sometimes become unstable.",
-}
+};
 
-export default HeaderNavData
+export default HeaderNavData;

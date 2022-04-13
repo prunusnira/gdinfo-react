@@ -1,23 +1,23 @@
-import { makeAutoObservable } from "mobx"
-import LoginInfo from "../component/user/loginInfo"
+import { makeAutoObservable } from "mobx";
+import LoginInfo from "../module/user/loginInfo";
 
 const emptyUser: LoginInfo = {
-    token: '',
-    id: ''
-}
+    token: "",
+    id: "",
+};
 
 class storeLoginUser {
-    public user = emptyUser
+    public user = emptyUser;
     public setUserData(data: LoginInfo) {
-        this.user = data
+        this.user = data;
     }
     public setLogout() {
-        this.user = emptyUser
+        this.user = emptyUser;
     }
 
     constructor() {
-        makeAutoObservable(this)
+        makeAutoObservable(this);
     }
 }
 
-export default new storeLoginUser()
+export default new storeLoginUser();
