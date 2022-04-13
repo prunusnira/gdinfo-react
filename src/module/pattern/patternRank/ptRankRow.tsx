@@ -25,7 +25,7 @@ const PatternRankRow = observer((props: Props) => {
         <>
             {props.list.map((pd, i) => {
                 return (
-                    <PRRow key={i}>
+                    <PRRow key={i} dark={dark.dark}>
                         <PRSkillColor style={pd.ratecolor}>&nbsp;</PRSkillColor>
                         <PRSkillColor style={pd.skillcolor}>&nbsp;</PRSkillColor>
                         <PRColRank>{pd.index}</PRColRank>

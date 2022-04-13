@@ -18,6 +18,7 @@ import {
     FIUserTitle,
     FloorItemWrapper,
 } from "./towerFloorItem.style";
+import { observer } from "mobx-react";
 
 interface Props {
     list: Array<FloorItemData>;
@@ -25,8 +26,9 @@ interface Props {
     setTitleChangeModal: (b: boolean) => void;
 }
 
-const TowerFloorItem = (props: Props) => {
+const TowerFloorItem = observer((props: Props) => {
     const lang = store.language.lang;
+    const { dark } = store;
     const txtTower = lang === "ko" ? txtTowerKo : lang === "jp" ? txtTowerJp : txtTowerEn;
 
     return (
@@ -35,7 +37,7 @@ const TowerFloorItem = (props: Props) => {
                 console.log(fl.title);
                 return (
                     <>
-                        <FloorItemWrapper>
+                        <FloorItemWrapper dark={dark.dark}>
                             <FIImgWrapper>
                                 <FIImg alt="jacket-img" src={fl.jacket} />
                             </FIImgWrapper>
@@ -79,6 +81,6 @@ const TowerFloorItem = (props: Props) => {
             })}
         </>
     );
-};
+});
 
 export default TowerFloorItem;

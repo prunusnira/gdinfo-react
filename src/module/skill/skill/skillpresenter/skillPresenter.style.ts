@@ -1,3 +1,4 @@
+import { BGGray, ContentBody, ContentBodyDark } from "@/styled/color";
 import styled from "styled-components";
 
 export const SkillRow = styled.div<{
@@ -21,7 +22,7 @@ export const SkillHeader = styled.div`
     padding: 10px;
 `;
 
-export const SkillBody = styled.div`
+export const SkillBody = styled.div<{ dark: boolean }>`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -29,6 +30,8 @@ export const SkillBody = styled.div`
     width: 100%;
 
     padding: 5px 0;
+
+    background-color: ${(props) => (props.dark ? `${ContentBodyDark}` : `${ContentBody}`)};
 `;
 
 export const SkillTableOuterSH = styled.section`

@@ -9,8 +9,6 @@ import TxtCommonKo from "@/lang/common/txtCommon-ko";
 import TxtCommonJp from "@/lang/common/txtCommon-jp";
 import TxtCommonEn from "@/lang/common/txtCommon-en";
 
-type RankDataReturn = [Array<PTRankData>, number];
-
 const usePTRankData = (
     mid: string,
     ptcode: string,
@@ -18,9 +16,10 @@ const usePTRankData = (
     urlparams: URLSearchParams,
     isLoaded: boolean,
     setLoaded: (b: boolean) => void
-): RankDataReturn => {
+) => {
     const [list, setList] = useState(Array<PTRankData>());
     const [allPage, setAllPage] = useState(0);
+    const [isLoading, setLoading] = useState(true);
 
     useEffect(() => {
         loadRankData();
@@ -227,10 +226,11 @@ const usePTRankData = (
 
             setList(ranklist);
             setAllPage(json.pages);
+            setLoading(false);
         });
     };
 
-    return [list, allPage];
+    return { list, allPage, isLoading };
 };
 
 export default usePTRankData;

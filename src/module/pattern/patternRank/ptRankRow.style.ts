@@ -1,7 +1,7 @@
-import { Select, SkillBottomLine } from "@/styled/color";
+import { Select, SelectDark, SkillBottomLine } from "@/styled/color";
 import styled from "styled-components";
 
-export const PRRow = styled.div`
+export const PRRow = styled.div<{ dark: boolean }>`
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -10,7 +10,7 @@ export const PRRow = styled.div`
     border-bottom: 1px solid ${SkillBottomLine};
 
     &:hover {
-        background-color: ${Select};
+        background-color: ${(props) => (props.dark ? SelectDark : Select)};
     }
 `;
 

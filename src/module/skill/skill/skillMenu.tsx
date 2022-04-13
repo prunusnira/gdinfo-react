@@ -186,13 +186,6 @@ const SkillMenu = observer((props: Props) => {
                         <ThemedLink
                             style={{ width: "100%" }}
                             dark={dark.dark}
-                            to={"/skill/2/" + props.id + "/gf/1/1"}
-                        >
-                            <Button style={{ width: "100%" }}>GF Skill</Button>
-                        </ThemedLink>
-                        <ThemedLink
-                            style={{ width: "100%" }}
-                            dark={dark.dark}
                             to={"/skill/0/" + props.id + "/gf/1/skilldesc"}
                         >
                             <Button style={{ width: "100%" }}>GF All</Button>
@@ -200,9 +193,9 @@ const SkillMenu = observer((props: Props) => {
                         <ThemedLink
                             style={{ width: "100%" }}
                             dark={dark.dark}
-                            to={"/skill/2/" + props.id + "/dm/1/1"}
+                            to={"/skill/2/" + props.id + "/gf/1/1"}
                         >
-                            <Button style={{ width: "100%" }}>DM Skill</Button>
+                            <Button style={{ width: "100%" }}>GF Skill</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: "100%" }}
@@ -211,65 +204,12 @@ const SkillMenu = observer((props: Props) => {
                         >
                             <Button style={{ width: "100%" }}>DM All</Button>
                         </ThemedLink>
-                    </Col>
-                    <Col xs="12" className="btn-group">
                         <ThemedLink
                             style={{ width: "100%" }}
                             dark={dark.dark}
-                            to={"/skill/1/" + props.id + "/gf/1/y?hot=h"}
+                            to={"/skill/2/" + props.id + "/dm/1/1"}
                         >
-                            <Button style={{ width: "100%" }}>GF Hot(S)</Button>
-                        </ThemedLink>
-                        <ThemedLink
-                            style={{ width: "100%" }}
-                            dark={dark.dark}
-                            to={"/skill/1/" + props.id + "/gf/1/y?hot=o"}
-                        >
-                            <Button style={{ width: "100%" }}>GF Other(S)</Button>
-                        </ThemedLink>
-                        <ThemedLink
-                            style={{ width: "100%" }}
-                            dark={dark.dark}
-                            to={"/skill/1/" + props.id + "/dm/1/y?hot=h"}
-                        >
-                            <Button style={{ width: "100%" }}>DM Hot(S)</Button>
-                        </ThemedLink>
-                        <ThemedLink
-                            style={{ width: "100%" }}
-                            dark={dark.dark}
-                            to={"/skill/1/" + props.id + "/dm/1/y?hot=o"}
-                        >
-                            <Button style={{ width: "100%" }}>DM Other(S)</Button>
-                        </ThemedLink>
-                    </Col>
-                    <Col xs="12" className="btn-group">
-                        <ThemedLink
-                            style={{ width: "100%" }}
-                            dark={dark.dark}
-                            to={"/skill/1/" + props.id + "/gf/1/n?hot=h"}
-                        >
-                            <Button style={{ width: "100%" }}>GF Hot(NS)</Button>
-                        </ThemedLink>
-                        <ThemedLink
-                            style={{ width: "100%" }}
-                            dark={dark.dark}
-                            to={"/skill/1/" + props.id + "/gf/1/n?hot=o"}
-                        >
-                            <Button style={{ width: "100%" }}>GF Other(NS)</Button>
-                        </ThemedLink>
-                        <ThemedLink
-                            style={{ width: "100%" }}
-                            dark={dark.dark}
-                            to={"/skill/1/" + props.id + "/dm/1/n?hot=h"}
-                        >
-                            <Button style={{ width: "100%" }}>DM Hot(NS)</Button>
-                        </ThemedLink>
-                        <ThemedLink
-                            style={{ width: "100%" }}
-                            dark={dark.dark}
-                            to={"/skill/1/" + props.id + "/dm/1/n?hot=o"}
-                        >
-                            <Button style={{ width: "100%" }}>DM Other(NS)</Button>
+                            <Button style={{ width: "100%" }}>DM Skill</Button>
                         </ThemedLink>
                     </Col>
                 </Row>

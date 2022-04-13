@@ -1,6 +1,4 @@
 import React from "react";
-import "../skill.css";
-import "@/module/common/table.css";
 import SkillItemData from "../skillItem/skillItemData";
 
 import {
@@ -38,6 +36,7 @@ const SkillTableSH = observer(({ list, openPopup }: SkillTableProps) => {
             {list.map((v, i) => {
                 return (
                     <SkillItemWrapper
+                        dark={dark.dark}
                         onClick={() => {
                             openPopup(v.mid);
                         }}
@@ -67,13 +66,7 @@ const SkillTableSH = observer(({ list, openPopup }: SkillTableProps) => {
                                         <SkillSubWrapper>
                                             {(function () {
                                                 if (v.rank !== "") {
-                                                    return (
-                                                        <SkillRank
-                                                            alt="rank"
-                                                            className="skillrank-img"
-                                                            src={v.rank}
-                                                        />
-                                                    );
+                                                    return <SkillRank alt="rank" src={v.rank} />;
                                                 }
                                             })()}
                                         </SkillSubWrapper>

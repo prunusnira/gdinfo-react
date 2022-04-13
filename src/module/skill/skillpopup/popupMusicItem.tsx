@@ -46,7 +46,7 @@ const PopupMusicItem = observer((props: Props) => {
                                     </ItemDiff>
                                     <ItemRank>
                                         <ThemedLink
-                                            dark={dark.dark}
+                                            dark={false}
                                             className="innerhref"
                                             to={music.ranklink}
                                         >

@@ -1,7 +1,7 @@
 import React from "react";
 import store from "@/mobx/store";
 import { observer } from "mobx-react";
-import { Button, ItemRow, ThemedLink } from "@/styled/styledCommon";
+import { Button, ThemedLink } from "@/styled/styledCommon";
 
 import txtSnapshotKo from "@/lang/user/snapshot/txtSnapshot-ko";
 import txtSnapshotJp from "@/lang/user/snapshot/txtSnapshot-jp";

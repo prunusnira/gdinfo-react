@@ -3,12 +3,12 @@ import {
     AnchorColor,
     AnchorColorDark,
     Select,
+    SelectDark,
     SkillBottomLine,
-    SkillTitleColor,
     White,
 } from "@/styled/color";
 
-export const SkillItemWrapper = styled.div`
+export const SkillItemWrapper = styled.div<{ dark: boolean }>`
     display: flex;
     flex-direction: row;
 
@@ -19,7 +19,7 @@ export const SkillItemWrapper = styled.div`
     border-bottom: 2px solid ${SkillBottomLine};
 
     &:hover {
-        background-color: ${Select};
+        background-color: ${(props) => (props.dark ? SelectDark : Select)};
     }
 `;
 

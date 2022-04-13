@@ -28,12 +28,10 @@ const ResetPresenter = observer((props: Props) => {
                     <p>{txtReset.desc4}</p>
                     <p>{txtReset.desc5}</p>
 
-                    <Button onClick={props.resetData} style={{ width: "100%" }}>
-                        YES
-                    </Button>
+                    <Button onClick={props.resetData}>YES</Button>
 
                     <ThemedLink dark={dark.dark} to="/index">
-                        <Button style={{ width: "100%" }}>NO</Button>
+                        <Button>NO</Button>
                     </ThemedLink>
                 </ContentLayout>
             </ContentLayout>

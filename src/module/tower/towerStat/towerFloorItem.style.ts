@@ -1,7 +1,7 @@
-import { Select } from "@/styled/color";
+import { Select, SelectDark } from "@/styled/color";
 import styled from "styled-components";
 
-export const FloorItemWrapper = styled.section`
+export const FloorItemWrapper = styled.section<{ dark: boolean }>`
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -9,7 +9,7 @@ export const FloorItemWrapper = styled.section`
     padding: 5px;
 
     &:hover {
-        background-color: ${Select};
+        background-color: ${(props) => (props.dark ? SelectDark : Select)};
     }
 `;
 

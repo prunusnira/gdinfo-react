@@ -7,14 +7,20 @@ export const Wrapper = styled.section<{ isHalf?: boolean }>`
     border-radius: 14px;
     overflow: hidden;
     margin: 10px;
-    border: 1px solid ${Black};
+    box-shadow: 2px 2px ${Black};
 
     width: 95%;
     min-height: 300px;
 
-    ${(props) => (props.isHalf ? "max-width: 480px;" : "max-width: 1024px;")}
+    @media screen and (max-width: 1024px) {
+        max-width: 100%;
+    }
 
-    -webkit-transform: width .75s ease-in;
+    @media screen and (min-width: 1025px) {
+        ${(props) => (props.isHalf ? "max-width: 460px;" : "max-width: 1024px;")}
+    }
+
+    -webkit-transform: width 0.75s ease-in;
     -moz-transform: width 0.75s ease-in;
     -ms-transform: width 0.75s ease-in;
     -o-transform: width 0.75s ease-in;

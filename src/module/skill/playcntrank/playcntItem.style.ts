@@ -1,8 +1,8 @@
-import { Select, SkillTitleColor } from "@/styled/color";
+import { Select, SelectDark, SkillTitleColor } from "@/styled/color";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export const PCRIWrapper = styled.section`
+export const PCRIWrapper = styled.section<{ dark: boolean }>`
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -11,7 +11,7 @@ export const PCRIWrapper = styled.section`
     padding: 10px;
 
     &:hover {
-        background-color: ${Select};
+        background-color: ${(props) => (props.dark ? SelectDark : Select)};
     }
 `;
 

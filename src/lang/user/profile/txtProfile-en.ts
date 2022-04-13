@@ -43,6 +43,9 @@ const txtProfile = {
             * Others can or cannot see your data via your settings
             * You need all pattern data to check exact play count`,
     },
+    board: {
+        title: "Player Board",
+    },
     dataopen: {
         yes: "Open",
         no: "Close",

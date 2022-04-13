@@ -31,6 +31,7 @@ interface Props {
     list: Array<PTRankData>;
     page: string;
     allPage: number;
+    isLoading: boolean;
 }
 
 const PatternRankPresenter = observer((props: Props) => {
@@ -108,8 +109,10 @@ const PatternRankPresenter = observer((props: Props) => {
                     </PRRow>
                     <PatternRankRow list={props.list} />
                     {(function () {
-                        if (props.list.length === 0) {
-                            return <div id="empty">Loading... or No records</div>;
+                        if (props.isLoading) {
+                            return <div id="empty">Loading...</div>;
+                        } else if (props.list.length === 0) {
+                            return <div id="empty">No records</div>;
                         }
                     })()}
                     <Pager

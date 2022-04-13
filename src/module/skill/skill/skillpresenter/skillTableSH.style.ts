@@ -1,23 +1,22 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
 import {
     AnchorColor,
     AnchorColorDark,
     Black,
     Select,
+    SelectDark,
     SkillBottomLine,
-    SkillTitleColor,
     White,
 } from "@/styled/color";
 
-export const SkillItemWrapper = styled.div`
+export const SkillItemWrapper = styled.div<{ dark: boolean }>`
     display: flex;
     flex-direction: column;
     width: 100%;
     border: 1px solid ${SkillBottomLine};
 
     &:hover {
-        background-color: ${Select};
+        background-color: ${(props) => (props.dark ? SelectDark : Select)};
     }
 `;
 

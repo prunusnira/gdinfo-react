@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
-import "./profile.css";
 import { observer } from "mobx-react";
 import ProfilePresenter from "./profilePresenter";
 import useProfileLoader from "./useProfileLoader";

@@ -13,6 +13,7 @@ import {
     StatFloorUserTitleBtn,
     StatFloorWrapper,
 } from "./towerStatList.style";
+import { observer } from "mobx-react";
 
 interface Props {
     list: Array<TowerStatData>;
@@ -21,8 +22,8 @@ interface Props {
     setTitleChangeModal: (b: boolean) => void;
 }
 
-const TowerStatList = (props: Props) => {
-    const lang = store.language.lang;
+const TowerStatList = observer((props: Props) => {
+    const { dark } = store;
 
     const divopen = (i: string) => {
         const div = document.getElementById(i);
@@ -41,7 +42,7 @@ const TowerStatList = (props: Props) => {
             {props.list.map((tl, i) => {
                 return (
                     <StatFloorWrapper>
-                        <StatFloorRow onClick={() => divopen(tl.floorid)}>
+                        <StatFloorRow dark={dark.dark} onClick={() => divopen(tl.floorid)}>
                             <StatFloorTitle>
                                 {tl.opbtn} Floor {tl.floor}
                             </StatFloorTitle>
@@ -75,6 +76,6 @@ const TowerStatList = (props: Props) => {
             })}
         </>
     );
-};
+});
 
 export default TowerStatList;

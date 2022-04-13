@@ -1,4 +1,11 @@
-import { SkillBGColor, SkillBottomLine, SkillTitleColor, White } from "@/styled/color";
+import {
+    AnchorColor,
+    AnchorColorDark,
+    SkillBGColor,
+    SkillBottomLine,
+    SkillTitleColor,
+    White,
+} from "@/styled/color";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -31,9 +38,9 @@ export const RecentLink = styled(Link)`
     color: ${SkillTitleColor};
 `;
 
-export const EmptyUser = styled.span`
+export const EmptyUser = styled.span<{ dark: boolean }>`
     font-size: 20px;
-    color: ${SkillTitleColor};
+    color: ${(props) => (props.dark ? AnchorColorDark : AnchorColor)};
     font-weight: bold;
     cursor: not-allowed;
 

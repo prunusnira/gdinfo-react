@@ -23,6 +23,7 @@ import {
     RecentSkillCol,
     RecentSkillType,
 } from "./recentTableDiv.style";
+import { ThemedLink } from "@/styled/styledCommon";
 
 interface Props {
     isMain: boolean;
@@ -31,6 +32,7 @@ interface Props {
 
 const RecentTableDiv = observer((props: Props) => {
     const lang = store.language.lang;
+    const { dark } = store;
 
     const txtProfile = lang === "ko" ? txtProfileKo : lang === "jp" ? txtProfileJp : txtProfileEn;
 
@@ -54,11 +56,11 @@ const RecentTableDiv = observer((props: Props) => {
                             />
                         )}
                         {user.opencount === "Y" ? (
-                            <RecentLink to={"/profile/" + user.id}>
+                            <ThemedLink dark={dark.dark} to={"/profile/" + user.id}>
                                 {user.name !== "" ? `${user.name}` : `(NO NAME)`}
-                            </RecentLink>
+                            </ThemedLink>
                         ) : (
-                            <EmptyUser>{txtProfile.table1.emptyname}</EmptyUser>
+                            <EmptyUser dark={dark.dark}>{txtProfile.table1.emptyname}</EmptyUser>
                         )}
                     </UserName>
                     <UpdateTime>

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { AnchorColor, AnchorColorDark } from "./color";
+import { AnchorColor, AnchorColorDark, Black, SeaBlue, Select, White } from "./color";
 
 export const Anchor = styled.a<{ dark: boolean }>`
     ${(props) => (props.dark ? `color: ${AnchorColorDark};` : `color: ${AnchorColor};`)}
@@ -9,6 +9,16 @@ export const Anchor = styled.a<{ dark: boolean }>`
 export const ThemedLink = styled(Link)<{ dark: boolean }>`
     ${(props) =>
         props.dark ? `color: ${AnchorColorDark} !important;` : `color: ${AnchorColor} !important;`}
+`;
+
+export const Button = styled.button`
+    color: ${Black};
+    border-radius: 6px;
+    background-color: ${Select};
+    padding: 10px;
+    margin: 3px;
+    border: none;
+    box-shadow: 1px 1px;
 `;
 
 // 아이템에 대한 기본값을 설정하는 메소드
@@ -59,13 +69,6 @@ export const ItemCol = defaultStyle(ItemColBase, { size: 10, isFlatUnderLg: fals
 const widthSize = (size: number) => {
     return `width: ${size * 10}%;`;
 };
-
-export const Button = styled.button`
-    color: black;
-    border: 1px solid black;
-    background-color: #dddddd;
-    padding: 10px;
-`;
 
 const IconBase = styled.img<{ sizeType: string }>`
     ${(props) => `${iconSize(props.sizeType)}`}

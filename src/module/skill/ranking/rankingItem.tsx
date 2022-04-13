@@ -35,7 +35,7 @@ const SkillRankingItem = observer((props: Props) => {
         <>
             {props.rank.map((r) => {
                 return (
-                    <SRItemWrapper>
+                    <SRItemWrapper dark={dark.dark}>
                         <SRNum>{r.index}</SRNum>
                         <SRInfoWrapper>
                             <SRUser>

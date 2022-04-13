@@ -88,7 +88,7 @@ const SkillPresenter = observer((props: Props) => {
     return (
         <CommonLayout>
             <ContentLayout title={"Skill Menu"}>
-                <SkillBody>
+                <SkillBody dark={dark.dark}>
                     <SkillRow justifyContent={"center"} alignItems={"center"}>
                         {props.share ? (
                             <ThemedLink
@@ -154,7 +154,7 @@ const SkillPresenter = observer((props: Props) => {
                                     <SkillHeader>
                                         <h4>Search Options</h4>
                                     </SkillHeader>
-                                    <SkillBody>
+                                    <SkillBody dark={dark.dark}>
                                         <SkillRow>
                                             <ItemCol size={3.3} isFlatUnderLg={true}>
                                                 <ItemRow>Version</ItemRow>
@@ -297,7 +297,7 @@ const SkillPresenter = observer((props: Props) => {
                     })()
                 }
 
-                <SkillBody id="scrTable">
+                <SkillBody id="scrTable" dark={dark.dark}>
                     <SkillHeader id="targetInfo">
                         <SkillRow justifyContent={"center"}>
                             <h4>
@@ -329,7 +329,7 @@ const SkillPresenter = observer((props: Props) => {
                             </ItemCol>
                         </SkillRow>
                     </SkillHeader>
-                    <SkillBody>
+                    <SkillBody dark={dark.dark}>
                         <ItemRow
                             className="skillupper blackandwhite"
                             style={{ justifyContent: "center" }}
@@ -370,7 +370,7 @@ const SkillPresenter = observer((props: Props) => {
                             </ItemCol>
                         </ItemRow>
                     </SkillBody>
-                    <SkillBody>
+                    <SkillBody dark={dark.dark}>
                         {props.share && props.visibleLarge && (
                             <SkillTableWrapperSH>
                                 <SkillTableOuterSH>

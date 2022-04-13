@@ -1,23 +1,30 @@
-import React, {useState} from 'react';
-import {useParams} from 'react-router-dom';
-import PatternRankPresenter from './patternRankPresenter';
+import React, { useState } from "react";
+import { useParams } from "react-router-dom";
+import PatternRankPresenter from "./patternRankPresenter";
 
-import usePTRankData from './usePTRankData';
-import useMusicData from './useMusicData';
+import usePTRankData from "./usePTRankData";
+import useMusicData from "./useMusicData";
 
 interface MatchProps {
-    ptcode: string,
-    mid: string,
-    page: string
+    ptcode: string;
+    mid: string;
+    page: string;
 }
 
 const PatternRank = () => {
-    const [isLoaded, setLoaded] = useState(false)
-    const {ptcode, mid, page} = useParams<MatchProps>()
-    const urlparams = new URLSearchParams(window.location.search)
+    const [isLoaded, setLoaded] = useState(false);
+    const { ptcode, mid, page } = useParams<MatchProps>();
+    const urlparams = new URLSearchParams(window.location.search);
 
-    const [pattern, level, mname, composer] = useMusicData(ptcode, mid, setLoaded)
-    const [list, allPage] = usePTRankData(mid, ptcode, page, urlparams, isLoaded, setLoaded)
+    const [pattern, level, mname, composer] = useMusicData(ptcode, mid, setLoaded);
+    const { list, allPage, isLoading } = usePTRankData(
+        mid,
+        ptcode,
+        page,
+        urlparams,
+        isLoaded,
+        setLoaded
+    );
 
     return (
         <PatternRankPresenter
@@ -29,8 +36,10 @@ const PatternRank = () => {
             ptcode={ptcode}
             list={list}
             page={page}
-            allPage={allPage}/>
-    )
-}
+            allPage={allPage}
+            isLoading={isLoading}
+        />
+    );
+};
 
 export default PatternRank;

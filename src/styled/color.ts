@@ -2,7 +2,6 @@ export const Black = "#252525";
 export const White = "#ffffff";
 export const BGGray = "#414141";
 export const SkillTitleColor = "#1676de";
-export const Select = "#A6E7D6";
 export const SkillBottomLine = "#5f5f5f";
 
 export const SeaBlue = "rgb(0, 197, 212)";
@@ -21,3 +20,6 @@ export const HeaderBGColorDark = "rgba(12, 65, 151, 0.8)";
 
 export const AnchorColor = "rgb(12, 65, 151)";
 export const AnchorColorDark = "rgb(242, 240, 96)";
+
+export const Select = "#A6E7D6";
+export const SelectDark = "rgb(12, 65, 151)";

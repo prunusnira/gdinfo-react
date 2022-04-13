@@ -52,6 +52,7 @@ const SkillSnapshot = observer(() => {
     const [username, setUserName] = useState("");
 
     const lang = store.language.lang;
+    const { dark } = store;
 
     const txtSkill = lang === "ko" ? txtSkillKo : lang === "jp" ? txtSkillJp : txtSkillEn;
 
@@ -63,11 +64,9 @@ const SkillSnapshot = observer(() => {
         loadUserInfo();
     }, []);
 
-    useEffect(() => {}, [username]);
-
     const loadUserInfo = () => {
         axios.post(`${CommonData.dataUrl}getuserid/${id}`).then((res) => {
-            const json = res.data.mydata;
+            const json = JSON.parse(res.data.mydata);
             setUserName(json.name);
         });
     };
@@ -254,7 +253,7 @@ const SkillSnapshot = observer(() => {
                         </Button>
                     </ContentLayout>
                 </ItemRow>
-                <SkillBody id="scrTable">
+                <SkillBody id="scrTable" dark={dark.dark}>
                     <SkillHeader id="targetInfo">
                         <SkillRow justifyContent={"center"}>
                             <h4>
@@ -271,7 +270,7 @@ const SkillSnapshot = observer(() => {
                             </ItemCol>
                         </SkillRow>
                     </SkillHeader>
-                    <SkillBody>
+                    <SkillBody dark={dark.dark}>
                         <ItemRow
                             className="skillupper blackandwhite"
                             style={{ justifyContent: "center" }}
@@ -303,30 +302,30 @@ const SkillSnapshot = observer(() => {
                             </ItemCol>
                         </ItemRow>
                     </SkillBody>
-                    <SkillBody id="targetTable">
+                    <SkillBody id="targetTable" dark={dark.dark}>
                         <SkillTableWrapper>
                             <SkillRow justifyContent={"center"}>
                                 <h4>HOT</h4>
                             </SkillRow>
-                            <ItemRow className="div-table" style={{ display: "block" }}>
+                            <SkillTableWrapper>
                                 {share ? (
                                     <SkillTableSH list={skillTable1} openPopup={() => {}} />
                                 ) : (
                                     <SkillTableNR list={skillTable1} openPopup={() => {}} />
                                 )}
-                            </ItemRow>
+                            </SkillTableWrapper>
                         </SkillTableWrapper>
                         <SkillTableWrapper>
                             <SkillRow justifyContent={"center"}>
                                 <h4>OTHER</h4>
                             </SkillRow>
-                            <ItemRow className="div-table" style={{ display: "block" }}>
+                            <SkillTableWrapper>
                                 {share ? (
                                     <SkillTableSH list={skillTable2} openPopup={() => {}} />
                                 ) : (
                                     <SkillTableNR list={skillTable2} openPopup={() => {}} />
                                 )}
-                            </ItemRow>
+                            </SkillTableWrapper>
                         </SkillTableWrapper>
                     </SkillBody>
                 </SkillBody>

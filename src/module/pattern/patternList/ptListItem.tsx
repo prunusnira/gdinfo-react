@@ -2,13 +2,18 @@ import React from "react";
 import PTListItemRow from "./ptListItemRow";
 import { PatternData } from "./patternData";
 import { GridCellTop, GridTxtRow, PTListGrid, PTListInfo, PTListRow } from "./ptList.style";
+import { Anchor } from "@/styled/styledCommon";
+import store from "@/mobx/store";
+import { observer } from "mobx-react";
 
 interface Props {
     list: Array<PatternData>;
     openPopup: (mid: number) => void;
 }
 
-const PTListItem = (props: Props) => {
+const PTListItem = observer((props: Props) => {
+    const { dark } = store;
+
     return (
         <>
             {props.list.map((p, i) => {
@@ -27,9 +32,13 @@ const PTListItem = (props: Props) => {
                                             process.env.PUBLIC_URL + "/general-img/empty.jpg";
                                     }}
                                 />
-                                <a className="innerhref" onClick={() => props.openPopup(p.mid)}>
+                                <Anchor
+                                    dark={dark.dark}
+                                    className="innerhref"
+                                    onClick={() => props.openPopup(p.mid)}
+                                >
                                     <GridTxtRow>{p.name}</GridTxtRow>
-                                </a>
+                                </Anchor>
                                 <span style={{ color: "red" }}>
                                     {(function () {
                                         switch (p.removed) {
@@ -62,6 +71,6 @@ const PTListItem = (props: Props) => {
             })}
         </>
     );
-};
+});
 
 export default PTListItem;

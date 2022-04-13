@@ -1,4 +1,4 @@
-import { Background, Black, SeaBlue } from "@/styled/color";
+import { Background, Black } from "@/styled/color";
 import styled from "styled-components";
 
 export const Outer = styled.main<{ dark: boolean }>`

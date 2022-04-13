@@ -253,7 +253,7 @@ const ProfilePresenter = observer((props: Props) => {
                     </GraphWrapper>
                 </ContentLayout>
 
-                <ContentLayout title={txtProfile.detail}>
+                <ContentLayout title={txtProfile.detail} isHalf>
                     <ProfileDetailGrid>
                         <DetailGridVal>#</DetailGridVal>
                         <DetailGridVal>GuitarFreaks</DetailGridVal>
@@ -311,10 +311,13 @@ const ProfilePresenter = observer((props: Props) => {
                         </DetailGridVal>
                     </ProfileDetailGrid>
                     <PlaycountDesc>{txtProfile.detailed.countdesc}</PlaycountDesc>
+                </ContentLayout>
+
+                <ContentLayout title={txtProfile.board.title} isHalf>
                     <ProfileBoard id={props.id} />
                 </ContentLayout>
 
-                <ContentLayout title={txtProfile.button.title}>
+                <ContentLayout title={txtProfile.button.title} isHalf>
                     <ButtonFlex>
                         <ThemedLink dark={dark.dark} to={`/mybest/${props.id}`}>
                             <ProfButton>{txtProfile.button.mybest}</ProfButton>

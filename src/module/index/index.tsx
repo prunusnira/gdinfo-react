@@ -81,16 +81,18 @@ const IndexPage = observer(() => {
                     </IndexContent>
                 </ContentLayout>
 
-                <ContentLayout title={txtIndex.howto.title}>
-                    <IndexContent>1. {txtIndex.howto.desc}</IndexContent>
+                <ContentLayout title={txtIndex.script.title} isHalf>
+                    <IndexContent>{txtIndex.script.cont}</IndexContent>
                     <IndexContent>
                         <IndexScriptWrapper>
-                            <IndexTitle>{txtIndex.howto.script}</IndexTitle>
+                            <IndexTitle>{txtIndex.script.scriptTitle}</IndexTitle>
                             <IndexContent>
                                 {loginStatus.isSigned ? (
-                                    txtIndex.howto.addrLogin
+                                    txtIndex.script.scriptLogin
                                 ) : (
-                                    <b style={{ color: "blue" }}>★{txtIndex.howto.addrNoLogin}</b>
+                                    <b style={{ color: "blue" }}>
+                                        ★{txtIndex.script.scriptNoLogin}
+                                    </b>
                                 )}
                             </IndexContent>
                             <IndexScript>
@@ -105,31 +107,29 @@ const IndexPage = observer(() => {
                             </IndexScript>
                         </IndexScriptWrapper>
                     </IndexContent>
-                    <IndexContent>
-                        <IndexRow>{txtIndex.howto.desc2}</IndexRow>
-                        <IndexRow>({txtIndex.howto.desc3})</IndexRow>
-                        <IndexImg
-                            alt="favo"
-                            src={process.env.PUBLIC_URL + "/general-img/howto/howto1-register.png"}
-                        />
-                        <IndexRow>※{txtIndex.howto.desc4}</IndexRow>
+                </ContentLayout>
 
+                <ContentLayout title={`${txtIndex.howto.title} Step 1`} isHalf>
+                    <IndexContent>
+                        <IndexRow>{txtIndex.howto.desc1}</IndexRow>
+                        <IndexRow>({txtIndex.howto.desc2})</IndexRow>
+                        <IndexRow>※{txtIndex.howto.desc3}</IndexRow>
                         <IndexImg
                             alt="favo"
                             src={process.env.PUBLIC_URL + "/general-img/howto/howto2-browser.png"}
                         />
-                        <IndexRow>※{txtIndex.howto.desc4}</IndexRow>
                         <IndexRow>※{txtIndex.howto.browser}</IndexRow>
                         <IndexRow>Google Chrome (for all OS), Safari (for iOS)</IndexRow>
+                    </IndexContent>
+                </ContentLayout>
 
+                <ContentLayout title={`${txtIndex.howto.title} Step 2`} isHalf>
+                    <IndexContent>
+                        <IndexRow>{txtIndex.howto.desc4}</IndexRow>
+                        <IndexRow>* {txtIndex.howto.lang}: 한국어, 日本語, English</IndexRow>
                         <IndexImg
                             alt="favo"
-                            src={process.env.PUBLIC_URL + "/general-img/howto/howto3-k.png"}
-                        />
-
-                        <IndexImg
-                            alt="favo"
-                            src={process.env.PUBLIC_URL + "/general-img/howto/howto3-j.png"}
+                            src={process.env.PUBLIC_URL + "/general-img/howto/howto3.png"}
                         />
                     </IndexContent>
                 </ContentLayout>
