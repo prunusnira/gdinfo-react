@@ -55,4 +55,6 @@ export const Body = styled.section<{ dark: boolean }>`
 color: ${White};`
             : `background-color: ${ContentBody};
 color: ${Black};`}
+
+    border: 1px solid ${(props) => (props.dark ? BGGray : ContentTitle)};
 `;

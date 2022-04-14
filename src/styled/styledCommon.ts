@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { AnchorColor, AnchorColorDark, Black, SeaBlue, Select, White } from "./color";
+import { AnchorColor, AnchorColorDark, Black, ButtonBG, White } from "./color";
 
 export const Anchor = styled.a<{ dark: boolean }>`
     ${(props) => (props.dark ? `color: ${AnchorColorDark};` : `color: ${AnchorColor};`)}
@@ -14,7 +14,7 @@ export const ThemedLink = styled(Link)<{ dark: boolean }>`
 export const Button = styled.button`
     color: ${Black};
     border-radius: 6px;
-    background-color: ${Select};
+    background-color: ${ButtonBG};
     padding: 10px;
     margin: 3px;
     border: none;

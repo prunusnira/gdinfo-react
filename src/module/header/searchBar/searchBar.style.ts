@@ -20,6 +20,7 @@ export const SearchButton = styled.button`
     right: 20px;
     background-color: transparent;
     border: 0;
+    color: ${Black};
 `;
 
 export const SearchTypeButton = styled.button<{ dark: boolean }>`
