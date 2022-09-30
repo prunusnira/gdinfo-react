@@ -33,7 +33,7 @@
         "react-router-dom": "^5.2.0",
         "react-scripts": "^4.0.3",
         "reactstrap": "^8.9.0",
-        "recharts": "^2.0.10",
+        "recharts": "^2.1.14",
         "redux-persist": "^6.0.0",
         "styled-components": "^5.2.3",
         "typescript": "^3.9.9"
