@@ -17,6 +17,10 @@ const txtIndex = {
         scriptNoLogin: "스크립트는 개인별로 제공됩니다. 로그인해주세요",
         scriptLogin: "아래 URL은 개인별로 다릅니다. 절대 타인에게 공유하지 마세요.",
     },
+    notice2: {
+        title: "공지사항",
+        desc: "최근 공지사항 3개입니다"
+    },
     howto: {
         title: "사용방법",
         desc1: "기타도라 홈페이지로 이동하여 스크립트를 붙여넣고 실행합니다",

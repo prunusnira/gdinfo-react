@@ -108,6 +108,15 @@ const IndexPage = observer(() => {
                     </IndexContent>
                 </ContentLayout>
 
+                <ContentLayout title={`${txtIndex.notice2.title}`} isHalf>
+                    <IndexContent>
+                        <IndexRow>{txtIndex.notice2.desc}</IndexRow>
+                        <IndexRow>
+                            
+                        </IndexRow>
+                    </IndexContent>
+                </ContentLayout>
+
                 <ContentLayout title={`${txtIndex.howto.title} Step 1`} isHalf>
                     <IndexContent>
                         <IndexRow>{txtIndex.howto.desc1}</IndexRow>
