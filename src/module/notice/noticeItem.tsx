@@ -1,22 +1,37 @@
-import React from "react"
-import { ItemContent, ItemDate, ItemNum, ItemTitle, ItemTop, NoticeItemWrapper } from "./noticeItem.style"
+import React, { useState } from "react";
+import { unixTimeConverter } from "../common/time";
+import {
+    ItemContent,
+    ItemDate,
+    ItemNum,
+    ItemTitle,
+    ItemTop,
+    NoticeItemWrapper,
+} from "./noticeItem.style";
 
 type Props = {
     num: number;
     title: string;
-    date: string;
+    date: number;
     content: string;
-}
+};
 
 const NoticeItem = (props: Props) => {
-    return <NoticeItemWrapper>
-        <ItemTop>
-            <ItemNum>{props.num}</ItemNum>
-            <ItemTitle>{props.title}</ItemTitle>
-            <ItemDate>{props.date}</ItemDate>
-        </ItemTop>
-        <ItemContent>{props.content}</ItemContent>
-    </NoticeItemWrapper>
-}
+    const [open, setOpen] = useState(false);
+    const showContent = () => {
+        setOpen(!open);
+    };
 
-export default NoticeItem
+    return (
+        <NoticeItemWrapper onClick={showContent}>
+            <ItemTop>
+                <ItemNum>{props.num}</ItemNum>
+                <ItemTitle>{props.title}</ItemTitle>
+                <ItemDate>{unixTimeConverter(props.date)}</ItemDate>
+            </ItemTop>
+            <ItemContent open={open}>{props.content}</ItemContent>
+        </NoticeItemWrapper>
+    );
+};
+
+export default NoticeItem;

@@ -19,6 +19,7 @@ import {
 } from "./index.style";
 import CommonLayout from "@/component/layout/commonLayout";
 import ContentLayout from "@/component/content/standardContent";
+import IndexNotice from "./notice/notice";
 
 const IndexPage = observer(() => {
     const { language, loginUser, loginStatus, dark } = store;
@@ -109,12 +110,7 @@ const IndexPage = observer(() => {
                 </ContentLayout>
 
                 <ContentLayout title={`${txtIndex.notice2.title}`} isHalf>
-                    <IndexContent>
-                        <IndexRow>{txtIndex.notice2.desc}</IndexRow>
-                        <IndexRow>
-                            
-                        </IndexRow>
-                    </IndexContent>
+                    <IndexNotice />
                 </ContentLayout>
 
                 <ContentLayout title={`${txtIndex.howto.title} Step 1`} isHalf>

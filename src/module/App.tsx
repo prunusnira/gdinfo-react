@@ -4,6 +4,7 @@ import store from "../mobx/store";
 import { observer } from "mobx-react";
 
 import IndexPage from "./index/index";
+import NoticePage from "./notice/notice";
 import Recent from "./recent/recent";
 import Login from "./user/login/login";
 import SearchResult from "./search/search";
@@ -57,7 +58,11 @@ const App = observer(() => {
             version.setVersion(CommonData.internalVersion);
         }
 
-        if (language.lang === null || language.lang === undefined || language.lang === "") {
+        if (
+            language.lang === null ||
+            language.lang === undefined ||
+            language.lang === ""
+        ) {
             language.setLang(LData.setLang());
         }
     }, []);
@@ -67,6 +72,7 @@ const App = observer(() => {
             <GlobalStyle />
             <Route exact path="/" component={IndexPage} />
             <Route path="/index" component={IndexPage} />
+            <Route path="/notice/:page" component={NoticePage} />
             <Route path="/recent" component={Recent} />
             <Route path="/login" component={Login} />
             <Route path="/search/:type/:value/:page" component={SearchResult} />
@@ -94,7 +100,10 @@ const App = observer(() => {
                 path="/skillscr/:ptype/:userid/:gtype/:page/:order"
                 render={() => <SkillContainer share={true} />}
             />
-            <Route path="/skill/snapshot/view/:share/:id/:date/:gtype" component={SkillSnapshot} />
+            <Route
+                path="/skill/snapshot/view/:share/:id/:date/:gtype"
+                component={SkillSnapshot}
+            />
             <Route path="/rank/:gtype/:page" component={SkillRanking} />
             <Route path="/cntrank/:page" component={PlaycountRanking} />
             <Route path="/exc/:gtype" component={EXC} />

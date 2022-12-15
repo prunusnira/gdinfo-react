@@ -1,9 +1,22 @@
-const useNotice = () => {
-    const getTopNotice = () => {}
+import { getNotice } from "@/api/getNotice";
+import { useEffect, useState } from "react";
+import NoticeType from "./noticeType";
 
-    const getNotice = (page: number) => {}
+const useNotice = (page: number) => {
+    const [list, setList] = useState(Array<NoticeType>());
 
-    return {getTopNotice, getNotice}
-}
+    useEffect(() => {
+        notice(page);
+    }, []);
 
-export default useNotice
+    const notice = (page: number) => {
+        getNotice(page).then((json) => {
+            const notice = JSON.parse(json.notice) as Array<NoticeType>;
+            setList(notice);
+        });
+    };
+
+    return { list };
+};
+
+export default useNotice;

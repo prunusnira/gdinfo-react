@@ -18,8 +18,8 @@ const txtIndex = {
         scriptLogin: "URL written differs each user. DO NOT SHARE your URL",
     },
     notice2: {
-        title: "Notice",
-        desc: "The most recent 3 announcements are displayed"
+        title: "Announcement",
+        desc: "The most recent 3 announcements are displayed",
     },
     howto: {
         title: "How to use",
