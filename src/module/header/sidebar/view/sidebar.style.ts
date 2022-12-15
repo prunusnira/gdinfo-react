@@ -1,7 +1,10 @@
 import { MenuBack, MenuBackDark } from "@/styled/color";
 import styled from "styled-components";
 
-export const SideBarContainer = styled.section<{ isOpen: boolean; dark: boolean }>`
+export const SideBarContainer = styled.section<{
+    isOpen: boolean;
+    dark: boolean;
+}>`
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -32,4 +35,19 @@ export const SideBarContainer = styled.section<{ isOpen: boolean; dark: boolean 
 export const SideBarInner = styled.div`
     width: 100%;
     max-width: 768px;
+`;
+
+export const LevelDiff = styled.div`
+    display; flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+
+export const LvDiffDiv = styled.div`
+    width: 100%;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-align: center;
 `;

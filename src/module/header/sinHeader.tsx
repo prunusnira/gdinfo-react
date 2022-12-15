@@ -20,11 +20,11 @@ const SinHeader = observer(() => {
                     closeMenu={closeMenu}
                 />
             </Header>
-            <HeaderNotice>
+            {/* <HeaderNotice>
                 Skill Navigator is now under construction...
                 <br />
                 VERSION. FUZZ-UP is getting ready
-            </HeaderNotice>
+            </HeaderNotice> */}
         </HeaderOuter>
     );
 });

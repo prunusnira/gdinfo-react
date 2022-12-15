@@ -1,11 +1,17 @@
 import store from "@/mobx/store";
+import { Anchor } from "@/styled/styledCommon";
 import { observer } from "mobx-react";
 import React, { useEffect, useState } from "react";
 import SearchBarComp from "../../searchBar/searchBar";
 import SearchTypeModal from "../../searchModal/searchTypeModal";
 import useSearch from "../../useSearch";
 import { getSideBarList } from "../data/sidebarData";
-import { SideBarContainer, SideBarInner } from "./sidebar.style";
+import {
+    LevelDiff,
+    LvDiffDiv,
+    SideBarContainer,
+    SideBarInner,
+} from "./sidebar.style";
 import SideBarItem from "./sidebarItem";
 
 type Props = {
@@ -52,6 +58,19 @@ const SideBar = observer(({ isMenuOpen, toggleMenu }: Props) => {
                             sub={x.sub}
                         />
                     ))}
+                    <LevelDiff>
+                        <LvDiffDiv>{`>> FUZZ-UP vs HIGH-VOLTAGE <<`}</LvDiffDiv>
+                        <LvDiffDiv>
+                            <Anchor dark={dark.dark} href={`/lvdiff/gf`}>
+                                GuitarFreaks
+                            </Anchor>
+                        </LvDiffDiv>
+                        <LvDiffDiv>
+                            <Anchor dark={dark.dark} href={`/lvdiff/dm`}>
+                                DrumMania
+                            </Anchor>
+                        </LvDiffDiv>
+                    </LevelDiff>
                 </SideBarInner>
             </SideBarContainer>
             <SearchTypeModal

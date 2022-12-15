@@ -41,6 +41,7 @@ import Error500 from "./error/500";
 import LData from "./common/language";
 import CommonData from "./common/commonData";
 import { GlobalStyle } from "@/styled/globalStyle";
+import LVDiff from "./etc/lvdiff/lvdiff";
 
 /**
  * header/footer를 제외하고는 react-router-dom으로 구성함
@@ -128,6 +129,8 @@ const App = observer(() => {
             {/* Error */}
             <Route path="/error/404" component={Error404} />
             <Route path="/error/500" component={Error500} />
+            {/* Bonus */}
+            <Route path="/lvdiff/:type" component={LVDiff} />
         </BrowserRouter>
     );
 });

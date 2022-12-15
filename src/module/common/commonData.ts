@@ -2,8 +2,8 @@ export default class CommonData {
     static MAINURL = "https://sindata.nira.one/";
     static TESTURL = "http://localhost:8080/";
 
-    //static url = CommonData.MAINURL
-    static url = CommonData.TESTURL;
+    static url = CommonData.MAINURL;
+    //static url = CommonData.TESTURL;
 
     static currentVersion = 30;
     static googleLoginClientId =
