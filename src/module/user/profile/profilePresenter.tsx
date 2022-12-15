@@ -33,7 +33,10 @@ import {
     ProfileWrapper,
 } from "./profilePresenter.style";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDoubleDown, faAngleDoubleUp } from "@fortawesome/free-solid-svg-icons";
+import {
+    faAngleDoubleDown,
+    faAngleDoubleUp,
+} from "@fortawesome/free-solid-svg-icons";
 import CommonLayout from "@/component/layout/commonLayout";
 import ContentLayout from "@/component/content/standardContent";
 import { observer } from "mobx-react";
@@ -41,7 +44,9 @@ import { observer } from "mobx-react";
 interface Props {
     isInfoOpen: boolean;
     openUserInfo: string;
-    updateOpenValue: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
+    updateOpenValue: (
+        e: React.MouseEvent<HTMLInputElement, MouseEvent>
+    ) => void;
     submitOpen: (id: string, open: string) => void;
     setInfoDlgClose: () => void;
 
@@ -66,14 +71,23 @@ const ProfilePresenter = observer((props: Props) => {
     const lang = store.language.lang;
     const { dark } = store;
 
-    const txtProfile = lang === "ko" ? txtProfileKo : lang === "jp" ? txtProfileJp : txtProfileEn;
+    const txtProfile =
+        lang === "ko"
+            ? txtProfileKo
+            : lang === "jp"
+            ? txtProfileJp
+            : txtProfileEn;
 
     return (
         <CommonLayout>
             <ProfileWrapper>
                 <ContentLayout title={txtProfile.profile} isHalf>
                     <UITitle>
-                        ({props.profileData.title === "" ? "No Title" : props.profileData.title})
+                        (
+                        {props.profileData.title === ""
+                            ? "No Title"
+                            : props.profileData.title}
+                        )
                     </UITitle>
                     <UIName>
                         {props.profileData.titletower !== "" && (
@@ -83,7 +97,9 @@ const ProfilePresenter = observer((props: Props) => {
                             />
                         )}
 
-                        {props.profileData.name === "" ? "(No Name)" : props.profileData.name}
+                        {props.profileData.name === ""
+                            ? "(No Name)"
+                            : props.profileData.name}
                     </UIName>
                     <UIComment>{props.comment}</UIComment>
                     {props.isOwnAccount && (
@@ -95,7 +111,7 @@ const ProfilePresenter = observer((props: Props) => {
                         <UISkill>
                             <UISkillTitle>GF SKILL</UISkillTitle>
                             <UISkillBox>
-                                <UISkillBoxVer>HV</UISkillBoxVer>
+                                <UISkillBoxVer>FU</UISkillBoxVer>
                                 <UISkillBoxVal>
                                     <SingleSkillColorChanger
                                         link={`/skill/2/${props.id}/gf/1/skilldesc`}
@@ -108,7 +124,7 @@ const ProfilePresenter = observer((props: Props) => {
                         <UISkill>
                             <UISkillTitle>DM SKILL</UISkillTitle>
                             <UISkillBox>
-                                <UISkillBoxVer>HV</UISkillBoxVer>
+                                <UISkillBoxVer>FU</UISkillBoxVer>
                                 <UISkillBoxVal>
                                     <SingleSkillColorChanger
                                         link={`/skill/2/${props.id}/dm/1/skilldesc`}
@@ -121,6 +137,16 @@ const ProfilePresenter = observer((props: Props) => {
 
                     <UISkillWrapper show={oldSkill}>
                         <UISkill>
+                            <UISkillBox>
+                                <UISkillBoxVer>HV</UISkillBoxVer>
+                                <UISkillBoxVal>
+                                    <SingleSkillColorChanger
+                                        link={`/skill/14/${props.id}/gf/1/skilldesc`}
+                                        skill={props.profileData.gskillhv}
+                                    />
+                                </UISkillBoxVal>
+                            </UISkillBox>
+
                             <UISkillBox>
                                 <UISkillBoxVer>NX</UISkillBoxVer>
                                 <UISkillBoxVal>
@@ -155,7 +181,7 @@ const ProfilePresenter = observer((props: Props) => {
                                 <UISkillBoxVer>RE</UISkillBoxVer>
                                 <UISkillBoxVal>
                                     <SingleSkillColorChanger
-                                        link={`/skill/5/${props.id}/gf/1/1`}
+                                        link={`/skill/6/${props.id}/gf/1/1`}
                                         skill={props.profileData.gskilltbre}
                                     />
                                 </UISkillBoxVal>
@@ -165,13 +191,23 @@ const ProfilePresenter = observer((props: Props) => {
                                 <UISkillBoxVer>TB</UISkillBoxVer>
                                 <UISkillBoxVal>
                                     <SingleSkillColorChanger
-                                        link={`/skill/6/${props.id}/gf/1/1`}
+                                        link={`/skill/4/${props.id}/gf/1/1`}
                                         skill={props.profileData.gskilltb}
                                     />
                                 </UISkillBoxVal>
                             </UISkillBox>
                         </UISkill>
                         <UISkill>
+                            <UISkillBox>
+                                <UISkillBoxVer>HV</UISkillBoxVer>
+                                <UISkillBoxVal>
+                                    <SingleSkillColorChanger
+                                        link={`/skill/14/${props.id}/dm/1/skilldesc`}
+                                        skill={props.profileData.dskillhv}
+                                    />
+                                </UISkillBoxVal>
+                            </UISkillBox>
+
                             <UISkillBox>
                                 <UISkillBoxVer>NX</UISkillBoxVer>
                                 <UISkillBoxVal>
@@ -206,7 +242,7 @@ const ProfilePresenter = observer((props: Props) => {
                                 <UISkillBoxVer>RE</UISkillBoxVer>
                                 <UISkillBoxVal>
                                     <SingleSkillColorChanger
-                                        link={`/skill/5/${props.id}/dm/1/1`}
+                                        link={`/skill/6/${props.id}/dm/1/1`}
                                         skill={props.profileData.dskilltbre}
                                     />
                                 </UISkillBoxVal>
@@ -216,7 +252,7 @@ const ProfilePresenter = observer((props: Props) => {
                                 <UISkillBoxVer>TB</UISkillBoxVer>
                                 <UISkillBoxVal>
                                     <SingleSkillColorChanger
-                                        link={`/skill/6/${props.id}/dm/1/1`}
+                                        link={`/skill/4/${props.id}/dm/1/1`}
                                         skill={props.profileData.dskilltb}
                                     />
                                 </UISkillBoxVal>
@@ -259,58 +295,64 @@ const ProfilePresenter = observer((props: Props) => {
                         <DetailGridVal>GuitarFreaks</DetailGridVal>
                         <DetailGridVal>DrumMania</DetailGridVal>
                         <DetailGridVal>{txtProfile.detailed.s}</DetailGridVal>
-                        <DetailGridVal>{`${props.profileData.gskill.toFixed(2)} (${
-                            props.profileData.gskillall
-                        })`}</DetailGridVal>
-                        <DetailGridVal>{`${props.profileData.dskill.toFixed(2)} (${
-                            props.profileData.dskillall
-                        })`}</DetailGridVal>
+                        <DetailGridVal>{`${props.profileData.gskill.toFixed(
+                            2
+                        )} (${props.profileData.gskillall})`}</DetailGridVal>
+                        <DetailGridVal>{`${props.profileData.dskill.toFixed(
+                            2
+                        )} (${props.profileData.dskillall})`}</DetailGridVal>
                         <DetailGridVal>{txtProfile.detailed.clv}</DetailGridVal>
-                        <DetailGridVal>{`${props.profileData.gclearlv.toFixed(2)} (${
-                            props.profileData.gclearnum
-                        })`}</DetailGridVal>
-                        <DetailGridVal>{`${props.profileData.dclearlv.toFixed(2)} (${
-                            props.profileData.dclearnum
-                        })`}</DetailGridVal>
+                        <DetailGridVal>{`${props.profileData.gclearlv.toFixed(
+                            2
+                        )} (${props.profileData.gclearnum})`}</DetailGridVal>
+                        <DetailGridVal>{`${props.profileData.dclearlv.toFixed(
+                            2
+                        )} (${props.profileData.dclearnum})`}</DetailGridVal>
                         <DetailGridVal>{txtProfile.detailed.flv}</DetailGridVal>
-                        <DetailGridVal>{`${props.profileData.gfclv.toFixed(2)} (${
-                            props.profileData.gfcnum
-                        })`}</DetailGridVal>
-                        <DetailGridVal>{`${props.profileData.dfclv.toFixed(2)} (${
-                            props.profileData.dfcnum
-                        })`}</DetailGridVal>
+                        <DetailGridVal>{`${props.profileData.gfclv.toFixed(
+                            2
+                        )} (${props.profileData.gfcnum})`}</DetailGridVal>
+                        <DetailGridVal>{`${props.profileData.dfclv.toFixed(
+                            2
+                        )} (${props.profileData.dfcnum})`}</DetailGridVal>
                         <DetailGridVal>{txtProfile.detailed.elv}</DetailGridVal>
-                        <DetailGridVal>{`${props.profileData.gexclv.toFixed(2)} (${
-                            props.profileData.gexcnum
-                        })`}</DetailGridVal>
-                        <DetailGridVal>{`${props.profileData.dexclv.toFixed(2)} (${
-                            props.profileData.dexcnum
-                        })`}</DetailGridVal>
+                        <DetailGridVal>{`${props.profileData.gexclv.toFixed(
+                            2
+                        )} (${props.profileData.gexcnum})`}</DetailGridVal>
+                        <DetailGridVal>{`${props.profileData.dexclv.toFixed(
+                            2
+                        )} (${props.profileData.dexcnum})`}</DetailGridVal>
                         <DetailGridVal>
                             {txtProfile.detailed.count}
                             <br />
-                            {props.openUserInfo === "N" && !props.isOwnAccount ? (
+                            {props.openUserInfo === "N" &&
+                            !props.isOwnAccount ? (
                                 <>Closed</>
                             ) : (
-                                props.profileData.countgf + props.profileData.countdm
+                                props.profileData.countgf +
+                                props.profileData.countdm
                             )}
                         </DetailGridVal>
                         <DetailGridVal>
-                            {props.openUserInfo === "N" && !props.isOwnAccount ? (
+                            {props.openUserInfo === "N" &&
+                            !props.isOwnAccount ? (
                                 <>Closed</>
                             ) : (
                                 props.profileData.countgf
                             )}
                         </DetailGridVal>
                         <DetailGridVal>
-                            {props.openUserInfo === "N" && !props.isOwnAccount ? (
+                            {props.openUserInfo === "N" &&
+                            !props.isOwnAccount ? (
                                 <>Closed</>
                             ) : (
                                 props.profileData.countdm
                             )}
                         </DetailGridVal>
                     </ProfileDetailGrid>
-                    <PlaycountDesc>{txtProfile.detailed.countdesc}</PlaycountDesc>
+                    <PlaycountDesc>
+                        {txtProfile.detailed.countdesc}
+                    </PlaycountDesc>
                 </ContentLayout>
 
                 <ContentLayout title={txtProfile.board.title} isHalf>
@@ -322,8 +364,13 @@ const ProfilePresenter = observer((props: Props) => {
                         <ThemedLink dark={dark.dark} to={`/mybest/${props.id}`}>
                             <ProfButton>{txtProfile.button.mybest}</ProfButton>
                         </ThemedLink>
-                        <ThemedLink dark={dark.dark} to={`/cleartable/${props.id}`}>
-                            <ProfButton>{txtProfile.button.clearRankTable}</ProfButton>
+                        <ThemedLink
+                            dark={dark.dark}
+                            to={`/cleartable/${props.id}`}
+                        >
+                            <ProfButton>
+                                {txtProfile.button.clearRankTable}
+                            </ProfButton>
                         </ThemedLink>
 
                         {props.isOwnAccount && (
@@ -335,7 +382,9 @@ const ProfilePresenter = observer((props: Props) => {
                                     {txtProfile.button.setdataopen}
                                 </ProfButton>
                                 <ThemedLink dark={dark.dark} to={"/reset"}>
-                                    <ProfButton type="submit">{txtProfile.button.reset}</ProfButton>
+                                    <ProfButton type="submit">
+                                        {txtProfile.button.reset}
+                                    </ProfButton>
                                 </ThemedLink>
                             </>
                         )}

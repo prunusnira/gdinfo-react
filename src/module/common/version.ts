@@ -28,6 +28,7 @@ export const GDVer = [
     { num: 27, sv: "GD EXC", full: "GITADORA EXCHAIN" },
     { num: 28, sv: "GD NX", full: "GITADORA NEXTAGE" },
     { num: 29, sv: "GD HV", full: "GITADORA HIGH-VOLTAGE" },
+    { num: 30, sv: "GD FU", full: "GITADORA FUZZ-UP" },
 ];
 
 export const skillPageVersion = (ptype: number) => {
@@ -47,11 +48,14 @@ export const skillPageVersion = (ptype: number) => {
         case 11:
         case 12:
             return "NEXTAGE";
+        case 13:
+        case 14:
+            return "HIGH-VOLTAGE";
         case 0:
         case 1:
         case 2:
         case 1000:
         default:
-            return "HIGH-VOLTAGE";
+            return "FUZZ-UP";
     }
 };

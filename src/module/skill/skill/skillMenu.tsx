@@ -186,6 +186,39 @@ const SkillMenu = observer((props: Props) => {
                         <ThemedLink
                             style={{ width: "100%" }}
                             dark={dark.dark}
+                            to={"/skill/13/" + props.id + "/gf/1/skilldesc"}
+                        >
+                            <Button style={{ width: "100%" }}>GF 100</Button>
+                        </ThemedLink>
+                        <ThemedLink
+                            style={{ width: "100%" }}
+                            dark={dark.dark}
+                            to={"/skill/14/" + props.id + "/gf/1/1"}
+                        >
+                            <Button style={{ width: "100%" }}>GF Skill</Button>
+                        </ThemedLink>
+                        <ThemedLink
+                            style={{ width: "100%" }}
+                            dark={dark.dark}
+                            to={"/skill/13/" + props.id + "/dm/1/skilldesc"}
+                        >
+                            <Button style={{ width: "100%" }}>DM 100</Button>
+                        </ThemedLink>
+                        <ThemedLink
+                            style={{ width: "100%" }}
+                            dark={dark.dark}
+                            to={"/skill/14/" + props.id + "/dm/1/1"}
+                        >
+                            <Button style={{ width: "100%" }}>DM Skill</Button>
+                        </ThemedLink>
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs="12">FUZZ-UP</Col>
+                    <Col xs="12" className="btn-group">
+                        <ThemedLink
+                            style={{ width: "100%" }}
+                            dark={dark.dark}
                             to={"/skill/0/" + props.id + "/gf/1/skilldesc"}
                         >
                             <Button style={{ width: "100%" }}>GF All</Button>

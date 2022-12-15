@@ -31,7 +31,8 @@ const PatternRankPresenter = observer((props: Props) => {
     const lang = store.language.lang;
     const { dark } = store;
 
-    const txtPTRank = lang === "ko" ? txtPTRankKo : lang === "jp" ? txtPTRankJp : txtPTRankEn;
+    const txtPTRank =
+        lang === "ko" ? txtPTRankKo : lang === "jp" ? txtPTRankJp : txtPTRankEn;
 
     return (
         <CommonLayout>
@@ -63,6 +64,12 @@ const PatternRankPresenter = observer((props: Props) => {
                 </ContentLayout>
                 <ContentLayout title={txtPTRank.table.ranking}>
                     <PRRow>
+                        <ThemedLink
+                            dark={dark.dark}
+                            to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=30`}
+                        >
+                            <Button className="rank30">FU</Button>
+                        </ThemedLink>
                         <ThemedLink
                             dark={dark.dark}
                             to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=29`}

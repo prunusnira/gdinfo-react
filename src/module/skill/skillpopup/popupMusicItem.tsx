@@ -1,5 +1,5 @@
 import React from "react";
-import MusicDataType from "./musicData";
+import MusicDataType from "../skill/musicData";
 import store from "@/mobx/store";
 
 import txtMusicKo from "@/lang/pattern/music/txtmusic-ko";
@@ -26,15 +26,19 @@ interface Props {
 const PopupMusicItem = observer((props: Props) => {
     const lang = store.language.lang;
 
-    const txtMusic = lang === "ko" ? txtMusicKo : lang === "jp" ? txtMusicJp : txtMusicEn;
+    const txtMusic =
+        lang === "ko" ? txtMusicKo : lang === "jp" ? txtMusicJp : txtMusicEn;
 
     return (
         <>
             {props.list.map((music, i) => {
                 if (
-                    (props.type === 0 && (i === 0 || i === 1 || i === 2 || i === 3)) ||
-                    (props.type === 1 && (i === 4 || i === 5 || i === 6 || i === 7)) ||
-                    (props.type === 2 && (i === 8 || i === 9 || i === 10 || i === 11))
+                    (props.type === 0 &&
+                        (i === 0 || i === 1 || i === 2 || i === 3)) ||
+                    (props.type === 1 &&
+                        (i === 4 || i === 5 || i === 6 || i === 7)) ||
+                    (props.type === 2 &&
+                        (i === 8 || i === 9 || i === 10 || i === 11))
                 ) {
                     if (music.lv !== "0.00") {
                         return (
@@ -94,7 +98,9 @@ const PopupMusicItem = observer((props: Props) => {
                                     <ItemWrapper>
                                         {music.clearmeter !== "" && (
                                             <>
-                                                <ItemTitle>Clear Meter</ItemTitle>
+                                                <ItemTitle>
+                                                    Clear Meter
+                                                </ItemTitle>
                                                 <span
                                                     dangerouslySetInnerHTML={{
                                                         __html: music.clearmeter,
@@ -104,10 +110,13 @@ const PopupMusicItem = observer((props: Props) => {
                                         )}
                                     </ItemWrapper>
                                     <ItemWrapper>
-                                        <ItemTitle>{txtMusic.oldrate}</ItemTitle>
-                                        NX: {music.ratenx}% / EX: {music.rateex}% / MX:{" "}
-                                        {music.ratemx}% / TBRE: {music.ratetbre}% / TB:{" "}
-                                        {music.ratetb}%
+                                        <ItemTitle>
+                                            {txtMusic.oldrate}
+                                        </ItemTitle>
+                                        HV: {music.ratehv}% / NX: {music.ratenx}
+                                        % / EX: {music.rateex}% / MX:{" "}
+                                        {music.ratemx}% / TBRE: {music.ratetbre}
+                                        % / TB: {music.ratetb}%
                                     </ItemWrapper>
                                 </ItemOuter>
                             </MusicItemWrapper>

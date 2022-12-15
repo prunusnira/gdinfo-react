@@ -30,3 +30,17 @@ export const Header = styled.header<{ isTop: boolean; dark: boolean }>`
             ? `background-color: ${HeaderBGColorDark};`
             : `background-color: ${HeaderBGColor};`}
 `;
+
+export const HeaderNotice = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    position: absolute;
+    z-index: 100;
+    width: 100%;
+    height: 75px;
+    background-color: black;
+    color: white;
+`;

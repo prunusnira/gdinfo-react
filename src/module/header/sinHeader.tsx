@@ -1,5 +1,5 @@
 import React from "react";
-import { HeaderOuter, Header } from "./sinHeader.style";
+import { HeaderOuter, Header, HeaderNotice } from "./sinHeader.style";
 import HeaderNavBar from "./navbar/headernav";
 import useHeader from "./useHeader";
 import SideBar from "./sidebar/view/sidebar";
@@ -20,6 +20,11 @@ const SinHeader = observer(() => {
                     closeMenu={closeMenu}
                 />
             </Header>
+            <HeaderNotice>
+                Skill Navigator is now under construction...
+                <br />
+                VERSION. FUZZ-UP is getting ready
+            </HeaderNotice>
         </HeaderOuter>
     );
 });

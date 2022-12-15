@@ -30,6 +30,7 @@ const usePatternInfo = (mid: string, userid: string) => {
                     rank: "",
                     fc: "",
                     clearmeter: "",
+                    ratehv: "",
                     ratenx: "",
                     rateex: "",
                     ratemx: "",
@@ -103,41 +104,62 @@ const usePatternInfo = (mid: string, userid: string) => {
                         break;
                 }
 
-                if (obj.lv !== "0.00" && skill !== undefined && skill !== null) {
+                if (
+                    obj.lv !== "0.00" &&
+                    skill !== undefined &&
+                    skill !== null
+                ) {
                     obj.cleartime = skill.cleartime;
                     obj.playtime = skill.playtime;
                     obj.combo = skill.combo;
                     obj.score = skill.score;
                     obj.rate = (skill.rate / 100).toFixed(2);
-                    obj.skill = (Math.floor((skill.rate * skill.level * 20) / 10000) / 100).toFixed(
-                        2
-                    );
+                    obj.skill = (
+                        Math.floor((skill.rate * skill.level * 20) / 10000) /
+                        100
+                    ).toFixed(2);
 
                     switch (skill.rank) {
                         case "E":
-                            obj.rank = process.env.PUBLIC_URL + "/general-img/rank/rank_e.png";
+                            obj.rank =
+                                process.env.PUBLIC_URL +
+                                "/general-img/rank/rank_e.png";
                             break;
                         case "D":
-                            obj.rank = process.env.PUBLIC_URL + "/general-img/rank/rank_d.png";
+                            obj.rank =
+                                process.env.PUBLIC_URL +
+                                "/general-img/rank/rank_d.png";
                             break;
                         case "C":
-                            obj.rank = process.env.PUBLIC_URL + "/general-img/rank/rank_c.png";
+                            obj.rank =
+                                process.env.PUBLIC_URL +
+                                "/general-img/rank/rank_c.png";
                             break;
                         case "B":
-                            obj.rank = process.env.PUBLIC_URL + "/general-img/rank/rank_b.png";
+                            obj.rank =
+                                process.env.PUBLIC_URL +
+                                "/general-img/rank/rank_b.png";
                             break;
                         case "A":
-                            obj.rank = process.env.PUBLIC_URL + "/general-img/rank/rank_a.png";
+                            obj.rank =
+                                process.env.PUBLIC_URL +
+                                "/general-img/rank/rank_a.png";
                             break;
                         case "S":
-                            obj.rank = process.env.PUBLIC_URL + "/general-img/rank/rank_s.png";
+                            obj.rank =
+                                process.env.PUBLIC_URL +
+                                "/general-img/rank/rank_s.png";
                             break;
                         case "SS":
                         case "EXC":
-                            obj.rank = process.env.PUBLIC_URL + "/general-img/rank/rank_ss.png";
+                            obj.rank =
+                                process.env.PUBLIC_URL +
+                                "/general-img/rank/rank_ss.png";
                             break;
                         default:
-                            obj.rank = process.env.PUBLIC_URL + "/general-img/rank/rank_e.png";
+                            obj.rank =
+                                process.env.PUBLIC_URL +
+                                "/general-img/rank/rank_e.png";
                             break;
                     }
 

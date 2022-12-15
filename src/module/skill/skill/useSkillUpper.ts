@@ -32,7 +32,8 @@ const useSkillTableUpper = (
 
     const lang = store.language.lang;
 
-    const txtSkill = lang === "ko" ? txtSkillKo : lang === "jp" ? txtSkillJp : txtSkillEn;
+    const txtSkill =
+        lang === "ko" ? txtSkillKo : lang === "jp" ? txtSkillJp : txtSkillEn;
 
     useEffect(() => {
         const getParameters = new URLSearchParams(window.location.search);
@@ -72,6 +73,7 @@ const useSkillTableUpper = (
             case 7:
             case 9:
             case 11:
+            case 13:
                 setStatMidTitle("");
                 setStatMid("");
                 break;
@@ -81,6 +83,7 @@ const useSkillTableUpper = (
             case 8:
             case 10:
             case 12:
+            case 14:
             case 1000:
                 setStatMidTitle("Hot");
                 setStatMid((skillSum1 / 100).toFixed(2));
@@ -173,6 +176,15 @@ const useSkillTableUpper = (
                     setStatLeft(user.dskillnx.toFixed(2));
                 }
                 break;
+            case 13:
+                if (gtype === "gf") {
+                    setStatLeftTitle("GF Skill");
+                    setStatLeft(user.gskillhv.toFixed(2));
+                } else if (gtype === "dm") {
+                    setStatLeftTitle("DM Skill");
+                    setStatLeft(user.dskillhv.toFixed(2));
+                }
+                break;
             case 4:
                 if (gtype === "gf") {
                     setStatLeftTitle("GF Skill");
@@ -216,6 +228,15 @@ const useSkillTableUpper = (
                 } else if (gtype === "dm") {
                     setStatLeftTitle("DM Skill");
                     setStatLeft(user.dskillnx.toFixed(2));
+                }
+                break;
+            case 14:
+                if (gtype === "gf") {
+                    setStatLeftTitle("GF Skill");
+                    setStatLeft(user.gskillhv.toFixed(2));
+                } else if (gtype === "dm") {
+                    setStatLeftTitle("DM Skill");
+                    setStatLeft(user.dskillhv.toFixed(2));
                 }
                 break;
             case 1000:

@@ -71,6 +71,10 @@ export const getRate = (ptype: number, cur: MusicFetchData) => {
         case 12:
             rate = cur.ratenx;
             break;
+        case 13:
+        case 14:
+            rate = cur.ratehv;
+            break;
         case 0:
         case 1:
         case 2:
@@ -143,6 +147,10 @@ export const generateSkillItem = (
         case 12:
             rate = data.ratenx;
             break;
+        case 13:
+        case 14:
+            rate = data.ratehv;
+            break;
     }
 
     const meterData = data.meter.split("");
@@ -188,11 +196,15 @@ export const generateSkillItem = (
         }
     } else {
         if (data.playtime > 0) {
-            img300 = process.env.PUBLIC_URL + "/general-img/rank/cleared_300.png";
-            img600 = process.env.PUBLIC_URL + "/general-img/rank/cleared_600.png";
+            img300 =
+                process.env.PUBLIC_URL + "/general-img/rank/cleared_300.png";
+            img600 =
+                process.env.PUBLIC_URL + "/general-img/rank/cleared_600.png";
         } else {
-            img300 = process.env.PUBLIC_URL + "/general-img/rank/notplayed_600.png";
-            img600 = process.env.PUBLIC_URL + "/general-img/rank/notplayed_600.png";
+            img300 =
+                process.env.PUBLIC_URL + "/general-img/rank/notplayed_600.png";
+            img600 =
+                process.env.PUBLIC_URL + "/general-img/rank/notplayed_600.png";
         }
     }
 
