@@ -44,10 +44,12 @@ export const LevelDiff = styled.div`
     align-items: center;
 `;
 
-export const LvDiffDiv = styled.div`
+export const LvDiffDiv = styled.div<{ dark?: boolean }>`
     width: 100%;
     font-size: 24px;
     font-weight: bold;
-    color: white;
     text-align: center;
+    color: black;
+
+    ${(props) => props.dark && `color: white;`}
 `;

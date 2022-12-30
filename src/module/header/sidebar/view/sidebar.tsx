@@ -59,7 +59,9 @@ const SideBar = observer(({ isMenuOpen, toggleMenu }: Props) => {
                         />
                     ))}
                     <LevelDiff>
-                        <LvDiffDiv>{`>> FUZZ-UP vs HIGH-VOLTAGE <<`}</LvDiffDiv>
+                        <LvDiffDiv
+                            dark={dark.dark}
+                        >{`>> FUZZ-UP vs HIGH-VOLTAGE <<`}</LvDiffDiv>
                         <LvDiffDiv>
                             <Anchor dark={dark.dark} href={`/lvdiff/gf`}>
                                 GuitarFreaks
