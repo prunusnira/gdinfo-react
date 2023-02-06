@@ -1,7 +1,13 @@
 import React from "react";
 import PTListItemRow from "./ptListItemRow";
 import { PatternData } from "./patternData";
-import { GridCellTop, GridTxtRow, PTListGrid, PTListInfo, PTListRow } from "./ptList.style";
+import {
+    GridCellTop,
+    GridTxtRow,
+    PTListGrid,
+    PTListInfo,
+    PTListRow,
+} from "./ptList.style";
 import { Anchor } from "@/styled/styledCommon";
 import store from "@/mobx/store";
 import { observer } from "mobx-react";
@@ -29,7 +35,8 @@ const PTListItem = observer((props: Props) => {
                                     onError={(e) => {
                                         e.currentTarget.onerror = null;
                                         e.currentTarget.src =
-                                            process.env.PUBLIC_URL + "/general-img/empty.jpg";
+                                            process.env.PUBLIC_URL +
+                                            "/general-img/empty.jpg";
                                     }}
                                 />
                                 <Anchor
@@ -54,6 +61,8 @@ const PTListItem = observer((props: Props) => {
                                                 return <b>(removed in NX)</b>;
                                             case 6:
                                                 return <b>(removed in HV)</b>;
+                                            case 7:
+                                                return <b>(removed in FU)</b>;
                                         }
                                     })()}
                                 </span>
