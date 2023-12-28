@@ -1,25 +1,25 @@
 import React from "react";
-import { Button, ItemCol, ItemRow, ThemedLink } from "@/styled/styledCommon";
-import store from "@/mobx/store";
-
+import {Button, ItemCol, ItemRow, ThemedLink} from "@/styled/styledCommon";
 import txtNoRecordKo from "@/lang/pattern/noRecord/txtNoRecord-ko";
 import txtNoRecordJp from "@/lang/pattern/noRecord/txtNoRecord-jp";
 import txtNoRecordEn from "@/lang/pattern/noRecord/txtNoRecord-en";
 import ContentLayout from "@/component/content/standardContent";
-import { observer } from "mobx-react";
+import {useAtomValue} from "jotai/index";
+import {atomLanguage} from "@/jotai/language";
+import {atomDarkmode} from "@/jotai/darkmode";
 
-type SelectorType = {
-    userid: string;
+interface Props {
+    userid?: string;
     switchLvMethod: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     switchVerMethod: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     switchHotMethod: () => void;
     switchOtherMethod: () => void;
     switchClearMethod: () => void;
-};
+}
 
-const NoRecordSelector = observer((props: SelectorType) => {
-    const lang = store.language.lang;
-    const { dark } = store;
+const NoRecordSelector = (props: Props) => {
+    const lang = useAtomValue(atomLanguage)
+    const dark = useAtomValue(atomDarkmode)
 
     const txtNoRecord =
         lang === "ko" ? txtNoRecordKo : lang === "jp" ? txtNoRecordJp : txtNoRecordEn;
@@ -99,12 +99,12 @@ const NoRecordSelector = observer((props: SelectorType) => {
                         <ItemRow>Hot/Other</ItemRow>
                         <ItemRow keepDirHor={true}>
                             <ItemCol size={5}>
-                                <Button style={{ width: "100%" }} onClick={props.switchHotMethod}>
+                                <Button style={{width: "100%"}} onClick={props.switchHotMethod}>
                                     Hot
                                 </Button>
                             </ItemCol>
                             <ItemCol size={5}>
-                                <Button style={{ width: "100%" }} onClick={props.switchOtherMethod}>
+                                <Button style={{width: "100%"}} onClick={props.switchOtherMethod}>
                                     Other
                                 </Button>
                             </ItemCol>
@@ -113,7 +113,7 @@ const NoRecordSelector = observer((props: SelectorType) => {
                     <ItemCol size={5} isFlatUnderLg={true}>
                         <ItemRow>Order</ItemRow>
                         <ItemRow>
-                            <Button style={{ width: "100%" }} onClick={props.switchClearMethod}>
+                            <Button style={{width: "100%"}} onClick={props.switchClearMethod}>
                                 Clear Options
                             </Button>
                             {/*<Button onClick={() => self.switchOrder(0)}>{txtNp.filter.btn.title[lang]} ▲/▼</Button>
@@ -123,44 +123,46 @@ const NoRecordSelector = observer((props: SelectorType) => {
                 </ItemRow>
             </ContentLayout>
 
-            <ContentLayout title={"Select Type"}>
-                <ItemRow keepDirHor={true}>
-                    <ItemCol size={5} isFlatUnderLg={true}>
-                        <ThemedLink
-                            dark={dark.dark}
-                            style={{ width: "100%" }}
-                            to={`/notplayed/gf/${props.userid}/0/1${window.location.search}`}
-                        >
-                            <Button style={{ width: "100%" }}>GF {txtNoRecord.all}</Button>
-                        </ThemedLink>
-                        <ThemedLink
-                            dark={dark.dark}
-                            style={{ width: "100%" }}
-                            to={`/notplayed/dm/${props.userid}/0/1${window.location.search}`}
-                        >
-                            <Button style={{ width: "100%" }}>DM {txtNoRecord.all}</Button>
-                        </ThemedLink>
-                    </ItemCol>
-                    <ItemCol size={5} isFlatUnderLg={true}>
-                        <ThemedLink
-                            dark={dark.dark}
-                            style={{ width: "100%" }}
-                            to={`/notplayed/gf/${props.userid}/1/1${window.location.search}`}
-                        >
-                            <Button style={{ width: "100%" }}>GF {txtNoRecord.ver}</Button>
-                        </ThemedLink>
-                        <ThemedLink
-                            dark={dark.dark}
-                            style={{ width: "100%" }}
-                            to={`/notplayed/dm/${props.userid}/1/1${window.location.search}`}
-                        >
-                            <Button style={{ width: "100%" }}>DM {txtNoRecord.ver}</Button>
-                        </ThemedLink>
-                    </ItemCol>
-                </ItemRow>
-            </ContentLayout>
+            {props.userid && (
+                <ContentLayout title={"Select Type"}>
+                    <ItemRow keepDirHor={true}>
+                        <ItemCol size={5} isFlatUnderLg={true}>
+                            <ThemedLink
+                                dark={dark}
+                                style={{width: "100%"}}
+                                to={`/notplayed/gf/${props.userid}/0/1${window.location.search}`}
+                            >
+                                <Button style={{width: "100%"}}>GF {txtNoRecord.all}</Button>
+                            </ThemedLink>
+                            <ThemedLink
+                                dark={dark}
+                                style={{width: "100%"}}
+                                to={`/notplayed/dm/${props.userid}/0/1${window.location.search}`}
+                            >
+                                <Button style={{width: "100%"}}>DM {txtNoRecord.all}</Button>
+                            </ThemedLink>
+                        </ItemCol>
+                        <ItemCol size={5} isFlatUnderLg={true}>
+                            <ThemedLink
+                                dark={dark}
+                                style={{width: "100%"}}
+                                to={`/notplayed/gf/${props.userid}/1/1${window.location.search}`}
+                            >
+                                <Button style={{width: "100%"}}>GF {txtNoRecord.ver}</Button>
+                            </ThemedLink>
+                            <ThemedLink
+                                dark={dark}
+                                style={{width: "100%"}}
+                                to={`/notplayed/dm/${props.userid}/1/1${window.location.search}`}
+                            >
+                                <Button style={{width: "100%"}}>DM {txtNoRecord.ver}</Button>
+                            </ThemedLink>
+                        </ItemCol>
+                    </ItemRow>
+                </ContentLayout>
+            )}
         </>
     );
-});
+}
 
 export default NoRecordSelector;

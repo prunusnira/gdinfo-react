@@ -1,51 +1,48 @@
-import React, { useState } from "react";
-import ProfileBoard from "./profileBoard";
-import ProfileRecent from "./profileRecent";
-import SingleSkillColorChanger from "@/module/common/skillcolor";
-import { Button, Icon, ThemedLink } from "@/styled/styledCommon";
-import ProfileData from "./profileData";
-import ModalInfoOpen from "./modalInfoOpen";
-import ModalComment from "./modalComment";
-import store from "@/mobx/store";
-
-import txtProfileKo from "@/lang/user/profile/txtProfile-ko";
-import txtProfileJp from "@/lang/user/profile/txtProfile-jp";
-import txtProfileEn from "@/lang/user/profile/txtProfile-en";
+import ContentLayout from '@/component/content/standardContent';
+import CommonLayout from '@/component/layout/commonLayout';
+import { IProfile } from '@/data/IProfile';
+import { atomDarkmode } from '@/jotai/darkmode';
+import { atomLanguage } from '@/jotai/language';
+import txtProfileEn from '@/lang/user/profile/txtProfile-en';
+import txtProfileJp from '@/lang/user/profile/txtProfile-jp';
+import txtProfileKo from '@/lang/user/profile/txtProfile-ko';
+import SingleSkillColorChanger from '@/module/common/skillcolor';
+import { Button, Icon, ThemedLink } from '@/styled/styledCommon';
+import { faAngleDoubleDown, faAngleDoubleUp } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useAtomValue } from 'jotai/index';
+import React, { useState } from 'react';
+import ModalComment from './modalComment';
+import ModalInfoOpen from './modalInfoOpen';
+import ProfileBoard from './profileBoard';
 import {
-    UISkill,
-    UIName,
-    UITitle,
+    ButtonFlex,
+    DetailGridVal,
+    GraphRow,
+    GraphType,
+    GraphWrapper,
+    PlaycountDesc,
+    ProfButton,
+    ProfileDetailGrid,
+    ProfileWrapper,
     UIComment,
-    UISkillMore,
-    UISkillTitle,
+    UIName,
+    UISkill,
     UISkillBox,
     UISkillBoxVal,
     UISkillBoxVer,
+    UISkillMore,
+    UISkillTitle,
     UISkillWrapper,
-    GraphWrapper,
-    ProfileDetailGrid,
-    DetailGridVal,
-    PlaycountDesc,
-    ButtonFlex,
-    ProfButton,
-    GraphRow,
-    GraphType,
-    ProfileWrapper,
-} from "./profilePresenter.style";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-    faAngleDoubleDown,
-    faAngleDoubleUp,
-} from "@fortawesome/free-solid-svg-icons";
-import CommonLayout from "@/component/layout/commonLayout";
-import ContentLayout from "@/component/content/standardContent";
-import { observer } from "mobx-react";
+    UITitle,
+} from './profilePresenter.style';
+import ProfileRecent from './profileRecent';
 
 interface Props {
     isInfoOpen: boolean;
     openUserInfo: string;
     updateOpenValue: (
-        e: React.MouseEvent<HTMLInputElement, MouseEvent>
+        e: React.MouseEvent<HTMLInputElement, MouseEvent>,
     ) => void;
     submitOpen: (id: string, open: string) => void;
     setInfoDlgClose: () => void;
@@ -58,7 +55,7 @@ interface Props {
     setNextComment: (s: string) => void;
 
     isOwnAccount: boolean;
-    profileData: ProfileData;
+    profileData: IProfile;
     id: string;
 
     setCommentDlgOpen: () => void;
@@ -66,17 +63,17 @@ interface Props {
     setInfoDlgOpen: () => void;
 }
 
-const ProfilePresenter = observer((props: Props) => {
+const ProfilePresenter = (props: Props) => {
+    const lang = useAtomValue(atomLanguage);
+    const dark = useAtomValue(atomDarkmode);
     const [oldSkill, setOldSkill] = useState(false);
-    const lang = store.language.lang;
-    const { dark } = store;
 
     const txtProfile =
-        lang === "ko"
+        lang === 'ko'
             ? txtProfileKo
-            : lang === "jp"
-            ? txtProfileJp
-            : txtProfileEn;
+            : lang === 'jp'
+                ? txtProfileJp
+                : txtProfileEn;
 
     return (
         <CommonLayout>
@@ -84,21 +81,22 @@ const ProfilePresenter = observer((props: Props) => {
                 <ContentLayout title={txtProfile.profile} isHalf>
                     <UITitle>
                         (
-                        {props.profileData.title === ""
-                            ? "No Title"
+                        {props.profileData.title === ''
+                            ? 'No Title'
                             : props.profileData.title}
                         )
                     </UITitle>
                     <UIName>
-                        {props.profileData.titletower !== "" && (
+                        {props.profileData.titletower !== '' && (
                             <Icon
+                                sizeType={'sm'}
                                 alt="titletower"
                                 src={`${process.env.PUBLIC_URL}/general-img/title/${props.profileData.titletower}.png`}
                             />
                         )}
 
-                        {props.profileData.name === ""
-                            ? "(No Name)"
+                        {props.profileData.name === ''
+                            ? '(No Name)'
                             : props.profileData.name}
                     </UIName>
                     <UIComment>{props.comment}</UIComment>
@@ -296,36 +294,36 @@ const ProfilePresenter = observer((props: Props) => {
                         <DetailGridVal>DrumMania</DetailGridVal>
                         <DetailGridVal>{txtProfile.detailed.s}</DetailGridVal>
                         <DetailGridVal>{`${props.profileData.gskill.toFixed(
-                            2
+                            2,
                         )} (${props.profileData.gskillall})`}</DetailGridVal>
                         <DetailGridVal>{`${props.profileData.dskill.toFixed(
-                            2
+                            2,
                         )} (${props.profileData.dskillall})`}</DetailGridVal>
                         <DetailGridVal>{txtProfile.detailed.clv}</DetailGridVal>
                         <DetailGridVal>{`${props.profileData.gclearlv.toFixed(
-                            2
+                            2,
                         )} (${props.profileData.gclearnum})`}</DetailGridVal>
                         <DetailGridVal>{`${props.profileData.dclearlv.toFixed(
-                            2
+                            2,
                         )} (${props.profileData.dclearnum})`}</DetailGridVal>
                         <DetailGridVal>{txtProfile.detailed.flv}</DetailGridVal>
                         <DetailGridVal>{`${props.profileData.gfclv.toFixed(
-                            2
+                            2,
                         )} (${props.profileData.gfcnum})`}</DetailGridVal>
                         <DetailGridVal>{`${props.profileData.dfclv.toFixed(
-                            2
+                            2,
                         )} (${props.profileData.dfcnum})`}</DetailGridVal>
                         <DetailGridVal>{txtProfile.detailed.elv}</DetailGridVal>
                         <DetailGridVal>{`${props.profileData.gexclv.toFixed(
-                            2
+                            2,
                         )} (${props.profileData.gexcnum})`}</DetailGridVal>
                         <DetailGridVal>{`${props.profileData.dexclv.toFixed(
-                            2
+                            2,
                         )} (${props.profileData.dexcnum})`}</DetailGridVal>
                         <DetailGridVal>
                             {txtProfile.detailed.count}
                             <br />
-                            {props.openUserInfo === "N" &&
+                            {props.openUserInfo === 'N' &&
                             !props.isOwnAccount ? (
                                 <>Closed</>
                             ) : (
@@ -334,7 +332,7 @@ const ProfilePresenter = observer((props: Props) => {
                             )}
                         </DetailGridVal>
                         <DetailGridVal>
-                            {props.openUserInfo === "N" &&
+                            {props.openUserInfo === 'N' &&
                             !props.isOwnAccount ? (
                                 <>Closed</>
                             ) : (
@@ -342,7 +340,7 @@ const ProfilePresenter = observer((props: Props) => {
                             )}
                         </DetailGridVal>
                         <DetailGridVal>
-                            {props.openUserInfo === "N" &&
+                            {props.openUserInfo === 'N' &&
                             !props.isOwnAccount ? (
                                 <>Closed</>
                             ) : (
@@ -361,11 +359,11 @@ const ProfilePresenter = observer((props: Props) => {
 
                 <ContentLayout title={txtProfile.button.title} isHalf>
                     <ButtonFlex>
-                        <ThemedLink dark={dark.dark} to={`/mybest/${props.id}`}>
+                        <ThemedLink dark={dark} to={`/mybest/${props.id}`}>
                             <ProfButton>{txtProfile.button.mybest}</ProfButton>
                         </ThemedLink>
                         <ThemedLink
-                            dark={dark.dark}
+                            dark={dark}
                             to={`/cleartable/${props.id}`}
                         >
                             <ProfButton>
@@ -381,7 +379,7 @@ const ProfilePresenter = observer((props: Props) => {
                                 <ProfButton onClick={props.setInfoDlgOpen}>
                                     {txtProfile.button.setdataopen}
                                 </ProfButton>
-                                <ThemedLink dark={dark.dark} to={"/reset"}>
+                                <ThemedLink dark={dark} to={'/reset'}>
                                     <ProfButton type="submit">
                                         {txtProfile.button.reset}
                                     </ProfButton>
@@ -410,6 +408,6 @@ const ProfilePresenter = observer((props: Props) => {
             />
         </CommonLayout>
     );
-});
+};
 
 export default ProfilePresenter;

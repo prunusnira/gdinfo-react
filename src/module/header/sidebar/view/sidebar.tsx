@@ -1,30 +1,25 @@
-import store from "@/mobx/store";
-import { Anchor } from "@/styled/styledCommon";
-import { observer } from "mobx-react";
-import React, { useEffect, useState } from "react";
-import SearchBarComp from "../../searchBar/searchBar";
-import SearchTypeModal from "../../searchModal/searchTypeModal";
-import useSearch from "../../useSearch";
-import { getSideBarList } from "../data/sidebarData";
-import {
-    LevelDiff,
-    LvDiffDiv,
-    SideBarContainer,
-    SideBarInner,
-} from "./sidebar.style";
-import SideBarItem from "./sidebarItem";
+import { atomDarkmode } from '@/jotai/darkmode';
+import { atomLanguage } from '@/jotai/language';
+import { Anchor } from '@/styled/styledCommon';
+import { useAtomValue } from 'jotai/index';
+import React, { useEffect, useState } from 'react';
+import SearchBarComp from '../../searchBar/searchBar';
+import SearchTypeModal from '../../searchModal/searchTypeModal';
+import useSearch from '../../useSearch';
+import { getSideBarList } from '../data/sidebarData';
+import { LevelDiff, LvDiffDiv, SideBarContainer, SideBarInner } from './sidebar.style';
+import SideBarItem from './sidebarItem';
 
-type Props = {
+interface Props {
     isMenuOpen: boolean;
-    toggleMenu: () => void;
-};
+}
 
-const SideBar = observer(({ isMenuOpen, toggleMenu }: Props) => {
-    const { language, dark } = store;
-    const lang = language.lang;
+const SideBar = ({ isMenuOpen }: Props) => {
+    const lang = useAtomValue(atomLanguage);
+    const dark = useAtomValue(atomDarkmode);
     const [sideBarList, setSideBarList] = useState(getSideBarList(lang));
-    const [searchTxt, setSearchTxt] = useState("");
-    const [
+    const [searchTxt, setSearchTxt] = useState('');
+    const {
         searchType,
         searchTypeDlg,
         openSearchTypeDlg,
@@ -32,7 +27,7 @@ const SideBar = observer(({ isMenuOpen, toggleMenu }: Props) => {
         searchClick,
         closeSearchTypeDlg,
         changeSearchType,
-    ] = useSearch(searchTxt);
+    } = useSearch(searchTxt);
 
     useEffect(() => {
         setSideBarList(getSideBarList(lang));
@@ -40,7 +35,7 @@ const SideBar = observer(({ isMenuOpen, toggleMenu }: Props) => {
 
     return (
         <>
-            <SideBarContainer isOpen={isMenuOpen} dark={dark.dark}>
+            <SideBarContainer isOpen={isMenuOpen} dark={dark}>
                 <SideBarInner>
                     <SearchBarComp
                         searchType={searchType}
@@ -60,15 +55,15 @@ const SideBar = observer(({ isMenuOpen, toggleMenu }: Props) => {
                     ))}
                     <LevelDiff>
                         <LvDiffDiv
-                            dark={dark.dark}
+                            dark={dark}
                         >{`>> FUZZ-UP vs HIGH-VOLTAGE <<`}</LvDiffDiv>
                         <LvDiffDiv>
-                            <Anchor dark={dark.dark} href={`/lvdiff/gf`}>
+                            <Anchor dark={dark} href={`/lvdiff/gf`}>
                                 GuitarFreaks
                             </Anchor>
                         </LvDiffDiv>
                         <LvDiffDiv>
-                            <Anchor dark={dark.dark} href={`/lvdiff/dm`}>
+                            <Anchor dark={dark} href={`/lvdiff/dm`}>
                                 DrumMania
                             </Anchor>
                         </LvDiffDiv>
@@ -83,6 +78,6 @@ const SideBar = observer(({ isMenuOpen, toggleMenu }: Props) => {
             />
         </>
     );
-});
+};
 
 export default SideBar;

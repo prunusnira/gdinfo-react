@@ -1,42 +1,48 @@
-import { useEffect, useState } from "react"
-import { getUserFromId } from "@/api/getUserData"
-import store from "@/mobx/store"
-import ProfileData from "./profileData"
+import { getUserFromId } from '@/api/getUserData';
+import { IProfile } from '@/data/IProfile';
+import { atomLoginUser } from '@/jotai/loginUser';
+import { useAtomValue } from 'jotai/index';
+import { useEffect, useState } from 'react';
 
-type ProfileReturn = [ProfileData, boolean]
-
-const useProfileLoader = (
-    id: string,
-    setComment: (s: string) => void,
-    setOpenUserInfo: (s: string) => void,
-): ProfileReturn => {
-    const [profileData, setProfileData] = useState(new ProfileData())
-    const [isOwnAccount, setOwnAccount] = useState(false)
-    
-    useEffect(() => {
-        checkOwnAccount()
-        getUserData()
-    }, [])
-
-    const {loginUser} = store
+const useProfileLoader = ({
+                              id,
+                              setComment,
+                              setOpenUserInfo,
+                          }:
+                              {
+                                  id?: string,
+                                  setComment: (s: string) => void,
+                                  setOpenUserInfo: (s: string) => void,
+                              },
+) => {
+    const [profileData, setProfileData] = useState<IProfile>();
+    const [isOwnAccount, setOwnAccount] = useState(false);
+    const loginUser = useAtomValue(atomLoginUser);
 
     const checkOwnAccount = () => {
-        if(parseInt(loginUser.user.id) === parseInt(id)) {
-            setOwnAccount(true)
+        if (loginUser && id && parseInt(loginUser.id, 10) === parseInt(id, 10)) {
+            setOwnAccount(true);
         }
-    }
+    };
 
     const getUserData = () => {
-        getUserFromId(id)
-        .then((data) => {
-            const json = JSON.parse(data.mydata);
-            setProfileData(json)
-            setComment(json.comment)
-            setOpenUserInfo(json.opencount)
-        });
-    }
+        if (id) {
+            getUserFromId(id)
+                .then((data) => {
+                    const json = JSON.parse(data.mydata);
+                    setProfileData(json);
+                    setComment(json.comment);
+                    setOpenUserInfo(json.opencount);
+                });
+        }
+    };
 
-    return [profileData, isOwnAccount]
-}
+    useEffect(() => {
+        checkOwnAccount();
+        getUserData();
+    }, []);
 
-export default useProfileLoader
+    return { profileData, isOwnAccount };
+};
+
+export default useProfileLoader;

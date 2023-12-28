@@ -1,7 +1,7 @@
-import React from "react";
-import store from "@/mobx/store";
-import { observer } from "mobx-react";
-import { Button, ThemedLink } from "@/styled/styledCommon";
+import { atomDarkmode } from '@/jotai/darkmode';
+import { Button, ThemedLink } from '@/styled/styledCommon';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
 
 interface Props {
     date: Array<string>;
@@ -9,23 +9,21 @@ interface Props {
     gtype: string;
 }
 
-const SnapshotItem = observer((props: Props) => {
-    const { dark } = store;
+const SnapshotItem = (props: Props) => {
+    const dark = useAtomValue(atomDarkmode);
 
     return (
         <>
-            {props.date.map((d) => {
-                return (
-                    <ThemedLink
-                        dark={dark.dark}
-                        to={`/skill/snapshot/view/nr/${props.id}/${d}/${props.gtype}`}
-                    >
-                        <Button>{d}</Button>
-                    </ThemedLink>
-                );
-            })}
+            {props.date.map((d) => (
+                <ThemedLink
+                    dark={dark}
+                    to={`/skill/snapshot/view/nr/${props.id}/${d}/${props.gtype}`}
+                >
+                    <Button>{d}</Button>
+                </ThemedLink>
+            ))}
         </>
     );
-});
+};
 
 export default SnapshotItem;

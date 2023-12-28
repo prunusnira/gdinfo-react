@@ -1,29 +1,24 @@
-import ContentLayout from "@/component/content/standardContent";
-import store from "@/mobx/store";
-import { observer } from "mobx-react";
-import React, { useEffect } from "react";
+import ContentLayout from '@/component/content/standardContent';
+import CommonLayout from '@/component/layout/commonLayout';
+import { atomLanguage } from '@/jotai/language';
+import txtNoticeEn from '@/lang/notice/txtNotice-en';
+import txtNoticeJp from '@/lang/notice/txtNotice-jp';
+import txtNoticeKo from '@/lang/notice/txtNotice-ko';
+import Error500 from '@/module/error/500';
+import { useAtomValue } from 'jotai/index';
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import NoticeItem from './noticeItem';
+import useNotice from './useNotice';
 
-import txtNoticeKo from "@/lang/notice/txtNotice-ko";
-import txtNoticeJp from "@/lang/notice/txtNotice-jp";
-import txtNoticeEn from "@/lang/notice/txtNotice-en";
-import CommonLayout from "@/component/layout/commonLayout";
-import useNotice from "./useNotice";
-import { useParams } from "react-router-dom";
-import NoticeItem from "./noticeItem";
-
-interface MatchProps {
-    page: string;
-}
-
-const NoticePage = observer(() => {
-    const { language } = store;
-    const lang = language.lang;
+const NoticePage = () => {
+    const lang = useAtomValue(atomLanguage);
 
     const txtNotice =
-        lang === "ko" ? txtNoticeKo : lang === "jp" ? txtNoticeJp : txtNoticeEn;
+        lang === 'ko' ? txtNoticeKo : lang === 'jp' ? txtNoticeJp : txtNoticeEn;
 
-    const { page } = useParams<MatchProps>();
-    const { list } = useNotice(parseInt(page));
+    const { page } = useParams();
+    const { list, isLoading, isError } = useNotice(page ? parseInt(page, 10) : 0);
 
     useEffect(() => {
         console.log(list);
@@ -32,30 +27,36 @@ const NoticePage = observer(() => {
     return (
         <CommonLayout>
             <ContentLayout title={txtNotice.title}>
-                {list.map((x, i) => (
+                {list && list.map((x, i) => (
                     <NoticeItem
                         key={`notice${i}`}
                         num={x.id}
                         title={
-                            lang === "ko"
+                            lang === 'ko'
                                 ? x.titleK
-                                : lang === "jp"
-                                ? x.titleJ
-                                : x.titleE
+                                : lang === 'jp'
+                                    ? x.titleJ
+                                    : x.titleE
                         }
                         content={
-                            lang === "ko"
+                            lang === 'ko'
                                 ? x.contentK
-                                : lang === "jp"
-                                ? x.contentJ
-                                : x.contentE
+                                : lang === 'jp'
+                                    ? x.contentJ
+                                    : x.contentE
                         }
                         date={x.time}
                     />
                 ))}
+                {
+                    isLoading ? <>Loading...</> : <></>
+                }
+                {
+                    isError ? <Error500 /> : <></>
+                }
             </ContentLayout>
         </CommonLayout>
     );
-});
+};
 
 export default NoticePage;

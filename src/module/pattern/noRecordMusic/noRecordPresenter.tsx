@@ -1,9 +1,9 @@
-import React from "react";
-import Pager from "@/module/common/pager";
-import NpItem from "./npItem";
-import { Redirect } from "react-router-dom";
-import NPData from "./NPData";
-import ContentLayout from "@/component/content/standardContent";
+import ContentLayout from '@/component/content/standardContent';
+import { INoRecord } from '@/data/INoRecord';
+import Pager from '@/module/common/pager';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import NpItem from './npItem';
 
 interface Props {
     switchLv: boolean;
@@ -15,60 +15,63 @@ interface Props {
     lv: number;
     ver: string;
     allPage: number;
-    list: Array<NPData>;
+    list: Array<INoRecord>;
 
-    gtype: string;
-    userid: string;
-    vertype: string;
-    page: string;
+    gtype?: string;
+    userid?: string;
+    vertype?: string;
+    page?: string;
 }
 
 const NoRecordPresenter = (props: Props) => {
     if (props.switchLv) {
         return (
-            <Redirect
-                to={`/notplayed/${props.gtype}/${props.userid}/${props.vertype}/1?lv=${props.lv}`}
+            <Navigate replace
+                      to={`/notplayed/${props.gtype}/${props.userid}/${props.vertype}/1?lv=${props.lv}`}
             />
         );
     }
     if (props.switchVer) {
         return (
-            <Redirect
-                to={`/notplayed/${props.gtype}/${props.userid}/${props.vertype}/1?ver=${props.ver}`}
+            <Navigate replace
+                      to={`/notplayed/${props.gtype}/${props.userid}/${props.vertype}/1?ver=${props.ver}`}
             />
         );
     }
     if (props.switchHot) {
         return (
-            <Redirect to={`/notplayed/${props.gtype}/${props.userid}/${props.vertype}/1?hot=h`} />
+            <Navigate replace to={`/notplayed/${props.gtype}/${props.userid}/${props.vertype}/1?hot=h`} />
         );
     }
     if (props.switchOther) {
         return (
-            <Redirect to={`/notplayed/${props.gtype}/${props.userid}/${props.vertype}/1?hot=o`} />
+            <Navigate replace to={`/notplayed/${props.gtype}/${props.userid}/${props.vertype}/1?hot=o`} />
         );
     }
     if (props.switchClear) {
-        return <Redirect to={`/notplayed/${props.gtype}/${props.userid}/${props.vertype}/1`} />;
+        return <Navigate replace to={`/notplayed/${props.gtype}/${props.userid}/${props.vertype}/1`} />;
     }
     return (
         <ContentLayout
-            title={`${props.gtype === "gf" ? "GuitarFreaks" : "DrumMania"} No record list`}
+            title={`${props.gtype === 'gf' ? 'GuitarFreaks' : 'DrumMania'} No record list`}
         >
             <NpItem list={props.list} />
-            <div style={{ width: "100%", textAlign: "center" }}>
+            <div style={{ width: '100%', textAlign: 'center' }}>
                 <h3>
-                    {(function () {
-                        if (props.list.length === 0) return "List is empty";
+                    {(function() {
+                        if (props.list.length === 0) return 'List is empty';
+                        return '';
                     })()}
                 </h3>
             </div>
-            <Pager
-                cpage={parseInt(props.page)}
-                allpage={props.allPage}
-                baseUrl={`/notplayed/${props.gtype}/${props.userid}/${props.vertype}/`}
-                afterUrl={window.location.search}
-            />
+            {props.gtype && props.userid && props.vertype && props.page &&
+                (<Pager
+                    cpage={parseInt(props.page, 10)}
+                    allpage={props.allPage}
+                    baseUrl={`/notplayed/${props.gtype}/${props.userid}/${props.vertype}/`}
+                    afterUrl={window.location.search}
+                />)
+            }
         </ContentLayout>
     );
 };

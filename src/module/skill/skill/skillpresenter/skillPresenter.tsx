@@ -1,23 +1,18 @@
-import React from "react";
-import {
-    Anchor,
-    Button,
-    ItemCol,
-    ItemRow,
-    ThemedLink,
-} from "@/styled/styledCommon";
-import Pager from "@/module/common/pager";
-import ProfileData from "@/module/user/profile/profileData";
-import SkillItemData from "../skillItem/skillItemData";
-import SkillMenu from "../skillMenu";
-import SkillTableNR from "./skillTableNR";
-import SkillTableSH from "./skillTableSH";
-import * as Time from "@/module/common/time";
-import { skillPageVersion } from "@/module/common/version";
-
-import txtSkillKo from "@/lang/skill/skill/txtSkill-ko";
-import txtSkillJp from "@/lang/skill/skill/txtSkill-jp";
-import txtSkillEn from "@/lang/skill/skill/txtSkill-en";
+import ContentLayout from '@/component/content/standardContent';
+import CommonLayout from '@/component/layout/commonLayout';
+import { IProfile } from '@/data/IProfile';
+import { ISkillItem } from '@/data/ISkillItem';
+import { atomDarkmode } from '@/jotai/darkmode';
+import txtSkillEn from '@/lang/skill/skill/txtSkill-en';
+import txtSkillJp from '@/lang/skill/skill/txtSkill-jp';
+import txtSkillKo from '@/lang/skill/skill/txtSkill-ko';
+import Pager from '@/module/common/pager';
+import * as Time from '@/module/common/time';
+import { skillPageVersion } from '@/module/common/version';
+import { Anchor, Button, ItemCol, ItemRow, ThemedLink } from '@/styled/styledCommon';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
+import SkillMenu from '../skillMenu';
 import {
     SkillBody,
     SkillHeader,
@@ -25,22 +20,20 @@ import {
     SkillTableOuterSH,
     SkillTableWrapper,
     SkillTableWrapperSH,
-} from "./skillPresenter.style";
-import CommonLayout from "@/component/layout/commonLayout";
-import ContentLayout from "@/component/content/standardContent";
-import store from "@/mobx/store";
-import { observer } from "mobx-react";
+} from './skillPresenter.style';
+import SkillTableNR from './skillTableNR';
+import SkillTableSH from './skillTableSH';
 
 interface Props {
     // share table
     share: boolean;
 
     // url query
-    ptype: string;
-    userid: string;
-    gtype: string;
-    page: string;
-    order: string;
+    ptype?: string;
+    userid?: string;
+    gtype?: string;
+    page?: string;
+    order?: string;
 
     // data
     lang: string;
@@ -67,9 +60,9 @@ interface Props {
     visibleRight: boolean;
     allpage: number;
 
-    user: ProfileData;
-    skillTable1: Array<SkillItemData>;
-    skillTable2: Array<SkillItemData>;
+    user?: IProfile;
+    skillTable1: Array<ISkillItem>;
+    skillTable2: Array<ISkillItem>;
 
     // methods
     createSnapshot: (userid: string, gtype: string) => void;
@@ -86,30 +79,30 @@ interface Props {
     openPopup: (mid: number) => void;
 }
 
-const SkillPresenter = observer((props: Props) => {
+const SkillPresenter = (props: Props) => {
+    const dark = useAtomValue(atomDarkmode);
     const txtSkill =
-        props.lang === "ko"
+        props.lang === 'ko'
             ? txtSkillKo
-            : props.lang === "jp"
-            ? txtSkillJp
-            : txtSkillEn;
+            : props.lang === 'jp'
+                ? txtSkillJp
+                : txtSkillEn;
 
-    const { dark } = store;
     return (
         <CommonLayout>
-            <ContentLayout title={"Skill Menu"}>
-                <SkillBody dark={dark.dark}>
-                    <SkillRow justifyContent={"center"} alignItems={"center"}>
+            <ContentLayout title={'Skill Menu'}>
+                <SkillBody dark={dark}>
+                    <SkillRow justifyContent={'center'} alignItems={'center'}>
                         {props.share ? (
                             <ThemedLink
-                                dark={dark.dark}
+                                dark={dark}
                                 to={`/skill/${props.ptype}/${props.userid}/${props.gtype}/${props.page}/${props.order}${window.location.search}`}
                             >
                                 <Button>{txtSkill.btnNormalTable}</Button>
                             </ThemedLink>
                         ) : (
                             <ThemedLink
-                                dark={dark.dark}
+                                dark={dark}
                                 to={`/skillscr/${props.ptype}/${props.userid}/${props.gtype}/${props.page}/${props.order}${window.location.search}`}
                             >
                                 <Button>{txtSkill.btnShareTable}</Button>
@@ -118,10 +111,10 @@ const SkillPresenter = observer((props: Props) => {
                         <Button
                             onClick={() =>
                                 props.scrShot(
-                                    "scrTable",
+                                    'scrTable',
                                     `${props.userid}_${props.gtype}_all_${
                                         props.page
-                                    }_${Time.getTimeScr()}.jpg`
+                                    }_${Time.getTimeScr()}.jpg`,
                                 )
                             }
                         >
@@ -129,33 +122,35 @@ const SkillPresenter = observer((props: Props) => {
                         </Button>
                         {
                             // 본인 계정인 경우 snapshot 생성
-                            (function () {
-                                if (props.ownAccount) {
+                            (function() {
+                                if (props.ownAccount && props.userid && props.gtype) {
                                     return (
                                         <Button
-                                            onClick={() =>
-                                                props.createSnapshot(
-                                                    props.userid,
-                                                    props.gtype
-                                                )
-                                            }
+                                            onClick={() => {
+                                                if (props.userid && props.gtype) {
+                                                    props.createSnapshot(
+                                                        props.userid,
+                                                        props.gtype);
+                                                }
+                                            }}
                                         >
                                             {txtSkill.snapshot.button}
                                         </Button>
                                     );
                                 }
+                                return <></>
                             })()
                         }
                     </SkillRow>
 
-                    <SkillRow justifyContent={"center"} alignItems={"center"}>
-                        <Anchor dark={dark.dark} onClick={props.showTableMenu}>
+                    <SkillRow justifyContent={'center'} alignItems={'center'}>
+                        <Anchor dark={dark} onClick={props.showTableMenu}>
                             {txtSkill.float}
                         </Anchor>
                     </SkillRow>
                     <SkillRow
                         style={{
-                            display: props.menuVisible ? "block" : "none",
+                            display: props.menuVisible ? 'block' : 'none',
                         }}
                     >
                         <SkillMenu ptype={props.ptype} id={props.userid} />
@@ -164,14 +159,14 @@ const SkillPresenter = observer((props: Props) => {
 
                 {
                     // ptype 0일때만 출현하도록 함
-                    (function () {
-                        if (parseInt(props.ptype) === 0) {
+                    (function() {
+                        if (props.ptype && parseInt(props.ptype, 10) === 0) {
                             return (
                                 <>
                                     <SkillHeader>
                                         <h4>Search Options</h4>
                                     </SkillHeader>
-                                    <SkillBody dark={dark.dark}>
+                                    <SkillBody dark={dark}>
                                         <SkillRow>
                                             <ItemCol
                                                 size={3.3}
@@ -470,20 +465,20 @@ const SkillPresenter = observer((props: Props) => {
                                             <ItemCol size={5}>
                                                 <Button
                                                     style={{
-                                                        width: "100%",
+                                                        width: '100%',
                                                     }}
                                                     onClick={() =>
                                                         props.switchOrder(0)
                                                     }
                                                 >
-                                                    {txtSkill.filter.btn.title}{" "}
+                                                    {txtSkill.filter.btn.title}{' '}
                                                     ▲/▼
                                                 </Button>
                                             </ItemCol>
                                             <ItemCol size={5}>
                                                 <Button
                                                     style={{
-                                                        width: "100%",
+                                                        width: '100%',
                                                     }}
                                                     onClick={() =>
                                                         props.switchOrder(1)
@@ -492,7 +487,7 @@ const SkillPresenter = observer((props: Props) => {
                                                     {
                                                         txtSkill.filter.btn
                                                             .version
-                                                    }{" "}
+                                                    }{' '}
                                                     ▲/▼
                                                 </Button>
                                             </ItemCol>
@@ -501,53 +496,56 @@ const SkillPresenter = observer((props: Props) => {
                                 </>
                             );
                         }
+                        return <></>
                     })()
                 }
 
-                <SkillBody id="scrTable" dark={dark.dark}>
+                <SkillBody id="scrTable" dark={dark}>
                     <SkillHeader id="targetInfo">
-                        <SkillRow justifyContent={"center"}>
-                            <h4>
-                                <b>
-                                    GITADORA{" "}
-                                    {skillPageVersion(parseInt(props.ptype))}
-                                    <br />
-                                    {props.tableTxtGType} {props.tableTxtDesc}
-                                    &nbsp;
-                                    {props.ptype !== "1000" ? (
-                                        <ThemedLink
-                                            dark={dark.dark}
-                                            className="innerhref"
-                                            to={`/profile/${props.userid}`}
-                                        >
-                                            {props.user.name}
-                                        </ThemedLink>
-                                    ) : (
-                                        ""
-                                    )}
-                                </b>
-                            </h4>
-                        </SkillRow>
+                        {props.ptype && props.user && (
+                            <SkillRow justifyContent={'center'}>
+                                <h4>
+                                    <b>
+                                        GITADORA{' '}
+                                        {skillPageVersion(parseInt(props.ptype, 10))}
+                                        <br />
+                                        {props.tableTxtGType} {props.tableTxtDesc}
+                                        &nbsp;
+                                        {props.ptype !== '1000' ? (
+                                            <ThemedLink
+                                                dark={dark}
+                                                className="innerhref"
+                                                to={`/profile/${props.userid}`}
+                                            >
+                                                {props.user.name}
+                                            </ThemedLink>
+                                        ) : (
+                                            ''
+                                        )}
+                                    </b>
+                                </h4>
+                            </SkillRow>
+                        )}
                         <SkillRow>
-                            <ItemCol size={5} style={{ textAlign: "center" }}>
+                            <ItemCol size={5} style={{ textAlign: 'center' }}>
                                 <b>sin.nira.one</b>
                             </ItemCol>
-                            <ItemCol size={5} style={{ textAlign: "center" }}>
+                            <ItemCol size={5} style={{ textAlign: 'center' }}>
                                 Last update: {props.updateTime}
                             </ItemCol>
                         </SkillRow>
                     </SkillHeader>
-                    <SkillBody dark={dark.dark}>
+                    <SkillBody dark={dark}>
                         <ItemRow
                             className="skillupper blackandwhite"
-                            style={{ justifyContent: "center" }}
+                            style={{ justifyContent: 'center' }}
                             keepDirHor={true}
                         >
                             <ItemCol
                                 size={3}
                                 style={{
-                                    justifyContent: "center",
-                                    textAlign: "center",
+                                    justifyContent: 'center',
+                                    textAlign: 'center',
                                 }}
                             >
                                 {props.statLeftTitle}
@@ -557,8 +555,8 @@ const SkillPresenter = observer((props: Props) => {
                             <ItemCol
                                 size={3}
                                 style={{
-                                    justifyContent: "center",
-                                    textAlign: "center",
+                                    justifyContent: 'center',
+                                    textAlign: 'center',
                                 }}
                             >
                                 {props.statMidTitle}
@@ -568,8 +566,8 @@ const SkillPresenter = observer((props: Props) => {
                             <ItemCol
                                 size={3}
                                 style={{
-                                    justifyContent: "center",
-                                    textAlign: "center",
+                                    justifyContent: 'center',
+                                    textAlign: 'center',
                                 }}
                             >
                                 {props.statRightTitle}
@@ -578,7 +576,7 @@ const SkillPresenter = observer((props: Props) => {
                             </ItemCol>
                         </ItemRow>
                     </SkillBody>
-                    <SkillBody dark={dark.dark}>
+                    <SkillBody dark={dark}>
                         {props.share && props.visibleLarge && (
                             <SkillTableWrapperSH>
                                 <SkillTableOuterSH>
@@ -591,7 +589,7 @@ const SkillPresenter = observer((props: Props) => {
                         )}
                         {props.share && props.visibleLeft && (
                             <SkillTableWrapperSH>
-                                <SkillRow justifyContent={"center"}>
+                                <SkillRow justifyContent={'center'}>
                                     <h4>HOT</h4>
                                 </SkillRow>
                                 <SkillTableOuterSH>
@@ -604,7 +602,7 @@ const SkillPresenter = observer((props: Props) => {
                         )}
                         {props.share && props.visibleRight && (
                             <SkillTableWrapperSH>
-                                <SkillRow justifyContent={"center"}>
+                                <SkillRow justifyContent={'center'}>
                                     <h4>Other</h4>
                                 </SkillRow>
                                 <SkillTableOuterSH>
@@ -625,7 +623,7 @@ const SkillPresenter = observer((props: Props) => {
                         )}
                         {!props.share && props.visibleLeft && (
                             <SkillTableWrapper>
-                                <SkillRow justifyContent={"center"}>
+                                <SkillRow justifyContent={'center'}>
                                     <h4>HOT</h4>
                                 </SkillRow>
                                 <SkillTableNR
@@ -636,7 +634,7 @@ const SkillPresenter = observer((props: Props) => {
                         )}
                         {!props.share && props.visibleRight && (
                             <SkillTableWrapper>
-                                <SkillRow justifyContent={"center"}>
+                                <SkillRow justifyContent={'center'}>
                                     <h4>Other</h4>
                                 </SkillRow>
                                 <SkillTableNR
@@ -647,21 +645,23 @@ const SkillPresenter = observer((props: Props) => {
                         )}
                         <div
                             id="skillEmpty"
-                            style={{ width: "100%", textAlign: "center" }}
+                            style={{ width: '100%', textAlign: 'center' }}
                         ></div>
-                        <SkillRow>
-                            <Pager
-                                cpage={parseInt(props.page)}
-                                allpage={props.allpage}
-                                baseUrl={`/skill/${props.ptype}/${props.userid}/${props.gtype}/`}
-                                afterUrl={`/${props.order}${window.location.search}`}
-                            />
-                        </SkillRow>
+                        {props.page && props.ptype && props.userid && props.gtype && (
+                            <SkillRow>
+                                <Pager
+                                    cpage={parseInt(props.page, 10)}
+                                    allpage={props.allpage}
+                                    baseUrl={`/skill/${props.ptype}/${props.userid}/${props.gtype}/`}
+                                    afterUrl={`/${props.order}${window.location.search}`}
+                                />
+                            </SkillRow>
+                        )}
                     </SkillBody>
                 </SkillBody>
             </ContentLayout>
         </CommonLayout>
     );
-});
+};
 
 export default SkillPresenter;

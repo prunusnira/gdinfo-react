@@ -1,15 +1,15 @@
-import useMusicInfo from "./useMusicInfo";
-import usePatternInfo from "./usePatternInfo";
-import { useState } from "react";
+import { useState } from 'react';
+import useMusicInfo from './useMusicInfo';
+import usePatternInfo from './usePatternInfo';
 
-const useSkillPopup = (userid: string) => {
+const useSkillPopup = (userid?: string) => {
     const [popupOpen, setPopupOpen] = useState(false);
     const [mid, setMid] = useState(0);
-    const [musicName, composer, version] = useMusicInfo(mid.toString());
-    const patternlist = usePatternInfo(mid.toString(), userid);
+    const { musicName, composer, version } = useMusicInfo(mid.toString());
+    const { ptinfo } = usePatternInfo({ mid, userid });
 
-    const openPopup = (mid: number) => {
-        setMid(mid);
+    const openPopup = (id: number) => {
+        setMid(id);
         setPopupOpen(true);
     };
 
@@ -20,7 +20,7 @@ const useSkillPopup = (userid: string) => {
 
     return {
         popupOpen,
-        patternlist,
+        ptinfo,
         openPopup,
         closePopup,
 

@@ -1,34 +1,34 @@
-import React from "react";
-import { Button } from "@/styled/styledCommon";
-import store from "@/mobx/store";
+import ContentLayout from '@/component/content/standardContent';
+import { atomLanguage } from '@/jotai/language';
+import txtPatternEn from '@/lang/pattern/pattern/txtPattern-en';
+import txtPatternJp from '@/lang/pattern/pattern/txtPattern-jp';
+import txtPatternKo from '@/lang/pattern/pattern/txtPattern-ko';
+import { Button } from '@/styled/styledCommon';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
+import { PTListCol, PTListRow } from './ptList.style';
 
-import txtPatternKo from "@/lang/pattern/pattern/txtPattern-ko";
-import txtPatternJp from "@/lang/pattern/pattern/txtPattern-jp";
-import txtPatternEn from "@/lang/pattern/pattern/txtPattern-en";
-import { PTListCol, PTListRow } from "./ptList.style";
-import ContentLayout from "@/component/content/standardContent";
-
-type SelectorType = {
+interface Props {
     switchHotMethod: () => void;
     switchOtherMethod: () => void;
     switchVerMethod: (e: React.ChangeEvent<HTMLSelectElement>) => void;
     switchOrderMethod: (type: number) => void;
-};
+}
 
-const PTListSelector = (props: SelectorType) => {
-    const lang = store.language.lang;
+const PTListSelector = (props: Props) => {
+    const lang = useAtomValue(atomLanguage);
 
-    const txtPattern = lang === "ko" ? txtPatternKo : lang === "jp" ? txtPatternJp : txtPatternEn;
+    const txtPattern = lang === 'ko' ? txtPatternKo : lang === 'jp' ? txtPatternJp : txtPatternEn;
 
     return (
-        <ContentLayout title={"Search Options"}>
+        <ContentLayout title={'Search Options'}>
             <PTListCol>
                 <PTListRow>Hot/Other</PTListRow>
                 <PTListRow>
-                    <Button style={{ width: "100%" }} onClick={props.switchHotMethod}>
+                    <Button style={{ width: '100%' }} onClick={props.switchHotMethod}>
                         Hot
                     </Button>
-                    <Button style={{ width: "100%" }} onClick={props.switchOtherMethod}>
+                    <Button style={{ width: '100%' }} onClick={props.switchOtherMethod}>
                         Other
                     </Button>
                 </PTListRow>
@@ -36,10 +36,10 @@ const PTListSelector = (props: SelectorType) => {
             <PTListCol>
                 <PTListRow>Order</PTListRow>
                 <PTListRow>
-                    <Button style={{ width: "100%" }} onClick={() => props.switchOrderMethod(0)}>
+                    <Button style={{ width: '100%' }} onClick={() => props.switchOrderMethod(0)}>
                         {txtPattern.filter.btn.title} ▲/▼
                     </Button>
-                    <Button style={{ width: "100%" }} onClick={() => props.switchOrderMethod(1)}>
+                    <Button style={{ width: '100%' }} onClick={() => props.switchOrderMethod(1)}>
                         {txtPattern.filter.btn.version} ▲/▼
                     </Button>
                 </PTListRow>

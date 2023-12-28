@@ -1,34 +1,34 @@
-import ClearTableRow from "./clearTableRow";
-import React from "react";
-import ClearTableData from "./clearTableData";
-import CommonLayout from "@/component/layout/commonLayout";
-import ContentLayout from "@/component/content/standardContent";
-import { ClearTableWrapper, TableHeader } from "./clearTablePresenter.style";
-import { observer } from "mobx-react";
-import { ThemedLink } from "@/styled/styledCommon";
-import store from "@/mobx/store";
+import ContentLayout from '@/component/content/standardContent';
+import CommonLayout from '@/component/layout/commonLayout';
+import { IClearTable } from '@/data/IClearTable';
+import { atomDarkmode } from '@/jotai/darkmode';
+import { ThemedLink } from '@/styled/styledCommon';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
+import { ClearTableWrapper, TableHeader } from './clearTablePresenter.style';
+import ClearTableRow from './clearTableRow';
 
 interface Props {
     profileLink: string;
     titleTower: string;
     userName: string;
-    glist: Array<ClearTableData>;
-    dlist: Array<ClearTableData>;
+    glist: Array<IClearTable>;
+    dlist: Array<IClearTable>;
 }
 
-const ClearTablePresenter = observer((props: Props) => {
-    const { dark } = store;
+const ClearTablePresenter = (props: Props) => {
+    const dark = useAtomValue(atomDarkmode);
     return (
         <CommonLayout>
-            <ContentLayout title={"Clear Status Table"}>
+            <ContentLayout title={'Clear Status Table'}>
                 <ThemedLink
-                    dark={dark.dark}
+                    dark={dark}
                     to={props.profileLink}
                     className="innerhref"
-                    style={{ fontSize: "130%" }}
+                    style={{ fontSize: '130%' }}
                 >
-                    {(function () {
-                        if (props.titleTower !== "") {
+                    {(function() {
+                        if (props.titleTower !== '') {
                             return (
                                 <img
                                     alt="titletower"
@@ -36,11 +36,12 @@ const ClearTablePresenter = observer((props: Props) => {
                                 />
                             );
                         }
+                        return <></>
                     })()}
                     {props.userName}
                 </ThemedLink>
 
-                <ContentLayout title={"GuitarFreaks"}>
+                <ContentLayout title={'GuitarFreaks'}>
                     <ClearTableWrapper>
                         <TableHeader>#</TableHeader>
                         <TableHeader>EXC</TableHeader>
@@ -56,7 +57,7 @@ const ClearTablePresenter = observer((props: Props) => {
                     </ClearTableWrapper>
                 </ContentLayout>
 
-                <ContentLayout title={"DrumMania"}>
+                <ContentLayout title={'DrumMania'}>
                     <ClearTableWrapper>
                         <TableHeader>#</TableHeader>
                         <TableHeader>EXC</TableHeader>
@@ -74,6 +75,6 @@ const ClearTablePresenter = observer((props: Props) => {
             </ContentLayout>
         </CommonLayout>
     );
-});
+};
 
 export default ClearTablePresenter;

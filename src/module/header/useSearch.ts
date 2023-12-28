@@ -1,74 +1,57 @@
-import React, { useState } from "react"
+import { ESearchType } from '@/data/ESearchType';
+import React, { useState } from 'react';
 
-type UseSearchReturn =
-    [
-        SearchType,
-        boolean,
-        (b: boolean) => void,
-        (e: React.KeyboardEvent<HTMLInputElement>) => void,
-        () => void,
-        () => void,
-        (type: SearchType) => void,
-    ]
+const useSearch = (searchTxt: string) => {
+    const [searchType, setSearchType] = useState(ESearchType.MUSIC);
+    const [searchTypeDlg, openSearchTypeDlg] = useState(false);
 
-export enum SearchType {
-    music,
-    gskill,
-    dskill,
-    player
-}
-
-const useSearch = (searchTxt: string): UseSearchReturn => {
-    const [searchType, setSearchType] = useState(SearchType.music)
-    const [searchTypeDlg, openSearchTypeDlg] = useState(false)
+    const getSearchTypeTxt = (type: ESearchType) => {
+        let rtn;
+        switch (type) {
+            case ESearchType.GSKILL:
+                rtn = 'gskill';
+                break;
+            case ESearchType.DSKILL:
+                rtn = 'dskill';
+                break;
+            case ESearchType.PLAYER:
+                rtn = 'player';
+                break;
+            case ESearchType.MUSIC:
+            default:
+                rtn = 'music';
+                break;
+        }
+        return rtn;
+    };
 
     const searchEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
-        if(e.key === "Enter") {
+        if (e.key === 'Enter') {
             window.location.href =
-                `/search/${getSearchTypeTxt(searchType)}/${e.currentTarget.value}/1`
+                `/search/${getSearchTypeTxt(searchType)}/${e.currentTarget.value}/1`;
         }
-    }
+    };
 
     const searchClick = () => {
         window.location.href =
-            `/search/${getSearchTypeTxt(searchType)}/${searchTxt}/1`
-    }
+            `/search/${getSearchTypeTxt(searchType)}/${searchTxt}/1`;
+    };
 
     const closeSearchTypeDlg = () => {
-        openSearchTypeDlg(false)
-    }
+        openSearchTypeDlg(false);
+    };
 
-    const changeSearchType = (type: SearchType) => {
-        setSearchType(type)
-        closeSearchTypeDlg()
-    }
+    const changeSearchType = (type: ESearchType) => {
+        setSearchType(type);
+        closeSearchTypeDlg();
+    };
 
-    const getSearchTypeTxt = (type: SearchType) => {
-        let rtn = ''
-        switch(type) {
-            case SearchType.gskill:
-                rtn = 'gskill'
-                break
-            case SearchType.dskill:
-                rtn = 'dskill'
-                break
-            case SearchType.player:
-                rtn = 'player'
-                break
-            case SearchType.music:
-            default:
-                rtn = 'music'
-                break
-        }
-        return rtn
-    }
-
-    return [
+    return {
         searchType, searchTypeDlg,
         openSearchTypeDlg,
         searchEnter, searchClick,
-        closeSearchTypeDlg, changeSearchType
-    ]
-}
+        closeSearchTypeDlg, changeSearchType,
+    };
+};
 
-export default useSearch
+export default useSearch;

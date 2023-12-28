@@ -1,24 +1,17 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import NoRecordPresenter from "./noRecordPresenter";
-import NoRecordTitle from "./noRecordTitle";
-import NoRecordSelector from "./noRecordSelector";
-import useNoRecordData from "./useNoRecordData";
-import useNoRecordSelector from "./useNoRecordSelector";
-import CommonLayout from "@/component/layout/commonLayout";
-import ContentLayout from "@/component/content/standardContent";
-
-interface MatchProps {
-    gtype: string;
-    userid: string;
-    vertype: string;
-    page: string;
-}
+import ContentLayout from '@/component/content/standardContent';
+import CommonLayout from '@/component/layout/commonLayout';
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import NoRecordPresenter from './noRecordPresenter';
+import NoRecordSelector from './noRecordSelector';
+import NoRecordTitle from './noRecordTitle';
+import useNoRecordData from './useNoRecordData';
+import useNoRecordSelector from './useNoRecordSelector';
 
 const NoRecordMusicList = () => {
-    const { gtype, userid, vertype, page } = useParams<MatchProps>();
-    const [list, allPage] = useNoRecordData(gtype, userid, vertype, page);
-    const [
+    const { gtype, userid, vertype, page } = useParams();
+    const { list, allPage } = useNoRecordData({ gtype, userid, vertype, page });
+    const {
         lv,
         ver,
         switchLv,
@@ -31,11 +24,11 @@ const NoRecordMusicList = () => {
         switchOtherMethod,
         switchClear,
         switchClearMethod,
-    ] = useNoRecordSelector();
+    } = useNoRecordSelector();
 
     return (
         <CommonLayout>
-            <ContentLayout title={"Patterns with no records"}>
+            <ContentLayout title={'Patterns with no records'}>
                 <NoRecordTitle />
                 <NoRecordSelector
                     userid={userid}

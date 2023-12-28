@@ -1,13 +1,14 @@
-import React from "react";
-import UserLoginInfo from "./LoginInfo";
-
-import store from "@/mobx/store";
-import { observer } from "mobx-react";
-import { Anchor, Button, ThemedLink } from "@/styled/styledCommon";
-
-import txtIndexKo from "@/lang/index/txtIndex-ko";
-import txtIndexJp from "@/lang/index/txtIndex-jp";
-import txtIndexEn from "@/lang/index/txtIndex-en";
+import ContentLayout from '@/component/content/standardContent';
+import CommonLayout from '@/component/layout/commonLayout';
+import { atomDarkmode } from '@/jotai/darkmode';
+import { atomLanguage } from '@/jotai/language';
+import { atomLoginUser } from '@/jotai/loginUser';
+import txtIndexEn from '@/lang/index/txtIndex-en';
+import txtIndexJp from '@/lang/index/txtIndex-jp';
+import txtIndexKo from '@/lang/index/txtIndex-ko';
+import { Anchor, Button, ThemedLink } from '@/styled/styledCommon';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
 import {
     IndexContainer,
     IndexContent,
@@ -16,55 +17,54 @@ import {
     IndexScript,
     IndexScriptWrapper,
     IndexTitle,
-} from "./index.style";
-import CommonLayout from "@/component/layout/commonLayout";
-import ContentLayout from "@/component/content/standardContent";
-import IndexNotice from "./notice/notice";
+} from './index.style';
+import UserLoginInfo from './LoginInfo';
+import IndexNotice from './notice/notice';
 
-const IndexPage = observer(() => {
-    const { language, loginUser, loginStatus, dark } = store;
-    const lang = language.lang;
+const IndexPage = () => {
+    const lang = useAtomValue(atomLanguage);
+    const loginUser = useAtomValue(atomLoginUser);
+    const dark = useAtomValue(atomDarkmode);
 
-    const txtIndex = lang === "ko" ? txtIndexKo : lang === "jp" ? txtIndexJp : txtIndexEn;
+    const txtIndex = lang === 'ko' ? txtIndexKo : lang === 'jp' ? txtIndexJp : txtIndexEn;
 
     return (
         <CommonLayout>
             <IndexContainer>
-                {(function () {
-                    if (loginStatus.isSigned) {
+                {(function() {
+                    if (loginUser) {
                         return (
                             <>
                                 <ContentLayout title={txtIndex.self.title} isHalf={true}>
                                     <UserLoginInfo />
                                     <IndexRow>
-                                        <ThemedLink dark={dark.dark} to="/profile">
+                                        <ThemedLink dark={dark} to="/profile">
                                             <Button>Profile</Button>
                                         </ThemedLink>
-                                        <ThemedLink dark={dark.dark} to="/myskill/gf">
+                                        <ThemedLink dark={dark} to="/myskill/gf">
                                             <Button>GF Skill</Button>
                                         </ThemedLink>
-                                        <ThemedLink dark={dark.dark} to="/myskill/dm">
+                                        <ThemedLink dark={dark} to="/myskill/dm">
                                             <Button>DM Skill</Button>
                                         </ThemedLink>
-                                        <ThemedLink dark={dark.dark} to="/mybest">
+                                        <ThemedLink dark={dark} to="/mybest">
                                             <Button>My Best</Button>
                                         </ThemedLink>
-                                        <ThemedLink dark={dark.dark} to="/tower/index">
+                                        <ThemedLink dark={dark} to="/tower/index">
                                             <Button>Tower</Button>
                                         </ThemedLink>
                                     </IndexRow>
                                 </ContentLayout>
                             </>
                         );
-                    } else {
-                        return (
-                            <>
-                                <ContentLayout title={txtIndex.self.title} isHalf={true}>
-                                    <UserLoginInfo />
-                                </ContentLayout>
-                            </>
-                        );
                     }
+                    return (
+                        <>
+                            <ContentLayout title={txtIndex.self.title} isHalf={true}>
+                                <UserLoginInfo />
+                            </ContentLayout>
+                        </>
+                    );
                 })()}
 
                 <ContentLayout title={txtIndex.about.title} isHalf={true}>
@@ -74,7 +74,7 @@ const IndexPage = observer(() => {
                             target="blank"
                             rel="noopener noreferrer"
                             href="https://twitter.com/_nira_one"
-                            dark={dark.dark}
+                            dark={dark}
                         >
                             @_nira_one
                         </Anchor>
@@ -87,19 +87,19 @@ const IndexPage = observer(() => {
                         <IndexScriptWrapper>
                             <IndexTitle>{txtIndex.script.scriptTitle}</IndexTitle>
                             <IndexContent>
-                                {loginStatus.isSigned ? (
+                                {loginUser ? (
                                     txtIndex.script.scriptLogin
                                 ) : (
-                                    <b style={{ color: "blue" }}>
+                                    <b style={{ color: 'blue' }}>
                                         ★{txtIndex.script.scriptNoLogin}
                                     </b>
                                 )}
                             </IndexContent>
                             <IndexScript>
-                                {loginStatus.isSigned ? (
+                                {loginUser ? (
                                     <b>
                                         javascript:$.getScript('https://sindata.nira.one/$/update?token=
-                                        {loginUser.user.token}');
+                                        {loginUser.token}');
                                     </b>
                                 ) : (
                                     <b>Please login first</b>
@@ -120,7 +120,7 @@ const IndexPage = observer(() => {
                         <IndexRow>※{txtIndex.howto.desc3}</IndexRow>
                         <IndexImg
                             alt="favo"
-                            src={process.env.PUBLIC_URL + "/general-img/howto/howto2-browser.png"}
+                            src={`${process.env.PUBLIC_URL}/general-img/howto/howto2-browser.png`}
                         />
                         <IndexRow>※{txtIndex.howto.browser}</IndexRow>
                         <IndexRow>Google Chrome (for all OS), Safari (for iOS)</IndexRow>
@@ -133,13 +133,13 @@ const IndexPage = observer(() => {
                         <IndexRow>* {txtIndex.howto.lang}: 한국어, 日本語, English</IndexRow>
                         <IndexImg
                             alt="favo"
-                            src={process.env.PUBLIC_URL + "/general-img/howto/howto3.png"}
+                            src={`${process.env.PUBLIC_URL}/general-img/howto/howto3.png`}
                         />
                     </IndexContent>
                 </ContentLayout>
             </IndexContainer>
         </CommonLayout>
     );
-});
+};
 
 export default IndexPage;

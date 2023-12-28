@@ -1,23 +1,23 @@
 import React from "react";
 import { FormGroup, Label, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
-import store from "@/mobx/store";
 import { Button } from "@/styled/styledCommon";
-
 import TxtModalKo from "@/lang/header/searchmodal/txtmodal-ko";
 import TxtModalJp from "@/lang/header/searchmodal/txtmodal-jp";
 import TxtModalEn from "@/lang/header/searchmodal/txtmodal-en";
-import { SearchType } from "../useSearch";
+import {useAtomValue} from "jotai/index";
+import {atomLanguage} from "@/jotai/language";
+import {ESearchType} from "@/data/ESearchType";
 
-type SearchTypeProps = {
+interface Props {
     isOpen: boolean;
-    type: SearchType;
+    type: ESearchType;
     changeType: (e: React.ChangeEvent<HTMLInputElement>) => void;
     cancel: () => void;
-    ok: (type: SearchType) => void;
-};
+    ok: (type: ESearchType) => void;
+}
 
-const SearchTypeModalPresenter = (props: SearchTypeProps) => {
-    const lang = store.language.lang;
+const SearchTypeModalPresenter = (props: Props) => {
+    const lang = useAtomValue(atomLanguage)
 
     const TxtModal = lang === "ko" ? TxtModalKo : lang === "jp" ? TxtModalJp : TxtModalEn;
 
@@ -33,7 +33,7 @@ const SearchTypeModalPresenter = (props: SearchTypeProps) => {
                                 name="searchType"
                                 id="searchradio_music"
                                 value="music"
-                                checked={props.type === SearchType.music ? true : false}
+                                checked={props.type === ESearchType.MUSIC}
                                 onChange={props.changeType}
                             />
                             {TxtModal.music}
@@ -46,7 +46,7 @@ const SearchTypeModalPresenter = (props: SearchTypeProps) => {
                                 name="searchType"
                                 id="searchradio_gskill"
                                 value="gskill"
-                                checked={props.type === SearchType.gskill ? true : false}
+                                checked={props.type === ESearchType.GSKILL}
                                 onChange={props.changeType}
                             />
                             {TxtModal.gskill}
@@ -59,7 +59,7 @@ const SearchTypeModalPresenter = (props: SearchTypeProps) => {
                                 name="searchType"
                                 id="searchradio_dskill"
                                 value="dskill"
-                                checked={props.type === SearchType.dskill ? true : false}
+                                checked={props.type === ESearchType.DSKILL}
                                 onChange={props.changeType}
                             />
                             {TxtModal.dskill}
@@ -72,7 +72,7 @@ const SearchTypeModalPresenter = (props: SearchTypeProps) => {
                                 name="searchType"
                                 id="searchradio_player"
                                 value="player"
-                                checked={props.type === SearchType.player ? true : false}
+                                checked={props.type === ESearchType.PLAYER}
                                 onChange={props.changeType}
                             />
                             {TxtModal.player}

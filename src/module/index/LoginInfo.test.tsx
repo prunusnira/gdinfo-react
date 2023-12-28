@@ -2,11 +2,10 @@ import { render } from "@testing-library/react"
 import '@testing-library/jest-dom'
 import React from "react"
 import { MemoryRouter } from "react-router-dom"
-import ProfileData from "../user/profile/profileData"
+import {IProfile} from "@/data/IProfile"
 import UserLoginInfo from "./LoginInfo"
-import { LoginInfoReturn } from "./useLoginInfo"
 
-const mockProfData: ProfileData = {
+const mockProfData: IProfile = {
     id: 0,
     titletower: "",
     title: "",
@@ -14,6 +13,8 @@ const mockProfData: ProfileData = {
     token: "",
     gskill: 0,
     dskill: 0,
+    gskillhv: 0,
+    dskillhv: 0,
     gskillnx: 0,
     dskillnx: 0,
     gskillex: 0,
@@ -51,7 +52,7 @@ const mockProfData: ProfileData = {
 
 jest.mock('./useLoginInfo', () => ({
     __esModule: true,
-    default: (): LoginInfoReturn => ([true, mockProfData])
+    default: () => ({loading: true, data: mockProfData})
 }))
 
 describe('로그인 정보 테스트', () => {

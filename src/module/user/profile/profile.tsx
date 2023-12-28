@@ -1,33 +1,29 @@
-import React, { useState } from "react";
-import { useParams } from "react-router-dom";
-import { observer } from "mobx-react";
-import ProfilePresenter from "./profilePresenter";
-import useProfileLoader from "./useProfileLoader";
-import useComment from "./useComment";
-import useInfoOpen from "./useInfoOpen";
+import Error404 from '@/module/error/404';
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import ProfilePresenter from './profilePresenter';
+import useComment from './useComment';
+import useInfoOpen from './useInfoOpen';
+import useProfileLoader from './useProfileLoader';
 
-interface MatchProps {
-    id: string;
-}
-
-const Profile = observer(() => {
-    const [comment, setComment] = useState("");
-    const [nextComment, setNextComment] = useState("");
-    const [openUserInfo, setOpenUserInfo] = useState("N");
-    const { id } = useParams<MatchProps>();
-    const [profileData, isOwnAccount] = useProfileLoader(id, setComment, setOpenUserInfo);
-    const [isCommentOpen, setCommentDlgOpen, closeComment, submitComment] = useComment(
+const Profile = () => {
+    const [comment, setComment] = useState('');
+    const [nextComment, setNextComment] = useState('');
+    const [openUserInfo, setOpenUserInfo] = useState('N');
+    const { id } = useParams();
+    const { profileData, isOwnAccount } = useProfileLoader({ id, setComment, setOpenUserInfo });
+    const [isCommentOpen, setCommentDlgOpen, closeComment, submitComment] = useComment({
         id,
         nextComment,
-        setComment
-    );
-    const [isInfoOpen, setInfoDlgOpen, setInfoDlgClose, submitOpen, infoUpdate, updateOpenValue] =
+        setComment,
+    });
+    const { isInfoOpen, setInfoDlgOpen, setInfoDlgClose, submitOpen, forceCountUpdate, updateOpenValue } =
         useInfoOpen(setOpenUserInfo);
 
     if (profileData == null) {
-        // show loading
-        return null;
-    } else {
+        return <>Loading...</>;
+    }
+    if (id) {
         return (
             <ProfilePresenter
                 isInfoOpen={isInfoOpen}
@@ -46,10 +42,11 @@ const Profile = observer(() => {
                 id={id}
                 setCommentDlgOpen={setCommentDlgOpen}
                 setInfoDlgOpen={setInfoDlgOpen}
-                infoUpdate={infoUpdate}
+                infoUpdate={forceCountUpdate}
             />
         );
     }
-});
+    return <Error404 />;
+};
 
 export default Profile;

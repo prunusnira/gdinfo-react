@@ -1,27 +1,25 @@
-import store from "@/mobx/store";
-import { ThemedLink } from "@/styled/styledCommon";
-import { observer } from "mobx-react";
-import React from "react";
-import { TowerItemImg } from "./toweritem.style";
-import TowerListData from "./towerlistData";
+import { ITowerList } from '@/data/tower/ITowerList';
+import { atomDarkmode } from '@/jotai/darkmode';
+import { ThemedLink } from '@/styled/styledCommon';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
+import { TowerItemImg } from './toweritem.style';
 
 interface Props {
-    list: Array<TowerListData>;
+    list: Array<ITowerList>;
 }
 
-const TowerListImg = observer((props: Props) => {
-    const { dark } = store;
+const TowerListImg = (props: Props) => {
+    const dark = useAtomValue(atomDarkmode);
     return (
         <>
-            {props.list.map((tower, i) => {
-                return (
-                    <ThemedLink dark={dark.dark} key={i} to={tower.link} data-testid="towerUrl">
-                        <TowerItemImg alt="towerimg" src={tower.img} />
-                    </ThemedLink>
-                );
-            })}
+            {props.list.map((tower, i) => (
+                <ThemedLink dark={dark} key={i} to={tower.link} data-testid="towerUrl">
+                    <TowerItemImg alt="towerimg" src={tower.img} />
+                </ThemedLink>
+            ))}
         </>
     );
-});
+};
 
 export default TowerListImg;

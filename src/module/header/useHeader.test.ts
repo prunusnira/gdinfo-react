@@ -7,18 +7,18 @@ describe('헤더 hook 테스트', () => {
         const {result} = renderHook(() => useHeader())
 
         // then - when
-        expect(result.current[0]).toBe(false)
+        expect(result.current.isMenuOpen).toBe(false)
         act(() => {
-            result.current[1]()
+            result.current.toggleMenu()
         })
 
         // then - when
-        expect(result.current[0]).toBe(true)
+        expect(result.current.isMenuOpen).toBe(true)
         act(() => {
-            result.current[2]()
+            result.current.closeMenu()
         })
 
         // then
-        expect(result.current[0]).toBe(false)
+        expect(result.current.isMenuOpen).toBe(false)
     })
 })

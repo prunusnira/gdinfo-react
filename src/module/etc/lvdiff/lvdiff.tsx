@@ -1,37 +1,22 @@
-import ContentLayout from "@/component/content/standardContent";
-import CommonLayout from "@/component/layout/commonLayout";
-import React from "react";
-import {
-    DiffBox,
-    DiffCell,
-    DiffImg,
-    DiffJacket,
-    DiffRow,
-    DiffRowWrap,
-    DiffTitle,
-    DiffWrapper,
-} from "./lvdiff.style";
-import useLvDiff from "./useLvDiff";
-import { useParams } from "react-router-dom";
-import CommonData from "@/module/common/commonData";
-import { getPatternImg600 } from "@/module/common/pattern";
-
-interface MatchProps {
-    type: string;
-}
+import ContentLayout from '@/component/content/standardContent';
+import CommonLayout from '@/component/layout/commonLayout';
+import CommonData from '@/module/common/commonData';
+import { getPatternImg600 } from '@/module/common/pattern';
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { DiffBox, DiffCell, DiffImg, DiffJacket, DiffRow, DiffRowWrap, DiffTitle, DiffWrapper } from './lvdiff.style';
+import useLvDiff from './useLvDiff';
 
 const LVDiff = () => {
-    const { type } = useParams<MatchProps>();
+    const { type } = useParams();
     const { list } = useLvDiff(type);
 
-    const diffColor = (val: number) => {
-        return val > 0 ? "skyblue" : "pink";
-    };
+    const diffColor = (val: number) => val > 0 ? 'skyblue' : 'pink';
 
     return (
         <CommonLayout>
             <ContentLayout
-                title={`Level Difference (FUZZUP - HIGHVOLTAGE) - ${type.toUpperCase()}`}
+                title={`Level Difference (FUZZUP - HIGHVOLTAGE) - ${type?.toUpperCase()}`}
             >
                 <DiffBox>
                     {list.map((x) => (
@@ -51,12 +36,12 @@ const LVDiff = () => {
                                     </DiffCell>
                                     <DiffCell
                                         color={diffColor(
-                                            x.lv / 100 - x.lvold / 100
+                                            x.lv / 100 - x.lvold / 100,
                                         )}
                                     >
-                                        DIFF{" "}
+                                        DIFF{' '}
                                         {(x.lv / 100 - x.lvold / 100).toFixed(
-                                            2
+                                            2,
                                         )}
                                     </DiffCell>
                                 </DiffRow>

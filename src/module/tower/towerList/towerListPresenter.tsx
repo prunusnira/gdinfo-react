@@ -1,36 +1,36 @@
-import React from "react";
-import TowerListImg from "./toweritem";
-import TowerListData from "./towerlistData";
-import store from "@/mobx/store";
-import { Button, ThemedLink } from "@/styled/styledCommon";
-
-import txtTowerKo from "@/lang/tower/txtTower-ko";
-import txtTowerJp from "@/lang/tower/txtTower-jp";
-import txtTowerEn from "@/lang/tower/txtTower-en";
-import { TowerHowTo, TowerListImgs } from "./towerListPresenter.style";
-import CommonLayout from "@/component/layout/commonLayout";
-import ContentLayout from "@/component/content/standardContent";
-import { observer } from "mobx-react";
+import ContentLayout from '@/component/content/standardContent';
+import CommonLayout from '@/component/layout/commonLayout';
+import { ITowerList } from '@/data/tower/ITowerList';
+import { atomDarkmode } from '@/jotai/darkmode';
+import { atomLanguage } from '@/jotai/language';
+import txtTowerEn from '@/lang/tower/txtTower-en';
+import txtTowerJp from '@/lang/tower/txtTower-jp';
+import txtTowerKo from '@/lang/tower/txtTower-ko';
+import { Button, ThemedLink } from '@/styled/styledCommon';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
+import TowerListImg from './toweritem';
+import { TowerHowTo, TowerListImgs } from './towerListPresenter.style';
 
 interface Props {
-    towerGF: Array<TowerListData>;
-    towerDM: Array<TowerListData>;
-    towerSP: Array<TowerListData>;
+    towerGF: Array<ITowerList>;
+    towerDM: Array<ITowerList>;
+    towerSP: Array<ITowerList>;
 }
 
-const TowerListPresenter = observer((props: Props) => {
-    const lang = store.language.lang;
-    const { dark } = store;
+const TowerListPresenter = (props: Props) => {
+    const lang = useAtomValue(atomLanguage);
+    const dark = useAtomValue(atomDarkmode);
 
-    const txtTower = lang === "ko" ? txtTowerKo : lang === "jp" ? txtTowerJp : txtTowerEn;
+    const txtTower = lang === 'ko' ? txtTowerKo : lang === 'jp' ? txtTowerJp : txtTowerEn;
 
     return (
         <CommonLayout>
-            <ContentLayout title={"Tower"}>
+            <ContentLayout title={'Tower'}>
                 <TowerHowTo>
                     {txtTower.main.desc}
                     <br />
-                    <ThemedLink dark={dark.dark} to={"/tower/howto"}>
+                    <ThemedLink dark={dark} to={'/tower/howto'}>
                         <Button>{txtTower.main.howto}</Button>
                     </ThemedLink>
                 </TowerHowTo>
@@ -55,6 +55,6 @@ const TowerListPresenter = observer((props: Props) => {
             </ContentLayout>
         </CommonLayout>
     );
-});
+};
 
 export default TowerListPresenter;

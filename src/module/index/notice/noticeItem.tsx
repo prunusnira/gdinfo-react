@@ -1,29 +1,28 @@
-import store from "@/mobx/store";
-import { unixTimeConverter } from "@/module/common/time";
-import NoticeType from "@/module/notice/noticeType";
-import { observer } from "mobx-react";
-import React from "react";
-import { NoticeBar, NoticeTitle, NoticeDate } from "./noticeItem.style";
+import { INotice } from '@/data/INotice';
+import { atomLanguage } from '@/jotai/language';
+import { unixTimeConverter } from '@/module/common/time';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
+import { NoticeBar, NoticeDate, NoticeTitle } from './noticeItem.style';
 
 type Props = {
-    item: NoticeType;
+    item: INotice;
 };
 
-const IndexNoticeItem = observer((props: Props) => {
-    const { language } = store;
-    const lang = language.lang;
+const IndexNoticeItem = (props: Props) => {
+    const lang = useAtomValue(atomLanguage);
     return (
         <NoticeBar>
             <NoticeTitle>
-                {lang === "ko"
+                {lang === 'ko'
                     ? props.item.titleK
-                    : lang === "jp"
-                    ? props.item.titleJ
-                    : props.item.titleE}
+                    : lang === 'jp'
+                        ? props.item.titleJ
+                        : props.item.titleE}
             </NoticeTitle>
             <NoticeDate>{unixTimeConverter(props.item.time)}</NoticeDate>
         </NoticeBar>
     );
-});
+};
 
 export default IndexNoticeItem;

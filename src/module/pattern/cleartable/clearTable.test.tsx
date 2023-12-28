@@ -3,9 +3,9 @@ import '@testing-library/jest-dom'
 import React from "react"
 import { MemoryRouter } from "react-router-dom"
 import ClearTable from "./clearTable"
-import ClearTableData from "./clearTableData"
+import {IClearTable} from "@/data/IClearTable"
 
-const mockClearTableData: ClearTableData[] = [{
+const mockClearTableData: IClearTable[] = [{
     level:'1.0',
     exc: 2,
     ss: 1,

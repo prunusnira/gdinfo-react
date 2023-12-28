@@ -12,11 +12,7 @@ const ToggleSwitch = ({ id, isLoading, actualValue, callback }: Props) => {
     const [isActive, setActive] = useState<boolean>(actualValue);
 
     useEffect(() => {
-        if (typeof actualValue === "boolean") {
-            setActive(actualValue);
-        } else if (typeof actualValue === "string") {
-            actualValue === "true" ? setActive(true) : setActive(false);
-        }
+        setActive(actualValue);
     }, [actualValue]);
 
     const onChange = (e: ChangeEvent<HTMLInputElement>) => {

@@ -1,42 +1,42 @@
-import { sha256 } from "js-sha256";
-import { useState } from "react";
-import { GoogleLoginResponse } from "react-google-login";
-import CommonData from "@/module/common/commonData";
-import LoginInfo from "../loginInfo";
-
-type LoginReturn = [boolean, string, (r: GoogleLoginResponse) => void, (e: any) => void];
+import { ILoginInfo } from '@/data/ILoginInfo';
+import CommonData from '@/module/common/commonData';
+import { sha256 } from 'js-sha256';
+import { useState } from 'react';
+import { GoogleLoginResponse, GoogleLoginResponseOffline } from 'react-google-login';
 
 const useGoogleLogin = (
-    updateUserInfo: (info: LoginInfo, isSignIn: boolean, isNewUser: boolean) => void
-): LoginReturn => {
+    updateUserInfo: (info: ILoginInfo, isSignIn: boolean, isNewUser: boolean) => void,
+) => {
     const [isLoginError, setLoginError] = useState(false);
-    const [loginErrorMsg, setLoginErrorMsg] = useState("");
+    const [loginErrorMsg, setLoginErrorMsg] = useState('');
 
-    const responseGoogle = (res: GoogleLoginResponse) => {
-        const token = res.getBasicProfile().getEmail().split("@")[0];
+    const responseGoogle = (res: GoogleLoginResponse | GoogleLoginResponseOffline) => {
+        const token = (res as GoogleLoginResponse).getBasicProfile().getEmail().split('@')[0];
         const hash = sha256(token);
 
         const xhr = new XMLHttpRequest();
-        xhr.open("POST", `${CommonData.dataUrl}loginseq`);
-        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-        xhr.onload = function () {
+        xhr.open('POST', `${CommonData.dataUrl}loginseq`);
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr.onload = function() {
             const rtn = xhr.responseText;
             const json = JSON.parse(rtn);
             const loginData = JSON.parse(json.loginData);
 
             switch (loginData.stat) {
-                case "login":
+                case 'login':
                     updateUserInfo(loginData, true, false);
-                    window.location.href = "/index";
+                    window.location.href = '/index';
                     break;
-                case "newuser":
+                case 'newuser':
                     updateUserInfo(loginData, false, true);
                     break;
-                case "prohibit":
+                case 'prohibit':
+                    break;
+                default:
                     break;
             }
         };
-        xhr.send("token=" + hash);
+        xhr.send(`token=${hash}`);
     };
 
     const responseFail = (e: any) => {
@@ -45,7 +45,7 @@ const useGoogleLogin = (
         console.log(e);
     };
 
-    return [isLoginError, loginErrorMsg, responseGoogle, responseFail];
+    return {isLoginError, loginErrorMsg, responseGoogle, responseFail};
 };
 
 export default useGoogleLogin;

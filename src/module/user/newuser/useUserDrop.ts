@@ -1,14 +1,14 @@
-import { apiDropUser } from "@/api/updateUserData"
+import { apiDropUser } from '@/api/updateUserData';
 
 const useUserDrop = (setMoveToIndex: (b: boolean) => void) => {
     const dropUser = () => {
         apiDropUser()
-        .then((data) => {
-            setMoveToIndex(true)
-        })
-    }
+            .then(() => {
+                setMoveToIndex(true);
+            });
+    };
 
-    return dropUser
-}
+    return dropUser;
+};
 
-export default useUserDrop
+export default useUserDrop;

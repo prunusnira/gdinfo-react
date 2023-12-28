@@ -1,16 +1,11 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { observer } from "mobx-react";
-import PlayCountPresenter from "./playcountPresenter";
-import useUserData from "@/module/common/useUserData";
-import usePlayCount from "./usePlayCount";
+import useUserData from '@/module/common/useUserData';
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import PlayCountPresenter from './playcountPresenter';
+import usePlayCount from './usePlayCount';
 
-interface MatchProps {
-    id: string;
-}
-
-const PlayCount = observer(() => {
-    const { id } = useParams<MatchProps>();
+const PlayCount = () => {
+    const { id } = useParams();
     const { userName, titleTower } = useUserData(id);
     const { plist, glist, dlist, mlist } = usePlayCount(id);
 
@@ -25,6 +20,6 @@ const PlayCount = observer(() => {
             mlist={mlist}
         />
     );
-});
+};
 
 export default PlayCount;

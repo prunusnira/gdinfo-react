@@ -1,26 +1,26 @@
-import React from "react";
-import PlayCntRankItem from "./playcntitem";
-import Pager from "@/module/common/pager";
-import store from "@/mobx/store";
-import PlaycntRankData from "./playcntrankData";
-
-import txtCntRankKo from "@/lang/skill/playcntrank/txtCountRank-ko";
-import txtCntRankJp from "@/lang/skill/playcntrank/txtCountRank-jp";
-import txtCntRankEn from "@/lang/skill/playcntrank/txtCountRank-en";
-import { PCRDesc, PCRListWrapper, PCRPagerWrapper } from "./playcntrankPresenter.style";
-import CommonLayout from "@/component/layout/commonLayout";
-import ContentLayout from "@/component/content/standardContent";
+import ContentLayout from '@/component/content/standardContent';
+import CommonLayout from '@/component/layout/commonLayout';
+import { IPlayCountRank } from '@/data/IPlayCountRank';
+import { atomLanguage } from '@/jotai/language';
+import txtCntRankEn from '@/lang/skill/playcntrank/txtCountRank-en';
+import txtCntRankJp from '@/lang/skill/playcntrank/txtCountRank-jp';
+import txtCntRankKo from '@/lang/skill/playcntrank/txtCountRank-ko';
+import Pager from '@/module/common/pager';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
+import PlayCntRankItem from './playcntitem';
+import { PCRDesc, PCRListWrapper, PCRPagerWrapper } from './playcntrankPresenter.style';
 
 interface Props {
-    list: Array<PlaycntRankData>;
-    page: string;
+    list: Array<IPlayCountRank>;
+    page?: string;
     allPage: number;
 }
 
 const PlaycountRankingPresenter = (props: Props) => {
-    const lang = store.language.lang;
+    const lang = useAtomValue(atomLanguage);
 
-    const txtCntRank = lang === "ko" ? txtCntRankKo : lang === "jp" ? txtCntRankJp : txtCntRankEn;
+    const txtCntRank = lang === 'ko' ? txtCntRankKo : lang === 'jp' ? txtCntRankJp : txtCntRankEn;
 
     return (
         <CommonLayout>
@@ -35,14 +35,16 @@ const PlaycountRankingPresenter = (props: Props) => {
                 <PCRListWrapper>
                     <PlayCntRankItem list={props.list} />
                 </PCRListWrapper>
-                <PCRPagerWrapper>
-                    <Pager
-                        cpage={parseInt(props.page)}
-                        allpage={props.allPage}
-                        baseUrl="/cntrank/"
-                        afterUrl=""
-                    />
-                </PCRPagerWrapper>
+                {props.page && (
+                    <PCRPagerWrapper>
+                        <Pager
+                            cpage={parseInt(props.page, 10)}
+                            allpage={props.allPage}
+                            baseUrl="/cntrank/"
+                            afterUrl=""
+                        />
+                    </PCRPagerWrapper>
+                )}
             </ContentLayout>
         </CommonLayout>
     );

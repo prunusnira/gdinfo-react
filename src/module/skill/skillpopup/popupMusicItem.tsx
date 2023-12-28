@@ -1,10 +1,11 @@
-import React from "react";
-import MusicDataType from "../skill/musicData";
-import store from "@/mobx/store";
-
-import txtMusicKo from "@/lang/pattern/music/txtmusic-ko";
-import txtMusicJp from "@/lang/pattern/music/txtmusic-jp";
-import txtMusicEn from "@/lang/pattern/music/txtmusic-en";
+import { IMusic } from '@/data/IMusic';
+import { atomLanguage } from '@/jotai/language';
+import txtMusicEn from '@/lang/pattern/music/txtmusic-en';
+import txtMusicJp from '@/lang/pattern/music/txtmusic-jp';
+import txtMusicKo from '@/lang/pattern/music/txtmusic-ko';
+import { ThemedLink } from '@/styled/styledCommon';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
 import {
     ItemCont,
     ItemDiff,
@@ -14,20 +15,18 @@ import {
     ItemTitle,
     ItemWrapper,
     MusicItemWrapper,
-} from "./popupMusicItem.style";
-import { observer } from "mobx-react";
-import { ThemedLink } from "@/styled/styledCommon";
+} from './popupMusicItem.style';
 
 interface Props {
-    list: Array<MusicDataType>;
+    list: Array<IMusic>;
     type: number;
 }
 
-const PopupMusicItem = observer((props: Props) => {
-    const lang = store.language.lang;
+const PopupMusicItem = (props: Props) => {
+    const lang = useAtomValue(atomLanguage);
 
     const txtMusic =
-        lang === "ko" ? txtMusicKo : lang === "jp" ? txtMusicJp : txtMusicEn;
+        lang === 'ko' ? txtMusicKo : lang === 'jp' ? txtMusicJp : txtMusicEn;
 
     return (
         <>
@@ -40,7 +39,7 @@ const PopupMusicItem = observer((props: Props) => {
                     (props.type === 2 &&
                         (i === 8 || i === 9 || i === 10 || i === 11))
                 ) {
-                    if (music.lv !== "0.00") {
+                    if (music.lv !== '0.00') {
                         return (
                             <MusicItemWrapper>
                                 <ItemDiffWrapper>
@@ -96,7 +95,7 @@ const PopupMusicItem = observer((props: Props) => {
                                         </ItemCont>
                                     </ItemWrapper>
                                     <ItemWrapper>
-                                        {music.clearmeter !== "" && (
+                                        {music.clearmeter !== '' && (
                                             <>
                                                 <ItemTitle>
                                                     Clear Meter
@@ -114,20 +113,20 @@ const PopupMusicItem = observer((props: Props) => {
                                             {txtMusic.oldrate}
                                         </ItemTitle>
                                         HV: {music.ratehv}% / NX: {music.ratenx}
-                                        % / EX: {music.rateex}% / MX:{" "}
+                                        % / EX: {music.rateex}% / MX:{' '}
                                         {music.ratemx}% / TBRE: {music.ratetbre}
                                         % / TB: {music.ratetb}%
                                     </ItemWrapper>
                                 </ItemOuter>
                             </MusicItemWrapper>
                         );
-                    } else {
-                        return <></>;
                     }
+                    return <></>;
                 }
+                return <></>;
             })}
         </>
     );
-});
+};
 
 export default PopupMusicItem;
