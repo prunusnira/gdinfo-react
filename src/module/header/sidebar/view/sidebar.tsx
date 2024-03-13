@@ -56,7 +56,7 @@ const SideBar = ({ isMenuOpen }: Props) => {
                     <LevelDiff>
                         <LvDiffDiv
                             dark={dark}
-                        >{`>> FUZZ-UP vs HIGH-VOLTAGE <<`}</LvDiffDiv>
+                        >{`>> GALAXY WAVE vs FUZZ-UP <<`}</LvDiffDiv>
                         <LvDiffDiv>
                             <Anchor dark={dark} href={`/lvdiff/gf`}>
                                 GuitarFreaks

@@ -29,10 +29,10 @@ const LVDiff = () => {
                                 <DiffRow>
                                     <DiffImg src={getPatternImg600(x.ptcode)} />
                                     <DiffCell>
-                                        FUZZ-UP {(x.lv / 100).toFixed(2)}
+                                        GALAXY WAVE {(x.lv / 100).toFixed(2)}
                                     </DiffCell>
                                     <DiffCell>
-                                        HIGH-VOL {(x.lvold / 100).toFixed(2)}
+                                        FUZZ-UP {(x.lvold / 100).toFixed(2)}
                                     </DiffCell>
                                     <DiffCell
                                         color={diffColor(
