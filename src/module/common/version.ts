@@ -29,6 +29,7 @@ export const GDVer = [
     { num: 28, sv: "GD NX", full: "GITADORA NEXTAGE" },
     { num: 29, sv: "GD HV", full: "GITADORA HIGH-VOLTAGE" },
     { num: 30, sv: "GD FU", full: "GITADORA FUZZ-UP" },
+    { num: 31, sv: "GD GW", full: "GITADORA GALAXY WAVE" },
 ];
 
 export const skillPageVersion = (ptype: number) => {
