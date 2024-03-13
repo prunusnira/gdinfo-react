@@ -16,7 +16,7 @@ const LVDiff = () => {
     return (
         <CommonLayout>
             <ContentLayout
-                title={`Level Difference (FUZZUP - HIGHVOLTAGE) - ${type?.toUpperCase()}`}
+                title={`Level Difference (GALAXY WAVE - FUZZ-UP) - ${type?.toUpperCase()}`}
             >
                 <DiffBox>
                     {list.map((x) => (

@@ -68,6 +68,12 @@ const PatternRankPresenter = (props: Props) => {
                         <PRRow>
                             <ThemedLink
                                 dark={dark}
+                                to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=31`}
+                            >
+                                <Button className="rank31">GW</Button>
+                            </ThemedLink>
+                            <ThemedLink
+                                dark={dark}
                                 to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=30`}
                             >
                                 <Button className="rank30">FU</Button>

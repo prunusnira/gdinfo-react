@@ -6,6 +6,7 @@ export interface IMusicFetch {
     patterncode: number;
     rank: string;
     rate: number;
+    ratefu: number;
     ratehv: number;
     ratenx: number;
     rateex: number;

@@ -6,9 +6,7 @@ import {INotice} from "@/data/INotice";
 const useNotice = (page: number) => {
     const [list, setList] = useState(Array<INotice>());
 
-    const getNoticeData = async () => {
-        return getNotice(page);
-    }
+    const getNoticeData = async () => getNotice(page);
 
     const {data, isLoading, isError} = useQuery({
         queryKey: ['notice'],

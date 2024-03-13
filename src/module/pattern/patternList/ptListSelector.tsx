@@ -79,6 +79,8 @@ const PTListSelector = (props: Props) => {
                         <option value="27">GD EX</option>
                         <option value="28">GD NX</option>
                         <option value="29">GD HV</option>
+                        <option value="30">GD FU</option>
+                        <option value="31">GD GW</option>
                     </select>
                 </PTListRow>
             </PTListCol>

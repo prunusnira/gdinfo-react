@@ -12,6 +12,7 @@ export interface IMusic {
     rank: string;
     fc: string;
     clearmeter: string;
+    ratefu: string;
     ratehv: string;
     ratenx: string;
     rateex: string;

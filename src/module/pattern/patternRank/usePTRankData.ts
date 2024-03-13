@@ -126,6 +126,12 @@ const usePTRankData = ({ mid, ptcode, page, urlparams, isLoaded, setLoaded }: Pr
                                 userskill = user.gskillnx;
                                 break;
                             case '29':
+                                userskill = user.gskillhv;
+                                break;
+                            case '30':
+                                userskill = user.gskillfu;
+                                break;
+                            case '31':
                             default:
                                 userskill = user.gskill;
                                 break;
@@ -148,6 +154,12 @@ const usePTRankData = ({ mid, ptcode, page, urlparams, isLoaded, setLoaded }: Pr
                                 userskill = user.dskillnx;
                                 break;
                             case '29':
+                                userskill = user.dskillhv;
+                                break;
+                            case '30':
+                                userskill = user.dskillfu;
+                                break;
+                            case '31':
                             default:
                                 userskill = user.dskill;
                                 break;

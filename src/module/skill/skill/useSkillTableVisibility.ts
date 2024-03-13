@@ -17,6 +17,7 @@ const useSkillTableVisibility = (ptype?: string) => {
                 case 9:
                 case 11:
                 case 13:
+                case 15:
                     setVisibleLarge(true);
                     setVisibleLeft(false);
                     setVisibleRight(false);
@@ -28,6 +29,7 @@ const useSkillTableVisibility = (ptype?: string) => {
                 case 10:
                 case 12:
                 case 14:
+                case 16:
                 case 1000:
                     setVisibleLarge(false);
                     setVisibleLeft(true);

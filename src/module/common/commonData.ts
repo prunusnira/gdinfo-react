@@ -10,7 +10,7 @@ export default class CommonData {
     static nestUrl = CommonData.TESTURLNEST;
     //static url = CommonData.TESTURL;
 
-    static currentVersion = 30;
+    static currentVersion = 31;
 
     static googleLoginClientId =
         '480545727884-oup0gshcscesa4fq3s8rhoh4tpeopcha.apps.googleusercontent.com';

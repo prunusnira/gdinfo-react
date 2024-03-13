@@ -109,7 +109,7 @@ const ProfilePresenter = (props: Props) => {
                         <UISkill>
                             <UISkillTitle>GF SKILL</UISkillTitle>
                             <UISkillBox>
-                                <UISkillBoxVer>FU</UISkillBoxVer>
+                                <UISkillBoxVer>GW</UISkillBoxVer>
                                 <UISkillBoxVal>
                                     <SingleSkillColorChanger
                                         link={`/skill/2/${props.id}/gf/1/skilldesc`}
@@ -122,7 +122,7 @@ const ProfilePresenter = (props: Props) => {
                         <UISkill>
                             <UISkillTitle>DM SKILL</UISkillTitle>
                             <UISkillBox>
-                                <UISkillBoxVer>FU</UISkillBoxVer>
+                                <UISkillBoxVer>GW</UISkillBoxVer>
                                 <UISkillBoxVal>
                                     <SingleSkillColorChanger
                                         link={`/skill/2/${props.id}/dm/1/skilldesc`}
@@ -135,6 +135,16 @@ const ProfilePresenter = (props: Props) => {
 
                     <UISkillWrapper show={oldSkill}>
                         <UISkill>
+                            <UISkillBox>
+                                <UISkillBoxVer>FU</UISkillBoxVer>
+                                <UISkillBoxVal>
+                                    <SingleSkillColorChanger
+                                        link={`/skill/16/${props.id}/gf/1/skilldesc`}
+                                        skill={props.profileData.gskillfu}
+                                    />
+                                </UISkillBoxVal>
+                            </UISkillBox>
+
                             <UISkillBox>
                                 <UISkillBoxVer>HV</UISkillBoxVer>
                                 <UISkillBoxVal>
@@ -196,6 +206,16 @@ const ProfilePresenter = (props: Props) => {
                             </UISkillBox>
                         </UISkill>
                         <UISkill>
+                            <UISkillBox>
+                                <UISkillBoxVer>FU</UISkillBoxVer>
+                                <UISkillBoxVal>
+                                    <SingleSkillColorChanger
+                                        link={`/skill/16/${props.id}/dm/1/skilldesc`}
+                                        skill={props.profileData.dskillfu}
+                                    />
+                                </UISkillBoxVal>
+                            </UISkillBox>
+
                             <UISkillBox>
                                 <UISkillBoxVer>HV</UISkillBoxVer>
                                 <UISkillBoxVal>

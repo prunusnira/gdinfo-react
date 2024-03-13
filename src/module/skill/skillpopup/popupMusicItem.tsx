@@ -112,10 +112,10 @@ const PopupMusicItem = (props: Props) => {
                                         <ItemTitle>
                                             {txtMusic.oldrate}
                                         </ItemTitle>
-                                        HV: {music.ratehv}% / NX: {music.ratenx}
-                                        % / EX: {music.rateex}% / MX:{' '}
-                                        {music.ratemx}% / TBRE: {music.ratetbre}
-                                        % / TB: {music.ratetb}%
+                                        FU: {music.ratefu}% / HV: {music.ratehv}% /{' '}
+                                        NX: {music.ratenx}% / EX: {music.rateex}% /{' '}
+                                        MX: {music.ratemx}% / TBRE: {music.ratetbre}% /{' '}
+                                        TB: {music.ratetb}%
                                     </ItemWrapper>
                                 </ItemOuter>
                             </MusicItemWrapper>

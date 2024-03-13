@@ -276,6 +276,9 @@ const SkillPresenter = (props: Props) => {
                                                         <option value="30">
                                                             GD FU
                                                         </option>
+                                                        <option value="31">
+                                                            GD FU
+                                                        </option>
                                                     </select>
                                                 </ItemRow>
                                             </ItemCol>

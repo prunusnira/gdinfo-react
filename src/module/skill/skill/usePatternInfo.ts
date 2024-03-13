@@ -31,6 +31,7 @@ const usePatternInfo = ({ mid, userid }: Props) => {
                         rank: '',
                         fc: '',
                         clearmeter: '',
+                        ratefu: '',
                         ratehv: '',
                         ratenx: '',
                         rateex: '',
@@ -187,6 +188,8 @@ const usePatternInfo = ({ mid, userid }: Props) => {
                                     '<div style=\'width:0.8vw; max-width:9px; background-color:#848484; float:left\'>&nbsp;</div>';
                         }
 
+                        obj.ratefu = (skill.ratefu / 100).toFixed(2);
+                        obj.ratehv = (skill.ratehv / 100).toFixed(2);
                         obj.ratenx = (skill.ratenx / 100).toFixed(2);
                         obj.rateex = (skill.rateex / 100).toFixed(2);
                         obj.ratemx = (skill.ratemx / 100).toFixed(2);
@@ -205,6 +208,8 @@ const usePatternInfo = ({ mid, userid }: Props) => {
                         obj.rank = `${process.env.PUBLIC_URL}/general-img/rank/rank_e.png`;
                         obj.fc = '';
                         obj.clearmeter = '';
+                        obj.ratefu = '0.00';
+                        obj.ratehv = '0.00';
                         obj.ratenx = '0.00';
                         obj.rateex = '0.00';
                         obj.ratemx = '0.00';

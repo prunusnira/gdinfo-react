@@ -6,6 +6,8 @@ export interface IProfile {
     token: string;
     gskill: number;
     dskill: number;
+    gskillfu: number;
+    dskillfu: number;
     gskillhv: number;
     dskillhv: number;
     gskillnx: number;

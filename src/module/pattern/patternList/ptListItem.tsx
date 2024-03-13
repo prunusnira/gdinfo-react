@@ -54,6 +54,8 @@ const PTListItem = (props: Props) => {
                                                 return <b>(removed in HV)</b>;
                                             case 7:
                                                 return <b>(removed in FU)</b>;
+                                            case 8:
+                                                return <b>(removed in GW)</b>;
                                             default:
                                                 return <></>;
                                         }

@@ -75,6 +75,10 @@ export const getRate = (ptype: number, cur: IMusicFetch) => {
         case 14:
             rate = cur.ratehv;
             break;
+        case 15:
+        case 16:
+            rate = cur.ratefu;
+            break;
         case 0:
         case 1:
         case 2:
@@ -150,6 +154,10 @@ export const generateSkillItem = (
         case 13:
         case 14:
             rate = data.ratehv;
+            break;
+        case 15:
+        case 16:
+            rate = data.ratefu;
             break;
         default:
             break;

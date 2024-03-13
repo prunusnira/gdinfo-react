@@ -13,6 +13,8 @@ const mockProfData: IProfile = {
     token: "",
     gskill: 0,
     dskill: 0,
+    gskillfu: 0,
+    dskillfu: 0,
     gskillhv: 0,
     dskillhv: 0,
     gskillnx: 0,
