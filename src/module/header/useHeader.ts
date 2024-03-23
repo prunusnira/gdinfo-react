@@ -1,13 +1,22 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 const useHeader = () => {
     const [isMenuOpen, setMenuOpen] = useState(false);
     const [isTransparent, setTransparent] = useState(true);
 
+    const positionCheck = () => {
+        if(window.scrollY > 100) {
+            setTransparent(false)
+        }
+        else {
+            setTransparent(true);
+        }
+    };
+
     useEffect(() => {
-        window.addEventListener("scroll", positionCheck);
+        window.addEventListener('scroll', positionCheck);
         return () => {
-            window.removeEventListener("scroll", positionCheck);
+            window.removeEventListener('scroll', positionCheck);
         };
     }, []);
 
@@ -17,10 +26,6 @@ const useHeader = () => {
 
     const closeMenu = () => {
         setMenuOpen(false);
-    };
-
-    const positionCheck = () => {
-        window.scrollY > 100 ? setTransparent(false) : setTransparent(true);
     };
 
     return { isMenuOpen, toggleMenu, closeMenu, isTransparent };

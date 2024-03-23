@@ -1,22 +1,25 @@
 import { getNotice } from "@/api/getNotice";
+import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from "react";
-import NoticeType from "./noticeType";
+import {INotice} from "@/data/etc/INotice";
 
 const useNotice = (page: number) => {
-    const [list, setList] = useState(Array<NoticeType>());
+    const [list, setList] = useState(Array<INotice>());
+
+    const getNoticeData = async () => getNotice(page);
+
+    const {data, isLoading, isError} = useQuery({
+        queryKey: ['notice'],
+        queryFn: getNoticeData,
+    })
 
     useEffect(() => {
-        notice(page);
-    }, []);
+        if(data) {
+            setList(JSON.parse(data.notice) as Array<INotice>);
+        }
+    }, [data]);
 
-    const notice = (page: number) => {
-        getNotice(page).then((json) => {
-            const notice = JSON.parse(json.notice) as Array<NoticeType>;
-            setList(notice);
-        });
-    };
-
-    return { list };
+    return { list, isLoading, isError };
 };
 
 export default useNotice;

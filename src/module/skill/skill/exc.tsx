@@ -1,15 +1,17 @@
+import CommonLayout from '@/component/layout/commonLayout';
 import React from 'react'
-import {Redirect, useParams} from 'react-router-dom'
-
-interface MatchProps {
-    gtype: string
-}
+import {Navigate, useParams} from 'react-router-dom'
 
 const EXC = () => {
-    const {gtype} = useParams<MatchProps>()
-    return (
-        <Redirect to={"/skill/1000/1/"+gtype+"/1/1"} />
-    )
+    const {gtype} = useParams();
+    if(gtype) {
+        return (
+            <CommonLayout>
+                <Navigate replace to={`/skill/1000/1/${gtype}/1/1`}/>
+            </CommonLayout>
+        )
+    }
+    return <>Invalid type value</>
 }
 
 export default EXC;

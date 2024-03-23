@@ -1,47 +1,43 @@
-import { useState } from "react"
-import { apiForceCountUpdate, apiSubmitDataOpen } from "@/api/updateUserData"
-import store from "@/mobx/store"
+import { apiForceCountUpdate, apiSubmitDataOpen } from '@/api/updateUserData';
+import { atomLoginUser } from '@/jotai/loginUser';
+import { useAtomValue } from 'jotai/index';
+import { useState } from 'react';
 
-type InfoOpenType = [
-    boolean, () => void, () => void,
-    (id: string, open: string) => void, () => void,
-    (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void,
-]
-
-const useInfoOpen = (setOpenUserInfo: (s: string) => void): InfoOpenType => {
-    const [isInfoOpen, setInfoOpen] = useState(false)
-
-    const {loginUser} = store
+const useInfoOpen = (setOpenUserInfo: (s: string) => void) => {
+    const [isInfoOpen, setInfoOpen] = useState(false);
+    const loginUser = useAtomValue(atomLoginUser);
 
     const setInfoDlgOpen = () => {
-        setInfoOpen(true)
-	}
-	
-	const setInfoDlgClose = () => {
-        setInfoOpen(false)
-	}
-	
-	const submitOpen = (id: string, open: string) => {
+        setInfoOpen(true);
+    };
+
+    const setInfoDlgClose = () => {
+        setInfoOpen(false);
+    };
+
+    const submitOpen = (id: string, open: string) => {
         apiSubmitDataOpen(id, open)
-        .then((res) => {
-            setInfoDlgClose();
-        });
-    }
+            .then(() => {
+                setInfoDlgClose();
+            });
+    };
 
     const updateOpenValue = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-        setOpenUserInfo(e.currentTarget.value)
-    }
-    
+        setOpenUserInfo(e.currentTarget.value);
+    };
+
     const forceCountUpdate = () => {
-		apiForceCountUpdate(loginUser.user.id)
-        .then((data) => {
-            window.location.reload();
-        });
-    }
+        if (loginUser) {
+            apiForceCountUpdate(loginUser.id)
+                .then(() => {
+                    window.location.reload();
+                });
+        }
+    };
 
-    return [
-        isInfoOpen, setInfoDlgOpen, setInfoDlgClose, submitOpen, forceCountUpdate, updateOpenValue
-    ]
-}
+    return {
+        isInfoOpen, setInfoDlgOpen, setInfoDlgClose, submitOpen, forceCountUpdate, updateOpenValue,
+    };
+};
 
-export default useInfoOpen
+export default useInfoOpen;

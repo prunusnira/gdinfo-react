@@ -1,11 +1,11 @@
 import React from "react"
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap"
 import { Button, ItemRow } from "@/styled/styledCommon"
-import store from "@/mobx/store"
-
 import txtLoginKo from '@/lang/user/login/txtLogin-ko'
 import txtLoginJp from '@/lang/user/login/txtLogin-jp'
 import txtLoginEn from '@/lang/user/login/txtLogin-en'
+import {useAtomValue} from "jotai";
+import {atomLanguage} from "@/jotai/language";
 
 interface Props {
     errorMsg: string,
@@ -13,7 +13,7 @@ interface Props {
 }
 
 const LoginErrorModal = (props: Props) => {
-	const lang = store.language.lang
+    const lang = useAtomValue(atomLanguage)
     const txtLogin =
         lang === 'ko' ? txtLoginKo :
             lang === 'jp' ? txtLoginJp : txtLoginEn

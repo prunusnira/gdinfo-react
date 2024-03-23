@@ -1,38 +1,25 @@
-import ContentLayout from "@/component/content/standardContent";
-import CommonLayout from "@/component/layout/commonLayout";
-import React from "react";
-import {
-    DiffBox,
-    DiffCell,
-    DiffImg,
-    DiffJacket,
-    DiffRow,
-    DiffRowWrap,
-    DiffTitle,
-    DiffWrapper,
-} from "./lvdiff.style";
-import useLvDiff from "./useLvDiff";
-import { useParams } from "react-router-dom";
-import CommonData from "@/module/common/commonData";
-import { getPatternImg600 } from "@/module/common/pattern";
-
-interface MatchProps {
-    type: string;
-}
+import ContentLayout from '@/component/content/standardContent';
+import CommonLayout from '@/component/layout/commonLayout';
+import Loading from '@/component/loading/loading';
+import CommonData from '@/module/common/commonData';
+import { getPatternImg600 } from '@/module/common/pattern';
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { DiffBox, DiffCell, DiffImg, DiffJacket, DiffRow, DiffRowWrap, DiffTitle, DiffWrapper } from './lvdiff.style';
+import useLvDiff from './useLvDiff';
 
 const LVDiff = () => {
-    const { type } = useParams<MatchProps>();
-    const { list } = useLvDiff(type);
+    const { type } = useParams<{type: string}>();
+    const { list, isLoading } = useLvDiff(type);
 
-    const diffColor = (val: number) => {
-        return val > 0 ? "skyblue" : "pink";
-    };
+    const diffColor = (val: number) => val > 0 ? 'skyblue' : 'pink';
 
     return (
         <CommonLayout>
             <ContentLayout
-                title={`Level Difference (FUZZUP - HIGHVOLTAGE) - ${type.toUpperCase()}`}
+                title={`Level Difference (GALAXY WAVE - FUZZ-UP) - ${type?.toUpperCase()}`}
             >
+                {isLoading ? <Loading /> : <></>}
                 <DiffBox>
                     {list.map((x) => (
                         <DiffWrapper>
@@ -44,19 +31,19 @@ const LVDiff = () => {
                                 <DiffRow>
                                     <DiffImg src={getPatternImg600(x.ptcode)} />
                                     <DiffCell>
-                                        FUZZ-UP {(x.lv / 100).toFixed(2)}
+                                        GALAXY WAVE {(x.lv / 100).toFixed(2)}
                                     </DiffCell>
                                     <DiffCell>
-                                        HIGH-VOL {(x.lvold / 100).toFixed(2)}
+                                        FUZZ-UP {(x.lvold / 100).toFixed(2)}
                                     </DiffCell>
                                     <DiffCell
                                         color={diffColor(
-                                            x.lv / 100 - x.lvold / 100
+                                            x.lv / 100 - x.lvold / 100,
                                         )}
                                     >
-                                        DIFF{" "}
+                                        DIFF{' '}
                                         {(x.lv / 100 - x.lvold / 100).toFixed(
-                                            2
+                                            2,
                                         )}
                                     </DiffCell>
                                 </DiffRow>

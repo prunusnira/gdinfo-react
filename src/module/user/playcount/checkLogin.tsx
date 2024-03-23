@@ -1,16 +1,15 @@
-import { observer } from "mobx-react";
-import React from "react";
-import { Redirect } from "react-router-dom";
-import store from "@/mobx/store";
+import { atomLoginUser } from '@/jotai/loginUser';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
 
-const PlayCountLoginCheck = observer(() => {
-    const { loginUser, loginStatus } = store;
+const PlayCountLoginCheck = () => {
+    const loginUser = useAtomValue(atomLoginUser);
 
-    if (loginStatus.isSigned) {
-        return <Redirect to={`/mybest/${loginUser.user.id}`} />;
-    } else {
-        return <Redirect to={"/login"} />;
+    if (loginUser) {
+        return <Navigate replace to={`/mybest/${loginUser.id}`} />;
     }
-});
+    return <Navigate replace to={'/login'} />;
+};
 
 export default PlayCountLoginCheck;

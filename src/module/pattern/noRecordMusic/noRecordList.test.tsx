@@ -1,25 +1,25 @@
-import { render } from "@testing-library/react"
-import '@testing-library/jest-dom'
-import React from "react"
-import { MemoryRouter } from "react-router-dom"
-import NoRecordMusicList from "./noRecordList"
-import NPData from "./NPData"
+import { INoRecord } from '@/data/INoRecord';
+import { render } from '@testing-library/react';
+import '@testing-library/jest-dom';
+import React from 'react';
+import { MemoryRouter } from 'react-router-dom';
+import NoRecordMusicList from './noRecordList';
 
-const npdata: NPData = {
+const npdata: INoRecord = {
     imgsrc: '',
     link: '',
     name: 'NOPLAYMUSIC',
     pattern: '',
     lv: '',
     ver: '',
-}
+};
 
 jest.mock('./useNoRecordData', () => ({
     __esModule: true,
     default: () => ([
-        [npdata], 1
-    ])
-}))
+        [npdata], 1,
+    ]),
+}));
 
 jest.mock('react-router-dom', () => ({
     ...jest.requireActual('react-router-dom'),
@@ -27,16 +27,17 @@ jest.mock('react-router-dom', () => ({
         gtype: '',
         userid: '',
         vertype: '',
-        page: ''})
-}))
+        page: '',
+    }),
+}));
 
 describe('미플레이 패턴 테스트', () => {
     it('디스플레이 테스트', () => {
         const dom = render(
             <MemoryRouter>
                 <NoRecordMusicList />
-            </MemoryRouter>
-        )
-        expect(dom.getByText('NOPLAYMUSIC')).toBeInTheDocument()
-    })
-})
+            </MemoryRouter>,
+        );
+        expect(dom.getByText('NOPLAYMUSIC')).toBeInTheDocument();
+    });
+});

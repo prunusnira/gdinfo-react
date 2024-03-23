@@ -4,17 +4,17 @@ import useInfoOpen from "./useInfoOpen"
 describe('정보공개 모달 테스트', () => {
     it('모달 열기/닫기 테스트', () => {
         const {result} = renderHook(
-            () => useInfoOpen((s: string) => {})
+            () => useInfoOpen(() => {})
         )
 
-        expect(result.current[0]).toBe(false)
+        expect(result.current.isInfoOpen).toBe(false)
         act(() => {
-            result.current[1]()
+            result.current.setInfoDlgOpen()
         })
-        expect(result.current[0]).toBe(true)
+        expect(result.current.isInfoOpen).toBe(true)
         act(() => {
-            result.current[2]()
+            result.current.setInfoDlgClose()
         })
-        expect(result.current[0]).toBe(false)
+        expect(result.current.isInfoOpen).toBe(false)
     })
 })

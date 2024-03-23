@@ -1,21 +1,21 @@
-import React from "react";
-import { Redirect } from "react-router-dom";
-import store from "@/mobx/store";
-import { observer } from "mobx-react";
-import ResetPresenter from "./resetPresenter";
-import useDataReset from "./useDataReset";
+import { atomLoginUser } from '@/jotai/loginUser';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import ResetPresenter from './resetPresenter';
+import useDataReset from './useDataReset';
 
-const ProfileReset = observer(() => {
+const ProfileReset = () => {
     const [redirect, resetData] = useDataReset();
+    const loginUser = useAtomValue(atomLoginUser);
 
     if (redirect) {
-        return <Redirect to="/profile" />;
+        return <Navigate replace to="/profile" />;
     }
-    if (!store.loginStatus.isSigned) {
-        return <Redirect to="/login" />;
-    } else {
-        return <ResetPresenter resetData={resetData} />;
+    if (loginUser) {
+        return <Navigate replace to="/login" />;
     }
-});
+    return <ResetPresenter resetData={resetData} />;
+};
 
 export default ProfileReset;

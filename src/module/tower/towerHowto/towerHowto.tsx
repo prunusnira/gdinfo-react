@@ -1,15 +1,15 @@
 import React from "react";
-import store from "@/mobx/store";
 import { ItemRow } from "@/styled/styledCommon";
-
 import txtTowerKo from "@/lang/tower/txtTower-ko";
 import txtTowerJp from "@/lang/tower/txtTower-jp";
 import txtTowerEn from "@/lang/tower/txtTower-en";
 import CommonLayout from "@/component/layout/commonLayout";
 import ContentLayout from "@/component/content/standardContent";
+import {useAtomValue} from "jotai/index";
+import {atomLanguage} from "@/jotai/language";
 
 const TowerHowto = () => {
-    const lang = store.language.lang;
+    const lang = useAtomValue(atomLanguage)
 
     const txtTower = lang === "ko" ? txtTowerKo : lang === "jp" ? txtTowerJp : txtTowerEn;
 

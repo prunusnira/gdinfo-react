@@ -1,42 +1,38 @@
-import { useState } from "react"
-import loginUser from "@/mobx/loginUser"
-import TitleType from "./data/titleType"
-import store from "@/mobx/store"
-import { setTowerTitle } from "@/api/updateTowerData"
+import { setTowerTitle } from '@/api/updateTowerData';
+import { ITowerTitle } from '@/data/tower/ITowerTitle';
+import { atomLanguage } from '@/jotai/language';
+import { atomLoginUser } from '@/jotai/loginUser';
+import txtTowerEn from '@/lang/tower/txtTower-en';
+import txtTowerJp from '@/lang/tower/txtTower-jp';
+import txtTowerKo from '@/lang/tower/txtTower-ko';
+import { useAtomValue } from 'jotai/index';
+import { useState } from 'react';
 
-import txtTowerKo from '@/lang/tower/txtTower-ko'
-import txtTowerJp from '@/lang/tower/txtTower-jp'
-import txtTowerEn from '@/lang/tower/txtTower-en'
+const useTitleModal = () => {
+    const [showTitleChangeModal, setTitleChangeModal] = useState(false);
+    const [titleToBeChanged, setTitleToBeChanged] = useState<ITowerTitle>({ type: 0, title: '', display: '' });
 
-type TitleModalReturn = [
-    boolean, TitleType,
-    (b: boolean) => void,
-    (t: TitleType) => void,
-    (s: string) => void,
-]
-
-const useTitleModal = (): TitleModalReturn => {
-    const [showTitleChangeModal, setTitleChangeModal] = useState(false)
-	const [titleToBeChanged, setTitleToBeChanged] = useState<TitleType>({type: 0, title: '', display: ''})
-
-	const lang = store.language.lang
+    const lang = useAtomValue(atomLanguage);
+    const loginUser = useAtomValue(atomLoginUser);
 
     const txtTower =
         lang === 'ko' ? txtTowerKo :
-            lang === 'jp' ? txtTowerJp : txtTowerEn
+            lang === 'jp' ? txtTowerJp : txtTowerEn;
 
-	const changeTitle = (title: string) => {
-        setTowerTitle(loginUser.user.id, title)
-		.then(res => {
-			alert(txtTower.title.changed)
-			setTitleChangeModal(false)
-		})
-	}
+    const changeTitle = (title: string) => {
+        if (loginUser) {
+            setTowerTitle(loginUser.id, title)
+                .then(() => {
+                    alert(txtTower.title.changed);
+                    setTitleChangeModal(false);
+                });
+        }
+    };
 
-    return [
+    return {
         showTitleChangeModal, titleToBeChanged,
-        setTitleChangeModal, setTitleToBeChanged, changeTitle
-    ]
-}
+        setTitleChangeModal, setTitleToBeChanged, changeTitle,
+    };
+};
 
-export default useTitleModal
+export default useTitleModal;

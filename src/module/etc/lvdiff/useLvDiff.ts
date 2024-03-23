@@ -1,22 +1,37 @@
-import { LvDiffData } from "./lvdiff.data";
-import React, { useEffect, useState } from "react";
+import { ILvDiff } from "@/data/etc/ILvDiff";
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from "react";
 import { getLevelDiff } from "@/api/getLevelDiff";
 
-const useLvDiff = (type: string) => {
-    const [list, setList] = useState(Array<LvDiffData>());
+const useLvDiff = (type?: string) => {
+    const [list, setList] = useState(Array<ILvDiff>());
 
-    useEffect(() => {
-        lvDiff(type);
-    }, []);
-
-    const lvDiff = (type: string) => {
-        getLevelDiff(type).then((data) => {
-            const diffData = data.lvdiff as Array<LvDiffData>;
-            setList(diffData);
-        });
+    const lvDiff = (type?: string) => {
+        if(type) {
+            return getLevelDiff(type)
+        }
+        return undefined;
     };
 
-    return { list };
+    const {data, isLoading} = useQuery({
+        queryKey: ['etc', 'lvdiff'],
+        queryFn: () => lvDiff(type),
+    })
+
+    useEffect(() => {
+        if(type) {
+            lvDiff(type);
+        }
+    }, []);
+
+    useEffect(() => {
+        if(data) {
+            const diffData = data.lvdiff as Array<ILvDiff>;
+            setList(diffData);
+        }
+    }, [data]);
+
+    return { list, isLoading };
 };
 
 export default useLvDiff;

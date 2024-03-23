@@ -1,11 +1,12 @@
 import React from "react";
 import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import { Button } from "@/styled/styledCommon";
-import store from "@/mobx/store";
 
 import txtProfileKo from "@/lang/user/profile/txtProfile-ko";
 import txtProfileJp from "@/lang/user/profile/txtProfile-jp";
 import txtProfileEn from "@/lang/user/profile/txtProfile-en";
+import {useAtomValue} from "jotai";
+import {atomLanguage} from "@/jotai/language";
 
 interface Props {
     isCommentOpen: boolean;
@@ -16,7 +17,7 @@ interface Props {
 }
 
 const ModalComment = (props: Props) => {
-    const lang = store.language.lang;
+    const lang = useAtomValue(atomLanguage)
     const txtProfile = lang === "ko" ? txtProfileKo : lang === "jp" ? txtProfileJp : txtProfileEn;
 
     return (

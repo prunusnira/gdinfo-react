@@ -1,26 +1,21 @@
-import React from "react";
-import { useParams } from "react-router-dom";
-import { observer } from "mobx-react";
-import PTListPresenter from "./ptListPresenter";
-import usePTList from "./usePTList";
-import usePatternSelector from "./usePatternSelector";
-import PTListSelector from "./ptListSelector";
-import SkillPopup from "@/module/skill/skillpopup/skillPopup";
-import useSkillPopup from "@/module/skill/skill/useSkillPopup";
-import store from "@/mobx/store";
-import ContentLayout from "@/component/content/standardContent";
-import CommonLayout from "@/component/layout/commonLayout";
+import ContentLayout from '@/component/content/standardContent';
+import CommonLayout from '@/component/layout/commonLayout';
+import { atomLoginUser } from '@/jotai/loginUser';
+import useSkillPopup from '@/module/skill/skill/useSkillPopup';
+import SkillPopup from '@/module/skill/skillpopup/skillPopup';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import PTListPresenter from './ptListPresenter';
+import PTListSelector from './ptListSelector';
+import usePatternSelector from './usePatternSelector';
+import usePTList from './usePTList';
 
-interface MatchProps {
-    order: string;
-    ver: string;
-    page: string;
-}
-
-const PTList = observer(() => {
-    const { order, ver, page } = useParams<MatchProps>();
-    const [list, allPage] = usePTList(order, ver, page);
-    const [
+const PTList = () => {
+    const loginUser = useAtomValue(atomLoginUser);
+    const { order, ver, page } = useParams();
+    const { list, allPage } = usePTList({ order, ver, page });
+    const {
         switchHot,
         switchHotMethod,
         switchOther,
@@ -31,11 +26,11 @@ const PTList = observer(() => {
         switchOrderMethod,
         nextVer,
         nextOrder,
-    ] = usePatternSelector(order, ver, page);
+    } = usePatternSelector({ order, ver, page });
 
     const {
         popupOpen,
-        patternlist,
+        ptinfo,
         openPopup,
         closePopup,
 
@@ -43,7 +38,7 @@ const PTList = observer(() => {
         musicName,
         composer,
         version,
-    } = useSkillPopup(store.loginUser.user.id);
+    } = useSkillPopup(loginUser?.id);
 
     return (
         <CommonLayout>
@@ -70,7 +65,7 @@ const PTList = observer(() => {
                 />
                 <SkillPopup
                     popupOpen={popupOpen}
-                    pattern={patternlist}
+                    pattern={ptinfo}
                     closePopup={closePopup}
                     mid={mid}
                     musicName={musicName}
@@ -80,6 +75,6 @@ const PTList = observer(() => {
             </ContentLayout>
         </CommonLayout>
     );
-});
+};
 
 export default PTList;

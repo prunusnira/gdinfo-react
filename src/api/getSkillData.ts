@@ -1,3 +1,4 @@
+import { ISkillTable } from '@/data/skill/ISkillTable';
 import axios from "axios";
 import CommonData from "@/module/common/commonData";
 
@@ -12,6 +13,6 @@ export const getSkillRank = async (gtype: string, page: string) => {
 };
 
 export const getSkillTable = async (url: string) => {
-    const res = await axios.get(`${CommonData.dataUrl}${url}`);
+    const res = await axios.get<ISkillTable>(`${CommonData.dataUrl}${url}`);
     return res.data;
 };
