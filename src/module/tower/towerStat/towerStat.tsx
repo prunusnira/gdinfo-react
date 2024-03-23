@@ -19,7 +19,7 @@ const TowerStat = () => {
         changeTitle,
     } = useTitleModal();
 
-    if (loginUser) {
+    if (!loginUser) {
         return <Navigate replace to={'/login'} />;
     }
     return (
