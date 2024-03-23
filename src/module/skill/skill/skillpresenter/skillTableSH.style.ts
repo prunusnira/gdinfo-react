@@ -47,8 +47,8 @@ export const SkillJacketWrapper = styled.div`
     width: 45px;
     height: 45px;
     @media screen and (max-width: 499px) {
-        width: 40px;
-        height: 40px;
+        width: 30px;
+        height: 30px;
     }
 `;
 
@@ -83,13 +83,26 @@ export const SkillSubWrapper = styled.div`
 
 export const SkillPattern = styled.img`
     height: 20px;
+
+    @media (max-width: 499px) {
+        height: 10px;
+    }
 `;
 export const SkillRank = styled.img`
     width: 25px;
     height: 25px;
+
+    @media (max-width: 499px) {
+        width: 15px;
+        height: 15px;
+    }
 `;
 export const SkillClear = styled.img`
     height: 25px;
+    
+    @media (max-width: 499px) {
+        height: 15px;
+    }
 `;
 
 export const SkillTitle = styled.div<{ dark: boolean }>`
@@ -98,7 +111,15 @@ export const SkillTitle = styled.div<{ dark: boolean }>`
     text-overflow: ellipsis;
     white-space: nowrap;
     font-size: 14px;
-    ${(props) => (props.dark ? `color: ${AnchorColorDark};` : `color: ${AnchorColor};`)}
+    cursor: pointer;
+
+    @media (max-width: 499px) {
+        font-size: 10px;
+    }
+    
+    ${(props) =>
+            (props.dark ? `color: ${AnchorColorDark};` : `color: ${AnchorColor};`)}
+    }
 `;
 
 export const SkillValueWrapper = styled.div`

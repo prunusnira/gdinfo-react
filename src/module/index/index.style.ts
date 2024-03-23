@@ -11,7 +11,6 @@ export const IndexContainer = styled.section`
     width: 100%;
     -webkit-transform: width 0.75s ease-in;
     -moz-transform: width 0.75s ease-in;
-    -ms-transform: width 0.75s ease-in;
     -o-transform: width 0.75s ease-in;
     transform: width 0.75s ease-in;
 `;
@@ -54,6 +53,7 @@ export const IndexScriptWrapper = styled.section`
 export const IndexScript = styled.div`
     padding: 10px;
     word-break: break-all;
+    cursor: pointer;
 `;
 
 export const IndexImg = styled.img`

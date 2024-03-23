@@ -18,6 +18,9 @@ export const UIName = styled.div`
     font-size: 24px;
     text-align: center;
     padding: 10px 0;
+    display: flex;
+    justify-content: center;
+    gap: 16px;
 
     @media screen and (max-width: 499px) {
         font-size: 14px;

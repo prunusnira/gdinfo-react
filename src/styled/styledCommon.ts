@@ -1,14 +1,15 @@
-import { Link } from "react-router-dom";
-import styled from "styled-components";
-import { AnchorColor, AnchorColorDark, Black, ButtonBG, White } from "./color";
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { AnchorColor, AnchorColorDark, Black, ButtonBG } from './color';
 
 export const Anchor = styled.a<{ dark: boolean }>`
     ${(props) => (props.dark ? `color: ${AnchorColorDark};` : `color: ${AnchorColor};`)}
+    cursor: pointer;
 `;
 
 export const ThemedLink = styled(Link)<{ dark: boolean }>`
     ${(props) =>
-        props.dark ? `color: ${AnchorColorDark} !important;` : `color: ${AnchorColor} !important;`}
+            props.dark ? `color: ${AnchorColorDark} !important;` : `color: ${AnchorColor} !important;`}
 `;
 
 export const Button = styled.button`
@@ -25,12 +26,13 @@ export const Button = styled.button`
 type DefaultStyle<T, K> = T & { defaultProps: K };
 
 function defaultStyle<T, K>(component: T, defaultProps: K): DefaultStyle<T, K> {
-    (component as DefaultStyle<T, K>).defaultProps = defaultProps;
-    return component as DefaultStyle<T, K>;
+    const com = component;
+    (com as DefaultStyle<T, K>).defaultProps = defaultProps;
+    return com as DefaultStyle<T, K>;
 }
 
 // keepDirHor: 줄어들어도 여전히 horizontal을 유지
-const ItemRowBase = styled.div<{ keepDirHor: boolean; setVertical: boolean }>`
+const ItemRowBase = styled.div<{ keepDirHor?: boolean; setVertical?: boolean }>`
     width: 100%;
     display: flex;
     padding-top: 5px;
@@ -38,9 +40,9 @@ const ItemRowBase = styled.div<{ keepDirHor: boolean; setVertical: boolean }>`
     flex-wrap: wrap;
 
     ${(props) =>
-        props.keepDirHor
-            ? ``
-            : `@media screen and (max-width: 1199px) {
+            props.keepDirHor
+                    ? ``
+                    : `@media screen and (max-width: 1199px) {
             flex-direction: column;
         }`}
 
@@ -49,39 +51,33 @@ const ItemRowBase = styled.div<{ keepDirHor: boolean; setVertical: boolean }>`
 
 export const ItemRow = defaultStyle(ItemRowBase, { keepDirHor: false, setVertical: false });
 
+const widthSize = (size: number) => `width: ${size * 10}%;`;
+
 // 사이즈는 10 기준으로 계산함
-const ItemColBase = styled.div<{ size: number; isFlatUnderLg: boolean }>`
+const ItemColBase = styled.div<{ size?: number; isFlatUnderLg?: boolean }>`
     ${(props) =>
-        props.isFlatUnderLg
-            ? `
+            props.isFlatUnderLg
+                    ? `
         @media screen and (max-width: 1199px) {
             width: 100%;
         }
         @media screen and (min-width: 1200px) {
-            ${widthSize(props.size)}
+            ${widthSize(props.size || 10)}
         }
         `
-            : `${widthSize(props.size)}`}
+                    : `${widthSize(props.size || 10)}`}
 `;
 
 export const ItemCol = defaultStyle(ItemColBase, { size: 10, isFlatUnderLg: false });
 
-const widthSize = (size: number) => {
-    return `width: ${size * 10}%;`;
-};
-
-const IconBase = styled.img<{ sizeType: string }>`
-    ${(props) => `${iconSize(props.sizeType)}`}
-`;
-
 const iconSize = (sizeType: string) => {
-    let rtn = "";
+    let rtn;
     switch (sizeType) {
-        case "lg":
+        case 'lg':
             rtn = `width: 50px;
             height: 50px;`;
             break;
-        case "sm":
+        case 'sm':
         default:
             rtn = `width: 35px;
             height: 35px;`;
@@ -90,4 +86,8 @@ const iconSize = (sizeType: string) => {
     return rtn;
 };
 
-export const Icon = defaultStyle(IconBase, { sizeType: "sm" });
+const IconBase = styled.img<{ sizeType: string }>`
+    ${(props) => `${iconSize(props.sizeType)}`}
+`;
+
+export const Icon = defaultStyle(IconBase, { sizeType: 'sm' });

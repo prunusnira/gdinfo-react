@@ -1,19 +1,26 @@
-import { useEffect, useState } from "react"
-import { getRecentUser } from "@/api/getUserData"
-import RecentData from "./recentData"
+import { getRecentUser } from '@/api/getUserData';
+import { IRecent } from '@/data/etc/IRecent';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 
 const useRecent = () => {
-    const [recentUserList, setUserList] = useState(Array<RecentData>())
+    const [
+        recentUserList,
+        setUserList,
+    ] = useState(Array<IRecent>());
+
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ['recent'],
+        queryFn: getRecentUser,
+    });
 
     useEffect(() => {
-        getRecentUser()
-        .then((data) => {
-            const array = JSON.parse(data.recent)
-            setUserList(array)
-        });
-    }, [])
+        if (data) {
+            setUserList(JSON.parse(data.recent));
+        }
+    }, [data]);
 
-    return recentUserList
-}
+    return { recentUserList, isLoading, isError };
+};
 
-export default useRecent
+export default useRecent;

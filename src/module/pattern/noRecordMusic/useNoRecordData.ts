@@ -1,39 +1,54 @@
-import { useEffect, useState } from "react";
-import { getNoRecordData } from "@/api/getMusicData";
-import CommonData from "@/module/common/commonData";
-import { getPatternImg600 } from "@/module/common/pattern";
-import { GDVer } from "@/module/common/version";
-import NPData from "./NPData";
+import { getNoRecordData } from '@/api/getMusicData';
+import { INoRecord } from '@/data/INoRecord';
+import CommonData from '@/module/common/commonData';
+import { getPatternImg600 } from '@/module/common/pattern';
+import { GDVer } from '@/module/common/version';
+import { useQuery } from '@tanstack/react-query';
+import { useEffect, useState } from 'react';
 
-type NoRecordDataReturn = [NPData[], number];
+interface Props {
+    gtype?: string,
+    userid?: string,
+    vertype?: string,
+    page?: string
+}
 
-const useNoRecordData = (
-    gtype: string,
-    userid: string,
-    vertype: string,
-    page: string
-): NoRecordDataReturn => {
-    const [list, setList] = useState(Array<NPData>());
+const useNoRecordData = ({
+                             gtype,
+                             userid,
+                             vertype,
+                             page,
+                         }: Props) => {
+    const [list, setList] = useState(Array<INoRecord>());
     const [allPage, setAllPage] = useState(0);
 
-    useEffect(() => {
-        loadNPData();
-    }, [window.location.href]);
-
     const loadNPData = () => {
-        const nplist = new Array<NPData>();
+        if (gtype && userid && vertype && page) {
+            return getNoRecordData(
+                gtype, userid, vertype, page, window.location.search,
+            );
+        }
+        return undefined;
+    };
 
-        getNoRecordData(gtype, userid, vertype, page, window.location.search).then((json) => {
-            const music = JSON.parse(json.music);
+    const {data, isLoading} = useQuery({
+        queryKey: ['pattern', 'norecord', gtype, userid, vertype, page],
+        queryFn: loadNPData,
+    })
 
-            for (let i = 0; i < music.length; i++) {
-                const obj: NPData = {
-                    imgsrc: "",
-                    link: "",
-                    name: "",
-                    pattern: "",
-                    lv: "",
-                    ver: "",
+    useEffect(() => {
+        if(data) {
+            const nplist = new Array<INoRecord>();
+            const music = JSON.parse(data.music);
+
+            for (let i = 0; i < music.length; i += 1) {
+                const obj: INoRecord = {
+                    imgsrc: '',
+                    link: '',
+                    name: '',
+                    pattern: '',
+                    lv: '',
+                    ver: '',
                 };
                 const cur = music[i];
 
@@ -48,11 +63,11 @@ const useNoRecordData = (
             }
 
             setList(nplist);
-            setAllPage(json.pages);
-        });
-    };
+            setAllPage(data.pages);
+        }
+    }, [data]);
 
-    return [list, allPage];
+    return { list, allPage, isLoading };
 };
 
 export default useNoRecordData;

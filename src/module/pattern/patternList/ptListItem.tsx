@@ -1,53 +1,44 @@
-import React from "react";
-import PTListItemRow from "./ptListItemRow";
-import { PatternData } from "./patternData";
-import {
-    GridCellTop,
-    GridTxtRow,
-    PTListGrid,
-    PTListInfo,
-    PTListRow,
-} from "./ptList.style";
-import { Anchor } from "@/styled/styledCommon";
-import store from "@/mobx/store";
-import { observer } from "mobx-react";
+import { IPattern } from '@/data/pattern/IPattern';
+import { atomDarkmode } from '@/jotai/darkmode';
+import { Anchor } from '@/styled/styledCommon';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
+import { GridCellTop, GridTxtRow, PTListGrid, PTListInfo, PTListRow } from './ptList.style';
+import PTListItemRow from './ptListItemRow';
 
 interface Props {
-    list: Array<PatternData>;
+    list: Array<IPattern>;
     openPopup: (mid: number) => void;
 }
 
-const PTListItem = observer((props: Props) => {
-    const { dark } = store;
+const PTListItem = (props: Props) => {
+    const dark = useAtomValue(atomDarkmode);
 
     return (
         <>
-            {props.list.map((p, i) => {
-                return (
-                    <>
-                        <PTListRow>
-                            <PTListInfo>
-                                {/* 자켓 */}
-                                <img
-                                    alt="jacket-img"
-                                    style={{ width: "85px", height: "85px" }}
-                                    src={p.jacket}
-                                    onError={(e) => {
-                                        e.currentTarget.onerror = null;
-                                        e.currentTarget.src =
-                                            process.env.PUBLIC_URL +
-                                            "/general-img/empty.jpg";
-                                    }}
-                                />
-                                <Anchor
-                                    dark={dark.dark}
-                                    className="innerhref"
-                                    onClick={() => props.openPopup(p.mid)}
-                                >
-                                    <GridTxtRow>{p.name}</GridTxtRow>
-                                </Anchor>
-                                <span style={{ color: "red" }}>
-                                    {(function () {
+            {props.list.map((p, i) => (
+                <PTListRow key={`ptlistItem${i}`}>
+                    <PTListInfo>
+                        {/* 자켓 */}
+                        <img
+                            alt="jacket-img"
+                            style={{ width: '85px', height: '85px' }}
+                            src={p.jacket}
+                            onError={(e) => {
+                                e.currentTarget.onerror = null;
+                                e.currentTarget.src =
+                                    `${process.env.PUBLIC_URL}/general-img/empty.jpg`;
+                            }}
+                        />
+                        <Anchor
+                            dark={dark}
+                            className="innerhref"
+                            onClick={() => props.openPopup(p.mid)}
+                        >
+                            <GridTxtRow>{p.name}</GridTxtRow>
+                        </Anchor>
+                        <span style={{ color: 'red' }}>
+                                    {(function() {
                                         switch (p.removed) {
                                             case 1:
                                                 return <b>(removed in TB)</b>;
@@ -63,23 +54,25 @@ const PTListItem = observer((props: Props) => {
                                                 return <b>(removed in HV)</b>;
                                             case 7:
                                                 return <b>(removed in FU)</b>;
+                                            case 8:
+                                                return <b>(removed in GW)</b>;
+                                            default:
+                                                return <></>;
                                         }
                                     })()}
                                 </span>
-                            </PTListInfo>
-                            <PTListGrid>
-                                <GridCellTop>#</GridCellTop>
-                                <GridCellTop>G</GridCellTop>
-                                <GridCellTop>B</GridCellTop>
-                                <GridCellTop>D</GridCellTop>
-                                <PTListItemRow list={p.difflist} />
-                            </PTListGrid>
-                        </PTListRow>
-                    </>
-                );
-            })}
+                    </PTListInfo>
+                    <PTListGrid>
+                        <GridCellTop>#</GridCellTop>
+                        <GridCellTop>G</GridCellTop>
+                        <GridCellTop>B</GridCellTop>
+                        <GridCellTop>D</GridCellTop>
+                        <PTListItemRow list={p.difflist} />
+                    </PTListGrid>
+                </PTListRow>
+            ))}
         </>
     );
-});
+};
 
 export default PTListItem;

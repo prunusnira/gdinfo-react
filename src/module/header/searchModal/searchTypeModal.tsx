@@ -1,17 +1,17 @@
-import React from "react"
-import { SearchType } from "../useSearch"
-import SearchTypeModalPresenter from "./searchTypeModalPresenter"
-import useSearchType from "./useSearchType"
+import { ESearchType } from '@/data/common/ESearchType';
+import React from 'react';
+import SearchTypeModalPresenter from './searchTypeModalPresenter';
+import useSearchType from './useSearchType';
 
-type Props = {
+interface Props {
     isOpen: boolean,
-    currentType: SearchType,
+    currentType: ESearchType,
     cancel: () => void,
-    ok: (type: SearchType) => void,
+    ok: (type: ESearchType) => void,
 }
 
 const SearchTypeModal = (props: Props) => {
-    const [type, changeType] = useSearchType(props.currentType)
+    const { type, changeType } = useSearchType(props.currentType);
 
     return (
         <SearchTypeModalPresenter
@@ -21,7 +21,7 @@ const SearchTypeModal = (props: Props) => {
             ok={props.ok}
             cancel={props.cancel}
         />
-    )
-}
+    );
+};
 
-export default SearchTypeModal
+export default SearchTypeModal;

@@ -1,37 +1,40 @@
-import { apiNewUser } from "@/api/updateUserData"
-import store from "@/mobx/store"
-import LoginInfo from "../loginInfo"
+import { apiNewUser } from '@/api/updateUserData';
+import { ILoginInfo } from '@/data/user/ILoginInfo';
+import { atomLoginUser } from '@/jotai/loginUser';
+import { useAtomValue } from 'jotai/index';
 
 const useUserAdd = (
-    updateUserInfo: (info: LoginInfo, isSignIn: boolean, isNewUser: boolean) => void,
-    setMoveToIndex: (b: boolean) => void
+    updateUserInfo: (info: ILoginInfo, isSignIn: boolean, isNewUser: boolean) => void,
+    setMoveToIndex: (b: boolean) => void,
 ) => {
-    const {loginUser} = store
+    const loginUser = useAtomValue(atomLoginUser);
 
     const addNewUser = () => {
-        const params = new URLSearchParams()
-        params.append("token", loginUser.user.token)
-        apiNewUser(params)
-        .then((data) => {
-            const json = JSON.parse(data.loginData)
-            switch(json.stat) {
-                case "login":
-                    const loginData: LoginInfo = {
+        if (loginUser) {
+            const params = new URLSearchParams();
+            params.append('token', loginUser.token);
+            apiNewUser(params)
+                .then((data) => {
+                    const json = JSON.parse(data.loginData);
+                    const loginData: ILoginInfo = {
                         id: json.id,
-                        token: json.token
+                        token: json.token,
+                    };
+                    switch (json.stat) {
+                        case 'login':
+                            updateUserInfo(loginData, true, false);
+                            setMoveToIndex(true);
+                            break;
+                        case 'error':
+                        default:
+                            setMoveToIndex(true);
+                            break;
                     }
-                    updateUserInfo(loginData, true, false)
-                    setMoveToIndex(true)
-                    break;
-                case "error":
-                default:
-                    setMoveToIndex(true)
-                    break;
-            }
-        })
-    }
+                });
+        }
+    };
 
-    return addNewUser
-}
+    return addNewUser;
+};
 
-export default useUserAdd
+export default useUserAdd;

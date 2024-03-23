@@ -1,21 +1,18 @@
-import { useState } from "react";
-import store from "@/mobx/store";
-import LoginInfo from "../loginInfo";
+import { ILoginInfo } from '@/data/user/ILoginInfo';
+import { atomLoginUser } from '@/jotai/loginUser';
+import { useAtom } from 'jotai';
+import { useState } from 'react';
 
 const useUserInfo = () => {
-    const [newUser, setNewUser] = useState(false);
-    const [token, setToken] = useState("");
+    const [isNewUser, setIsNewUser] = useState(false);
+    const [loginUser, setLoginUser] = useAtom(atomLoginUser);
 
-    const { loginUser, loginStatus } = store;
-
-    const updateUserInfo = (info: LoginInfo, isSignIn: boolean, isNewUser: boolean) => {
-        loginUser.setUserData(info);
-        loginStatus.setSignStatus(isSignIn);
-        setToken(info.token);
-        setNewUser(isNewUser);
+    const updateUserInfo = (info: ILoginInfo, isSignIn: boolean, newUser: boolean) => {
+        setLoginUser(info);
+        setIsNewUser(newUser);
     };
 
-    return { newUser, token, updateUserInfo };
+    return { isNewUser, loginUser, updateUserInfo };
 };
 
 export default useUserInfo;

@@ -1,30 +1,26 @@
-import React from "react";
-import { Redirect, useParams } from "react-router-dom";
-import store from "@/mobx/store";
-import { observer } from "mobx-react";
-import TowerStatPresenter from "./towerStatPresenter";
-import TitleChangeModal from "./titleChangeModal/titleChangeModal";
-import useTowerStat from "./useTowerStat";
-import useTitleModal from "./useTitleModal";
+import { atomLoginUser } from '@/jotai/loginUser';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
+import { Navigate, useParams } from 'react-router-dom';
+import TitleChangeModal from './titleChangeModal/titleChangeModal';
+import TowerStatPresenter from './towerStatPresenter';
+import useTitleModal from './useTitleModal';
+import useTowerStat from './useTowerStat';
 
-interface MatchProps {
-    tower: string;
-}
-
-const TowerStat = observer(() => {
-    const { loginStatus } = store;
-    const { tower } = useParams<MatchProps>();
-    const [name, isPassed, list] = useTowerStat(tower);
-    const [
+const TowerStat = () => {
+    const loginUser = useAtomValue(atomLoginUser);
+    const { tower } = useParams();
+    const { name, isPassed, list } = useTowerStat(tower);
+    const {
         showTitleChangeModal,
         titleToBeChanged,
         setTitleChangeModal,
         setTitleToBeChanged,
         changeTitle,
-    ] = useTitleModal();
+    } = useTitleModal();
 
-    if (!loginStatus.isSigned) {
-        return <Redirect to={"/login"} />;
+    if (loginUser) {
+        return <Navigate replace to={'/login'} />;
     }
     return (
         <>
@@ -44,6 +40,6 @@ const TowerStat = observer(() => {
             />
         </>
     );
-});
+};
 
 export default TowerStat;

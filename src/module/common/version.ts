@@ -29,33 +29,37 @@ export const GDVer = [
     { num: 28, sv: "GD NX", full: "GITADORA NEXTAGE" },
     { num: 29, sv: "GD HV", full: "GITADORA HIGH-VOLTAGE" },
     { num: 30, sv: "GD FU", full: "GITADORA FUZZ-UP" },
+    { num: 31, sv: "GD GW", full: "GITADORA GALAXY WAVE" },
 ];
 
-export const skillPageVersion = (ptype: number) => {
+export const skillPageVersion = (ptype: string) => {
     switch (ptype) {
-        case 3:
-        case 4:
+        case '3':
+        case '4':
             return "Tri-Boost";
-        case 5:
-        case 6:
+        case '5':
+        case '6':
             return "Tri-Boost Re:EVOLVE";
-        case 7:
-        case 8:
+        case '7':
+        case '8':
             return "MATIXX";
-        case 9:
-        case 10:
+        case '9':
+        case '10':
             return "EXCHAIN";
-        case 11:
-        case 12:
+        case '11':
+        case '12':
             return "NEXTAGE";
-        case 13:
-        case 14:
+        case '13':
+        case '14':
             return "HIGH-VOLTAGE";
-        case 0:
-        case 1:
-        case 2:
-        case 1000:
-        default:
+        case '15':
+        case '16':
             return "FUZZ-UP";
+        case '0':
+        case '1':
+        case '2':
+        case '1000':
+        default:
+            return "GALAXY WAVE";
     }
 };

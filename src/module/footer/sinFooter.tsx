@@ -1,19 +1,19 @@
-import React from "react";
-import { observer } from "mobx-react";
-import store from "@/mobx/store";
-import { Footer, FooterSection, FooterLogo, FooterOuter, FooterRow } from "./sinFooter.style";
-import txtFooterKo from "@/lang/footer/txtfooter-ko";
-import txtFooterJp from "@/lang/footer/txtfooter-jp";
-import txtFooterEn from "@/lang/footer/txtfooter-en";
+import { atomLanguage } from '@/jotai/language';
+import txtFooterEn from '@/lang/footer/txtfooter-en';
+import txtFooterJp from '@/lang/footer/txtfooter-jp';
+import txtFooterKo from '@/lang/footer/txtfooter-ko';
+import { useAtom } from 'jotai';
+import React from 'react';
+import { Footer, FooterLogo, FooterOuter, FooterRow, FooterSection } from './sinFooter.style';
 
-const SinFooter = observer(() => {
-    const lang = store.language.lang;
+const SinFooter = () => {
+    const [lang, setLang] = useAtom(atomLanguage);
 
     const langChange = (type: string) => {
-        store.language.setLang(type);
+        setLang(type);
     };
 
-    const txtFooter = lang === "ko" ? txtFooterKo : lang === "jp" ? txtFooterJp : txtFooterEn;
+    const txtFooter = lang === 'ko' ? txtFooterKo : lang === 'jp' ? txtFooterJp : txtFooterEn;
 
     return (
         <FooterOuter>
@@ -33,17 +33,17 @@ const SinFooter = observer(() => {
                     <FooterSection>
                         <b>{txtFooter.langsel}</b>
                         <br />
-                        <a href="#no_div" onClick={() => langChange("ko")}>
+                        <div onClick={() => langChange('ko')}>
                             한국어
-                        </a>
+                        </div>
                         <br />
-                        <a href="#no_div" onClick={() => langChange("jp")}>
+                        <div onClick={() => langChange('jp')}>
                             日本語
-                        </a>
+                        </div>
                         <br />
-                        <a href="#no_div" onClick={() => langChange("en")}>
+                        <div onClick={() => langChange('en')}>
                             English
-                        </a>
+                        </div>
                     </FooterSection>
                 </FooterRow>
                 <FooterRow>
@@ -64,6 +64,6 @@ const SinFooter = observer(() => {
             </Footer>
         </FooterOuter>
     );
-});
+};
 
 export default SinFooter;

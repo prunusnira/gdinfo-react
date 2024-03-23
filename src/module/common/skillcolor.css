@@ -1,6 +1,6 @@
 /*****************************************************
  * GITADORA Info Server
- * Developed by Tae Jun Kang a.k.a Prunus Nira
+ * Developed by Prunus Nira
  * (c) Nira 2016
  *
  * 1. This project is protected under GNU AGPL v3.0
@@ -162,6 +162,8 @@
     text-fill-color: transparent;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    box-shadow: transparent;
+    -webkit-box-shadow: transparent;
 
     background-position-x: 0;
     background-position-y: 0;

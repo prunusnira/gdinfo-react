@@ -22,22 +22,29 @@ export const Wrapper = styled.section<{ isHalf?: boolean }>`
 
     -webkit-transform: width 0.75s ease-in;
     -moz-transform: width 0.75s ease-in;
-    -ms-transform: width 0.75s ease-in;
     -o-transform: width 0.75s ease-in;
     transform: width 0.75s ease-in;
 `;
 
-export const Title = styled.section<{ dark: boolean }>`
+export const TitleWrapper = styled.section<{ dark: boolean }>`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 16px;
+
+    ${(props) =>
+            props.dark
+                    ? `background-color: ${BGGray};
+color: ${White};`
+                    : `background-color: ${ContentTitle};
+    color: ${Black};`}
+`;
+
+export const Title = styled.div`
     padding: 10px;
     font-size: 18px;
     font-weight: bold;
-
-    ${(props) =>
-        props.dark
-            ? `background-color: ${BGGray};
-color: ${White};`
-            : `background-color: ${ContentTitle};
-    color: ${Black};`}
 `;
 
 export const Body = styled.section<{ dark: boolean }>`

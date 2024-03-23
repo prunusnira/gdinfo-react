@@ -5,27 +5,27 @@ describe('패턴 선택 스위치 테스트', () => {
     it('스위치 테스트', () => {
         // given
         const {result} = renderHook(() =>
-            usePatternSelector('titleasc', '0', '1')
+            usePatternSelector({order: 'titleasc', ver: '0', page: '1'})
         )
 
         // then
         // 버전은 ptList.test.ts에서
-        expect(result.current[0]).toBe(false)
-        expect(result.current[2]).toBe(false)
-        expect(result.current[6]).toBe(false)
-        expect(result.current[8]).toEqual('')
+        expect(result.current.switchHot).toBe(false)
+        expect(result.current.switchOther).toBe(false)
+        expect(result.current.switchOrder).toBe(false)
+        expect(result.current.nextVer).toEqual('')
 
         // when
         act(() => {
-            result.current[1]()
-            result.current[3]()
-            result.current[7](0)
+            result.current.switchHotMethod()
+            result.current.switchOtherMethod()
+            result.current.switchOrderMethod(0)
         })
 
         // then
-        expect(result.current[0]).toBe(true)
-        expect(result.current[2]).toBe(true)
-        expect(result.current[6]).toBe(true)
-        expect(result.current[9]).toEqual('titledesc')
+        expect(result.current.switchHot).toBe(true)
+        expect(result.current.switchOther).toBe(true)
+        expect(result.current.switchOrder).toBe(true)
+        expect(result.current.nextOrder).toEqual('titledesc')
     })
 })

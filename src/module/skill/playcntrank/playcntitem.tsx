@@ -1,44 +1,42 @@
-import React from "react";
-import PlaycntRankData from "./playcntrankData";
-import { PCRICnt, PCRIIcon, PCRINum, PCRIUser, PCRIWrapper } from "./playcntItem.style";
-import store from "@/mobx/store";
-import { observer } from "mobx-react";
-import { ThemedLink } from "@/styled/styledCommon";
+import { IPlayCountRank } from '@/data/IPlayCountRank';
+import { atomDarkmode } from '@/jotai/darkmode';
+import { ThemedLink } from '@/styled/styledCommon';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
+import { PCRICnt, PCRIIcon, PCRINum, PCRIUser, PCRIWrapper } from './playcntItem.style';
 
 interface Props {
-    list: Array<PlaycntRankData>;
+    list: Array<IPlayCountRank>;
 }
 
-const PlayCntRankItem = observer((props: Props) => {
-    const { dark } = store;
+const PlayCntRankItem = (props: Props) => {
+    const dark = useAtomValue(atomDarkmode);
 
     return (
         <>
-            {props.list.map((v, i) => {
-                return (
-                    <PCRIWrapper dark={dark.dark}>
-                        <PCRINum>{v.index}</PCRINum>
-                        <PCRIUser>
-                            {v.towertitle !== "" && (
-                                <PCRIIcon
-                                    alt="titletower"
-                                    src={`${process.env.PUBLIC_URL}/general-img/title/${v.towertitle}.png`}
-                                />
-                            )}
-                            <ThemedLink dark={dark.dark} to={v.prlink}>
-                                {v.name}
-                            </ThemedLink>
-                        </PCRIUser>
-                        <PCRICnt>G {v.gfcnt}</PCRICnt>
-                        <PCRICnt>+</PCRICnt>
-                        <PCRICnt>D {v.dmcnt}</PCRICnt>
-                        <PCRICnt>=</PCRICnt>
-                        <PCRICnt>{v.allcnt}</PCRICnt>
-                    </PCRIWrapper>
-                );
-            })}
+            {props.list.map((v, i) => (
+                <PCRIWrapper dark={dark} key={`playcountItem${i}`}>
+                    <PCRINum>{v.index}</PCRINum>
+                    <PCRIUser>
+                        {v.towertitle !== '' && (
+                            <PCRIIcon
+                                alt="titletower"
+                                src={`${process.env.PUBLIC_URL}/general-img/title/${v.towertitle}.png`}
+                            />
+                        )}
+                        <ThemedLink dark={dark} to={v.prlink}>
+                            {v.name}
+                        </ThemedLink>
+                    </PCRIUser>
+                    <PCRICnt>G {v.gfcnt}</PCRICnt>
+                    <PCRICnt>+</PCRICnt>
+                    <PCRICnt>D {v.dmcnt}</PCRICnt>
+                    <PCRICnt>=</PCRICnt>
+                    <PCRICnt>{v.allcnt}</PCRICnt>
+                </PCRIWrapper>
+            ))}
         </>
     );
-});
+};
 
 export default PlayCntRankItem;
