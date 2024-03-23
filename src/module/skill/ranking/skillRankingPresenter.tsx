@@ -20,10 +20,14 @@ const SkillRankingPresenter = ({gtype, rankList, page, allPage}: Props) => {
     return (
         <>
             <SRTypeWrapper>
-                <ThemedLink dark={dark} to="/rank/gf/1">
+                <ThemedLink
+                    $dark={dark}
+                    to="/rank/gf/1">
                     <Button>GuitarFreaks Ranking</Button>
                 </ThemedLink>
-                <ThemedLink dark={dark} to="/rank/dm/1">
+                <ThemedLink
+                    $dark={dark}
+                    to="/rank/dm/1">
                     <Button>DrumMania Ranking</Button>
                 </ThemedLink>
             </SRTypeWrapper>

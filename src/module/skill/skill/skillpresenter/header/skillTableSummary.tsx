@@ -24,7 +24,7 @@ const SkillTableSummary = ({
     const dark = useAtomValue(atomDarkmode);
 
     return (
-        <SkillBody dark={dark}>
+        <SkillBody $dark={dark}>
             <ItemRow
                 style={{
                     justifyContent: 'center',

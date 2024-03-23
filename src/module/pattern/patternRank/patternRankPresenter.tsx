@@ -67,49 +67,49 @@ const PatternRankPresenter = (props: Props) => {
                     <ContentLayout title={txtPTRank.table.ranking}>
                         <PRRow>
                             <ThemedLink
-                                dark={dark}
+                                $dark={dark}
                                 to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=31`}
                             >
                                 <Button className="rank31">GW</Button>
                             </ThemedLink>
                             <ThemedLink
-                                dark={dark}
+                                $dark={dark}
                                 to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=30`}
                             >
                                 <Button className="rank30">FU</Button>
                             </ThemedLink>
                             <ThemedLink
-                                dark={dark}
+                                $dark={dark}
                                 to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=29`}
                             >
                                 <Button className="rank29">HV</Button>
                             </ThemedLink>
                             <ThemedLink
-                                dark={dark}
+                                $dark={dark}
                                 to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=28`}
                             >
                                 <Button className="rank28">NX</Button>
                             </ThemedLink>
                             <ThemedLink
-                                dark={dark}
+                                $dark={dark}
                                 to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=27`}
                             >
                                 <Button className="rank27">EX</Button>
                             </ThemedLink>
                             <ThemedLink
-                                dark={dark}
+                                $dark={dark}
                                 to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=26`}
                             >
                                 <Button className="rank26">MX</Button>
                             </ThemedLink>
                             <ThemedLink
-                                dark={dark}
+                                $dark={dark}
                                 to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=25`}
                             >
                                 <Button className="rank25">RE</Button>
                             </ThemedLink>
                             <ThemedLink
-                                dark={dark}
+                                $dark={dark}
                                 to={`/ptrank/${props.mid}/${props.ptcode}/1?ver=24`}
                             >
                                 <Button className="rank24">TB</Button>

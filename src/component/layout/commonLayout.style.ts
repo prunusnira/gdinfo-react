@@ -1,14 +1,14 @@
 import { Background, Black } from "@/styled/color";
 import styled from "styled-components";
 
-export const Outer = styled.main<{ dark: boolean }>`
+export const Outer = styled.main<{ $dark: boolean }>`
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
     min-height: 100vh;
 
-    ${(props) => (props.dark ? `background-color: ${Black};` : `background-color: ${Background}`)}
+    ${(props) => (props.$dark ? `background-color: ${Black};` : `background-color: ${Background}`)}
 `;
 
 export const Container = styled.section`

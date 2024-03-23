@@ -30,12 +30,14 @@ const SkillRankingItem = ({ rank }: Props) => {
     const txtSrank = lang === 'ko' ? txtSrankKo : lang === 'jp' ? txtSrankJp : txtSrankEn;
 
     return (
-        <SRItemWrapper dark={dark}>
+        <SRItemWrapper $dark={dark}>
             <SRNum>{rank.index}</SRNum>
             <SRInfoWrapper>
                 <SRUser>
                     {rank.towertitle !== '' && <SRIcon src={rank.towertitle} />}
-                    <ThemedLink dark={dark} to={rank.profile}>
+                    <ThemedLink
+                        $dark={dark}
+                        to={rank.profile}>
                         {rank.username}
                     </ThemedLink>
                 </SRUser>

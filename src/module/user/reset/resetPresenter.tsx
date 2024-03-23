@@ -30,7 +30,9 @@ const ResetPresenter = (props: Props) => {
 
                     <Button onClick={props.resetData}>YES</Button>
 
-                    <ThemedLink dark={dark} to="/index">
+                    <ThemedLink
+                        $dark={dark}
+                        to="/index">
                         <Button>NO</Button>
                     </ThemedLink>
                 </ContentLayout>

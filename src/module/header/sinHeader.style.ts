@@ -14,7 +14,7 @@ export const HeaderOuter = styled.header`
     z-index: 11;
 `;
 
-export const Header = styled.header<{ isTop: boolean; dark: boolean }>`
+export const Header = styled.header<{ $isTop: boolean; $dark: boolean }>`
     display: flex;
     flex-direction: column;
 
@@ -26,7 +26,7 @@ export const Header = styled.header<{ isTop: boolean; dark: boolean }>`
         // props.isTop
         // ? `background-color: transparent;`
         // :
-        props.dark
+        props.$dark
             ? `background-color: ${HeaderBGColorDark};`
             : `background-color: ${HeaderBGColor};`}
 `;

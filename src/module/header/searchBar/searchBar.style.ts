@@ -23,13 +23,13 @@ export const SearchButton = styled.button`
     color: ${Black};
 `;
 
-export const SearchTypeButton = styled.button<{ dark: boolean }>`
+export const SearchTypeButton = styled.button<{ $dark: boolean }>`
     width: 100%;
     border-radius: 15px;
     font-weight: bold;
 
     ${(props) =>
-        props.dark
+        props.$dark
             ? `
     border: solid 1px ${White};
     color: ${White};

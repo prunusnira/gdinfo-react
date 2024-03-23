@@ -1,7 +1,7 @@
 import { Select, SelectDark } from "@/styled/color";
 import styled from "styled-components";
 
-export const PCRIWrapper = styled.section<{ dark: boolean }>`
+export const PCRIWrapper = styled.section<{ $dark: boolean }>`
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -10,7 +10,7 @@ export const PCRIWrapper = styled.section<{ dark: boolean }>`
     padding: 10px;
 
     &:hover {
-        background-color: ${(props) => (props.dark ? SelectDark : Select)};
+        background-color: ${(props) => (props.$dark ? SelectDark : Select)};
     }
 `;
 

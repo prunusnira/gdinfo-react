@@ -42,7 +42,7 @@ const SkillTableHeader = ({
                             &nbsp;
                             {ptype !== '1000' && user ? (
                                 <ThemedLink
-                                    dark={dark}
+                                    $dark={dark}
                                     className="innerhref"
                                     to={`/profile/${userid}`}
                                 >

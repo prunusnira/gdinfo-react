@@ -1,10 +1,7 @@
 import { IProfile } from '@/data/user/IProfile';
 import { ISkillItem } from '@/data/skill/ISkillItem';
 import { atomDarkmode } from '@/jotai/darkmode';
-import { atomLanguage } from '@/jotai/language';
 import Pager from '@/module/common/pager';
-import SkillTableHeader from '@/module/skill/skill/skillpresenter/header/skillTableHeader';
-import { ItemCol, ItemRow } from '@/styled/styledCommon';
 import { useAtomValue } from 'jotai/index';
 import React from 'react';
 import { useParams } from 'react-router-dom';
@@ -50,7 +47,7 @@ const SkillTableBody = (props: Props) => {
     const dark = useAtomValue(atomDarkmode);
 
     return (
-        <SkillBody dark={dark}>
+        <SkillBody $dark={dark}>
             {props.share && props.visibleLarge && (
                 <SkillTableWrapperSH>
                     <SkillTableOuterSH>

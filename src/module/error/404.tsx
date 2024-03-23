@@ -24,7 +24,7 @@ const Error404 = () => {
                 {TxtError404.e404_2}
                 <br />
                 <Anchor
-                    dark={dark}
+                    $dark={dark}
                     target="_blank"
                     rel="noopener noreferrer"
                     href="https://twitter.com/_nira_one"

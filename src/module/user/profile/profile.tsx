@@ -12,16 +12,21 @@ import useProfileLoader from './useProfileLoader';
 const Profile = () => {
     const [comment, setComment] = useState('');
     const [nextComment, setNextComment] = useState('');
-    const [openUserInfo, setOpenUserInfo] = useState('N');
     const { id } = useParams();
-    const { profileData, isOwnAccount, isLoading } = useProfileLoader({ id, setComment, setOpenUserInfo });
+    const { profileData, isOwnAccount, isLoading } = useProfileLoader({ id, setComment });
     const [isCommentOpen, setCommentDlgOpen, closeComment, submitComment] = useComment({
         id,
         nextComment,
         setComment,
     });
-    const { isInfoOpen, setInfoDlgOpen, setInfoDlgClose, submitOpen, forceCountUpdate, updateOpenValue } =
-        useInfoOpen(setOpenUserInfo);
+    const {
+        isInfoOpen,
+        isInfoDlgOpen,
+        setInfoDlgOpen,
+        setInfoDlgClose,
+        setSubmitData,
+        forceCountUpdate,
+    } = useInfoOpen();
 
     return (
         <CommonLayout>
@@ -30,7 +35,6 @@ const Profile = () => {
             {profileData && id ?
                 <ProfilePresenter
                     isInfoOpen={isInfoOpen}
-                    openUserInfo={openUserInfo}
                     comment={comment}
                     nextComment={nextComment}
                     isCommentOpen={isCommentOpen}
@@ -45,11 +49,10 @@ const Profile = () => {
 
             {id ?
                 <ModalInfoOpen
-                    isCountOpen={isInfoOpen}
-                    opencount={openUserInfo}
+                    isInfoDlgOpen={isInfoDlgOpen}
+                    isInfoOpen={isInfoOpen}
                     id={id}
-                    updateOpenValue={updateOpenValue}
-                    submitOpen={submitOpen}
+                    setSubmitData={setSubmitData}
                     setCountDlgClose={setInfoDlgClose}
                 /> : <></>
             }

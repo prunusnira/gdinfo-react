@@ -19,7 +19,7 @@ const SearchBarComp = (props: Props) => {
 
     return (
         <>
-            <SearchTypeButton dark={dark} onClick={() => props.openSearchTypeDlg(true)}>
+            <SearchTypeButton $dark={dark} onClick={() => props.openSearchTypeDlg(true)}>
                 {(function() {
                     switch (props.searchType) {
                         case ESearchType.GSKILL:

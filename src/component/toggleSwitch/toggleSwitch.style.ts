@@ -14,14 +14,14 @@ export const ToggleChkBox = styled.input`
     display: none;
 `;
 
-export const ToggleLabel = styled.label<{ isChecked: boolean }>`
+export const ToggleLabel = styled.label<{ $isChecked: boolean }>`
     position: relative;
     width: 100%;
     height: 14px;
     border-radius: 50px;
     cursor: pointer;
     ${(props) =>
-        props.isChecked ? `background-color: ${SeaBlue};` : `background-color: ${BGGray};`}
+        props.$isChecked ? `background-color: ${SeaBlue};` : `background-color: ${BGGray};`}
 `;
 
 const setActive = keyframes`
@@ -42,7 +42,7 @@ from {
   }
 `;
 
-export const ToggleSpan = styled.span<{ isChecked: boolean }>`
+export const ToggleSpan = styled.span<{ $isChecked: boolean }>`
     position: absolute;
     width: 20px;
     height: 20px;
@@ -51,7 +51,7 @@ export const ToggleSpan = styled.span<{ isChecked: boolean }>`
     border: solid 1px rgba(0, 0, 0, 0.15);
     background-color: ${White};
     top: 50%;
-    animation-name: ${(props) => (props.isChecked ? setActive : setInActive)};
+    animation-name: ${(props) => (props.$isChecked ? setActive : setInActive)};
     animation-duration: 0.5s;
     animation-fill-mode: forwards;
 `;
