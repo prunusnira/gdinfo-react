@@ -27,15 +27,6 @@ const UserLoginInfo = () => {
             </LIWrapper>
         );
     }
-    if (isError) {
-        return (
-            <LIWrapper>
-                <LIRow>
-                    Failed to load data
-                </LIRow>
-            </LIWrapper>
-        );
-    }
     if (profile) {
         const imgurl = `${process.env.PUBLIC_URL}/general-img/title/${profile.titletower}.png`;
         return (
