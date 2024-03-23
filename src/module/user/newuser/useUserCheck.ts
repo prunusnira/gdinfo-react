@@ -1,48 +1,51 @@
-import { useEffect, useState } from "react"
-import store from "@/mobx/store"
-import {getUserFromToken} from "@/api/getUserData"
+import { getUserFromToken } from '@/api/getUserData';
+import { atomLoginUser } from '@/jotai/loginUser';
+import { useAtomValue } from 'jotai/index';
+import { useEffect, useState } from 'react';
 
 type CheckReturn = [boolean, boolean, boolean, (b: boolean) => void]
 
 const useUserCheck = (): CheckReturn => {
-    const [moveToIndex, setMoveToIndex] = useState(false)
-    const [isValidAccess, setValidAccess] = useState(false)
-    const [isNewUserMode, setNewUserMode] = useState(true)
-    
-    useEffect(() => {
-        // params에 token이 있는지 확인
-        if(checkParamHasToken()) {
-            // 토큰이 이미 DB에 있는지 확인
-            checkUserAlreadyExist()
-            setNewUserMode(true)
-        }
-        else {
-            setNewUserMode(false)
-        }
-    }, [])
+    const [moveToIndex, setMoveToIndex] = useState(false);
+    const [isValidAccess, setValidAccess] = useState(false);
+    const [isNewUserMode, setNewUserMode] = useState(true);
 
-    const {loginUser} = store
+    const loginUser = useAtomValue(atomLoginUser);
 
     const checkParamHasToken = () => {
-        const token = loginUser.user.token
-        if(token === '') return false
-        else return true
-    }
+        if (loginUser) {
+            const token = loginUser.token;
+            return token !== '';
+        }
+        return false;
+    };
 
     const checkUserAlreadyExist = () => {
-        const token = loginUser.user.token
-        getUserFromToken(token)
-        .then(d => {
-            return d
-        })
-        .then(d => {
-            if(d.mydata !== 'null') {
-                setValidAccess(false)
-            }
-        })
-    }
+        if (loginUser) {
+            const token = loginUser.token;
+            getUserFromToken(token)
+                .then(d => d)
+                .then(d => {
+                    if (d.mydata !== 'null') {
+                        setValidAccess(false);
+                    }
+                });
+        }
+        return false;
+    };
 
-    return [moveToIndex, isValidAccess, isNewUserMode, setMoveToIndex]
-}
+    useEffect(() => {
+        // params에 token이 있는지 확인
+        if (checkParamHasToken()) {
+            // 토큰이 이미 DB에 있는지 확인
+            checkUserAlreadyExist();
+            setNewUserMode(true);
+        } else {
+            setNewUserMode(false);
+        }
+    }, []);
 
-export default useUserCheck
+    return [moveToIndex, isValidAccess, isNewUserMode, setMoveToIndex];
+};
+
+export default useUserCheck;

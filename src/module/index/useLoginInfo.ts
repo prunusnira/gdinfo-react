@@ -1,26 +1,34 @@
-import { getUserFromToken } from "@/api/getUserData"
-import store from "@/mobx/store"
-import { useEffect, useState } from "react"
-import ProfileData from "../user/profile/profileData"
+import { getUserFromToken } from '@/api/getUserData';
+import { IProfile } from '@/data/user/IProfile';
+import { atomLoginUser } from '@/jotai/loginUser';
+import { useQuery } from '@tanstack/react-query';
+import { useAtomValue } from 'jotai/index';
+import { useEffect, useState } from 'react';
 
-export type LoginInfoReturn = [boolean, ProfileData]
+const useLoginInfo = () => {
+    const [profile, setProfile] = useState<IProfile>();
+    const loginUser = useAtomValue(atomLoginUser);
 
-const useLoginInfo = (): LoginInfoReturn => {
-    const [loading, setLoading] = useState(false)
-    const [data, setData] = useState(new ProfileData())
+    const getUserLogin = async () => {
+        const token = loginUser?.token;
+        if (token) {
+            return getUserFromToken(token)
+        }
+        return undefined;
+    };
+
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ['index', 'login'],
+        queryFn: getUserLogin,
+    });
 
     useEffect(() => {
-        const token = store.loginUser.user.token;
-        if(token !== "") {
-            getUserFromToken(token)
-            .then((data) => {
-                setData(JSON.parse(data.mydata))
-                setLoading(true)
-            })
+        if(data) {
+            setProfile(JSON.parse(data.mydata));
         }
-    }, [])
+    }, [data])
 
-    return [loading, data]
-}
+    return { profile, isLoading, isError };
+};
 
-export default useLoginInfo
+export default useLoginInfo;

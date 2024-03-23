@@ -3,7 +3,7 @@ import TowerListPresenter from './towerListPresenter'
 import useTowerList from './useTowerList'
 
 const TowerList = () => {
-    const [towerGF, towerDM, towerSP] = useTowerList()
+    const {towerGF, towerDM, towerSP} = useTowerList()
     
     return (
         <TowerListPresenter

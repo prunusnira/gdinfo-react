@@ -1,19 +1,19 @@
-import React from "react";
-import { HeaderOuter, Header, HeaderNotice } from "./sinHeader.style";
-import HeaderNavBar from "./navbar/headernav";
-import useHeader from "./useHeader";
-import SideBar from "./sidebar/view/sidebar";
-import { observer } from "mobx-react";
-import store from "@/mobx/store";
+import { atomDarkmode } from '@/jotai/darkmode';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
+import HeaderNavBar from './navbar/headernav';
+import SideBar from './sidebar/view/sidebar';
+import { Header, HeaderOuter } from './sinHeader.style';
+import useHeader from './useHeader';
 
-const SinHeader = observer(() => {
-    const { dark } = store;
+const SinHeader = () => {
+    const dark = useAtomValue(atomDarkmode);
     const { isMenuOpen, toggleMenu, closeMenu, isTransparent } = useHeader();
 
     return (
         <HeaderOuter>
-            <Header isTop={isTransparent} dark={dark.dark}>
-                <SideBar isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+            <Header isTop={isTransparent} dark={dark}>
+                <SideBar isMenuOpen={isMenuOpen} />
                 <HeaderNavBar
                     isMenuOpen={isMenuOpen}
                     toggleMenu={toggleMenu}
@@ -27,6 +27,6 @@ const SinHeader = observer(() => {
             </HeaderNotice> */}
         </HeaderOuter>
     );
-});
+};
 
 export default SinHeader;

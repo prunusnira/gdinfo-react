@@ -1,31 +1,30 @@
-import { useState } from "react"
-import { SearchType } from "../useSearch"
+import { ESearchType } from '@/data/common/ESearchType';
+import React, { useState } from 'react';
 
-type SearchTypeReturn = [SearchType, (e: React.ChangeEvent<HTMLInputElement>) => void]
-
-const useSearchType = (searchType: SearchType): SearchTypeReturn => {
-    const [type, setType] = useState(searchType)
+const useSearchType = (searchType: ESearchType) => {
+    const [type, setType] = useState(searchType);
 
     const changeType = (e: React.ChangeEvent<HTMLInputElement>) => {
-        let rtn = SearchType.music
-        switch(e.currentTarget.value) {
-            case 'music':
-                rtn = SearchType.music
-                break
+        let rtn;
+        switch (e.currentTarget.value) {
             case 'gskill':
-                rtn = SearchType.gskill
-                break
+                rtn = ESearchType.GSKILL;
+                break;
             case 'dskill':
-                rtn = SearchType.dskill
-                break
+                rtn = ESearchType.DSKILL;
+                break;
             case 'player':
-                rtn = SearchType.player
-                break
+                rtn = ESearchType.PLAYER;
+                break;
+            case 'music':
+            default:
+                rtn = ESearchType.MUSIC;
+                break;
         }
-        setType(rtn)
-    }
+        setType(rtn);
+    };
 
-    return [type, changeType]
-}
+    return { type, changeType };
+};
 
-export default useSearchType
+export default useSearchType;

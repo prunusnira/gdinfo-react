@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import CommonData from "@/module/common/commonData";
-import MusicDataType from "@/module/skill/skill/musicData";
+import { IMusic } from '@/data/music/IMusic';
+import CommonData from '@/module/common/commonData';
+import React, { useState } from 'react';
 import {
     ModalComposer,
     ModalTapItem,
@@ -13,15 +13,15 @@ import {
     SkillModalTapWrapper,
     SkillModalTitle,
     SkillModalWrapper,
-} from "./popupMusicData.style";
-import PopupMusicItem from "./popupMusicItem";
+} from './popupMusicData.style';
+import PopupMusicItem from './popupMusicItem';
 
 interface Props {
     mid: string;
     musicName: string;
     composer: string;
     version: string;
-    patternlist: Array<MusicDataType>;
+    patternlist: Array<IMusic>;
 }
 
 const PopupMusicData = (props: Props) => {
@@ -35,7 +35,7 @@ const PopupMusicData = (props: Props) => {
                         src={`${CommonData.jacketUrl}${props.mid}.jpg`}
                         onError={(e) => {
                             e.currentTarget.onerror = null;
-                            e.currentTarget.src = process.env.PUBLIC_URL + "/general-img/empty.jpg";
+                            e.currentTarget.src = `${process.env.PUBLIC_URL}/general-img/empty.jpg`;
                         }}
                     />
                 </SkillModalJacketWrapper>

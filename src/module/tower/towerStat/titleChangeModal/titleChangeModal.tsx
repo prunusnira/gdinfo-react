@@ -1,41 +1,42 @@
-import React from 'react'
-import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap'
-import { Button, Icon, ItemRow } from '@/styled/styledCommon'
-import TitleType from '../data/titleType'
-
-import TxtTitleChangeModalKo from '@/lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-ko'
-import TxtTitleChangeModalJp from '@/lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-jp'
-import TxtTitleChangeModalEn from '@/lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-en'
-import store from '@/mobx/store'
+import { ITowerTitle } from '@/data/tower/ITowerTitle';
+import { atomLanguage } from '@/jotai/language';
+import TxtTitleChangeModalEn from '@/lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-en';
+import TxtTitleChangeModalJp from '@/lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-jp';
+import TxtTitleChangeModalKo from '@/lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-ko';
+import { Button, Icon, ItemRow } from '@/styled/styledCommon';
+import { useAtomValue } from 'jotai/index';
+import React from 'react';
+import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
 interface Props {
     showTitleChangeModal: boolean,
-    titleToBeChanged: TitleType,
+    titleToBeChanged: ITowerTitle,
     setTitleChangeModal: (b: boolean) => void,
     changeTitle: (title: string) => void,
 }
 
 const TitleChangeModal = (props: Props) => {
-	const lang = store.language.lang
+    const lang = useAtomValue(atomLanguage);
     const TxtTitleChangeModal =
         lang === 'ko' ? TxtTitleChangeModalKo :
-            lang === 'jp' ? TxtTitleChangeModalJp : TxtTitleChangeModalEn
+            lang === 'jp' ? TxtTitleChangeModalJp : TxtTitleChangeModalEn;
 
     return (
         <Modal isOpen={props.showTitleChangeModal}>
-            <ModalHeader style={{backgroundColor: '#353535'}}>
+            <ModalHeader style={{ backgroundColor: '#353535' }}>
                 {TxtTitleChangeModal.title}
             </ModalHeader>
             <ModalBody>
-                <ItemRow style={{color:"black"}}>
+                <ItemRow style={{ color: 'black' }}>
                     {TxtTitleChangeModal.body}
                 </ItemRow>
-                <ItemRow style={{color:"black"}}>
-                    <Icon src={`${process.env.PUBLIC_URL}/general-img/title/${props.titleToBeChanged.title}.png`} />
+                <ItemRow style={{ color: 'black' }}>
+                    <Icon sizeType={'sm'}
+                          src={`${process.env.PUBLIC_URL}/general-img/title/${props.titleToBeChanged.title}.png`} />
                     {props.titleToBeChanged.display}
                 </ItemRow>
             </ModalBody>
-            <ModalFooter style={{backgroundColor: '#dddddd'}}>
+            <ModalFooter style={{ backgroundColor: '#dddddd' }}>
                 <Button onClick={() => props.setTitleChangeModal(false)}>
                     Cancel
                 </Button>
@@ -44,7 +45,7 @@ const TitleChangeModal = (props: Props) => {
                 </Button>
             </ModalFooter>
         </Modal>
-    )
-}
+    );
+};
 
-export default TitleChangeModal
+export default TitleChangeModal;

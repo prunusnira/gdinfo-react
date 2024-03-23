@@ -15,4 +15,5 @@ export const TableHeader = styled.div`
 
 export const TableText = styled.div`
     text-align: center;
+    padding: 4px;
 `;

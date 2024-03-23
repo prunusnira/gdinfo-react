@@ -12,10 +12,11 @@ const txtIndex = {
     },
     script: {
         title: "Update script",
-        cont: "Please copy or register to bookmark the script below",
+        cont: "You can click/touch on script to copy",
         scriptTitle: "Script",
         scriptNoLogin: "Please sign in first. Script differs to account",
         scriptLogin: "URL written differs each user. DO NOT SHARE your URL",
+        alert: 'All the script copied except front letter "j"',
     },
     notice2: {
         title: "Announcement",

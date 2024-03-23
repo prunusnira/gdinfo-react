@@ -1,40 +1,38 @@
-import React from "react";
-import { Redirect } from "react-router-dom";
-import store from "@/mobx/store";
-import { observer } from "mobx-react";
-import NewUserPresenter from "./newuserPresenter";
-import Error500 from "@/module/error/500";
-import useUserInfo from "@/module/user/login/useUserInfo";
-import useUserCheck from "./useUserCheck";
-import useUserAdd from "./useUserAdd";
-import useUserDrop from "./useUserDrop";
+import { atomLanguage } from '@/jotai/language';
+import txtNewuserEn from '@/lang/user/newuser/txtNewUser-en';
+import txtNewuserJp from '@/lang/user/newuser/txtNewUser-jp';
+import txtNewuserKo from '@/lang/user/newuser/txtNewUser-ko';
+import Error404 from '@/module/error/404';
+import Error500 from '@/module/error/500';
+import useUserInfo from '@/module/user/login/useUserInfo';
+import { useAtomValue } from 'jotai';
+import React from 'react';
+import { Navigate } from 'react-router-dom';
+import NewUserPresenter from './newuserPresenter';
+import useUserAdd from './useUserAdd';
+import useUserCheck from './useUserCheck';
+import useUserDrop from './useUserDrop';
 
-import txtNewuserKo from "@/lang/user/newuser/txtNewUser-ko";
-import txtNewuserJp from "@/lang/user/newuser/txtNewUser-jp";
-import txtNewuserEn from "@/lang/user/newuser/txtNewUser-en";
-import Error404 from "@/module/error/404";
-
-const NewUser = observer(() => {
+const NewUser = () => {
     const { updateUserInfo } = useUserInfo();
     const [moveToIndex, isValidAccess, isNewUserMode, setMoveToIndex] = useUserCheck();
     const addNewUser = useUserAdd(updateUserInfo, setMoveToIndex);
     const dropUser = useUserDrop(setMoveToIndex);
-
-    const { language } = store;
-    const lang = language.lang;
-    const txtNewuser = lang === "ko" ? txtNewuserKo : lang === "jp" ? txtNewuserJp : txtNewuserEn;
+    const lang = useAtomValue(atomLanguage);
+    const txtNewuser = lang === 'ko' ? txtNewuserKo : lang === 'jp' ? txtNewuserJp : txtNewuserEn;
 
     if (moveToIndex) {
-        return <Redirect to={"/index"} />;
-    } else if (isValidAccess) {
+        return <Navigate replace to={'/index'} />;
+    }
+    if (isValidAccess) {
         alert(txtNewuser.existAccess);
         return <Error500 />;
-    } else if (isNewUserMode) {
-        return <NewUserPresenter addNewUser={addNewUser} dropUser={dropUser} />;
-    } else {
-        alert(txtNewuser.invalidAccess);
-        return <Error404 />;
     }
-});
+    if (isNewUserMode) {
+        return <NewUserPresenter addNewUser={addNewUser} dropUser={dropUser} />;
+    }
+    alert(txtNewuser.invalidAccess);
+    return <Error404 />;
+};
 
 export default NewUser;

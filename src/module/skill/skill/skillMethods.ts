@@ -1,9 +1,10 @@
-import CommonData from "@/module/common/commonData";
-import { getPatternImg300, getPatternImg600 } from "@/module/common/pattern";
-import { skillTableColor } from "@/module/common/skillcolor";
-import { GDVer } from "@/module/common/version";
-import MusicFetchData from "./skillItem/musicFetchData";
-import SkillItemData from "./skillItem/skillItemData";
+import { IMusicFetch } from '@/data/music/IMusicFetch';
+import { ISkillItem } from '@/data/skill/ISkillItem';
+import CommonData from '@/module/common/commonData';
+import { getPatternImg300, getPatternImg600 } from '@/module/common/pattern';
+import { skillTableColor } from '@/module/common/skillcolor';
+import { GDVer } from '@/module/common/version';
+import { useParams } from 'react-router-dom';
 
 // 스킬 데이터를 가져오기 위한 데이터 URL을 생성하는 함수
 export const generateURL = (
@@ -11,35 +12,35 @@ export const generateURL = (
     ptype: string,
     userid: string,
     gtype: string,
-    page: string
+    page: string,
 ) => {
     const getparams = new URLSearchParams(window.location.search);
-    let baseUrl = "";
-    let extvar = "";
+    let baseUrl;
+    let extvar = '';
 
-    const hot = getparams.get("hot");
-    const lv = getparams.get("lv");
-    const rank = getparams.get("rank");
-    const ver = getparams.get("ver");
+    const hot = getparams.get('hot');
+    const lv = getparams.get('lv');
+    const rank = getparams.get('rank');
+    const ver = getparams.get('ver');
 
-    if (parseInt(ptype) === 1000) {
+    if (ptype === '1000') {
         baseUrl = `exc/${gtype}`;
     } else {
         baseUrl = `skill/${ptype}/${userid}/${gtype}/${page}/${order}`;
         if (lv != null) {
-            if (extvar === "") extvar = `?lv=${lv}`;
+            if (extvar === '') extvar = `?lv=${lv}`;
             else extvar += `&lv=${lv}`;
         }
         if (rank != null) {
-            if (extvar === "") extvar = `?rank=${rank}`;
+            if (extvar === '') extvar = `?rank=${rank}`;
             else extvar += `&rank=${rank}`;
         }
         if (ver != null) {
-            if (extvar === "") extvar = `?ver=${ver}`;
+            if (extvar === '') extvar = `?ver=${ver}`;
             else extvar += `&ver=${ver}`;
         }
         if (hot != null) {
-            if (extvar === "") extvar = `?hot=${hot}`;
+            if (extvar === '') extvar = `?hot=${hot}`;
             else extvar += `&hot=${hot}`;
         }
     }
@@ -47,9 +48,9 @@ export const generateURL = (
     return baseUrl + extvar;
 };
 
-export const getRate = (ptype: number, cur: MusicFetchData) => {
+export const getRate = (ptype: number, cur: IMusicFetch) => {
     // rate 선택
-    let rate = 0;
+    let rate;
     switch (ptype) {
         case 3:
         case 4:
@@ -75,6 +76,10 @@ export const getRate = (ptype: number, cur: MusicFetchData) => {
         case 14:
             rate = cur.ratehv;
             break;
+        case 15:
+        case 16:
+            rate = cur.ratefu;
+            break;
         case 0:
         case 1:
         case 2:
@@ -89,27 +94,27 @@ const getRankImg = (rank: string): string => {
     let img = process.env.PUBLIC_URL;
 
     switch (rank) {
-        case "E":
-            img += "/general-img/rank/rank_e.png";
+        case 'E':
+            img += '/general-img/rank/rank_e.png';
             break;
-        case "D":
-            img += "/general-img/rank/rank_d.png";
+        case 'D':
+            img += '/general-img/rank/rank_d.png';
             break;
-        case "C":
-            img += "/general-img/rank/rank_c.png";
+        case 'C':
+            img += '/general-img/rank/rank_c.png';
             break;
-        case "B":
-            img += "/general-img/rank/rank_b.png";
+        case 'B':
+            img += '/general-img/rank/rank_b.png';
             break;
-        case "A":
-            img += "/general-img/rank/rank_a.png";
+        case 'A':
+            img += '/general-img/rank/rank_a.png';
             break;
-        case "S":
-            img += "/general-img/rank/rank_s.png";
+        case 'S':
+            img += '/general-img/rank/rank_s.png';
             break;
-        case "SS":
-        case "EXC":
-            img += "/general-img/rank/rank_ss.png";
+        case 'SS':
+        case 'EXC':
+            img += '/general-img/rank/rank_ss.png';
             break;
         default:
             break;
@@ -119,14 +124,14 @@ const getRankImg = (rank: string): string => {
 };
 
 export const generateSkillItem = (
-    data: MusicFetchData,
+    data: IMusicFetch,
     idx: number,
     ptype: string,
     page: string,
-    userid: string
+    userid: string,
 ) => {
     let rate = data.rate;
-    switch (parseInt(ptype)) {
+    switch (parseInt(ptype, 10)) {
         case 3:
         case 4:
             rate = data.ratetb;
@@ -151,84 +156,90 @@ export const generateSkillItem = (
         case 14:
             rate = data.ratehv;
             break;
+        case 15:
+        case 16:
+            rate = data.ratefu;
+            break;
+        default:
+            break;
     }
 
-    const meterData = data.meter.split("");
-    const media1200 = window.matchMedia("(min-width: 1200px)");
-    let meter = "";
-    for (let k = 0; k < meterData.length; k++) {
-        if (meterData[k] === "0") {
+    const meterData = data.meter.split('');
+    const media1200 = window.matchMedia('(min-width: 1200px)');
+    let meter = '';
+    for (let k = 0; k < meterData.length; k += 1) {
+        if (meterData[k] === '0') {
             if (media1200.matches) {
                 meter +=
-                    "<div style='width:0.5vw; max-width:6px; background-color:#7598ff; float:left'>&nbsp;</div>";
+                    `<div style='width:0.5vw; max-width:6px; background-color:#7598ff; float:left'>&nbsp;</div>`;
             } else {
                 meter +=
-                    "<div style='width:0.25vw; max-width:6px; background-color:#7598ff; float:left'>&nbsp;</div>";
+                    `<div style='width:0.25vw; max-width:6px; background-color:#7598ff; float:left'>&nbsp;</div>`;
             }
-        } else if (meterData[k] === "1") {
+        } else if (meterData[k] === '1') {
             if (media1200.matches) {
                 meter +=
-                    "<div style='width:0.5vw; max-width:6px; background-color:#feff00; float:left'>&nbsp;</div>";
+                    `<div style='width:0.5vw; max-width:6px; background-color:#feff00; float:left'>&nbsp;</div>`;
             } else {
                 meter +=
-                    "<div style='width:0.25vw; max-width:6px; background-color:#feff00; float:left'>&nbsp;</div>";
+                    `<div style='width:0.25vw; max-width:6px; background-color:#feff00; float:left'>&nbsp;</div>`;
             }
         } else {
             if (media1200.matches) {
                 meter +=
-                    "<div style='width:0.5vw; max-width:6px; background-color:#848484; float:left'>&nbsp;</div>";
+                    `<div style='width:0.5vw; max-width:6px; background-color:#848484; float:left'>&nbsp;</div>`;
             } else {
                 meter +=
-                    "<div style='width:0.25vw; max-width:6px; background-color:#848484; float:left'>&nbsp;</div>";
+                    `<div style='width:0.25vw; max-width:6px; background-color:#848484; float:left'>&nbsp;</div>`;
             }
         }
     }
 
-    let img300 = "";
-    let img600 = "";
-    if (data.checkfc === "Y") {
-        if (data.rank !== "EXC") {
-            img300 = process.env.PUBLIC_URL + "/general-img/rank/fc_300.png";
-            img600 = process.env.PUBLIC_URL + "/general-img/rank/fc_600.png";
+    let img300;
+    let img600;
+    if (data.checkfc === 'Y') {
+        if (data.rank !== 'EXC') {
+            img300 = `${process.env.PUBLIC_URL}/general-img/rank/fc_300.png`;
+            img600 = `${process.env.PUBLIC_URL}/general-img/rank/fc_600.png`;
         } else {
-            img300 = process.env.PUBLIC_URL + "/general-img/rank/exc_300.png";
-            img600 = process.env.PUBLIC_URL + "/general-img/rank/exc_600.png";
+            img300 = `${process.env.PUBLIC_URL}/general-img/rank/exc_300.png`;
+            img600 = `${process.env.PUBLIC_URL}/general-img/rank/exc_600.png`;
         }
     } else {
         if (data.playtime > 0) {
             img300 =
-                process.env.PUBLIC_URL + "/general-img/rank/cleared_300.png";
+                `${process.env.PUBLIC_URL}/general-img/rank/cleared_300.png`;
             img600 =
-                process.env.PUBLIC_URL + "/general-img/rank/cleared_600.png";
+                `${process.env.PUBLIC_URL}/general-img/rank/cleared_600.png`;
         } else {
             img300 =
-                process.env.PUBLIC_URL + "/general-img/rank/notplayed_600.png";
+                `${process.env.PUBLIC_URL}/general-img/rank/notplayed_600.png`;
             img600 =
-                process.env.PUBLIC_URL + "/general-img/rank/notplayed_600.png";
+                `${process.env.PUBLIC_URL}/general-img/rank/notplayed_600.png`;
         }
     }
 
-    let color = {};
+    let color;
     const bg = skillTableColor((rate * data.level * 2) / 1000);
-    if (bg.startsWith("#")) {
+    if (bg.startsWith('#')) {
         color = {
-            width: "100% !important",
-            height: "100% !important",
+            width: '100% !important',
+            height: '100% !important',
             backgroundColor: bg,
-            verticalAlign: "middle",
+            verticalAlign: 'middle',
         };
     } else {
         color = {
-            width: "100% !important",
-            height: "100% !important",
+            width: '100% !important',
+            height: '100% !important',
             background: bg,
-            verticalAlign: "middle",
+            verticalAlign: 'middle',
         };
     }
 
-    const item: SkillItemData = {
+    const item: ISkillItem = {
         mid: data.musicid,
-        num: (parseInt(page) - 1) * 30 + idx + 1,
+        num: (parseInt(page, 10) - 1) * 30 + idx + 1,
         iconUrl: `${CommonData.jacketUrl}${data.musicid}.jpg`,
         musicTitle: data.mname,
         musicLink: `/music/${data.musicid}/${userid}`,
@@ -238,7 +249,7 @@ export const generateSkillItem = (
         rank: getRankImg(data.rank),
         rate: (rate / 100).toFixed(2),
         skill: (Math.floor((rate * data.level * 20) / 10000) / 100).toFixed(2),
-        meter: meter,
+        meter,
         version: GDVer[data.version - 1].sv,
         clearImg300: img300,
         clearImg600: img600,

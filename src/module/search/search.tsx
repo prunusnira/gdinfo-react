@@ -1,21 +1,14 @@
-import React, {useState} from 'react'
-import useUserSearch from './useUserSearch'
-import useMusicSearch from './useMusicSearch'
-import { useParams } from 'react-router-dom'
-import { observer } from 'mobx-react'
-import SearchPresenter from './searchPresenter'
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import SearchPresenter from './searchPresenter';
+import useMusicSearch from './useMusicSearch';
+import useUserSearch from './useUserSearch';
 
-interface MatchProps {
-    type: string,
-    page: string,
-    value: string,
-}
-
-const SearchResult = observer(() =>  {
-    const [allpage, setAllPage] = useState(0)
-    const {type, page, value} = useParams<MatchProps>()
-    const userlist = useUserSearch(type, page, value, setAllPage)
-    const musiclist = useMusicSearch(type, page, value, setAllPage)
+const SearchResult = () => {
+    const [allpage, setAllPage] = useState(0);
+    const { type, page, value } = useParams();
+    const { userlist } = useUserSearch({ type, page, value, setAllPage });
+    const { musiclist } = useMusicSearch({ type, page, value, setAllPage });
 
     return (
         <SearchPresenter
@@ -25,7 +18,7 @@ const SearchResult = observer(() =>  {
             page={page}
             value={value}
             allpage={allpage} />
-    )
-})
+    );
+};
 
-export default SearchResult
+export default SearchResult;

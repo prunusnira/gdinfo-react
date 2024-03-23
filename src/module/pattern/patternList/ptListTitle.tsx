@@ -1,13 +1,13 @@
 import React from "react";
-import store from "@/mobx/store";
-
 import txtPatternKo from "@/lang/pattern/pattern/txtPattern-ko";
 import txtPatternJp from "@/lang/pattern/pattern/txtPattern-jp";
 import txtPatternEn from "@/lang/pattern/pattern/txtPattern-en";
 import { PTListBody, PTListTitleDiv } from "./ptList.style";
+import {useAtomValue} from "jotai/index";
+import {atomLanguage} from "@/jotai/language";
 
 const PTListTitle = () => {
-    const lang = store.language.lang;
+    const lang = useAtomValue(atomLanguage)
 
     const txtPattern = lang === "ko" ? txtPatternKo : lang === "jp" ? txtPatternJp : txtPatternEn;
 

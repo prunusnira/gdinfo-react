@@ -1,40 +1,41 @@
 import { act, renderHook } from "@testing-library/react-hooks"
-import useSearch, { SearchType } from "./useSearch"
+import {ESearchType} from "@/data/common/ESearchType";
+import useSearch from "@/module/header/useSearch";
 
 describe('검색타입 변경 및 변경 다이얼로그 토글 테스트', () => {
     it('검색타입 변경', () => {
         const {result} = renderHook(() => useSearch(''))
 
-        expect(result.current[0]).toBe(SearchType.music)
+        expect(result.current.searchType).toBe(ESearchType.MUSIC)
         act(() => {
-            result.current[6](SearchType.player)
+            result.current.changeSearchType(ESearchType.PLAYER)
         })
-        expect(result.current[0]).toBe(SearchType.player)
+        expect(result.current.searchType).toBe(ESearchType.PLAYER)
         act(() => {
-            result.current[6](SearchType.gskill)
+            result.current.changeSearchType(ESearchType.GSKILL)
         })
-        expect(result.current[0]).toBe(SearchType.gskill)
+        expect(result.current.searchType).toBe(ESearchType.GSKILL)
         act(() => {
-            result.current[6](SearchType.dskill)
+            result.current.changeSearchType(ESearchType.DSKILL)
         })
-        expect(result.current[0]).toBe(SearchType.dskill)
+        expect(result.current.searchType).toBe(ESearchType.DSKILL)
         act(() => {
-            result.current[6](SearchType.music)
+            result.current.changeSearchType(ESearchType.MUSIC)
         })
-        expect(result.current[0]).toBe(SearchType.music)
+        expect(result.current.searchType).toBe(ESearchType.MUSIC)
     })
 
     it('검색타입 변경 다이얼로그 토글', () => {
         const {result} = renderHook(() => useSearch(''))
 
-        expect(result.current[1]).toBe(false)
+        expect(result.current.searchTypeDlg).toBe(false)
         act(() => {
-            result.current[2](true)
+            result.current.openSearchTypeDlg(true)
         })
-        expect(result.current[1]).toBe(true)
+        expect(result.current.searchTypeDlg).toBe(true)
         act(() => {
-            result.current[5]()
+            result.current.closeSearchTypeDlg()
         })
-        expect(result.current[1]).toBe(false)
+        expect(result.current.searchTypeDlg).toBe(false)
     })
 })

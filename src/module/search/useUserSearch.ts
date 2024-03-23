@@ -1,61 +1,63 @@
-import { useEffect, useState } from "react";
-import { getSearchResult } from "@/api/getSearchResult";
-import RecentData from "@/module/recent/recentData";
+import { getSearchResult } from '@/api/getSearchResult';
+import { IRecent } from '@/data/etc/IRecent';
+import { useEffect, useState } from 'react';
 
-const useUserSearch = (
-    type: string,
-    page: string,
-    value: string,
-    setAllPage: (p: number) => void
-) => {
-    const [userlist, setUserlist] = useState(Array<RecentData>());
+interface Props {
+    type?: string,
+    page?: string,
+    value?: string,
+    setAllPage?: (p: number) => void
+}
 
-    useEffect(() => {
-        if (type !== "music") getUserList();
-    }, [page]);
+const useUserSearch = ({
+                           type, page, value, setAllPage,
+                       }: Props) => {
+    const [userlist, setUserlist] = useState(Array<IRecent>());
 
     const getUserList = () => {
-        getSearchResult(type, value, page).then((json) => {
-            const userList = JSON.parse(json.userList);
-            const userlistDisp = [];
-            if (JSON.parse(json.resultexist) === "yes") {
-                for (let i = 0; i < userList.length; i++) {
-                    const cur = userList[i];
-                    const obj: RecentData = {
-                        id: 0,
-                        titletower: "",
-                        name: "",
-                        gskill: 0,
-                        dskill: 0,
-                        updatetime: "",
-                        uptimelong: 0,
-                        glink: "",
-                        dlink: "",
-                        opencount: "",
-                    };
-                    if (cur.titletower !== "") {
-                        obj.titletower = cur.titletower;
-                    } else {
-                        obj.titletower = "";
+        if (type && page && value && setAllPage) {
+            getSearchResult(type, value, page).then((json) => {
+                const userList = JSON.parse(json.userList);
+                const userlistDisp = [];
+                if (JSON.parse(json.resultexist) === 'yes') {
+                    for (let i = 0; i < userList.length; i += 1) {
+                        const cur = userList[i];
+                        const obj: IRecent = {
+                            id: 0,
+                            titletower: '',
+                            name: '',
+                            gskill: 0,
+                            dskill: 0,
+                            updatetime: '',
+                            uptimelong: 0,
+                            opencount: '',
+                        };
+                        if (cur.titletower !== '') {
+                            obj.titletower = cur.titletower;
+                        } else {
+                            obj.titletower = '';
+                        }
+                        obj.id = cur.id;
+                        obj.name = cur.name;
+                        obj.gskill = cur.gskill;
+                        obj.dskill = cur.dskill;
+                        obj.uptimelong = cur.updatetime;
+
+                        userlistDisp.push(obj);
                     }
-                    obj.id = cur.id;
-                    obj.name = cur.name;
-                    obj.gskill = cur.gskill;
-                    obj.dskill = cur.dskill;
-                    obj.glink = `/skill/2/${cur.id}/gf/1/1`;
-                    obj.dlink = `/skill/2/${cur.id}/dm/1/1`;
-                    obj.uptimelong = cur.updatetime;
 
-                    userlistDisp.push(obj);
+                    setUserlist(userlistDisp);
+                    setAllPage(parseInt(json.pages, 10));
                 }
-
-                setUserlist(userlistDisp);
-                setAllPage(parseInt(json.pages));
-            }
-        });
+            });
+        }
     };
 
-    return userlist;
+    useEffect(() => {
+        if (type !== 'music') getUserList();
+    }, [page]);
+
+    return { userlist };
 };
 
 export default useUserSearch;

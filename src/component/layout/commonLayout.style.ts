@@ -6,8 +6,7 @@ export const Outer = styled.main<{ dark: boolean }>`
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    height: 100%;
-    overflow-y: scroll;
+    min-height: 100vh;
 
     ${(props) => (props.dark ? `background-color: ${Black};` : `background-color: ${Background}`)}
 `;
