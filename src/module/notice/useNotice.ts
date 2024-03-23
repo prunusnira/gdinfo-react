@@ -1,7 +1,7 @@
 import { getNotice } from "@/api/getNotice";
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from "react";
-import {INotice} from "@/data/INotice";
+import {INotice} from "@/data/etc/INotice";
 
 const useNotice = (page: number) => {
     const [list, setList] = useState(Array<INotice>());

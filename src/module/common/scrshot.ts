@@ -25,6 +25,8 @@ const scrShot = (divname: string, filename: string) => {
     window.scrollTo(0, 0);
     html2canvas(document.getElementById(divname)!, {
         useCORS: true,
+        allowTaint: false,
+        logging: true,
     })
         .then(canvas => {
             // dataUrl로 뽑으면 파일명이 너무 길어서

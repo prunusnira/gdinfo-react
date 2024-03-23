@@ -1,5 +1,6 @@
 import ContentLayout from '@/component/content/standardContent';
 import CommonLayout from '@/component/layout/commonLayout';
+import Loading from '@/component/loading/loading';
 import CommonData from '@/module/common/commonData';
 import { getPatternImg600 } from '@/module/common/pattern';
 import React from 'react';
@@ -8,8 +9,8 @@ import { DiffBox, DiffCell, DiffImg, DiffJacket, DiffRow, DiffRowWrap, DiffTitle
 import useLvDiff from './useLvDiff';
 
 const LVDiff = () => {
-    const { type } = useParams();
-    const { list } = useLvDiff(type);
+    const { type } = useParams<{type: string}>();
+    const { list, isLoading } = useLvDiff(type);
 
     const diffColor = (val: number) => val > 0 ? 'skyblue' : 'pink';
 
@@ -18,6 +19,7 @@ const LVDiff = () => {
             <ContentLayout
                 title={`Level Difference (GALAXY WAVE - FUZZ-UP) - ${type?.toUpperCase()}`}
             >
+                {isLoading ? <Loading /> : <></>}
                 <DiffBox>
                     {list.map((x) => (
                         <DiffWrapper>

@@ -1,3 +1,4 @@
+import Loading from '@/component/loading/loading';
 import { atomDarkmode } from '@/jotai/darkmode';
 import { atomLanguage } from '@/jotai/language';
 import txtIndexEn from '@/lang/index/txtIndex-en';
@@ -6,7 +7,6 @@ import txtIndexKo from '@/lang/index/txtIndex-ko';
 import SingleSkillColorChanger from '@/module/common/skillcolor';
 import { LIIcon, LIName, LIRow, LISkillRow, LIType, LIVal, LIWrapper } from '@/module/index/logininfo.style';
 import { ThemedLink } from '@/styled/styledCommon';
-import { ReactComponent as IconLoading } from '@/svg/loading.svg';
 import { useAtomValue } from 'jotai/index';
 import React from 'react';
 import useLoginInfo from './useLoginInfo';
@@ -22,7 +22,7 @@ const UserLoginInfo = () => {
         return (
             <LIWrapper>
                 <LIRow>
-                    <IconLoading viewBox={'0 0 40 40'} width={100} height={100} />
+                    <Loading />
                 </LIRow>
             </LIWrapper>
         );

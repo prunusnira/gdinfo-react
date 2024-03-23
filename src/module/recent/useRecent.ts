@@ -1,5 +1,5 @@
 import { getRecentUser } from '@/api/getUserData';
-import { IRecent } from '@/data/IRecent';
+import { IRecent } from '@/data/etc/IRecent';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 

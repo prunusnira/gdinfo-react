@@ -74,7 +74,7 @@ const HeaderNavBar = (props: Props) => {
                 </NavItem>
                 <NavItem dark={dark}>{LoginButton()}</NavItem>
                 <NavItem dark={dark} onClick={() => props.toggleMenu()}>
-                    <FontAwesomeIcon icon={faBars} />
+                    <FontAwesomeIcon icon={faBars} style={{cursor: 'pointer'}} />
                 </NavItem>
             </NavMenu>
         </NavBar>

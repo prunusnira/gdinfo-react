@@ -1,4 +1,4 @@
-import { IClearTable } from '@/data/IClearTable';
+import { IClearTable } from '@/data/user/IClearTable';
 import React, { Fragment } from 'react';
 import { TableText } from './clearTablePresenter.style';
 
@@ -6,8 +6,8 @@ interface Props {
     list: Array<IClearTable>;
 }
 
-const ClearTableRow = (props: Props) => {
-    const data = props.list.map((clear, i) => (
+const ClearTableRow = ({ list }: Props) => {
+    const data = list.map((clear, i) => (
         <Fragment key={`clearRow${i}`}>
             <TableText>{clear.level}</TableText>
             <TableText>{clear.exc}</TableText>

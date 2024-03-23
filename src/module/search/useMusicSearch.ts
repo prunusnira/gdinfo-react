@@ -1,6 +1,6 @@
 import { getSearchResult } from '@/api/getSearchResult';
-import { IEachDiff } from '@/data/IEachDiff';
-import { IPattern } from '@/data/IPattern';
+import { IEachDiff } from '@/data/pattern/IEachDiff';
+import { IPattern } from '@/data/pattern/IPattern';
 import { atomLoginUser } from '@/jotai/loginUser';
 import CommonData from '@/module/common/commonData';
 import { useAtomValue } from 'jotai/index';

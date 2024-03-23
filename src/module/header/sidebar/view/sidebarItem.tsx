@@ -1,4 +1,4 @@
-import { ISidebarItem } from '@/data/ISidebarItem';
+import { ISidebarItem } from '@/data/common/ISidebarItem';
 import { atomDarkmode } from '@/jotai/darkmode';
 import { ThemedLink } from '@/styled/styledCommon';
 import { useAtomValue } from 'jotai/index';

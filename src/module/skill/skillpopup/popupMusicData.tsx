@@ -1,4 +1,4 @@
-import { IMusic } from '@/data/IMusic';
+import { IMusic } from '@/data/music/IMusic';
 import CommonData from '@/module/common/commonData';
 import React, { useState } from 'react';
 import {

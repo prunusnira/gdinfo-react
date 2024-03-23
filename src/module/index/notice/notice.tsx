@@ -20,10 +20,6 @@ const IndexNotice = () => {
     const { list, isLoading, isError } = useNotice(0);
     return (
         <IndexContent>
-            <IndexRow>
-                {txtIndex.notice2.desc}&nbsp;
-                <Anchor href="/notice/1" dark={dark}>{`more >>`}</Anchor>
-            </IndexRow>
             <IndexContent>
                 {list && list.map((x, i) => (
                     <IndexNoticeItem key={`notice${i}`} item={x} />

@@ -1,4 +1,4 @@
-import { IMusic } from '@/data/IMusic';
+import { IMusic } from '@/data/music/IMusic';
 import { Button } from '@/styled/styledCommon';
 import React from 'react';
 import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';

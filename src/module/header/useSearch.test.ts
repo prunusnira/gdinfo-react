@@ -1,5 +1,5 @@
 import { act, renderHook } from "@testing-library/react-hooks"
-import {ESearchType} from "@/data/ESearchType";
+import {ESearchType} from "@/data/common/ESearchType";
 import useSearch from "@/module/header/useSearch";
 
 describe('검색타입 변경 및 변경 다이얼로그 토글 테스트', () => {

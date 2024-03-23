@@ -1,7 +1,7 @@
 import ContentLayout from '@/component/content/standardContent';
 import CommonLayout from '@/component/layout/commonLayout';
-import { ISkillItem } from '@/data/ISkillItem';
-import { ISnapshot } from '@/data/ISnapshot';
+import { ISkillItem } from '@/data/skill/ISkillItem';
+import { ISnapshot } from '@/data/skill/ISnapshot';
 import { atomDarkmode } from '@/jotai/darkmode';
 import { atomLanguage } from '@/jotai/language';
 import txtSkillEn from '@/lang/skill/skill/txtSkill-en';
@@ -17,7 +17,7 @@ import axios from 'axios';
 import { useAtomValue } from 'jotai/index';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { SkillBody, SkillHeader, SkillRow, SkillTableWrapper } from './skillpresenter/skillPresenter.style';
+import { SkillBody, SkillHeader, SkillRow, SkillTableWrapper } from './skillpresenter/skillTableBody.style';
 import SkillTableNR from './skillpresenter/skillTableNR';
 import SkillTableSH from './skillpresenter/skillTableSH';
 

@@ -1,5 +1,5 @@
 import ContentLayout from '@/component/content/standardContent';
-import { IPattern } from '@/data/IPattern';
+import { IPattern } from '@/data/pattern/IPattern';
 import { atomLanguage } from '@/jotai/language';
 import txtPatternEn from '@/lang/pattern/pattern/txtPattern-en';
 import txtPatternJp from '@/lang/pattern/pattern/txtPattern-jp';

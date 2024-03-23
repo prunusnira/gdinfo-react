@@ -6,8 +6,5 @@
                 "displayName": true
             }
         ]
-    ],
-    "rules": {
-        "indent": ["error", 4]
-    }
+    ]
 }

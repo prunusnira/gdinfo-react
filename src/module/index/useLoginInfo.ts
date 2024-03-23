@@ -1,5 +1,5 @@
 import { getUserFromToken } from '@/api/getUserData';
-import { IProfile } from '@/data/IProfile';
+import { IProfile } from '@/data/user/IProfile';
 import { atomLoginUser } from '@/jotai/loginUser';
 import { useQuery } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai/index';

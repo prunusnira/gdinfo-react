@@ -5,3 +5,7 @@ export interface ILvDiff {
     lv: number;
     lvold: number;
 }
+
+export interface ILvDiffIO {
+    lvdiff: ILvDiff[];
+}

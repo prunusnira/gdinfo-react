@@ -1,4 +1,4 @@
-import { IPatternRank } from '@/data/IPatternRank';
+import { IPatternRank } from '@/data/pattern/IPatternRank';
 import { atomDarkmode } from '@/jotai/darkmode';
 import { Icon, ThemedLink } from '@/styled/styledCommon';
 import { useAtomValue } from 'jotai/index';

@@ -1,5 +1,6 @@
 import ContentLayout from '@/component/content/standardContent';
 import CommonLayout from '@/component/layout/commonLayout';
+import Loading from '@/component/loading/loading';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import NoRecordPresenter from './noRecordPresenter';
@@ -10,7 +11,7 @@ import useNoRecordSelector from './useNoRecordSelector';
 
 const NoRecordMusicList = () => {
     const { gtype, userid, vertype, page } = useParams();
-    const { list, allPage } = useNoRecordData({ gtype, userid, vertype, page });
+    const { list, allPage, isLoading } = useNoRecordData({ gtype, userid, vertype, page });
     const {
         lv,
         ver,
@@ -38,21 +39,25 @@ const NoRecordMusicList = () => {
                     switchOtherMethod={switchOtherMethod}
                     switchClearMethod={switchClearMethod}
                 />
-                <NoRecordPresenter
-                    switchLv={switchLv}
-                    switchVer={switchVer}
-                    switchHot={switchHot}
-                    switchOther={switchOther}
-                    switchClear={switchClear}
-                    lv={lv}
-                    ver={ver}
-                    allPage={allPage}
-                    list={list}
-                    gtype={gtype}
-                    userid={userid}
-                    vertype={vertype}
-                    page={page}
-                />
+                {isLoading ? <Loading /> : <></>}
+                {!isLoading && list && list.length > 0 ?
+                    <NoRecordPresenter
+                        switchLv={switchLv}
+                        switchVer={switchVer}
+                        switchHot={switchHot}
+                        switchOther={switchOther}
+                        switchClear={switchClear}
+                        lv={lv}
+                        ver={ver}
+                        allPage={allPage}
+                        list={list}
+                        gtype={gtype}
+                        userid={userid}
+                        vertype={vertype}
+                        page={page}
+                    />
+                    : <></>
+                }
             </ContentLayout>
         </CommonLayout>
     );

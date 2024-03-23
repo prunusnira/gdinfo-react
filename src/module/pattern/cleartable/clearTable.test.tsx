@@ -3,7 +3,7 @@ import '@testing-library/jest-dom'
 import React from "react"
 import { MemoryRouter } from "react-router-dom"
 import ClearTable from "./clearTable"
-import {IClearTable} from "@/data/IClearTable"
+import {IClearTable} from "@/data/user/IClearTable"
 
 const mockClearTableData: IClearTable[] = [{
     level:'1.0',

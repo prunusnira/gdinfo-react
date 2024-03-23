@@ -1,4 +1,4 @@
-import { IEachDiff } from '@/data/IEachDiff';
+import { IEachDiff } from '@/data/pattern/IEachDiff';
 import { atomDarkmode } from '@/jotai/darkmode';
 import { ThemedLink } from '@/styled/styledCommon';
 import { useAtomValue } from 'jotai/index';

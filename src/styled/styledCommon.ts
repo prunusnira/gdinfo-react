@@ -4,6 +4,7 @@ import { AnchorColor, AnchorColorDark, Black, ButtonBG } from './color';
 
 export const Anchor = styled.a<{ dark: boolean }>`
     ${(props) => (props.dark ? `color: ${AnchorColorDark};` : `color: ${AnchorColor};`)}
+    cursor: pointer;
 `;
 
 export const ThemedLink = styled(Link)<{ dark: boolean }>`

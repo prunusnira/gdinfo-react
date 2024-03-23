@@ -1,5 +1,5 @@
 import { getPatternRank } from '@/api/getMusicData';
-import { IPatternRank } from '@/data/IPatternRank';
+import { IPatternRank } from '@/data/pattern/IPatternRank';
 import { atomLanguage } from '@/jotai/language';
 import TxtCommonEn from '@/lang/common/txtCommon-en';
 import TxtCommonJp from '@/lang/common/txtCommon-jp';

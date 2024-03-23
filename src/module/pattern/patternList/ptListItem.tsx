@@ -1,4 +1,4 @@
-import { IPattern } from '@/data/IPattern';
+import { IPattern } from '@/data/pattern/IPattern';
 import { atomDarkmode } from '@/jotai/darkmode';
 import { Anchor } from '@/styled/styledCommon';
 import { useAtomValue } from 'jotai/index';

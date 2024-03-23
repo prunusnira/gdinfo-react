@@ -1,4 +1,4 @@
-import { ESearchType } from '@/data/ESearchType';
+import { ESearchType } from '@/data/common/ESearchType';
 import React, { useState } from 'react';
 
 const useSearch = (searchTxt: string) => {

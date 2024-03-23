@@ -6,7 +6,7 @@ import TxtModalJp from "@/lang/header/searchmodal/txtmodal-jp";
 import TxtModalEn from "@/lang/header/searchmodal/txtmodal-en";
 import {useAtomValue} from "jotai/index";
 import {atomLanguage} from "@/jotai/language";
-import {ESearchType} from "@/data/ESearchType";
+import {ESearchType} from "@/data/common/ESearchType";
 
 interface Props {
     isOpen: boolean;

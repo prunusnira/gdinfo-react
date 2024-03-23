@@ -1,6 +1,6 @@
 import ContentLayout from '@/component/content/standardContent';
 import CommonLayout from '@/component/layout/commonLayout';
-import { IPatternRank } from '@/data/IPatternRank';
+import { IPatternRank } from '@/data/pattern/IPatternRank';
 import { atomDarkmode } from '@/jotai/darkmode';
 import { atomLanguage } from '@/jotai/language';
 import txtPTRankEn from '@/lang/pattern/patternRank/txtPTRank-en';

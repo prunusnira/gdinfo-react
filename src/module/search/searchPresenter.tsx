@@ -1,7 +1,7 @@
 import ContentLayout from '@/component/content/standardContent';
 import CommonLayout from '@/component/layout/commonLayout';
-import { IPattern } from '@/data/IPattern';
-import { IRecent } from '@/data/IRecent';
+import { IPattern } from '@/data/pattern/IPattern';
+import { IRecent } from '@/data/etc/IRecent';
 import { atomLanguage } from '@/jotai/language';
 import txtSearchEn from '@/lang/search/txtSearch-en';
 import txtSearchJp from '@/lang/search/txtSearch-jp';

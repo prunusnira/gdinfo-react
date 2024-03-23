@@ -1,4 +1,4 @@
-import { ESearchType } from '@/data/ESearchType';
+import { ESearchType } from '@/data/common/ESearchType';
 import React from 'react';
 import SearchTypeModalPresenter from './searchTypeModalPresenter';
 import useSearchType from './useSearchType';

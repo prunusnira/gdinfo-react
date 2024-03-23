@@ -12,10 +12,11 @@ const txtIndex = {
     },
     script: {
         title: '갱신 스크립트',
-        cont: '아래의 스크립트를 복사 혹은 즐겨찾기에 등록하세요',
+        cont: '아래의 스크립트를 클릭/터치하여 복사한 후 사용해주세요',
         scriptTitle: '스크립트',
         scriptNoLogin: '스크립트는 개인별로 제공됩니다. 로그인해주세요',
         scriptLogin: '아래 URL은 개인별로 다릅니다. 절대 타인에게 공유하지 마세요.',
+        alert: '첫 문자 j를 제외한 나머지 문자열이 복사되었습니다',
     },
     notice2: {
         title: '공지사항',

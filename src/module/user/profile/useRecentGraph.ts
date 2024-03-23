@@ -1,5 +1,5 @@
 import { getGraph } from '@/api/getUserData';
-import { ISkillRecord } from '@/data/ISkillRecord';
+import { ISkillRecord } from '@/data/skill/ISkillRecord';
 import { useEffect, useState } from 'react';
 
 const useRecentGraph = (id: string, type: string) => {

@@ -1,5 +1,5 @@
 import { getSearchResult } from '@/api/getSearchResult';
-import { IRecent } from '@/data/IRecent';
+import { IRecent } from '@/data/etc/IRecent';
 import { useEffect, useState } from 'react';
 
 interface Props {

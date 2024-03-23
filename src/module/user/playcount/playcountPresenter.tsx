@@ -1,5 +1,3 @@
-import ContentLayout from '@/component/content/standardContent';
-import CommonLayout from '@/component/layout/commonLayout';
 import { IPlayCount } from '@/data/IPlayCount';
 import { atomLanguage } from '@/jotai/language';
 import txtPlayCountEn from '@/lang/user/playcount/txtPlayCount-en';
@@ -30,52 +28,48 @@ const PlayCountPresenter = ({ userName, id, towerTitle, plist, glist, dlist, mli
         lang === 'ko' ? txtPlayCountKo : lang === 'jp' ? txtPlayCountJp : txtPlayCountEn;
 
     return (
-        <CommonLayout>
-            {id ? (
-                <ContentLayout title={'Play Count'}>
-                    <PCDesc>
-                        <Button
-                            style={{ width: '100%' }}
-                            onClick={() => scrShot('scrshot', `${id}_mybest.jpg`)}
-                        >
-                            {txtPlayCount.button.scrshot}
-                        </Button>
-                        {txtPlayCount.desc_1}
-                        <span style={{ color: '#ff5555' }}>{txtPlayCount.desc_2}</span>
-                        {txtPlayCount.desc_3}
-                    </PCDesc>
-                    <PCTitle>
-                        <h4>Most Played List</h4>
-                        <span>
-                        Player:&nbsp;
-                            <img
-                                alt="titletower"
-                                style={{ width: '30px' }}
-                                src={`${process.env.PUBLIC_URL}/general-img/title/${towerTitle}.png`}
-                            />
-                            {userName}
-                    </span>
-                    </PCTitle>
-                    <PCBtnWrapper>
-                        <Button onClick={() => setListData(plist)}>
-                            {txtPlayCount.button.pt}
-                        </Button>
-                        <Button onClick={() => setListData(mlist)}>
-                            {txtPlayCount.button.music}
-                        </Button>
-                        <Button onClick={() => setListData(glist)}>
-                            {txtPlayCount.button.gf}
-                        </Button>
-                        <Button onClick={() => setListData(dlist)}>
-                            {txtPlayCount.button.dm}
-                        </Button>
-                    </PCBtnWrapper>
-                    <PCListWrapper id={'scrshot'}>
-                        <CountTable data={listData} />
-                    </PCListWrapper>
-                </ContentLayout>
-            ) : (<>{txtPlayCount.nodata}</>)}
-        </CommonLayout>
+        <>
+            <PCDesc>
+                <Button
+                    style={{ width: '100%' }}
+                    onClick={() => scrShot('scrshot', `${id}_mybest.jpg`)}
+                >
+                    {txtPlayCount.button.scrshot}
+                </Button>
+                {txtPlayCount.desc_1}
+                <span style={{ color: '#ff5555' }}>{txtPlayCount.desc_2}</span>
+                {txtPlayCount.desc_3}
+            </PCDesc>
+            <PCTitle>
+                <h4>Most Played List</h4>
+                <span>
+                            Player:&nbsp;
+                    <img
+                        alt="titletower"
+                        style={{ width: '30px' }}
+                        src={`${process.env.PUBLIC_URL}/general-img/title/${towerTitle}.png`}
+                    />
+                    {userName}
+                </span>
+            </PCTitle>
+            <PCBtnWrapper>
+                <Button onClick={() => setListData(plist)}>
+                    {txtPlayCount.button.pt}
+                </Button>
+                <Button onClick={() => setListData(mlist)}>
+                    {txtPlayCount.button.music}
+                </Button>
+                <Button onClick={() => setListData(glist)}>
+                    {txtPlayCount.button.gf}
+                </Button>
+                <Button onClick={() => setListData(dlist)}>
+                    {txtPlayCount.button.dm}
+                </Button>
+            </PCBtnWrapper>
+            <PCListWrapper id={'scrshot'}>
+                <CountTable data={listData} />
+            </PCListWrapper>
+        </>
     );
 };
 

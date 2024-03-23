@@ -1,4 +1,4 @@
-import { ISkillRank } from '@/data/ISkillRank';
+import { ISkillRank } from '@/data/skill/ISkillRank';
 import { atomDarkmode } from '@/jotai/darkmode';
 import { atomLanguage } from '@/jotai/language';
 import txtSrankEn from '@/lang/skill/ranking/txtSkillRank-en';
@@ -20,49 +20,44 @@ import {
 } from './rankingItem.style';
 
 interface Props {
-    rank: Array<ISkillRank>;
-    gtype: string;
+    rank: ISkillRank;
 }
 
-const SkillRankingItem = (props: Props) => {
+const SkillRankingItem = ({ rank }: Props) => {
     const lang = useAtomValue(atomLanguage);
     const dark = useAtomValue(atomDarkmode);
 
     const txtSrank = lang === 'ko' ? txtSrankKo : lang === 'jp' ? txtSrankJp : txtSrankEn;
 
     return (
-        <>
-            {props.rank.map((r) => (
-                <SRItemWrapper dark={dark}>
-                    <SRNum>{r.index}</SRNum>
-                    <SRInfoWrapper>
-                        <SRUser>
-                            {r.towertitle !== '' && <SRIcon src={r.towertitle} />}
-                            <ThemedLink dark={dark} to={r.profile}>
-                                {r.username}
-                            </ThemedLink>
-                        </SRUser>
-                        <SRUpdate>
-                            {txtSrank.table.uptime} {r.time}
-                        </SRUpdate>
-                    </SRInfoWrapper>
-                    <SRSkillWrapper>
-                        <SRSkillVal>
-                            <SingleSkillColorChanger
-                                skill={parseFloat(r.gskill)}
-                                link={r.glink}
-                            />
-                        </SRSkillVal>
-                        <SRSkillVal>
-                            <SingleSkillColorChanger
-                                skill={parseFloat(r.dskill)}
-                                link={r.dlink}
-                            />
-                        </SRSkillVal>
-                    </SRSkillWrapper>
-                </SRItemWrapper>
-            ))}
-        </>
+        <SRItemWrapper dark={dark}>
+            <SRNum>{rank.index}</SRNum>
+            <SRInfoWrapper>
+                <SRUser>
+                    {rank.towertitle !== '' && <SRIcon src={rank.towertitle} />}
+                    <ThemedLink dark={dark} to={rank.profile}>
+                        {rank.username}
+                    </ThemedLink>
+                </SRUser>
+                <SRUpdate>
+                    {txtSrank.table.uptime} {rank.time}
+                </SRUpdate>
+            </SRInfoWrapper>
+            <SRSkillWrapper>
+                <SRSkillVal>
+                    <SingleSkillColorChanger
+                        skill={parseFloat(rank.gskill)}
+                        link={rank.glink}
+                    />
+                </SRSkillVal>
+                <SRSkillVal>
+                    <SingleSkillColorChanger
+                        skill={parseFloat(rank.dskill)}
+                        link={rank.dlink}
+                    />
+                </SRSkillVal>
+            </SRSkillWrapper>
+        </SRItemWrapper>
     );
 };
 

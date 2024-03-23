@@ -1,5 +1,5 @@
 import { apiNewUser } from '@/api/updateUserData';
-import { ILoginInfo } from '@/data/ILoginInfo';
+import { ILoginInfo } from '@/data/user/ILoginInfo';
 import { atomLoginUser } from '@/jotai/loginUser';
 import { useAtomValue } from 'jotai/index';
 

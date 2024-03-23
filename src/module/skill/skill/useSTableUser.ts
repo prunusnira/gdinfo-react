@@ -1,6 +1,7 @@
 import { getUserFromId } from '@/api/getUserData';
-import { IProfile } from '@/data/IProfile';
+import { IProfile } from '@/data/user/IProfile';
 import { atomLoginUser } from '@/jotai/loginUser';
+import { useQuery } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai/index';
 import { useEffect, useState } from 'react';
 
@@ -14,32 +15,39 @@ const useSTableUser = ({ userid, ptype }: Props) => {
     const [ownAccount, setOwnAccount] = useState(false);
     const loginUser = useAtomValue(atomLoginUser);
 
-    const setUserInfo = () => {
-        // 페이지를 연 사용자가 로그인 한 본인과 동일한지 확인
-        if (loginUser && userid === loginUser.id.toString()) {
+    const getUser = async () => {
+        if(loginUser && userid === loginUser.id.toString()) {
             setOwnAccount(true);
         }
 
         if (ptype === '1000') {
             setUser(undefined);
         }
-        // 서버에서 사용자 정보를 가져옴
+
         if (userid) {
-            getUserFromId(userid).then((data) => {
-                const json = JSON.parse(data.mydata) as IProfile;
-                setUser(json);
-            });
+            return getUserFromId(userid);
         }
-    };
+        return undefined;
+    }
 
-    // URL이 변경되면 새로 useEffect를 호출하여 내용을 갱신
-    // (react-router-dom을 위한 설정)
+    const { data, isLoading, isError } = useQuery({
+        queryKey: ['common, userdata', 'id', userid, ptype],
+        queryFn: getUser,
+    });
+
     useEffect(() => {
-        // id 값에서 사용자정보 불러오기
-        setUserInfo();
-    }, [window.location.href]);
+        if(data) {
+            const json = JSON.parse(data.mydata) as IProfile;
+            setUser(json);
+        }
+    }, [data]);
 
-    return { user, ownAccount };
+    return {
+        user,
+        ownAccount,
+        isUserLoading: isLoading,
+        isUserError: isError,
+    };
 };
 
 export default useSTableUser;

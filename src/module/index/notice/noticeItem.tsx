@@ -1,4 +1,4 @@
-import { INotice } from '@/data/INotice';
+import { INotice } from '@/data/etc/INotice';
 import { atomLanguage } from '@/jotai/language';
 import { unixTimeConverter } from '@/module/common/time';
 import { useAtomValue } from 'jotai/index';

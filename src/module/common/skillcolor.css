@@ -162,6 +162,8 @@
     text-fill-color: transparent;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    box-shadow: transparent;
+    -webkit-box-shadow: transparent;
 
     background-position-x: 0;
     background-position-y: 0;

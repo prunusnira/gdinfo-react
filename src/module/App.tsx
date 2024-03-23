@@ -1,7 +1,6 @@
 import { atomLanguage } from '@/jotai/language';
 import { atomVersion } from '@/jotai/version';
 import Language from '@/module/common/language';
-import { GlobalStyle } from '@/styled/globalStyle';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { useAtom } from 'jotai';
 import React, { useEffect } from 'react';
@@ -75,7 +74,6 @@ const App = () => {
     return (
         <QueryClientProvider client={queryClient}>
             <BrowserRouter>
-                <GlobalStyle />
                 <Routes>
                     <Route path="/" element={<IndexPage />} />
                     <Route path="/index" element={<IndexPage />} />

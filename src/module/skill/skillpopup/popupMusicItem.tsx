@@ -1,4 +1,4 @@
-import { IMusic } from '@/data/IMusic';
+import { IMusic } from '@/data/music/IMusic';
 import { atomLanguage } from '@/jotai/language';
 import txtMusicEn from '@/lang/pattern/music/txtmusic-en';
 import txtMusicJp from '@/lang/pattern/music/txtmusic-jp';

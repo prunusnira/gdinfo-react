@@ -1,6 +1,7 @@
 import { getUserFromId } from '@/api/getUserData';
-import { IProfile } from '@/data/IProfile';
+import { IProfile } from '@/data/user/IProfile';
 import { atomLoginUser } from '@/jotai/loginUser';
+import { useQuery } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai/index';
 import { useEffect, useState } from 'react';
 
@@ -27,22 +28,30 @@ const useProfileLoader = ({
 
     const getUserData = () => {
         if (id) {
-            getUserFromId(id)
-                .then((data) => {
-                    const json = JSON.parse(data.mydata);
-                    setProfileData(json);
-                    setComment(json.comment);
-                    setOpenUserInfo(json.opencount);
-                });
+            return getUserFromId(id);
         }
+        return undefined;
     };
+
+    const { data, isLoading } = useQuery({
+        queryKey: ['profile', 'userdata'],
+        queryFn: getUserData,
+    });
 
     useEffect(() => {
         checkOwnAccount();
-        getUserData();
     }, []);
 
-    return { profileData, isOwnAccount };
+    useEffect(() => {
+        if (data) {
+            const json = JSON.parse(data.mydata);
+            setProfileData(json);
+            setComment(json.comment);
+            setOpenUserInfo(json.opencount);
+        }
+    }, [data]);
+
+    return { profileData, isOwnAccount, isLoading };
 };
 
 export default useProfileLoader;

@@ -1,5 +1,6 @@
 import ContentLayout from '@/component/content/standardContent';
 import CommonLayout from '@/component/layout/commonLayout';
+import Loading from '@/component/loading/loading';
 import { atomLanguage } from '@/jotai/language';
 import txtRecentEn from '@/lang/recent/txtRecent-en';
 import txtRecentJp from '@/lang/recent/txtRecent-jp';
@@ -21,7 +22,7 @@ const Recent = () => {
         return (
             <CommonLayout>
                 <ContentLayout title={txtRecent.recent}>
-                    <IconLoading viewBox={'0 0 40 40'} width={100} height={100} />
+                    <Loading />
                 </ContentLayout>
             </CommonLayout>
         );

@@ -1,4 +1,7 @@
-import Error404 from '@/module/error/404';
+import CommonLayout from '@/component/layout/commonLayout';
+import Loading from '@/component/loading/loading';
+import ModalComment from '@/module/user/profile/modalComment';
+import ModalInfoOpen from '@/module/user/profile/modalInfoOpen';
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import ProfilePresenter from './profilePresenter';
@@ -11,7 +14,7 @@ const Profile = () => {
     const [nextComment, setNextComment] = useState('');
     const [openUserInfo, setOpenUserInfo] = useState('N');
     const { id } = useParams();
-    const { profileData, isOwnAccount } = useProfileLoader({ id, setComment, setOpenUserInfo });
+    const { profileData, isOwnAccount, isLoading } = useProfileLoader({ id, setComment, setOpenUserInfo });
     const [isCommentOpen, setCommentDlgOpen, closeComment, submitComment] = useComment({
         id,
         nextComment,
@@ -20,33 +23,48 @@ const Profile = () => {
     const { isInfoOpen, setInfoDlgOpen, setInfoDlgClose, submitOpen, forceCountUpdate, updateOpenValue } =
         useInfoOpen(setOpenUserInfo);
 
-    if (profileData == null) {
-        return <>Loading...</>;
-    }
-    if (id) {
-        return (
-            <ProfilePresenter
-                isInfoOpen={isInfoOpen}
-                openUserInfo={openUserInfo}
-                updateOpenValue={updateOpenValue}
-                submitOpen={submitOpen}
-                setInfoDlgClose={setInfoDlgClose}
-                comment={comment}
-                nextComment={nextComment}
-                isCommentOpen={isCommentOpen}
-                submitComment={submitComment}
-                closeComment={closeComment}
-                setNextComment={setNextComment}
-                isOwnAccount={isOwnAccount}
-                profileData={profileData}
-                id={id}
-                setCommentDlgOpen={setCommentDlgOpen}
-                setInfoDlgOpen={setInfoDlgOpen}
-                infoUpdate={forceCountUpdate}
-            />
-        );
-    }
-    return <Error404 />;
+    return (
+        <CommonLayout>
+            {isLoading ? <Loading /> : <></>}
+
+            {profileData && id ?
+                <ProfilePresenter
+                    isInfoOpen={isInfoOpen}
+                    openUserInfo={openUserInfo}
+                    comment={comment}
+                    nextComment={nextComment}
+                    isCommentOpen={isCommentOpen}
+                    isOwnAccount={isOwnAccount}
+                    profileData={profileData}
+                    id={id}
+                    setCommentDlgOpen={setCommentDlgOpen}
+                    setInfoDlgOpen={setInfoDlgOpen}
+                    infoUpdate={forceCountUpdate}
+                /> : <></>
+            }
+
+            {id ?
+                <ModalInfoOpen
+                    isCountOpen={isInfoOpen}
+                    opencount={openUserInfo}
+                    id={id}
+                    updateOpenValue={updateOpenValue}
+                    submitOpen={submitOpen}
+                    setCountDlgClose={setInfoDlgClose}
+                /> : <></>
+            }
+
+            {id ?
+                <ModalComment
+                    isCommentOpen={isCommentOpen}
+                    id={id}
+                    submitComment={submitComment}
+                    closeComment={closeComment}
+                    setNextComment={setNextComment}
+                /> : <></>
+            }
+        </CommonLayout>
+    );
 };
 
 export default Profile;

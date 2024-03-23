@@ -1,4 +1,4 @@
-import { ISkillItem } from '@/data/ISkillItem';
+import { ISkillItem } from '@/data/skill/ISkillItem';
 import { atomDarkmode } from '@/jotai/darkmode';
 import { useAtomValue } from 'jotai/index';
 import React from 'react';
@@ -63,12 +63,11 @@ const SkillTableSH = ({ list, openPopup }: SkillTableProps) => {
                                 </SkillDataRow>
                                 <SkillDataRow>
                                     <SkillSubWrapper>
-                                        {(function() {
-                                            if (v.rank !== '') {
-                                                return <SkillRank alt="rank" src={v.rank} />;
-                                            }
-                                            return <></>;
-                                        })()}
+                                        {v.rank !== '' ?
+                                            <SkillRank alt="rank" src={v.rank} />
+                                            :
+                                            <></>
+                                        }
                                     </SkillSubWrapper>
                                     <SkillSubWrapper>
                                         <SkillClear src={v.clearImg300} />

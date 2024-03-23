@@ -1,7 +1,7 @@
 import HeaderNavDataKo from "@/lang/header/headerNavData-ko";
 import HeaderNavDataJp from "@/lang/header/headerNavData-jp";
 import HeaderNavDataEn from "@/lang/header/headerNavData-en";
-import {ISidebarItem} from "@/data/ISidebarItem";
+import {ISidebarItem} from "@/data/common/ISidebarItem";
 
 export const getSideBarList = (lang: string): Array<ISidebarItem> => {
     const HeaderNavData =

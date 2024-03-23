@@ -84,8 +84,18 @@ export const SkillSubData = styled.div`
     }
 `;
 
-export const SkillSubWrapper = styled.div`
+export const SkillSubWrapper = styled.div<{rank?: boolean}>`
     width: 50px;
+    @media screen and (max-width: 499px) {
+        width: 35px;
+    }
+
+    ${props => props.rank ? `
+        width: 30px;
+        @media screen and (max-width: 499px) {
+            width: 15px;
+        }
+    `:``}
 `;
 
 export const SkillPattern = styled.img`
@@ -118,6 +128,7 @@ export const SkillTitle = styled.div<{ dark: boolean }>`
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    cursor: pointer;
 
     ${(props) => (props.dark ? `color: ${AnchorColorDark};` : `color: ${AnchorColor};`)}
 `;

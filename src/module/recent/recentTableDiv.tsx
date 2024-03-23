@@ -1,4 +1,4 @@
-import { IRecent } from '@/data/IRecent';
+import { IRecent } from '@/data/etc/IRecent';
 import { atomDarkmode } from '@/jotai/darkmode';
 import { atomLanguage } from '@/jotai/language';
 import TxtCommonEn from '@/lang/common/txtCommon-en';

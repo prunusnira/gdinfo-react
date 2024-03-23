@@ -6,6 +6,7 @@ import { atomLoginUser } from '@/jotai/loginUser';
 import txtIndexEn from '@/lang/index/txtIndex-en';
 import txtIndexJp from '@/lang/index/txtIndex-jp';
 import txtIndexKo from '@/lang/index/txtIndex-ko';
+import ComponentIndexScript from '@/module/index/script/componentIndexScript';
 import { Anchor, Button, ThemedLink } from '@/styled/styledCommon';
 import { useAtomValue } from 'jotai/index';
 import React from 'react';
@@ -14,9 +15,6 @@ import {
     IndexContent,
     IndexImg,
     IndexRow,
-    IndexScript,
-    IndexScriptWrapper,
-    IndexTitle,
 } from './index.style';
 import UserLoginInfo from './LoginInfo';
 import IndexNotice from './notice/notice';
@@ -82,34 +80,15 @@ const IndexPage = () => {
                 </ContentLayout>
 
                 <ContentLayout title={txtIndex.script.title} isHalf>
-                    <IndexContent>{txtIndex.script.cont}</IndexContent>
-                    <IndexContent>
-                        <IndexScriptWrapper>
-                            <IndexTitle>{txtIndex.script.scriptTitle}</IndexTitle>
-                            <IndexContent>
-                                {loginUser ? (
-                                    txtIndex.script.scriptLogin
-                                ) : (
-                                    <b style={{ color: 'blue' }}>
-                                        ★{txtIndex.script.scriptNoLogin}
-                                    </b>
-                                )}
-                            </IndexContent>
-                            <IndexScript>
-                                {loginUser ? (
-                                    <b>
-                                        javascript:$.getScript('https://sindata.nira.one/$/update?token=
-                                        {loginUser.token}');
-                                    </b>
-                                ) : (
-                                    <b>Please login first</b>
-                                )}
-                            </IndexScript>
-                        </IndexScriptWrapper>
-                    </IndexContent>
+                    <ComponentIndexScript />
                 </ContentLayout>
 
-                <ContentLayout title={`${txtIndex.notice2.title}`} isHalf>
+                <ContentLayout
+                    title={`${txtIndex.notice2.title}`}
+                    isHalf
+                    hasMore={true}
+                    moreHref={"/notice/1"}
+                >
                     <IndexNotice />
                 </ContentLayout>
 

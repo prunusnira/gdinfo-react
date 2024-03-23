@@ -1,9 +1,10 @@
-import { IMusicFetch } from '@/data/IMusicFetch';
-import { ISkillItem } from '@/data/ISkillItem';
+import { IMusicFetch } from '@/data/music/IMusicFetch';
+import { ISkillItem } from '@/data/skill/ISkillItem';
 import CommonData from '@/module/common/commonData';
 import { getPatternImg300, getPatternImg600 } from '@/module/common/pattern';
 import { skillTableColor } from '@/module/common/skillcolor';
 import { GDVer } from '@/module/common/version';
+import { useParams } from 'react-router-dom';
 
 // 스킬 데이터를 가져오기 위한 데이터 URL을 생성하는 함수
 export const generateURL = (
@@ -22,7 +23,7 @@ export const generateURL = (
     const rank = getparams.get('rank');
     const ver = getparams.get('ver');
 
-    if (parseInt(ptype, 10) === 1000) {
+    if (ptype === '1000') {
         baseUrl = `exc/${gtype}`;
     } else {
         baseUrl = `skill/${ptype}/${userid}/${gtype}/${page}/${order}`;

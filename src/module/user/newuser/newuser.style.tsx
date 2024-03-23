@@ -2,7 +2,7 @@ import { render } from "@testing-library/react"
 import '@testing-library/jest-dom'
 import React from "react"
 import { MemoryRouter } from "react-router-dom"
-import {ILoginInfo} from '@/data/ILoginInfo'
+import {ILoginInfo} from '@/data/user/ILoginInfo'
 import NewUser from "./newuser"
 
 jest.mock('@/component/user/login/useUserInfo', () => ({

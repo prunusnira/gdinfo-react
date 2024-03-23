@@ -1,6 +1,6 @@
 import { act, renderHook } from "@testing-library/react-hooks"
 import useSearchType from "./useSearchType"
-import {ESearchType} from "@/data/ESearchType";
+import {ESearchType} from "@/data/common/ESearchType";
 
 describe('검색 타입 변경 테스트', () => {
     it('검색 타입 변경', () => {

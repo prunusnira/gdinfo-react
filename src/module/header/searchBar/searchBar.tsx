@@ -1,4 +1,4 @@
-import { ESearchType } from '@/data/ESearchType';
+import { ESearchType } from '@/data/common/ESearchType';
 import { atomDarkmode } from '@/jotai/darkmode';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -1,4 +1,4 @@
-import { ILoginInfo } from '@/data/ILoginInfo';
+import { ILoginInfo } from '@/data/user/ILoginInfo';
 import { atomLoginUser } from '@/jotai/loginUser';
 import { useAtom } from 'jotai';
 import { useState } from 'react';

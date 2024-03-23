@@ -1,5 +1,5 @@
 import { getPatternData } from '@/api/getMusicData';
-import { IMusic } from '@/data/IMusic';
+import { IMusic } from '@/data/music/IMusic';
 import { useEffect, useState } from 'react';
 
 interface Props {

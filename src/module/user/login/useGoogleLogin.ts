@@ -1,4 +1,4 @@
-import { ILoginInfo } from '@/data/ILoginInfo';
+import { ILoginInfo } from '@/data/user/ILoginInfo';
 import CommonData from '@/module/common/commonData';
 import { sha256 } from 'js-sha256';
 import { useState } from 'react';
