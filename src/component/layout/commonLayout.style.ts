@@ -18,8 +18,6 @@ export const Container = styled.section`
     justify-content: center;
     align-items: center;
 
-    padding-top: 60px;
-
     // media query를 사용하여 width 마다 별도로 지정
     @media screen and (max-width: 415px) {
         // mobile

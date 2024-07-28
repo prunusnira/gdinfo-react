@@ -8,7 +8,7 @@ export const HeaderOuter = styled.header`
     align-items: center;
     width: 100%;
 
-    position: fixed;
+    position: sticky;
     background-color: transparent;
     top: 0;
     z-index: 11;

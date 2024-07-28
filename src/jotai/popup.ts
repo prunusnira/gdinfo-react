@@ -1,4 +1,4 @@
+import { IPopup } from '@/data/common/IPopup';
 import { atom } from 'jotai/vanilla/atom';
-import { ReactNode } from 'react';
 
-export const atomPopup = atom<ReactNode[]>([]);
+export const atomPopup = atom<IPopup[]>([]);

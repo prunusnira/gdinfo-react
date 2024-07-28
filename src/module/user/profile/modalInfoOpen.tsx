@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {Button, ItemRow} from "@/styled/styledCommon";
 
@@ -26,6 +26,10 @@ const ModalInfoOpen = ({
     const lang = useAtomValue(atomLanguage)
     const txtProfile = lang === "ko" ? txtProfileKo : lang === "jp" ? txtProfileJp : txtProfileEn;
     const [infoOpen, setInfoOpen] = useState(isInfoOpen);
+
+    useEffect(() => {
+        alert(isInfoDlgOpen)
+    }, [isInfoDlgOpen]);
 
     return (
         <Modal isOpen={isInfoDlgOpen}>

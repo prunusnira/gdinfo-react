@@ -14,7 +14,7 @@ const Popup = () => {
         <PopupWrapper $popupNum={popupList.length}>
             {
                 popupList.map((x, i) => (
-                    <ComponentPopup />
+                    <ComponentPopup popup={x} />
                 ))
             }
         </PopupWrapper>
