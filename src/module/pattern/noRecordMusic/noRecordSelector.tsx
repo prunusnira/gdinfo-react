@@ -130,14 +130,14 @@ const NoRecordSelector = (props: Props) => {
                     <ItemRow keepDirHor={true}>
                         <ItemCol size={5} isFlatUnderLg={true}>
                             <ThemedLink
-                                dark={dark}
+                                $dark={dark}
                                 style={{width: "100%"}}
                                 to={`/notplayed/gf/${props.userid}/0/1${window.location.search}`}
                             >
                                 <Button style={{width: "100%"}}>GF {txtNoRecord.all}</Button>
                             </ThemedLink>
                             <ThemedLink
-                                dark={dark}
+                                $dark={dark}
                                 style={{width: "100%"}}
                                 to={`/notplayed/dm/${props.userid}/0/1${window.location.search}`}
                             >
@@ -146,14 +146,14 @@ const NoRecordSelector = (props: Props) => {
                         </ItemCol>
                         <ItemCol size={5} isFlatUnderLg={true}>
                             <ThemedLink
-                                dark={dark}
+                                $dark={dark}
                                 style={{width: "100%"}}
                                 to={`/notplayed/gf/${props.userid}/1/1${window.location.search}`}
                             >
                                 <Button style={{width: "100%"}}>GF {txtNoRecord.ver}</Button>
                             </ThemedLink>
                             <ThemedLink
-                                dark={dark}
+                                $dark={dark}
                                 style={{width: "100%"}}
                                 to={`/notplayed/dm/${props.userid}/1/1${window.location.search}`}
                             >

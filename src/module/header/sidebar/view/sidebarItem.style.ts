@@ -23,14 +23,14 @@ export const SBIcon = styled.img`
     background-color: ${Black};
 `;
 
-export const SBTxt = styled.span<{ dark: boolean }>`
+export const SBTxt = styled.span<{ $dark: boolean }>`
     flex: 1;
     font-size: 20px;
     padding: 0 10px;
     font-weight: bold;
 
     ${(props) =>
-        props.dark
+        props.$dark
             ? `color: ${White};
 
     :hover {
@@ -45,13 +45,13 @@ export const SBTxt = styled.span<{ dark: boolean }>`
 }`}
 `;
 
-export const SBSubTxt = styled.span<{ dark: boolean }>`
+export const SBSubTxt = styled.span<{ $dark: boolean }>`
     flex: 1;
     font-size: 14px;
     padding: 0 5px;
 
     ${(props) =>
-        props.dark
+        props.$dark
             ? `color: ${White};
 
 :hover {

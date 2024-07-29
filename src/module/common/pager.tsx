@@ -29,7 +29,10 @@ const Pager = (props: Props) => {
             return (
                 <>
                     {list.map((v, i) => (
-                            <ThemedLink key={`pager_btn_${i}`} dark={dark} to={`${urla}${v + 1}${urlb}`}>
+                            <ThemedLink
+                                key={`pager_btn_${i}`}
+                                $dark={dark}
+                                to={`${urla}${v + 1}${urlb}`}>
                                 <Button>{v + 1}</Button>
                             </ThemedLink>
                         ),
@@ -45,7 +48,7 @@ const Pager = (props: Props) => {
                     {list.map((v, i) => (
                             <ThemedLink
                                 key={`pager${i}`}
-                                dark={dark}
+                                $dark={dark}
                                 to={`${urla}${v + 1}${urlb}`}
                             >
                                 <Button>{v + 1}</Button>
@@ -54,7 +57,9 @@ const Pager = (props: Props) => {
                     )}
 
                     <span>......</span>
-                    <ThemedLink dark={dark} to={`${urla}${end}${urlb}`}>
+                    <ThemedLink
+                        $dark={dark}
+                        to={`${urla}${end}${urlb}`}>
                         <Button>{end}</Button>
                     </ThemedLink>
                 </>
@@ -69,14 +74,16 @@ const Pager = (props: Props) => {
             }
             return (
                 <>
-                    <ThemedLink dark={dark} to={`${urla}1${urlb}`}>
+                    <ThemedLink
+                        $dark={dark}
+                        to={`${urla}1${urlb}`}>
                         <Button>1</Button>
                     </ThemedLink>
                     <span>......</span>
                     {list.map((v, i) => (
                             <ThemedLink
                                 key={`pager${i}`}
-                                dark={dark}
+                                $dark={dark}
                                 to={`${urla}${v + 1}${urlb}`}
                             >
                                 <Button>{v + 1}</Button>
@@ -94,14 +101,16 @@ const Pager = (props: Props) => {
         }
         return (
             <>
-                <ThemedLink dark={dark} to={`${urla}1${urlb}`}>
+                <ThemedLink
+                    $dark={dark}
+                    to={`${urla}1${urlb}`}>
                     <Button>1</Button>
                 </ThemedLink>
                 <span>...</span>
                 {list.map((v, i) => (
                         <ThemedLink
                             key={`pager${i}`}
-                            dark={dark}
+                            $dark={dark}
                             to={`${urla}${v + 1}${urlb}`}
                         >
                             <Button>{v + 1}</Button>
@@ -109,7 +118,9 @@ const Pager = (props: Props) => {
                     ),
                 )}
                 <span>...</span>
-                <ThemedLink dark={dark} to={`${urla}${end}${urlb}`}>
+                <ThemedLink
+                    $dark={dark}
+                    to={`${urla}${end}${urlb}`}>
                     <Button>{end}</Button>
                 </ThemedLink>
             </>

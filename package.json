@@ -40,7 +40,7 @@
         "axios": "^1.6.0",
         "bootstrap": "^5.3.2",
         "cross-env": "^7.0.3",
-        "crypto-js": "^4.0.0",
+        "crypto-js": "^4.2.0",
         "file-saver": "^2.0.5",
         "html2canvas": "^1.4.1",
         "jotai": "^2.5.1",
@@ -77,6 +77,7 @@
         "eslint-config-prettier": "^9.1.0",
         "eslint-import-resolver-typescript": "^3.6.1",
         "eslint-plugin-import": "^2.29.1",
+        "eslint-plugin-prettier": "^5.2.1",
         "eslint-plugin-storybook": "^0.6.15",
         "jest-dom": "^4.0.0",
         "prettier": "^3.1.1"

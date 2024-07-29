@@ -24,18 +24,23 @@ const PatternRankRow = (props: Props) => {
     return (
         <>
             {props.list.map((pd, i) => (
-                    <PRRow key={i} dark={dark}>
+                    <PRRow
+                        key={i}
+                        $dark={dark}>
                         <PRSkillColor style={pd.ratecolor}>&nbsp;</PRSkillColor>
                         <PRSkillColor style={pd.skillcolor}>&nbsp;</PRSkillColor>
                         <PRColRank>{pd.index}</PRColRank>
                         <PRUserName>
                             {pd.towertitle !== '' ? (
                                 <Icon
-                                    sizeType={'sm'}
+                                    $sizeType={'sm'}
                                     src={`${process.env.PUBLIC_URL}/general-img/title/${pd.towertitle}.png`}
                                 />
                             ) : null}
-                            <ThemedLink dark={dark} className="innerhref" to={pd.profile}>
+                            <ThemedLink
+                                $dark={dark}
+                                className="innerhref"
+                                to={pd.profile}>
                                 {pd.name}
                             </ThemedLink>
                         </PRUserName>

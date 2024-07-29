@@ -26,7 +26,10 @@ const NpItem = (props: Props) => {
                         <img alt="pattern" style={{ width: '60px' }} src={np.pattern} />
                     </NPItemLeft>
                     <NPItemPattern>
-                        <Anchor dark={dark} className="innerhref" href={np.link}>
+                        <Anchor
+                            $dark={dark}
+                            className="innerhref"
+                            href={np.link}>
                             {np.name}
                         </Anchor>
                         <span>

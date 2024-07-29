@@ -34,7 +34,7 @@ const Error500 = () => {
                 <br />
                 {TxtError500.e500_6}
                 <Anchor
-                    dark={dark}
+                    $dark={dark}
                     target="_blank"
                     rel="noopener noreferrer"
                     href="https://twitter.com/_nira_one"

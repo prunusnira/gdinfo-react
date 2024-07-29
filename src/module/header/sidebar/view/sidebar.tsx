@@ -35,7 +35,9 @@ const SideBar = ({ isMenuOpen }: Props) => {
 
     return (
         <>
-            <SideBarContainer isOpen={isMenuOpen} dark={dark}>
+            <SideBarContainer
+                $isOpen={isMenuOpen}
+                $dark={dark}>
                 <SideBarInner>
                     <SearchBarComp
                         searchType={searchType}
@@ -55,15 +57,19 @@ const SideBar = ({ isMenuOpen }: Props) => {
                     ))}
                     <LevelDiff>
                         <LvDiffDiv
-                            dark={dark}
+                            $dark={dark}
                         >{`>> GALAXY WAVE vs FUZZ-UP <<`}</LvDiffDiv>
                         <LvDiffDiv>
-                            <Anchor dark={dark} href={`/lvdiff/gf`}>
+                            <Anchor
+                                $dark={dark}
+                                href={`/lvdiff/gf`}>
                                 GuitarFreaks
                             </Anchor>
                         </LvDiffDiv>
                         <LvDiffDiv>
-                            <Anchor dark={dark} href={`/lvdiff/dm`}>
+                            <Anchor
+                                $dark={dark}
+                                href={`/lvdiff/dm`}>
                                 DrumMania
                             </Anchor>
                         </LvDiffDiv>

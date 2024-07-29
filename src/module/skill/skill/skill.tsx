@@ -81,7 +81,7 @@ const SkillContainer: React.FC<{ share: boolean }> = (share) => {
             <ContentLayout title={'Skill Table'}>
                 {isLoading ? <Loading /> : <></>}
                 {isError ? <DataError /> : <></>}
-                <SkillBody id="scrTable" dark={dark}>
+                <SkillBody id="scrTable" $dark={dark}>
                     <SkillTableHeader
                         updateTime={updateTime}
                         tableTxtGType={tableTxtGType}

@@ -14,7 +14,7 @@ const CommonLayout = ({ children }: Props) => {
     return (
         <>
             <SinHeader />
-            <Outer dark={dark}>
+            <Outer $dark={dark}>
                 <Container>{children}</Container>
                 <FooterWrapper>
                     <SinFooter />

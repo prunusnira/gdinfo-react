@@ -1,12 +1,12 @@
-import { IProfile } from '@/data/user/IProfile';
-import { atomLanguage } from '@/jotai/language';
+import {IProfile} from '@/data/user/IProfile';
+import {atomLanguage} from '@/jotai/language';
 import txtSkillEn from '@/lang/skill/skill/txtSkill-en';
 import txtSkillJp from '@/lang/skill/skill/txtSkill-jp';
 import txtSkillKo from '@/lang/skill/skill/txtSkill-ko';
 import SingleSkillColorChanger from '@/module/common/skillcolor';
 import * as time from '@/module/common/time';
-import { useAtomValue } from 'jotai/index';
-import React, { ReactNode, useEffect, useState } from 'react';
+import {useAtomValue} from 'jotai/index';
+import React, {ReactNode, useEffect, useState} from 'react';
 
 interface Props {
     user?: IProfile,
@@ -58,7 +58,7 @@ const useSkillTableUpper = ({
 
     // 스킬표 상단 테이블의 글자 데이터
     const setUpperTableText = () => {
-        if(ptype === '1000' && skillSum1 && skillSum2) {
+        if (ptype === '1000' && skillSum1 && skillSum2) {
             setStatLeftTitle('Total');
             setStatLeft(
                 <SingleSkillColorChanger
@@ -183,7 +183,7 @@ const useSkillTableUpper = ({
                             <SingleSkillColorChanger
                                 link={'#none'}
                                 skill={user.gskilltb}
-                            />)
+                            />);
                     } else if (gtype === 'dm') {
                         setStatLeftTitle('DM Skill');
                         setStatLeft(

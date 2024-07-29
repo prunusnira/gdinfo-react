@@ -33,9 +33,9 @@ export const UserName = styled.div`
     }
 `;
 
-export const EmptyUser = styled.span<{ dark: boolean }>`
+export const EmptyUser = styled.span<{ $dark: boolean }>`
     font-size: 20px;
-    color: ${(props) => (props.dark ? AnchorColorDark : AnchorColor)};
+    color: ${(props) => (props.$dark ? AnchorColorDark : AnchorColor)};
     font-weight: bold;
     cursor: not-allowed;
 

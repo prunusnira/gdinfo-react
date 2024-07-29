@@ -237,7 +237,7 @@ const SkillSnapshot = () => {
                         </Button>
                     </ContentLayout>
                 </ItemRow>
-                <SkillBody id="scrTable" dark={dark}>
+                <SkillBody id="scrTable" $dark={dark}>
                     <SkillHeader id="targetInfo">
                         <SkillRow justifyContent={'center'}>
                             <h4>
@@ -254,7 +254,7 @@ const SkillSnapshot = () => {
                             </ItemCol>
                         </SkillRow>
                     </SkillHeader>
-                    <SkillBody dark={dark}>
+                    <SkillBody $dark={dark}>
                         <ItemRow
                             className="skillupper blackandwhite"
                             style={{ justifyContent: 'center' }}
@@ -286,7 +286,7 @@ const SkillSnapshot = () => {
                             </ItemCol>
                         </ItemRow>
                     </SkillBody>
-                    <SkillBody id="targetTable" dark={dark}>
+                    <SkillBody id="targetTable" $dark={dark}>
                         <SkillTableWrapper>
                             <SkillRow justifyContent={'center'}>
                                 <h4>HOT</h4>

@@ -16,7 +16,7 @@ const SnapshotItem = (props: Props) => {
         <>
             {props.date.map((d) => (
                 <ThemedLink
-                    dark={dark}
+                    $dark={dark}
                     to={`/skill/snapshot/view/nr/${props.id}/${d}/${props.gtype}`}
                 >
                     <Button>{d}</Button>

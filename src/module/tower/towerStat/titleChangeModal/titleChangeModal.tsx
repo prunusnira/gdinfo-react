@@ -1,12 +1,12 @@
-import { ITowerTitle } from '@/data/tower/ITowerTitle';
-import { atomLanguage } from '@/jotai/language';
+import {ITowerTitle} from '@/data/tower/ITowerTitle';
+import {atomLanguage} from '@/jotai/language';
 import TxtTitleChangeModalEn from '@/lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-en';
 import TxtTitleChangeModalJp from '@/lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-jp';
 import TxtTitleChangeModalKo from '@/lang/tower/towerStat/titleChangeModal/txtTitleChangeModal-ko';
-import { Button, Icon, ItemRow } from '@/styled/styledCommon';
-import { useAtomValue } from 'jotai/index';
+import {Button, Icon, ItemRow} from '@/styled/styledCommon';
+import {useAtomValue} from 'jotai/index';
 import React from 'react';
-import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
+import {Modal, ModalBody, ModalFooter, ModalHeader} from 'reactstrap';
 
 interface Props {
     showTitleChangeModal: boolean,
@@ -23,20 +23,20 @@ const TitleChangeModal = (props: Props) => {
 
     return (
         <Modal isOpen={props.showTitleChangeModal}>
-            <ModalHeader style={{ backgroundColor: '#353535' }}>
+            <ModalHeader style={{backgroundColor: '#353535'}}>
                 {TxtTitleChangeModal.title}
             </ModalHeader>
             <ModalBody>
-                <ItemRow style={{ color: 'black' }}>
+                <ItemRow style={{color: 'black'}}>
                     {TxtTitleChangeModal.body}
                 </ItemRow>
-                <ItemRow style={{ color: 'black' }}>
-                    <Icon sizeType={'sm'}
-                          src={`${process.env.PUBLIC_URL}/general-img/title/${props.titleToBeChanged.title}.png`} />
+                <ItemRow style={{color: 'black'}}>
+                    <Icon $sizeType={'sm'}
+                          src={`${process.env.PUBLIC_URL}/general-img/title/${props.titleToBeChanged.title}.png`}/>
                     {props.titleToBeChanged.display}
                 </ItemRow>
             </ModalBody>
-            <ModalFooter style={{ backgroundColor: '#dddddd' }}>
+            <ModalFooter style={{backgroundColor: '#dddddd'}}>
                 <Button onClick={() => props.setTitleChangeModal(false)}>
                     Cancel
                 </Button>

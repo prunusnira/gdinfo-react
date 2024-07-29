@@ -41,7 +41,9 @@ const TowerStatList = (props: Props) => {
         <>
             {props.list.map((tl, i) => (
                 <StatFloorWrapper key={`towerStat${i}`}>
-                    <StatFloorRow dark={dark} onClick={() => divopen(tl.floorid)}>
+                    <StatFloorRow
+                        $dark={dark}
+                        onClick={() => divopen(tl.floorid)}>
                         <StatFloorTitle>
                             {tl.opbtn} Floor {tl.floor}
                         </StatFloorTitle>
