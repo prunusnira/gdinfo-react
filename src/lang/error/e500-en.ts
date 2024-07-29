@@ -5,6 +5,6 @@ const TxtError500 = {
     e500_4: "2. This page would be only accessible by account owner",
     e500_5: "",
     e500_6: "Contact: Twitter ",
-}
+};
 
-export default TxtError500
+export default TxtError500;

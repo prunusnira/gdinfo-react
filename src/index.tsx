@@ -1,19 +1,19 @@
 import FullPageLoading from '@/component/loading/fullPageLoading';
-import React, { Suspense } from 'react';
+import React, {Suspense} from 'react';
 import 'bootstrap/dist/css/bootstrap.css';
-import { createRoot } from 'react-dom/client';
+import {createRoot} from 'react-dom/client';
 import * as serviceWorker from './serviceWorker';
 import App from './module/App';
 import './index.css';
 
 const container = document.getElementById('root');
-if(container) {
+if (container) {
     const root = createRoot(container);
 
     root.render(
         <React.StrictMode>
-            <Suspense fallback={<FullPageLoading full={true} />}>
-                <App />
+            <Suspense fallback={<FullPageLoading full={true}/>}>
+                <App/>
             </Suspense>
         </React.StrictMode>,
     );

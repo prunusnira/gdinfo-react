@@ -1,5 +1,5 @@
 import React from "react";
-import { ItemRow } from "@/styled/styledCommon";
+import {ItemRow} from "@/styled/styledCommon";
 import txtTowerKo from "@/lang/tower/txtTower-ko";
 import txtTowerJp from "@/lang/tower/txtTower-jp";
 import txtTowerEn from "@/lang/tower/txtTower-en";
@@ -9,7 +9,7 @@ import {useAtomValue} from "jotai/index";
 import {atomLanguage} from "@/jotai/language";
 
 const TowerHowto = () => {
-    const lang = useAtomValue(atomLanguage)
+    const lang = useAtomValue(atomLanguage);
 
     const txtTower = lang === "ko" ? txtTowerKo : lang === "jp" ? txtTowerJp : txtTowerEn;
 
@@ -22,7 +22,7 @@ const TowerHowto = () => {
                 <ItemRow className="about-part">
                     <img
                         alt="towerhowto1"
-                        style={{ width: "50%" }}
+                        style={{width: "50%"}}
                         src={`${process.env.PUBLIC_URL}/general-img/towerhowto/okiniiri.jpg`}
                     />
                 </ItemRow>
@@ -32,12 +32,12 @@ const TowerHowto = () => {
                 <ItemRow className="about-part" keepDirHor={true}>
                     <img
                         alt="towerhowto2"
-                        style={{ width: "40%" }}
+                        style={{width: "40%"}}
                         src={`${process.env.PUBLIC_URL}/general-img/towerhowto/update.jpg`}
                     />
                     <img
                         alt="towerhowto3"
-                        style={{ width: "40%" }}
+                        style={{width: "40%"}}
                         src={`${process.env.PUBLIC_URL}/general-img/towerhowto/update2.jpg`}
                     />
                 </ItemRow>
