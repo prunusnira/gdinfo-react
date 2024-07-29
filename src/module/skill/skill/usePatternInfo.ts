@@ -1,13 +1,13 @@
-import { getPatternData } from '@/api/getMusicData';
-import { IMusic } from '@/data/music/IMusic';
-import { useEffect, useState } from 'react';
+import {getPatternData} from '@/api/getMusicData';
+import {IMusic} from '@/data/music/IMusic';
+import {useEffect, useState} from 'react';
 
 interface Props {
     mid: number,
     userid?: string
 }
 
-const usePatternInfo = ({ mid, userid }: Props) => {
+const usePatternInfo = ({mid, userid}: Props) => {
     const [ptinfo, setPatternInfo] = useState(Array<IMusic>());
 
     const loadPatternInfo = () => {
@@ -167,11 +167,7 @@ const usePatternInfo = ({ mid, userid }: Props) => {
                                 obj.fc =
                                     `<img alt={'fc'} className='skillrank-img' src='${process.env.PUBLIC_URL}/general-img/rank/fc.png'>`;
                         } else {
-                            if (skill.playtime > 0) {
-                                obj.fc = '';
-                            } else {
-                                obj.fc = '';
-                            }
+                            obj.fc = '';
                         }
 
                         obj.clearmeter = '';
@@ -230,7 +226,7 @@ const usePatternInfo = ({ mid, userid }: Props) => {
         else setPatternInfo([]);
     }, [mid, userid]);
 
-    return { ptinfo };
+    return {ptinfo};
 };
 
 export default usePatternInfo;

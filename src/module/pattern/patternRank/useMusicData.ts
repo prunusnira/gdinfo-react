@@ -62,54 +62,54 @@ const useMusicData = ({ ptcode, mid, setLoaded }: Props) => {
             getMusicData(mid).then((json) => {
                 const music = JSON.parse(json.music);
 
-                const pattern = getPatternImg600(parseInt(ptcode, 10));
-                let level: string;
+                const patternUrl = getPatternImg600(parseInt(ptcode, 10));
+                let levelNum: string;
                 switch (parseInt(ptcode, 10)) {
                     case 1:
-                        level = (music.gbsc / 100).toFixed(2);
+                        levelNum = (music.gbsc / 100).toFixed(2);
                         break;
                     case 2:
-                        level = (music.gadv / 100).toFixed(2);
+                        levelNum = (music.gadv / 100).toFixed(2);
                         break;
                     case 3:
-                        level = (music.gext / 100).toFixed(2);
+                        levelNum = (music.gext / 100).toFixed(2);
                         break;
                     case 4:
-                        level = (music.gmas / 100).toFixed(2);
+                        levelNum = (music.gmas / 100).toFixed(2);
                         break;
                     case 5:
-                        level = (music.bbsc / 100).toFixed(2);
+                        levelNum = (music.bbsc / 100).toFixed(2);
                         break;
                     case 6:
-                        level = (music.badv / 100).toFixed(2);
+                        levelNum = (music.badv / 100).toFixed(2);
                         break;
                     case 7:
-                        level = (music.bext / 100).toFixed(2);
+                        levelNum = (music.bext / 100).toFixed(2);
                         break;
                     case 8:
-                        level = (music.bmas / 100).toFixed(2);
+                        levelNum = (music.bmas / 100).toFixed(2);
                         break;
                     case 9:
-                        level = (music.dbsc / 100).toFixed(2);
+                        levelNum = (music.dbsc / 100).toFixed(2);
                         break;
                     case 10:
-                        level = (music.dadv / 100).toFixed(2);
+                        levelNum = (music.dadv / 100).toFixed(2);
                         break;
                     case 11:
-                        level = (music.dext / 100).toFixed(2);
+                        levelNum = (music.dext / 100).toFixed(2);
                         break;
                     case 12:
-                        level = (music.dmas / 100).toFixed(2);
+                        levelNum = (music.dmas / 100).toFixed(2);
                         break;
                     default:
-                        level = '';
+                        levelNum = '';
                         break;
                 }
 
-                setPattern(pattern);
+                setPattern(patternUrl);
                 setMName(music.name);
                 setComposer(music.composer);
-                setLevel(level);
+                setLevel(levelNum);
                 setLoaded(true);
             });
         }

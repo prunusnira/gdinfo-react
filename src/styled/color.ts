@@ -11,7 +11,7 @@ export const MenuBackDark = "rgb(74, 74, 74, 0.9)";
 export const ContentTitle = "#ffa952";
 export const ContentBody = "#feffdf";
 export const ContentBodyDark = "#4f4f4f";
-export const Background = "#fff"; //"#ef5a5a";
+export const Background = "#fff"; // "#ef5a5a";
 
 export const SkillBGColor = Black;
 

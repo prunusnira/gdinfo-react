@@ -1,10 +1,9 @@
-import { IMusicFetch } from '@/data/music/IMusicFetch';
-import { ISkillItem } from '@/data/skill/ISkillItem';
+import {IMusicFetch} from '@/data/music/IMusicFetch';
+import {ISkillItem} from '@/data/skill/ISkillItem';
 import CommonData from '@/module/common/commonData';
-import { getPatternImg300, getPatternImg600 } from '@/module/common/pattern';
-import { skillTableColor } from '@/module/common/skillcolor';
-import { GDVer } from '@/module/common/version';
-import { useParams } from 'react-router-dom';
+import {getPatternImg300, getPatternImg600} from '@/module/common/pattern';
+import {skillTableColor} from '@/module/common/skillcolor';
+import {GDVer} from '@/module/common/version';
 
 // 스킬 데이터를 가져오기 위한 데이터 URL을 생성하는 함수
 export const generateURL = (
@@ -130,7 +129,7 @@ export const generateSkillItem = (
     page: string,
     userid: string,
 ) => {
-    let rate = data.rate;
+    let {rate} = data;
     switch (parseInt(ptype, 10)) {
         case 3:
         case 4:

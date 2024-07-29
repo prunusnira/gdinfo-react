@@ -33,7 +33,7 @@ const usePTRankData = ({ mid, ptcode, page, urlparams, isLoaded, setLoaded }: Pr
                     : urlparams.get('ver')!;
             getPatternRank(mid, ptcode, page, verparam).then((json) => {
                 const music = JSON.parse(json.music);
-                const list = JSON.parse(json.list);
+                const listFromJson = JSON.parse(json.list);
                 const users = JSON.parse(json.users);
 
                 let lv;
@@ -80,8 +80,8 @@ const usePTRankData = ({ mid, ptcode, page, urlparams, isLoaded, setLoaded }: Pr
                 }
 
                 const ranklist = new Array<IPatternRank>();
-                for (let i = 0; i < list.length; i += 1) {
-                    const cur = list[i];
+                for (let i = 0; i < listFromJson.length; i += 1) {
+                    const cur = listFromJson[i];
                     const user = users[i];
                     const obj: IPatternRank = {
                         rate: 0,
@@ -97,7 +97,7 @@ const usePTRankData = ({ mid, ptcode, page, urlparams, isLoaded, setLoaded }: Pr
                         exc: false,
                     };
 
-                    const rate = cur.rate;
+                    const {rate} = cur;
                     obj.rate = rate / 100;
                     const skill = (obj.rate * lv * 20) / 10000;
                     obj.skill = skill.toFixed(2);

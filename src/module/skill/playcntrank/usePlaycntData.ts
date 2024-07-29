@@ -18,7 +18,7 @@ const usePlaycntData = (page?: string) => {
     const updateData = () => {
         if (page) {
             getPlayCountRank(page).then((json) => {
-                const list = new Array<IPlayCountRank>();
+                const crlist = new Array<IPlayCountRank>();
                 const rank = JSON.parse(json.rank);
 
                 for (let i = 0; i < rank.length; i += 1) {
@@ -40,10 +40,10 @@ const usePlaycntData = (page?: string) => {
                         obj.name = TxtCommon.emptyname;
                     }
 
-                    list.push(obj);
+                    crlist.push(obj);
                 }
 
-                setList(list);
+                setList(crlist);
                 setAllPage(json.pages);
             });
         }

@@ -18,10 +18,10 @@ const usePlayCount = (id?: string) => {
                 const mybestpd = JSON.parse(json.mybestpd);
                 const mybestm = JSON.parse(json.mybestm);
 
-                const plist = [];
-                const glist = [];
-                const dlist = [];
-                const mlist = [];
+                const tmpPlist = [];
+                const tmpGlist = [];
+                const tmpDlist = [];
+                const tmpMlist = [];
 
                 for (let i = 0; i < mybestp.length; i += 1) {
                     const mypdata: IPlayCount = {
@@ -33,7 +33,7 @@ const usePlayCount = (id?: string) => {
                         count: mybestp[i].playtime,
                     };
                     mypdata.pattern = getPatternImg600(mybestp[i].patterncode);
-                    plist.push(mypdata);
+                    tmpPlist.push(mypdata);
                 }
 
                 for (let i = 0; i < mybestpg.length; i += 1) {
@@ -46,7 +46,7 @@ const usePlayCount = (id?: string) => {
                         count: mybestpg[i].playtime,
                     };
                     mygdata.pattern = getPatternImg600(mybestpg[i].patterncode);
-                    glist.push(mygdata);
+                    tmpGlist.push(mygdata);
                 }
 
                 for (let i = 0; i < mybestpd.length; i += 1) {
@@ -59,7 +59,7 @@ const usePlayCount = (id?: string) => {
                         count: mybestpd[i].playtime,
                     };
                     myddata.pattern = getPatternImg600(mybestpd[i].patterncode);
-                    dlist.push(myddata);
+                    tmpDlist.push(myddata);
                 }
 
                 for (let i = 0; i < mybestm.length; i += 1) {
@@ -71,13 +71,13 @@ const usePlayCount = (id?: string) => {
                         pattern: '',
                         count: mybestm[i].playtime,
                     };
-                    mlist.push(mymdata);
+                    tmpMlist.push(mymdata);
                 }
 
-                setPList(plist);
-                setGList(glist);
-                setDList(dlist);
-                setMList(mlist);
+                setPList(tmpPlist);
+                setGList(tmpGlist);
+                setDList(tmpDlist);
+                setMList(tmpMlist);
             });
         }
     };

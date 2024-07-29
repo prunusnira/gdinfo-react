@@ -76,7 +76,7 @@ const Profile = () => {
                     onClickBtn1: () => {
                         if(id) {
                             setSubmitData(
-                                {id, open: infoOpen, submit: true},
+                                {curid: id, isOpen: infoOpen, isSubmit: true},
                             )
                         }
                     },

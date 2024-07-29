@@ -14,7 +14,7 @@ const useUserCheck = (): CheckReturn => {
 
     const checkParamHasToken = () => {
         if (loginUser) {
-            const token = loginUser.token;
+            const {token} = loginUser;
             return token !== '';
         }
         return false;
@@ -22,7 +22,7 @@ const useUserCheck = (): CheckReturn => {
 
     const checkUserAlreadyExist = () => {
         if (loginUser) {
-            const token = loginUser.token;
+            const {token} = loginUser;
             getUserFromToken(token)
                 .then(d => d)
                 .then(d => {

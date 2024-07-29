@@ -1,20 +1,20 @@
-import { getTowerStatus } from '@/api/getTowerData';
-import { IFloorClear } from '@/data/tower/IFloorClear';
-import { IFloorItem } from '@/data/tower/IFloorItem';
-import { ITower } from '@/data/tower/ITower';
-import { ITowerManage } from '@/data/tower/ITowerManage';
-import { ITowerStat } from '@/data/tower/ITowerStat';
-import { ITowerTitle } from '@/data/tower/ITowerTitle';
-import { atomLanguage } from '@/jotai/language';
-import { atomLoginUser } from '@/jotai/loginUser';
-import { titlesp, titletxt } from '@/lang/tower/titletxt';
+import {getTowerStatus} from '@/api/getTowerData';
+import {IFloorClear} from '@/data/tower/IFloorClear';
+import {IFloorItem} from '@/data/tower/IFloorItem';
+import {ITower} from '@/data/tower/ITower';
+import {ITowerManage} from '@/data/tower/ITowerManage';
+import {ITowerStat} from '@/data/tower/ITowerStat';
+import {ITowerTitle} from '@/data/tower/ITowerTitle';
+import {atomLanguage} from '@/jotai/language';
+import {atomLoginUser} from '@/jotai/loginUser';
+import {titlesp, titletxt} from '@/lang/tower/titletxt';
 import txtTowerEn from '@/lang/tower/txtTower-en';
 import txtTowerJp from '@/lang/tower/txtTower-jp';
 import txtTowerKo from '@/lang/tower/txtTower-ko';
 import CommonData from '@/module/common/commonData';
-import { GDPat } from '@/module/common/pattern';
-import { useAtomValue } from 'jotai/index';
-import { useEffect, useState } from 'react';
+import {GDPat} from '@/module/common/pattern';
+import {useAtomValue} from 'jotai/index';
+import {useEffect, useState} from 'react';
 
 const useTowerStat = (tower?: string) => {
     const [list, setList] = useState(Array<ITowerStat>());
@@ -44,17 +44,17 @@ const useTowerStat = (tower?: string) => {
         return isExist;
     };
 
-    const checkClear = (list: Array<ITower>) => {
+    const checkClear = (curTowerList: Array<ITower>) => {
         let cleared = true;
 
         // 일반 곡들을 70%이상 클리어 했는가
         // 개수 세기
         let numc = 0;
-        for (let i = 0; i < list.length; i += 1) {
-            if (list[i].clear) numc += 1;
+        for (let i = 0; i < curTowerList.length; i += 1) {
+            if (curTowerList[i].clear) numc += 1;
         }
 
-        const rate = (numc * 100) / list.length;
+        const rate = (numc * 100) / curTowerList.length;
         if (rate < 70) cleared = false;
 
         const status: IFloorClear = {
@@ -68,17 +68,17 @@ const useTowerStat = (tower?: string) => {
     };
 
     const getFloorTitle = (
-        tower: string,
+        curtower: string,
         floor: number,
         rate: number,
         allfloors: number,
-        lang: string,
+        language: string,
     ) => {
         // 타이틀 목록 가져오기
         let titleshort;
 
         // 1. 탑 이름에 따른 접두어 결정
-        switch (tower) {
+        switch (curtower) {
             case 'towerDmDKDK':
                 titleshort = 'dkdk';
                 break;
@@ -129,7 +129,7 @@ const useTowerStat = (tower?: string) => {
             }
         }
         console.log(titlertn.title);
-        titlertn.display = (titletxt as any)[titlertn.title][lang];
+        titlertn.display = (titletxt as any)[titlertn.title][language];
 
         return titlertn;
     };
@@ -166,10 +166,10 @@ const useTowerStat = (tower?: string) => {
         manage: ITowerManage,
         pat: Array<Array<ITower>>,
     ) => {
-        const size = manage.levels;
-        const list = new Array<ITowerStat>();
+        const {levels} = manage;
+        const towerList = new Array<ITowerStat>();
 
-        for (let i = 0; i < size; i += 1) {
+        for (let i = 0; i < levels; i += 1) {
             const obj: ITowerStat = {
                 index: 0,
                 topid: '',
@@ -193,10 +193,10 @@ const useTowerStat = (tower?: string) => {
             obj.topid = `t${i}`;
             obj.btnid = `t${i}p`;
             obj.opbtn = '▼';
-            obj.skillfrom = manage.skill + (size - i - 1) * 500;
-            obj.floor = size - i;
+            obj.skillfrom = manage.skill + (levels - i - 1) * 500;
+            obj.floor = levels - i;
 
-            const clearstat = checkClear(pat[size - i - 1]);
+            const clearstat = checkClear(pat[levels - i - 1]);
             if (clearstat.clear && clearstat.rate === 100) {
                 obj.floorclear = `${process.env.PUBLIC_URL}/general-img/tower/goldpassed.png`;
             } else if (clearstat.clear) {
@@ -211,7 +211,7 @@ const useTowerStat = (tower?: string) => {
                         manage.name,
                         manage.levels - i - 1,
                         clearstat.rate,
-                        size,
+                        levels,
                         lang,
                     );
 
@@ -231,13 +231,13 @@ const useTowerStat = (tower?: string) => {
             // id
             obj.floorid = `t${i}c`;
             obj.clearnotice =
-                `${txtTower.detail.require1}${pat[size - i - 1].length}${txtTower.detail.require2}${
-                    Math.ceil(pat[size - i - 1].length * 0.7)}${txtTower.detail.require3}`;
+                `${txtTower.detail.require1}${pat[levels - i - 1].length}${txtTower.detail.require2}${
+                    Math.ceil(pat[levels - i - 1].length * 0.7)}${txtTower.detail.require3}`;
 
             obj.floorlist = new Array<IFloorItem>();
 
-            for (let j = 0; j < pat[size - i - 1].length; j += 1) {
-                const cfl = pat[size - i - 1][j];
+            for (let j = 0; j < pat[levels - i - 1].length; j += 1) {
+                const cfl = pat[levels - i - 1][j];
                 const flist: IFloorItem = {
                     jacket: '',
                     name: '',
@@ -302,9 +302,9 @@ const useTowerStat = (tower?: string) => {
                 }
                 obj.floorlist.push(flist);
             }
-            list.push(obj);
+            towerList.push(obj);
         }
-        return list;
+        return towerList;
     };
 
     const updateAllPassed = (towercomp: Array<boolean>) => {
@@ -387,7 +387,7 @@ const useTowerStat = (tower?: string) => {
         if (loginUser && loginUser.id !== undefined && loginUser.id !== '') loadTowerStatData();
     }, []);
 
-    return { name, isPassed, list };
+    return {name, isPassed, list};
 };
 
 export default useTowerStat;

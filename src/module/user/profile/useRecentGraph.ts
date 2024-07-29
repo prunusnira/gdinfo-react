@@ -1,40 +1,40 @@
-import { getGraph } from '@/api/getUserData';
-import { ISkillRecord } from '@/data/skill/ISkillRecord';
-import { useEffect, useState } from 'react';
+import {getGraph} from '@/api/getUserData';
+import {ISkillRecord} from '@/data/skill/ISkillRecord';
+import {useEffect, useState} from 'react';
 
 const useRecentGraph = (id: string, type: string) => {
     const [min, setMin] = useState(0);
     const [max, setMax] = useState(0);
     const [lineData, setLineData] = useState(Array<any>());
 
-    const getMinMax = (record: Array<ISkillRecord>, type: string) => {
-        let min = 0;
-        let max = 0;
+    const getMinMax = (record: Array<ISkillRecord>, gameType: string) => {
+        let curMin = 0;
+        let curMax = 0;
 
         record.forEach(e => {
             let c;
-            if (type === 'gf') c = e.gskill;
+            if (gameType === 'gf') c = e.gskill;
             else c = e.dskill;
 
-            if (min === max && min === 0 && parseInt(c, 10) !== 0) {
+            if (curMin === curMax && curMin === 0 && parseInt(c, 10) !== 0) {
                 // 초기값 설정 - 0은 표시 안함
-                min = parseInt(c, 10);
-                max = parseInt(c, 10);
-            } else if (min > parseInt(c, 10)) {
-                min = parseInt(c, 10) - 100;
-            } else if (max < parseInt(c, 10)) {
-                max = parseInt(c, 10) + 100;
+                curMin = parseInt(c, 10);
+                curMax = parseInt(c, 10);
+            } else if (curMin > parseInt(c, 10)) {
+                curMin = parseInt(c, 10) - 100;
+            } else if (curMax < parseInt(c, 10)) {
+                curMax = parseInt(c, 10) + 100;
             }
         });
 
-        return [min, max];
+        return [curMin, curMax];
     };
 
     const getGraphData = () => {
         getGraph(id)
             .then((data) => {
                 const record = JSON.parse(data.record);
-                const length = record.length;
+                const {length} = record;
 
                 const minmax = getMinMax(record, type);
 
@@ -63,7 +63,7 @@ const useRecentGraph = (id: string, type: string) => {
         getGraphData();
     }, []);
 
-    return { lineData, min, max };
+    return {lineData, min, max};
 };
 
 export default useRecentGraph;

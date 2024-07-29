@@ -20,8 +20,8 @@ const useInfoOpen = () => {
         setIsInfoDlgOpen(false);
     };
 
-    const submitOpen = ({id, open}: {id: string, open: boolean}) =>
-        apiSubmitDataOpen(id, open ? 'Y' : 'N');
+    const submitOpen = ({curid, isOpen}: {curid: string, isOpen: boolean}) =>
+        apiSubmitDataOpen(curid, isOpen ? 'Y' : 'N');
 
     const forceCountUpdate = () => {
         if (loginUser) {
@@ -32,26 +32,26 @@ const useInfoOpen = () => {
         }
     };
 
-    const setSubmitData = (
-        {id, open, submit}:
-            {id: string, open: boolean, submit: boolean},
-    ) => {
-        setId(id);
-        setOpen(open);
-        setSubmit(submit);
-    }
-
     const {mutate, data} = useMutation({
         mutationKey: ['profile', 'infoopen'],
         mutationFn: submitOpen,
     });
 
+    const setSubmitData = (
+        {curid, isOpen, isSubmit}:
+            {curid: string, isOpen: boolean, isSubmit: boolean},
+    ) => {
+        setId(curid);
+        setOpen(isOpen);
+        setSubmit(isSubmit);
+    }
+
     useEffect(() => {
         if(submit) {
             setSubmit(false);
             mutate({
-                id,
-                open,
+                curid: id,
+                isOpen: open,
             });
         }
     }, [submit]);
