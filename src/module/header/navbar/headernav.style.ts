@@ -27,12 +27,11 @@ export const NavToggle = styled.div`
     }
 `;
 
-export const NavItem = styled.li<{ dark: boolean }>`
+export const NavItem = styled.li<{ $dark: boolean }>`
     order: 3;
     flex: 1 1 auto;
     padding-left: 10px;
     padding-right: 10px;
-    ${(props) => (props.dark ? `color: ${White};` : `color: ${Black};`)}
 
     @media screen and (min-width: 1050px) {
         display: block;
@@ -46,7 +45,7 @@ export const NavItem = styled.li<{ dark: boolean }>`
         text-decoration: none !important;
         background-color: transparent !important;
 
-        ${(props) => (props.dark ? `color: ${White} !important;` : `color: ${Black} !important;`)}
+        ${(props) => (props.$dark ? `color: ${White} !important;` : `color: ${Black} !important;`)}
     }
 
     span {
@@ -55,8 +54,10 @@ export const NavItem = styled.li<{ dark: boolean }>`
         font-size: 16px !important;
         text-decoration: none !important;
 
-        ${(props) => (props.dark ? `color: ${White} !important;` : `color: ${Black} !important;`)}
+        ${(props) => (props.$dark ? `color: ${White} !important;` : `color: ${Black} !important;`)}
     }
+    
+    ${(props) => (props.$dark ? `color: ${White};` : `color: ${Black};`)}
 `;
 
 export const NavLogo = styled.img`

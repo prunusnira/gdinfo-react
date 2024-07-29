@@ -15,7 +15,9 @@ const PlayCntRankItem = (props: Props) => {
     return (
         <>
             {props.list.map((v, i) => (
-                <PCRIWrapper dark={dark} key={`playcountItem${i}`}>
+                <PCRIWrapper
+                    $dark={dark}
+                    key={`playcountItem${i}`}>
                     <PCRINum>{v.index}</PCRINum>
                     <PCRIUser>
                         {v.towertitle !== '' && (
@@ -24,7 +26,9 @@ const PlayCntRankItem = (props: Props) => {
                                 src={`${process.env.PUBLIC_URL}/general-img/title/${v.towertitle}.png`}
                             />
                         )}
-                        <ThemedLink dark={dark} to={v.prlink}>
+                        <ThemedLink
+                            $dark={dark}
+                            to={v.prlink}>
                             {v.name}
                         </ThemedLink>
                     </PCRIUser>

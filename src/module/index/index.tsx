@@ -36,19 +36,29 @@ const IndexPage = () => {
                                 <ContentLayout title={txtIndex.self.title} isHalf={true}>
                                     <UserLoginInfo />
                                     <IndexRow>
-                                        <ThemedLink dark={dark} to="/profile">
+                                        <ThemedLink
+                                            $dark={dark}
+                                            to="/profile">
                                             <Button>Profile</Button>
                                         </ThemedLink>
-                                        <ThemedLink dark={dark} to="/myskill/gf">
+                                        <ThemedLink
+                                            $dark={dark}
+                                            to="/myskill/gf">
                                             <Button>GF Skill</Button>
                                         </ThemedLink>
-                                        <ThemedLink dark={dark} to="/myskill/dm">
+                                        <ThemedLink
+                                            $dark={dark}
+                                            to="/myskill/dm">
                                             <Button>DM Skill</Button>
                                         </ThemedLink>
-                                        <ThemedLink dark={dark} to="/mybest">
+                                        <ThemedLink
+                                            $dark={dark}
+                                            to="/mybest">
                                             <Button>My Best</Button>
                                         </ThemedLink>
-                                        <ThemedLink dark={dark} to="/tower/index">
+                                        <ThemedLink
+                                            $dark={dark}
+                                            to="/tower/index">
                                             <Button>Tower</Button>
                                         </ThemedLink>
                                     </IndexRow>
@@ -72,7 +82,7 @@ const IndexPage = () => {
                             target="blank"
                             rel="noopener noreferrer"
                             href="https://twitter.com/_nira_one"
-                            dark={dark}
+                            $dark={dark}
                         >
                             @_nira_one
                         </Anchor>

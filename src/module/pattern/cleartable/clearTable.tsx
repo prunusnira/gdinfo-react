@@ -36,7 +36,7 @@ const ClearTable = () => {
                 {isUserError ? <DataError /> : <></>}
 
                 <ThemedLink
-                    dark={dark}
+                    $dark={dark}
                     to={profileLink}
                     className="innerhref"
                     style={{

@@ -12,7 +12,7 @@ import React from 'react';
 import useLoginInfo from './useLoginInfo';
 
 const UserLoginInfo = () => {
-    const { profile, isLoading, isError } = useLoginInfo();
+    const { profile, isLoading } = useLoginInfo();
     const lang = useAtomValue(atomLanguage);
     const dark = useAtomValue(atomDarkmode);
 
@@ -64,7 +64,9 @@ const UserLoginInfo = () => {
     }
     return (
         <LIWrapper>
-            <ThemedLink dark={dark} to="/login">
+            <ThemedLink
+                $dark={dark}
+                to="/login">
                 {txtIndex.self.login}
             </ThemedLink>
             {txtIndex.self.loginFirst}

@@ -22,7 +22,7 @@ export const SkillHeader = styled.div`
     padding: 10px;
 `;
 
-export const SkillBody = styled.div<{ dark: boolean }>`
+export const SkillBody = styled.div<{ $dark: boolean }>`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,7 +31,7 @@ export const SkillBody = styled.div<{ dark: boolean }>`
 
     padding: 5px 0;
 
-    background-color: ${(props) => (props.dark ? `${ContentBodyDark}` : `${ContentBody}`)};
+    background-color: ${(props) => (props.$dark ? `${ContentBodyDark}` : `${ContentBody}`)};
 `;
 
 export const SkillTableOuterSH = styled.section`

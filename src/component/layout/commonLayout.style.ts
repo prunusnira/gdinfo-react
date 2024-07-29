@@ -1,14 +1,14 @@
 import { Background, Black } from "@/styled/color";
 import styled from "styled-components";
 
-export const Outer = styled.main<{ dark: boolean }>`
+export const Outer = styled.main<{ $dark: boolean }>`
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
     min-height: 100vh;
 
-    ${(props) => (props.dark ? `background-color: ${Black};` : `background-color: ${Background}`)}
+    ${(props) => (props.$dark ? `background-color: ${Black};` : `background-color: ${Background}`)}
 `;
 
 export const Container = styled.section`
@@ -17,8 +17,6 @@ export const Container = styled.section`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
-    padding-top: 60px;
 
     // media query를 사용하여 width 마다 별도로 지정
     @media screen and (max-width: 415px) {

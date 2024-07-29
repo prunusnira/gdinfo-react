@@ -14,7 +14,11 @@ const TowerListImg = (props: Props) => {
     return (
         <>
             {props.list.map((tower, i) => (
-                <ThemedLink dark={dark} key={i} to={tower.link} data-testid="towerUrl">
+                <ThemedLink
+                    $dark={dark}
+                    key={i}
+                    to={tower.link}
+                    data-testid="towerUrl">
                     <TowerItemImg alt="towerimg" src={tower.img} />
                 </ThemedLink>
             ))}

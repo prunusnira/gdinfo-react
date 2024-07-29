@@ -15,7 +15,7 @@ const FullPageLoading = ({ full }: Props) => {
     return (
         <>
             <SinHeader />
-            <Outer dark={dark}>
+            <Outer $dark={dark}>
                 <section className={`${full ? style.loadingFullScreen : ''}`}>
                     <IconLoading viewBox={'0 0 40 40'} width={100} height={100} />
                 </section>

@@ -19,8 +19,8 @@ interface SubProps {
 }
 
 const SideBarSubItem = ({ text, href, dark }: SubProps) => (
-    <ThemedLink dark={dark} to={href!}>
-        <SBSubTxt dark={dark}>{text}</SBSubTxt>
+    <ThemedLink $dark={dark} to={href!}>
+        <SBSubTxt $dark={dark}>{text}</SBSubTxt>
     </ThemedLink>
 );
 
@@ -29,10 +29,10 @@ const SideBarItem = ({ iconSrc, text, href, sub }: Props) => {
     if (href) {
         return (
             <>
-                <ThemedLink dark={dark} to={href}>
+                <ThemedLink $dark={dark} to={href}>
                     <SideBarItemWrapper>
                         {iconSrc && <SBIcon src={iconSrc} />}
-                        <SBTxt dark={dark}>{text}</SBTxt>
+                        <SBTxt $dark={dark}>{text}</SBTxt>
                     </SideBarItemWrapper>
                 </ThemedLink>
                 <SideBarSubWrapper>
@@ -53,7 +53,7 @@ const SideBarItem = ({ iconSrc, text, href, sub }: Props) => {
         <>
             <SideBarItemWrapper>
                 {iconSrc && <SBIcon src={iconSrc} />}
-                <SBTxt dark={dark}>{text}</SBTxt>
+                <SBTxt $dark={dark}>{text}</SBTxt>
             </SideBarItemWrapper>
             <SideBarSubWrapper>
                 {sub &&

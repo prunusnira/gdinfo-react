@@ -8,13 +8,13 @@ export const StatFloorWrapper = styled.section`
     padding: 5px;
 `;
 
-export const StatFloorRow = styled.div<{ dark: boolean }>`
+export const StatFloorRow = styled.div<{ $dark: boolean }>`
     display: flex;
     flex-direction: row;
     width: 100%;
 
     &:hover {
-        background-color: ${(props) => (props.dark ? SelectDark : Select)};
+        background-color: ${(props) => (props.$dark ? SelectDark : Select)};
     }
 `;
 

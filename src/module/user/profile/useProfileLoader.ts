@@ -8,12 +8,10 @@ import { useEffect, useState } from 'react';
 const useProfileLoader = ({
                               id,
                               setComment,
-                              setOpenUserInfo,
                           }:
                               {
                                   id?: string,
                                   setComment: (s: string) => void,
-                                  setOpenUserInfo: (s: string) => void,
                               },
 ) => {
     const [profileData, setProfileData] = useState<IProfile>();
@@ -47,7 +45,6 @@ const useProfileLoader = ({
             const json = JSON.parse(data.mydata);
             setProfileData(json);
             setComment(json.comment);
-            setOpenUserInfo(json.opencount);
         }
     }, [data]);
 

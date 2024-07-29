@@ -33,7 +33,7 @@ const SkillTableNR = ({ list, openPopup }: SkillTableProps) => {
         <>
             {list.map((v, i) => (
                 <SkillItemWrapper
-                    dark={dark}
+                    $dark={dark}
                     onClick={() => {
                         openPopup(v.mid);
                     }}
@@ -51,7 +51,7 @@ const SkillTableNR = ({ list, openPopup }: SkillTableProps) => {
                     </SkillJacketWrapper>
                     <SkillDataWrapper>
                         <SkillDataRow>
-                            <SkillTitle dark={dark}>{v.musicTitle}</SkillTitle>
+                            <SkillTitle $dark={dark}>{v.musicTitle}</SkillTitle>
                         </SkillDataRow>
                         <SkillDataRow>
                             <SkillSubData>

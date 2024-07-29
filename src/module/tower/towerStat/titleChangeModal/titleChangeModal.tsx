@@ -31,7 +31,7 @@ const TitleChangeModal = (props: Props) => {
                     {TxtTitleChangeModal.body}
                 </ItemRow>
                 <ItemRow style={{ color: 'black' }}>
-                    <Icon sizeType={'sm'}
+                    <Icon $sizeType={'sm'}
                           src={`${process.env.PUBLIC_URL}/general-img/title/${props.titleToBeChanged.title}.png`} />
                     {props.titleToBeChanged.display}
                 </ItemRow>

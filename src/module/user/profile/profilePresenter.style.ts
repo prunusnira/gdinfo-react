@@ -34,13 +34,13 @@ export const UIComment = styled.div`
     padding: 10px 0;
 `;
 
-export const UISkillWrapper = styled.div<{ show?: boolean }>`
+export const UISkillWrapper = styled.div<{ $show?: boolean }>`
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     width: 100%;
 
-    ${(props) => !props.show && `display: none;`}
+    ${(props) => !props.$show && `display: none;`}
 `;
 
 export const UISkill = styled.div`
