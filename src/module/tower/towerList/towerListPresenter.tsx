@@ -30,7 +30,7 @@ const TowerListPresenter = (props: Props) => {
                 <TowerHowTo>
                     {txtTower.main.desc}
                     <br />
-                    <ThemedLink dark={dark} to={'/tower/howto'}>
+                    <ThemedLink $dark={dark} to={'/tower/howto'}>
                         <Button>{txtTower.main.howto}</Button>
                     </ThemedLink>
                 </TowerHowTo>

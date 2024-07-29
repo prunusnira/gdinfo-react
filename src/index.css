@@ -9,6 +9,13 @@ body {
     margin: 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    /* fix for iOS Safari */
+    transform: translate3d(0,0,0);
+    background-color: black;
+
+    max-width: 100%;
+    overflow-x: hidden;
 }
 
 a {

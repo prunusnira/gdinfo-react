@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import {Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 import {Button, ItemRow} from "@/styled/styledCommon";
 
@@ -9,64 +9,60 @@ import {useAtomValue} from "jotai/index";
 import {atomLanguage} from "@/jotai/language";
 
 interface Props {
-    isCountOpen: boolean;
-    opencount: string;
+    isInfoDlgOpen: boolean;
+    isInfoOpen: boolean;
     id: string;
-    updateOpenValue: (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => void;
-    submitOpen: (id: string, open: string) => void;
+    setSubmitData: ({id, open, submit}: {id: string, open: boolean, submit: boolean}) => void;
     setCountDlgClose: () => void;
 }
 
-const ModalInfoOpen = (props: Props) => {
+const ModalInfoOpen = ({
+    isInfoDlgOpen,
+    isInfoOpen,
+    id,
+    setSubmitData,
+    setCountDlgClose,
+                       }: Props) => {
     const lang = useAtomValue(atomLanguage)
     const txtProfile = lang === "ko" ? txtProfileKo : lang === "jp" ? txtProfileJp : txtProfileEn;
+    const [infoOpen, setInfoOpen] = useState(isInfoOpen);
+
+    useEffect(() => {
+        alert(isInfoDlgOpen)
+    }, [isInfoDlgOpen]);
 
     return (
-        <Modal isOpen={props.isCountOpen}>
+        <Modal isOpen={isInfoDlgOpen}>
             <ModalHeader>{txtProfile.button.setdataopen}</ModalHeader>
             <ModalBody>
                 <ItemRow>
                     <label id="opencntLabelYes" style={{color: "black"}}>
-                        {(function () {
-                            if (props.opencount === "Y") {
-                                return <input type="radio" name="opencount" value="Y" checked/>;
-                            }
-                            return (
-                                <input
-                                    type="radio"
-                                    name="opencount"
-                                    value="Y"
-                                    onClick={props.updateOpenValue}
-                                />
-                            );
-                        })()}
+                        <input type="radio" name="opencount" value="Y"
+                               checked={infoOpen}
+                               onChange={() => {
+                            setInfoOpen(true)
+                        }} />
                         &nbsp;
                         {txtProfile.dataopen.yes}
                     </label>
                 </ItemRow>
                 <ItemRow>
-                    <label id="opencntLabelNo" style={{color: "black"}}>
-                        {(function () {
-                            if (props.opencount === "N") {
-                                return <input type="radio" name="opencount" value="N" checked/>;
-                            }
-                            return (
-                                <input
-                                    type="radio"
-                                    name="opencount"
-                                    value="N"
-                                    onClick={props.updateOpenValue}
-                                />
-                            );
-                        })()}
+                    <label id="opencntLabelNo" style={{ color: 'black' }}>
+                        <input type="radio" name="opencount" value="N"
+                               checked={!infoOpen}
+                               onChange={() => {
+                            setInfoOpen(false);
+                        }} />
                         &nbsp;
                         {txtProfile.dataopen.no}
                     </label>
                 </ItemRow>
             </ModalBody>
-            <ModalFooter style={{backgroundColor: "#dddddd"}}>
-                <Button onClick={props.setCountDlgClose}>Cancel</Button>
-                <Button onClick={() => props.submitOpen(props.id, props.opencount)}>Apply</Button>
+            <ModalFooter style={{ backgroundColor: '#dddddd' }}>
+                <Button onClick={setCountDlgClose}>Cancel</Button>
+                <Button onClick={() => setSubmitData(
+                    {id, open: infoOpen, submit: true},
+                )}>Apply</Button>
             </ModalFooter>
         </Modal>
     );

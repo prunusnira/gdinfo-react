@@ -17,17 +17,26 @@ const PTListItemRow = (props: Props) => {
                 <Fragment key={`ptitem${i}`}>
                     <GridCell>{diff.diff}</GridCell>
                     <GridCell>
-                        <ThemedLink dark={dark} className="innerhref" to={diff.glink}>
+                        <ThemedLink
+                            $dark={dark}
+                            className="innerhref"
+                            to={diff.glink}>
                             {diff.glv}
                         </ThemedLink>
                     </GridCell>
                     <GridCell>
-                        <ThemedLink dark={dark} className="innerhref" to={diff.blink}>
+                        <ThemedLink
+                            $dark={dark}
+                            className="innerhref"
+                            to={diff.blink}>
                             {diff.blv}
                         </ThemedLink>
                     </GridCell>
                     <GridCell>
-                        <ThemedLink dark={dark} className="innerhref" to={diff.dlink}>
+                        <ThemedLink
+                            $dark={dark}
+                            className="innerhref"
+                            to={diff.dlink}>
                             {diff.dlv}
                         </ThemedLink>
                     </GridCell>

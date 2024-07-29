@@ -105,18 +105,18 @@ const SkillTopMenu = ({ share }: Props) => {
 
     return (
         <>
-            <SkillBody dark={dark}>
+            <SkillBody $dark={dark}>
                 <SkillRow justifyContent={'center'} alignItems={'center'}>
                     {share ? (
                         <ThemedLink
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/${ptype}/${userid}/${gtype}/${page}/${order}${window.location.search}`}
                         >
                             <Button>{txtSkill.btnNormalTable}</Button>
                         </ThemedLink>
                     ) : (
                         <ThemedLink
-                            dark={dark}
+                            $dark={dark}
                             to={`/skillscr/${ptype}/${userid}/${gtype}/${page}/${order}${window.location.search}`}
                         >
                             <Button>{txtSkill.btnShareTable}</Button>
@@ -158,7 +158,9 @@ const SkillTopMenu = ({ share }: Props) => {
                 </SkillRow>
 
                 <SkillRow justifyContent={'center'} alignItems={'center'}>
-                    <Anchor dark={dark} onClick={showTableMenu}>
+                    <Anchor
+                        $dark={dark}
+                        onClick={showTableMenu}>
                         {txtSkill.float}
                     </Anchor>
                 </SkillRow>
@@ -177,7 +179,7 @@ const SkillTopMenu = ({ share }: Props) => {
                         <SkillHeader>
                             <h4>Search Options</h4>
                         </SkillHeader>
-                        <SkillBody dark={dark}>
+                        <SkillBody $dark={dark}>
                             <SkillRow>
                                 <ItemCol
                                     size={3.3}

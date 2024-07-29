@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import { AnchorColor, AnchorColorDark, Black, ButtonBG } from './color';
 
-export const Anchor = styled.a<{ dark: boolean }>`
-    ${(props) => (props.dark ? `color: ${AnchorColorDark};` : `color: ${AnchorColor};`)}
+export const Anchor = styled.a<{ $dark: boolean }>`
+    ${(props) => (props.$dark ? `color: ${AnchorColorDark};` : `color: ${AnchorColor};`)}
     cursor: pointer;
 `;
 
-export const ThemedLink = styled(Link)<{ dark: boolean }>`
+export const ThemedLink = styled(Link)<{ $dark: boolean }>`
     ${(props) =>
-            props.dark ? `color: ${AnchorColorDark} !important;` : `color: ${AnchorColor} !important;`}
+            props.$dark ? `color: ${AnchorColorDark} !important;` : `color: ${AnchorColor} !important;`}
 `;
 
 export const Button = styled.button`
@@ -86,8 +86,8 @@ const iconSize = (sizeType: string) => {
     return rtn;
 };
 
-const IconBase = styled.img<{ sizeType: string }>`
-    ${(props) => `${iconSize(props.sizeType)}`}
+const IconBase = styled.img<{ $sizeType: string }>`
+    ${(props) => `${iconSize(props.$sizeType)}`}
 `;
 
-export const Icon = defaultStyle(IconBase, { sizeType: 'sm' });
+export const Icon = defaultStyle(IconBase, { $sizeType: 'sm' });

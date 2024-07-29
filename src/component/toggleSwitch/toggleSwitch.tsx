@@ -28,8 +28,8 @@ const ToggleSwitch = ({ id, isLoading, actualValue, callback }: Props) => {
                 id={`chkbox_${id}`}
                 disabled={isLoading}
             />
-            <ToggleLabel htmlFor={`chkbox_${id}`} isChecked={isActive}>
-                <ToggleSpan isChecked={isActive} />
+            <ToggleLabel htmlFor={`chkbox_${id}`} $isChecked={isActive}>
+                <ToggleSpan $isChecked={isActive} />
             </ToggleLabel>
         </ToggleSwitchWrapper>
     );

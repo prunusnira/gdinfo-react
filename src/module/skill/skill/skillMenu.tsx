@@ -20,28 +20,28 @@ const SkillMenu = (props: Props) => {
                     <Col xs="12" className="btn-group">
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/3/${props.id}/gf/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>GF 100</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/4/${props.id}/gf/1/1`}
                         >
                             <Button style={{ width: '100%' }}>GF Skill</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/3/${props.id}/dm/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>DM 100</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/4/${props.id}/dm/1/1`}
                         >
                             <Button style={{ width: '100%' }}>DM Skill</Button>
@@ -53,28 +53,28 @@ const SkillMenu = (props: Props) => {
                     <Col xs="12" className="btn-group">
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/5/${props.id}/gf/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>GF 100</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/6/${props.id}/gf/1/1`}
                         >
                             <Button style={{ width: '100%' }}>GF Skill</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/5/${props.id}/dm/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>DM 100</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/6/${props.id}/dm/1/1`}
                         >
                             <Button style={{ width: '100%' }}>DM Skill</Button>
@@ -86,28 +86,28 @@ const SkillMenu = (props: Props) => {
                     <Col xs="12" className="btn-group">
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/7/${props.id}/gf/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>GF 100</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/8/${props.id}/gf/1/1`}
                         >
                             <Button style={{ width: '100%' }}>GF Skill</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/7/${props.id}/dm/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>DM 100</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/8/${props.id}/dm/1/1`}
                         >
                             <Button style={{ width: '100%' }}>DM Skill</Button>
@@ -119,28 +119,28 @@ const SkillMenu = (props: Props) => {
                     <Col xs="12" className="btn-group">
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/9/${props.id}/gf/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>GF 100</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/10/${props.id}/gf/1/1`}
                         >
                             <Button style={{ width: '100%' }}>GF Skill</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/9/${props.id}/dm/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>DM 100</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/10/${props.id}/dm/1/1`}
                         >
                             <Button style={{ width: '100%' }}>DM Skill</Button>
@@ -152,28 +152,28 @@ const SkillMenu = (props: Props) => {
                     <Col xs="12" className="btn-group">
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/11/${props.id}/gf/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>GF 100</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/12/${props.id}/gf/1/1`}
                         >
                             <Button style={{ width: '100%' }}>GF Skill</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/11/${props.id}/dm/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>DM 100</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/12/${props.id}/dm/1/1`}
                         >
                             <Button style={{ width: '100%' }}>DM Skill</Button>
@@ -185,28 +185,28 @@ const SkillMenu = (props: Props) => {
                     <Col xs="12" className="btn-group">
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/13/${props.id}/gf/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>GF 100</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/14/${props.id}/gf/1/1`}
                         >
                             <Button style={{ width: '100%' }}>GF Skill</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/13/${props.id}/dm/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>DM 100</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/14/${props.id}/dm/1/1`}
                         >
                             <Button style={{ width: '100%' }}>DM Skill</Button>
@@ -218,28 +218,28 @@ const SkillMenu = (props: Props) => {
                     <Col xs="12" className="btn-group">
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/15/${props.id}/gf/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>GF 100</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/16/${props.id}/gf/1/1`}
                         >
                             <Button style={{ width: '100%' }}>GF Skill</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/15/${props.id}/dm/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>DM 100</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/16/${props.id}/dm/1/1`}
                         >
                             <Button style={{ width: '100%' }}>DM Skill</Button>
@@ -251,28 +251,28 @@ const SkillMenu = (props: Props) => {
                     <Col xs="12" className="btn-group">
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/0/${props.id}/gf/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>GF All</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/2/${props.id}/gf/1/1`}
                         >
                             <Button style={{ width: '100%' }}>GF Skill</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/0/${props.id}/dm/1/skilldesc`}
                         >
                             <Button style={{ width: '100%' }}>DM All</Button>
                         </ThemedLink>
                         <ThemedLink
                             style={{ width: '100%' }}
-                            dark={dark}
+                            $dark={dark}
                             to={`/skill/2/${props.id}/dm/1/1`}
                         >
                             <Button style={{ width: '100%' }}>DM Skill</Button>
@@ -287,10 +287,14 @@ const SkillMenu = (props: Props) => {
             <Row>
                 <Col xs={'12'}>Theorical Skill Value</Col>
                 <Col xs={'12'} className={'btn-group'}>
-                    <ThemedLink dark={dark} to={'/exc/gf'}>
+                    <ThemedLink
+                        $dark={dark}
+                        to={'/exc/gf'}>
                         <Button>GF EXCELLENT</Button>
                     </ThemedLink>
-                    <ThemedLink dark={dark} to={'/exc/dm'}>
+                    <ThemedLink
+                        $dark={dark}
+                        to={'/exc/dm'}>
                         <Button>DM EXCELLENT</Button>
                     </ThemedLink>
                 </Col>

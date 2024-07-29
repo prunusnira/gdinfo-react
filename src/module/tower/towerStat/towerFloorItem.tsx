@@ -35,7 +35,8 @@ const TowerFloorItem = (props: Props) => {
         <>
             {props.list.map((fl, i) => (
                 <Fragment key={`floorItem${i}`}>
-                    <FloorItemWrapper dark={dark}>
+                    <FloorItemWrapper
+                        $dark={dark}>
                         <FIImgWrapper>
                             <FIImg alt="jacket-img" src={fl.jacket} />
                         </FIImgWrapper>

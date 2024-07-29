@@ -2,8 +2,8 @@ import { MenuBack, MenuBackDark } from "@/styled/color";
 import styled from "styled-components";
 
 export const SideBarContainer = styled.section<{
-    isOpen: boolean;
-    dark: boolean;
+    $isOpen: boolean;
+    $dark: boolean;
 }>`
     display: flex;
     flex-direction: column;
@@ -18,14 +18,14 @@ export const SideBarContainer = styled.section<{
     overflow-y: auto;
 
     ${(props) =>
-        !props.isOpen
+        !props.$isOpen
             ? `transition: right 0.5s ease-in-out;
             right: -100%;`
             : `transition: right 0.5s ease-in-out;
             right: 0px;`}
 
     ${(props) =>
-        props.dark
+        props.$dark
             ? `
     background-color: ${MenuBackDark};`
             : `
@@ -38,18 +38,18 @@ export const SideBarInner = styled.div`
 `;
 
 export const LevelDiff = styled.div`
-    display; flex;
+    display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 `;
 
-export const LvDiffDiv = styled.div<{ dark?: boolean }>`
+export const LvDiffDiv = styled.div<{ $dark?: boolean }>`
     width: 100%;
     font-size: 24px;
     font-weight: bold;
     text-align: center;
     color: black;
 
-    ${(props) => props.dark && `color: white;`}
+    ${(props) => props.$dark && `color: white;`}
 `;
