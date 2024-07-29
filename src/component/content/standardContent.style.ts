@@ -1,7 +1,7 @@
 import { BGGray, Black, ContentBody, ContentBodyDark, ContentTitle, White } from "@/styled/color";
 import styled from "styled-components";
 
-export const Wrapper = styled.section<{ isHalf?: boolean }>`
+export const Wrapper = styled.section<{ $isHalf?: boolean }>`
     display: flex;
     flex-direction: column;
     border-radius: 14px;
@@ -17,7 +17,7 @@ export const Wrapper = styled.section<{ isHalf?: boolean }>`
     }
 
     @media screen and (min-width: 1025px) {
-        ${(props) => (props.isHalf ? "max-width: 460px;" : "max-width: 1024px;")}
+        ${(props) => (props.$isHalf ? "max-width: 460px;" : "max-width: 1024px;")}
     }
 
     -webkit-transform: width 0.75s ease-in;
@@ -26,7 +26,7 @@ export const Wrapper = styled.section<{ isHalf?: boolean }>`
     transform: width 0.75s ease-in;
 `;
 
-export const TitleWrapper = styled.section<{ dark: boolean }>`
+export const TitleWrapper = styled.section<{ $dark: boolean }>`
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -34,7 +34,7 @@ export const TitleWrapper = styled.section<{ dark: boolean }>`
     padding: 0 16px;
 
     ${(props) =>
-            props.dark
+            props.$dark
                     ? `background-color: ${BGGray};
 color: ${White};`
                     : `background-color: ${ContentTitle};
@@ -47,7 +47,7 @@ export const Title = styled.div`
     font-weight: bold;
 `;
 
-export const Body = styled.section<{ dark: boolean }>`
+export const Body = styled.section<{ $dark: boolean }>`
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -57,11 +57,11 @@ export const Body = styled.section<{ dark: boolean }>`
     padding: 10px;
 
     ${(props) =>
-        props.dark
+        props.$dark
             ? `background-color: ${ContentBodyDark};
 color: ${White};`
             : `background-color: ${ContentBody};
 color: ${Black};`}
 
-    border: 1px solid ${(props) => (props.dark ? BGGray : ContentTitle)};
+    border: 1px solid ${(props) => (props.$dark ? BGGray : ContentTitle)};
 `;

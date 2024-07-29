@@ -14,8 +14,8 @@ type Props = {
 const ContentLayout = ({ title, children, isHalf, hasMore, moreHref }: Props) => {
     const dark = useAtomValue(atomDarkmode);
     return (
-        <Wrapper isHalf={isHalf}>
-            <TitleWrapper dark={dark}>
+        <Wrapper $isHalf={isHalf}>
+            <TitleWrapper $dark={dark}>
                 <Title>{title}</Title>
                 {hasMore ?
                     <Title style={{cursor: 'pointer'}}>&gt;</Title>
@@ -23,7 +23,10 @@ const ContentLayout = ({ title, children, isHalf, hasMore, moreHref }: Props) =>
                     <></>
                 }
             </TitleWrapper>
-            <Body dark={dark}>{children}</Body>
+            <Body
+                $dark={dark}>
+                {children}
+            </Body>
         </Wrapper>
     );
 };

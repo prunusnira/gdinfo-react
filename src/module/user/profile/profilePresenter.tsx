@@ -37,7 +37,6 @@ import ProfileRecent from './profileRecent';
 
 interface Props {
     isInfoOpen: boolean;
-    openUserInfo: string;
 
     comment: string;
     nextComment: string;
@@ -77,7 +76,7 @@ const ProfilePresenter = (props: Props) => {
                 <UIName>
                     {props.profileData.titletower !== '' && (
                         <Icon
-                            sizeType={'sm'}
+                            $sizeType={'sm'}
                             alt="titletower"
                             src={`${process.env.PUBLIC_URL}/general-img/title/${props.profileData.titletower}.png`}
                         />
@@ -95,7 +94,7 @@ const ProfilePresenter = (props: Props) => {
                         {txtProfile.button.changecomment}
                     </Button>
                 )}
-                <UISkillWrapper show={true}>
+                <UISkillWrapper $show={true}>
                     <UISkill>
                         <UISkillTitle>GF SKILL</UISkillTitle>
                         <UISkillBox>
@@ -123,7 +122,7 @@ const ProfilePresenter = (props: Props) => {
                     </UISkill>
                 </UISkillWrapper>
 
-                <UISkillWrapper show={oldSkill}>
+                <UISkillWrapper $show={oldSkill}>
                     <UISkill>
                         <UISkillBox>
                             <UISkillBoxVer>FU</UISkillBoxVer>
@@ -333,7 +332,7 @@ const ProfilePresenter = (props: Props) => {
                     <DetailGridVal>
                         {txtProfile.detailed.count}
                         <br />
-                        {props.openUserInfo === 'N' &&
+                        {!props.isInfoOpen &&
                         !props.isOwnAccount ? (
                             <>Closed</>
                         ) : (
@@ -342,7 +341,7 @@ const ProfilePresenter = (props: Props) => {
                         )}
                     </DetailGridVal>
                     <DetailGridVal>
-                        {props.openUserInfo === 'N' &&
+                        {!props.isInfoOpen &&
                         !props.isOwnAccount ? (
                             <>Closed</>
                         ) : (
@@ -350,7 +349,7 @@ const ProfilePresenter = (props: Props) => {
                         )}
                     </DetailGridVal>
                     <DetailGridVal>
-                        {props.openUserInfo === 'N' &&
+                        {!props.isInfoOpen &&
                         !props.isOwnAccount ? (
                             <>Closed</>
                         ) : (
@@ -369,11 +368,13 @@ const ProfilePresenter = (props: Props) => {
 
             <ContentLayout title={txtProfile.button.title} isHalf>
                 <ButtonFlex>
-                    <ThemedLink dark={dark} to={`/mybest/${props.id}`}>
+                    <ThemedLink
+                        $dark={dark}
+                        to={`/mybest/${props.id}`}>
                         <ProfButton>{txtProfile.button.mybest}</ProfButton>
                     </ThemedLink>
                     <ThemedLink
-                        dark={dark}
+                        $dark={dark}
                         to={`/cleartable/${props.id}`}
                     >
                         <ProfButton>
@@ -389,7 +390,9 @@ const ProfilePresenter = (props: Props) => {
                             <ProfButton onClick={props.setInfoDlgOpen}>
                                 {txtProfile.button.setdataopen}
                             </ProfButton>
-                            <ThemedLink dark={dark} to={'/reset'}>
+                            <ThemedLink
+                                $dark={dark}
+                                to={'/reset'}>
                                 <ProfButton type="submit">
                                     {txtProfile.button.reset}
                                 </ProfButton>

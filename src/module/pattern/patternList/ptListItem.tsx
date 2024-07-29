@@ -31,7 +31,7 @@ const PTListItem = (props: Props) => {
                             }}
                         />
                         <Anchor
-                            dark={dark}
+                            $dark={dark}
                             className="innerhref"
                             onClick={() => props.openPopup(p.mid)}
                         >

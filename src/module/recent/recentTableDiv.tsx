@@ -55,11 +55,16 @@ const RecentTableDiv = (props: Props) => {
                             />
                         )}
                         {user.opencount === 'Y' ? (
-                            <ThemedLink dark={dark} to={`/profile/${user.id}`}>
+                            <ThemedLink
+                                $dark={dark}
+                                to={`/profile/${user.id}`}>
                                 {user.name !== '' ? `${user.name}` : `(NO NAME)`}
                             </ThemedLink>
                         ) : (
-                            <EmptyUser dark={dark}>{txtProfile.table1.emptyname}</EmptyUser>
+                            <EmptyUser
+                                $dark={dark}>
+                                {txtProfile.table1.emptyname}
+                            </EmptyUser>
                         )}
                     </UserName>
                     <UpdateTime>

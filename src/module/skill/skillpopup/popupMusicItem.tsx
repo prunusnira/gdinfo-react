@@ -48,7 +48,7 @@ const PopupMusicItem = (props: Props) => {
                                     </ItemDiff>
                                     <ItemRank>
                                         <ThemedLink
-                                            dark={false}
+                                            $dark={false}
                                             className="innerhref"
                                             to={music.ranklink}
                                         >

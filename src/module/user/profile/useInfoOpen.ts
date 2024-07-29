@@ -1,30 +1,27 @@
 import { apiForceCountUpdate, apiSubmitDataOpen } from '@/api/updateUserData';
 import { atomLoginUser } from '@/jotai/loginUser';
+import { useMutation } from '@tanstack/react-query';
 import { useAtomValue } from 'jotai/index';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const useInfoOpen = (setOpenUserInfo: (s: string) => void) => {
+const useInfoOpen = () => {
+    const [isInfoDlgOpen, setIsInfoDlgOpen] = useState(false);
     const [isInfoOpen, setInfoOpen] = useState(false);
     const loginUser = useAtomValue(atomLoginUser);
+    const [submit, setSubmit] = useState(false);
+    const [id, setId] = useState<string>('');
+    const [open, setOpen] = useState<boolean>(false);
 
     const setInfoDlgOpen = () => {
-        setInfoOpen(true);
+        setIsInfoDlgOpen(true);
     };
 
     const setInfoDlgClose = () => {
-        setInfoOpen(false);
+        setIsInfoDlgOpen(false);
     };
 
-    const submitOpen = (id: string, open: string) => {
-        apiSubmitDataOpen(id, open)
-            .then(() => {
-                setInfoDlgClose();
-            });
-    };
-
-    const updateOpenValue = (e: React.MouseEvent<HTMLInputElement, MouseEvent>) => {
-        setOpenUserInfo(e.currentTarget.value);
-    };
+    const submitOpen = ({id, open}: {id: string, open: boolean}) =>
+        apiSubmitDataOpen(id, open ? 'Y' : 'N');
 
     const forceCountUpdate = () => {
         if (loginUser) {
@@ -35,8 +32,43 @@ const useInfoOpen = (setOpenUserInfo: (s: string) => void) => {
         }
     };
 
+    const setSubmitData = (
+        {id, open, submit}:
+            {id: string, open: boolean, submit: boolean},
+    ) => {
+        setId(id);
+        setOpen(open);
+        setSubmit(submit);
+    }
+
+    const {mutate, data} = useMutation({
+        mutationKey: ['profile', 'infoopen'],
+        mutationFn: submitOpen,
+    });
+
+    useEffect(() => {
+        if(submit) {
+            setSubmit(false);
+            mutate({
+                id,
+                open,
+            });
+        }
+    }, [submit]);
+
+    useEffect(() => {
+        if(data) {
+            setInfoDlgClose();
+        }
+    }, [data]);
+
     return {
-        isInfoOpen, setInfoDlgOpen, setInfoDlgClose, submitOpen, forceCountUpdate, updateOpenValue,
+        isInfoOpen,
+        isInfoDlgOpen,
+        setInfoDlgOpen,
+        setInfoDlgClose,
+        setSubmitData,
+        forceCountUpdate,
     };
 };
 

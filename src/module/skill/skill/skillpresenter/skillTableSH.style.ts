@@ -9,14 +9,14 @@ import {
     White,
 } from "@/styled/color";
 
-export const SkillItemWrapper = styled.div<{ dark: boolean }>`
+export const SkillItemWrapper = styled.div<{ $dark: boolean }>`
     display: flex;
     flex-direction: column;
     width: 100%;
     border: 1px solid ${SkillBottomLine};
 
     &:hover {
-        background-color: ${(props) => (props.dark ? SelectDark : Select)};
+        background-color: ${(props) => (props.$dark ? SelectDark : Select)};
     }
 `;
 
@@ -105,7 +105,7 @@ export const SkillClear = styled.img`
     }
 `;
 
-export const SkillTitle = styled.div<{ dark: boolean }>`
+export const SkillTitle = styled.div<{ $dark: boolean }>`
     text-align: center;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -118,7 +118,7 @@ export const SkillTitle = styled.div<{ dark: boolean }>`
     }
     
     ${(props) =>
-            (props.dark ? `color: ${AnchorColorDark};` : `color: ${AnchorColor};`)}
+            (props.$dark ? `color: ${AnchorColorDark};` : `color: ${AnchorColor};`)}
     }
 `;
 

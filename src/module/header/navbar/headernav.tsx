@@ -64,7 +64,7 @@ const HeaderNavBar = (props: Props) => {
             </NavTitle>
 
             <NavMenu>
-                <NavItem dark={dark}>
+                <NavItem $dark={dark}>
                     Dark
                     <ToggleSwitch
                         id={`darkmode`}
@@ -72,8 +72,8 @@ const HeaderNavBar = (props: Props) => {
                         callback={(mode) => setDark(mode)}
                     />
                 </NavItem>
-                <NavItem dark={dark}>{LoginButton()}</NavItem>
-                <NavItem dark={dark} onClick={() => props.toggleMenu()}>
+                <NavItem $dark={dark}>{LoginButton()}</NavItem>
+                <NavItem $dark={dark} onClick={() => props.toggleMenu()}>
                     <FontAwesomeIcon icon={faBars} style={{cursor: 'pointer'}} />
                 </NavItem>
             </NavMenu>
