@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 import styled from 'styled-components';
-import { AnchorColor, AnchorColorDark, Black, ButtonBG } from './color';
+import {AnchorColor, AnchorColorDark, Black, ButtonBG} from './color';
 
 export const Anchor = styled.a<{ $dark: boolean }>`
     ${(props) => (props.$dark ? `color: ${AnchorColorDark};` : `color: ${AnchorColor};`)}
@@ -8,8 +8,8 @@ export const Anchor = styled.a<{ $dark: boolean }>`
 `;
 
 export const ThemedLink = styled(Link)<{ $dark: boolean }>`
-    ${(props) =>
-            props.$dark ? `color: ${AnchorColorDark} !important;` : `color: ${AnchorColor} !important;`}
+    ${(props) => 
+        props.$dark ? `color: ${AnchorColorDark} !important;` : `color: ${AnchorColor} !important;`}
 `;
 
 export const Button = styled.button`
@@ -43,32 +43,31 @@ const ItemRowBase = styled.div<{ keepDirHor?: boolean; setVertical?: boolean }>`
             props.keepDirHor
                     ? ``
                     : `@media screen and (max-width: 1199px) {
-            flex-direction: column;
-        }`}
+        flex-direction: column;
+    }`}
 
     ${(props) => (props.setVertical ? `flex-direction: column;` : ``)}
 `;
 
-export const ItemRow = defaultStyle(ItemRowBase, { keepDirHor: false, setVertical: false });
+export const ItemRow = defaultStyle(ItemRowBase, {keepDirHor: false, setVertical: false});
 
 const widthSize = (size: number) => `width: ${size * 10}%;`;
 
 // 사이즈는 10 기준으로 계산함
 const ItemColBase = styled.div<{ size?: number; isFlatUnderLg?: boolean }>`
     ${(props) =>
-            props.isFlatUnderLg
-                    ? `
-        @media screen and (max-width: 1199px) {
-            width: 100%;
-        }
-        @media screen and (min-width: 1200px) {
-            ${widthSize(props.size || 10)}
-        }
-        `
+            props.isFlatUnderLg ? `
+    @media screen and (max-width: 1199px) {
+        width: 100%;
+    }
+    @media screen and (min-width: 1200px) {
+        ${widthSize(props.size || 10)}
+    }
+    `
                     : `${widthSize(props.size || 10)}`}
 `;
 
-export const ItemCol = defaultStyle(ItemColBase, { size: 10, isFlatUnderLg: false });
+export const ItemCol = defaultStyle(ItemColBase, {size: 10, isFlatUnderLg: false});
 
 const iconSize = (sizeType: string) => {
     let rtn;
@@ -90,4 +89,4 @@ const IconBase = styled.img<{ $sizeType: string }>`
     ${(props) => `${iconSize(props.$sizeType)}`}
 `;
 
-export const Icon = defaultStyle(IconBase, { $sizeType: 'sm' });
+export const Icon = defaultStyle(IconBase, {$sizeType: 'sm'});

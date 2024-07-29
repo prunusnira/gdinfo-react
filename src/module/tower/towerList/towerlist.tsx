@@ -1,16 +1,17 @@
-import React from 'react'
-import TowerListPresenter from './towerListPresenter'
-import useTowerList from './useTowerList'
+import React from 'react';
+import TowerListPresenter from './towerListPresenter';
+import useTowerList from './useTowerList';
 
 const TowerList = () => {
-    const {towerGF, towerDM, towerSP} = useTowerList()
-    
+    const {towerGF, towerDM, towerSP} = useTowerList();
+
     return (
         <TowerListPresenter
             towerGF={towerGF}
             towerDM={towerDM}
-            towerSP={towerSP} />
-    )
-}
+            towerSP={towerSP}
+        />
+    );
+};
 
-export default TowerList
+export default TowerList;
