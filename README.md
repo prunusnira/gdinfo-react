@@ -1,3 +1,5 @@
+! This repository is archived. Go to renewaled one. https://github.com/prunusnira/skillnavi !
+
 # Skill Navigator Frontend Repository
 
 https://sin.nira.one
